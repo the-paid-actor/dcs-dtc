@@ -32,4 +32,4 @@ jobs:
       - uses: actions/upload-artifact@v2
         with:
           name: build-result
-          path: bin/Release
+          path: dcs-dtc/bin/Release

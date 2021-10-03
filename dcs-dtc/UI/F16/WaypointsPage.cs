@@ -18,6 +18,7 @@ namespace DTC.UI.F16
 			_waypoints = wpts;
 			_wptEditDialog = new WaypointEdit(_waypoints, this.WptDialogEditCallback);
 			_wptEditDialog.Visible = false;
+			dgWaypoints.AutoGenerateColumns = false;
 			this.Controls.Add(this._wptEditDialog);
 
 			RefreshList();

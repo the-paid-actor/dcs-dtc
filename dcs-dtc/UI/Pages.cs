@@ -69,7 +69,7 @@ namespace DTC.UI
 			}
 
 			WaypointsPage = new WaypointsPage(cfg.Waypoints, this.DataChanged);
-			UploadPage = new UploadToJetPage(cfg);
+			UploadPage = new UploadToJetPage(cfg, this.DataChanged);
 			RadiosPage = new RadioPage(cfg.Radios, this.DataChanged);
 			CMSPage = new CMSPage(cfg.CMS, this.DataChanged);
 			MFDPage = new MFDPage(cfg.MFD, this.DataChanged);

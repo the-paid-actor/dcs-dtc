@@ -183,14 +183,13 @@ namespace DTC.UI.F16
 			return true;
 		}
 
-
 		private void ResetFields()
 		{
 			cboAirbases.SelectedIndex = -1;
 			txtWptName.Focus();
 			txtWptName.Text = "WPT " + (_flightPlan.Waypoints.Count + 1).ToString();
 			txtWptLatLong.Text = "";
-			txtWptElevation.Text = "";
+			txtWptElevation.Text = "0";
 		}
 
 		private void cboAirbases_SelectedIndexChanged(object sender, EventArgs e)

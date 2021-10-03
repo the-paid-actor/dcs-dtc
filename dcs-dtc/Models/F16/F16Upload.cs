@@ -352,6 +352,11 @@ namespace DTC.Models
 					wpt = wpts[wpts.Count-1];
 				}
 
+				if (wpt.Blank)
+				{
+					continue;
+				}
+
 				BuildDigits(sb, ufc, (i + wptStart).ToString());
 				sb.Append(ufc.GetCommand("ENTR"));
 				sb.Append(ufc.GetCommand("DOWN"));

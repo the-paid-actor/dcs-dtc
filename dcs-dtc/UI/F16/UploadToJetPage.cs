@@ -8,42 +8,40 @@ namespace DTC.UI.F16
 	public partial class UploadToJetPage : FeaturePage
 	{
 		private F16Upload _jetInterface;
-		private int _wptStart = 1;
-		private int _wptEnd = 20;
+		private readonly F16Configuration _cfg;
 
-		public UploadToJetPage(F16Configuration cfg)
+		public UploadToJetPage(F16Configuration cfg, DataChanged dataChangedCallback) : base(dataChangedCallback)
 		{
 			InitializeComponent();
 			_jetInterface = new F16Upload(cfg);
 
 			txtWaypointStart.LostFocus += TxtWaypointStart_LostFocus;
 			txtWaypointEnd.LostFocus += TxtWaypointEnd_LostFocus;
+			txtWaypointStart.Text = cfg.Waypoints.SteerpointStart.ToString();
+			txtWaypointEnd.Text = cfg.Waypoints.SteerpointEnd.ToString();
+			_cfg = cfg;
 		}
 
 		private void TxtWaypointEnd_LostFocus(object sender, EventArgs e)
 		{
 			if (int.TryParse(txtWaypointEnd.Text, out int n))
 			{
-				if (n >= _wptStart && n <= 127)
-				{
-					_wptEnd = n;
-				}
+				_cfg.Waypoints.SetSteerpointEnd(n);
+				DataChangedCallback();
 			}
 
-			txtWaypointEnd.Text = _wptEnd.ToString();
+			txtWaypointEnd.Text = _cfg.Waypoints.SteerpointEnd.ToString();
 		}
 
 		private void TxtWaypointStart_LostFocus(object sender, EventArgs e)
 		{
 			if (int.TryParse(txtWaypointStart.Text, out int n))
 			{
-				if (n >= 1 && n < _wptEnd)
-				{
-					_wptStart = n;
-				}
+				_cfg.Waypoints.SetSteerpointStart(n);
+				DataChangedCallback();
 			}
 
-			txtWaypointStart.Text = _wptStart.ToString();
+			txtWaypointStart.Text = _cfg.Waypoints.SteerpointStart.ToString();
 		}
 
 		private void chkWaypoints_CheckedChanged(object sender, EventArgs e)

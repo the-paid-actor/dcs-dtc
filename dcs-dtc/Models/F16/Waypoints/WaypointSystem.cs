@@ -5,10 +5,14 @@ namespace DTC.Models.F16.Waypoints
 	public class WaypointSystem
 	{
 		public List<Waypoint> Waypoints { get; set; }
+		public int SteerpointStart { get; set; }
+		public int SteerpointEnd { get; set; }
 
 		public WaypointSystem()
 		{
 			Waypoints = new List<Waypoint>();
+			SteerpointStart = 1;
+			SteerpointEnd = 20;
 		}
 
 		public Waypoint Add(Waypoint wpt)
@@ -17,6 +21,22 @@ namespace DTC.Models.F16.Waypoints
 			wpt.Sequence = seq;
 			Waypoints.Add(wpt);
 			return wpt;
+		}
+
+		public void SetSteerpointStart(int v)
+		{
+			if (v >= 1 && v <= SteerpointEnd)
+			{
+				SteerpointStart = v;
+			}
+		}
+
+		public void SetSteerpointEnd(int v)
+		{
+			if (v >= SteerpointStart && v <= 127)
+			{
+				SteerpointEnd = v;
+			}
 		}
 
 		public void Remove(Waypoint wpt)

@@ -13,6 +13,21 @@ namespace DTC.Models.F16.Waypoints
 		public string Longitude { get; set; }
 		public int Elevation { get; set; }
 
+		public bool Blank {
+			get
+			{
+				var tmp = Latitude.Replace("N", "").Replace("S", "").Replace(".", "");
+				if (int.TryParse(tmp, out int latInt))
+				{
+					if (latInt == 0)
+					{
+						return true;
+					}
+				}
+				return false;
+			}
+		}
+
 		public Waypoint(int seq, string name, string latitude, string longitude, int elevation)
 		{
 			Sequence = seq;

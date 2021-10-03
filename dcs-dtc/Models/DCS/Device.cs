@@ -1,0 +1,29 @@
+﻿using System.Collections.Generic;
+
+namespace DTC.Models.DCS
+{
+	public class Device
+	{
+		public readonly int ID;
+		public readonly string Name;
+		public readonly Dictionary<string, Command> Commands = new Dictionary<string, Command>();
+
+		public Device(int id, string name)
+		{
+			this.ID = id;
+			this.Name = name;
+		}
+
+		public void AddCommand(Command cmd)
+		{
+			Commands.Add(cmd.Name, cmd);
+		}
+
+		public string GetCommand(string cmdName, int? delay = null)
+		{
+			var cmd = Commands[cmdName];
+			var str = "{'device': '" + ID + "', 'code': '" + cmd.ID + "', 'delay': '" + (delay ?? cmd.Delay) + "', 'activate': '" + cmd.Activate + "'},";
+			return str.Replace("'", "\"");
+		}
+	}
+}

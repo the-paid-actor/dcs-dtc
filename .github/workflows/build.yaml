@@ -23,11 +23,11 @@ jobs:
         run: cd $GITHUB_WORKSPACE
 
       - name: Restore Packages
-        run: nuget restore dcs-dtc.sln.sln
+        run: nuget restore dcs-dtc.sln
 
       - name: Build Solution
         run: |
-          msbuild.exe dcs-dtc.sln.sln /p:platform="Any CPU" /p:configuration="Release"
+          msbuild.exe dcs-dtc.sln /p:platform="Any CPU" /p:configuration="Release"
 
       - uses: actions/upload-artifact@v2
         with:

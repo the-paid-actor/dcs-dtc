@@ -26,9 +26,7 @@ namespace DTC.UI.Base
 			_crossHair = new WaypointCaptureCrosshair();
 			_crossHair.Show();
 
-			var port = ConfigurationManager.AppSettings["UDPReceivePort"];
-
-			UDPSocket.StartReceiving("127.0.0.1", int.Parse(port ?? "42069"), (string s) => {
+			UDPSocket.StartReceiving("127.0.0.1", Settings.UDPReceivePort, (string s) => {
 				var d = JsonConvert.DeserializeObject<Data>(s);
 
 				Console.WriteLine(d.clock);

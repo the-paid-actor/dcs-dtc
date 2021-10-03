@@ -1,5 +1,6 @@
 ﻿using System.Collections.Generic;
 using System.Configuration;
+using DTC.Models.Base;
 using DTC.Models.DCS;
 
 namespace DTC.Models.F16
@@ -10,11 +11,7 @@ namespace DTC.Models.F16
 
 		public F16Commands()
 		{
-			int delay;
-			if (!int.TryParse(ConfigurationManager.AppSettings["CommandDelayMs"], out delay))
-			{
-				delay = 1000;
-			}
+			var delay = Settings.CommandDelayMs;
 
 			var ufc = new Device(17, "UFC");
 			ufc.AddCommand(new Command(3002, "0", 0, 1));

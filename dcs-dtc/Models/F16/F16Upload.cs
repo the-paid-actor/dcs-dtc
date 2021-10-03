@@ -8,6 +8,7 @@ using DTC.Models.F16.MFD;
 using DTC.Models.F16.Radios;
 using DTC.Models.DCS;
 using System.Configuration;
+using DTC.Models.Base;
 
 namespace DTC.Models
 {
@@ -20,8 +21,7 @@ namespace DTC.Models
 
 		public F16Upload(F16Configuration cfg)
 		{
-			var port = ConfigurationManager.AppSettings["TCPSendPort"];
-			tcpPort = int.Parse(port ?? "42070");
+			tcpPort = Settings.TCPSendPort;
 
 			_cfg = cfg;
 		}

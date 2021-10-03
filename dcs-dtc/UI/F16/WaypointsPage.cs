@@ -58,7 +58,7 @@ namespace DTC.UI.F16
 			((MainForm)this.ParentForm).ToggleEnabled();
 			dgWaypoints.Enabled = !dgWaypoints.Enabled;
 			btnAdd.Enabled = !btnAdd.Enabled;
-			btnDelete.Enabled = false;
+			btnDelete.Enabled = dgWaypoints.Enabled && dgWaypoints.SelectedRows.Count > 0;
 		}
 
 		private void RefreshList()

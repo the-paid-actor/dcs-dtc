@@ -14,6 +14,7 @@ namespace DTC.Models.F16.Radios
 			Name = name;
 			Type = type;
 			Channels = channels;
+			SelectedChannel = Channels[0];
 		}
 	}
 }

@@ -11,9 +11,9 @@ namespace DTC.Models.F16
 		public F16Commands()
 		{
 			int delay;
-			if (!int.TryParse(ConfigurationManager.AppSettings["CommandDelay"], out delay))
+			if (!int.TryParse(ConfigurationManager.AppSettings["CommandDelayMs"], out delay))
 			{
-				delay = 5;
+				delay = 1000;
 			}
 
 			var ufc = new Device(17, "UFC");
@@ -29,7 +29,7 @@ namespace DTC.Models.F16
 			ufc.AddCommand(new Command(3011, "9", 0, 1));
 			ufc.AddCommand(new Command(3012, "COM1", 0, 1));
 			ufc.AddCommand(new Command(3013, "COM2", 0, 1));
-			ufc.AddCommand(new Command(3015, "LIST", 0, 1));
+			ufc.AddCommand(new Command(3015, "LIST", delay, 1));
 			ufc.AddCommand(new Command(3016, "ENTR", delay, 1));
 			ufc.AddCommand(new Command(3017, "RCL", 0, 1));
 			ufc.AddCommand(new Command(3018, "AA", delay, 1));
@@ -37,7 +37,7 @@ namespace DTC.Models.F16
 			ufc.AddCommand(new Command(3030, "INC", delay, 1));
 			ufc.AddCommand(new Command(3031, "DEC", delay, 1));
 			ufc.AddCommand(new Command(3032, "RTN", delay, -1));
-			ufc.AddCommand(new Command(3033, "SEQ", delay, 1));
+			ufc.AddCommand(new Command(3033, "SEQ", delay * 2, 1));
 			ufc.AddCommand(new Command(3034, "UP", delay, 1));
 			ufc.AddCommand(new Command(3035, "DOWN", delay, -1));
 			AddDevice(ufc);

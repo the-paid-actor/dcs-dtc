@@ -19,10 +19,10 @@ namespace DTC.Models.DCS
 			Commands.Add(cmd.Name, cmd);
 		}
 
-		public string GetCommand(string cmdName, int? delay = null)
+		public string GetCommand(string cmdName)
 		{
 			var cmd = Commands[cmdName];
-			var str = "{'device': '" + ID + "', 'code': '" + cmd.ID + "', 'delay': '" + (delay ?? cmd.Delay) + "', 'activate': '" + cmd.Activate + "'},";
+			var str = "{'device': '" + ID + "', 'code': '" + cmd.ID + "', 'delay': '" + cmd.Delay + "', 'activate': '" + cmd.Activate + "'},";
 			return str.Replace("'", "\"");
 		}
 	}

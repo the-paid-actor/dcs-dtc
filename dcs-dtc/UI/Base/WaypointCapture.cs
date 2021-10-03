@@ -14,6 +14,7 @@ namespace DTC.UI.Base
 			public string latitude;
 			public string longitude;
 			public string elevation;
+			public string clock;
 		}
 
 		public delegate void Callback(string latitude, string longitude, string elevation);
@@ -29,6 +30,8 @@ namespace DTC.UI.Base
 
 			UDPSocket.StartReceiving("127.0.0.1", int.Parse(port ?? "42069"), (string s) => {
 				var d = JsonConvert.DeserializeObject<Data>(s);
+
+				Console.WriteLine(d.clock);
 
 				var latitudeHem = "N";
 				var longitudeHem = "E";

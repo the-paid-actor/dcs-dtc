@@ -198,11 +198,12 @@ namespace DTC.Models
 		{
 			var ufc = f16.Devices["UFC"];
 			sb.Append(ufc.GetCommand("RTN"));
+			sb.Append(ufc.GetCommand("RTN"));
 
 			sb.Append(ufc.GetCommand("LIST"));
 			sb.Append(ufc.GetCommand("7"));
 
-			sb.Append(ufc.GetCommand("SEQ", 10));
+			sb.Append(ufc.GetCommand("SEQ"));
 
 			for (var i = 0; i < _cfg.CMS.Programs.Length; i++)
 			{
@@ -227,7 +228,7 @@ namespace DTC.Models
 				sb.Append(ufc.GetCommand("INC"));
 			}
 
-			sb.Append(ufc.GetCommand("SEQ", 10));
+			sb.Append(ufc.GetCommand("SEQ"));
 
 			for (var i = 0; i < _cfg.CMS.Programs.Length; i++)
 			{
@@ -259,6 +260,7 @@ namespace DTC.Models
 		{
 			var ufc = f16.Devices["UFC"];
 
+			sb.Append(ufc.GetCommand("RTN"));
 			sb.Append(ufc.GetCommand("RTN"));
 			BuildRadio("COM1", _cfg.Radios.COM1, sb, ufc);
 			sb.Append(ufc.GetCommand("RTN"));
@@ -332,6 +334,7 @@ namespace DTC.Models
 			var ufc = f16.Devices["UFC"];
 			Waypoint wpt = null;
 
+			sb.Append(ufc.GetCommand("RTN"));
 			sb.Append(ufc.GetCommand("RTN"));
 			sb.Append(ufc.GetCommand("4"));
 

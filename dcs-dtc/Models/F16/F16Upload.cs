@@ -331,21 +331,28 @@ namespace DTC.Models
 				return;
 			}
 
+			var wptDiff = wptEnd - wptStart + 1;
+
 			var ufc = f16.Devices["UFC"];
-			Waypoint wpt = null;
 
 			sb.Append(ufc.GetCommand("RTN"));
 			sb.Append(ufc.GetCommand("RTN"));
 			sb.Append(ufc.GetCommand("4"));
 
-			for (var i = wptStart-1; i < wptEnd; i++)
+			for (var i = 0; i < wptDiff; i++)
 			{
+				Waypoint wpt;
 				if (i < wpts.Count)
 				{
 					wpt = wpts[i];
 				}
+				else
+				{
+					//Repeats the last waypoint till it fills
+					wpt = wpts[wpts.Count-1];
+				}
 
-				BuildDigits(sb, ufc, (i + 1).ToString());
+				BuildDigits(sb, ufc, (i + wptStart).ToString());
 				sb.Append(ufc.GetCommand("ENTR"));
 				sb.Append(ufc.GetCommand("DOWN"));
 				sb.Append(ufc.GetCommand("DOWN"));

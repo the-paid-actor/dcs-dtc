@@ -31,15 +31,18 @@ namespace DTC.UI.F16
 		/// </summary>
 		private void InitializeComponent()
 		{
+			this.components = new System.ComponentModel.Container();
+			System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(UploadToJetPage));
 			this.chkMFDs = new System.Windows.Forms.CheckBox();
 			this.chkRadios = new System.Windows.Forms.CheckBox();
 			this.chkCMS = new System.Windows.Forms.CheckBox();
 			this.chkWaypoints = new System.Windows.Forms.CheckBox();
 			this.label1 = new System.Windows.Forms.Label();
-			this.txtWaypointStart = new DTCTextBox();
+			this.txtWaypointStart = new DTC.UI.Base.Controls.DTCTextBox();
 			this.label2 = new System.Windows.Forms.Label();
-			this.txtWaypointEnd = new DTCTextBox();
+			this.txtWaypointEnd = new DTC.UI.Base.Controls.DTCTextBox();
 			this.btnUpload = new DTC.UI.Base.Controls.DTCButton();
+			this.toolTip1 = new System.Windows.Forms.ToolTip(this.components);
 			this.SuspendLayout();
 			// 
 			// chkMFDs
@@ -100,28 +103,29 @@ namespace DTC.UI.F16
 			this.label1.AutoSize = true;
 			this.label1.Location = new System.Drawing.Point(55, 76);
 			this.label1.Name = "label1";
-			this.label1.Size = new System.Drawing.Size(37, 20);
+			this.label1.Size = new System.Drawing.Size(123, 20);
 			this.label1.TabIndex = 5;
-			this.label1.Text = "Into";
+			this.label1.Text = "Into Steerpoints";
+			this.toolTip1.SetToolTip(this.label1, resources.GetString("label1.ToolTip"));
 			// 
 			// txtWaypointStart
 			// 
 			this.txtWaypointStart.AllowPromptAsInput = false;
+			this.txtWaypointStart.BackColor = System.Drawing.SystemColors.Window;
 			this.txtWaypointStart.HidePromptOnLeave = true;
 			this.txtWaypointStart.InsertKeyMode = System.Windows.Forms.InsertKeyMode.Overwrite;
-			this.txtWaypointStart.Location = new System.Drawing.Point(101, 74);
+			this.txtWaypointStart.Location = new System.Drawing.Point(184, 74);
 			this.txtWaypointStart.Mask = "000";
 			this.txtWaypointStart.Name = "txtWaypointStart";
 			this.txtWaypointStart.PromptChar = ' ';
 			this.txtWaypointStart.Size = new System.Drawing.Size(57, 26);
 			this.txtWaypointStart.TabIndex = 1;
-			this.txtWaypointStart.Text = "1";
 			this.txtWaypointStart.ValidatingType = typeof(int);
 			// 
 			// label2
 			// 
 			this.label2.AutoSize = true;
-			this.label2.Location = new System.Drawing.Point(165, 76);
+			this.label2.Location = new System.Drawing.Point(248, 76);
 			this.label2.Name = "label2";
 			this.label2.Size = new System.Drawing.Size(68, 20);
 			this.label2.TabIndex = 5;
@@ -130,15 +134,15 @@ namespace DTC.UI.F16
 			// txtWaypointEnd
 			// 
 			this.txtWaypointEnd.AllowPromptAsInput = false;
+			this.txtWaypointEnd.BackColor = System.Drawing.SystemColors.Window;
 			this.txtWaypointEnd.HidePromptOnLeave = true;
 			this.txtWaypointEnd.InsertKeyMode = System.Windows.Forms.InsertKeyMode.Overwrite;
-			this.txtWaypointEnd.Location = new System.Drawing.Point(242, 73);
+			this.txtWaypointEnd.Location = new System.Drawing.Point(325, 73);
 			this.txtWaypointEnd.Mask = "000";
 			this.txtWaypointEnd.Name = "txtWaypointEnd";
 			this.txtWaypointEnd.PromptChar = ' ';
 			this.txtWaypointEnd.Size = new System.Drawing.Size(57, 26);
 			this.txtWaypointEnd.TabIndex = 2;
-			this.txtWaypointEnd.Text = "20";
 			this.txtWaypointEnd.ValidatingType = typeof(int);
 			// 
 			// btnUpload
@@ -154,6 +158,14 @@ namespace DTC.UI.F16
 			this.btnUpload.Text = "Upload";
 			this.btnUpload.UseVisualStyleBackColor = false;
 			this.btnUpload.Click += new System.EventHandler(this.btnUpload_Click);
+			// 
+			// toolTip1
+			// 
+			this.toolTip1.AutomaticDelay = 100;
+			this.toolTip1.AutoPopDelay = 10000;
+			this.toolTip1.InitialDelay = 100;
+			this.toolTip1.IsBalloon = true;
+			this.toolTip1.ReshowDelay = 20;
 			// 
 			// UploadToJetPage
 			// 
@@ -189,5 +201,6 @@ namespace DTC.UI.F16
 		private System.Windows.Forms.Label label2;
 		private DTCTextBox txtWaypointEnd;
 		private Base.Controls.DTCButton btnUpload;
+		private System.Windows.Forms.ToolTip toolTip1;
 	}
 }

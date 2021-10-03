@@ -24,7 +24,7 @@ namespace DTC.UI.F16
 		{
 			if (int.TryParse(txtWaypointEnd.Text, out int n))
 			{
-				if (n > _wptStart && n <= 127)
+				if (n >= _wptStart && n <= 127)
 				{
 					_wptEnd = n;
 				}

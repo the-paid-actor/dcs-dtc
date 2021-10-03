@@ -5,7 +5,7 @@ namespace DTC.Models.F16.Radios
 {
 	public class RadioChannel
 	{
-		private static Regex uhfRegex = new Regex(@"^[2-3][2-9][0-9]\.?[0-9]?[0|2|5|7]?$");
+		private static Regex uhfRegex = new Regex(@"^[2-3][0-9][0-9]\.?[0-9]?[0|2|5|7]?$");
 		private static Regex vhfRegex = new Regex(@"^[0-1]?[0-8][0-9]\.?[0-9]?[0|2|5|7]?$");
 
 		public RadioType Type { get; set; }

@@ -1,4 +1,6 @@
-﻿using System.IO;
+﻿using DTC.Models.DCS;
+using Newtonsoft.Json;
+using System.IO;
 
 namespace DTC.Models.Base
 {
@@ -16,6 +18,12 @@ namespace DTC.Models.Base
 			return Path.Combine(path, "dtc-settings.json");
 		}
 
+		private static string GetAirbasesFilePath()
+		{
+			var path = Path.GetDirectoryName(System.Reflection.Assembly.GetEntryAssembly().Location);
+			return Path.Combine(path, "dtc-airbases.json");
+		}
+
 		public static void PersistSettingsFile(string json)
 		{
 			File.WriteAllText(GetSettingsFilePath(), json);
@@ -26,6 +34,13 @@ namespace DTC.Models.Base
 			var json = cfg.ToJson();
 			File.WriteAllText(GetAutoSaveFilePath(), json);
 		}
+
+		public static void PersistAirbasesFile(Theater[] theaters)
+		{
+			var json = JsonConvert.SerializeObject(theaters);
+			File.WriteAllText(GetAirbasesFilePath(), json);
+		}
+		
 
 		public static string LoadFile(string path)
 		{
@@ -42,6 +57,23 @@ namespace DTC.Models.Base
 			if (File.Exists(path))
 			{
 				return File.ReadAllText(path);
+			}
+			return null;
+		}
+
+		public static Theater[] LoadAirbases()
+		{
+			try
+			{
+				var path = GetAirbasesFilePath();
+				if (File.Exists(path))
+				{
+					var json = File.ReadAllText(path);
+					return JsonConvert.DeserializeObject<Theater[]>(json);
+				}
+			}
+			catch
+			{
 			}
 			return null;
 		}

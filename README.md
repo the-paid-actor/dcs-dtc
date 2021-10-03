@@ -14,6 +14,10 @@ Features:
 - Enables you to share and receive settings from other people using this mod, either by file or clipboard
 - Allows capturing a waypoint coordinate using the F10 view in DCS, or a "markpoint" by flying over a point in the map.
 
+## Requirements
+
+This application is written using .NET Framework 4.7.2. You may want to download the latest version from the Microsoft website.
+
 ## Installation
 
 - Grab the zip file from the Releases tab on Github.

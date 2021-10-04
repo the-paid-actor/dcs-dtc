@@ -4,6 +4,7 @@ using DTC.Models.F16;
 using DTC.UI.Base.Controls;
 using System;
 using System.Drawing;
+using System.IO;
 using System.Windows.Forms;
 
 namespace DTC.UI.F16
@@ -64,8 +65,9 @@ namespace DTC.UI.F16
 		private readonly RefreshCallback _refreshCallback;
 		private F16Configuration _configFromClip;
 		private F16Configuration _configFromFile;
+		private F16Configuration _configFromCombatFliteXML;
 
-		public delegate void RefreshCallback();
+        public delegate void RefreshCallback();
 
 		public LoadSavePage(F16Configuration cfg, RefreshCallback callback)
 		{
@@ -78,18 +80,33 @@ namespace DTC.UI.F16
 		{
 			pnlFile.Dock = DockStyle.Fill;
 			pnlFile.Visible = true;
+			pnlCombatFlite.Visible = false;
 			pnlClipboard.Visible = false;
 			btnClipboard.Font = new Font(btnFile.Font, FontStyle.Regular);
 			btnFile.Font = new Font(btnFile.Font, FontStyle.Bold);
+			btnCombatFlite.Font = new Font(btnCombatFlite.Font, FontStyle.Regular);
 		}
 
 		private void btnClipboard_Click(object sender, EventArgs e)
 		{
 			pnlClipboard.Dock = DockStyle.Fill;
 			pnlClipboard.Visible = true;
+			pnlCombatFlite.Visible = false;
 			pnlFile.Visible = false;
 			btnFile.Font = new Font(btnFile.Font, FontStyle.Regular);
 			btnClipboard.Font = new Font(btnClipboard.Font, FontStyle.Bold);
+			btnCombatFlite.Font = new Font(btnCombatFlite.Font, FontStyle.Regular);
+		}
+
+		private void btnCombatFlite_Click(object sender, EventArgs e)
+		{
+			pnlCombatFlite.Dock = DockStyle.Fill;
+			pnlClipboard.Visible = false;
+			pnlCombatFlite.Visible = true;
+			pnlFile.Visible = false;
+			btnFile.Font = new Font(btnFile.Font, FontStyle.Regular);
+			btnClipboard.Font = new Font(btnClipboard.Font, FontStyle.Regular);
+			btnCombatFlite.Font = new Font(btnCombatFlite.Font, FontStyle.Bold);
 		}
 
 		private void btnClipboardLoad_Click(object sender, EventArgs e)
@@ -144,13 +161,17 @@ namespace DTC.UI.F16
 			Clipboard.SetText(cfg.ToCompressedString());
 		}
 
+		private const string _jsonFileDefault = "dtc.json";
+        private string _jsonFilePrevious;
+
 		private void btnFileLoad_Click(object sender, EventArgs e)
 		{
 			ResetFileControls();
-
+            openFileDlg.Filter = "JSON files (*.json)|*.json|All files (*.*)|*.*";
 			if (openFileDlg.ShowDialog() == DialogResult.OK)
 			{
 				var file = FileStorage.LoadFile(openFileDlg.FileName);
+                _jsonFilePrevious = openFileDlg.FileName;
 				_configFromFile = F16Configuration.FromJson(file);
 
 				LoadSave.Load(
@@ -163,12 +184,45 @@ namespace DTC.UI.F16
 			}
 		}
 
+		private const string _combatFliteFilename = "*.xml";
+
+		private void btnCombatFliteLoad_Click(object sender, EventArgs e)
+		{
+			ResetFileControls();
+            openFileDlg.Filter = "XML files (*.xml)|*.xml|All files (*.*)|*.*";
+			if (openFileDlg.ShowDialog() == DialogResult.OK)
+			{
+				var file = FileStorage.LoadFile(openFileDlg.FileName);
+                _configFromCombatFliteXML = F16Configuration.FromCombatFliteXML(_mainConfig, file);
+
+				LoadSave.Load(
+                    _configFromCombatFliteXML,
+					chkCombatFliteLoadWpts,
+					chkCombatFliteCMS,
+					chkCombatFliteRadios,
+					chkCombatFliteMFDs,
+					btnCombatFliteApply);
+			}
+		}
 		private void btnFileApply_Click(object sender, EventArgs e)
 		{
 			_mainConfig.CopyConfiguration(_configFromFile);
 			ResetFileControls();
 			_refreshCallback();
 		}
+        private void btnCombatFliteApply_Click(object sender, EventArgs e)
+        {
+            _mainConfig.CopyConfiguration(_configFromCombatFliteXML);
+            ResetCombatFliteXMLControls();
+            _refreshCallback();
+        }
+
+        private void ResetCombatFliteXMLControls()
+        {
+            _configFromCombatFliteXML = null;
+            chkCombatFliteLoadWpts.Enabled = chkCombatFliteLoadWpts.Checked = false;
+			btnCombatFliteApply.Enabled = false;
+        }
 
 		private void ResetFileControls()
 		{
@@ -204,8 +258,35 @@ namespace DTC.UI.F16
 					cfg.MFD = null;
 				}
 
-				FileStorage.Save(_mainConfig, saveFileDlg.FileName);
+				FileStorage.Save(cfg, saveFileDlg.FileName);
 			}
 		}
-	}
+
+        private void btnCombatFliteSave_Click(object sender, EventArgs e)
+        {
+            if (saveFileDlg.ShowDialog() == DialogResult.OK)
+            {
+                var cfg = _mainConfig.Clone();
+
+                if (!chkCombatFliteLoadWpts.Checked)
+                {
+                    cfg.Waypoints = null;
+                }
+                if (!chkCombatFliteCMS.Checked)
+                {
+                    cfg.CMS = null;
+                }
+                if (!chkCombatFliteRadios.Checked)
+                {
+                    cfg.Radios = null;
+                }
+                if (!chkCombatFliteMFDs.Checked)
+                {
+                    cfg.MFD = null;
+                }
+
+                FileStorage.Save(cfg, saveFileDlg.FileName);
+            }
+		}
+    }
 }

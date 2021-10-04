@@ -41,5 +41,10 @@ namespace DTC.Models.F16.Waypoints
 				wpt.Sequence = i + 1;
 			}
 		}
-	}
+
+        public int Count()
+        {
+            return Waypoints.Count;
+        }
+    }
 }

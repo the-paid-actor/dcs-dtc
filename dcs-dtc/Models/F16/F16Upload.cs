@@ -16,6 +16,7 @@ namespace DTC.Models
 	{
 		private int tcpPort = 42070;
 
+
 		private F16Configuration _cfg;
 		private F16Commands f16 = new F16Commands();
 
@@ -26,7 +27,9 @@ namespace DTC.Models
 			_cfg = cfg;
 		}
 
-		public void Load(bool waypoints, int wptStart, int wptEnd, bool radios, bool cms, bool mfds)
+        internal F16Configuration Cfg => _cfg;
+
+        public void Load(bool waypoints, int wptStart, int wptEnd, bool radios, bool cms, bool mfds)
 		{
 			var sb = new StringBuilder();
 			if (waypoints)

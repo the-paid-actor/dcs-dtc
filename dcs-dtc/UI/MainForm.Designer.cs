@@ -257,7 +257,6 @@ namespace DTC.UI
 			this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
 			this.Name = "MainForm";
 			this.Text = "Form1";
-			this.TopMost = true;
 			this.TransparencyKey = System.Drawing.Color.Red;
 			this.pnlBackground.ResumeLayout(false);
 			this.pnlContent.ResumeLayout(false);

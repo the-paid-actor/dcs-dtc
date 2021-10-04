@@ -15,8 +15,9 @@ namespace DTC.UI.F16
 		{
 			InitializeComponent();
 			_jetInterface = new F16Upload(cfg);
-
+            txtWaypointStart.Text = string.IsNullOrEmpty(txtWaypointStart.Text) ? @"2" : txtWaypointStart.Text;
 			txtWaypointStart.LostFocus += TxtWaypointStart_LostFocus;
+            txtWaypointEnd.Text = _jetInterface.Cfg.Waypoints != null ? (_jetInterface.Cfg.Waypoints.Count()+1).ToString() : "20";
 			txtWaypointEnd.LostFocus += TxtWaypointEnd_LostFocus;
 		}
 

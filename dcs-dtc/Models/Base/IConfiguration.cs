@@ -3,5 +3,6 @@
 	public interface IConfiguration
 	{
 		string ToJson();
+		IConfiguration Clone();
 	}
 }

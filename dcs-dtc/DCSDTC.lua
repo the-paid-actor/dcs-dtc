@@ -34,9 +34,14 @@ function LuaExportStart()
 	udpSpeaker = socket.udp()
 	udpSpeaker:settimeout(0)
 	tcpServer = socket.tcp()
-    tcpServer:bind("127.0.0.1", tcpPort)
+    successful, err = tcpServer:bind("127.0.0.1", tcpPort)
     tcpServer:listen(1)
     tcpServer:settimeout(0)
+	if not successful then
+		log.write("DCS-DTC", log.ERROR, "Error opening tcp socket - "..tostring(err))
+	else
+		log.write("DCS-DTC", log.INFO, "Opened connection")
+	end
 end
 
 function LuaExportBeforeNextFrame()

@@ -14,5 +14,21 @@
 			Page3 = page3;
 			SelectedPage = selectedPage;
 		}
+
+		public void SetPage(int number, Page value)
+		{
+			if (number == 1)
+			{
+				Page1 = value;
+			}
+			else if (number == 2)
+			{
+				Page2 = value;
+			}
+			else if (number == 3)
+			{
+				Page3 = value;
+			}
+		}
 	}
 }

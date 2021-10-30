@@ -72,6 +72,9 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Models\Presets\AircraftModel.cs" />
+    <Compile Include="Models\Presets\PresetChangedCallback.cs" />
+    <Compile Include="Models\Presets\PresetsStore.cs" />
     <Compile Include="Models\Base\IConfiguration.cs" />
     <Compile Include="Models\Base\Settings.cs" />
     <Compile Include="Models\Base\StringCompressor.cs" />
@@ -87,13 +90,31 @@
     <Compile Include="Models\F16\MFD\Page.cs" />
     <Compile Include="Models\F16\Radios\RadioSystem.cs" />
     <Compile Include="Models\Base\FileStorage.cs" />
+    <Compile Include="Models\Presets\Aircraft.cs" />
+    <Compile Include="Models\Presets\Preset.cs" />
+    <Compile Include="Models\WaypointDB\WaypointDB.cs" />
+    <Compile Include="UI\Base\Controls\DTCBreadCrumb.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="UI\Base\Controls\DTCBreadCrumb.Designer.cs">
+      <DependentUpon>DTCBreadCrumb.cs</DependentUpon>
+    </Compile>
     <Compile Include="UI\Base\Controls\DTCButton.cs">
       <SubType>Component</SubType>
     </Compile>
     <Compile Include="UI\Base\Controls\DTCDataGrid.cs">
       <SubType>Component</SubType>
     </Compile>
+    <Compile Include="UI\Base\Controls\DTCDropDown.cs">
+      <SubType>Component</SubType>
+    </Compile>
     <Compile Include="UI\Base\Controls\DTCGroupBox.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="UI\Base\Controls\DTCLabel.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="UI\Base\Controls\DTCStackPanel.cs">
       <SubType>Component</SubType>
     </Compile>
     <Compile Include="UI\Base\Controls\DTCTextBox.cs">
@@ -116,53 +137,65 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>Resources.resx</DependentUpon>
     </Compile>
-    <Compile Include="UI\F16\CMSPage.cs">
+    <Compile Include="UI\Aircrafts\F16\CMSPage.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="UI\F16\CMSPage.Designer.cs">
+    <Compile Include="UI\Aircrafts\F16\CMSPage.Designer.cs">
       <DependentUpon>CMSPage.cs</DependentUpon>
     </Compile>
-    <Compile Include="UI\Base\FeaturePage.cs">
+    <Compile Include="UI\CommonPages\AircraftSettingPage.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="UI\Base\ListViewWithReordering.cs">
-      <SubType>Component</SubType>
-    </Compile>
-    <Compile Include="UI\F16\LoadSavePage.cs">
+    <Compile Include="UI\Aircrafts\F16\LoadSavePage.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="UI\F16\LoadSavePage.Designer.cs">
+    <Compile Include="UI\Aircrafts\F16\LoadSavePage.Designer.cs">
       <DependentUpon>LoadSavePage.cs</DependentUpon>
     </Compile>
-    <Compile Include="UI\F16\MFDPage.cs">
+    <Compile Include="UI\Aircrafts\F16\MFDPage.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="UI\F16\MFDPage.Designer.cs">
+    <Compile Include="UI\Aircrafts\F16\MFDPage.Designer.cs">
       <DependentUpon>MFDPage.cs</DependentUpon>
     </Compile>
-    <Compile Include="UI\F16\RadioPage.cs">
+    <Compile Include="UI\Aircrafts\F16\RadioPage.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="UI\F16\RadioPage.Designer.cs">
+    <Compile Include="UI\Aircrafts\F16\RadioPage.Designer.cs">
       <DependentUpon>RadioPage.cs</DependentUpon>
     </Compile>
-    <Compile Include="UI\F16\UploadToJetPage.cs">
+    <Compile Include="UI\Aircrafts\F16\UploadToJetPage.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="UI\F16\UploadToJetPage.Designer.cs">
+    <Compile Include="UI\Aircrafts\F16\UploadToJetPage.Designer.cs">
       <DependentUpon>UploadToJetPage.cs</DependentUpon>
     </Compile>
-    <Compile Include="UI\F16\WaypointEdit.cs">
+    <Compile Include="UI\Aircrafts\F16\WaypointEdit.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="UI\F16\WaypointEdit.Designer.cs">
+    <Compile Include="UI\Aircrafts\F16\WaypointEdit.Designer.cs">
       <DependentUpon>WaypointEdit.cs</DependentUpon>
     </Compile>
-    <Compile Include="UI\F16\WaypointsPage.cs">
+    <Compile Include="UI\Aircrafts\F16\WaypointsPage.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="UI\F16\WaypointsPage.Designer.cs">
+    <Compile Include="UI\Aircrafts\F16\WaypointsPage.Designer.cs">
       <DependentUpon>WaypointsPage.cs</DependentUpon>
+    </Compile>
+    <Compile Include="UI\CommonPages\MainPage.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="UI\CommonPages\MainPage.Designer.cs">
+      <DependentUpon>MainPage.cs</DependentUpon>
+    </Compile>
+    <Compile Include="UI\CommonPages\Page.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="UI\CommonPages\PresetName.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="UI\CommonPages\PresetName.Designer.cs">
+      <DependentUpon>PresetName.cs</DependentUpon>
     </Compile>
     <Compile Include="UI\MainForm.cs">
       <SubType>Form</SubType>
@@ -180,33 +213,53 @@
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Models\Base\Util.cs" />
-    <Compile Include="UI\Pages.cs" />
+    <Compile Include="UI\CommonPages\WaypointDatabase.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="UI\CommonPages\WaypointDatabase.Designer.cs">
+      <DependentUpon>WaypointDatabase.cs</DependentUpon>
+    </Compile>
+    <Compile Include="UI\CommonPages\AircraftPage.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="UI\CommonPages\AircraftPage.Designer.cs">
+      <DependentUpon>AircraftPage.cs</DependentUpon>
+    </Compile>
+    <Compile Include="UI\CommonPages\PresetsPage.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="UI\CommonPages\PresetsPage.Designer.cs">
+      <DependentUpon>PresetsPage.cs</DependentUpon>
+    </Compile>
+    <EmbeddedResource Include="UI\Base\Controls\DTCBreadCrumb.resx">
+      <DependentUpon>DTCBreadCrumb.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="UI\Base\Controls\DTCTextBox.resx">
       <DependentUpon>DTCTextBox.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="UI\Base\WaypointCaptureCrosshair.resx">
       <DependentUpon>WaypointCaptureCrosshair.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="UI\F16\CMSPage.resx">
+    <EmbeddedResource Include="UI\Aircrafts\F16\CMSPage.resx">
       <DependentUpon>CMSPage.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="UI\F16\LoadSavePage.resx">
+    <EmbeddedResource Include="UI\Aircrafts\F16\LoadSavePage.resx">
       <DependentUpon>LoadSavePage.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="UI\F16\MFDPage.resx">
+    <EmbeddedResource Include="UI\Aircrafts\F16\MFDPage.resx">
       <DependentUpon>MFDPage.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="UI\F16\RadioPage.resx">
+    <EmbeddedResource Include="UI\Aircrafts\F16\RadioPage.resx">
       <DependentUpon>RadioPage.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="UI\F16\UploadToJetPage.resx">
+    <EmbeddedResource Include="UI\Aircrafts\F16\UploadToJetPage.resx">
       <DependentUpon>UploadToJetPage.cs</DependentUpon>
       <SubType>Designer</SubType>
     </EmbeddedResource>
-    <EmbeddedResource Include="UI\F16\WaypointEdit.resx">
+    <EmbeddedResource Include="UI\Aircrafts\F16\WaypointEdit.resx">
       <DependentUpon>WaypointEdit.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="UI\F16\WaypointsPage.resx">
+    <EmbeddedResource Include="UI\Aircrafts\F16\WaypointsPage.resx">
       <DependentUpon>WaypointsPage.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
@@ -214,8 +267,23 @@
       <SubType>Designer</SubType>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
     </EmbeddedResource>
+    <EmbeddedResource Include="UI\CommonPages\MainPage.resx">
+      <DependentUpon>MainPage.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UI\CommonPages\PresetName.resx">
+      <DependentUpon>PresetName.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="UI\MainForm.resx">
       <DependentUpon>MainForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UI\CommonPages\WaypointDatabase.resx">
+      <DependentUpon>WaypointDatabase.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UI\CommonPages\AircraftPage.resx">
+      <DependentUpon>AircraftPage.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UI\CommonPages\PresetsPage.resx">
+      <DependentUpon>PresetsPage.cs</DependentUpon>
     </EmbeddedResource>
     <None Include="DCSDTC.lua">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
@@ -259,7 +327,10 @@
     </BootstrapperPackage>
   </ItemGroup>
   <ItemGroup>
+    <None Include="Resources\F16.png" />
     <Content Include="Resources\Iconleak-Atrous-Disk.ico" />
+    <None Include="Resources\Waypoints.png" />
+    <Content Include="Structure.txt" />
     <None Include="Resources\2560px-Brown-dominant__highland__ERDL_camouflage_pattern_swatch.svg.png" />
     <None Include="Resources\tablet.png" />
   </ItemGroup>

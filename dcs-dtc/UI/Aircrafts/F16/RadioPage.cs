@@ -1,17 +1,17 @@
 ﻿using DTC.Models.F16.Radios;
-using DTC.UI.Base;
 using DTC.UI.Base.Controls;
+using DTC.UI.CommonPages;
 using System;
 using System.Drawing;
 using System.Windows.Forms;
 
-namespace DTC.UI.F16
+namespace DTC.UI.Aircrafts.F16
 {
-	public partial class RadioPage : FeaturePage
+	public partial class RadioPage : AircraftSettingPage
 	{
 		private RadioSystem _radios;
 
-		public RadioPage(RadioSystem radios, DataChanged dataChangedCallback) : base(dataChangedCallback)
+		public RadioPage(AircraftPage parent, RadioSystem radios) : base(parent)
 		{
 			_radios = radios;
 
@@ -22,6 +22,11 @@ namespace DTC.UI.F16
 
 			tblRadios.Controls.Add(tblComm1, 0, 1);
 			tblRadios.Controls.Add(tblComm2, 1, 1);
+		}
+
+		public override string GetPageTitle()
+		{
+			return "Radios";
 		}
 
 		private TableLayoutPanel PopulateTable(Radio radio)
@@ -72,7 +77,7 @@ namespace DTC.UI.F16
 			var txt = ((DTCTextBox)sender);
 			var channel = (RadioChannel)txt.Tag;
 			txt.Text = channel.SetFrequency(txt.Text);
-			DataChangedCallback();
+			_parent.DataChangedCallback();
 		}
 	}
 }

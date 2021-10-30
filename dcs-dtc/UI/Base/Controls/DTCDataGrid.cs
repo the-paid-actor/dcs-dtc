@@ -1,6 +1,5 @@
 ﻿using System.Drawing;
 using System.Windows.Forms;
-using DTC.Models.F16.Waypoints;
 
 namespace DTC.UI.Base.Controls
 {
@@ -10,22 +9,20 @@ namespace DTC.UI.Base.Controls
     private int _dragIndexFrom;
     private int _dragIndexTo;
     private BindingSource _binding = new BindingSource();
-    private WaypointSystem _waypoints;
+
+    public delegate void Reorder(int indexFrom, int indexTo);
+
+    public Reorder ReorderCallback;
 
     public DTCDataGrid()
 		{
       this.AllowDrop = true;
+      this.AutoGenerateColumns = false;
 		}
 
-    public void SetWaypoints(WaypointSystem wpts)
+		public void RefreshList(object dataSource)
 		{
-			_waypoints = wpts;
-			RefreshList();
-		}
-
-		private void RefreshList()
-		{
-			_binding.DataSource = _waypoints.Waypoints;
+			_binding.DataSource = dataSource;
 			this.DataSource = _binding;
 			_binding.ResetBindings(false);
 		}
@@ -34,11 +31,14 @@ namespace DTC.UI.Base.Controls
 		{
 			base.OnMouseMove(e);
 
-      if ((e.Button & MouseButtons.Left) == MouseButtons.Left)
+      if (ReorderCallback != null)
       {
-        if (_dragRectangle != Rectangle.Empty && !_dragRectangle.Contains(e.X, e.Y))
+        if ((e.Button & MouseButtons.Left) == MouseButtons.Left)
         {
-          this.DoDragDrop(this.Rows[_dragIndexFrom], DragDropEffects.Move);
+          if (_dragRectangle != Rectangle.Empty && !_dragRectangle.Contains(e.X, e.Y))
+          {
+            this.DoDragDrop(this.Rows[_dragIndexFrom], DragDropEffects.Move);
+          }
         }
       }
     }
@@ -47,17 +47,20 @@ namespace DTC.UI.Base.Controls
 		{
 			base.OnMouseDown(e);
 
-      _dragIndexFrom = this.HitTest(e.X, e.Y).RowIndex;
+      if (ReorderCallback != null)
+      {
+        _dragIndexFrom = this.HitTest(e.X, e.Y).RowIndex;
 
-      if (_dragIndexFrom != -1)
-      {
-        Size dragSize = SystemInformation.DragSize;
-        _dragRectangle = new Rectangle(
-          new Point(e.X - (dragSize.Width / 2), e.Y - (dragSize.Height / 2)), dragSize);
-      }
-      else
-      {
-        _dragRectangle = Rectangle.Empty;
+        if (_dragIndexFrom != -1)
+        {
+          Size dragSize = SystemInformation.DragSize;
+          _dragRectangle = new Rectangle(
+            new Point(e.X - (dragSize.Width / 2), e.Y - (dragSize.Height / 2)), dragSize);
+        }
+        else
+        {
+          _dragRectangle = Rectangle.Empty;
+        }
       }
     }
 
@@ -65,25 +68,31 @@ namespace DTC.UI.Base.Controls
 		{
 			base.OnDragOver(e);
 
-      e.Effect = DragDropEffects.Move;
+      if (ReorderCallback != null)
+      {
+        e.Effect = DragDropEffects.Move;
+      }
     }
 
 		protected override void OnDragDrop(DragEventArgs e)
 		{
 			base.OnDragDrop(e);
 
-      var clientPoint = this.PointToClient(new Point(e.X, e.Y));
-      _dragIndexTo = this.HitTest(clientPoint.X, clientPoint.Y).RowIndex;
-
-      if (_dragIndexTo == -1)
+      if (ReorderCallback != null)
       {
-        return;
-      }
 
-      if (e.Effect == DragDropEffects.Move)
-      {
-        _waypoints.Reorder(_dragIndexFrom, _dragIndexTo);
-        RefreshList();
+        var clientPoint = this.PointToClient(new Point(e.X, e.Y));
+        _dragIndexTo = this.HitTest(clientPoint.X, clientPoint.Y).RowIndex;
+
+        if (_dragIndexTo == -1)
+        {
+          return;
+        }
+
+        if (e.Effect == DragDropEffects.Move)
+        {
+          ReorderCallback(_dragIndexFrom, _dragIndexTo);
+        }
       }
     }
   }

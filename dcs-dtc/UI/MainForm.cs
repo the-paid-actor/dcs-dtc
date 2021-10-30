@@ -1,25 +1,63 @@
-﻿using DTC.Models.F16;
-using DTC.UI.Base;
+﻿using DTC.UI.Base;
+using DTC.UI.Base.Controls;
+using DTC.UI.CommonPages;
+using System.Collections.Generic;
 using System.Windows.Forms;
 
 namespace DTC.UI
 {
 	public partial class MainForm : Form
 	{
-		private F16Configuration _cfg;
-		private Pages _pages;
+		private MainPage _mainPage = new MainPage();
+
+		private Stack<Page> _pages = new Stack<Page>();
 
 		public MainForm()
 		{
 			InitializeComponent();
 
-			_cfg = F16Configuration.FromAutoSaveFile();
-			if (_cfg == null)
+			ResetToPage(_mainPage);
+		}
+
+		private void SetPage(Page page)
+		{
+			pnlPages.Controls.Add(page);
+			page.Dock = DockStyle.Fill;
+			page.Visible = true;
+			page.BringToFront();
+		}
+
+		private void ResetToPage(Page page)
+		{
+			pnlPages.Controls.Clear();
+
+			SetPage(page);
+
+			_pages.Clear();
+			_pages.Push(page);
+
+			breadCrumbs.SetCrumbs(new DTCBreadCrumb.Crumb(page.PageTitle, () => { ResetToPage(page); }));
+		}
+
+		public void AddPage(Page page)
+		{
+			SetPage(page);
+
+			_pages.Push(page);
+
+			breadCrumbs.AddCrumb(new DTCBreadCrumb.Crumb(page.PageTitle, () => { PopUntilPage(page); }));
+		}
+
+		private void PopUntilPage(Page page)
+		{
+			while (_pages.Peek() != page)
 			{
-				_cfg = new F16Configuration();
+				var p = _pages.Pop();
+				pnlPages.Controls.Remove(p);
+				breadCrumbs.PopCrumb();
 			}
 
-			_pages = new Pages(_cfg, pnlMain);
+			SetPage(page);
 		}
 
 		private void pnlBackground_MouseDown(object sender, MouseEventArgs e)
@@ -27,39 +65,9 @@ namespace DTC.UI
 			Draggable.Drag(Handle, e);
 		}
 
-		private void btnLoadSave_Click(object sender, System.EventArgs e)
-		{
-			_pages.SetPage(_pages.LoadSavePage);
-		}
-
-		private void btnUpload_Click(object sender, System.EventArgs e)
-		{
-			_pages.SetPage(_pages.UploadPage);
-		}
-
-		private void btnWaypoints_Click(object sender, System.EventArgs e)
-		{
-			_pages.SetPage(_pages.WaypointsPage);
-		}
-
-		private void btnCMS_Click(object sender, System.EventArgs e)
-		{
-			_pages.SetPage(_pages.CMSPage);
-		}
-
-		private void btnRadios_Click(object sender, System.EventArgs e)
-		{
-			_pages.SetPage(_pages.RadiosPage);
-		}
-
-		private void btnMFDs_Click(object sender, System.EventArgs e)
-		{
-			_pages.SetPage(_pages.MFDPage);
-		}
-
 		public void ToggleEnabled()
 		{
-			pnlLeft.Enabled = !pnlLeft.Enabled;
+			//_planeForm.ToggleEnabled();
 		}
 
 		private void lblPin_Click(object sender, System.EventArgs e)

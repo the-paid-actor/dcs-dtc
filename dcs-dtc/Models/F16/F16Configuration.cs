@@ -26,16 +26,6 @@ namespace DTC.Models.F16
 			return StringCompressor.CompressString(json);
 		}
 
-		public static F16Configuration FromAutoSaveFile()
-		{
-			var str = FileStorage.LoadAutoSaveFile();
-			if (str != null)
-			{
-				return F16Configuration.FromJson(str);
-			}
-			return null;
-		}
-
 		public static F16Configuration FromJson(string s)
 		{
 			try
@@ -88,6 +78,11 @@ namespace DTC.Models.F16
 			{
 				MFD = cfg.MFD;
 			}
+		}
+
+		IConfiguration IConfiguration.Clone()
+		{
+			return Clone();
 		}
 	}
 }

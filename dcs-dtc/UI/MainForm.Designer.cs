@@ -32,21 +32,14 @@ namespace DTC.UI
 			System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(MainForm));
 			this.pnlBackground = new System.Windows.Forms.Panel();
 			this.pnlContent = new System.Windows.Forms.Panel();
-			this.pnlMain = new System.Windows.Forms.Panel();
-			this.pnlLeft = new System.Windows.Forms.Panel();
-			this.btnMFDs = new System.Windows.Forms.Button();
-			this.btnRadios = new System.Windows.Forms.Button();
-			this.btnCMS = new System.Windows.Forms.Button();
-			this.btnWaypoints = new System.Windows.Forms.Button();
-			this.btnUpload = new System.Windows.Forms.Button();
-			this.btnLoadSave = new System.Windows.Forms.Button();
+			this.pnlPages = new System.Windows.Forms.Panel();
+			this.breadCrumbs = new DTC.UI.Base.Controls.DTCBreadCrumb();
 			this.pnlTop = new System.Windows.Forms.Panel();
 			this.lblPin = new System.Windows.Forms.Label();
 			this.label1 = new System.Windows.Forms.Label();
 			this.lblClose = new System.Windows.Forms.Label();
 			this.pnlBackground.SuspendLayout();
 			this.pnlContent.SuspendLayout();
-			this.pnlLeft.SuspendLayout();
 			this.pnlTop.SuspendLayout();
 			this.SuspendLayout();
 			// 
@@ -64,130 +57,31 @@ namespace DTC.UI
 			// pnlContent
 			// 
 			this.pnlContent.BackColor = System.Drawing.Color.Black;
-			this.pnlContent.Controls.Add(this.pnlMain);
-			this.pnlContent.Controls.Add(this.pnlLeft);
+			this.pnlContent.Controls.Add(this.pnlPages);
+			this.pnlContent.Controls.Add(this.breadCrumbs);
 			this.pnlContent.Controls.Add(this.pnlTop);
 			this.pnlContent.Location = new System.Drawing.Point(72, 111);
 			this.pnlContent.Name = "pnlContent";
 			this.pnlContent.Size = new System.Drawing.Size(770, 450);
 			this.pnlContent.TabIndex = 0;
 			// 
-			// pnlMain
+			// pnlPages
 			// 
-			this.pnlMain.BackColor = System.Drawing.Color.PaleGoldenrod;
-			this.pnlMain.Dock = System.Windows.Forms.DockStyle.Fill;
-			this.pnlMain.Location = new System.Drawing.Point(182, 50);
-			this.pnlMain.Name = "pnlMain";
-			this.pnlMain.Size = new System.Drawing.Size(588, 400);
-			this.pnlMain.TabIndex = 4;
+			this.pnlPages.BackColor = System.Drawing.Color.PaleGoldenrod;
+			this.pnlPages.Dock = System.Windows.Forms.DockStyle.Fill;
+			this.pnlPages.Location = new System.Drawing.Point(0, 60);
+			this.pnlPages.Name = "pnlPages";
+			this.pnlPages.Size = new System.Drawing.Size(770, 390);
+			this.pnlPages.TabIndex = 4;
 			// 
-			// pnlLeft
+			// breadCrumbs
 			// 
-			this.pnlLeft.BackColor = System.Drawing.Color.DarkKhaki;
-			this.pnlLeft.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-			this.pnlLeft.Controls.Add(this.btnMFDs);
-			this.pnlLeft.Controls.Add(this.btnRadios);
-			this.pnlLeft.Controls.Add(this.btnCMS);
-			this.pnlLeft.Controls.Add(this.btnWaypoints);
-			this.pnlLeft.Controls.Add(this.btnUpload);
-			this.pnlLeft.Controls.Add(this.btnLoadSave);
-			this.pnlLeft.Dock = System.Windows.Forms.DockStyle.Left;
-			this.pnlLeft.Location = new System.Drawing.Point(0, 50);
-			this.pnlLeft.Margin = new System.Windows.Forms.Padding(10);
-			this.pnlLeft.Name = "pnlLeft";
-			this.pnlLeft.Padding = new System.Windows.Forms.Padding(5);
-			this.pnlLeft.Size = new System.Drawing.Size(182, 400);
-			this.pnlLeft.TabIndex = 3;
-			// 
-			// btnMFDs
-			// 
-			this.btnMFDs.Dock = System.Windows.Forms.DockStyle.Top;
-			this.btnMFDs.FlatAppearance.BorderSize = 0;
-			this.btnMFDs.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-			this.btnMFDs.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-			this.btnMFDs.Location = new System.Drawing.Point(5, 255);
-			this.btnMFDs.Name = "btnMFDs";
-			this.btnMFDs.Size = new System.Drawing.Size(172, 50);
-			this.btnMFDs.TabIndex = 10;
-			this.btnMFDs.TabStop = false;
-			this.btnMFDs.Text = "MFDs";
-			this.btnMFDs.UseVisualStyleBackColor = true;
-			this.btnMFDs.Click += new System.EventHandler(this.btnMFDs_Click);
-			// 
-			// btnRadios
-			// 
-			this.btnRadios.Dock = System.Windows.Forms.DockStyle.Top;
-			this.btnRadios.FlatAppearance.BorderSize = 0;
-			this.btnRadios.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-			this.btnRadios.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-			this.btnRadios.Location = new System.Drawing.Point(5, 205);
-			this.btnRadios.Name = "btnRadios";
-			this.btnRadios.Size = new System.Drawing.Size(172, 50);
-			this.btnRadios.TabIndex = 9;
-			this.btnRadios.TabStop = false;
-			this.btnRadios.Text = "Radios";
-			this.btnRadios.UseVisualStyleBackColor = true;
-			this.btnRadios.Click += new System.EventHandler(this.btnRadios_Click);
-			// 
-			// btnCMS
-			// 
-			this.btnCMS.Dock = System.Windows.Forms.DockStyle.Top;
-			this.btnCMS.FlatAppearance.BorderSize = 0;
-			this.btnCMS.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-			this.btnCMS.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-			this.btnCMS.Location = new System.Drawing.Point(5, 155);
-			this.btnCMS.Name = "btnCMS";
-			this.btnCMS.Size = new System.Drawing.Size(172, 50);
-			this.btnCMS.TabIndex = 8;
-			this.btnCMS.TabStop = false;
-			this.btnCMS.Text = "CMS";
-			this.btnCMS.UseVisualStyleBackColor = true;
-			this.btnCMS.Click += new System.EventHandler(this.btnCMS_Click);
-			// 
-			// btnWaypoints
-			// 
-			this.btnWaypoints.Dock = System.Windows.Forms.DockStyle.Top;
-			this.btnWaypoints.FlatAppearance.BorderSize = 0;
-			this.btnWaypoints.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-			this.btnWaypoints.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-			this.btnWaypoints.Location = new System.Drawing.Point(5, 105);
-			this.btnWaypoints.Name = "btnWaypoints";
-			this.btnWaypoints.Size = new System.Drawing.Size(172, 50);
-			this.btnWaypoints.TabIndex = 7;
-			this.btnWaypoints.TabStop = false;
-			this.btnWaypoints.Text = "Waypoints";
-			this.btnWaypoints.UseVisualStyleBackColor = true;
-			this.btnWaypoints.Click += new System.EventHandler(this.btnWaypoints_Click);
-			// 
-			// btnUpload
-			// 
-			this.btnUpload.Dock = System.Windows.Forms.DockStyle.Top;
-			this.btnUpload.FlatAppearance.BorderSize = 0;
-			this.btnUpload.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-			this.btnUpload.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-			this.btnUpload.Location = new System.Drawing.Point(5, 55);
-			this.btnUpload.Name = "btnUpload";
-			this.btnUpload.Size = new System.Drawing.Size(172, 50);
-			this.btnUpload.TabIndex = 6;
-			this.btnUpload.TabStop = false;
-			this.btnUpload.Text = "Upload to Jet";
-			this.btnUpload.UseVisualStyleBackColor = true;
-			this.btnUpload.Click += new System.EventHandler(this.btnUpload_Click);
-			// 
-			// btnLoadSave
-			// 
-			this.btnLoadSave.Dock = System.Windows.Forms.DockStyle.Top;
-			this.btnLoadSave.FlatAppearance.BorderSize = 0;
-			this.btnLoadSave.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-			this.btnLoadSave.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-			this.btnLoadSave.Location = new System.Drawing.Point(5, 5);
-			this.btnLoadSave.Name = "btnLoadSave";
-			this.btnLoadSave.Size = new System.Drawing.Size(172, 50);
-			this.btnLoadSave.TabIndex = 5;
-			this.btnLoadSave.TabStop = false;
-			this.btnLoadSave.Text = "Load / Save";
-			this.btnLoadSave.UseVisualStyleBackColor = true;
-			this.btnLoadSave.Click += new System.EventHandler(this.btnLoadSave_Click);
+			this.breadCrumbs.BackColor = System.Drawing.Color.DarkKhaki;
+			this.breadCrumbs.Dock = System.Windows.Forms.DockStyle.Top;
+			this.breadCrumbs.Location = new System.Drawing.Point(0, 30);
+			this.breadCrumbs.Name = "breadCrumbs";
+			this.breadCrumbs.Size = new System.Drawing.Size(770, 30);
+			this.breadCrumbs.TabIndex = 2;
 			// 
 			// pnlTop
 			// 
@@ -199,7 +93,7 @@ namespace DTC.UI
 			this.pnlTop.Dock = System.Windows.Forms.DockStyle.Top;
 			this.pnlTop.Location = new System.Drawing.Point(0, 0);
 			this.pnlTop.Name = "pnlTop";
-			this.pnlTop.Size = new System.Drawing.Size(770, 50);
+			this.pnlTop.Size = new System.Drawing.Size(770, 30);
 			this.pnlTop.TabIndex = 2;
 			// 
 			// lblPin
@@ -211,7 +105,7 @@ namespace DTC.UI
 			this.lblPin.Image = global::DTC.Properties.Resources.pin;
 			this.lblPin.Location = new System.Drawing.Point(670, 0);
 			this.lblPin.Name = "lblPin";
-			this.lblPin.Size = new System.Drawing.Size(50, 50);
+			this.lblPin.Size = new System.Drawing.Size(50, 30);
 			this.lblPin.TabIndex = 3;
 			this.lblPin.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
 			this.lblPin.Click += new System.EventHandler(this.lblPin_Click);
@@ -225,7 +119,7 @@ namespace DTC.UI
 			this.label1.ForeColor = System.Drawing.Color.Black;
 			this.label1.Location = new System.Drawing.Point(0, 0);
 			this.label1.Name = "label1";
-			this.label1.Size = new System.Drawing.Size(182, 50);
+			this.label1.Size = new System.Drawing.Size(99, 30);
 			this.label1.TabIndex = 0;
 			this.label1.Text = "DCS DTC";
 			this.label1.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
@@ -239,7 +133,7 @@ namespace DTC.UI
 			this.lblClose.ForeColor = System.Drawing.Color.Black;
 			this.lblClose.Location = new System.Drawing.Point(720, 0);
 			this.lblClose.Name = "lblClose";
-			this.lblClose.Size = new System.Drawing.Size(50, 50);
+			this.lblClose.Size = new System.Drawing.Size(50, 30);
 			this.lblClose.TabIndex = 1;
 			this.lblClose.Text = "X";
 			this.lblClose.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
@@ -261,7 +155,6 @@ namespace DTC.UI
 			this.TransparencyKey = System.Drawing.Color.Red;
 			this.pnlBackground.ResumeLayout(false);
 			this.pnlContent.ResumeLayout(false);
-			this.pnlLeft.ResumeLayout(false);
 			this.pnlTop.ResumeLayout(false);
 			this.ResumeLayout(false);
 
@@ -275,13 +168,7 @@ namespace DTC.UI
 		private System.Windows.Forms.Label lblPin;
 		private System.Windows.Forms.Label label1;
 		private System.Windows.Forms.Label lblClose;
-		private System.Windows.Forms.Panel pnlLeft;
-		private System.Windows.Forms.Panel pnlMain;
-		private System.Windows.Forms.Button btnLoadSave;
-		private System.Windows.Forms.Button btnUpload;
-		private System.Windows.Forms.Button btnWaypoints;
-		private System.Windows.Forms.Button btnMFDs;
-		private System.Windows.Forms.Button btnRadios;
-		private System.Windows.Forms.Button btnCMS;
+		private System.Windows.Forms.Panel pnlPages;
+		private Base.Controls.DTCBreadCrumb breadCrumbs;
 	}
 }

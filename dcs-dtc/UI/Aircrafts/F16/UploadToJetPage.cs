@@ -1,16 +1,16 @@
 ﻿using DTC.Models;
 using DTC.Models.F16;
-using DTC.UI.Base;
+using DTC.UI.CommonPages;
 using System;
 
-namespace DTC.UI.F16
+namespace DTC.UI.Aircrafts.F16
 {
-	public partial class UploadToJetPage : FeaturePage
+	public partial class UploadToJetPage : AircraftSettingPage
 	{
 		private F16Upload _jetInterface;
 		private readonly F16Configuration _cfg;
 
-		public UploadToJetPage(F16Configuration cfg, DataChanged dataChangedCallback) : base(dataChangedCallback)
+		public UploadToJetPage(AircraftPage parent, F16Configuration cfg) : base(parent)
 		{
 			InitializeComponent();
 			_jetInterface = new F16Upload(cfg);
@@ -22,12 +22,17 @@ namespace DTC.UI.F16
 			_cfg = cfg;
 		}
 
+		public override string GetPageTitle()
+		{
+			return "Upload to Jet";
+		}
+
 		private void TxtWaypointEnd_LostFocus(object sender, EventArgs e)
 		{
 			if (int.TryParse(txtWaypointEnd.Text, out int n))
 			{
 				_cfg.Waypoints.SetSteerpointEnd(n);
-				DataChangedCallback();
+				_parent.DataChangedCallback();
 			}
 
 			txtWaypointEnd.Text = _cfg.Waypoints.SteerpointEnd.ToString();
@@ -38,7 +43,7 @@ namespace DTC.UI.F16
 			if (int.TryParse(txtWaypointStart.Text, out int n))
 			{
 				_cfg.Waypoints.SetSteerpointStart(n);
-				DataChangedCallback();
+				_parent.DataChangedCallback();
 			}
 
 			txtWaypointStart.Text = _cfg.Waypoints.SteerpointStart.ToString();

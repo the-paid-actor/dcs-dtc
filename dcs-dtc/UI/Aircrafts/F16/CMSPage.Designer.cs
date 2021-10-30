@@ -1,7 +1,7 @@
 ﻿
-namespace DTC.UI.F16
+namespace DTC.UI.Aircrafts.F16
 {
-	partial class MFDPage
+	partial class CMSPage
 	{
 		/// <summary> 
 		/// Required designer variable.
@@ -31,13 +31,13 @@ namespace DTC.UI.F16
 		{
 			this.SuspendLayout();
 			// 
-			// MFDPage
+			// CMSPage
 			// 
 			this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
 			this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
 			this.BackColor = System.Drawing.Color.PaleGoldenrod;
-			this.Name = "MFDPage";
-			this.Size = new System.Drawing.Size(785, 640);
+			this.Name = "CMSPage";
+			this.Size = new System.Drawing.Size(698, 548);
 			this.ResumeLayout(false);
 
 		}

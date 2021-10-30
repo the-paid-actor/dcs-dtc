@@ -1,7 +1,7 @@
 ﻿
-namespace DTC.UI.F16
+namespace DTC.UI.Base.Controls
 {
-	partial class CMSPage
+	partial class DTCBreadCrumb
 	{
 		/// <summary> 
 		/// Required designer variable.
@@ -31,13 +31,13 @@ namespace DTC.UI.F16
 		{
 			this.SuspendLayout();
 			// 
-			// CMSPage
+			// DTCBreadCrumb
 			// 
 			this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
 			this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
 			this.BackColor = System.Drawing.Color.PaleGoldenrod;
-			this.Name = "CMSPage";
-			this.Size = new System.Drawing.Size(698, 548);
+			this.Name = "DTCBreadCrumb";
+			this.Size = new System.Drawing.Size(424, 48);
 			this.ResumeLayout(false);
 
 		}

@@ -1,7 +1,7 @@
 ﻿
 using DTC.UI.Base.Controls;
 
-namespace DTC.UI.F16
+namespace DTC.UI.Aircrafts.F16
 {
 	partial class UploadToJetPage
 	{

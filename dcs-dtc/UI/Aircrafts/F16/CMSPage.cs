@@ -2,18 +2,18 @@
 using System.Drawing;
 using System.Windows.Forms;
 using DTC.Models.F16.CMS;
-using DTC.UI.Base;
 using DTC.UI.Base.Controls;
+using DTC.UI.CommonPages;
 
-namespace DTC.UI.F16
+namespace DTC.UI.Aircrafts.F16
 {
-	public partial class CMSPage : FeaturePage
+	public partial class CMSPage : AircraftSettingPage
 	{
 		private CMSystem _cms;
 
 		private int _lastTabIndex = 0;
 
-		public CMSPage(CMSystem cms, DataChanged dataChangedCallback) : base(dataChangedCallback)
+		public CMSPage(AircraftPage parent, CMSystem cms) : base(parent)
 		{
 			_cms = cms;
 			InitializeComponent();
@@ -64,49 +64,49 @@ namespace DTC.UI.F16
 				var txtChaffBurstQty = CreateTextBox(program.GetChaffBurstQty(), qtyMask, (txt) =>
 				{
 					txt.Text = program.SetChaffBurstQty(txt.Text);
-					DataChangedCallback();
+					_parent.DataChangedCallback();
 				});
 
 				var txtChaffBurstInterval = CreateTextBox(program.GetChaffBurstInterval(), burstIntervalMask, (txt) =>
 				{
 					txt.Text = program.SetChaffBurstInterval(txt.Text);
-					DataChangedCallback();
+					_parent.DataChangedCallback();
 				});
 
 				var txtChaffSalvoQty = CreateTextBox(program.GetChaffSalvoQty(), qtyMask, (txt) =>
 				{
 					txt.Text = program.SetChaffSalvoQty(txt.Text);
-					DataChangedCallback();
+					_parent.DataChangedCallback();
 				});
 
 				var txtChaffSalvoInterval = CreateTextBox(program.GetChaffSalvoInterval(), salvoIntervalMask, (txt) =>
 				{
 					txt.Text = program.SetChaffSalvoInterval(txt.Text);
-					DataChangedCallback();
+					_parent.DataChangedCallback();
 				});
 
 				var txtFlareBurstQty = CreateTextBox(program.GetFlareBurstQty(), qtyMask, (txt) =>
 				{
 					txt.Text = program.SetFlareBurstQty(txt.Text);
-					DataChangedCallback();
+					_parent.DataChangedCallback();
 				});
 
 				var txtFlareBurstInterval = CreateTextBox(program.GetFlareBurstInterval(), burstIntervalMask, (txt) =>
 				{
 					txt.Text = program.SetFlareBurstInterval(txt.Text);
-					DataChangedCallback();
+					_parent.DataChangedCallback();
 				});
 
 				var txtFlareSalvoQty = CreateTextBox(program.GetFlareSalvoQty(), qtyMask, (txt) =>
 				{
 					txt.Text = program.SetFlareSalvoQty(txt.Text);
-					DataChangedCallback();
+					_parent.DataChangedCallback();
 				});
 
 				var txtFlareSalvoInterval = CreateTextBox(program.GetFlareSalvoInterval(), salvoIntervalMask, (txt) =>
 				{
 					txt.Text = program.SetFlareSalvoInterval(txt.Text);
-					DataChangedCallback();
+					_parent.DataChangedCallback();
 				});
 
 				table.Controls.Add(txtChaffBurstQty, 2, firstRow);
@@ -121,6 +121,11 @@ namespace DTC.UI.F16
 				table.Controls.Add(txtChaffSalvoInterval, 5, firstRow);
 				table.Controls.Add(txtFlareSalvoInterval, 5, secondRow);
 			}
+		}
+
+		public override string GetPageTitle()
+		{
+			return "CMS";
 		}
 
 		private delegate void TextBoxChangedCallback(DTCTextBox txt);

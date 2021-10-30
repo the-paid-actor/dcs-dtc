@@ -13,6 +13,14 @@ namespace DTC.Models.F16
 		{
 			var delay = Settings.CommandDelayMs;
 
+			var delayMFDs = delay / 4;
+			var delayList = delay / 4;
+			var delayEntr = delay / 4;
+			var delayDown = delay / 2;
+			var delayUp = delay;
+			var delaySeq = delay;
+			var delayRtn = delay;
+
 			var ufc = new Device(17, "UFC");
 			ufc.AddCommand(new Command(3002, "0", 0, 1));
 			ufc.AddCommand(new Command(3003, "1", 0, 1));
@@ -26,17 +34,17 @@ namespace DTC.Models.F16
 			ufc.AddCommand(new Command(3011, "9", 0, 1));
 			ufc.AddCommand(new Command(3012, "COM1", 0, 1));
 			ufc.AddCommand(new Command(3013, "COM2", 0, 1));
-			ufc.AddCommand(new Command(3015, "LIST", delay, 1));
-			ufc.AddCommand(new Command(3016, "ENTR", delay, 1));
+			ufc.AddCommand(new Command(3015, "LIST", delayList, 1));
+			ufc.AddCommand(new Command(3016, "ENTR", delayEntr, 1));
 			ufc.AddCommand(new Command(3017, "RCL", 0, 1));
 			ufc.AddCommand(new Command(3018, "AA", delay, 1));
 			ufc.AddCommand(new Command(3019, "AG", delay, 1));
 			ufc.AddCommand(new Command(3030, "INC", delay, 1));
 			ufc.AddCommand(new Command(3031, "DEC", delay, 1));
-			ufc.AddCommand(new Command(3032, "RTN", delay, -1));
-			ufc.AddCommand(new Command(3033, "SEQ", delay * 2, 1));
-			ufc.AddCommand(new Command(3034, "UP", delay, 1));
-			ufc.AddCommand(new Command(3035, "DOWN", delay, -1));
+			ufc.AddCommand(new Command(3032, "RTN", delayRtn, -1));
+			ufc.AddCommand(new Command(3033, "SEQ", delaySeq, 1));
+			ufc.AddCommand(new Command(3034, "UP", delayUp, 1));
+			ufc.AddCommand(new Command(3035, "DOWN", delayDown, -1));
 			AddDevice(ufc);
 
 			var hotas = new Device(16, "HOTAS");
@@ -46,41 +54,41 @@ namespace DTC.Models.F16
 			AddDevice(hotas);
 
 			var leftMFD = new Device(24, "LMFD");
-			leftMFD.AddCommand(new Command(3012, "OSB-12-PG3", delay, 1));
-			leftMFD.AddCommand(new Command(3013, "OSB-13-PG2", delay, 1));
-			leftMFD.AddCommand(new Command(3014, "OSB-14-PG1", delay, 1));
-			leftMFD.AddCommand(new Command(3001, "OSB-01-BLANK", delay, 1));
-			leftMFD.AddCommand(new Command(3002, "OSB-02-HAD", delay, 1));
-			leftMFD.AddCommand(new Command(3004, "OSB-04-RCCE", delay, 1));
-			leftMFD.AddCommand(new Command(3006, "OSB-06-SMS", delay, 1));
-			leftMFD.AddCommand(new Command(3007, "OSB-07-HSD", delay, 1));
-			leftMFD.AddCommand(new Command(3008, "OSB-08-DTE", delay, 1));
-			leftMFD.AddCommand(new Command(3009, "OSB-09-TEST", delay, 1));
-			leftMFD.AddCommand(new Command(3010, "OSB-10-FLCS", delay, 1));
-			leftMFD.AddCommand(new Command(3016, "OSB-16-FLIR", delay, 1));
-			leftMFD.AddCommand(new Command(3017, "OSB-17-TFR", delay, 1));
-			leftMFD.AddCommand(new Command(3018, "OSB-18-WPN", delay, 1));
-			leftMFD.AddCommand(new Command(3019, "OSB-19-TGP", delay, 1));
-			leftMFD.AddCommand(new Command(3020, "OSB-20-FCR", delay, 1));
+			leftMFD.AddCommand(new Command(3012, "OSB-12-PG3", delayMFDs, 1));
+			leftMFD.AddCommand(new Command(3013, "OSB-13-PG2", delayMFDs, 1));
+			leftMFD.AddCommand(new Command(3014, "OSB-14-PG1", delayMFDs, 1));
+			leftMFD.AddCommand(new Command(3001, "OSB-01-BLANK", delayMFDs, 1));
+			leftMFD.AddCommand(new Command(3002, "OSB-02-HAD", delayMFDs, 1));
+			leftMFD.AddCommand(new Command(3004, "OSB-04-RCCE", delayMFDs, 1));
+			leftMFD.AddCommand(new Command(3006, "OSB-06-SMS", delayMFDs, 1));
+			leftMFD.AddCommand(new Command(3007, "OSB-07-HSD", delayMFDs, 1));
+			leftMFD.AddCommand(new Command(3008, "OSB-08-DTE", delayMFDs, 1));
+			leftMFD.AddCommand(new Command(3009, "OSB-09-TEST", delayMFDs, 1));
+			leftMFD.AddCommand(new Command(3010, "OSB-10-FLCS", delayMFDs, 1));
+			leftMFD.AddCommand(new Command(3016, "OSB-16-FLIR", delayMFDs, 1));
+			leftMFD.AddCommand(new Command(3017, "OSB-17-TFR", delayMFDs, 1));
+			leftMFD.AddCommand(new Command(3018, "OSB-18-WPN", delayMFDs, 1));
+			leftMFD.AddCommand(new Command(3019, "OSB-19-TGP", delayMFDs, 1));
+			leftMFD.AddCommand(new Command(3020, "OSB-20-FCR", delayMFDs, 1));
 			AddDevice(leftMFD);
 
 			var rightMFD = new Device(25, "RMFD");
-			rightMFD.AddCommand(new Command(3012, "OSB-12-PG3", delay, 1));
-			rightMFD.AddCommand(new Command(3013, "OSB-13-PG2", delay, 1));
-			rightMFD.AddCommand(new Command(3014, "OSB-14-PG1", delay, 1));
-			rightMFD.AddCommand(new Command(3001, "OSB-01-BLANK", delay, 1));
-			rightMFD.AddCommand(new Command(3002, "OSB-02-HAD", delay, 1));
-			rightMFD.AddCommand(new Command(3004, "OSB-04-RCCE", delay, 1));
-			rightMFD.AddCommand(new Command(3006, "OSB-06-SMS", delay, 1));
-			rightMFD.AddCommand(new Command(3007, "OSB-07-HSD", delay, 1));
-			rightMFD.AddCommand(new Command(3008, "OSB-08-DTE", delay, 1));
-			rightMFD.AddCommand(new Command(3009, "OSB-09-TEST", delay, 1));
-			rightMFD.AddCommand(new Command(3010, "OSB-10-FLCS", delay, 1));
-			rightMFD.AddCommand(new Command(3016, "OSB-16-FLIR", delay, 1));
-			rightMFD.AddCommand(new Command(3017, "OSB-17-TFR", delay, 1));
-			rightMFD.AddCommand(new Command(3018, "OSB-18-WPN", delay, 1));
-			rightMFD.AddCommand(new Command(3019, "OSB-19-TGP", delay, 1));
-			rightMFD.AddCommand(new Command(3020, "OSB-20-FCR", delay, 1));
+			rightMFD.AddCommand(new Command(3012, "OSB-12-PG3", delayMFDs, 1));
+			rightMFD.AddCommand(new Command(3013, "OSB-13-PG2", delayMFDs, 1));
+			rightMFD.AddCommand(new Command(3014, "OSB-14-PG1", delayMFDs, 1));
+			rightMFD.AddCommand(new Command(3001, "OSB-01-BLANK", delayMFDs, 1));
+			rightMFD.AddCommand(new Command(3002, "OSB-02-HAD", delayMFDs, 1));
+			rightMFD.AddCommand(new Command(3004, "OSB-04-RCCE", delayMFDs, 1));
+			rightMFD.AddCommand(new Command(3006, "OSB-06-SMS", delayMFDs, 1));
+			rightMFD.AddCommand(new Command(3007, "OSB-07-HSD", delayMFDs, 1));
+			rightMFD.AddCommand(new Command(3008, "OSB-08-DTE", delayMFDs, 1));
+			rightMFD.AddCommand(new Command(3009, "OSB-09-TEST", delayMFDs, 1));
+			rightMFD.AddCommand(new Command(3010, "OSB-10-FLCS", delayMFDs, 1));
+			rightMFD.AddCommand(new Command(3016, "OSB-16-FLIR", delayMFDs, 1));
+			rightMFD.AddCommand(new Command(3017, "OSB-17-TFR", delayMFDs, 1));
+			rightMFD.AddCommand(new Command(3018, "OSB-18-WPN", delayMFDs, 1));
+			rightMFD.AddCommand(new Command(3019, "OSB-19-TGP", delayMFDs, 1));
+			rightMFD.AddCommand(new Command(3020, "OSB-20-FCR", delayMFDs, 1));
 			AddDevice(rightMFD);
 		}
 

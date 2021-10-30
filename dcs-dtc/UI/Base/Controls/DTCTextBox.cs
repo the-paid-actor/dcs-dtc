@@ -3,7 +3,7 @@ using System.Windows.Forms;
 
 namespace DTC.UI.Base.Controls
 {
-	class DTCTextBox : UserControl
+	public class DTCTextBox : UserControl
 	{
 		private MaskedTextBox textBox;
 
@@ -60,6 +60,12 @@ namespace DTC.UI.Base.Controls
 
 			textBox.LostFocus += TextBox_LostFocus;
 			textBox.GotFocus += TextBox_GotFocus;
+			textBox.KeyDown += TextBox_KeyDown;
+		}
+
+		private void TextBox_KeyDown(object sender, KeyEventArgs e)
+		{
+			OnKeyDown(e);
 		}
 
 		private void TextBox_GotFocus(object sender, EventArgs e)

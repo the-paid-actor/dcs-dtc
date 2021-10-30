@@ -1,17 +1,19 @@
 ﻿using DTC.Models.F16.Waypoints;
 using DTC.UI.Base;
+using DTC.UI.CommonPages;
 using System;
+using System.Collections.Generic;
 using System.Drawing;
 using System.Windows.Forms;
 
-namespace DTC.UI.F16
+namespace DTC.UI.Aircrafts.F16
 {
-	public partial class WaypointsPage : FeaturePage
+	public partial class WaypointsPage : AircraftSettingPage
 	{
 		private WaypointSystem _waypoints;
 		private WaypointEdit _wptEditDialog;
 
-		public WaypointsPage(WaypointSystem wpts, DataChanged dataChangedCallback) : base(dataChangedCallback)
+		public WaypointsPage(AircraftPage parent, WaypointSystem wpts) : base(parent)
 		{
 			InitializeComponent();
 
@@ -19,15 +21,27 @@ namespace DTC.UI.F16
 			_wptEditDialog = new WaypointEdit(_waypoints, this.WptDialogEditCallback);
 			_wptEditDialog.Visible = false;
 			dgWaypoints.AutoGenerateColumns = false;
+			dgWaypoints.ReorderCallback = Reorder;
 			this.Controls.Add(this._wptEditDialog);
 
 			RefreshList();
 		}
 
+		private void Reorder(int indexFrom, int indexTo)
+		{
+			_waypoints.Reorder(indexFrom, indexTo);
+			RefreshList();
+		}
+
+		public override string GetPageTitle()
+		{
+			return "Waypoints";
+		}
+
 		private void WptDialogEditCallback(WaypointEdit.WaypointEditResult result, Waypoint wpt)
 		{
-			if (result != WaypointEdit.WaypointEditResult.Close) { 
-				DataChangedCallback();
+			if (result != WaypointEdit.WaypointEditResult.Close) {
+				_parent.DataChangedCallback();
 				this.RefreshList();
 			}
 
@@ -56,7 +70,7 @@ namespace DTC.UI.F16
 
 		private void ToggleEnabled()
 		{
-			((MainForm)this.ParentForm).ToggleEnabled();
+			_parent.ToggleEnabled();
 			dgWaypoints.Enabled = !dgWaypoints.Enabled;
 			btnAdd.Enabled = !btnAdd.Enabled;
 			btnDelete.Enabled = dgWaypoints.Enabled && dgWaypoints.SelectedRows.Count > 0;
@@ -64,18 +78,25 @@ namespace DTC.UI.F16
 
 		private void RefreshList()
 		{
-			dgWaypoints.SetWaypoints(_waypoints);
+			dgWaypoints.RefreshList(_waypoints.Waypoints);
 		}
 
 		private void btnDelete_Click(object sender, EventArgs e)
 		{
+			var wptsToDelete = new List<Waypoint>();
+
 			foreach (DataGridViewRow row in dgWaypoints.SelectedRows)
 			{
 				var wpt = (Waypoint)row.DataBoundItem;
+				wptsToDelete.Add(wpt);
+			}
+
+			foreach(var wpt in wptsToDelete)
+			{
 				_waypoints.Remove(wpt);
 			}
 
-			DataChangedCallback();
+			_parent.DataChangedCallback();
 			RefreshList();
 			dgWaypoints.Focus();
 		}

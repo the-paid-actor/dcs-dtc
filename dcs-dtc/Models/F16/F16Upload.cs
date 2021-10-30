@@ -175,6 +175,7 @@ namespace DTC.Models
 			else if (page == Page.SMS)
 			{
 				sb.Append(d.GetCommand("OSB-06-SMS"));
+				sb.Append(d.GetCommand("OSB-04-RCCE"));
 			}
 			else if (page == Page.TEST)
 			{

@@ -7,7 +7,7 @@ using System;
 using System.Globalization;
 using System.Windows.Forms;
 
-namespace DTC.UI.F16
+namespace DTC.UI.Aircrafts.F16
 {
 	public partial class WaypointEdit : UserControl
 	{
@@ -186,10 +186,10 @@ namespace DTC.UI.F16
 		private void ResetFields()
 		{
 			cboAirbases.SelectedIndex = -1;
-			txtWptName.Focus();
 			txtWptName.Text = "WPT " + (_flightPlan.Waypoints.Count + 1).ToString();
 			txtWptLatLong.Text = "";
 			txtWptElevation.Text = "0";
+			txtWptLatLong.Focus();
 		}
 
 		private void cboAirbases_SelectedIndexChanged(object sender, EventArgs e)

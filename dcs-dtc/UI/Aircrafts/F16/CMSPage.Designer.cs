@@ -29,16 +29,17 @@ namespace DTC.UI.Aircrafts.F16
 		/// </summary>
 		private void InitializeComponent()
 		{
-			this.SuspendLayout();
-			// 
-			// CMSPage
-			// 
-			this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
-			this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-			this.BackColor = System.Drawing.Color.PaleGoldenrod;
-			this.Name = "CMSPage";
-			this.Size = new System.Drawing.Size(698, 548);
-			this.ResumeLayout(false);
+            this.SuspendLayout();
+            // 
+            // CMSPage
+            // 
+            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
+            this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.AutoScroll = true;
+            this.BackColor = System.Drawing.Color.PaleGoldenrod;
+            this.Name = "CMSPage";
+            this.Size = new System.Drawing.Size(698, 548);
+            this.ResumeLayout(false);
 
 		}
 

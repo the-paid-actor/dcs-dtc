@@ -8,6 +8,11 @@ namespace DTC.UI.CommonPages
 
 		protected readonly AircraftPage _parent;
 
+		public AircraftSettingPage() : base()
+        {
+
+        }
+
 		public AircraftSettingPage(AircraftPage parent) : base()
 		{
 			this._parent = parent;

@@ -127,7 +127,12 @@ namespace DTC.UI.Aircrafts.F16
 		{
 			var cfg = _mainConfig.Clone();
 
-			if (!chkSaveWaypoints.Checked)
+            SaveFileDialog dlg = new SaveFileDialog();
+
+            dlg.InitialDirectory = Application.StartupPath;
+            dlg.RestoreDirectory = true;
+
+            if (!chkSaveWaypoints.Checked)
 			{
 				cfg.Waypoints = null;
 			}
@@ -150,9 +155,9 @@ namespace DTC.UI.Aircrafts.F16
 			}
 			else
 			{
-				if (saveFileDlg.ShowDialog() == DialogResult.OK)
+				if (dlg.ShowDialog() == DialogResult.OK)
 				{
-					FileStorage.Save(cfg, saveFileDlg.FileName);
+					FileStorage.Save(cfg, dlg.FileName);
 				}
 			}
 		}

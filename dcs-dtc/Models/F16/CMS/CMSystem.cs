@@ -6,7 +6,7 @@
 
 		public CMSystem()
 		{
-			Programs = new Program[5];
+			Programs = new Program[6];
 
 			ResetToDefault();
 		}
@@ -18,6 +18,7 @@
 			Programs[2] = new Program(3, 2, (decimal)0.1, 5, (decimal)1.0, 2, (decimal)0.1, 5, (decimal)1.0);
 			Programs[3] = new Program(4, 2, (decimal)0.1, 5, (decimal)0.5, 2, (decimal)0.1, 5, (decimal)0.5);
 			Programs[4] = new Program(5, 2, (decimal)0.05, 20, (decimal)0.75, 2, (decimal)0.05, 20, (decimal)0.75);
+			Programs[5] = new Program(6, 1, (decimal)0.02, 1, (decimal)0.5, 1, (decimal)0.02, 1, (decimal)0.5);
 		}
 	}
 }

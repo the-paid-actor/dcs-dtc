@@ -54,18 +54,19 @@ namespace DTC.UI.Aircrafts.F16
 			this.panel1.Location = new System.Drawing.Point(0, 0);
 			this.panel1.Name = "panel1";
 			this.panel1.Padding = new System.Windows.Forms.Padding(10);
-			this.panel1.Size = new System.Drawing.Size(689, 50);
+			this.panel1.Size = new System.Drawing.Size(689, 35);
 			this.panel1.TabIndex = 99;
 			// 
 			// btnDelete
 			// 
 			this.btnDelete.BackColor = System.Drawing.Color.DarkKhaki;
 			this.btnDelete.Enabled = false;
+			this.btnDelete.FlatAppearance.BorderSize = 0;
 			this.btnDelete.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-			this.btnDelete.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F);
-			this.btnDelete.Location = new System.Drawing.Point(158, 5);
+			this.btnDelete.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F);
+			this.btnDelete.Location = new System.Drawing.Point(131, 5);
 			this.btnDelete.Name = "btnDelete";
-			this.btnDelete.Size = new System.Drawing.Size(150, 40);
+			this.btnDelete.Size = new System.Drawing.Size(120, 25);
 			this.btnDelete.TabIndex = 3;
 			this.btnDelete.Text = "Delete";
 			this.btnDelete.UseVisualStyleBackColor = false;
@@ -74,11 +75,12 @@ namespace DTC.UI.Aircrafts.F16
 			// btnAdd
 			// 
 			this.btnAdd.BackColor = System.Drawing.Color.DarkKhaki;
+			this.btnAdd.FlatAppearance.BorderSize = 0;
 			this.btnAdd.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-			this.btnAdd.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F);
+			this.btnAdd.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F);
 			this.btnAdd.Location = new System.Drawing.Point(5, 5);
 			this.btnAdd.Name = "btnAdd";
-			this.btnAdd.Size = new System.Drawing.Size(150, 40);
+			this.btnAdd.Size = new System.Drawing.Size(120, 25);
 			this.btnAdd.TabIndex = 2;
 			this.btnAdd.Text = "Add";
 			this.btnAdd.UseVisualStyleBackColor = false;
@@ -97,13 +99,13 @@ namespace DTC.UI.Aircrafts.F16
 			this.dgWaypoints.ColumnHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.Sunken;
 			dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
 			dataGridViewCellStyle1.BackColor = System.Drawing.Color.DarkKhaki;
-			dataGridViewCellStyle1.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+			dataGridViewCellStyle1.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
 			dataGridViewCellStyle1.ForeColor = System.Drawing.Color.Black;
 			dataGridViewCellStyle1.SelectionBackColor = System.Drawing.Color.DarkKhaki;
 			dataGridViewCellStyle1.SelectionForeColor = System.Drawing.Color.Black;
 			dataGridViewCellStyle1.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
 			this.dgWaypoints.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle1;
-			this.dgWaypoints.ColumnHeadersHeight = 40;
+			this.dgWaypoints.ColumnHeadersHeight = 30;
 			this.dgWaypoints.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.DisableResizing;
 			this.dgWaypoints.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.colSequence,
@@ -113,7 +115,7 @@ namespace DTC.UI.Aircrafts.F16
             this.colElevation});
 			dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
 			dataGridViewCellStyle2.BackColor = System.Drawing.Color.Beige;
-			dataGridViewCellStyle2.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F);
+			dataGridViewCellStyle2.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F);
 			dataGridViewCellStyle2.ForeColor = System.Drawing.SystemColors.ControlText;
 			dataGridViewCellStyle2.SelectionBackColor = System.Drawing.SystemColors.Highlight;
 			dataGridViewCellStyle2.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
@@ -121,14 +123,14 @@ namespace DTC.UI.Aircrafts.F16
 			this.dgWaypoints.DefaultCellStyle = dataGridViewCellStyle2;
 			this.dgWaypoints.Dock = System.Windows.Forms.DockStyle.Fill;
 			this.dgWaypoints.EnableHeadersVisualStyles = false;
-			this.dgWaypoints.Location = new System.Drawing.Point(0, 50);
+			this.dgWaypoints.Location = new System.Drawing.Point(0, 35);
 			this.dgWaypoints.Name = "dgWaypoints";
 			this.dgWaypoints.ReadOnly = true;
 			this.dgWaypoints.RowHeadersVisible = false;
 			this.dgWaypoints.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
 			this.dgWaypoints.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
 			this.dgWaypoints.ShowCellToolTips = false;
-			this.dgWaypoints.Size = new System.Drawing.Size(689, 433);
+			this.dgWaypoints.Size = new System.Drawing.Size(689, 448);
 			this.dgWaypoints.TabIndex = 100;
 			this.dgWaypoints.DataError += new System.Windows.Forms.DataGridViewDataErrorEventHandler(this.dgWaypoints_DataError);
 			this.dgWaypoints.SelectionChanged += new System.EventHandler(this.dgWaypoints_SelectionChanged);

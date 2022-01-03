@@ -78,6 +78,10 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Models\DCS\Emitters.cs" />
+    <Compile Include="Models\F16\HARMHTS\HARMSystem.cs" />
+    <Compile Include="Models\F16\HARMHTS\HTSSystem.cs" />
+    <Compile Include="Models\F16\Misc\MiscSystem.cs" />
     <Compile Include="Models\Presets\AircraftModel.cs" />
     <Compile Include="Models\Presets\PresetChangedCallback.cs" />
     <Compile Include="Models\Presets\PresetsStore.cs" />
@@ -99,6 +103,25 @@
     <Compile Include="Models\Presets\Aircraft.cs" />
     <Compile Include="Models\Presets\Preset.cs" />
     <Compile Include="Models\WaypointDB\WaypointDB.cs" />
+    <Compile Include="UI\Aircrafts\F16\HARMPage.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="UI\Aircrafts\F16\HARMPage.Designer.cs">
+      <DependentUpon>HARMPage.cs</DependentUpon>
+    </Compile>
+    <Compile Include="UI\Aircrafts\F16\HTSPage.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="UI\Aircrafts\F16\HTSPage.Designer.cs">
+      <DependentUpon>HTSPage.cs</DependentUpon>
+    </Compile>
+    <Compile Include="UI\Aircrafts\F16\MiscPage.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="UI\Aircrafts\F16\MiscPage.Designer.cs">
+      <DependentUpon>MiscPage.cs</DependentUpon>
+    </Compile>
+    <Compile Include="UI\Base\SortableBindingList.cs" />
     <Compile Include="UI\Base\Controls\DTCBreadCrumb.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -128,6 +151,12 @@
     </Compile>
     <Compile Include="UI\Base\Controls\GraphicsExtensions.cs" />
     <Compile Include="UI\Base\Draggable.cs" />
+    <Compile Include="UI\Base\EmitterList.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="UI\Base\EmitterList.Designer.cs">
+      <DependentUpon>EmitterList.cs</DependentUpon>
+    </Compile>
     <Compile Include="UI\Base\WaypointCaptureCrosshair.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -237,11 +266,20 @@
     <Compile Include="UI\CommonPages\PresetsPage.Designer.cs">
       <DependentUpon>PresetsPage.cs</DependentUpon>
     </Compile>
+    <EmbeddedResource Include="UI\Aircrafts\F16\HARMPage.resx">
+      <DependentUpon>HARMPage.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UI\Aircrafts\F16\HTSPage.resx">
+      <DependentUpon>HTSPage.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="UI\Base\Controls\DTCBreadCrumb.resx">
       <DependentUpon>DTCBreadCrumb.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="UI\Base\Controls\DTCTextBox.resx">
       <DependentUpon>DTCTextBox.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UI\Base\EmitterList.resx">
+      <DependentUpon>EmitterList.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="UI\Base\WaypointCaptureCrosshair.resx">
       <DependentUpon>WaypointCaptureCrosshair.cs</DependentUpon>
@@ -295,6 +333,9 @@
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
     <None Include="dtc-airbases.json">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="dtc-emitters.json">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
     <None Include="dtc-settings.json">

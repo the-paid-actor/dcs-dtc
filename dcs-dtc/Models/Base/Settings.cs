@@ -80,7 +80,7 @@ namespace DTC.Models.Base
 				obj = new SettingsData();
 				obj.TCPSendPort = 43001;
 				obj.UDPReceivePort = 43000;
-				obj.CommandDelayMs = 100;
+				obj.CommandDelayMs = 200;
 			}
 
 			currentSettings = obj;

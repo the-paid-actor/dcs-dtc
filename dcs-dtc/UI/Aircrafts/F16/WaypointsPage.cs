@@ -20,7 +20,6 @@ namespace DTC.UI.Aircrafts.F16
 			_waypoints = wpts;
 			_wptEditDialog = new WaypointEdit(_waypoints, this.WptDialogEditCallback);
 			_wptEditDialog.Visible = false;
-			dgWaypoints.AutoGenerateColumns = false;
 			dgWaypoints.ReorderCallback = Reorder;
 			this.Controls.Add(this._wptEditDialog);
 

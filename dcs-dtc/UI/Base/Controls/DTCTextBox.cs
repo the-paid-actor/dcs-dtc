@@ -1,10 +1,21 @@
 ﻿using System;
+using System.Drawing;
 using System.Windows.Forms;
 
 namespace DTC.UI.Base.Controls
 {
 	public class DTCTextBox : UserControl
 	{
+		public static DTCTextBox Make(int left, int top, int width, int height)
+		{
+			var txt = new DTCTextBox();
+			txt.Left = left;
+			txt.Top = top;
+			txt.Width = width;
+			txt.Height = height;
+			return txt;
+		}
+
 		private MaskedTextBox textBox;
 
 		public override string Text
@@ -13,12 +24,18 @@ namespace DTC.UI.Base.Controls
 			set { textBox.Text = value; }
 		}
 
+		public override Font Font
+		{
+			get { return textBox.Font; }
+			set { textBox.Font = value; }
+		}
+
 		public string Mask
 		{
 			get { return textBox.Mask; }
 			set { textBox.Mask = value; }
 		}
-		
+
 		public bool AllowPromptAsInput
 		{
 			get { return textBox.AllowPromptAsInput; }
@@ -61,6 +78,18 @@ namespace DTC.UI.Base.Controls
 			textBox.LostFocus += TextBox_LostFocus;
 			textBox.GotFocus += TextBox_GotFocus;
 			textBox.KeyDown += TextBox_KeyDown;
+			textBox.Click += TextBox_Click;
+		}
+
+		private bool _firstClick = true;
+
+		private void TextBox_Click(object sender, EventArgs e)
+		{
+			if (_firstClick)
+			{
+				this.SelectAll();
+				_firstClick = false;
+			}
 		}
 
 		private void TextBox_KeyDown(object sender, KeyEventArgs e)
@@ -70,11 +99,13 @@ namespace DTC.UI.Base.Controls
 
 		private void TextBox_GotFocus(object sender, EventArgs e)
 		{
+			this.SelectAll();
 			OnGotFocus(e);
 		}
 
 		private void TextBox_LostFocus(object sender, EventArgs e)
 		{
+			_firstClick = true;
 			OnLostFocus(e);
 		}
 

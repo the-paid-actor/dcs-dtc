@@ -1,4 +1,5 @@
-﻿using System;
+﻿using DTC.Models.Base;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -10,12 +11,27 @@ using System.Windows.Forms;
 
 namespace DTC.UI.CommonPages
 {
-	public partial class WaypointDatabase : UserControl
+	public partial class WaypointDatabase : Page
 	{
+		private class TheaterNode { };
+		private class AirbaseNode { };
+
 		public WaypointDatabase()
 		{
 			InitializeComponent();
+
+			var theaters = FileStorage.LoadAirbases();
+
+			foreach(var theater in theaters)
+			{
+				var theaterNode = treeFolders.Nodes.Add(theater.Name);
+				theaterNode.Tag = new TheaterNode();
+				var airbasesNode = theaterNode.Nodes.Add("Airbases");
+				airbasesNode.Tag = new AirbaseNode();
+			}
 		}
+
+		public override string PageTitle => "Waypoints Database";
 
 		private void treeFolders_AfterSelect(object sender, TreeViewEventArgs e)
 		{
@@ -25,10 +41,46 @@ namespace DTC.UI.CommonPages
 
 			if (treeFolders.SelectedNode != null)
 			{
-				btnAddSubfolder.Enabled = true;
-				btnRenameFolder.Enabled = true;
-				btnRemoveFolder.Enabled = true;
+				if (treeFolders.SelectedNode.Tag is TheaterNode)
+				{
+					btnAddSubfolder.Enabled = true;
+				}
+				else if (treeFolders.SelectedNode.Tag is AirbaseNode)
+				{
+				}
+				else
+				{
+					btnRenameFolder.Enabled = true;
+					btnRemoveFolder.Enabled = true;
+				}
 			}
+		}
+
+		private void AddSubFolder()
+		{
+			var dialog = new PresetName();
+			this.Controls.Add(dialog);
+			dialog.Left = (this.Width / 2) - (dialog.Width / 2);
+			dialog.Top = (this.Height / 2) - (dialog.Height / 2);
+			dialog.txtName.Focus();
+			dialog.BringToFront();
+
+			pnlContent.Enabled = false;
+
+			dialog.DialogResultCallback = (DialogResult result) =>
+			{
+				if (result == DialogResult.OK)
+				{
+					treeFolders.SelectedNode.Nodes.Add(dialog.txtName.Text);
+				}
+				this.Controls.Remove(dialog);
+				pnlContent.Enabled = true;
+			};
+		}
+
+		private void btnAddSubfolder_Click(object sender, EventArgs e)
+		{
+			AddSubFolder();
 		}
 	}
 }

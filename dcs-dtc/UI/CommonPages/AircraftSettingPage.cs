@@ -13,6 +13,11 @@ namespace DTC.UI.CommonPages
 			this._parent = parent;
 		}
 
+		public AircraftSettingPage()
+		{
+
+		}
+
 		public virtual string GetPageTitle()
 		{
 			return "";

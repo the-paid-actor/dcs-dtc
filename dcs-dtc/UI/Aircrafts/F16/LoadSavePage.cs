@@ -66,6 +66,21 @@ namespace DTC.UI.Aircrafts.F16
 					chkLoadMFDs.Enabled = true;
 					enableLoad = true;
 				}
+				if (_configToLoad.HARM != null)
+				{
+					chkLoadHARM.Enabled = true;
+					enableLoad = true;
+				}
+				if (_configToLoad.HTS != null)
+				{
+					chkLoadHTS.Enabled = true;
+					enableLoad = true;
+				}
+				if (_configToLoad.Misc != null)
+				{
+					chkLoadMisc.Enabled = true;
+					enableLoad = true;
+				}
 
 				if (enableLoad == true)
 				{
@@ -116,6 +131,33 @@ namespace DTC.UI.Aircrafts.F16
 				load = true;
 			}
 
+			if (!chkLoadHARM.Checked)
+			{
+				cfg.HARM = null;
+			}
+			else
+			{
+				load = true;
+			}
+
+			if (!chkLoadHTS.Checked)
+			{
+				cfg.HTS = null;
+			}
+			else
+			{
+				load = true;
+			}
+
+			if (!chkLoadMisc.Checked)
+			{
+				cfg.Misc = null;
+			}
+			else
+			{
+				load = true;
+			}
+
 			if (load)
 			{
 				_mainConfig.CopyConfiguration(cfg);
@@ -143,6 +185,18 @@ namespace DTC.UI.Aircrafts.F16
 			{
 				cfg.MFD = null;
 			}
+			if (!chkSaveHARM.Checked)
+			{
+				cfg.HARM = null;
+			}
+			if (!chkSaveHTS.Checked)
+			{
+				cfg.HTS = null;
+			}
+			if (!chkSaveMisc.Checked)
+			{
+				cfg.Misc = null;
+			}
 
 			if (optClipboard.Checked)
 			{
@@ -163,6 +217,9 @@ namespace DTC.UI.Aircrafts.F16
 			chkLoadCMS.Enabled = false;
 			chkLoadRadios.Enabled = false;
 			chkLoadMFDs.Enabled = false;
+			chkLoadHARM.Enabled = false;
+			chkLoadHTS.Enabled = false;
+			chkLoadMisc.Enabled = false;
 			btnLoadApply.Enabled = false;
 		}
 

@@ -4,5 +4,6 @@
 	{
 		string ToJson();
 		IConfiguration Clone();
+		void AfterLoadFromJson();
 	}
 }

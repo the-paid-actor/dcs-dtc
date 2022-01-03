@@ -59,7 +59,7 @@ namespace DTC.UI.Aircrafts.F16
 		{
 			var wptStart = int.Parse(txtWaypointStart.Text);
 			var wptEnd = int.Parse(txtWaypointEnd.Text);
-			_jetInterface.Load(chkWaypoints.Checked, wptStart, wptEnd, chkRadios.Checked, chkCMS.Checked, chkMFDs.Checked);
+			_jetInterface.Load(chkWaypoints.Checked, wptStart, wptEnd, chkRadios.Checked, chkCMS.Checked, chkMFDs.Checked, chkMisc.Checked);
 		}
 	}
 }

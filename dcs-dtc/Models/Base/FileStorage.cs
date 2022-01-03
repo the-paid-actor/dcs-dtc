@@ -26,6 +26,12 @@ namespace DTC.Models.Base
 			return Path.Combine(path, "dtc-airbases.json");
 		}
 
+		private static string GetEmittersFilePath()
+		{
+			var path = GetCurrentFolder();
+			return Path.Combine(path, "dtc-emitters.json");
+		}
+
 		public static void PersistSettingsFile(string json)
 		{
 			File.WriteAllText(GetSettingsFilePath(), json);
@@ -54,6 +60,7 @@ namespace DTC.Models.Base
 					var json = File.ReadAllText(file);
 					var type = ac.GetAircraftConfigurationType();
 					var cfg = JsonConvert.DeserializeObject(json, type);
+					((IConfiguration)cfg).AfterLoadFromJson();
 					dic.Add(Path.GetFileNameWithoutExtension(file), (IConfiguration)cfg);
 				}
 			}
@@ -121,6 +128,13 @@ namespace DTC.Models.Base
 			{
 			}
 			return null;
+		}
+
+		public static Emitter[] LoadEmitters()
+		{
+			var path = GetEmittersFilePath();
+			var json = File.ReadAllText(path);
+			return JsonConvert.DeserializeObject<Emitter[]>(json);
 		}
 
 		public static void Save(IConfiguration cfg, string path)

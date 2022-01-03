@@ -39,7 +39,10 @@ namespace DTC.UI.CommonPages
 					new Aircrafts.F16.WaypointsPage(this, cfg.Waypoints),
 					new Aircrafts.F16.CMSPage(this, cfg.CMS),
 					new Aircrafts.F16.RadioPage(this, cfg.Radios),
-					new Aircrafts.F16.MFDPage(this, cfg.MFD)
+					new Aircrafts.F16.MFDPage(this, cfg.MFD),
+					new Aircrafts.F16.HARMPage(this, cfg.HARM),
+					new Aircrafts.F16.HTSPage(this, cfg.HTS),
+					new Aircrafts.F16.MiscPage(this, cfg.Misc)
 				};
 			}
 			throw new Exception();

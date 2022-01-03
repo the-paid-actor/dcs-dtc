@@ -41,31 +41,33 @@ namespace DTC.UI.CommonPages
 			this.panel1 = new System.Windows.Forms.Panel();
 			this.toolStrip1 = new System.Windows.Forms.ToolStrip();
 			this.btnAddSubfolder = new System.Windows.Forms.ToolStripButton();
+			this.btnRenameFolder = new System.Windows.Forms.ToolStripButton();
+			this.btnRemoveFolder = new System.Windows.Forms.ToolStripButton();
 			this.panel2 = new System.Windows.Forms.Panel();
-			this.toolStrip2 = new System.Windows.Forms.ToolStrip();
-			this.toolStripButton2 = new System.Windows.Forms.ToolStripButton();
-			this.toolStripButton3 = new System.Windows.Forms.ToolStripButton();
-			this.imageList1 = new System.Windows.Forms.ImageList(this.components);
 			this.dgWaypoints = new DTC.UI.Base.Controls.DTCDataGrid();
 			this.colSequence = new System.Windows.Forms.DataGridViewTextBoxColumn();
 			this.colName = new System.Windows.Forms.DataGridViewTextBoxColumn();
 			this.colLatitude = new System.Windows.Forms.DataGridViewTextBoxColumn();
 			this.colLongitude = new System.Windows.Forms.DataGridViewTextBoxColumn();
 			this.colElevation = new System.Windows.Forms.DataGridViewTextBoxColumn();
-			this.btnRemoveFolder = new System.Windows.Forms.ToolStripButton();
-			this.btnRenameFolder = new System.Windows.Forms.ToolStripButton();
+			this.toolStrip2 = new System.Windows.Forms.ToolStrip();
+			this.toolStripButton2 = new System.Windows.Forms.ToolStripButton();
 			this.toolStripButton6 = new System.Windows.Forms.ToolStripButton();
+			this.toolStripButton3 = new System.Windows.Forms.ToolStripButton();
+			this.imageList1 = new System.Windows.Forms.ImageList(this.components);
+			this.pnlContent = new System.Windows.Forms.Panel();
 			this.contextMenuStrip1.SuspendLayout();
 			this.panel1.SuspendLayout();
 			this.toolStrip1.SuspendLayout();
 			this.panel2.SuspendLayout();
-			this.toolStrip2.SuspendLayout();
 			((System.ComponentModel.ISupportInitialize)(this.dgWaypoints)).BeginInit();
+			this.toolStrip2.SuspendLayout();
+			this.pnlContent.SuspendLayout();
 			this.SuspendLayout();
 			// 
 			// treeFolders
 			// 
-			this.treeFolders.BackColor = System.Drawing.Color.PaleGoldenrod;
+			this.treeFolders.BackColor = System.Drawing.Color.Beige;
 			this.treeFolders.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
 			this.treeFolders.ContextMenuStrip = this.contextMenuStrip1;
 			this.treeFolders.Dock = System.Windows.Forms.DockStyle.Fill;
@@ -136,6 +138,29 @@ namespace DTC.UI.CommonPages
 			this.btnAddSubfolder.Name = "btnAddSubfolder";
 			this.btnAddSubfolder.Size = new System.Drawing.Size(88, 22);
 			this.btnAddSubfolder.Text = "Add Subfolder";
+			this.btnAddSubfolder.Click += new System.EventHandler(this.btnAddSubfolder_Click);
+			// 
+			// btnRenameFolder
+			// 
+			this.btnRenameFolder.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Text;
+			this.btnRenameFolder.Enabled = false;
+			this.btnRenameFolder.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+			this.btnRenameFolder.Image = ((System.Drawing.Image)(resources.GetObject("btnRenameFolder.Image")));
+			this.btnRenameFolder.ImageTransparentColor = System.Drawing.Color.Magenta;
+			this.btnRenameFolder.Name = "btnRenameFolder";
+			this.btnRenameFolder.Size = new System.Drawing.Size(59, 22);
+			this.btnRenameFolder.Text = "Rename";
+			// 
+			// btnRemoveFolder
+			// 
+			this.btnRemoveFolder.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Text;
+			this.btnRemoveFolder.Enabled = false;
+			this.btnRemoveFolder.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+			this.btnRemoveFolder.Image = ((System.Drawing.Image)(resources.GetObject("btnRemoveFolder.Image")));
+			this.btnRemoveFolder.ImageTransparentColor = System.Drawing.Color.Magenta;
+			this.btnRemoveFolder.Name = "btnRemoveFolder";
+			this.btnRemoveFolder.Size = new System.Drawing.Size(57, 22);
+			this.btnRemoveFolder.Text = "Remove";
 			// 
 			// panel2
 			// 
@@ -146,45 +171,6 @@ namespace DTC.UI.CommonPages
 			this.panel2.Name = "panel2";
 			this.panel2.Size = new System.Drawing.Size(526, 370);
 			this.panel2.TabIndex = 105;
-			// 
-			// toolStrip2
-			// 
-			this.toolStrip2.BackColor = System.Drawing.Color.PaleGoldenrod;
-			this.toolStrip2.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.toolStripButton2,
-            this.toolStripButton6,
-            this.toolStripButton3});
-			this.toolStrip2.Location = new System.Drawing.Point(0, 0);
-			this.toolStrip2.Name = "toolStrip2";
-			this.toolStrip2.Size = new System.Drawing.Size(526, 25);
-			this.toolStrip2.TabIndex = 0;
-			this.toolStrip2.Text = "toolStrip2";
-			// 
-			// toolStripButton2
-			// 
-			this.toolStripButton2.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Text;
-			this.toolStripButton2.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-			this.toolStripButton2.Image = ((System.Drawing.Image)(resources.GetObject("toolStripButton2.Image")));
-			this.toolStripButton2.ImageTransparentColor = System.Drawing.Color.Magenta;
-			this.toolStripButton2.Name = "toolStripButton2";
-			this.toolStripButton2.Size = new System.Drawing.Size(32, 22);
-			this.toolStripButton2.Text = "Add";
-			// 
-			// toolStripButton3
-			// 
-			this.toolStripButton3.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Text;
-			this.toolStripButton3.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-			this.toolStripButton3.Image = ((System.Drawing.Image)(resources.GetObject("toolStripButton3.Image")));
-			this.toolStripButton3.ImageTransparentColor = System.Drawing.Color.Magenta;
-			this.toolStripButton3.Name = "toolStripButton3";
-			this.toolStripButton3.Size = new System.Drawing.Size(57, 22);
-			this.toolStripButton3.Text = "Remove";
-			// 
-			// imageList1
-			// 
-			this.imageList1.ColorDepth = System.Windows.Forms.ColorDepth.Depth8Bit;
-			this.imageList1.ImageSize = new System.Drawing.Size(16, 16);
-			this.imageList1.TransparentColor = System.Drawing.Color.Transparent;
 			// 
 			// dgWaypoints
 			// 
@@ -279,27 +265,28 @@ namespace DTC.UI.CommonPages
 			this.colElevation.ReadOnly = true;
 			this.colElevation.Width = 99;
 			// 
-			// btnRemoveFolder
+			// toolStrip2
 			// 
-			this.btnRemoveFolder.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Text;
-			this.btnRemoveFolder.Enabled = false;
-			this.btnRemoveFolder.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-			this.btnRemoveFolder.Image = ((System.Drawing.Image)(resources.GetObject("btnRemoveFolder.Image")));
-			this.btnRemoveFolder.ImageTransparentColor = System.Drawing.Color.Magenta;
-			this.btnRemoveFolder.Name = "btnRemoveFolder";
-			this.btnRemoveFolder.Size = new System.Drawing.Size(57, 22);
-			this.btnRemoveFolder.Text = "Remove";
+			this.toolStrip2.BackColor = System.Drawing.Color.PaleGoldenrod;
+			this.toolStrip2.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.toolStripButton2,
+            this.toolStripButton6,
+            this.toolStripButton3});
+			this.toolStrip2.Location = new System.Drawing.Point(0, 0);
+			this.toolStrip2.Name = "toolStrip2";
+			this.toolStrip2.Size = new System.Drawing.Size(526, 25);
+			this.toolStrip2.TabIndex = 0;
+			this.toolStrip2.Text = "toolStrip2";
 			// 
-			// btnRenameFolder
+			// toolStripButton2
 			// 
-			this.btnRenameFolder.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Text;
-			this.btnRenameFolder.Enabled = false;
-			this.btnRenameFolder.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-			this.btnRenameFolder.Image = ((System.Drawing.Image)(resources.GetObject("btnRenameFolder.Image")));
-			this.btnRenameFolder.ImageTransparentColor = System.Drawing.Color.Magenta;
-			this.btnRenameFolder.Name = "btnRenameFolder";
-			this.btnRenameFolder.Size = new System.Drawing.Size(59, 22);
-			this.btnRenameFolder.Text = "Rename";
+			this.toolStripButton2.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Text;
+			this.toolStripButton2.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+			this.toolStripButton2.Image = ((System.Drawing.Image)(resources.GetObject("toolStripButton2.Image")));
+			this.toolStripButton2.ImageTransparentColor = System.Drawing.Color.Magenta;
+			this.toolStripButton2.Name = "toolStripButton2";
+			this.toolStripButton2.Size = new System.Drawing.Size(32, 22);
+			this.toolStripButton2.Text = "Add";
 			// 
 			// toolStripButton6
 			// 
@@ -311,13 +298,38 @@ namespace DTC.UI.CommonPages
 			this.toolStripButton6.Size = new System.Drawing.Size(32, 22);
 			this.toolStripButton6.Text = "Edit";
 			// 
+			// toolStripButton3
+			// 
+			this.toolStripButton3.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Text;
+			this.toolStripButton3.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+			this.toolStripButton3.Image = ((System.Drawing.Image)(resources.GetObject("toolStripButton3.Image")));
+			this.toolStripButton3.ImageTransparentColor = System.Drawing.Color.Magenta;
+			this.toolStripButton3.Name = "toolStripButton3";
+			this.toolStripButton3.Size = new System.Drawing.Size(57, 22);
+			this.toolStripButton3.Text = "Remove";
+			// 
+			// imageList1
+			// 
+			this.imageList1.ColorDepth = System.Windows.Forms.ColorDepth.Depth8Bit;
+			this.imageList1.ImageSize = new System.Drawing.Size(16, 16);
+			this.imageList1.TransparentColor = System.Drawing.Color.Transparent;
+			// 
+			// pnlContent
+			// 
+			this.pnlContent.Controls.Add(this.panel2);
+			this.pnlContent.Controls.Add(this.panel1);
+			this.pnlContent.Dock = System.Windows.Forms.DockStyle.Fill;
+			this.pnlContent.Location = new System.Drawing.Point(0, 0);
+			this.pnlContent.Name = "pnlContent";
+			this.pnlContent.Size = new System.Drawing.Size(770, 370);
+			this.pnlContent.TabIndex = 106;
+			// 
 			// WaypointDatabase
 			// 
 			this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
 			this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
 			this.BackColor = System.Drawing.Color.PaleGoldenrod;
-			this.Controls.Add(this.panel2);
-			this.Controls.Add(this.panel1);
+			this.Controls.Add(this.pnlContent);
 			this.Name = "WaypointDatabase";
 			this.Size = new System.Drawing.Size(770, 370);
 			this.contextMenuStrip1.ResumeLayout(false);
@@ -327,9 +339,10 @@ namespace DTC.UI.CommonPages
 			this.toolStrip1.PerformLayout();
 			this.panel2.ResumeLayout(false);
 			this.panel2.PerformLayout();
+			((System.ComponentModel.ISupportInitialize)(this.dgWaypoints)).EndInit();
 			this.toolStrip2.ResumeLayout(false);
 			this.toolStrip2.PerformLayout();
-			((System.ComponentModel.ISupportInitialize)(this.dgWaypoints)).EndInit();
+			this.pnlContent.ResumeLayout(false);
 			this.ResumeLayout(false);
 
 		}
@@ -358,5 +371,6 @@ namespace DTC.UI.CommonPages
 		private System.Windows.Forms.ToolStripButton btnRemoveFolder;
 		private System.Windows.Forms.ToolStripButton btnRenameFolder;
 		private System.Windows.Forms.ToolStripButton toolStripButton6;
+		private System.Windows.Forms.Panel pnlContent;
 	}
 }

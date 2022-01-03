@@ -8,10 +8,21 @@ namespace DTC.UI.Base.Controls
 		public DTCButton()
 		{
 			this.BackColor = Color.DarkKhaki;
-			this.Font = new Font("Microsoft Sans Serif", 12);
+			this.Font = new Font("Microsoft Sans Serif", 10);
 			this.FlatStyle = FlatStyle.Flat;
 			this.FlatAppearance.BorderSize = 0;
 			this.Size = new Size(150, 40);
+		}
+
+		public static DTCButton Make(string label, int x, int y, int width, int height)
+		{
+			var btn = new DTCButton();
+			btn.Text = label;
+			btn.Left = x;
+			btn.Top = y;
+			btn.Width = width;
+			btn.Height = height;
+			return btn;
 		}
 	}
 }

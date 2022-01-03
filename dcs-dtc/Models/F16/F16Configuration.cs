@@ -4,6 +4,8 @@ using DTC.Models.F16.Waypoints;
 using DTC.Models.F16.Radios;
 using Newtonsoft.Json;
 using DTC.Models.Base;
+using DTC.Models.F16.HARMHTS;
+using DTC.Models.F16.Misc;
 
 namespace DTC.Models.F16
 {
@@ -13,6 +15,9 @@ namespace DTC.Models.F16
 		public RadioSystem Radios = new RadioSystem();
 		public CMSystem CMS = new CMSystem();
 		public MFDSystem MFD = new MFDSystem();
+		public HARMSystem HARM = new HARMSystem();
+		public HTSSystem HTS = new HTSSystem();
+		public MiscSystem Misc = new MiscSystem();
 
 		public string ToJson()
 		{
@@ -31,11 +36,20 @@ namespace DTC.Models.F16
 			try
 			{
 				var cfg = JsonConvert.DeserializeObject<F16Configuration>(s);
+				cfg.AfterLoadFromJson();
 				return cfg;
 			}
 			catch
 			{
 				return null;
+			}
+		}
+
+		public void AfterLoadFromJson()
+		{
+			if (CMS != null)
+			{
+				CMS.AfterLoadFromJson();
 			}
 		}
 
@@ -77,6 +91,18 @@ namespace DTC.Models.F16
 			if (cfg.MFD != null)
 			{
 				MFD = cfg.MFD;
+			}
+			if (cfg.HARM != null)
+			{
+				HARM = cfg.HARM;
+			}
+			if (cfg.HTS != null)
+			{
+				HTS = cfg.HTS;
+			}
+			if (cfg.Misc != null)
+			{
+				Misc = cfg.Misc;
 			}
 		}
 

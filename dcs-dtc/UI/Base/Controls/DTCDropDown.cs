@@ -12,6 +12,13 @@ namespace DTC.UI.Base.Controls
 			return cbo;
 		}
 
+		public static DTCDropDown Make(int x, int y, int width)
+		{
+			var cbo = Make(x, y);
+			cbo.Width = width;
+			return cbo;
+		}
+
 		public DTCDropDown()
 		{
 			this.Font = new System.Drawing.Font("Microsoft Sans Serif", 10);

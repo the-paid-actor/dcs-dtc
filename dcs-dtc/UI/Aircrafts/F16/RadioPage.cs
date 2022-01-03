@@ -56,7 +56,6 @@ namespace DTC.UI.Aircrafts.F16
 				txt.Mask = @"900\.00";
 				txt.Text = String.Format(System.Globalization.CultureInfo.InvariantCulture, @"{0:0.00}", channel.Frequency);
 				txt.Tag = channel;
-				txt.GotFocus += Txt_GotFocus;
 				txt.LostFocus += Txt_LostFocus;
 				tblRadio.Controls.Add(txt, 1, i);
 
@@ -64,12 +63,6 @@ namespace DTC.UI.Aircrafts.F16
 			}
 
 			return tblRadio;
-		}
-
-		private void Txt_GotFocus(object sender, EventArgs e)
-		{
-			var txt = ((DTCTextBox)sender);
-			txt.SelectAll();
 		}
 
 		private void Txt_LostFocus(object sender, EventArgs e)

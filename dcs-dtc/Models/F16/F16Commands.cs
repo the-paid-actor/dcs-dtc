@@ -15,8 +15,8 @@ namespace DTC.Models.F16
 
 			var delayMFDs = delay / 4;
 			var delayList = delay / 4;
-			var delayEntr = delay / 4;
-			var delayDown = delay / 2;
+			var delayEntr = delay / 2;
+			var delayDown = delay;
 			var delayUp = delay;
 			var delaySeq = delay;
 			var delayRtn = delay;
@@ -59,7 +59,9 @@ namespace DTC.Models.F16
 			leftMFD.AddCommand(new Command(3014, "OSB-14-PG1", delayMFDs, 1));
 			leftMFD.AddCommand(new Command(3001, "OSB-01-BLANK", delayMFDs, 1));
 			leftMFD.AddCommand(new Command(3002, "OSB-02-HAD", delayMFDs, 1));
+			leftMFD.AddCommand(new Command(3003, "OSB-03", delayMFDs, 1));
 			leftMFD.AddCommand(new Command(3004, "OSB-04-RCCE", delayMFDs, 1));
+			leftMFD.AddCommand(new Command(3005, "OSB-05", delayMFDs, 1));
 			leftMFD.AddCommand(new Command(3006, "OSB-06-SMS", delayMFDs, 1));
 			leftMFD.AddCommand(new Command(3007, "OSB-07-HSD", delayMFDs, 1));
 			leftMFD.AddCommand(new Command(3008, "OSB-08-DTE", delayMFDs, 1));
@@ -78,7 +80,9 @@ namespace DTC.Models.F16
 			rightMFD.AddCommand(new Command(3014, "OSB-14-PG1", delayMFDs, 1));
 			rightMFD.AddCommand(new Command(3001, "OSB-01-BLANK", delayMFDs, 1));
 			rightMFD.AddCommand(new Command(3002, "OSB-02-HAD", delayMFDs, 1));
+			rightMFD.AddCommand(new Command(3003, "OSB-03", delayMFDs, 1));
 			rightMFD.AddCommand(new Command(3004, "OSB-04-RCCE", delayMFDs, 1));
+			rightMFD.AddCommand(new Command(3005, "OSB-05", delayMFDs, 1));
 			rightMFD.AddCommand(new Command(3006, "OSB-06-SMS", delayMFDs, 1));
 			rightMFD.AddCommand(new Command(3007, "OSB-07-HSD", delayMFDs, 1));
 			rightMFD.AddCommand(new Command(3008, "OSB-08-DTE", delayMFDs, 1));

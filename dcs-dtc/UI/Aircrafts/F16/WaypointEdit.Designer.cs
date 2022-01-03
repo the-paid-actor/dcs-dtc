@@ -54,7 +54,7 @@ namespace DTC.UI.Aircrafts.F16
 			this.cboAirbases.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
 			this.cboAirbases.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F);
 			this.cboAirbases.FormattingEnabled = true;
-			this.cboAirbases.Location = new System.Drawing.Point(153, 57);
+			this.cboAirbases.Location = new System.Drawing.Point(152, 36);
 			this.cboAirbases.Name = "cboAirbases";
 			this.cboAirbases.Size = new System.Drawing.Size(395, 28);
 			this.cboAirbases.TabIndex = 10;
@@ -62,12 +62,12 @@ namespace DTC.UI.Aircrafts.F16
 			// 
 			// label5
 			// 
-			this.label5.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F);
-			this.label5.Location = new System.Drawing.Point(0, 50);
+			this.label5.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F);
+			this.label5.Location = new System.Drawing.Point(1, 36);
 			this.label5.Margin = new System.Windows.Forms.Padding(0);
 			this.label5.Name = "label5";
 			this.label5.Padding = new System.Windows.Forms.Padding(5, 0, 0, 0);
-			this.label5.Size = new System.Drawing.Size(150, 40);
+			this.label5.Size = new System.Drawing.Size(150, 25);
 			this.label5.TabIndex = 14;
 			this.label5.Text = "Airbases:";
 			this.label5.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
@@ -76,23 +76,23 @@ namespace DTC.UI.Aircrafts.F16
 			// 
 			this.lblTitle.BackColor = System.Drawing.Color.Transparent;
 			this.lblTitle.Dock = System.Windows.Forms.DockStyle.Fill;
-			this.lblTitle.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+			this.lblTitle.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Bold);
 			this.lblTitle.Location = new System.Drawing.Point(0, 0);
 			this.lblTitle.Name = "lblTitle";
 			this.lblTitle.Padding = new System.Windows.Forms.Padding(10, 0, 0, 0);
-			this.lblTitle.Size = new System.Drawing.Size(508, 50);
+			this.lblTitle.Size = new System.Drawing.Size(508, 30);
 			this.lblTitle.TabIndex = 22;
 			this.lblTitle.Text = "Add Waypoint";
 			this.lblTitle.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
 			// 
 			// label3
 			// 
-			this.label3.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F);
-			this.label3.Location = new System.Drawing.Point(0, 90);
+			this.label3.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F);
+			this.label3.Location = new System.Drawing.Point(1, 70);
 			this.label3.Margin = new System.Windows.Forms.Padding(0);
 			this.label3.Name = "label3";
 			this.label3.Padding = new System.Windows.Forms.Padding(5, 0, 0, 0);
-			this.label3.Size = new System.Drawing.Size(150, 40);
+			this.label3.Size = new System.Drawing.Size(150, 25);
 			this.label3.TabIndex = 15;
 			this.label3.Text = "Waypoint Name:";
 			this.label3.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
@@ -102,10 +102,10 @@ namespace DTC.UI.Aircrafts.F16
 			this.btnCapture.BackColor = System.Drawing.Color.DarkKhaki;
 			this.btnCapture.FlatAppearance.BorderSize = 0;
 			this.btnCapture.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-			this.btnCapture.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-			this.btnCapture.Location = new System.Drawing.Point(428, 137);
+			this.btnCapture.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F);
+			this.btnCapture.Location = new System.Drawing.Point(427, 104);
 			this.btnCapture.Name = "btnCapture";
-			this.btnCapture.Size = new System.Drawing.Size(120, 28);
+			this.btnCapture.Size = new System.Drawing.Size(120, 25);
 			this.btnCapture.TabIndex = 13;
 			this.btnCapture.Text = "Start Capture";
 			this.btnCapture.UseVisualStyleBackColor = false;
@@ -116,10 +116,10 @@ namespace DTC.UI.Aircrafts.F16
 			this.btnSave.BackColor = System.Drawing.Color.DarkKhaki;
 			this.btnSave.FlatAppearance.BorderSize = 0;
 			this.btnSave.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-			this.btnSave.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F);
-			this.btnSave.Location = new System.Drawing.Point(398, 253);
+			this.btnSave.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F);
+			this.btnSave.Location = new System.Drawing.Point(429, 197);
 			this.btnSave.Name = "btnSave";
-			this.btnSave.Size = new System.Drawing.Size(150, 40);
+			this.btnSave.Size = new System.Drawing.Size(120, 25);
 			this.btnSave.TabIndex = 16;
 			this.btnSave.Text = "&Save";
 			this.btnSave.UseVisualStyleBackColor = false;
@@ -133,7 +133,7 @@ namespace DTC.UI.Aircrafts.F16
 			this.pnlTop.Dock = System.Windows.Forms.DockStyle.Top;
 			this.pnlTop.Location = new System.Drawing.Point(0, 0);
 			this.pnlTop.Name = "pnlTop";
-			this.pnlTop.Size = new System.Drawing.Size(558, 50);
+			this.pnlTop.Size = new System.Drawing.Size(558, 30);
 			this.pnlTop.TabIndex = 25;
 			// 
 			// lblClose
@@ -144,7 +144,7 @@ namespace DTC.UI.Aircrafts.F16
 			this.lblClose.Font = new System.Drawing.Font("Calibri", 12F, System.Drawing.FontStyle.Bold);
 			this.lblClose.Location = new System.Drawing.Point(508, 0);
 			this.lblClose.Name = "lblClose";
-			this.lblClose.Size = new System.Drawing.Size(50, 50);
+			this.lblClose.Size = new System.Drawing.Size(50, 30);
 			this.lblClose.TabIndex = 23;
 			this.lblClose.Text = "X";
 			this.lblClose.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
@@ -154,10 +154,9 @@ namespace DTC.UI.Aircrafts.F16
 			// 
 			this.txtWptName.AllowPromptAsInput = true;
 			this.txtWptName.BackColor = System.Drawing.SystemColors.Window;
-			this.txtWptName.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F);
 			this.txtWptName.HidePromptOnLeave = false;
 			this.txtWptName.InsertKeyMode = System.Windows.Forms.InsertKeyMode.Default;
-			this.txtWptName.Location = new System.Drawing.Point(153, 97);
+			this.txtWptName.Location = new System.Drawing.Point(152, 70);
 			this.txtWptName.Mask = "";
 			this.txtWptName.Name = "txtWptName";
 			this.txtWptName.PromptChar = '_';
@@ -169,10 +168,9 @@ namespace DTC.UI.Aircrafts.F16
 			// 
 			this.txtWptElevation.AllowPromptAsInput = true;
 			this.txtWptElevation.BackColor = System.Drawing.SystemColors.Window;
-			this.txtWptElevation.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F);
 			this.txtWptElevation.HidePromptOnLeave = false;
 			this.txtWptElevation.InsertKeyMode = System.Windows.Forms.InsertKeyMode.Default;
-			this.txtWptElevation.Location = new System.Drawing.Point(153, 177);
+			this.txtWptElevation.Location = new System.Drawing.Point(152, 138);
 			this.txtWptElevation.Mask = "";
 			this.txtWptElevation.Name = "txtWptElevation";
 			this.txtWptElevation.PromptChar = '_';
@@ -184,10 +182,9 @@ namespace DTC.UI.Aircrafts.F16
 			// 
 			this.txtWptLatLong.AllowPromptAsInput = false;
 			this.txtWptLatLong.BackColor = System.Drawing.SystemColors.Window;
-			this.txtWptLatLong.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F);
 			this.txtWptLatLong.HidePromptOnLeave = false;
 			this.txtWptLatLong.InsertKeyMode = System.Windows.Forms.InsertKeyMode.Default;
-			this.txtWptLatLong.Location = new System.Drawing.Point(152, 137);
+			this.txtWptLatLong.Location = new System.Drawing.Point(152, 104);
 			this.txtWptLatLong.Mask = ">L 00\\.00\\.000 L 000\\.00\\.000";
 			this.txtWptLatLong.Name = "txtWptLatLong";
 			this.txtWptLatLong.PromptChar = '_';
@@ -197,37 +194,37 @@ namespace DTC.UI.Aircrafts.F16
 			// 
 			// label1
 			// 
-			this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F);
-			this.label1.Location = new System.Drawing.Point(0, 130);
+			this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F);
+			this.label1.Location = new System.Drawing.Point(1, 104);
 			this.label1.Margin = new System.Windows.Forms.Padding(0);
 			this.label1.Name = "label1";
 			this.label1.Padding = new System.Windows.Forms.Padding(5, 0, 0, 0);
-			this.label1.Size = new System.Drawing.Size(150, 40);
+			this.label1.Size = new System.Drawing.Size(150, 25);
 			this.label1.TabIndex = 26;
 			this.label1.Text = "Lat/Long:";
 			this.label1.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
 			// 
 			// label2
 			// 
-			this.label2.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F);
-			this.label2.Location = new System.Drawing.Point(0, 170);
+			this.label2.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F);
+			this.label2.Location = new System.Drawing.Point(1, 138);
 			this.label2.Margin = new System.Windows.Forms.Padding(0);
 			this.label2.Name = "label2";
 			this.label2.Padding = new System.Windows.Forms.Padding(5, 0, 0, 0);
-			this.label2.Size = new System.Drawing.Size(150, 40);
+			this.label2.Size = new System.Drawing.Size(150, 25);
 			this.label2.TabIndex = 27;
 			this.label2.Text = "Elevation:";
 			this.label2.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
 			// 
 			// lblValidation
 			// 
-			this.lblValidation.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F);
+			this.lblValidation.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F);
 			this.lblValidation.ForeColor = System.Drawing.Color.Red;
-			this.lblValidation.Location = new System.Drawing.Point(0, 210);
+			this.lblValidation.Location = new System.Drawing.Point(1, 169);
 			this.lblValidation.Margin = new System.Windows.Forms.Padding(0);
 			this.lblValidation.Name = "lblValidation";
 			this.lblValidation.Padding = new System.Windows.Forms.Padding(5, 0, 0, 0);
-			this.lblValidation.Size = new System.Drawing.Size(548, 40);
+			this.lblValidation.Size = new System.Drawing.Size(548, 25);
 			this.lblValidation.TabIndex = 28;
 			this.lblValidation.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
 			// 
@@ -250,7 +247,7 @@ namespace DTC.UI.Aircrafts.F16
 			this.Controls.Add(this.label5);
 			this.Controls.Add(this.pnlTop);
 			this.Name = "WaypointEdit";
-			this.Size = new System.Drawing.Size(558, 304);
+			this.Size = new System.Drawing.Size(558, 231);
 			this.pnlTop.ResumeLayout(false);
 			this.ResumeLayout(false);
 

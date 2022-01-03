@@ -51,7 +51,6 @@ namespace DTC.UI.CommonPages
 			// 
 			// btnWptDatabase
 			// 
-			this.btnWptDatabase.Enabled = false;
 			this.btnWptDatabase.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
 			this.btnWptDatabase.Font = new System.Drawing.Font("Microsoft Sans Serif", 20.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
 			this.btnWptDatabase.ForeColor = System.Drawing.Color.Black;
@@ -65,6 +64,7 @@ namespace DTC.UI.CommonPages
 			this.btnWptDatabase.TextAlign = System.Drawing.ContentAlignment.TopLeft;
 			this.btnWptDatabase.UseVisualStyleBackColor = true;
 			this.btnWptDatabase.Visible = false;
+			this.btnWptDatabase.Click += new System.EventHandler(this.btnWptDatabase_Click);
 			// 
 			// MainPage
 			// 

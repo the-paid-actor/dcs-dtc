@@ -18,109 +18,136 @@ namespace DTC.UI.Aircrafts.F16
 			_cms = cms;
 			InitializeComponent();
 
-			var rowHeight = 35;
-			var table = new TableLayoutPanel();
-			table.RowCount = 1 + (_cms.Programs.Length * 2);
-			table.ColumnCount = 6;
-			table.Anchor = AnchorStyles.Left | AnchorStyles.Top | AnchorStyles.Right;
-			table.Width = this.Width;
-			table.Height = (table.RowCount * rowHeight);
-			this.Controls.Add(table);
+			var padding = 6;
+			var columnWidth = 90;
+			var rowHeight = 20;
+			var qtyMask = "00";
+			var burstIntervalMask = @"00.000";
+			var salvoIntervalMask = @"000.00";
 
-			table.Controls.Add(CreateLabel("Burst Qty"), 2, 0);
-			table.Controls.Add(CreateLabel("Burst Intv"), 3, 0);
-			table.Controls.Add(CreateLabel("Salvo Qty"), 4, 0);
-			table.Controls.Add(CreateLabel("Salvo Intv"), 5, 0);
+			this.SuspendLayout();
 
-			table.ColumnStyles.Add(new ColumnStyle(SizeType.Absolute, 100));
-			table.ColumnStyles.Add(new ColumnStyle(SizeType.Absolute, 100));
+			var top = padding;
+			var left = padding;
 
-			table.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 25));
-			table.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 25));
-			table.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 25));
-			table.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 25));
-			table.RowStyles.Add(new RowStyle(SizeType.Absolute, rowHeight));
+			left = padding + columnWidth + padding + columnWidth + padding;
+
+			this.Controls.Add(DTCLabel.Make("Chaff Bingo", left, top, columnWidth, rowHeight));
+			left += columnWidth + padding;
+
+			this.Controls.Add(CreateTextBox(left, top, columnWidth, cms.ChaffBingo.ToString(), qtyMask, (txt) =>
+			{
+				txt.Text = cms.SetChaffBingo(txt.Text);
+				_parent.DataChangedCallback();
+			}));
+			left += columnWidth + padding;
+
+			this.Controls.Add(DTCLabel.Make("Flare Bingo", left, top, columnWidth, rowHeight));
+			left += columnWidth + padding;
+
+			this.Controls.Add(CreateTextBox(left, top, columnWidth, cms.FlareBingo.ToString(), qtyMask, (txt) =>
+			{
+				txt.Text = cms.SetFlareBingo(txt.Text);
+				_parent.DataChangedCallback();
+			}));
+			left += columnWidth + padding;
+			top += rowHeight + padding;
+
+			left = padding + columnWidth + padding + columnWidth + padding;
+
+			this.Controls.Add(DTCLabel.Make("Burst Qty", left, top, columnWidth, rowHeight));
+			left += columnWidth + padding;
+
+			this.Controls.Add(DTCLabel.Make("Burst Intv", left, top, columnWidth, rowHeight));
+			left += columnWidth + padding;
+
+			this.Controls.Add(DTCLabel.Make("Salvo Qty", left, top, columnWidth, rowHeight));
+			left += columnWidth + padding;
+
+			this.Controls.Add(DTCLabel.Make("Salvo Intv", left, top, columnWidth, rowHeight));
+			left += columnWidth + padding;
+
+			top += rowHeight + padding;
 
 			for (var i = 0; i < _cms.Programs.Length; i++)
 			{
-				var secondRow = (i + 1) * 2;
-				var firstRow = secondRow - 1;
 				var program = _cms.Programs[i];
 
-				table.RowStyles.Add(new RowStyle(SizeType.Absolute, rowHeight));
-				table.RowStyles.Add(new RowStyle(SizeType.Absolute, rowHeight));
+				left = padding;
 
-				var programLbl = CreateLabel("Program " + (i + 1).ToString());
-				table.Controls.Add(programLbl, 0, firstRow);
-				table.SetRowSpan(programLbl, 2);
+				this.Controls.Add(DTCLabel.Make("Program " + (i + 1).ToString(), left, top + ((rowHeight + padding) / 2), columnWidth, rowHeight));
+				left += columnWidth + padding;
 
-				table.Controls.Add(CreateLabel("Chaff"), 1, firstRow);
-				table.Controls.Add(CreateLabel("Flare"), 1, secondRow);
+				this.Controls.Add(DTCLabel.Make("Chaff", left, top, columnWidth, rowHeight));
+				left += columnWidth + padding;
 
-				var qtyMask = "00";
-				var burstIntervalMask = @"00.000";
-				var salvoIntervalMask = @"000.00";
-
-				var txtChaffBurstQty = CreateTextBox(program.GetChaffBurstQty(), qtyMask, (txt) =>
+				this.Controls.Add(CreateTextBox(left, top, columnWidth, program.GetChaffBurstQty(), qtyMask, (txt) =>
 				{
 					txt.Text = program.SetChaffBurstQty(txt.Text);
 					_parent.DataChangedCallback();
-				});
+				}));
+				left += columnWidth + padding;
 
-				var txtChaffBurstInterval = CreateTextBox(program.GetChaffBurstInterval(), burstIntervalMask, (txt) =>
+				this.Controls.Add(CreateTextBox(left, top, columnWidth, program.GetChaffBurstInterval(), burstIntervalMask, (txt) =>
 				{
 					txt.Text = program.SetChaffBurstInterval(txt.Text);
 					_parent.DataChangedCallback();
-				});
+				}));
+				left += columnWidth + padding;
 
-				var txtChaffSalvoQty = CreateTextBox(program.GetChaffSalvoQty(), qtyMask, (txt) =>
+				this.Controls.Add(CreateTextBox(left, top, columnWidth, program.GetChaffSalvoQty(), qtyMask, (txt) =>
 				{
 					txt.Text = program.SetChaffSalvoQty(txt.Text);
 					_parent.DataChangedCallback();
-				});
+				}));
+				left += columnWidth + padding;
 
-				var txtChaffSalvoInterval = CreateTextBox(program.GetChaffSalvoInterval(), salvoIntervalMask, (txt) =>
+				this.Controls.Add(CreateTextBox(left, top, columnWidth, program.GetChaffSalvoInterval(), salvoIntervalMask, (txt) =>
 				{
 					txt.Text = program.SetChaffSalvoInterval(txt.Text);
 					_parent.DataChangedCallback();
-				});
+				}));
+				left += columnWidth + padding;
 
-				var txtFlareBurstQty = CreateTextBox(program.GetFlareBurstQty(), qtyMask, (txt) =>
+				top += rowHeight + padding;
+				left = padding + columnWidth + padding;
+
+				this.Controls.Add(DTCLabel.Make("Flare", left, top, columnWidth, rowHeight));
+				left += columnWidth + padding;
+
+				this.Controls.Add(CreateTextBox(left, top, columnWidth, program.GetFlareBurstQty(), qtyMask, (txt) =>
 				{
 					txt.Text = program.SetFlareBurstQty(txt.Text);
 					_parent.DataChangedCallback();
-				});
+				}));
+				left += columnWidth + padding;
 
-				var txtFlareBurstInterval = CreateTextBox(program.GetFlareBurstInterval(), burstIntervalMask, (txt) =>
+				this.Controls.Add(CreateTextBox(left, top, columnWidth, program.GetFlareBurstInterval(), burstIntervalMask, (txt) =>
 				{
 					txt.Text = program.SetFlareBurstInterval(txt.Text);
 					_parent.DataChangedCallback();
-				});
+				}));
+				left += columnWidth + padding;
 
-				var txtFlareSalvoQty = CreateTextBox(program.GetFlareSalvoQty(), qtyMask, (txt) =>
+				this.Controls.Add(CreateTextBox(left, top, columnWidth, program.GetFlareSalvoQty(), qtyMask, (txt) =>
 				{
 					txt.Text = program.SetFlareSalvoQty(txt.Text);
 					_parent.DataChangedCallback();
-				});
+				}));
+				left += columnWidth + padding;
 
-				var txtFlareSalvoInterval = CreateTextBox(program.GetFlareSalvoInterval(), salvoIntervalMask, (txt) =>
+				this.Controls.Add(CreateTextBox(left, top, columnWidth, program.GetFlareSalvoInterval(), salvoIntervalMask, (txt) =>
 				{
 					txt.Text = program.SetFlareSalvoInterval(txt.Text);
 					_parent.DataChangedCallback();
-				});
+				}));
+				left += columnWidth + padding;
 
-				table.Controls.Add(txtChaffBurstQty, 2, firstRow);
-				table.Controls.Add(txtFlareBurstQty, 2, secondRow);
-
-				table.Controls.Add(txtChaffBurstInterval, 3, firstRow);
-				table.Controls.Add(txtFlareBurstInterval, 3, secondRow);
-
-				table.Controls.Add(txtChaffSalvoQty, 4, firstRow);
-				table.Controls.Add(txtFlareSalvoQty, 4, secondRow);
-
-				table.Controls.Add(txtChaffSalvoInterval, 5, firstRow);
-				table.Controls.Add(txtFlareSalvoInterval, 5, secondRow);
+				top += rowHeight + padding;
 			}
+
+			this.ResumeLayout(false);
+			this.PerformLayout();
 		}
 
 		public override string GetPageTitle()
@@ -130,24 +157,18 @@ namespace DTC.UI.Aircrafts.F16
 
 		private delegate void TextBoxChangedCallback(DTCTextBox txt);
 
-		private DTCTextBox CreateTextBox(string value, string mask, TextBoxChangedCallback callback)
+		private Control CreateTextBox(int left, int top, int width, string value, string mask, TextBoxChangedCallback callback)
 		{
 			var txt = new DTCTextBox();
-			txt.Anchor = AnchorStyles.Left | AnchorStyles.Right;
 			txt.Font = new System.Drawing.Font("Microsoft Sans Serif", 10);
 			txt.Text = value;
 			txt.Mask = mask;
 			txt.Tag = callback;
 			txt.TabIndex = _lastTabIndex++;
 			txt.LostFocus += Txt_LostFocus;
-			txt.GotFocus += Txt_GotFocus;
+			txt.Location = new Point(left, top);
+			txt.Size = new Size(width, 24);
 			return txt;
-		}
-
-		private void Txt_GotFocus(object sender, EventArgs e)
-		{
-			var txt = (DTCTextBox)sender;
-			txt.SelectAll();
 		}
 
 		private void Txt_LostFocus(object sender, EventArgs e)

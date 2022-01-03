@@ -50,7 +50,6 @@ namespace DTC.UI.CommonPages
 			this.btnCancel.BackColor = System.Drawing.Color.DarkKhaki;
 			this.btnCancel.FlatAppearance.BorderSize = 0;
 			this.btnCancel.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-			this.btnCancel.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F);
 			this.btnCancel.Location = new System.Drawing.Point(227, 49);
 			this.btnCancel.Name = "btnCancel";
 			this.btnCancel.Size = new System.Drawing.Size(150, 40);
@@ -64,7 +63,6 @@ namespace DTC.UI.CommonPages
 			this.btnOK.BackColor = System.Drawing.Color.DarkKhaki;
 			this.btnOK.FlatAppearance.BorderSize = 0;
 			this.btnOK.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-			this.btnOK.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F);
 			this.btnOK.Location = new System.Drawing.Point(71, 49);
 			this.btnOK.Name = "btnOK";
 			this.btnOK.Size = new System.Drawing.Size(150, 40);

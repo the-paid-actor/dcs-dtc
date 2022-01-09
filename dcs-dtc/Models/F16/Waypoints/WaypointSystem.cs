@@ -7,12 +7,14 @@ namespace DTC.Models.F16.Waypoints
 		public List<Waypoint> Waypoints { get; set; }
 		public int SteerpointStart { get; set; }
 		public int SteerpointEnd { get; set; }
+		public bool EnableUpload { get; set; }
 
 		public WaypointSystem()
 		{
 			Waypoints = new List<Waypoint>();
 			SteerpointStart = 1;
 			SteerpointEnd = 20;
+			EnableUpload = true;
 		}
 
 		public Waypoint Add(Waypoint wpt)

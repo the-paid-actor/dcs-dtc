@@ -9,6 +9,7 @@ namespace DTC.Models.F16.CMS
 		public Program[] Programs { get => programs; set => programs = value; }
 		public int ChaffBingo { get; set; }
 		public int FlareBingo { get; set; }
+		public bool EnableUpload { get; set; }
 
 		public CMSystem()
 		{
@@ -22,6 +23,8 @@ namespace DTC.Models.F16.CMS
 
 			ChaffBingo = 10;
 			FlareBingo = 10;
+
+			EnableUpload = true;
 		}
 
 		public void AfterLoadFromJson()

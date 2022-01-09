@@ -49,9 +49,7 @@ namespace DTC.UI.Aircrafts.F16
 		{
 			var padding = 6;
 			var labelWidth = 120;
-			var listWidth = 400;
 			var rowHeight = 20;
-			var manualEnabled = false;
 
 			var top = padding;
 			var left = padding;

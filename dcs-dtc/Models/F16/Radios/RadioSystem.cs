@@ -6,10 +6,12 @@ namespace DTC.Models.F16.Radios
 	{
 		public Radio COM1;
 		public Radio COM2;
+		public bool EnableUpload { get; set; }
 
 		public RadioSystem()
 		{
 			ResetToDefaults();
+			EnableUpload = true;
 		}
 
 		public void ResetToDefaults()

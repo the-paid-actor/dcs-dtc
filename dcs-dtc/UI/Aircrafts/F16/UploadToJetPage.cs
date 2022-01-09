@@ -20,6 +20,19 @@ namespace DTC.UI.Aircrafts.F16
 			txtWaypointStart.Text = cfg.Waypoints.SteerpointStart.ToString();
 			txtWaypointEnd.Text = cfg.Waypoints.SteerpointEnd.ToString();
 			_cfg = cfg;
+
+			chkWaypoints.Checked = _cfg.Waypoints.EnableUpload;
+			chkCMS.Checked = _cfg.CMS.EnableUpload;
+			chkRadios.Checked = _cfg.Radios.EnableUpload;
+			chkMisc.Checked = _cfg.Misc.EnableUpload;
+			chkMFDs.Checked = _cfg.MFD.EnableUpload;
+
+			CheckUploadButtonEnabled();
+		}
+
+		private void CheckUploadButtonEnabled()
+		{
+			btnUpload.Enabled = (_cfg.Waypoints.EnableUpload || _cfg.CMS.EnableUpload || _cfg.Radios.EnableUpload || _cfg.Misc.EnableUpload || _cfg.MFD.EnableUpload);
 		}
 
 		public override string GetPageTitle()
@@ -49,17 +62,46 @@ namespace DTC.UI.Aircrafts.F16
 			txtWaypointStart.Text = _cfg.Waypoints.SteerpointStart.ToString();
 		}
 
+		private void btnUpload_Click(object sender, EventArgs e)
+		{
+			_jetInterface.Load();
+		}
+
 		private void chkWaypoints_CheckedChanged(object sender, EventArgs e)
 		{
 			txtWaypointStart.Enabled = chkWaypoints.Checked;
 			txtWaypointEnd.Enabled = chkWaypoints.Checked;
+			_cfg.Waypoints.EnableUpload = chkWaypoints.Checked;
+			_parent.DataChangedCallback();
+			CheckUploadButtonEnabled();
 		}
 
-		private void btnUpload_Click(object sender, EventArgs e)
+		private void chkCMS_CheckedChanged(object sender, EventArgs e)
 		{
-			var wptStart = int.Parse(txtWaypointStart.Text);
-			var wptEnd = int.Parse(txtWaypointEnd.Text);
-			_jetInterface.Load(chkWaypoints.Checked, wptStart, wptEnd, chkRadios.Checked, chkCMS.Checked, chkMFDs.Checked, chkMisc.Checked);
+			_cfg.CMS.EnableUpload = chkCMS.Checked;
+			_parent.DataChangedCallback();
+			CheckUploadButtonEnabled();
+		}
+
+		private void chkRadios_CheckedChanged(object sender, EventArgs e)
+		{
+			_cfg.Radios.EnableUpload = chkRadios.Checked;
+			_parent.DataChangedCallback();
+			CheckUploadButtonEnabled();
+		}
+
+		private void chkMisc_CheckedChanged(object sender, EventArgs e)
+		{
+			_cfg.Misc.EnableUpload = chkMisc.Checked;
+			_parent.DataChangedCallback();
+			CheckUploadButtonEnabled();
+		}
+
+		private void chkMFDs_CheckedChanged(object sender, EventArgs e)
+		{
+			_cfg.MFD.EnableUpload = chkMFDs.Checked;
+			_parent.DataChangedCallback();
+			CheckUploadButtonEnabled();
 		}
 	}
 }

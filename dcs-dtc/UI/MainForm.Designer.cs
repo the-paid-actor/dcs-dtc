@@ -38,6 +38,7 @@ namespace DTC.UI
 			this.lblPin = new System.Windows.Forms.Label();
 			this.label1 = new System.Windows.Forms.Label();
 			this.lblClose = new System.Windows.Forms.Label();
+			this.lblMinimize = new System.Windows.Forms.Label();
 			this.pnlBackground.SuspendLayout();
 			this.pnlContent.SuspendLayout();
 			this.pnlTop.SuspendLayout();
@@ -87,6 +88,7 @@ namespace DTC.UI
 			// 
 			this.pnlTop.BackColor = System.Drawing.Color.DarkKhaki;
 			this.pnlTop.BackgroundImage = global::DTC.Properties.Resources._2560px_Brown_dominant__highland__ERDL_camouflage_pattern_swatch_svg;
+			this.pnlTop.Controls.Add(this.lblMinimize);
 			this.pnlTop.Controls.Add(this.lblPin);
 			this.pnlTop.Controls.Add(this.label1);
 			this.pnlTop.Controls.Add(this.lblClose);
@@ -139,6 +141,21 @@ namespace DTC.UI
 			this.lblClose.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
 			this.lblClose.Click += new System.EventHandler(this.lblClose_Click);
 			// 
+			// lblMinimize
+			// 
+			this.lblMinimize.BackColor = System.Drawing.Color.Transparent;
+			this.lblMinimize.Cursor = System.Windows.Forms.Cursors.Hand;
+			this.lblMinimize.Dock = System.Windows.Forms.DockStyle.Right;
+			this.lblMinimize.Font = new System.Drawing.Font("Calibri", 12F, System.Drawing.FontStyle.Bold);
+			this.lblMinimize.ForeColor = System.Drawing.Color.Black;
+			this.lblMinimize.Location = new System.Drawing.Point(620, 0);
+			this.lblMinimize.Name = "lblMinimize";
+			this.lblMinimize.Size = new System.Drawing.Size(50, 30);
+			this.lblMinimize.TabIndex = 4;
+			this.lblMinimize.Text = "_";
+			this.lblMinimize.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+			this.lblMinimize.Click += new System.EventHandler(this.lblMinimize_Click);
+			// 
 			// MainForm
 			// 
 			this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -170,5 +187,6 @@ namespace DTC.UI
 		private System.Windows.Forms.Label lblClose;
 		private System.Windows.Forms.Panel pnlPages;
 		private Base.Controls.DTCBreadCrumb breadCrumbs;
+		private System.Windows.Forms.Label lblMinimize;
 	}
 }

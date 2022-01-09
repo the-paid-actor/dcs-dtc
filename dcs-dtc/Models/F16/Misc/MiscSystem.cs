@@ -15,6 +15,7 @@ namespace DTC.Models.F16.Misc
 
 		public int Bingo { get; set; }
 		public bool EnableBullseye { get; set; }
+		public int BullseyeWP { get; set; }
 		public int CARAALOW { get; set; }
 		public int MSLFloor { get; set; }
 		public int TGPCode { get; set; }
@@ -25,10 +26,13 @@ namespace DTC.Models.F16.Misc
 		public decimal ILSFrequency { get; set; }
 		public int ILSCourse { get; set; }
 
+		public bool EnableUpload { get; set; }
+
 		public MiscSystem()
 		{
 			Bingo = 2000;
 			EnableBullseye = true;
+			BullseyeWP = 25;
 			CARAALOW = 500;
 			MSLFloor = 5000;
 			TGPCode = 1688;
@@ -38,6 +42,20 @@ namespace DTC.Models.F16.Misc
 			TACANBand = TACANBands.X;
 			ILSFrequency = 108.10M;
 			ILSCourse = 0;
+
+			EnableUpload = true;
+		}
+
+		public string SetBullseyeWP(string txt)
+		{
+			if (int.TryParse(txt, out int val))
+			{
+				if (val >= 1 && val <= 25)
+				{
+					BullseyeWP = val;
+				}
+			}
+			return BullseyeWP.ToString();
 		}
 
 		public string SetILSCourse(string txt)

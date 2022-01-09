@@ -54,10 +54,11 @@ namespace DTC.UI.Aircrafts.F16
 			this.chkMFDs.Location = new System.Drawing.Point(16, 150);
 			this.chkMFDs.Margin = new System.Windows.Forms.Padding(4);
 			this.chkMFDs.Name = "chkMFDs";
-			this.chkMFDs.Size = new System.Drawing.Size(167, 25);
+			this.chkMFDs.Size = new System.Drawing.Size(323, 25);
 			this.chkMFDs.TabIndex = 5;
-			this.chkMFDs.Text = "MFDs, HARM, HTS";
+			this.chkMFDs.Text = "MFDs, HARM, HTS (must be in NAV mode)";
 			this.chkMFDs.UseVisualStyleBackColor = true;
+			this.chkMFDs.CheckedChanged += new System.EventHandler(this.chkMFDs_CheckedChanged);
 			// 
 			// chkRadios
 			// 
@@ -71,6 +72,7 @@ namespace DTC.UI.Aircrafts.F16
 			this.chkRadios.TabIndex = 4;
 			this.chkRadios.Text = "Radios";
 			this.chkRadios.UseVisualStyleBackColor = true;
+			this.chkRadios.CheckedChanged += new System.EventHandler(this.chkRadios_CheckedChanged);
 			// 
 			// chkCMS
 			// 
@@ -84,6 +86,7 @@ namespace DTC.UI.Aircrafts.F16
 			this.chkCMS.TabIndex = 3;
 			this.chkCMS.Text = "CMS";
 			this.chkCMS.UseVisualStyleBackColor = true;
+			this.chkCMS.CheckedChanged += new System.EventHandler(this.chkCMS_CheckedChanged);
 			// 
 			// chkWaypoints
 			// 
@@ -180,6 +183,7 @@ namespace DTC.UI.Aircrafts.F16
 			this.chkMisc.TabIndex = 5;
 			this.chkMisc.Text = "Misc";
 			this.chkMisc.UseVisualStyleBackColor = true;
+			this.chkMisc.CheckedChanged += new System.EventHandler(this.chkMisc_CheckedChanged);
 			// 
 			// UploadToJetPage
 			// 

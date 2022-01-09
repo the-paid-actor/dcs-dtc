@@ -1,13 +1,12 @@
 ﻿using System.Collections.Generic;
-using System.Configuration;
 using DTC.Models.Base;
 using DTC.Models.DCS;
 
 namespace DTC.Models.F16
 {
-	public class F16Commands
+	public class F16Commands : IAircraftDeviceManager
 	{
-		public Dictionary<string, Device> Devices = new Dictionary<string, Device>();
+		private Dictionary<string, Device> Devices = new Dictionary<string, Device>();
 
 		public F16Commands()
 		{
@@ -96,9 +95,14 @@ namespace DTC.Models.F16
 			AddDevice(rightMFD);
 		}
 
-		public void AddDevice(Device d)
+		private void AddDevice(Device d)
 		{
 			Devices.Add(d.Name, d);
+		}
+
+		public Device GetDevice(string id)
+		{
+			return Devices[id];
 		}
 	}
 }

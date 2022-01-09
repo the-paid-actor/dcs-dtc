@@ -81,7 +81,14 @@
     <Compile Include="Models\DCS\Emitters.cs" />
     <Compile Include="Models\F16\HARMHTS\HARMSystem.cs" />
     <Compile Include="Models\F16\HARMHTS\HTSSystem.cs" />
+    <Compile Include="Models\DCS\IAircraftDeviceManager.cs" />
     <Compile Include="Models\F16\Misc\MiscSystem.cs" />
+    <Compile Include="Models\DCS\BaseBuilder.cs" />
+    <Compile Include="Models\F16\Upload\CMSBuilder.cs" />
+    <Compile Include="Models\F16\Upload\MFDBuilder.cs" />
+    <Compile Include="Models\F16\Upload\MiscBuilder.cs" />
+    <Compile Include="Models\F16\Upload\RadioBuilder.cs" />
+    <Compile Include="Models\F16\Upload\WaypointBuilder.cs" />
     <Compile Include="Models\Presets\AircraftModel.cs" />
     <Compile Include="Models\Presets\PresetChangedCallback.cs" />
     <Compile Include="Models\Presets\PresetsStore.cs" />

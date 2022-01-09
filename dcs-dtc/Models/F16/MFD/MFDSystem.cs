@@ -3,10 +3,12 @@
 	public class MFDSystem
 	{
 		public ModeConfiguration[] Configurations { get; set; }
+		public bool EnableUpload { get; set; }
 
 		public MFDSystem()
 		{
 			ResetToDefault();
+			EnableUpload = true;
 		}
 
 		private void ResetToDefault()

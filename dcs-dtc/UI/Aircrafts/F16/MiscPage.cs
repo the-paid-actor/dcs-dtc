@@ -42,15 +42,25 @@ namespace DTC.UI.Aircrafts.F16
 			this.Controls.Add(DTCLabel.Make("Enable Bullseye", left, top, colWidth, rowHeight));
 			left += padding + colWidth;
 
+			var txtBullseye = MakeTextBox(left + 25, top, 30, rowHeight, "00", _misc.BullseyeWP.ToString(), (txt) =>
+			{
+				txt.Text = _misc.SetBullseyeWP(txt.Text);
+				_parent.DataChangedCallback();
+			});
+			txtBullseye.Enabled = _misc.EnableBullseye;
+			this.Controls.Add(txtBullseye);
+
 			var chkBullseye = new CheckBox();
 			chkBullseye.Left = left;
 			chkBullseye.Top = top;
 			chkBullseye.AutoSize = false;
 			chkBullseye.Height = rowHeight;
+			chkBullseye.Width = 25;
 			chkBullseye.Checked = _misc.EnableBullseye;
 			chkBullseye.CheckedChanged += (sender, args) =>
 			{
 				_misc.EnableBullseye = chkBullseye.Checked;
+				txtBullseye.Enabled = _misc.EnableBullseye;
 			};
 			this.Controls.Add(chkBullseye);
 

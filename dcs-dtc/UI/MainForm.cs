@@ -79,5 +79,10 @@ namespace DTC.UI
 		{
 			this.Close();
 		}
+
+		private void lblMinimize_Click(object sender, System.EventArgs e)
+		{
+			this.WindowState = FormWindowState.Minimized;
+		}
 	}
 }

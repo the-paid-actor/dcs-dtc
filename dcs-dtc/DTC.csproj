@@ -128,6 +128,12 @@
     <Compile Include="UI\Aircrafts\F16\MiscPage.Designer.cs">
       <DependentUpon>MiscPage.cs</DependentUpon>
     </Compile>
+    <Compile Include="UI\Base\Controls\DTCCheckBox.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="UI\Base\Controls\DTCCheckBox.Designer.cs">
+      <DependentUpon>DTCCheckBox.cs</DependentUpon>
+    </Compile>
     <Compile Include="UI\Base\SortableBindingList.cs" />
     <Compile Include="UI\Base\Controls\DTCBreadCrumb.cs">
       <SubType>UserControl</SubType>

@@ -125,7 +125,7 @@ namespace DTC.UI.Base
                                             || i.Country != null && i.Country.ToLowerInvariant().Contains(searchTerm)
                                             || i.F16RWR != null && i.F16RWR.ToLowerInvariant().Contains(searchTerm)
                                             || i.Type != null && i.Type.ToLowerInvariant().Contains(searchTerm)
-                                            || i.HARMCode.ToString().Contains(searchTerm)).Select(x => x.HTSTable).Distinct().ToList();
+                                            || i.HARMCode.ToString().Contains(searchTerm)).ToList();
 
             //var searchItems = items.Where(i => htsTables.Contains(i.HTSTable)).ToList();
 

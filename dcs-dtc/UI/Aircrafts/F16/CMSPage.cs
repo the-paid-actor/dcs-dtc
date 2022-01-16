@@ -22,7 +22,7 @@ namespace DTC.UI.Aircrafts.F16
             var padding = 6;
             var columnWidth = 90;
             var rowHeight = 20;
-            var cbxWidth = 20;
+            var chkWidth = 20;
             var qtyMask = "00";
             var burstIntervalMask = @"00.000";
             var salvoIntervalMask = @"000.00";
@@ -76,16 +76,16 @@ namespace DTC.UI.Aircrafts.F16
                 var program = _cms.Programs[i];
 
                 left = padding;
-                var cbxUpdateProgram = new DTCCheckBox();
-                cbxUpdateProgram.RelatedTo = i.ToString();
-                cbxUpdateProgram.Checked = program.ToBeUpdated;                
-                cbxUpdateProgram.CheckedChanged += cbx_OnChange;
-                this.Controls.Add(DTCCheckBox.Make(cbxUpdateProgram,left, top + ((rowHeight + padding) / 2), cbxWidth, rowHeight));
+                var chkUpdateProgram = new DTCCheckBox();
+                chkUpdateProgram.RelatedTo = i.ToString();
+                chkUpdateProgram.Checked = program.ToBeUpdated;                
+                chkUpdateProgram.CheckedChanged += chk_OnChange;
+                this.Controls.Add(DTCCheckBox.Make(chkUpdateProgram,left, top + ((rowHeight + padding) / 2), chkWidth, rowHeight));
 
                 this.Controls.Add(DTCLabel.Make("Program " + (i + 1).ToString(), left + 20, top + ((rowHeight + padding) / 2), columnWidth, rowHeight));
                 left += columnWidth + padding;
 
-                this.Controls.Add(DTCLabel.Make("Chaff", left + cbxWidth, top, columnWidth - cbxWidth, rowHeight));
+                this.Controls.Add(DTCLabel.Make("Chaff", left + chkWidth, top, columnWidth - chkWidth, rowHeight));
                 left += columnWidth + padding;
 
                 this.Controls.Add(CreateTextBox(left, top, columnWidth, program.GetChaffBurstQty(), qtyMask, (txt) =>
@@ -119,7 +119,7 @@ namespace DTC.UI.Aircrafts.F16
                 top += rowHeight + padding;
                 left = padding + columnWidth + padding;
 
-                this.Controls.Add(DTCLabel.Make("Flare", left + cbxWidth, top, columnWidth - cbxWidth, rowHeight));
+                this.Controls.Add(DTCLabel.Make("Flare", left + chkWidth, top, columnWidth - chkWidth, rowHeight));
                 left += columnWidth + padding;
 
                 this.Controls.Add(CreateTextBox(left, top, columnWidth, program.GetFlareBurstQty(), qtyMask, (txt) =>
@@ -185,11 +185,11 @@ namespace DTC.UI.Aircrafts.F16
             callback(txt);
         }
 
-        private void cbx_OnChange(object sender, EventArgs e)
+        private void chk_OnChange(object sender, EventArgs e)
         {
-            var cbx = ((DTCCheckBox)sender);
-            var program = _cms.Programs[int.Parse(cbx.RelatedTo)];
-            program.ToBeUpdated = cbx.Checked;
+            var chk = ((DTCCheckBox)sender);
+            var program = _cms.Programs[int.Parse(chk.RelatedTo)];
+            program.ToBeUpdated = chk.Checked;
             _parent.DataChangedCallback();
         }
     }

@@ -26,35 +26,46 @@ namespace DTC.Models
 		{
 			var sb = new StringBuilder();
 
-			var waypointBuilder = new WaypointBuilder(_cfg, f16, sb);
-			var radioBuilder = new RadioBuilder(_cfg, f16, sb);
-			var cmsBuilder = new CMSBuilder(_cfg, f16, sb);
-			var miscBuilder = new MiscBuilder(_cfg, f16, sb);
-			var mfdBuilder = new MFDBuilder(_cfg, f16, sb);
-
 			if (_cfg.Waypoints.EnableUpload)
 			{
+				var waypointBuilder = new WaypointBuilder(_cfg, f16, sb);
 				waypointBuilder.Build();
 			}
 
 			if (_cfg.Radios.EnableUpload)
 			{
+				var radioBuilder = new RadioBuilder(_cfg, f16, sb);
 				radioBuilder.Build();
 			}
 
 			if (_cfg.CMS.EnableUpload)
 			{
+				var cmsBuilder = new CMSBuilder(_cfg, f16, sb);
 				cmsBuilder.Build();
 			}
 
 			if (_cfg.Misc.EnableUpload)
 			{
+				var miscBuilder = new MiscBuilder(_cfg, f16, sb);
 				miscBuilder.Build();
 			}
 
 			if (_cfg.MFD.EnableUpload)
 			{
+				var mfdBuilder = new MFDBuilder(_cfg, f16, sb);
 				mfdBuilder.Build();
+			}
+
+			if (_cfg.HARM.EnableUpload)
+			{
+				var harmBuilder = new HARMBuilder(_cfg, f16, sb);
+				harmBuilder.Build();
+			}
+
+			if (_cfg.HTS.EnableUpload)
+			{
+				var htsBuilder = new HTSBuilder(_cfg, f16, sb);
+				htsBuilder.Build();
 			}
 
 			if (sb.Length > 0)

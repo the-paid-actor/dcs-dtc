@@ -42,12 +42,12 @@ namespace DTC.UI.Aircrafts.F16
             for (int i = 0; i < radio.Channels.Length; i++)
             {
                 RadioChannel channel = (RadioChannel)radio.Channels[i];
-                var cbx = new DTCCheckBox();
-                cbx.Checked = channel.ToBeUpdated;
-                cbx.RelatedTo = channel.Channel.ToString();
-                cbx.Width = 20;
-                cbx.CheckedChanged += cbx_OnChange;
-                tblRadio.Controls.Add(cbx, 0, i);
+                var chk = new DTCCheckBox();
+                chk.Checked = channel.ToBeUpdated;
+                chk.RelatedTo = channel.Channel.ToString();
+                chk.Width = 20;
+                chk.CheckedChanged += chk_OnChange;
+                tblRadio.Controls.Add(chk, 0, i);
                 var lbl = new Label();
                 lbl.Text = "Channel " + channel.Channel.ToString();
                 lbl.AutoSize = false;
@@ -80,12 +80,12 @@ namespace DTC.UI.Aircrafts.F16
             _parent.DataChangedCallback();
         }
 
-        private void cbx_OnChange(object sender, EventArgs e)
+        private void chk_OnChange(object sender, EventArgs e)
         {
-            var cbx = ((DTCCheckBox)sender);
-            var channel = (RadioChannel)cbx.Parent.Controls.OfType<DTCTextBox>()
-                .First(x => ((RadioChannel)x.Tag).Channel.ToString() == cbx.RelatedTo).Tag;
-            channel.ToBeUpdated = cbx.Checked;
+            var chk = ((DTCCheckBox)sender);
+            var channel = (RadioChannel)chk.Parent.Controls.OfType<DTCTextBox>()
+                .First(x => ((RadioChannel)x.Tag).Channel.ToString() == chk.RelatedTo).Tag;
+            channel.ToBeUpdated = chk.Checked;
             _parent.DataChangedCallback();
         }
     }

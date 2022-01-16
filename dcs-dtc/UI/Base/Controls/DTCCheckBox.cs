@@ -18,12 +18,12 @@ namespace DTC.UI.Base.Controls
             InitializeComponent();
         }
 
-        public static DTCCheckBox Make(DTCCheckBox cbx, int x, int y,int cbxWidth, int height)
+        public static DTCCheckBox Make(DTCCheckBox chk, int x, int y,int chkWidth, int height)
         {
-            cbx.Location = new Point(x, y);
-            cbx.AutoSize = false;
-            cbx.Size = new Size(cbxWidth, height);
-            return cbx;
+            chk.Location = new Point(x, y);
+            chk.AutoSize = false;
+            chk.Size = new Size(chkWidth, height);
+            return chk;
         }
     }
 }

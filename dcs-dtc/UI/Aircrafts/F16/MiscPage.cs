@@ -24,17 +24,17 @@ namespace DTC.UI.Aircrafts.F16
             var padding = 5;
             var rowHeight = 25;
             var colWidth = 150;
-            var cbxWidth = 15;
+            var chkWidth = 15;
 
             var left = padding;
             var top = padding;
 
-            var cbxUpdateBingo = new DTCCheckBox();
-            cbxUpdateBingo.RelatedTo = "Bingo";
-            cbxUpdateBingo.Checked = _misc.BingoToBeUpdated;
-            cbxUpdateBingo.CheckedChanged += cbx_OnChange;
-            this.Controls.Add(DTCCheckBox.Make(cbxUpdateBingo, left, top, cbxWidth, rowHeight));
-            left += padding + cbxWidth;
+            var chkUpdateBingo = new DTCCheckBox();
+            chkUpdateBingo.RelatedTo = "Bingo";
+            chkUpdateBingo.Checked = _misc.BingoToBeUpdated;
+            chkUpdateBingo.CheckedChanged += chk_OnChange;
+            this.Controls.Add(DTCCheckBox.Make(chkUpdateBingo, left, top, chkWidth, rowHeight));
+            left += padding + chkWidth;
             this.Controls.Add(DTCLabel.Make("Bingo", left, top, colWidth, rowHeight));
             left += padding + colWidth;
 
@@ -46,12 +46,12 @@ namespace DTC.UI.Aircrafts.F16
 
             left = padding;
             top += padding + rowHeight;
-            var cbxUpdateBulleye = new DTCCheckBox();
-            cbxUpdateBulleye.RelatedTo = "Bulleye";
-            cbxUpdateBulleye.Checked = _misc.BullseyeToBeUpdated;
-            cbxUpdateBulleye.CheckedChanged += cbx_OnChange;
-            this.Controls.Add(DTCCheckBox.Make(cbxUpdateBulleye, left, top, cbxWidth, rowHeight));
-            left += padding + cbxWidth;
+            var chkUpdateBulleye = new DTCCheckBox();
+            chkUpdateBulleye.RelatedTo = "Bulleye";
+            chkUpdateBulleye.Checked = _misc.BullseyeToBeUpdated;
+            chkUpdateBulleye.CheckedChanged += chk_OnChange;
+            this.Controls.Add(DTCCheckBox.Make(chkUpdateBulleye, left, top, chkWidth, rowHeight));
+            left += padding + chkWidth;
             this.Controls.Add(DTCLabel.Make("Enable Bullseye", left, top, colWidth, rowHeight));
             left += padding + colWidth;
 
@@ -79,12 +79,12 @@ namespace DTC.UI.Aircrafts.F16
 
             left = padding;
             top += padding + rowHeight;
-            var cbxUpdateCARAALOW = new DTCCheckBox();
-            cbxUpdateCARAALOW.RelatedTo = "CARAALOW";
-            cbxUpdateCARAALOW.Checked = _misc.CARAALOWToBeUpdated;
-            cbxUpdateCARAALOW.CheckedChanged += cbx_OnChange;
-            this.Controls.Add(DTCCheckBox.Make(cbxUpdateCARAALOW, left, top, cbxWidth, rowHeight));
-            left += padding + cbxWidth;
+            var chkUpdateCARAALOW = new DTCCheckBox();
+            chkUpdateCARAALOW.RelatedTo = "CARAALOW";
+            chkUpdateCARAALOW.Checked = _misc.CARAALOWToBeUpdated;
+            chkUpdateCARAALOW.CheckedChanged += chk_OnChange;
+            this.Controls.Add(DTCCheckBox.Make(chkUpdateCARAALOW, left, top, chkWidth, rowHeight));
+            left += padding + chkWidth;
             this.Controls.Add(DTCLabel.Make("CARA ALOW", left, top, colWidth, rowHeight));
             left += padding + colWidth;
 
@@ -96,12 +96,12 @@ namespace DTC.UI.Aircrafts.F16
 
             left = padding;
             top += padding + rowHeight;
-            var cbxUpdateMSLFloor = new DTCCheckBox();
-            cbxUpdateMSLFloor.RelatedTo = "MSLFloor";
-            cbxUpdateMSLFloor.Checked = _misc.MSLFloorToBeUpdated;
-            cbxUpdateMSLFloor.CheckedChanged += cbx_OnChange;
-            this.Controls.Add(DTCCheckBox.Make(cbxUpdateMSLFloor, left, top, cbxWidth, rowHeight));
-            left += padding + cbxWidth;
+            var chkUpdateMSLFloor = new DTCCheckBox();
+            chkUpdateMSLFloor.RelatedTo = "MSLFloor";
+            chkUpdateMSLFloor.Checked = _misc.MSLFloorToBeUpdated;
+            chkUpdateMSLFloor.CheckedChanged += chk_OnChange;
+            this.Controls.Add(DTCCheckBox.Make(chkUpdateMSLFloor, left, top, chkWidth, rowHeight));
+            left += padding + chkWidth;
             this.Controls.Add(DTCLabel.Make("MSL Floor", left, top, colWidth, rowHeight));
             left += padding + colWidth;
 
@@ -113,12 +113,12 @@ namespace DTC.UI.Aircrafts.F16
 
             left = padding;
             top += padding + rowHeight;
-            var cbxUpdateTGP = new DTCCheckBox();
-            cbxUpdateTGP.RelatedTo = "TGP";
-            cbxUpdateTGP.Checked = _misc.TGPCodeToBeUpdated;
-            cbxUpdateTGP.CheckedChanged += cbx_OnChange;
-            this.Controls.Add(DTCCheckBox.Make(cbxUpdateTGP, left, top, cbxWidth, rowHeight));
-            left += padding + cbxWidth;
+            var chkUpdateTGP = new DTCCheckBox();
+            chkUpdateTGP.RelatedTo = "TGP";
+            chkUpdateTGP.Checked = _misc.TGPCodeToBeUpdated;
+            chkUpdateTGP.CheckedChanged += chk_OnChange;
+            this.Controls.Add(DTCCheckBox.Make(chkUpdateTGP, left, top, chkWidth, rowHeight));
+            left += padding + chkWidth;
             this.Controls.Add(DTCLabel.Make("TGP Code", left, top, colWidth, rowHeight));
             left += padding + colWidth;
 
@@ -129,12 +129,12 @@ namespace DTC.UI.Aircrafts.F16
 
             left = padding;
             top += padding + rowHeight;
-            var cbxUpdateLST = new DTCCheckBox();
-            cbxUpdateLST.RelatedTo = "LST";
-            cbxUpdateLST.Checked = _misc.LSTCodeToBeUpdated;
-            cbxUpdateLST.CheckedChanged += cbx_OnChange;
-            this.Controls.Add(DTCCheckBox.Make(cbxUpdateLST, left, top, cbxWidth, rowHeight));
-            left += padding + cbxWidth;
+            var chkUpdateLST = new DTCCheckBox();
+            chkUpdateLST.RelatedTo = "LST";
+            chkUpdateLST.Checked = _misc.LSTCodeToBeUpdated;
+            chkUpdateLST.CheckedChanged += chk_OnChange;
+            this.Controls.Add(DTCCheckBox.Make(chkUpdateLST, left, top, chkWidth, rowHeight));
+            left += padding + chkWidth;
             this.Controls.Add(DTCLabel.Make("LST Code", left, top, colWidth, rowHeight));
             left += padding + colWidth;
 
@@ -145,12 +145,12 @@ namespace DTC.UI.Aircrafts.F16
 
             left = padding;
             top += padding + rowHeight;
-            var cbxUpdateTACAN = new DTCCheckBox();
-            cbxUpdateTACAN.RelatedTo = "TACAN";
-            cbxUpdateTACAN.Checked = _misc.TACANToBeUpdated;
-            cbxUpdateTACAN.CheckedChanged += cbx_OnChange;
-            this.Controls.Add(DTCCheckBox.Make(cbxUpdateTACAN, left, top + ((rowHeight + padding) / 2), cbxWidth, rowHeight));
-            left += padding + cbxWidth;
+            var chkUpdateTACAN = new DTCCheckBox();
+            chkUpdateTACAN.RelatedTo = "TACAN";
+            chkUpdateTACAN.Checked = _misc.TACANToBeUpdated;
+            chkUpdateTACAN.CheckedChanged += chk_OnChange;
+            this.Controls.Add(DTCCheckBox.Make(chkUpdateTACAN, left, top + ((rowHeight + padding) / 2), chkWidth, rowHeight));
+            left += padding + chkWidth;
             this.Controls.Add(DTCLabel.Make("TACAN Channel", left, top, colWidth, rowHeight));
             left += padding + colWidth;
 
@@ -160,7 +160,7 @@ namespace DTC.UI.Aircrafts.F16
                 _parent.DataChangedCallback();
             }));
 
-            left = 2*padding + cbxWidth;
+            left = 2*padding + chkWidth;
             top += padding + rowHeight;
             this.Controls.Add(DTCLabel.Make("TACAN Band", left, top, colWidth, rowHeight));
             left += padding + colWidth;
@@ -177,12 +177,12 @@ namespace DTC.UI.Aircrafts.F16
 
             left = padding;
             top += padding + rowHeight;
-            var cbxUpdateILS = new DTCCheckBox();
-            cbxUpdateILS.RelatedTo = "ILS";
-            cbxUpdateILS.Checked = _misc.ILSToBeUpdated;
-            cbxUpdateILS.CheckedChanged += cbx_OnChange;
-            this.Controls.Add(DTCCheckBox.Make(cbxUpdateILS, left, top + ((rowHeight + padding) / 2), cbxWidth, rowHeight));
-            left += padding + cbxWidth;
+            var chkUpdateILS = new DTCCheckBox();
+            chkUpdateILS.RelatedTo = "ILS";
+            chkUpdateILS.Checked = _misc.ILSToBeUpdated;
+            chkUpdateILS.CheckedChanged += chk_OnChange;
+            this.Controls.Add(DTCCheckBox.Make(chkUpdateILS, left, top + ((rowHeight + padding) / 2), chkWidth, rowHeight));
+            left += padding + chkWidth;
             this.Controls.Add(DTCLabel.Make("ILS Frequency", left, top, colWidth, rowHeight));
             left += padding + colWidth;
 
@@ -192,7 +192,7 @@ namespace DTC.UI.Aircrafts.F16
                 _parent.DataChangedCallback();
             }));
 
-            left = 2*padding + cbxWidth;
+            left = 2*padding + chkWidth;
             top += padding + rowHeight;
 
             this.Controls.Add(DTCLabel.Make("ILS Course", left, top, colWidth, rowHeight));
@@ -266,34 +266,34 @@ namespace DTC.UI.Aircrafts.F16
 
             return new Control[] { lblFirstDigit, cboSecondDigit, cboThirdDigit, cboFourthDigit };
         }
-        private void cbx_OnChange(object sender, EventArgs e)
+        private void chk_OnChange(object sender, EventArgs e)
         {
-            var cbx = ((DTCCheckBox)sender);
-            switch (cbx.RelatedTo)
+            var chk = ((DTCCheckBox)sender);
+            switch (chk.RelatedTo)
             {
                 case "Bingo":
-                    _misc.BingoToBeUpdated = cbx.Checked;
+                    _misc.BingoToBeUpdated = chk.Checked;
                     break;
                 case "Bulleye":
-                    _misc.BullseyeToBeUpdated = cbx.Checked;
+                    _misc.BullseyeToBeUpdated = chk.Checked;
                     break;
                 case "CARAALOW":
-                    _misc.CARAALOWToBeUpdated = cbx.Checked;
+                    _misc.CARAALOWToBeUpdated = chk.Checked;
                     break;
                 case "MSLFloor":
-                    _misc.MSLFloorToBeUpdated = cbx.Checked;
+                    _misc.MSLFloorToBeUpdated = chk.Checked;
                     break;
                 case "TGP":
-                    _misc.TGPCodeToBeUpdated = cbx.Checked;
+                    _misc.TGPCodeToBeUpdated = chk.Checked;
                     break;
                 case "LST":
-                    _misc.LSTCodeToBeUpdated = cbx.Checked;
+                    _misc.LSTCodeToBeUpdated = chk.Checked;
                     break;
                 case "TACAN":
-                    _misc.TACANToBeUpdated = cbx.Checked;
+                    _misc.TACANToBeUpdated = chk.Checked;
                     break;
                 case "ILS":
-                    _misc.ILSToBeUpdated = cbx.Checked;
+                    _misc.ILSToBeUpdated = chk.Checked;
                     break;
             }
             _parent.DataChangedCallback();

@@ -11,12 +11,14 @@ namespace DTC.Models.F16.Radios
 		public RadioType Type { get; set; }
 		public int Channel { get; set; }
 		public decimal Frequency { get; set; }
+		public bool ToBeUpdated { get; set; }
 
-		public RadioChannel(RadioType type, int channel, decimal frequency)
+		public RadioChannel(RadioType type, int channel, decimal frequency,bool toBeUpdated)
 		{
 			Type = type;
 			Channel = channel;
 			Frequency = frequency;
+			ToBeUpdated = toBeUpdated;
 		}
 
 		public string GetFrequency()

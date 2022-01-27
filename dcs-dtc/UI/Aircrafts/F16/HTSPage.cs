@@ -130,7 +130,7 @@ namespace DTC.UI.Aircrafts.F16
 				}
 			}
 
-			var list = new EmitterList(emitterList.ToArray(), 8, true, HTSClassesOk, HTSClassesCancel);
+			var list = new EmitterList(emitterList.ToArray(), 8, true, HTSClassesOk, HTSClassesCancel,false);
 			this.Controls.Add(list);
 			list.Dock = DockStyle.Fill;
 			list.BringToFront();
@@ -165,7 +165,7 @@ namespace DTC.UI.Aircrafts.F16
 
 		private void BtnManualEmittersEdit_Click(object sender, System.EventArgs e)
 		{
-			var list = new EmitterList(_hts.ManualEmitters, 8, false, ManualEmitterListOk, ManualEmitterListCancel);
+			var list = new EmitterList(_hts.ManualEmitters, 8, false, ManualEmitterListOk, ManualEmitterListCancel,true);
 			this.Controls.Add(list);
 			list.Dock = DockStyle.Fill;
 			list.BringToFront();

@@ -14,18 +14,24 @@ namespace DTC.Models.F16.Misc
 		private static Regex ilsRegex = new Regex(@"^1[0-1][8|9|0|1]\.[1|3|5|7|9][0|5]$");
 
 		public int Bingo { get; set; }
+		public bool BingoToBeUpdated { get; set; }
 		public bool EnableBullseye { get; set; }
+		public bool BullseyeToBeUpdated { get; set; }
 		public int BullseyeWP { get; set; }
 		public int CARAALOW { get; set; }
+		public bool CARAALOWToBeUpdated { get; set; }
 		public int MSLFloor { get; set; }
+		public bool MSLFloorToBeUpdated { get; set; }
 		public int TGPCode { get; set; }
+		public bool TGPCodeToBeUpdated { get; set; }
 		public int LSTCode { get; set; }
-
+		public bool LSTCodeToBeUpdated { get; set; }
 		public int TACANChannel { get; set; }
 		public TACANBands TACANBand { get; set; }
+		public bool TACANToBeUpdated { get; set; }		
 		public decimal ILSFrequency { get; set; }
 		public int ILSCourse { get; set; }
-
+		public bool ILSToBeUpdated { get; set; }
 		public bool EnableUpload { get; set; }
 
 		public MiscSystem()

@@ -13,8 +13,9 @@
 		public decimal ChaffBurstInterval { get; set; }
 		public int ChaffSalvoQty { get; set; }
 		public decimal ChaffSalvoInterval { get; set; }
+		public bool ToBeUpdated { get; set; }
 
-		public Program(int number, int chaffBurstQty, decimal chaffBurstInterval, int chaffSalvoQty, decimal chaffSalvoInterval, int flareBurstQty, decimal flareBurstInterval, int flareSalvoQty, decimal flareSalvoInterval)
+		public Program(int number, int chaffBurstQty, decimal chaffBurstInterval, int chaffSalvoQty, decimal chaffSalvoInterval, int flareBurstQty, decimal flareBurstInterval, int flareSalvoQty, decimal flareSalvoInterval, bool toBeUpdated)
 		{
 			Number = number;
 			FlareBurstQty = flareBurstQty;
@@ -25,6 +26,7 @@
 			ChaffBurstInterval = chaffBurstInterval;
 			ChaffSalvoQty = chaffSalvoQty;
 			ChaffSalvoInterval = chaffSalvoInterval;
+			ToBeUpdated = toBeUpdated;
 		}
 
 		private bool ValidateQty(string txt)

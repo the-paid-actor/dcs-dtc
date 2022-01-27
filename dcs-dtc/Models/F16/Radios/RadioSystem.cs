@@ -20,7 +20,7 @@ namespace DTC.Models.F16.Radios
 
 			for (int i = 0; i < 20; i++)
 			{
-				uhfChannels.Add(new RadioChannel(RadioType.UHF, i + 1, new decimal(251.00f + i)));
+				uhfChannels.Add(new RadioChannel(RadioType.UHF, i + 1, new decimal(251.00f + i),false));
 			}
 
 			COM1 = new Radio("COM1", RadioType.UHF, uhfChannels.ToArray());
@@ -29,7 +29,7 @@ namespace DTC.Models.F16.Radios
 
 			for (int i = 0; i < 20; i++)
 			{
-				vhfChannels.Add(new RadioChannel(RadioType.VHF, i + 1, new decimal(121.00f + i)));
+				vhfChannels.Add(new RadioChannel(RadioType.VHF, i + 1, new decimal(121.00f + i),false));
 			}
 
 			COM2 = new Radio("COM2", RadioType.VHF, vhfChannels.ToArray());

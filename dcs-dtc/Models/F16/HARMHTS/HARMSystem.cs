@@ -3,6 +3,7 @@
 	public class HARMSystem
 	{
 		public HARMTable[] Tables { get; set; }
+		public bool EnableUpload { get; set; }
 
 		public HARMSystem()
 		{
@@ -23,6 +24,7 @@
 	public class HARMTable
 	{
 		public int TableNumber;
+		public bool ToBeUpdated { get; set; }
 
 		public int[] Emitters { get; set; }
 

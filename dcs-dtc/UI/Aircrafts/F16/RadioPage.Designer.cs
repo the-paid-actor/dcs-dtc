@@ -80,7 +80,8 @@ namespace DTC.UI.Aircrafts.F16
 			this.BackColor = System.Drawing.Color.PaleGoldenrod;
 			this.Controls.Add(this.tblRadios);
 			this.Name = "RadioPage";
-			this.Size = new System.Drawing.Size(594, 493);
+			//this.Size = new System.Drawing.Size(594, 493);
+			this.Size = new System.Drawing.Size(654, 493);
 			this.tblRadios.ResumeLayout(false);
 			this.ResumeLayout(false);
 

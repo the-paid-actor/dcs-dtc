@@ -21,20 +21,27 @@ namespace DTC.Models.F16.Upload
 			AppendCommand(ufc.GetCommand("LIST"));
 			AppendCommand(ufc.GetCommand("7"));
 
+			//Set chaff bingo
 			AppendCommand(BuildDigits(ufc, _cfg.CMS.ChaffBingo.ToString()));
 			AppendCommand(ufc.GetCommand("ENTR"));
 			AppendCommand(ufc.GetCommand("DOWN"));
 
+			//Set flare bingo
 			AppendCommand(BuildDigits(ufc, _cfg.CMS.FlareBingo.ToString()));
 			AppendCommand(ufc.GetCommand("ENTR"));
 			AppendCommand(ufc.GetCommand("UP"));
 
+			//Move to programs 1
 			AppendCommand(ufc.GetCommand("SEQ"));
 
 			for (var i = 0; i < _cfg.CMS.Programs.Length; i++)
 			{
 				var program = _cfg.CMS.Programs[i];
-
+				if (!program.ToBeUpdated)
+				{
+					AppendCommand(ufc.GetCommand("INC"));
+					continue;					
+				}
 				AppendCommand(BuildDigits(ufc, DeleteLeadingZeros(RemoveSeparators(program.GetChaffBurstQty().ToString()))));
 				AppendCommand(ufc.GetCommand("ENTR"));
 				AppendCommand(ufc.GetCommand("DOWN"));
@@ -59,7 +66,11 @@ namespace DTC.Models.F16.Upload
 			for (var i = 0; i < _cfg.CMS.Programs.Length; i++)
 			{
 				var program = _cfg.CMS.Programs[i];
-
+				if (!program.ToBeUpdated)
+				{
+					AppendCommand(ufc.GetCommand("INC"));
+					continue;
+				}
 				AppendCommand(BuildDigits(ufc, DeleteLeadingZeros(RemoveSeparators(program.GetFlareBurstQty().ToString()))));
 				AppendCommand(ufc.GetCommand("ENTR"));
 				AppendCommand(ufc.GetCommand("DOWN"));

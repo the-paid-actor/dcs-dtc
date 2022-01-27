@@ -9,9 +9,13 @@ namespace DTC.Models.F16.HARMHTS
 	public class HTSSystem
 	{
 		public int[] ManualEmitters { get; set; }
+		public bool ManualEmittersToBeUpdated { get; set; }
 		public bool[] EnabledClasses { get; set; }
+		public bool ManualTableEnabledToBeUpdated { get; set; }
+
 		public bool ManualTableEnabled;
-		
+		public bool EnableUpload { get; set; }
+
 		public HTSSystem()
 		{
 			ManualEmitters = new int[0];

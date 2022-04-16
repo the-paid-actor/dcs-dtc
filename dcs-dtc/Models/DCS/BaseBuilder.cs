@@ -38,6 +38,12 @@ namespace DTC.Models.DCS
 			return str.Replace("'", "\"");
 		}
 
+		protected static string WaitLong()
+		{
+			var str = "{'device':'wait', 'delay': 600},";
+			return str.Replace("'", "\"");
+		}
+
 		protected static string StartCondition(string condition)
 		{
 			var str = "{'start_condition': '" + condition + "'},";

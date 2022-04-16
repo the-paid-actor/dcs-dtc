@@ -21,7 +21,7 @@ namespace DTC.UI.Base
 
 		WaypointCaptureCrosshair _crossHair;
 
-		public WaypointCapture(Callback callback)
+		public WaypointCapture(Callback callback, bool longFormat = false, bool dmsFormat = false)
 		{
 			_crossHair = new WaypointCaptureCrosshair();
 			_crossHair.Show();
@@ -50,10 +50,28 @@ namespace DTC.UI.Base
 				var latMinutes = Decimal.Multiply(Decimal.Remainder(latitude, Decimal.One), new decimal(60));
 				var longMinutes = Decimal.Multiply(Decimal.Remainder(longitude, Decimal.One), new decimal(60));
 
-				var latStr = $"{latitudeHem} {latDegrees.ToString("00")}.{latMinutes.ToString("00.000", CultureInfo.InvariantCulture)}";
-				var longStr = $"{longitudeHem} {longDegrees.ToString("000")}.{longMinutes.ToString("00.000", CultureInfo.InvariantCulture)}";
+				var latSeconds = Decimal.Multiply(Decimal.Remainder(latMinutes, Decimal.One), new decimal(60));
+				var longSeconds = Decimal.Multiply(Decimal.Remainder(longMinutes, Decimal.One), new decimal(60));
 
-				callback(latStr, longStr, elevation);
+				if (longFormat)
+				{
+					var latStr = $"{latitudeHem} {latDegrees.ToString("00")}.{latMinutes.ToString("00.0000", CultureInfo.InvariantCulture)}";
+					var longStr = $"{longitudeHem} {longDegrees.ToString("000")}.{longMinutes.ToString("00.0000", CultureInfo.InvariantCulture)}";
+                    callback(latStr, longStr, elevation);
+				}
+				else
+				{
+					if (dmsFormat)
+                    {
+                        var latStr = $"{latitudeHem} {latDegrees.ToString("00")}.{latMinutes.ToString("00")}.{longSeconds.ToString("00")}";
+                        var longStr = $"{longitudeHem} {longDegrees.ToString("000")}.{longMinutes.ToString("00")}.{longSeconds.ToString("00")}";
+                        callback(latStr, longStr, elevation);
+                    } else {
+                        var latStr = $"{latitudeHem} {latDegrees.ToString("00")}.{latMinutes.ToString("00.000", CultureInfo.InvariantCulture)}";
+                        var longStr = $"{longitudeHem} {longDegrees.ToString("000")}.{longMinutes.ToString("00.000", CultureInfo.InvariantCulture)}";
+                        callback(latStr, longStr, elevation);
+                    }
+				}
 			});
 		}
 

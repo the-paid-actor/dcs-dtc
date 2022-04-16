@@ -6,6 +6,8 @@ package.path  = package.path..";"..lfs.currentdir().."/Scripts/?.lua"
 local socket = require("socket")
 
 local JSON = loadfile("Scripts\\JSON.lua")()
+
+local logFile = io.open(lfs.writedir() .. [[Logs\DCSDCT.log]], "w")
 local needDelay = false
 local keypressinprogress = false
 local data
@@ -176,6 +178,93 @@ local function checkConditionTACANBandY()
 	return false
 end
 
+local function checkConditionAtWp0()
+	local table =parse_indication(4);
+	local str = table["WYPT_Page_Number"]
+	if str == "0" then
+		return true
+	end 
+	return false
+end
+
+local function checkConditionNotAtWp0()
+	local table =parse_indication(4);
+	local str = table["WYPT_Page_Number"]
+	if str == "0" then
+		return false
+	end 
+	return true
+end
+
+local function checkConditionInSequence(i)
+	local table =parse_indication(3);
+	logFile:write("Checking Sequence for " .. i .. "\n")
+	local str = table["WYPT_SequenceData"]
+	logFile:write("Sequence is: " .. str .. "\n")
+	logFile:flush()
+	local noSpaces = str:gsub("%s+", "")
+	logFile:write("Sequence is: " .. noSpaces .. "\n")
+	logFile:flush()
+	for token in string.gmatch(noSpaces, "[^-]+") do
+		logFile:write("Found Token in sequence " .. token .. "\n")
+		logFile:flush()
+		if token == i then 
+			return true
+		end
+	end
+	return false
+end
+
+local function DumpIndicators()
+	local table = parse_indication(1);
+	for k,v in pairs(table) do
+		logFile:write("INDICATOR 1 - " .. k .. ": " .. v .. "\n")
+		logFile:flush()
+	end
+	table = parse_indication(2);
+	for k,v in pairs(table) do
+		logFile:write("INDICATOR 2 - " .. k .. ": " .. v .. "\n")
+		logFile:flush()
+	end
+	table = parse_indication(3);
+	for k,v in pairs(table) do
+		logFile:write("INDICATOR 3 - " .. k .. ": " .. v .. "\n")
+		logFile:flush()
+	end
+	table = parse_indication(4);
+	for k,v in pairs(table) do
+		logFile:write("INDICATOR 4 - " .. k .. ": " .. v .. "\n")
+		logFile:flush()
+	end
+	table = parse_indication(5);
+	for k,v in pairs(table) do
+		logFile:write("INDICATOR 5 - " .. k .. ": " .. v .. "\n")
+		logFile:flush()
+	end
+	table = parse_indication(6);
+	for k,v in pairs(table) do
+		logFile:write("INDICATOR 6 - " .. k .. ": " .. v .. "\n")
+		logFile:flush()
+	end
+	table = parse_indication(7);
+	for k,v in pairs(table) do
+		logFile:write("INDICATOR 7 - " .. k .. ": " .. v .. "\n")
+		logFile:flush()
+	end
+	table = parse_indication(8);
+	for k,v in pairs(table) do
+		logFile:write("INDICATOR 8 - " .. k .. ": " .. v .. "\n")
+		logFile:flush()
+	end
+	table = parse_indication(9);
+	for k,v in pairs(table) do
+		logFile:write("INDICATOR 9 - " .. k .. ": " .. v .. "\n")
+		logFile:flush()
+	end
+
+	return true
+end
+
 local function checkConditionHTSOnMFD(mfd)
 	local mfdTable;
 
@@ -196,6 +285,14 @@ local function checkCondition(condition)
 		return checkConditionNotInAAMode();
 	elseif condition == "NOT_IN_AG" then
 		return checkConditionNotInAGMode();
+	elseif condition == "NOT_AT_WP0" then
+		return checkConditionNotAtWp0();
+	elseif condition == "AT_WP0" then
+		return  checkConditionAtWp0();
+	elseif condition:find("^IN_SEQ_") ~= nil then
+		return  checkConditionInSequence(string.match(condition, "%d+"));
+	elseif condition == "DEBUG" then
+		return  DumpIndicators();
 	elseif condition == "HARM" then
 		return checkConditionHARM();
 	elseif condition == "HTS_DED" then

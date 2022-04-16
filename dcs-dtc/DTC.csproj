@@ -79,6 +79,25 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Models\DCS\Emitters.cs" />
+    <Compile Include="Models\FA18\PrePlanned\PrePlannedCoordinate.cs" />
+    <Compile Include="Models\FA18\PrePlanned\PrePlannedStation.cs" />
+    <Compile Include="Models\FA18\PrePlanned\PrePlannedSystem.cs" />
+    <Compile Include="Models\FA18\Upload\PrePlannedBuilder.cs" />
+    <Compile Include="Models\FA18\Upload\SequenceBuilder.cs" />
+    <Compile Include="Models\FA18\FA18Commands.cs" />
+    <Compile Include="Models\FA18\FA18Configuration.cs" />
+    <Compile Include="Models\FA18\FA18Upload.cs" />
+    <Compile Include="Models\FA18\Misc\MiscSystem.cs" />
+    <Compile Include="Models\FA18\Radios\Radio.cs" />
+    <Compile Include="Models\FA18\Radios\RadioChannel.cs" />
+    <Compile Include="Models\FA18\Radios\RadioSystem.cs" />
+    <Compile Include="Models\FA18\Radios\RadioType.cs" />
+    <Compile Include="Models\FA18\Sequences\SequenceSystem.cs" />
+    <Compile Include="Models\FA18\Upload\MiscBuilder.cs" />
+    <Compile Include="Models\FA18\Upload\RadioBuilder.cs" />
+    <Compile Include="Models\FA18\Upload\WaypointBuilder.cs" />
+    <Compile Include="Models\FA18\Waypoints\Waypoint.cs" />
+    <Compile Include="Models\FA18\Waypoints\WaypointSystem.cs" />
     <Compile Include="Models\F16\HARMHTS\HARMSystem.cs" />
     <Compile Include="Models\F16\HARMHTS\HTSSystem.cs" />
     <Compile Include="Models\DCS\IAircraftDeviceManager.cs" />
@@ -112,6 +131,60 @@
     <Compile Include="Models\Presets\Aircraft.cs" />
     <Compile Include="Models\Presets\Preset.cs" />
     <Compile Include="Models\WaypointDB\WaypointDB.cs" />
+    <Compile Include="UI\Aircrafts\FA18\LoadSavePage.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="UI\Aircrafts\FA18\LoadSavePage.Designer.cs">
+      <DependentUpon>LoadSavePage.cs</DependentUpon>
+    </Compile>
+    <Compile Include="UI\Aircrafts\FA18\MiscPage.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="UI\Aircrafts\FA18\MiscPage.Designer.cs">
+      <DependentUpon>MiscPage.cs</DependentUpon>
+    </Compile>
+    <Compile Include="UI\Aircrafts\FA18\PrePlannedPage.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="UI\Aircrafts\FA18\PrePlannedPage.Designer.cs">
+      <DependentUpon>PrePlannedPage.cs</DependentUpon>
+    </Compile>
+    <Compile Include="UI\Aircrafts\FA18\RadioPage.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="UI\Aircrafts\FA18\RadioPage.Designer.cs">
+      <DependentUpon>RadioPage.cs</DependentUpon>
+    </Compile>
+    <Compile Include="UI\Aircrafts\FA18\UploadToJetPage.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="UI\Aircrafts\FA18\UploadToJetPage.Designer.cs">
+      <DependentUpon>UploadToJetPage.cs</DependentUpon>
+    </Compile>
+    <Compile Include="UI\Aircrafts\FA18\PrePlannedEdit.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="UI\Aircrafts\FA18\PrePlannedEdit.Designer.cs">
+      <DependentUpon>PrePlannedEdit.cs</DependentUpon>
+    </Compile>
+    <Compile Include="UI\Aircrafts\FA18\WaypointEdit.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="UI\Aircrafts\FA18\WaypointEdit.Designer.cs">
+      <DependentUpon>WaypointEdit.cs</DependentUpon>
+    </Compile>
+    <Compile Include="UI\Aircrafts\FA18\SequencePage.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="UI\Aircrafts\FA18\SequencePage.Designer.cs">
+      <DependentUpon>SequencePage.cs</DependentUpon>
+    </Compile>
+    <Compile Include="UI\Aircrafts\FA18\WaypointsPage.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="UI\Aircrafts\FA18\WaypointsPage.Designer.cs">
+      <DependentUpon>WaypointsPage.cs</DependentUpon>
+    </Compile>
     <Compile Include="UI\Aircrafts\F16\HARMPage.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -281,6 +354,31 @@
     <Compile Include="UI\CommonPages\PresetsPage.Designer.cs">
       <DependentUpon>PresetsPage.cs</DependentUpon>
     </Compile>
+    <EmbeddedResource Include="UI\Aircrafts\FA18\LoadSavePage.resx">
+      <DependentUpon>LoadSavePage.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UI\Aircrafts\FA18\PrePlannedPage.resx">
+      <DependentUpon>PrePlannedPage.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UI\Aircrafts\FA18\RadioPage.resx">
+      <DependentUpon>RadioPage.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UI\Aircrafts\FA18\UploadToJetPage.resx">
+      <DependentUpon>UploadToJetPage.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UI\Aircrafts\FA18\PrePlannedEdit.resx">
+      <DependentUpon>PrePlannedEdit.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UI\Aircrafts\FA18\WaypointEdit.resx">
+      <DependentUpon>WaypointEdit.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UI\Aircrafts\FA18\SequencePage.resx">
+      <DependentUpon>SequencePage.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UI\Aircrafts\FA18\WaypointsPage.resx">
+      <DependentUpon>WaypointsPage.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="UI\Aircrafts\F16\HARMPage.resx">
       <DependentUpon>HARMPage.cs</DependentUpon>
     </EmbeddedResource>

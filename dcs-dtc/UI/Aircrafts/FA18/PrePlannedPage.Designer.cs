@@ -113,6 +113,7 @@
             this.cb85.Size = new System.Drawing.Size(15, 14);
             this.cb85.TabIndex = 11;
             this.cb85.UseVisualStyleBackColor = true;
+            this.cb85.CheckedChanged += new System.EventHandler(this.cb85_Changed);
             // 
             // cb84
             // 
@@ -122,6 +123,7 @@
             this.cb84.Size = new System.Drawing.Size(15, 14);
             this.cb84.TabIndex = 10;
             this.cb84.UseVisualStyleBackColor = true;
+            this.cb84.CheckedChanged += new System.EventHandler(this.cb84_Changed);
             // 
             // cb83
             // 
@@ -131,6 +133,7 @@
             this.cb83.Size = new System.Drawing.Size(15, 14);
             this.cb83.TabIndex = 9;
             this.cb83.UseVisualStyleBackColor = true;
+            this.cb83.CheckedChanged += new System.EventHandler(this.cb83_Changed);
             // 
             // cb82
             // 
@@ -140,6 +143,7 @@
             this.cb82.Size = new System.Drawing.Size(15, 14);
             this.cb82.TabIndex = 8;
             this.cb82.UseVisualStyleBackColor = true;
+            this.cb82.CheckedChanged += new System.EventHandler(this.cb82_Changed);
             // 
             // cb81
             // 
@@ -149,6 +153,7 @@
             this.cb81.Size = new System.Drawing.Size(15, 14);
             this.cb81.TabIndex = 7;
             this.cb81.UseVisualStyleBackColor = true;
+            this.cb81.CheckedChanged += new System.EventHandler(this.cb81_Changed);
             // 
             // sta8PP5
             // 
@@ -230,13 +235,17 @@
             "GBU38",
             "GBU32",
             "GBU31",
-            "JSOW",
+            "JSOWA",
+            "JSOWC",
             "SLAM",
-            "SLAMER"});
+            "SLAMER",
+            "Anti-Air",
+            "Other-AG"});
             this.ddType8.Location = new System.Drawing.Point(9, 34);
             this.ddType8.Name = "ddType8";
             this.ddType8.Size = new System.Drawing.Size(89, 24);
             this.ddType8.TabIndex = 1;
+            this.ddType8.SelectedIndexChanged += new System.EventHandler(this.ddType8_SelectedIndexChanged);
             // 
             // label4
             // 
@@ -274,6 +283,7 @@
             this.cb75.Size = new System.Drawing.Size(15, 14);
             this.cb75.TabIndex = 11;
             this.cb75.UseVisualStyleBackColor = true;
+            this.cb75.CheckedChanged += new System.EventHandler(this.cb75_Changed);
             // 
             // cb74
             // 
@@ -283,6 +293,7 @@
             this.cb74.Size = new System.Drawing.Size(15, 14);
             this.cb74.TabIndex = 10;
             this.cb74.UseVisualStyleBackColor = true;
+            this.cb74.CheckedChanged += new System.EventHandler(this.cb74_Changed);
             // 
             // cb73
             // 
@@ -292,6 +303,7 @@
             this.cb73.Size = new System.Drawing.Size(15, 14);
             this.cb73.TabIndex = 9;
             this.cb73.UseVisualStyleBackColor = true;
+            this.cb73.CheckedChanged += new System.EventHandler(this.cb73_Changed);
             // 
             // cb72
             // 
@@ -301,6 +313,7 @@
             this.cb72.Size = new System.Drawing.Size(15, 14);
             this.cb72.TabIndex = 8;
             this.cb72.UseVisualStyleBackColor = true;
+            this.cb72.CheckedChanged += new System.EventHandler(this.cb72_Changed);
             // 
             // cb71
             // 
@@ -310,6 +323,7 @@
             this.cb71.Size = new System.Drawing.Size(15, 14);
             this.cb71.TabIndex = 7;
             this.cb71.UseVisualStyleBackColor = true;
+            this.cb71.CheckedChanged += new System.EventHandler(this.cb71_Changed);
             // 
             // sta7PP5
             // 
@@ -391,13 +405,17 @@
             "GBU38",
             "GBU32",
             "GBU31",
-            "JSOW",
+            "JSOWA",
+            "JSOWC",
             "SLAM",
-            "SLAMER"});
+            "SLAMER",
+            "Anti-Air",
+            "Other-AG"});
             this.ddType7.Location = new System.Drawing.Point(9, 34);
             this.ddType7.Name = "ddType7";
             this.ddType7.Size = new System.Drawing.Size(89, 24);
             this.ddType7.TabIndex = 1;
+            this.ddType7.SelectedIndexChanged += new System.EventHandler(this.ddType7_SelectedIndexChanged);
             // 
             // label3
             // 
@@ -435,6 +453,7 @@
             this.cb35.Size = new System.Drawing.Size(15, 14);
             this.cb35.TabIndex = 11;
             this.cb35.UseVisualStyleBackColor = true;
+            this.cb35.CheckedChanged += new System.EventHandler(this.cb35_Changed);
             // 
             // cb34
             // 
@@ -444,6 +463,7 @@
             this.cb34.Size = new System.Drawing.Size(15, 14);
             this.cb34.TabIndex = 10;
             this.cb34.UseVisualStyleBackColor = true;
+            this.cb34.CheckedChanged += new System.EventHandler(this.cb34_Changed);
             // 
             // cb33
             // 
@@ -453,6 +473,7 @@
             this.cb33.Size = new System.Drawing.Size(15, 14);
             this.cb33.TabIndex = 9;
             this.cb33.UseVisualStyleBackColor = true;
+            this.cb33.CheckedChanged += new System.EventHandler(this.cb33_Changed);
             // 
             // cb32
             // 
@@ -462,6 +483,7 @@
             this.cb32.Size = new System.Drawing.Size(15, 14);
             this.cb32.TabIndex = 8;
             this.cb32.UseVisualStyleBackColor = true;
+            this.cb32.CheckedChanged += new System.EventHandler(this.cb32_Changed);
             // 
             // cb31
             // 
@@ -471,6 +493,7 @@
             this.cb31.Size = new System.Drawing.Size(15, 14);
             this.cb31.TabIndex = 7;
             this.cb31.UseVisualStyleBackColor = true;
+            this.cb31.CheckedChanged += new System.EventHandler(this.cb31_Changed);
             // 
             // sta3PP5
             // 
@@ -552,13 +575,17 @@
             "GBU38",
             "GBU32",
             "GBU31",
-            "JSOW",
+            "JSOWA",
+            "JSOWC",
             "SLAM",
-            "SLAMER"});
+            "SLAMER",
+            "Anti-Air",
+            "Other-AG"});
             this.ddType3.Location = new System.Drawing.Point(9, 34);
             this.ddType3.Name = "ddType3";
             this.ddType3.Size = new System.Drawing.Size(89, 24);
             this.ddType3.TabIndex = 1;
+            this.ddType3.SelectedIndexChanged += new System.EventHandler(this.ddType3_SelectedIndexChanged);
             // 
             // label2
             // 
@@ -596,6 +623,7 @@
             this.cb25.Size = new System.Drawing.Size(15, 14);
             this.cb25.TabIndex = 11;
             this.cb25.UseVisualStyleBackColor = true;
+            this.cb25.CheckedChanged += new System.EventHandler(this.cb25_Changed);
             // 
             // cb24
             // 
@@ -605,6 +633,7 @@
             this.cb24.Size = new System.Drawing.Size(15, 14);
             this.cb24.TabIndex = 10;
             this.cb24.UseVisualStyleBackColor = true;
+            this.cb24.CheckedChanged += new System.EventHandler(this.cb24_Changed);
             // 
             // cb23
             // 
@@ -614,6 +643,7 @@
             this.cb23.Size = new System.Drawing.Size(15, 14);
             this.cb23.TabIndex = 9;
             this.cb23.UseVisualStyleBackColor = true;
+            this.cb23.CheckedChanged += new System.EventHandler(this.cb23_Changed);
             // 
             // cb22
             // 
@@ -623,6 +653,7 @@
             this.cb22.Size = new System.Drawing.Size(15, 14);
             this.cb22.TabIndex = 8;
             this.cb22.UseVisualStyleBackColor = true;
+            this.cb22.CheckedChanged += new System.EventHandler(this.cb22_Changed);
             // 
             // cb21
             // 
@@ -632,6 +663,7 @@
             this.cb21.Size = new System.Drawing.Size(15, 14);
             this.cb21.TabIndex = 7;
             this.cb21.UseVisualStyleBackColor = true;
+            this.cb21.CheckedChanged += new System.EventHandler(this.cb21_Changed);
             // 
             // sta2PP5
             // 
@@ -713,13 +745,17 @@
             "GBU38",
             "GBU32",
             "GBU31",
-            "JSOW",
+            "JSOWA",
+            "JSOWC",
             "SLAM",
-            "SLAMER"});
+            "SLAMER",
+            "Anti-Air",
+            "Other-AG"});
             this.ddType2.Location = new System.Drawing.Point(9, 34);
             this.ddType2.Name = "ddType2";
             this.ddType2.Size = new System.Drawing.Size(89, 24);
             this.ddType2.TabIndex = 1;
+            this.ddType2.SelectedIndexChanged += new System.EventHandler(this.ddType2_SelectedIndexChanged);
             // 
             // label1
             // 

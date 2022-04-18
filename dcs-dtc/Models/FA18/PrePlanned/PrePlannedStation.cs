@@ -17,6 +17,14 @@ namespace DTC.Models.FA18.PrePlanned
         public PrePlannedCoordinate PP4 {  get; set; }  
         public PrePlannedCoordinate PP5 {  get; set; }  
 
+        public bool AnySelected
+        {
+            get
+            {
+                return PP1.Enabled || PP2.Enabled || PP3.Enabled || PP4.Enabled || PP5.Enabled;
+            }
+        }
+
         public PrePlannedStation(int number)
         {
             stationType = StationType.GBU38;
@@ -28,6 +36,30 @@ namespace DTC.Models.FA18.PrePlanned
             PP4 = new PrePlannedCoordinate();  
             PP5 = new PrePlannedCoordinate();
         }
+        public StationType fromString(string s)
+        {
+            switch (s)
+            {
+                case "GBU38":
+                    return StationType.GBU38;
+                case "GBU32":
+                    return StationType.GBU32;
+                case "GBU31":
+                    return StationType.GBU31;
+                case "JSOWA":
+                    return StationType.JSOWA;
+                case "JSOWC":
+                    return StationType.JSOWC;
+                case "SLAM":
+                    return StationType.SLAM;
+                case "SLAMER":
+                    return StationType.SLAMER;
+                case "Anti-Air":
+                    return StationType.AA;
+                default:
+                    return StationType.OTHER;
+            }
+        }
     }
 
     public enum StationType
@@ -35,8 +67,12 @@ namespace DTC.Models.FA18.PrePlanned
         GBU38,
         GBU32,
         GBU31,
-        JSOW,
+        JSOWA,
+        JSOWC,
         SLAM,
-        SLAMER
+        SLAMER,
+        AA,
+        OTHER
     }
+
 }

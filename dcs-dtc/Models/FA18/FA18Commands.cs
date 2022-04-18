@@ -15,7 +15,7 @@ namespace DTC.Models.FA18
 			var delayMFDs = delay;
 			var delayUFC = delay / 4;
 			var delayUFCOpt = delay / 4;
-			var delayUFCEnt = delay * 4;
+			var delayUFCEnt = delay * 3;
 			var delayList = delay / 4;
 			var delayEntr = delay / 2;
 			var delayDown = delay;

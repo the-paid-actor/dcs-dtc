@@ -130,7 +130,7 @@ namespace DTC.UI.Aircrafts.FA18
 						txtWptLatLong.Text = latitude + " " + longitude;
 						txtWptElevation.Text = elevation;
 					}));
-				}, longFormat: true);
+				}, longFormat: true, dmsFormat: true);
 			}
 			else
 			{

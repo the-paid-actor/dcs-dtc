@@ -79,7 +79,7 @@ namespace DTC.Models.FA18.Upload
 				var buttonNumber = 6;
 				if (_cfg.PrePlanned.Station5ToConsider) buttonNumber++;
 				if (_cfg.PrePlanned.Sta2.stationType != StationType.AA) buttonNumber++;
-				if (_cfg.PrePlanned.Sta3.stationType != StationType.AA) buttonNumber++;
+				if (_cfg.PrePlanned.Sta3.stationType != StationType.AA && _cfg.PrePlanned.Sta3.stationType != _cfg.PrePlanned.Sta2.stationType) buttonNumber++;
                 AppendCommand(lmfd.GetCommand("OSB-0" + buttonNumber)); 
 
                 AppendCommand(GetDsplyCommand(lmfd, _cfg.PrePlanned.Sta7.stationType)); // JDAM/JSOW/SLAM/SLMR-DSPLY
@@ -105,8 +105,10 @@ namespace DTC.Models.FA18.Upload
 				var buttonNumber = 6;
 				if (_cfg.PrePlanned.Station5ToConsider) buttonNumber++;
 				if (_cfg.PrePlanned.Sta2.stationType != StationType.AA) buttonNumber++;
-				if (_cfg.PrePlanned.Sta3.stationType != StationType.AA) buttonNumber++;
-				if (_cfg.PrePlanned.Sta7.stationType != StationType.AA) buttonNumber++;
+				if (_cfg.PrePlanned.Sta3.stationType != StationType.AA && _cfg.PrePlanned.Sta3.stationType != _cfg.PrePlanned.Sta2.stationType) buttonNumber++;
+				if (_cfg.PrePlanned.Sta7.stationType != StationType.AA && 
+					_cfg.PrePlanned.Sta7.stationType != _cfg.PrePlanned.Sta2.stationType && 
+					_cfg.PrePlanned.Sta7.stationType != _cfg.PrePlanned.Sta3.stationType) buttonNumber++;
 				if(buttonNumber == 10) AppendCommand(lmfd.GetCommand("OSB-10")); 
 				else AppendCommand(lmfd.GetCommand("OSB-0" + buttonNumber)); 
 

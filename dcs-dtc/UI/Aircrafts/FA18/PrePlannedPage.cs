@@ -442,6 +442,7 @@ namespace DTC.UI.Aircrafts.FA18
         private void cbSta5_CheckedChanged(object sender, EventArgs e)
         {
             _preplanned.Station5ToConsider = cbSta5.Checked;
+            _parent.DataChangedCallback();
         }
     }
 }

@@ -80,6 +80,7 @@
             this.sta2PP1 = new DTC.UI.Base.Controls.DTCButton();
             this.ddType2 = new DTC.UI.Base.Controls.DTCDropDown();
             this.label1 = new System.Windows.Forms.Label();
+            this.cbSta5 = new DTC.UI.Base.Controls.DTCCheckBox();
             this.dtcStackPanel4.SuspendLayout();
             this.dtcStackPanel3.SuspendLayout();
             this.dtcStackPanel2.SuspendLayout();
@@ -100,7 +101,7 @@
             this.dtcStackPanel4.Controls.Add(this.sta8PP1);
             this.dtcStackPanel4.Controls.Add(this.ddType8);
             this.dtcStackPanel4.Controls.Add(this.label4);
-            this.dtcStackPanel4.Location = new System.Drawing.Point(14, 239);
+            this.dtcStackPanel4.Location = new System.Drawing.Point(14, 268);
             this.dtcStackPanel4.Name = "dtcStackPanel4";
             this.dtcStackPanel4.Size = new System.Drawing.Size(382, 68);
             this.dtcStackPanel4.TabIndex = 12;
@@ -240,6 +241,7 @@
             "SLAM",
             "SLAMER",
             "Anti-Air",
+            "Nothing",
             "Other-AG"});
             this.ddType8.Location = new System.Drawing.Point(9, 34);
             this.ddType8.Name = "ddType8";
@@ -270,7 +272,7 @@
             this.dtcStackPanel3.Controls.Add(this.sta7PP1);
             this.dtcStackPanel3.Controls.Add(this.ddType7);
             this.dtcStackPanel3.Controls.Add(this.label3);
-            this.dtcStackPanel3.Location = new System.Drawing.Point(14, 165);
+            this.dtcStackPanel3.Location = new System.Drawing.Point(14, 194);
             this.dtcStackPanel3.Name = "dtcStackPanel3";
             this.dtcStackPanel3.Size = new System.Drawing.Size(382, 68);
             this.dtcStackPanel3.TabIndex = 12;
@@ -410,6 +412,7 @@
             "SLAM",
             "SLAMER",
             "Anti-Air",
+            "Nothing",
             "Other-AG"});
             this.ddType7.Location = new System.Drawing.Point(9, 34);
             this.ddType7.Name = "ddType7";
@@ -580,6 +583,7 @@
             "SLAM",
             "SLAMER",
             "Anti-Air",
+            "Nothing",
             "Other-AG"});
             this.ddType3.Location = new System.Drawing.Point(9, 34);
             this.ddType3.Name = "ddType3";
@@ -750,6 +754,7 @@
             "SLAM",
             "SLAMER",
             "Anti-Air",
+            "Nothing",
             "Other-AG"});
             this.ddType2.Location = new System.Drawing.Point(9, 34);
             this.ddType2.Name = "ddType2";
@@ -766,11 +771,24 @@
             this.label1.TabIndex = 0;
             this.label1.Text = "Station 2";
             // 
+            // cbSta5
+            // 
+            this.cbSta5.AutoSize = true;
+            this.cbSta5.Location = new System.Drawing.Point(14, 168);
+            this.cbSta5.Name = "cbSta5";
+            this.cbSta5.RelatedTo = null;
+            this.cbSta5.Size = new System.Drawing.Size(188, 17);
+            this.cbSta5.TabIndex = 13;
+            this.cbSta5.Text = "Station 5 has Bomb/DataLink Pod";
+            this.cbSta5.UseVisualStyleBackColor = true;
+            this.cbSta5.CheckedChanged += new System.EventHandler(this.cbSta5_CheckedChanged);
+            // 
             // PrePlannedPage
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.PaleGoldenrod;
+            this.Controls.Add(this.cbSta5);
             this.Controls.Add(this.dtcStackPanel4);
             this.Controls.Add(this.dtcStackPanel3);
             this.Controls.Add(this.dtcStackPanel2);
@@ -786,6 +804,7 @@
             this.dtcStackPanel1.ResumeLayout(false);
             this.dtcStackPanel1.PerformLayout();
             this.ResumeLayout(false);
+            this.PerformLayout();
 
         }
 
@@ -843,5 +862,6 @@
         private Base.Controls.DTCButton sta8PP1;
         private Base.Controls.DTCDropDown ddType8;
         private System.Windows.Forms.Label label4;
+        private Base.Controls.DTCCheckBox cbSta5;
     }
 }

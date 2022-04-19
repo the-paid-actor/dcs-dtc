@@ -29,6 +29,8 @@ namespace DTC.UI.Aircrafts.FA18
             ddType7.Text = pps.Sta7.stationType.ToString();
             ddType8.Text = pps.Sta8.stationType.ToString();
 
+            cbSta5.Checked = pps.Station5ToConsider;
+
             cb21.Checked = pps.Sta2.PP1.Enabled;
             cb22.Checked = pps.Sta2.PP2.Enabled;
             cb23.Checked = pps.Sta2.PP3.Enabled;
@@ -93,8 +95,8 @@ namespace DTC.UI.Aircrafts.FA18
 
         private void cb31_Changed(object sender, EventArgs e)
         {
-            if(_preplanned.Sta2.PP1.CanBeEnabled) _preplanned.Sta2.PP1.Enabled = cb21.Checked;
-            cb21.Checked = _preplanned.Sta2.PP1.Enabled;
+            if(_preplanned.Sta3.PP1.CanBeEnabled) _preplanned.Sta3.PP1.Enabled = cb31.Checked;
+            cb31.Checked = _preplanned.Sta3.PP1.Enabled;
             _parent.DataChangedCallback();
         }
 
@@ -264,77 +266,77 @@ namespace DTC.UI.Aircrafts.FA18
 
         private void sta3PP1_Click(object sender, EventArgs e)
         {
-            _edit.ShowDialog(_preplanned.Sta3.PP1, 2, 1);   
+            _edit.ShowDialog(_preplanned.Sta3.PP1, 3, 1);   
         }
 
         private void sta3PP2_Click(object sender, EventArgs e)
         {
-            _edit.ShowDialog(_preplanned.Sta3.PP2, 2, 2);   
+            _edit.ShowDialog(_preplanned.Sta3.PP2, 3, 2);   
         }
 
         private void sta3PP3_Click(object sender, EventArgs e)
         {
-            _edit.ShowDialog(_preplanned.Sta3.PP3, 2, 3);   
+            _edit.ShowDialog(_preplanned.Sta3.PP3, 3, 3);   
         }
 
         private void sta3PP4_Click(object sender, EventArgs e)
         {
-            _edit.ShowDialog(_preplanned.Sta3.PP4, 2, 4);   
+            _edit.ShowDialog(_preplanned.Sta3.PP4, 3, 4);   
         }
 
         private void sta3PP5_Click(object sender, EventArgs e)
         {
-            _edit.ShowDialog(_preplanned.Sta3.PP5, 2, 5);   
+            _edit.ShowDialog(_preplanned.Sta3.PP5, 3, 5);   
         }
 
         private void sta7PP1_Click(object sender, EventArgs e)
         {
-            _edit.ShowDialog(_preplanned.Sta7.PP1, 2, 1);   
+            _edit.ShowDialog(_preplanned.Sta7.PP1, 7, 1);   
         }
 
         private void sta7PP2_Click(object sender, EventArgs e)
         {
-            _edit.ShowDialog(_preplanned.Sta7.PP2, 2, 2);   
+            _edit.ShowDialog(_preplanned.Sta7.PP2, 7, 2);   
         }
 
         private void sta7PP3_Click(object sender, EventArgs e)
         {
-            _edit.ShowDialog(_preplanned.Sta7.PP3, 2, 3);   
+            _edit.ShowDialog(_preplanned.Sta7.PP3, 7, 3);   
         }
 
         private void sta7PP4_Click(object sender, EventArgs e)
         {
-            _edit.ShowDialog(_preplanned.Sta7.PP4, 2, 4);   
+            _edit.ShowDialog(_preplanned.Sta7.PP4, 7, 4);   
         }
 
         private void sta7PP5_Click(object sender, EventArgs e)
         {
-            _edit.ShowDialog(_preplanned.Sta7.PP5, 2, 5);   
+            _edit.ShowDialog(_preplanned.Sta7.PP5, 7, 5);   
         }
 
         private void sta8PP1_Click(object sender, EventArgs e)
         {
-            _edit.ShowDialog(_preplanned.Sta8.PP1, 2, 1);   
+            _edit.ShowDialog(_preplanned.Sta8.PP1, 8, 1);   
         }
 
         private void sta8PP2_Click(object sender, EventArgs e)
         {
-            _edit.ShowDialog(_preplanned.Sta8.PP2, 2, 2);   
+            _edit.ShowDialog(_preplanned.Sta8.PP2, 8, 2);   
         }
 
         private void sta8PP3_Click(object sender, EventArgs e)
         {
-            _edit.ShowDialog(_preplanned.Sta8.PP3, 2, 3);   
+            _edit.ShowDialog(_preplanned.Sta8.PP3, 8, 3);   
         }
 
         private void sta8PP4_Click(object sender, EventArgs e)
         {
-            _edit.ShowDialog(_preplanned.Sta8.PP4, 2, 4);   
+            _edit.ShowDialog(_preplanned.Sta8.PP4, 8, 4);   
         }
 
         private void sta8PP5_Click(object sender, EventArgs e)
         {
-            _edit.ShowDialog(_preplanned.Sta8.PP5, 2, 5);   
+            _edit.ShowDialog(_preplanned.Sta8.PP5, 8, 5);   
         }
 
         private void ddType2_SelectedIndexChanged(object sender, EventArgs e)
@@ -435,6 +437,11 @@ namespace DTC.UI.Aircrafts.FA18
                 _preplanned.Sta8.stationType = _preplanned.Sta8.fromString(ddType8.SelectedItem.ToString());   
             }
             _parent.DataChangedCallback();
+        }
+
+        private void cbSta5_CheckedChanged(object sender, EventArgs e)
+        {
+            _preplanned.Station5ToConsider = cbSta5.Checked;
         }
     }
 }

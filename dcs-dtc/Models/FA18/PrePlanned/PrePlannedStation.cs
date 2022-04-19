@@ -56,6 +56,8 @@ namespace DTC.Models.FA18.PrePlanned
                     return StationType.SLAMER;
                 case "Anti-Air":
                     return StationType.AA;
+                case "Nothing":
+                    return StationType.AA;
                 default:
                     return StationType.OTHER;
             }

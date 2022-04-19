@@ -9,7 +9,7 @@ namespace DTC.Models.FA18.PrePlanned
     public class PrePlannedSystem
     {
 		public bool EnableUpload { get; set; }
-
+		public bool Station5ToConsider { get; set; }
         public PrePlannedStation Sta2 { get; set; }
         public PrePlannedStation Sta3 { get; set; } 
         public PrePlannedStation Sta7 { get; set; } 

@@ -196,21 +196,71 @@ local function checkConditionNotAtWp0()
 	return true
 end
 
+local function checkConditionBingoIsZero()
+	local table =parse_indication(5);
+	local str = table["txt_BINGO"]
+	if str == "0" then
+		return false
+	end 
+	return true
+end
+
 local function checkConditionInSequence(i)
 	local table =parse_indication(3);
-	logFile:write("Checking Sequence for " .. i .. "\n")
 	local str = table["WYPT_SequenceData"]
-	logFile:write("Sequence is: " .. str .. "\n")
-	logFile:flush()
 	local noSpaces = str:gsub("%s+", "")
-	logFile:write("Sequence is: " .. noSpaces .. "\n")
-	logFile:flush()
 	for token in string.gmatch(noSpaces, "[^-]+") do
-		logFile:write("Found Token in sequence " .. token .. "\n")
-		logFile:flush()
 		if token == i then 
 			return true
 		end
+	end
+	return false
+end
+
+local function checkConditionIsJdam(i, n)
+	local table =parse_indication(2);
+	local str = table["STA".. i .. "_Label_TYPE"]
+	logFile:write("Checking if Station " .. i .. " is J-".. n .."\n")
+	logFile:write("It is ".. str)
+	logFile:flush()
+	if str == "J-" .. n then 
+		return true 
+	end
+	return false
+end
+
+local function checkConditionIsSlam(i)
+	local table =parse_indication(2);
+	local str = table["STA".. i .. "_Label_TYPE"]
+	if str == "SLAM" then 
+		return true 
+	end
+	return false
+end
+
+local function checkConditionIsSlamER(i)
+	local table =parse_indication(2);
+	local str = table["STA".. i .. "_Label_TYPE"]
+	if str == "SLMR" then 
+		return true 
+	end
+	return false
+end
+
+local function checkConditionIsJsowA(i)
+	local table =parse_indication(2);
+	local str = table["STA".. i .. "_Label_TYPE"]
+	if str == "JSA" then 
+		return true 
+	end
+	return false
+end
+
+local function checkConditionIsJsowC(i)
+	local table =parse_indication(2);
+	local str = table["STA".. i .. "_Label_TYPE"]
+	if str == "JSC" then 
+		return true 
 	end
 	return false
 end
@@ -261,6 +311,21 @@ local function DumpIndicators()
 		logFile:write("INDICATOR 9 - " .. k .. ": " .. v .. "\n")
 		logFile:flush()
 	end
+	table = parse_indication(10);
+	for k,v in pairs(table) do
+		logFile:write("INDICATOR 10 - " .. k .. ": " .. v .. "\n")
+		logFile:flush()
+	end
+	table = parse_indication(11);
+	for k,v in pairs(table) do
+		logFile:write("INDICATOR 11 - " .. k .. ": " .. v .. "\n")
+		logFile:flush()
+	end
+	table = parse_indication(12);
+	for k,v in pairs(table) do
+		logFile:write("INDICATOR 12 - " .. k .. ": " .. v .. "\n")
+		logFile:flush()
+	end
 
 	return true
 end
@@ -289,8 +354,24 @@ local function checkCondition(condition)
 		return checkConditionNotAtWp0();
 	elseif condition == "AT_WP0" then
 		return  checkConditionAtWp0();
+	elseif condition == "BINGO_ZERO" then
+		return  checkConditionBingoIsZero();
 	elseif condition:find("^IN_SEQ_") ~= nil then
 		return  checkConditionInSequence(string.match(condition, "%d+"));
+	elseif condition:find("^STA_IS_GBUTE_") ~= nil then -- GBU38
+		return  checkConditionIsJdam(string.match(condition, "%d+"), 82);
+	elseif condition:find("^STA_IS_GBUTO_") ~= nil then -- GBU31
+		return  checkConditionIsJdam(string.match(condition, "%d+"), 84);
+	elseif condition:find("^STA_IS_GBUTT_") ~= nil then -- GBU32
+		return  checkConditionIsJdam(string.match(condition, "%d+"), 83);
+	elseif condition:find("^STA_IS_JSOWA_") ~= nil then
+		return  checkConditionIsJsowA(string.match(condition, "%d+"));
+	elseif condition:find("^STA_IS_JSOWC_") ~= nil then
+		return  checkConditionIsJsowC(string.match(condition, "%d+"));
+	elseif condition:find("^STA_IS_SLAM_") ~= nil then
+		return  checkConditionIsSlam(string.match(condition, "%d+"));
+	elseif condition:find("^STA_IS_SLAMER_") ~= nil then
+		return  checkConditionIsSlamER(string.match(condition, "%d+"));
 	elseif condition == "DEBUG" then
 		return  DumpIndicators();
 	elseif condition == "HARM" then
@@ -410,8 +491,7 @@ function LuaExportAfterNextFrame()
         end
     end
 
-
-  local camPos = LoGetCameraPosition()
+    local camPos = LoGetCameraPosition()
 	local loX = camPos['p']['x']
 	local loZ = camPos['p']['z']
 	local elevation = LoGetAltitude(loX, loZ)

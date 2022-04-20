@@ -440,8 +440,12 @@ function LuaExportBeforeNextFrame()
 					device = keyObj["device"]
 					code = keyObj["code"]
 					delay = tonumber(keyObj["delay"])
-					
+
 					local activate = tonumber(keyObj["activate"])
+					if activate == nil then
+						activate = tonumber(string.gsub(keyObj["activate"],",","."))
+					end
+
 
 					if delay > 0 then
 						needDelay = true
@@ -458,7 +462,6 @@ function LuaExportBeforeNextFrame()
 							GetDevice(device):performClickableAction(code, 0)
 						end
 					end
-				
 				end
 			end
 			if not needDelay then

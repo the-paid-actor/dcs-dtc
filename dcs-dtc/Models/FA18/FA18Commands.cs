@@ -31,8 +31,8 @@ namespace DTC.Models.FA18
 			ufc.AddCommand(new Command(3005, "DL", delayUFC, 1));
 			ufc.AddCommand(new Command(3006, "BCN", delayUFC, 1));
 			ufc.AddCommand(new Command(3007, "OnOff", delayUFCOnOff, 1));
-			ufc.AddCommand(new Command(3008, "COM1", delayUFC, 1));
-			ufc.AddCommand(new Command(3009, "COM2", delayUFC, 1));
+			ufc.AddCommand(new Command(3008, "COM1", delayUFCOnOff, 1));
+			ufc.AddCommand(new Command(3009, "COM2", delayUFCOnOff, 1));
 			ufc.AddCommand(new Command(3010, "Opt1", delayUFCOpt, 1));
 			ufc.AddCommand(new Command(3011, "Opt2", delayUFCOpt, 1));
 			ufc.AddCommand(new Command(3012, "Opt3", delayUFCOpt, 1));
@@ -51,10 +51,10 @@ namespace DTC.Models.FA18
 			ufc.AddCommand(new Command(3028, "CLR", delayUFC, 1));
 			ufc.AddCommand(new Command(3029, "ENT", delayUFCEnt, 1));
 
-			ufc.AddCommand(new Command(3033, "COM1ChInc", 0, 1));
-			ufc.AddCommand(new Command(3033, "COM1ChDec", 0, -1));
-			ufc.AddCommand(new Command(3034, "COM2ChInc", 0, 1));
-			ufc.AddCommand(new Command(3034, "COM2ChDec", 0, -1));
+			ufc.AddCommand(new Command(3033, "COM1ChDec", -1, 0));
+			ufc.AddCommand(new Command(3033, "COM1ChInc", -1, 2));
+			ufc.AddCommand(new Command(3034, "COM2ChDec", -1, 0));
+			ufc.AddCommand(new Command(3034, "COM2ChInc", -1, 2));
 			AddDevice(ufc);
 
 			var ifei = new Device(33, "IFEI");

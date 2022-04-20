@@ -5,8 +5,8 @@ namespace DTC.Models.FA18.Radios
 {
 	public class RadioChannel
 	{
-		private static Regex uhfRegex = new Regex(@"^[2-3][0-9][0-9]\.?[0-9]?[0|2|5|7]?$");
-		private static Regex vhfRegex = new Regex(@"^[0-1]?[0-8][0-9]\.?[0-9]?[0|2|5|7]?$");
+		private static Regex uhfRegex = new Regex(@"^[2-3][0-9][0-9]\.?[0-9]?[0-9]?[0-9]?$");
+		private static Regex vhfRegex = new Regex(@"^[0-1]?[0-8][0-9]\.?[0-9]?[0-9]?[0-9]?$");
 
 		public RadioType Type { get; set; }
 		public int Channel { get; set; }
@@ -23,32 +23,18 @@ namespace DTC.Models.FA18.Radios
 
 		public string GetFrequency()
 		{
-			return Frequency.ToString("000.00").Replace(",", ".");
+			return Frequency.ToString("000.000").Replace(",", ".");
 		}
 
 		public string SetFrequency(string freq)
 		{
-			if (Type == RadioType.UHF)
-			{
-				if (ValidateUHF(freq))
-				{
-					if (Parse(freq, out decimal f))
-					{
-						Frequency = f;
-					}
-				}
-			}
-			else
-			{
-				if (ValidateVHF(freq))
-				{
-					if (Parse(freq, out decimal f))
-					{
-						Frequency = f;
-					}
-				}
-			}
-
+            if (ValidateUHF(freq) || ValidateVHF(freq))
+            {
+                if (Parse(freq, out decimal f))
+                {
+                    Frequency = f;
+                }
+            }
 			return GetFrequency();
 		}
 

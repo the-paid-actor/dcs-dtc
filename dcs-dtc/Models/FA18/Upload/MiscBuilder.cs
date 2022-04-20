@@ -15,6 +15,7 @@ namespace DTC.Models.FA18.Upload
         public override void Build()
         {
             var ufc = _aircraft.GetDevice("UFC");
+            var radAlt = _aircraft.GetDevice("RadAlt");
             var rmfd = _aircraft.GetDevice("RMFD");
             var ifei = _aircraft.GetDevice("IFEI");
 
@@ -24,6 +25,8 @@ namespace DTC.Models.FA18.Upload
                 BuildTACAN(ufc);
             if (_cfg.Misc.BaroToBeUpdated)
                 BuildBaroWarn(ufc, rmfd);
+            if (_cfg.Misc.RadarToBeUpdated)
+                BuildRadarWarn(radAlt);
             if (_cfg.Misc.BlimTac)
                 BuildTacBlim(rmfd);
         }
@@ -53,6 +56,59 @@ namespace DTC.Models.FA18.Upload
             AppendCommand(mfd.GetCommand("OSB-18")); // Menu
             AppendCommand(mfd.GetCommand("OSB-18")); // Menu
             AppendCommand(mfd.GetCommand("OSB-15")); // FCS
+        }
+
+        private void BuildRadarWarn(DCS.Device radAlt)
+        {
+            if(_cfg.Misc.RadarWarn <= 5000)
+            {
+                AppendCommand(radAlt.GetCommand("Decrease"));
+                for (var i = 0; i < 7; i++)
+                {
+                    AppendCommand(radAlt.GetCommand("Increase"));
+                } // Reset to 0 exact
+                
+                // one line is ~5 steps
+                // one line = 20ft while below 400
+                if (_cfg.Misc.RadarWarn > 400)
+                {
+                    for(var i = 0; i < 5 * 20; i++)
+                    {
+                        AppendCommand(radAlt.GetCommand("Increase"));
+                    }
+                } else
+                {
+                    var step = (20 / 5);
+                    for(var i = 0; i < (_cfg.Misc.RadarWarn / step); i++)
+                    {
+                        AppendCommand(radAlt.GetCommand("Increase"));
+                    }
+                }
+                // one line = 50ft while 400 < x < 1000 
+                if (_cfg.Misc.RadarWarn > 1000)
+                {
+                    for(var i = 0; i < 5 * 12; i++)
+                    {
+                        AppendCommand(radAlt.GetCommand("Increase"));
+                    }
+                } else
+                {
+                    var step = (50 / 5);
+                    for(var i = 0; i < ((_cfg.Misc.RadarWarn - 400) / step); i++)
+                    {
+                        AppendCommand(radAlt.GetCommand("Increase"));
+                    }
+                }
+                // one line = 500ft while 1000 < x < 5000 
+                if (_cfg.Misc.RadarWarn > 1000)
+                {
+                    var step = (500 / 5);
+                    for (var i = 0; i < ((_cfg.Misc.RadarWarn - 1000) / step); i++)
+                    {
+                        AppendCommand(radAlt.GetCommand("Increase"));
+                    }
+                }
+            }
         }
 
         private void BuildTacBlim(DCS.Device mfd)

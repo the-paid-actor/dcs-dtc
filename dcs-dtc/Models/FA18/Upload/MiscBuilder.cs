@@ -15,36 +15,29 @@ namespace DTC.Models.FA18.Upload
         public override void Build()
         {
             var ufc = _aircraft.GetDevice("UFC");
-            AppendCommand(ufc.GetCommand("RTN"));
-            AppendCommand(ufc.GetCommand("RTN"));
+            var ifei = _aircraft.GetDevice("IFEI");
+
             if (_cfg.Misc.BingoToBeUpdated)
-                BuildBingo(ufc);
-            if (_cfg.Misc.CARAALOWToBeUpdated)
-                BuildCARA(ufc);
-            if (_cfg.Misc.MSLFloorToBeUpdated)
-                BuildMSLFloor(ufc);
+                BuildBingo(ifei);
             if (_cfg.Misc.TGPCodeToBeUpdated)
                 BuildTGP(ufc);
             if (_cfg.Misc.LSTCodeToBeUpdated)
                 BuildLST(ufc);
-            if (_cfg.Misc.BullseyeToBeUpdated)
-                BuildBullseye(ufc);
             if (_cfg.Misc.TACANToBeUpdated)
                 BuildTACAN(ufc);
-            if (_cfg.Misc.ILSToBeUpdated)
-                BuildILS(ufc);
         }
 
-        private void BuildBingo(DCS.Device ufc)
+        private void BuildBingo(DCS.Device ifei)
         {
             //Bingo
-            AppendCommand(ufc.GetCommand("LIST"));
-            AppendCommand(ufc.GetCommand("2"));
-
-            AppendCommand(BuildDigits(ufc, _cfg.Misc.Bingo.ToString()));
-            AppendCommand(ufc.GetCommand("ENTR"));
-
-            AppendCommand(ufc.GetCommand("RTN"));
+            // AppendCommand(ifei.GetCommand("DOWN"));
+            //AppendCommand(StartCondition("BINGO_ZERO"));
+            for (var i = 0; i < _cfg.Misc.Bingo; i += 100)
+            {
+                AppendCommand(ifei.GetCommand("UP"));
+                AppendCommand(Wait());
+            }
+            //AppendCommand(EndCondition("BINGO_ZERO"));
         }
 
         private void BuildCARA(DCS.Device ufc)
@@ -98,76 +91,25 @@ namespace DTC.Models.FA18.Upload
             AppendCommand(ufc.GetCommand("RTN"));
         }
 
-        private void BuildBullseye(DCS.Device ufc)
-        {
-            // Bullseye
-            AppendCommand(ufc.GetCommand("LIST"));
-            AppendCommand(ufc.GetCommand("0"));
-            AppendCommand(ufc.GetCommand("8"));
-            AppendCommand(Wait());
-
-            if (_cfg.Misc.EnableBullseye)
-            {
-                AppendCommand(StartCondition("BULLS_NOT_SELECTED"));
-                AppendCommand(ufc.GetCommand("0"));
-                AppendCommand(EndCondition("BULLS_NOT_SELECTED"));
-
-                AppendCommand(ufc.GetCommand("DOWN"));
-                AppendCommand(BuildDigits(ufc, DeleteLeadingZeros(_cfg.Misc.BullseyeWP.ToString())));
-                AppendCommand(ufc.GetCommand("ENTR"));
-                AppendCommand(ufc.GetCommand("DOWN"));
-            }
-            else
-            {
-                AppendCommand(StartCondition("BULLS_SELECTED"));
-                AppendCommand(ufc.GetCommand("0"));
-                AppendCommand(EndCondition("BULLS_SELECTED"));
-            }
-
-            AppendCommand(ufc.GetCommand("RTN"));
-        }
 
         private void BuildTACAN(DCS.Device ufc)
         {
             //TACAN
-            AppendCommand(ufc.GetCommand("1"));
+            AppendCommand(ufc.GetCommand("TCN"));
 
             AppendCommand(BuildDigits(ufc, _cfg.Misc.TACANChannel.ToString()));
-            AppendCommand(ufc.GetCommand("ENTR"));
+            AppendCommand(ufc.GetCommand("ENT"));
 
             if (_cfg.Misc.TACANBand == FA18.Misc.TACANBands.X)
             {
-                AppendCommand(StartCondition("TACAN_BAND_Y"));
-                AppendCommand(ufc.GetCommand("0"));
-                AppendCommand(ufc.GetCommand("ENTR"));
-                AppendCommand(EndCondition("TACAN_BAND_Y"));
+                AppendCommand(ufc.GetCommand("Opt4"));
             }
             else
             {
-                AppendCommand(StartCondition("TACAN_BAND_X"));
-                AppendCommand(ufc.GetCommand("0"));
-                AppendCommand(ufc.GetCommand("ENTR"));
-                AppendCommand(EndCondition("TACAN_BAND_X"));
+                AppendCommand(ufc.GetCommand("Opt5"));
             }
 
-            AppendCommand(ufc.GetCommand("RTN"));
-        }
-
-        private void BuildILS(DCS.Device ufc)
-        {
-            // ILS
-            AppendCommand(ufc.GetCommand("1"));
-            AppendCommand(ufc.GetCommand("DOWN"));
-            AppendCommand(ufc.GetCommand("DOWN"));
-
-            AppendCommand(BuildDigits(ufc, RemoveSeparators(_cfg.Misc.GetILSFrequency())));
-            AppendCommand(ufc.GetCommand("ENTR"));
-
-            AppendCommand(BuildDigits(ufc, _cfg.Misc.ILSCourse.ToString()));
-            AppendCommand(ufc.GetCommand("ENTR"));
-
-            AppendCommand(ufc.GetCommand("DOWN"));
-            AppendCommand(ufc.GetCommand("RTN"));
+            AppendCommand(ufc.GetCommand("OnOff"));
         }
     }
 }

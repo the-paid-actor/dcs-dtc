@@ -15,11 +15,11 @@ namespace DTC.Models.FA18
 			var delayMFDs = delay;
 			var delayUFC = delay / 4;
 			var delayUFCOpt = delay / 4;
-			var delayUFCEnt = delay * 3;
+			var delayUFCOnOff = delay;
+			var delayUFCEnt = delay;
 			var delayList = delay / 4;
 			var delayEntr = delay / 2;
-			var delayDown = delay;
-			var delayUp = delay;
+			var delayIFEI = delay / 8;
 			var delaySeq = delay;
 			var delayRtn = delay;
 
@@ -30,7 +30,7 @@ namespace DTC.Models.FA18
 			ufc.AddCommand(new Command(3004, "ILS", delayUFC, 1));
 			ufc.AddCommand(new Command(3005, "DL", delayUFC, 1));
 			ufc.AddCommand(new Command(3006, "BCN", delayUFC, 1));
-			ufc.AddCommand(new Command(3007, "OnOff", delayUFCOpt, 1));
+			ufc.AddCommand(new Command(3007, "OnOff", delayUFCOnOff, 1));
 			ufc.AddCommand(new Command(3008, "COM1", delayUFC, 1));
 			ufc.AddCommand(new Command(3009, "COM2", delayUFC, 1));
 			ufc.AddCommand(new Command(3010, "Opt1", delayUFCOpt, 1));
@@ -57,11 +57,10 @@ namespace DTC.Models.FA18
 			ufc.AddCommand(new Command(3034, "COM2ChDec", 0, -1));
 			AddDevice(ufc);
 
-			var hotas = new Device(16, "HOTAS");
-			hotas.AddCommand(new Command(3030, "DGFT", -1, 1));
-			hotas.AddCommand(new Command(3030, "MSL", -1, -1));
-			hotas.AddCommand(new Command(3030, "CENTER", -1, 0));
-			AddDevice(hotas);
+			var ifei = new Device(33, "IFEI");
+			ifei.AddCommand(new Command(3003, "UP", delayIFEI, 1));
+			ifei.AddCommand(new Command(3004, "DOWN", delayIFEI, 1));
+			AddDevice(ifei);
 
 			var leftMFD = new Device(35, "LMFD");
 			

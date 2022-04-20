@@ -197,7 +197,7 @@ namespace DTC.UI.Aircrafts.FA18
 			if (cboAirbases.SelectedIndex > -1)
 			{
 				var item = (AirbaseComboBoxItem)cboAirbases.SelectedItem;
-				var wpt = new Waypoint(0, item.Airbase, item.Latitude, item.Longitude, item.Elevation);
+				var wpt = new Waypoint(0, item.Airbase, item.Latitude.Substring(0,10), item.Longitude.Substring(0,11), item.Elevation);
 				LoadWaypoint(wpt);
 			}
 		}

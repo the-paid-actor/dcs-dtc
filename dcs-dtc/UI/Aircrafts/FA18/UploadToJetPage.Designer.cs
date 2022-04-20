@@ -46,7 +46,8 @@ namespace DTC.UI.Aircrafts.FA18
             // 
             // chkRadios
             // 
-            this.chkRadios.Enabled = false;
+            this.chkRadios.Checked = true;
+            this.chkRadios.CheckState = System.Windows.Forms.CheckState.Checked;
             this.chkRadios.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F);
             this.chkRadios.Location = new System.Drawing.Point(16, 201);
             this.chkRadios.Margin = new System.Windows.Forms.Padding(4);
@@ -120,7 +121,8 @@ namespace DTC.UI.Aircrafts.FA18
             // 
             // chkMisc
             // 
-            this.chkMisc.Enabled = false;
+            this.chkMisc.Checked = true;
+            this.chkMisc.CheckState = System.Windows.Forms.CheckState.Checked;
             this.chkMisc.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F);
             this.chkMisc.Location = new System.Drawing.Point(16, 234);
             this.chkMisc.Margin = new System.Windows.Forms.Padding(4);

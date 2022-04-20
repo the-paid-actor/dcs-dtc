@@ -5,7 +5,7 @@ namespace DTC.Models.FA18.Waypoints
 {
 	public class Waypoint
 	{
-		private static Regex coordRegex = new Regex("^([N|S] \\d\\d\\.\\d\\d\\.\\d\\d\\d) ([E|W] \\d\\d\\d\\.\\d\\d\\.\\d\\d\\d)$");
+		private static Regex coordRegex = new Regex("^([N|S] \\d\\d\\.\\d\\d\\.\\d\\d) ([E|W] \\d\\d\\d\\.\\d\\d\\.\\d\\d)$");
 
 		public int Sequence { get; set; }
 		public string Name { get; set; }

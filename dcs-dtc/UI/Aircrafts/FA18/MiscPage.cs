@@ -46,38 +46,6 @@ namespace DTC.UI.Aircrafts.FA18
 
             left = padding;
             top += padding + rowHeight;
-            var chkUpdateTGP = new DTCCheckBox();
-            chkUpdateTGP.RelatedTo = "LTD/R";
-            chkUpdateTGP.Checked = _misc.TGPCodeToBeUpdated;
-            chkUpdateTGP.CheckedChanged += chk_OnChange;
-            this.Controls.Add(DTCCheckBox.Make(chkUpdateTGP, left, top, chkWidth, rowHeight));
-            left += padding + chkWidth;
-            this.Controls.Add(DTCLabel.Make("LTD/R Code", left, top, colWidth, rowHeight));
-            left += padding + colWidth;
-
-            this.Controls.AddRange(MakeTGPCodeControls(left, top, rowHeight, _misc.TGPCode.ToString(), (txt) =>
-            {
-                _misc.SetTGPCode(txt);
-            }));
-
-            left = padding;
-            top += padding + rowHeight;
-            var chkUpdateLST = new DTCCheckBox();
-            chkUpdateLST.RelatedTo = "LST";
-            chkUpdateLST.Checked = _misc.LSTCodeToBeUpdated;
-            chkUpdateLST.CheckedChanged += chk_OnChange;
-            this.Controls.Add(DTCCheckBox.Make(chkUpdateLST, left, top, chkWidth, rowHeight));
-            left += padding + chkWidth;
-            this.Controls.Add(DTCLabel.Make("LST Code", left, top, colWidth, rowHeight));
-            left += padding + colWidth;
-
-            this.Controls.AddRange(MakeTGPCodeControls(left, top, rowHeight, _misc.LSTCode.ToString(), (txt) =>
-            {
-                _misc.SetLSTCode(txt);
-            }));
-
-            left = padding;
-            top += padding + rowHeight;
             var chkUpdateTACAN = new DTCCheckBox();
             chkUpdateTACAN.RelatedTo = "TACAN";
             chkUpdateTACAN.Checked = _misc.TACANToBeUpdated;
@@ -177,12 +145,6 @@ namespace DTC.UI.Aircrafts.FA18
             {
                 case "Bingo":
                     _misc.BingoToBeUpdated = chk.Checked;
-                    break;
-                case "LTD/R":
-                    _misc.TGPCodeToBeUpdated = chk.Checked;
-                    break;
-                case "LST":
-                    _misc.LSTCodeToBeUpdated = chk.Checked;
                     break;
                 case "TACAN":
                     _misc.TACANToBeUpdated = chk.Checked;

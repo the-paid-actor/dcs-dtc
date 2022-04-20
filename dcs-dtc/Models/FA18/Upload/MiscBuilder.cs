@@ -19,10 +19,6 @@ namespace DTC.Models.FA18.Upload
 
             if (_cfg.Misc.BingoToBeUpdated)
                 BuildBingo(ifei);
-            if (_cfg.Misc.TGPCodeToBeUpdated)
-                BuildTGP(ufc);
-            if (_cfg.Misc.LSTCodeToBeUpdated)
-                BuildLST(ufc);
             if (_cfg.Misc.TACANToBeUpdated)
                 BuildTACAN(ufc);
         }
@@ -30,7 +26,6 @@ namespace DTC.Models.FA18.Upload
         private void BuildBingo(DCS.Device ifei)
         {
             //Bingo
-            // AppendCommand(ifei.GetCommand("DOWN"));
             AppendCommand(StartCondition("BINGO_ZERO"));
             for (var i = 0; i < _cfg.Misc.Bingo; i += 100)
             {
@@ -39,58 +34,6 @@ namespace DTC.Models.FA18.Upload
             }
             AppendCommand(EndCondition("BINGO_ZERO"));
         }
-
-        private void BuildCARA(DCS.Device ufc)
-        {
-            //CARA
-            AppendCommand(ufc.GetCommand("2"));
-
-            AppendCommand(BuildDigits(ufc, _cfg.Misc.CARAALOW.ToString()));
-            AppendCommand(ufc.GetCommand("ENTR"));
-
-            AppendCommand(ufc.GetCommand("RTN"));
-        }
-
-        private void BuildMSLFloor(DCS.Device ufc)
-        {
-            //MSLFloor
-            AppendCommand(ufc.GetCommand("2"));
-            AppendCommand(ufc.GetCommand("DOWN"));
-
-            AppendCommand(BuildDigits(ufc, _cfg.Misc.MSLFloor.ToString()));
-            AppendCommand(ufc.GetCommand("ENTR"));
-            AppendCommand(ufc.GetCommand("DOWN"));
-
-            AppendCommand(ufc.GetCommand("RTN"));
-        }
-
-        private void BuildTGP(DCS.Device ufc)
-        {
-            // TGP
-            AppendCommand(ufc.GetCommand("LIST"));
-            AppendCommand(ufc.GetCommand("0"));
-            AppendCommand(ufc.GetCommand("5"));
-
-            AppendCommand(BuildDigits(ufc, _cfg.Misc.TGPCode.ToString()));
-            AppendCommand(ufc.GetCommand("ENTR"));
-            AppendCommand(ufc.GetCommand("RTN"));
-        }
-
-        private void BuildLST(DCS.Device ufc)
-        {
-            // LST
-            AppendCommand(ufc.GetCommand("LIST"));
-            AppendCommand(ufc.GetCommand("0"));
-            AppendCommand(ufc.GetCommand("5"));
-            AppendCommand(ufc.GetCommand("DOWN"));
-
-            AppendCommand(BuildDigits(ufc, _cfg.Misc.LSTCode.ToString()));
-            AppendCommand(ufc.GetCommand("ENTR"));
-            AppendCommand(ufc.GetCommand("DOWN"));
-
-            AppendCommand(ufc.GetCommand("RTN"));
-        }
-
 
         private void BuildTACAN(DCS.Device ufc)
         {

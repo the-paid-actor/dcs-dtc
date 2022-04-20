@@ -178,6 +178,7 @@ namespace DTC.Models.FA18.Upload
 			sb.Append(Wait());
 			sb.Append(BuildNumber(ufc, coord.Elev)); // Enter elevation
 			sb.Append(ufc.GetCommand("ENT"));
+			sb.Append(WaitLong());
             sb.Append(lmfd.GetCommand("OSB-14")); // TGT-UFC
             sb.Append(lmfd.GetCommand("OSB-14")); // TGT-UFC
 			sb.Append(ufc.GetCommand("Opt3")); // Pos
@@ -186,10 +187,12 @@ namespace DTC.Models.FA18.Upload
 			sb.Append(Wait());
 			sb.Append(BuildCoordinate(ufc, coord.Lat));
 			sb.Append(ufc.GetCommand("ENT"));
+			sb.Append(WaitLong());
 			sb.Append(ufc.GetCommand("Opt3")); // Lon
 			sb.Append(Wait());
 			sb.Append(BuildCoordinate(ufc, coord.Lon));
 			sb.Append(ufc.GetCommand("ENT"));
+			sb.Append(WaitLong());
             sb.Append(lmfd.GetCommand("OSB-14")); // TGT-UFC
 			return sb.ToString();
         }

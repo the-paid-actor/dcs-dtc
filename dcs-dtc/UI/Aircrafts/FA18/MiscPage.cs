@@ -46,6 +46,33 @@ namespace DTC.UI.Aircrafts.FA18
 
             left = padding;
             top += padding + rowHeight;
+            var chkUpdateBaro = new DTCCheckBox();
+            chkUpdateBaro.RelatedTo = "Baro";
+            chkUpdateBaro.Checked = _misc.BingoToBeUpdated;
+            chkUpdateBaro.CheckedChanged += chk_OnChange;
+            this.Controls.Add(DTCCheckBox.Make(chkUpdateBaro, left, top, chkWidth, rowHeight));
+            left += padding + chkWidth;
+            this.Controls.Add(DTCLabel.Make("Baro ALT", left, top, colWidth, rowHeight));
+            left += padding + colWidth;
+
+            this.Controls.Add(MakeTextBox(left, top, colWidth, rowHeight, "99990", _misc.BaroWarn.ToString(), (txt) =>
+            {
+                txt.Text = _misc.SetBaro(txt.Text);
+                _parent.DataChangedCallback();
+            }));
+
+            left = padding;
+            top += padding + rowHeight;
+            var chkBlim = new DTCCheckBox();
+            chkBlim.RelatedTo = "BLIM";
+            chkBlim.Checked = _misc.BlimTac;
+            chkBlim.CheckedChanged += chk_OnChange;
+            this.Controls.Add(DTCCheckBox.Make(chkBlim, left, top, chkWidth, rowHeight));
+            left += padding + chkWidth;
+            this.Controls.Add(DTCLabel.Make("Tactical AP bank-limit", left, top, colWidth, rowHeight));
+
+            left = padding;
+            top += padding + rowHeight;
             var chkUpdateTACAN = new DTCCheckBox();
             chkUpdateTACAN.RelatedTo = "TACAN";
             chkUpdateTACAN.Checked = _misc.TACANToBeUpdated;
@@ -145,6 +172,12 @@ namespace DTC.UI.Aircrafts.FA18
             {
                 case "Bingo":
                     _misc.BingoToBeUpdated = chk.Checked;
+                    break;
+                case "Baro":
+                    _misc.BaroToBeUpdated = chk.Checked;
+                    break;
+                case "BLIM":
+                    _misc.BlimTac = chk.Checked;
                     break;
                 case "TACAN":
                     _misc.TACANToBeUpdated = chk.Checked;

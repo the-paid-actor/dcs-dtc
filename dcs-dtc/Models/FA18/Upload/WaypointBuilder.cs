@@ -75,14 +75,17 @@ namespace DTC.Models.FA18.Upload
 				AppendCommand(Wait());
 				AppendCommand(BuildCoordinate(ufc, wpt.Latitude));
 				AppendCommand(ufc.GetCommand("ENT"));
+				AppendCommand(WaitLong());
 
 				AppendCommand(BuildCoordinate(ufc, wpt.Longitude));
 				AppendCommand(ufc.GetCommand("ENT"));
+				AppendCommand(WaitLong());
 
 				AppendCommand(ufc.GetCommand("Opt3"));
 				AppendCommand(ufc.GetCommand("Opt1"));
 				AppendCommand(BuildDigits(ufc, wpt.Elevation.ToString()));
 				AppendCommand(ufc.GetCommand("ENT"));
+				AppendCommand(Wait());
 
 				AppendCommand(rmfd.GetCommand("OSB-12")); // Next Waypoint
 			}

@@ -15,6 +15,9 @@ namespace DTC.Models.FA18.Misc
 
 		public int Bingo { get; set; }
 		public bool BingoToBeUpdated { get; set; }
+		public int BaroWarn { get; set; }
+		public bool BaroToBeUpdated { get; set; }
+		public bool BlimTac { get; set; }
 		public int TACANChannel { get; set; }
 		public TACANBands TACANBand { get; set; }
 		public bool TACANToBeUpdated { get; set; }
@@ -23,6 +26,7 @@ namespace DTC.Models.FA18.Misc
 		public MiscSystem()
 		{
 			Bingo = 2000;
+			BaroWarn = 5000;
 
 			TACANChannel = 1;
 			TACANBand = TACANBands.X;
@@ -52,6 +56,17 @@ namespace DTC.Models.FA18.Misc
 				}
 			}
 			return Bingo.ToString();
+		}
+		public string SetBaro(string txt)
+		{
+			if (int.TryParse(txt, out int val))
+			{
+				if (val >= 0 && val <= 99999)
+				{
+					BaroWarn = val;
+				}
+			}
+			return BaroWarn.ToString();
 		}
 	}
 }

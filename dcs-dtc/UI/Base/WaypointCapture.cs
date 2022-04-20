@@ -50,14 +50,14 @@ namespace DTC.UI.Base
 				var latMinutes = Decimal.Multiply(Decimal.Remainder(latitude, Decimal.One), new decimal(60));
 				var longMinutes = Decimal.Multiply(Decimal.Remainder(longitude, Decimal.One), new decimal(60));
 
-				var latSeconds = Decimal.Multiply(Decimal.Remainder(latMinutes, Decimal.One), new decimal(60));
-				var longSeconds = Decimal.Multiply(Decimal.Remainder(longMinutes, Decimal.One), new decimal(60));
+				var latSeconds = TruncateDecimal(Decimal.Multiply(Decimal.Remainder(latMinutes, Decimal.One), new decimal(60)),2);
+				var longSeconds = TruncateDecimal(Decimal.Multiply(Decimal.Remainder(longMinutes, Decimal.One), new decimal(60)),2);
 
 				if (longFormat)
 				{
 					if (dmsFormat)
                     {
-                        var latStr = $"{latitudeHem} {latDegrees.ToString("00")}.{latMinutes.ToString("00")}.{longSeconds.ToString("00.00")}";
+                        var latStr = $"{latitudeHem} {latDegrees.ToString("00")}.{latMinutes.ToString("00")}.{latSeconds.ToString("00.00")}";
                         var longStr = $"{longitudeHem} {longDegrees.ToString("000")}.{longMinutes.ToString("00")}.{longSeconds.ToString("00.00")}";
                         callback(latStr, longStr, elevation);
                     } else {
@@ -70,7 +70,7 @@ namespace DTC.UI.Base
 				{
 					if (dmsFormat)
                     {
-                        var latStr = $"{latitudeHem} {latDegrees.ToString("00")}.{latMinutes.ToString("00")}.{longSeconds.ToString("00")}";
+                        var latStr = $"{latitudeHem} {latDegrees.ToString("00")}.{latMinutes.ToString("00")}.{latSeconds.ToString("00")}";
                         var longStr = $"{longitudeHem} {longDegrees.ToString("000")}.{longMinutes.ToString("00")}.{longSeconds.ToString("00")}";
                         callback(latStr, longStr, elevation);
                     } else {
@@ -80,6 +80,13 @@ namespace DTC.UI.Base
                     }
 				}
 			});
+		}
+
+		public decimal TruncateDecimal(decimal value, int precision)
+		{
+			decimal step = (decimal)Math.Pow(10, precision);
+			decimal tmp = Math.Truncate(step * value);
+			return tmp / step;
 		}
 
 		public void Dispose()

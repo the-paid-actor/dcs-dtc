@@ -31,13 +31,13 @@ namespace DTC.Models.FA18.Upload
         {
             //Bingo
             // AppendCommand(ifei.GetCommand("DOWN"));
-            //AppendCommand(StartCondition("BINGO_ZERO"));
+            AppendCommand(StartCondition("BINGO_ZERO"));
             for (var i = 0; i < _cfg.Misc.Bingo; i += 100)
             {
                 AppendCommand(ifei.GetCommand("UP"));
                 AppendCommand(Wait());
             }
-            //AppendCommand(EndCondition("BINGO_ZERO"));
+            AppendCommand(EndCondition("BINGO_ZERO"));
         }
 
         private void BuildCARA(DCS.Device ufc)

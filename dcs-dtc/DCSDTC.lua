@@ -200,9 +200,9 @@ local function checkConditionBingoIsZero()
 	local table =parse_indication(5);
 	local str = table["txt_BINGO"]
 	if str == "0" then
-		return false
+		return true
 	end 
-	return true
+	return false
 end
 
 local function checkConditionInSequence(i)

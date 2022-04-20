@@ -442,10 +442,6 @@ function LuaExportBeforeNextFrame()
 					delay = tonumber(keyObj["delay"])
 
 					local activate = tonumber(keyObj["activate"])
-					if activate == nil then
-						activate = tonumber(string.gsub(keyObj["activate"],",","."))
-					end
-
 
 					if delay > 0 then
 						needDelay = true

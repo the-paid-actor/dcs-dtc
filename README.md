@@ -48,6 +48,7 @@ Affected by this are the following features:
   - Countermeasure settings
   - Bingo fuel setting
   - AP BLIM setting
+  - Pre-Planned coordinates
 
 The setting of Pre-Planned coordinates relies on the settings for all stations being correct. 
 If those settings are not correct, results may vary from everything working fine, the coordinates being set on the wrong station or any station not receving the set coordinates.

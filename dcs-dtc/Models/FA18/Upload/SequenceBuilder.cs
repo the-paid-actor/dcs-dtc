@@ -65,7 +65,6 @@ namespace DTC.Models.FA18.Upload
 
 		public void ClearSequence(Device ufc)
         {
-            // AppendCommand(ufc.GetCommand("CLR")); // Enter
 			for (var i = 0; i < 60; i++)
             {
 				AppendCommand(StartCondition("IN_SEQ_" + i));

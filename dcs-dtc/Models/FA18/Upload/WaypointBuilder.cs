@@ -15,7 +15,7 @@ namespace DTC.Models.FA18.Upload
 
 		private void selectWp0(Device rmfd, int i)
         {
-			if (i < 140)
+			if (i < 140) // It might not notice on the first pass, so we go around once more
 			{
 				AppendCommand(StartCondition("NOT_AT_WP0"));
 				AppendCommand(rmfd.GetCommand("OSB-13"));
@@ -36,7 +36,6 @@ namespace DTC.Models.FA18.Upload
 
 			var wptDiff = wptEnd - wptStart;
 			
-
 			var ufc = _aircraft.GetDevice("UFC");
 			var rmfd = _aircraft.GetDevice("RMFD");
 			AppendCommand(rmfd.GetCommand("OSB-18")); // MENU
@@ -56,15 +55,7 @@ namespace DTC.Models.FA18.Upload
 			for (var i = 0; i < wptDiff; i++)
 			{
 				Waypoint wpt;
-				if (i < wpts.Count)
-				{
-					wpt = wpts[i];
-				}
-				else
-				{
-					//Repeats the last waypoint till it fills
-					wpt = wpts[wpts.Count - 1];
-				}
+                wpt = wpts[i];
 
 				if (wpt.Blank)
 				{
@@ -91,7 +82,7 @@ namespace DTC.Models.FA18.Upload
 			}
 			for (var i = 0; i < wptDiff; i++)
 			{
-				AppendCommand(rmfd.GetCommand("OSB-13"));
+				AppendCommand(rmfd.GetCommand("OSB-13")); // Prev Waypoint
 			}
 
             AppendCommand(Wait());

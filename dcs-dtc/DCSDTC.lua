@@ -7,7 +7,6 @@ local socket = require("socket")
 
 local JSON = loadfile("Scripts\\JSON.lua")()
 
-local logFile = io.open(lfs.writedir() .. [[Logs\DCSDCT.log]], "w")
 local needDelay = false
 local keypressinprogress = false
 local data
@@ -220,9 +219,6 @@ end
 local function checkConditionIsJdam(i, n)
 	local table =parse_indication(2);
 	local str = table["STA".. i .. "_Label_TYPE"]
-	logFile:write("Checking if Station " .. i .. " is J-".. n .."\n")
-	logFile:write("It is ".. str)
-	logFile:flush()
 	if str == "J-" .. n then 
 		return true 
 	end
@@ -263,71 +259,6 @@ local function checkConditionIsJsowC(i)
 		return true 
 	end
 	return false
-end
-
-local function DumpIndicators()
-	local table = parse_indication(1);
-	for k,v in pairs(table) do
-		logFile:write("INDICATOR 1 - " .. k .. ": " .. v .. "\n")
-		logFile:flush()
-	end
-	table = parse_indication(2);
-	for k,v in pairs(table) do
-		logFile:write("INDICATOR 2 - " .. k .. ": " .. v .. "\n")
-		logFile:flush()
-	end
-	table = parse_indication(3);
-	for k,v in pairs(table) do
-		logFile:write("INDICATOR 3 - " .. k .. ": " .. v .. "\n")
-		logFile:flush()
-	end
-	table = parse_indication(4);
-	for k,v in pairs(table) do
-		logFile:write("INDICATOR 4 - " .. k .. ": " .. v .. "\n")
-		logFile:flush()
-	end
-	table = parse_indication(5);
-	for k,v in pairs(table) do
-		logFile:write("INDICATOR 5 - " .. k .. ": " .. v .. "\n")
-		logFile:flush()
-	end
-	table = parse_indication(6);
-	for k,v in pairs(table) do
-		logFile:write("INDICATOR 6 - " .. k .. ": " .. v .. "\n")
-		logFile:flush()
-	end
-	table = parse_indication(7);
-	for k,v in pairs(table) do
-		logFile:write("INDICATOR 7 - " .. k .. ": " .. v .. "\n")
-		logFile:flush()
-	end
-	table = parse_indication(8);
-	for k,v in pairs(table) do
-		logFile:write("INDICATOR 8 - " .. k .. ": " .. v .. "\n")
-		logFile:flush()
-	end
-	table = parse_indication(9);
-	for k,v in pairs(table) do
-		logFile:write("INDICATOR 9 - " .. k .. ": " .. v .. "\n")
-		logFile:flush()
-	end
-	table = parse_indication(10);
-	for k,v in pairs(table) do
-		logFile:write("INDICATOR 10 - " .. k .. ": " .. v .. "\n")
-		logFile:flush()
-	end
-	table = parse_indication(11);
-	for k,v in pairs(table) do
-		logFile:write("INDICATOR 11 - " .. k .. ": " .. v .. "\n")
-		logFile:flush()
-	end
-	table = parse_indication(12);
-	for k,v in pairs(table) do
-		logFile:write("INDICATOR 12 - " .. k .. ": " .. v .. "\n")
-		logFile:flush()
-	end
-
-	return true
 end
 
 local function checkConditionHTSOnMFD(mfd)
@@ -372,8 +303,6 @@ local function checkCondition(condition)
 		return  checkConditionIsSlam(string.match(condition, "%d+"));
 	elseif condition:find("^STA_IS_SLAMER_") ~= nil then
 		return  checkConditionIsSlamER(string.match(condition, "%d+"));
-	elseif condition == "DEBUG" then
-		return  DumpIndicators();
 	elseif condition == "HARM" then
 		return checkConditionHARM();
 	elseif condition == "HTS_DED" then

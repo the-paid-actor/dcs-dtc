@@ -30,6 +30,7 @@ namespace DTC.UI.CommonPages
 		private void InitializeComponent()
 		{
 			this.btnF16 = new System.Windows.Forms.Button();
+			this.btnF18 = new System.Windows.Forms.Button();
 			this.btnWptDatabase = new System.Windows.Forms.Button();
 			this.SuspendLayout();
 			// 
@@ -48,6 +49,23 @@ namespace DTC.UI.CommonPages
 			this.btnF16.TextAlign = System.Drawing.ContentAlignment.TopLeft;
 			this.btnF16.UseVisualStyleBackColor = true;
 			this.btnF16.Click += new System.EventHandler(this.btnF16_Click);
+
+			// 
+			// btnF18
+			// 
+			this.btnF18.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+			this.btnF18.Font = new System.Drawing.Font("Microsoft Sans Serif", 20.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+			this.btnF18.ForeColor = System.Drawing.Color.Black;
+			this.btnF18.Image = global::DTC.Properties.Resources.F16;
+			this.btnF18.Location = new System.Drawing.Point(230, 14);
+			this.btnF18.Name = "btnF18";
+			this.btnF18.Padding = new System.Windows.Forms.Padding(5);
+			this.btnF18.Size = new System.Drawing.Size(200, 100);
+			this.btnF18.TabIndex = 3;
+			this.btnF18.Text = "F/A-18C Hornet";
+			this.btnF18.TextAlign = System.Drawing.ContentAlignment.TopLeft;
+			this.btnF18.UseVisualStyleBackColor = true;
+			this.btnF18.Click += new System.EventHandler(this.btnF18_Click);
 			// 
 			// btnWptDatabase
 			// 
@@ -72,6 +90,7 @@ namespace DTC.UI.CommonPages
 			this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
 			this.BackColor = System.Drawing.Color.PaleGoldenrod;
 			this.Controls.Add(this.btnF16);
+			this.Controls.Add(this.btnF18);
 			this.Controls.Add(this.btnWptDatabase);
 			this.Name = "MainPage";
 			this.Size = new System.Drawing.Size(669, 434);
@@ -82,6 +101,7 @@ namespace DTC.UI.CommonPages
 		#endregion
 
 		private System.Windows.Forms.Button btnF16;
+		private System.Windows.Forms.Button btnF18;
 		private System.Windows.Forms.Button btnWptDatabase;
 	}
 }

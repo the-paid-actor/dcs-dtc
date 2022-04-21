@@ -503,6 +503,7 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\F16.png" />
+    <None Include="Resources\FA18.png" />
     <Content Include="Resources\Iconleak-Atrous-Disk.ico" />
     <None Include="Resources\Waypoints.png" />
     <Content Include="Structure.txt" />

@@ -79,9 +79,12 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Models\DCS\Emitters.cs" />
+    <Compile Include="Models\FA18\CMS\CMSystem.cs" />
+    <Compile Include="Models\FA18\CMS\Program.cs" />
     <Compile Include="Models\FA18\PrePlanned\PrePlannedCoordinate.cs" />
     <Compile Include="Models\FA18\PrePlanned\PrePlannedStation.cs" />
     <Compile Include="Models\FA18\PrePlanned\PrePlannedSystem.cs" />
+    <Compile Include="Models\FA18\Upload\CMSBuilder.cs" />
     <Compile Include="Models\FA18\Upload\PrePlannedBuilder.cs" />
     <Compile Include="Models\FA18\Upload\SequenceBuilder.cs" />
     <Compile Include="Models\FA18\FA18Commands.cs" />
@@ -131,6 +134,12 @@
     <Compile Include="Models\Presets\Aircraft.cs" />
     <Compile Include="Models\Presets\Preset.cs" />
     <Compile Include="Models\WaypointDB\WaypointDB.cs" />
+    <Compile Include="UI\Aircrafts\FA18\CMSPage.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="UI\Aircrafts\FA18\CMSPage.Designer.cs">
+      <DependentUpon>CMSPage.cs</DependentUpon>
+    </Compile>
     <Compile Include="UI\Aircrafts\FA18\LoadSavePage.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -354,6 +363,9 @@
     <Compile Include="UI\CommonPages\PresetsPage.Designer.cs">
       <DependentUpon>PresetsPage.cs</DependentUpon>
     </Compile>
+    <EmbeddedResource Include="UI\Aircrafts\FA18\CMSPage.resx">
+      <DependentUpon>CMSPage.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="UI\Aircrafts\FA18\LoadSavePage.resx">
       <DependentUpon>LoadSavePage.cs</DependentUpon>
     </EmbeddedResource>

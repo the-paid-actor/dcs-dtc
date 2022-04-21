@@ -44,6 +44,12 @@ namespace DTC.Models
 				prePlannedBuilder.Build();
 			}
 
+			if (_cfg.CMS.EnableUpload)
+			{
+				var cmsBuilder = new CMSBuilder(_cfg, fa18, sb);
+				cmsBuilder.Build();
+			}
+
 			if (_cfg.Radios.EnableUpload)
 			{
 				var radioBuilder = new RadioBuilder(_cfg, fa18, sb);

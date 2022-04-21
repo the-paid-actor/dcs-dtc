@@ -2,6 +2,7 @@
 using DTC.Models.FA18.Sequences;
 using DTC.Models.FA18.Radios;
 using DTC.Models.FA18.PrePlanned;
+using DTC.Models.FA18.CMS;
 using Newtonsoft.Json;
 using DTC.Models.Base;
 using DTC.Models.FA18.Misc;
@@ -14,6 +15,7 @@ namespace DTC.Models.FA18
 		public SequenceSystem Sequences = new SequenceSystem();
 		public PrePlannedSystem PrePlanned = new PrePlannedSystem();
 		public RadioSystem Radios = new RadioSystem();
+		public CMSystem CMS = new CMSystem();
 		public MiscSystem Misc = new MiscSystem();
 
 		public string ToJson()
@@ -84,6 +86,14 @@ namespace DTC.Models.FA18
 			if (cfg.Sequences != null)
 			{
 				Sequences = cfg.Sequences;
+			}
+			if (cfg.Radios != null)
+			{
+				Radios = cfg.Radios;
+			}
+			if (cfg.CMS != null)
+			{
+				CMS = cfg.CMS;
 			}
 		}
 

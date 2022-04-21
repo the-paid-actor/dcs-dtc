@@ -42,6 +42,7 @@ namespace DTC.UI.Aircrafts.FA18
             this.chkMisc = new System.Windows.Forms.CheckBox();
             this.cbSequences = new System.Windows.Forms.CheckBox();
             this.cbPrePlanned = new System.Windows.Forms.CheckBox();
+            this.cbCMS = new System.Windows.Forms.CheckBox();
             this.SuspendLayout();
             // 
             // chkRadios
@@ -49,7 +50,7 @@ namespace DTC.UI.Aircrafts.FA18
             this.chkRadios.Checked = true;
             this.chkRadios.CheckState = System.Windows.Forms.CheckState.Checked;
             this.chkRadios.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F);
-            this.chkRadios.Location = new System.Drawing.Point(16, 201);
+            this.chkRadios.Location = new System.Drawing.Point(16, 150);
             this.chkRadios.Margin = new System.Windows.Forms.Padding(4);
             this.chkRadios.Name = "chkRadios";
             this.chkRadios.Size = new System.Drawing.Size(78, 25);
@@ -124,7 +125,7 @@ namespace DTC.UI.Aircrafts.FA18
             this.chkMisc.Checked = true;
             this.chkMisc.CheckState = System.Windows.Forms.CheckState.Checked;
             this.chkMisc.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F);
-            this.chkMisc.Location = new System.Drawing.Point(16, 234);
+            this.chkMisc.Location = new System.Drawing.Point(16, 183);
             this.chkMisc.Margin = new System.Windows.Forms.Padding(4);
             this.chkMisc.Name = "chkMisc";
             this.chkMisc.Size = new System.Drawing.Size(167, 25);
@@ -161,11 +162,26 @@ namespace DTC.UI.Aircrafts.FA18
             this.cbPrePlanned.UseVisualStyleBackColor = true;
             this.cbPrePlanned.CheckedChanged += new System.EventHandler(this.cbPrePlanned_CheckedChanged);
             // 
+            // cbCMS
+            // 
+            this.cbCMS.Checked = true;
+            this.cbCMS.CheckState = System.Windows.Forms.CheckState.Checked;
+            this.cbCMS.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F);
+            this.cbCMS.Location = new System.Drawing.Point(16, 117);
+            this.cbCMS.Margin = new System.Windows.Forms.Padding(4);
+            this.cbCMS.Name = "cbCMS";
+            this.cbCMS.Size = new System.Drawing.Size(201, 25);
+            this.cbCMS.TabIndex = 10;
+            this.cbCMS.Text = "Countermeasure Programs";
+            this.cbCMS.UseVisualStyleBackColor = true;
+            this.cbCMS.CheckedChanged += new System.EventHandler(this.cbCMS_CheckedChanged);
+            // 
             // UploadToJetPage
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 20F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.PaleGoldenrod;
+            this.Controls.Add(this.cbCMS);
             this.Controls.Add(this.cbPrePlanned);
             this.Controls.Add(this.cbSequences);
             this.Controls.Add(this.btnUpload);
@@ -193,5 +209,6 @@ namespace DTC.UI.Aircrafts.FA18
 		private System.Windows.Forms.CheckBox chkMisc;
         private System.Windows.Forms.CheckBox cbSequences;
         private System.Windows.Forms.CheckBox cbPrePlanned;
+        private System.Windows.Forms.CheckBox cbCMS;
     }
 }

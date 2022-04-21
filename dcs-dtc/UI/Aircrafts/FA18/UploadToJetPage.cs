@@ -22,6 +22,7 @@ namespace DTC.UI.Aircrafts.FA18
 			chkWaypoints.Checked = _cfg.Waypoints.EnableUpload;
 			cbSequences.Checked = _cfg.Sequences.EnableUpload;
 			cbPrePlanned.Checked = _cfg.PrePlanned.EnableUpload;
+			cbCMS.Checked = _cfg.CMS.EnableUpload;
 			chkRadios.Checked = _cfg.Radios.EnableUpload;
 			chkMisc.Checked = _cfg.Misc.EnableUpload;
 
@@ -34,6 +35,7 @@ namespace DTC.UI.Aircrafts.FA18
 				_cfg.Waypoints.EnableUpload || 
 				_cfg.Sequences.EnableUpload || 
 				_cfg.PrePlanned.EnableUpload || 
+				_cfg.CMS.EnableUpload ||
 				_cfg.Radios.EnableUpload || 
 				_cfg.Misc.EnableUpload
 				);
@@ -93,6 +95,13 @@ namespace DTC.UI.Aircrafts.FA18
 		private void chkMisc_CheckedChanged(object sender, EventArgs e)
 		{
 			_cfg.Misc.EnableUpload = chkMisc.Checked;
+			_parent.DataChangedCallback();
+			CheckUploadButtonEnabled();
+		}
+
+		private void cbCMS_CheckedChanged(object sender, EventArgs e)
+		{
+			_cfg.CMS.EnableUpload = cbCMS.Checked;
 			_parent.DataChangedCallback();
 			CheckUploadButtonEnabled();
 		}

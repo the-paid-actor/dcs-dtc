@@ -55,6 +55,7 @@ namespace DTC.UI.CommonPages
 					new Aircrafts.FA18.WaypointsPage(this, cfg.Waypoints),
 					new Aircrafts.FA18.SequencePage(this, cfg.Sequences),
 					new Aircrafts.FA18.PrePlannedPage(this, cfg.PrePlanned),
+					new Aircrafts.FA18.CMSPage(this, cfg.CMS),
 					new Aircrafts.FA18.RadioPage(this, cfg.Radios),
 					new Aircrafts.FA18.MiscPage(this, cfg.Misc)
 				};

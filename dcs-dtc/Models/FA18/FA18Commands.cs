@@ -22,6 +22,7 @@ namespace DTC.Models.FA18
 			var delayIFEI = delay / 2;
 			var delaySeq = delay;
 			var delayRot = delay / 20;
+			var delayDisp = 16000;
 
 			var ufc = new Device(25, "UFC");
 			ufc.AddCommand(new Command(3001, "AP", delayUFC, 1));
@@ -114,6 +115,12 @@ namespace DTC.Models.FA18
 			radarAltimeter.AddCommand(new Command(3002, "Increase", delayRot, 0.015));
 			radarAltimeter.AddCommand(new Command(3001, "Test", delay, 1));
 			AddDevice(radarAltimeter);
+
+			var cmds = new Device(54, "CMDS");
+			cmds.AddCommand(new Command(3001, "ON", -1, 0.1));
+			cmds.AddCommand(new Command(3001, "OFF", -1, -1));
+			cmds.AddCommand(new Command(3001, "BYPASS", -1, 1));
+			AddDevice(cmds);
 		}
 
 		private void AddDevice(Device d)

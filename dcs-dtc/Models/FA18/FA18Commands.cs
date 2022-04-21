@@ -17,12 +17,8 @@ namespace DTC.Models.FA18
 			var delayUFCOpt = delay / 4;
 			var delayUFCOnOff = delay;
 			var delayUFCEnt = delay / 2;
-			var delayList = delay / 4;
-			var delayEntr = delay / 2;
 			var delayIFEI = delay / 2;
-			var delaySeq = delay;
 			var delayRot = delay / 20;
-			var delayDisp = 16000;
 
 			var ufc = new Device(25, "UFC");
 			ufc.AddCommand(new Command(3001, "AP", delayUFC, 1));

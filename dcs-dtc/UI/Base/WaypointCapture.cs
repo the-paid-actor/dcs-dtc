@@ -61,8 +61,8 @@ namespace DTC.UI.Base
                         var longStr = $"{longitudeHem} {longDegrees.ToString("000")}.{longMinutes.ToString("00")}.{longSeconds.ToString("00.00")}";
                         callback(latStr, longStr, elevation);
                     } else {
-                        var latStr = $"{latitudeHem} {latDegrees.ToString("00")}.{latMinutes.ToString("00.0000", CultureInfo.InvariantCulture)}";
-                        var longStr = $"{longitudeHem} {longDegrees.ToString("000")}.{longMinutes.ToString("00.0000", CultureInfo.InvariantCulture)}";
+                        var latStr = $"{latitudeHem} {latDegrees.ToString("00")}.{TruncateDecimal(latMinutes,4).ToString("00.0000", CultureInfo.InvariantCulture)}";
+                        var longStr = $"{longitudeHem} {longDegrees.ToString("000")}.{TruncateDecimal(longMinutes,4).ToString("00.0000", CultureInfo.InvariantCulture)}";
                         callback(latStr, longStr, elevation);
                     }
 				}
@@ -74,8 +74,8 @@ namespace DTC.UI.Base
                         var longStr = $"{longitudeHem} {longDegrees.ToString("000")}.{longMinutes.ToString("00")}.{longSeconds.ToString("00")}";
                         callback(latStr, longStr, elevation);
                     } else {
-                        var latStr = $"{latitudeHem} {latDegrees.ToString("00")}.{latMinutes.ToString("00.000", CultureInfo.InvariantCulture)}";
-                        var longStr = $"{longitudeHem} {longDegrees.ToString("000")}.{longMinutes.ToString("00.000", CultureInfo.InvariantCulture)}";
+                        var latStr = $"{latitudeHem} {latDegrees.ToString("00")}.{TruncateDecimal(latMinutes,3).ToString("00.000", CultureInfo.InvariantCulture)}";
+                        var longStr = $"{longitudeHem} {longDegrees.ToString("000")}.{TruncateDecimal(longMinutes,3).ToString("00.000", CultureInfo.InvariantCulture)}";
                         callback(latStr, longStr, elevation);
                     }
 				}

@@ -54,7 +54,7 @@ namespace DTC.UI.Base.GlobalHotKey
 
       hotkey = new HotKey();
       hotkey.Key = key;
-      hotkey.Modifiers = modifiers.ToArray();
+      hotkey.Modifiers = modifiers.Distinct().ToArray();
 
       return true;
     }

@@ -12,11 +12,11 @@ namespace DTC.Models.FA18.CMS
 		public CMSystem()
 		{
 			Programs = new Program[5];
-			Programs[0] = new Program(1, 0, 1, (decimal)0.75, 5, false) ;
+			Programs[0] = new Program(1, 1, 1, (decimal)1.0, 10, false) ;
 			Programs[1] = new Program(2, 1, 1, (decimal)0.5, 10, false) ;
 			Programs[2] = new Program(3, 2, 2, (decimal)1.0, 5, false) ;
 			Programs[3] = new Program(4, 2, 2, (decimal)0.5, 10, false) ;
-			Programs[4] = new Program(5, 1, 0, (decimal)1.5, 5, false) ;
+			Programs[4] = new Program(5, 1, 1, (decimal)1.0, 2, false) ;
 
 			EnableUpload = true;
 		}

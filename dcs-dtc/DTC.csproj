@@ -218,6 +218,7 @@
     <Compile Include="UI\Base\Controls\DTCCheckBox.Designer.cs">
       <DependentUpon>DTCCheckBox.cs</DependentUpon>
     </Compile>
+    <Compile Include="UI\Base\GlobalHotKey.cs" />
     <Compile Include="UI\Base\SortableBindingList.cs" />
     <Compile Include="UI\Base\Controls\DTCBreadCrumb.cs">
       <SubType>UserControl</SubType>

@@ -54,6 +54,7 @@ namespace DTC.UI
 			{
 				var p = _pages.Pop();
 				pnlPages.Controls.Remove(p);
+				p.Dispose();
 				breadCrumbs.PopCrumb();
 			}
 

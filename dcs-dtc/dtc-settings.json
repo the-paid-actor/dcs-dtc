@@ -1,1 +1,1 @@
-{"TCPSendPort":43001,"UDPReceivePort":43000,"CommandDelayMs":200}
+{"TCPSendPort":43001,"UDPReceivePort":43000,"CommandDelayMs":200,"UploadHotKey": "RCtrl+Back"}

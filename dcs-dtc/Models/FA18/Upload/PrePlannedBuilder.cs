@@ -278,6 +278,7 @@ namespace DTC.Models.FA18.Upload
 			var latStr = RemoveSeparators(coord.Replace(" ", ""));
 			var i = 0;
 			var lon = false;
+			var longLon = false;
 
 			foreach (var c in latStr.ToCharArray())
 			{
@@ -307,13 +308,16 @@ namespace DTC.Models.FA18.Upload
 				{
                     if (!(i == 0 && c == '0' && lon))
                     {
+						if(i == 0 && c == '1' && lon) longLon = true;
+
                         sb.Append(ufc.GetCommand(c.ToString()));
                         i++;
                         lon = false;
                     }					
-					if(i == 6) {
+					if(i == 6 && !longLon || longLon && i == 7) {
 						sb.Append(Wait());
 						sb.Append(ufc.GetCommand("ENT"));
+						sb.Append(Wait());
 					}
 							
 				}

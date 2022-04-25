@@ -514,6 +514,12 @@
                 "Longitude": "E 036.30.255",
                 "Elevation": 2007
             },
+			{
+                "Name": "Deir ez-Zor",
+                "Latitude": "N 35.16.849",
+                "Longitude": "E 040.11.440",
+                "Elevation": 671
+            },
             {
                 "Name": "Ercan",
                 "Latitude": "N 35.09.554",
@@ -545,6 +551,24 @@
                 "Elevation": 147
             },
             {
+                "Name": "H3",
+                "Latitude": "N 32.56.459",
+                "Longitude": "E 039.43.954",
+                "Elevation": 2542
+            },           
+			{
+                "Name": "H3 Northwest",
+                "Latitude": "N 33.04.221",
+                "Longitude": "E 039.36.397",
+                "Elevation": 2577
+            },
+			{
+                "Name": "H3 Southwest",
+                "Latitude": "N 32.44.281",
+                "Longitude": "E 039.36.734",
+                "Elevation": 2670
+            },
+			{
                 "Name": "H4",
                 "Latitude": "N 32.32.211",
                 "Longitude": "E 038.12.382",
@@ -675,6 +699,12 @@
                 "Latitude": "N 32.58.756",
                 "Longitude": "E 035.34.359",
                 "Elevation": 865
+            },
+			{
+                "Name": "Ruwayshid",
+                "Latitude": "N 32.24.221",
+                "Longitude": "E 039.08.532",
+                "Elevation": 2979
             },
             {
                 "Name": "Sayqal",

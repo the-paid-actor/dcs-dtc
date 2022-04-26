@@ -41,6 +41,7 @@ namespace DTC.UI.Aircrafts.FA18
             this.cbSeq1 = new System.Windows.Forms.CheckBox();
             this.cbSeq2 = new System.Windows.Forms.CheckBox();
             this.cbSeq3 = new System.Windows.Forms.CheckBox();
+            this.label4 = new System.Windows.Forms.Label();
             this.SuspendLayout();
             // 
             // panel1
@@ -54,21 +55,21 @@ namespace DTC.UI.Aircrafts.FA18
             // 
             // seq1
             // 
-            this.seq1.Location = new System.Drawing.Point(74, 70);
+            this.seq1.Location = new System.Drawing.Point(74, 86);
             this.seq1.Name = "seq1";
             this.seq1.Size = new System.Drawing.Size(422, 20);
             this.seq1.TabIndex = 100;
             // 
             // seq2
             // 
-            this.seq2.Location = new System.Drawing.Point(74, 121);
+            this.seq2.Location = new System.Drawing.Point(74, 137);
             this.seq2.Name = "seq2";
             this.seq2.Size = new System.Drawing.Size(422, 20);
             this.seq2.TabIndex = 101;
             // 
             // seq3
             // 
-            this.seq3.Location = new System.Drawing.Point(74, 174);
+            this.seq3.Location = new System.Drawing.Point(74, 190);
             this.seq3.Name = "seq3";
             this.seq3.Size = new System.Drawing.Size(422, 20);
             this.seq3.TabIndex = 102;
@@ -76,7 +77,7 @@ namespace DTC.UI.Aircrafts.FA18
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(71, 54);
+            this.label1.Location = new System.Drawing.Point(71, 70);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(65, 13);
             this.label1.TabIndex = 103;
@@ -85,7 +86,7 @@ namespace DTC.UI.Aircrafts.FA18
             // label2
             // 
             this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(71, 105);
+            this.label2.Location = new System.Drawing.Point(71, 121);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(65, 13);
             this.label2.TabIndex = 104;
@@ -94,7 +95,7 @@ namespace DTC.UI.Aircrafts.FA18
             // label3
             // 
             this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(71, 158);
+            this.label3.Location = new System.Drawing.Point(71, 174);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(65, 13);
             this.label3.TabIndex = 105;
@@ -103,7 +104,7 @@ namespace DTC.UI.Aircrafts.FA18
             // cbSeq1
             // 
             this.cbSeq1.AutoSize = true;
-            this.cbSeq1.Location = new System.Drawing.Point(53, 73);
+            this.cbSeq1.Location = new System.Drawing.Point(53, 89);
             this.cbSeq1.Name = "cbSeq1";
             this.cbSeq1.Size = new System.Drawing.Size(15, 14);
             this.cbSeq1.TabIndex = 106;
@@ -112,7 +113,7 @@ namespace DTC.UI.Aircrafts.FA18
             // cbSeq2
             // 
             this.cbSeq2.AutoSize = true;
-            this.cbSeq2.Location = new System.Drawing.Point(53, 124);
+            this.cbSeq2.Location = new System.Drawing.Point(53, 140);
             this.cbSeq2.Name = "cbSeq2";
             this.cbSeq2.Size = new System.Drawing.Size(15, 14);
             this.cbSeq2.TabIndex = 107;
@@ -121,17 +122,27 @@ namespace DTC.UI.Aircrafts.FA18
             // cbSeq3
             // 
             this.cbSeq3.AutoSize = true;
-            this.cbSeq3.Location = new System.Drawing.Point(53, 177);
+            this.cbSeq3.Location = new System.Drawing.Point(53, 193);
             this.cbSeq3.Name = "cbSeq3";
             this.cbSeq3.Size = new System.Drawing.Size(15, 14);
             this.cbSeq3.TabIndex = 108;
             this.cbSeq3.UseVisualStyleBackColor = true;
+            // 
+            // label4
+            // 
+            this.label4.AutoSize = true;
+            this.label4.Location = new System.Drawing.Point(53, 38);
+            this.label4.Name = "label4";
+            this.label4.Size = new System.Drawing.Size(399, 13);
+            this.label4.TabIndex = 109;
+            this.label4.Text = "Sequences are entered as comma separated waypoint numbers. (ex. 1,5,8,9,15,53)";
             // 
             // SequencePage
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.PaleGoldenrod;
+            this.Controls.Add(this.label4);
             this.Controls.Add(this.cbSeq3);
             this.Controls.Add(this.cbSeq2);
             this.Controls.Add(this.cbSeq1);
@@ -160,5 +171,6 @@ namespace DTC.UI.Aircrafts.FA18
         private System.Windows.Forms.CheckBox cbSeq1;
         private System.Windows.Forms.CheckBox cbSeq2;
         private System.Windows.Forms.CheckBox cbSeq3;
+        private System.Windows.Forms.Label label4;
     }
 }

@@ -240,12 +240,11 @@
             "JSOWC",
             "SLAM",
             "SLAMER",
-            "Anti-Air",
-            "Nothing",
+            "Anti-Air/Nothing",
             "Other-AG"});
             this.ddType8.Location = new System.Drawing.Point(9, 34);
             this.ddType8.Name = "ddType8";
-            this.ddType8.Size = new System.Drawing.Size(89, 24);
+            this.ddType8.Size = new System.Drawing.Size(110, 24);
             this.ddType8.TabIndex = 1;
             this.ddType8.SelectedIndexChanged += new System.EventHandler(this.ddType8_SelectedIndexChanged);
             // 
@@ -411,12 +410,11 @@
             "JSOWC",
             "SLAM",
             "SLAMER",
-            "Anti-Air",
-            "Nothing",
+            "Anti-Air/Nothing",
             "Other-AG"});
             this.ddType7.Location = new System.Drawing.Point(9, 34);
             this.ddType7.Name = "ddType7";
-            this.ddType7.Size = new System.Drawing.Size(89, 24);
+            this.ddType7.Size = new System.Drawing.Size(110, 24);
             this.ddType7.TabIndex = 1;
             this.ddType7.SelectedIndexChanged += new System.EventHandler(this.ddType7_SelectedIndexChanged);
             // 
@@ -582,12 +580,11 @@
             "JSOWC",
             "SLAM",
             "SLAMER",
-            "Anti-Air",
-            "Nothing",
+            "Anti-Air/Nothing",
             "Other-AG"});
             this.ddType3.Location = new System.Drawing.Point(9, 34);
             this.ddType3.Name = "ddType3";
-            this.ddType3.Size = new System.Drawing.Size(89, 24);
+            this.ddType3.Size = new System.Drawing.Size(110, 24);
             this.ddType3.TabIndex = 1;
             this.ddType3.SelectedIndexChanged += new System.EventHandler(this.ddType3_SelectedIndexChanged);
             // 
@@ -753,12 +750,11 @@
             "JSOWC",
             "SLAM",
             "SLAMER",
-            "Anti-Air",
-            "Nothing",
+            "Anti-Air/Nothing",
             "Other-AG"});
             this.ddType2.Location = new System.Drawing.Point(9, 34);
             this.ddType2.Name = "ddType2";
-            this.ddType2.Size = new System.Drawing.Size(89, 24);
+            this.ddType2.Size = new System.Drawing.Size(110, 24);
             this.ddType2.TabIndex = 1;
             this.ddType2.SelectedIndexChanged += new System.EventHandler(this.ddType2_SelectedIndexChanged);
             // 

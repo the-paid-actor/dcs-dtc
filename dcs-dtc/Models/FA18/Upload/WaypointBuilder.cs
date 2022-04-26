@@ -99,6 +99,7 @@ namespace DTC.Models.FA18.Upload
 			var latStr = RemoveSeparators(coord.Replace(" ", ""));
 			var i = 0;
 			var lon = false;
+			var longLon = false;
 
 			foreach (var c in latStr.ToCharArray())
 			{
@@ -126,9 +127,11 @@ namespace DTC.Models.FA18.Upload
 				}
 				else
 				{
-					if (i <= 5) { 
+					if (i <= 5 || (i<= 6 && longLon)) { 
 						if (!(i == 0 && c == '0' && lon))
                         {
+							if(i == 0 && c == '1' && lon) longLon = true;
+
 							sb.Append(ufc.GetCommand(c.ToString()));
 							i++;
 							lon = false;

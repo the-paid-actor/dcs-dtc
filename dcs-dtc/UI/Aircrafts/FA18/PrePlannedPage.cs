@@ -24,10 +24,10 @@ namespace DTC.UI.Aircrafts.FA18
             _edit = new PrePlannedEdit(callback);
 			_edit.Visible = false;
 
-            ddType2.Text = pps.Sta2.stationType.ToString();
-            ddType3.Text = pps.Sta3.stationType.ToString();
-            ddType7.Text = pps.Sta7.stationType.ToString();
-            ddType8.Text = pps.Sta8.stationType.ToString();
+            ddType2.Text = PrePlannedStation.TypeToString(pps.Sta2.stationType);
+            ddType3.Text = PrePlannedStation.TypeToString(pps.Sta3.stationType);
+            ddType7.Text = PrePlannedStation.TypeToString(pps.Sta7.stationType);
+            ddType8.Text = PrePlannedStation.TypeToString(pps.Sta8.stationType);
 
             cbSta5.Checked = pps.Station5ToConsider;
 

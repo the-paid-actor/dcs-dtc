@@ -54,12 +54,35 @@ namespace DTC.Models.FA18.PrePlanned
                     return StationType.SLAM;
                 case "SLAMER":
                     return StationType.SLAMER;
-                case "Anti-Air":
-                    return StationType.AA;
-                case "Nothing":
+                case "Anti-Air/Nothing":
                     return StationType.AA;
                 default:
                     return StationType.OTHER;
+            }
+        }
+
+        public static string TypeToString(StationType type)
+        {
+            switch(type)
+            {
+                case StationType.GBU38:
+                    return "GBU38";
+                case StationType.GBU32:
+                    return "GBU32";
+                case StationType.GBU31:
+                    return "GBU31";
+                case StationType.JSOWA:
+                    return "JSOWA";
+                case StationType.JSOWC:
+                    return "JSOWC";
+                case StationType.SLAM:
+                    return "SLAM";
+                case StationType.SLAMER:
+                    return "SLAMER";
+                case StationType.AA:
+                    return "Anti-Air/Nothing";
+                default:
+                    return "Other-AG";
             }
         }
     }
@@ -76,5 +99,6 @@ namespace DTC.Models.FA18.PrePlanned
         AA,
         OTHER
     }
+
 
 }

@@ -293,6 +293,8 @@ local function checkCondition(condition)
 		return  checkConditionIsJdam(string.match(condition, "%d+"), 82);
 	elseif condition:find("^STA_IS_GBUTO_") ~= nil then -- GBU31
 		return  checkConditionIsJdam(string.match(condition, "%d+"), 84);
+	elseif condition:find("^STA_IS_GBUTOP_") ~= nil then -- GBU31 - Penetrating
+		return  checkConditionIsJdam(string.match(condition, "%d+"), 109);
 	elseif condition:find("^STA_IS_GBUTT_") ~= nil then -- GBU32
 		return  checkConditionIsJdam(string.match(condition, "%d+"), 83);
 	elseif condition:find("^STA_IS_JSOWA_") ~= nil then

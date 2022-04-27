@@ -152,6 +152,12 @@
     <Compile Include="UI\Aircrafts\FA18\MiscPage.Designer.cs">
       <DependentUpon>MiscPage.cs</DependentUpon>
     </Compile>
+    <Compile Include="UI\Aircrafts\FA18\PrePlannedOverview.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="UI\Aircrafts\FA18\PrePlannedOverview.Designer.cs">
+      <DependentUpon>PrePlannedOverview.cs</DependentUpon>
+    </Compile>
     <Compile Include="UI\Aircrafts\FA18\PrePlannedPage.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -369,6 +375,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="UI\Aircrafts\FA18\LoadSavePage.resx">
       <DependentUpon>LoadSavePage.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UI\Aircrafts\FA18\PrePlannedOverview.resx">
+      <DependentUpon>PrePlannedOverview.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="UI\Aircrafts\FA18\PrePlannedPage.resx">
       <DependentUpon>PrePlannedPage.cs</DependentUpon>

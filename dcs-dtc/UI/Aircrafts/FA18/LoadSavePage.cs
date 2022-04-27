@@ -170,7 +170,7 @@ namespace DTC.UI.Aircrafts.FA18
 			}
 			if (!chkSaveSeq.Checked)
 			{
-				cfg.PrePlanned = null;
+				cfg.Sequences = null;
 			}
 			if (!chkSaveMisc.Checked)
 			{

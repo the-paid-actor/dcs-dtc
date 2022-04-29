@@ -26,6 +26,7 @@ namespace DTC.Models.FA18.Upload
 
 			AppendCommand(lmfd.GetCommand("OSB-18")); // MENU
 			AppendCommand(lmfd.GetCommand("OSB-05")); // STORES
+			AppendCommand(Wait());
 
 			if(sta2.AnySelected) {
 				var stationList = new List<PrePlannedStation> { sta2 };

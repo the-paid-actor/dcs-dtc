@@ -1,3 +1,5 @@
+local DEBUG = false	-- set true for development debugging
+
 local tcpServer = nil
 local udpSpeaker = nil
 package.path  = package.path..";"..lfs.currentdir().."/LuaSocket/?.lua"
@@ -308,30 +310,33 @@ end
 function LuaExportAfterNextFrame()
     if upstreamLuaExportAfterNextFrame ~= nil then
         successful, err = pcall(upstreamLuaExportAfterNextFrame)
-        if not successful then
+        if not successful and DEBUG then
             log.write("DCS-DTC", log.ERROR, "Error in upstream LuaExportAfterNextFrame function"..tostring(err))
         end
     end
 
+  	local camPos = LoGetCameraPosition()
+	local selfData = LoGetSelfData()
 
-  local camPos = LoGetCameraPosition()
-	local loX = camPos['p']['x']
-	local loZ = camPos['p']['z']
-	local elevation = LoGetAltitude(loX, loZ)
-	local coords = LoLoCoordinatesToGeoCoordinates(loX, loZ)
-	local model = LoGetSelfData()["Name"];
+	if camPos ~= nil and selfData ~= nil then
+		local loX = camPos['p']['x']
+		local loZ = camPos['p']['z']
+		local elevation = LoGetAltitude(loX, loZ)
+		local coords = LoLoCoordinatesToGeoCoordinates(loX, loZ)
+		local model = selfData["Name"];
 	
-	local toSend = "{"..
-		"\"model\": ".."\""..model.."\""..
-		", ".."\"latitude\": ".."\""..coords.latitude.."\""..
-		", ".."\"longitude\": ".."\""..coords.longitude.."\""..
-		", ".."\"elevation\": ".."\""..elevation.."\""..
-		"}"
+		local toSend = "{"..
+			"\"model\": ".."\""..model.."\""..
+			", ".."\"latitude\": ".."\""..coords.latitude.."\""..
+			", ".."\"longitude\": ".."\""..coords.longitude.."\""..
+			", ".."\"elevation\": ".."\""..elevation.."\""..
+			"}"
 
-	if pcall(function()
-		socket.try(udpSpeaker:sendto(toSend, "127.0.0.1", udpPort)) 
-	end) then
-	else
-		log.write("DCS-DTC", log.ERROR, "Unable to send data")
+		if pcall(function()
+			socket.try(udpSpeaker:sendto(toSend, "127.0.0.1", udpPort)) 
+		end) then
+		else
+			log.write("DCS-DTC", log.ERROR, "Unable to send data")
+		end
 	end
 end

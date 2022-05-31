@@ -323,9 +323,9 @@ namespace DTC.Models.FA18.Upload
                         lon = false;
                     }					
 					if(i == 6 && !longLon || longLon && i == 7) {
-						sb.Append(Wait());
+						sb.Append(WaitLong());
 						sb.Append(ufc.GetCommand("ENT"));
-						sb.Append(Wait());
+						sb.Append(WaitLong());
 					}
 							
 				}

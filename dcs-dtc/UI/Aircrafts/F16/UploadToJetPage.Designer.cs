@@ -227,7 +227,7 @@ namespace DTC.UI.Aircrafts.F16
             this.chkTOS.Name = "chkTOS";
             this.chkTOS.Size = new System.Drawing.Size(323, 25);
             this.chkTOS.TabIndex = 10;
-            this.chkTOS.Text = "TOS";
+            this.chkTOS.Text = "ToS";
             this.chkTOS.UseVisualStyleBackColor = true;
             this.chkTOS.CheckedChanged += new System.EventHandler(this.chkTOS_CheckedChanged);
             // 

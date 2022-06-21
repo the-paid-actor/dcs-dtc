@@ -265,7 +265,6 @@ namespace DTC.UI.Aircrafts.F16
             // 
             this.chkSaveTOS.Checked = true;
             this.chkSaveTOS.CheckState = System.Windows.Forms.CheckState.Checked;
-            this.chkSaveTOS.Enabled = false;
             this.chkSaveTOS.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F);
             this.chkSaveTOS.Location = new System.Drawing.Point(18, 271);
             this.chkSaveTOS.Name = "chkSaveTOS";

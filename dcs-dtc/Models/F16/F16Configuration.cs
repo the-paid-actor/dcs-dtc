@@ -2,6 +2,7 @@
 using DTC.Models.F16.MFD;
 using DTC.Models.F16.Waypoints;
 using DTC.Models.F16.Radios;
+using DTC.Models.F16.TOS;
 using Newtonsoft.Json;
 using DTC.Models.Base;
 using DTC.Models.F16.HARMHTS;
@@ -17,6 +18,7 @@ namespace DTC.Models.F16
 		public MFDSystem MFD = new MFDSystem();
 		public HARMSystem HARM = new HARMSystem();
 		public HTSSystem HTS = new HTSSystem();
+		public TOSSystem TOS = new TOSSystem();
 		public MiscSystem Misc = new MiscSystem();
 
 		public string ToJson()

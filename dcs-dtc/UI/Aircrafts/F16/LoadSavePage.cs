@@ -76,6 +76,11 @@ namespace DTC.UI.Aircrafts.F16
 					chkLoadHTS.Enabled = true;
 					enableLoad = true;
 				}
+				if (_configToLoad.TOS != null)
+				{
+					chkLoadTOS.Enabled = true;
+					enableLoad = true;
+				}
 				if (_configToLoad.Misc != null)
 				{
 					chkLoadMisc.Enabled = true;
@@ -149,6 +154,15 @@ namespace DTC.UI.Aircrafts.F16
 				load = true;
 			}
 
+			if (!chkLoadTOS.Checked)
+			{
+				cfg.TOS = null;
+			}
+			else
+			{
+				load = true;
+			}
+
 			if (!chkLoadMisc.Checked)
 			{
 				cfg.Misc = null;
@@ -193,6 +207,10 @@ namespace DTC.UI.Aircrafts.F16
 			{
 				cfg.HTS = null;
 			}
+			if (!chkSaveTOS.Checked)
+			{
+				cfg.TOS = null;
+			}
 			if (!chkSaveMisc.Checked)
 			{
 				cfg.Misc = null;
@@ -219,6 +237,7 @@ namespace DTC.UI.Aircrafts.F16
 			chkLoadMFDs.Enabled = false;
 			chkLoadHARM.Enabled = false;
 			chkLoadHTS.Enabled = false;
+			chkLoadTOS.Enabled = false;
 			chkLoadMisc.Enabled = false;
 			btnLoadApply.Enabled = false;
 		}
@@ -242,5 +261,5 @@ namespace DTC.UI.Aircrafts.F16
 			grpSave.Visible = true;
 			DisableLoadControls();
 		}
-	}
+    }
 }

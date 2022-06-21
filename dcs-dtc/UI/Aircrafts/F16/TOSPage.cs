@@ -25,7 +25,7 @@ namespace DTC.UI.Aircrafts.F16
 
         public override string GetPageTitle()
         {
-            return "TOS";
+            return "ToS";
         }
 
         private TableLayoutPanel PopulateTable(TOSSystem tos)
@@ -73,7 +73,8 @@ namespace DTC.UI.Aircrafts.F16
         private void Txt_LostFocus(object sender, EventArgs e)
         {
             var txt = ((DTCTextBox)sender);
-            var tos = (TOSSetting)txt.Tag;
+            var num = (int)txt.Tag;
+            var tos = _tos.TimesOnStation[num];
             if (validTime(txt.Text))
             {
                 tos.Time = txt.Text;
@@ -97,7 +98,8 @@ namespace DTC.UI.Aircrafts.F16
             var number = (int)chk.Parent.Controls.OfType<DTCTextBox>()
                 .First(x => ((int)x.Tag).ToString() == chk.RelatedTo).Tag;
             var tos = _tos.TimesOnStation[number];
-            tos.EnableUpload = chk.Checked;
+            if(tos.Time.Split(':')[0].Trim() != "") tos.EnableUpload = chk.Checked;
+            chk.Checked = tos.EnableUpload;
             _parent.DataChangedCallback();
         }
     }

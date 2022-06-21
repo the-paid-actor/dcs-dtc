@@ -128,7 +128,7 @@ namespace DTC.UI.Aircrafts.F16
             this.chkLoadTOS.Name = "chkLoadTOS";
             this.chkLoadTOS.Size = new System.Drawing.Size(71, 25);
             this.chkLoadTOS.TabIndex = 2;
-            this.chkLoadTOS.Text = "TOS";
+            this.chkLoadTOS.Text = "ToS";
             this.chkLoadTOS.UseVisualStyleBackColor = true;
             // 
             // chkLoadMisc
@@ -271,7 +271,7 @@ namespace DTC.UI.Aircrafts.F16
             this.chkSaveTOS.Name = "chkSaveTOS";
             this.chkSaveTOS.Size = new System.Drawing.Size(71, 25);
             this.chkSaveTOS.TabIndex = 2;
-            this.chkSaveTOS.Text = "TOS";
+            this.chkSaveTOS.Text = "ToS";
             this.chkSaveTOS.UseVisualStyleBackColor = true;
             // 
             // chkSaveMisc

@@ -43,6 +43,12 @@ namespace DTC.Models.F16.Upload
                 AppendCommand(ufc.GetCommand("INC")); // Increment to next STPT
             }
             AppendCommand(ufc.GetCommand("RTN")); // Back to main menu
+
+            AppendCommand(ufc.GetCommand("4")); // STPT
+            
+            AppendCommand(ufc.GetCommand("1")); // Select first steerpoint
+            AppendCommand(ufc.GetCommand("ENTR")); 
+            AppendCommand(ufc.GetCommand("RTN")); // Back to main menu
         }
 
         private string buildNumberString(Device ufc, TOS.TOSSetting setting)

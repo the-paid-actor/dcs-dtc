@@ -1,5 +1,7 @@
 ﻿using DTC.Models;
+using DTC.Models.Base;
 using DTC.Models.F16;
+using DTC.UI.Base.GlobalHotKey;
 using DTC.UI.CommonPages;
 using System;
 
@@ -9,6 +11,8 @@ namespace DTC.UI.Aircrafts.F16
 	{
 		private F16Upload _jetInterface;
 		private readonly F16Configuration _cfg;
+
+		private KeyboardHookManager _keyboardHookManager;
 
 		public UploadToJetPage(AircraftPage parent, F16Configuration cfg) : base(parent)
 		{
@@ -30,6 +34,18 @@ namespace DTC.UI.Aircrafts.F16
 			chkHTS.Checked = _cfg.HTS.EnableUpload;
 
 			CheckUploadButtonEnabled();
+
+			_keyboardHookManager = new KeyboardHookManager();
+			_keyboardHookManager.Start();
+
+			HotKey hotkey;
+			if (ParseHotKey.TryParse(Settings.UploadHotKey, out hotkey))
+			{
+				_keyboardHookManager.RegisterHotkey(hotkey.Modifiers, (int)hotkey.Key, () =>
+				{
+					_jetInterface.Load();
+				});
+			}
 		}
 
 		private void CheckUploadButtonEnabled()
@@ -106,26 +122,25 @@ namespace DTC.UI.Aircrafts.F16
 			CheckUploadButtonEnabled();
 		}
 
-        private void chkHARM_CheckedChanged(object sender, EventArgs e)
-        {
+		private void chkHARM_CheckedChanged(object sender, EventArgs e)
+		{
 			_cfg.HARM.EnableUpload = chkHARM.Checked;
 			_parent.DataChangedCallback();
 			CheckUploadButtonEnabled();
 		}
 
-        private void chkHTS_CheckedChanged(object sender, EventArgs e)
-        {
+		private void chkHTS_CheckedChanged(object sender, EventArgs e)
+		{
 			_cfg.HTS.EnableUpload = chkHTS.Checked;
 			_parent.DataChangedCallback();
 			CheckUploadButtonEnabled();
 		}
 
-        private void chkTOS_CheckedChanged(object sender, EventArgs e)
-        {
+    private void chkTOS_CheckedChanged(object sender, EventArgs e)
+    {
 			_cfg.TOS.EnableUpload = chkTOS.Checked;
 			_parent.DataChangedCallback();
 			CheckUploadButtonEnabled();
-
-        }
     }
+  }
 }

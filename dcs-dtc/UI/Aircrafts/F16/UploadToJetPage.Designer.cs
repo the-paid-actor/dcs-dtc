@@ -20,7 +20,8 @@ namespace DTC.UI.Aircrafts.F16
 			{
 				components.Dispose();
 			}
-			base.Dispose(disposing);
+      _keyboardHookManager.Stop();
+      base.Dispose(disposing);
 		}
 
 		#region Component Designer generated code

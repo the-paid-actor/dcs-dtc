@@ -9,9 +9,24 @@ namespace DTC.Models.Base
 			public int TCPSendPort;
 			public int UDPReceivePort;
 			public int CommandDelayMs;
+			public string UploadHotKey;
 		}
 
 		private static SettingsData currentSettings;
+
+		public static string UploadHotKey
+		{
+			get
+			{
+				LoadSettings();
+				return currentSettings.UploadHotKey;
+			}
+			set
+			{
+				currentSettings.UploadHotKey = value;
+				SaveSettings();
+			}
+		}
 
 		public static int TCPSendPort
 		{
@@ -78,9 +93,23 @@ namespace DTC.Models.Base
 			if (obj == null)
 			{
 				obj = new SettingsData();
+			}
+
+			if (obj.TCPSendPort == 0)
+			{
 				obj.TCPSendPort = 43001;
+			}
+			if (obj.UDPReceivePort == 0)
+			{
 				obj.UDPReceivePort = 43000;
+			}
+			if (obj.CommandDelayMs == 0)
+			{
 				obj.CommandDelayMs = 200;
+			}
+			if (obj.UploadHotKey == "")
+			{
+				obj.UploadHotKey = "RCtrl+Back";
 			}
 
 			currentSettings = obj;

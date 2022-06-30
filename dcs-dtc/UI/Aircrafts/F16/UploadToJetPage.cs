@@ -32,6 +32,7 @@ namespace DTC.UI.Aircrafts.F16
 			chkMFDs.Checked = _cfg.MFD.EnableUpload;
 			chkHARM.Checked = _cfg.HARM.EnableUpload;
 			chkHTS.Checked = _cfg.HTS.EnableUpload;
+			chkTOS.Checked = _cfg.TOS.EnableUpload;
 
 			CheckUploadButtonEnabled();
 
@@ -50,7 +51,7 @@ namespace DTC.UI.Aircrafts.F16
 
 		private void CheckUploadButtonEnabled()
 		{
-			btnUpload.Enabled = (_cfg.Waypoints.EnableUpload || _cfg.CMS.EnableUpload || _cfg.Radios.EnableUpload || _cfg.Misc.EnableUpload || _cfg.MFD.EnableUpload || _cfg.HARM.EnableUpload || _cfg.HTS.EnableUpload);
+			btnUpload.Enabled = (_cfg.Waypoints.EnableUpload || _cfg.CMS.EnableUpload || _cfg.Radios.EnableUpload || _cfg.Misc.EnableUpload || _cfg.MFD.EnableUpload || _cfg.HARM.EnableUpload || _cfg.HTS.EnableUpload || _cfg.TOS.EnableUpload );
 		}
 
 		public override string GetPageTitle()
@@ -135,5 +136,12 @@ namespace DTC.UI.Aircrafts.F16
 			_parent.DataChangedCallback();
 			CheckUploadButtonEnabled();
 		}
-	}
+
+    private void chkTOS_CheckedChanged(object sender, EventArgs e)
+    {
+			_cfg.TOS.EnableUpload = chkTOS.Checked;
+			_parent.DataChangedCallback();
+			CheckUploadButtonEnabled();
+    }
+  }
 }

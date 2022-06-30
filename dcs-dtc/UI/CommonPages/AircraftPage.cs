@@ -42,6 +42,7 @@ namespace DTC.UI.CommonPages
 					new Aircrafts.F16.MFDPage(this, cfg.MFD),
 					new Aircrafts.F16.HARMPage(this, cfg.HARM),
 					new Aircrafts.F16.HTSPage(this, cfg.HTS),
+					new Aircrafts.F16.TOSPage(this, cfg.TOS),
 					new Aircrafts.F16.MiscPage(this, cfg.Misc)
 				};
 			}

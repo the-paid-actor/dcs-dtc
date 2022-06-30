@@ -32,6 +32,7 @@ namespace DTC.UI.Aircrafts.F16
 			chkMFDs.Checked = _cfg.MFD.EnableUpload;
 			chkHARM.Checked = _cfg.HARM.EnableUpload;
 			chkHTS.Checked = _cfg.HTS.EnableUpload;
+			chkTOS.Checked = _cfg.TOS.EnableUpload;
 
 			CheckUploadButtonEnabled();
 

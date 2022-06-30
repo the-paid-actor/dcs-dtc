@@ -102,6 +102,10 @@ namespace DTC.Models.F16
 			{
 				HTS = cfg.HTS;
 			}
+			if (cfg.TOS != null)
+			{
+				TOS = cfg.TOS;
+			}
 			if (cfg.Misc != null)
 			{
 				Misc = cfg.Misc;

@@ -6,14 +6,12 @@ namespace DTC.Models.FA18.Waypoints
 	{
 		public List<Waypoint> Waypoints { get; set; }
 		public int SteerpointStart { get; set; }
-		public int SteerpointEnd { get; set; }
 		public bool EnableUpload { get; set; }
 
 		public WaypointSystem()
 		{
 			Waypoints = new List<Waypoint>();
 			SteerpointStart = 0;
-			SteerpointEnd = SteerpointStart + Waypoints.Count;
 			EnableUpload = true;
 		}
 
@@ -22,7 +20,6 @@ namespace DTC.Models.FA18.Waypoints
 			var seq = Waypoints.Count + 1;
 			wpt.Sequence = seq;
 			Waypoints.Add(wpt);
-			SteerpointEnd = SteerpointStart + Waypoints.Count;
 			return wpt;
 		}
 
@@ -31,12 +28,7 @@ namespace DTC.Models.FA18.Waypoints
 			if (v >= 0 && v <= 60 - Waypoints.Count)
 			{
 				SteerpointStart = v;
-				SteerpointEnd = SteerpointStart + Waypoints.Count;
 			}
-		}
-		public void SetSteerpointEnd()
-		{
-			SteerpointEnd = SteerpointStart + Waypoints.Count;
 		}
 
 		public void Remove(Waypoint wpt)

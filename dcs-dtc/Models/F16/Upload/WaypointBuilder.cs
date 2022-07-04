@@ -17,7 +17,7 @@ namespace DTC.Models.F16.Upload
 		{
 			var wpts = _cfg.Waypoints.Waypoints;
 			var wptStart = _cfg.Waypoints.SteerpointStart;
-			var wptEnd = _cfg.Waypoints.SteerpointEnd;
+			var wptEnd = wptStart + wpts.Count;
 
 			if (wpts.Count == 0)
 			{

@@ -1,5 +1,6 @@
 ﻿using DTC.Models.Base;
 using DTC.Models.F16;
+using DTC.Models.FA18;
 using System;
 using System.Collections.Generic;
 
@@ -13,6 +14,10 @@ namespace DTC.Models.Presets
 				if (Model == AircraftModel.F16C)
 				{
 					return "F-16C";
+				}
+				else if (Model == AircraftModel.FA18C)
+				{
+					return "F/A-18C";
 				}
 				throw new Exception();
 			}
@@ -37,6 +42,9 @@ namespace DTC.Models.Presets
 			if (Model == AircraftModel.F16C)
 			{
 				return typeof(F16Configuration);
+			} else if (Model == AircraftModel.FA18C)
+			{
+				return typeof(FA18Configuration);
 			}
 			throw new Exception();
 		}
@@ -53,7 +61,16 @@ namespace DTC.Models.Presets
 				Presets.Add(p);
 				return p;
 			}
-			else
+			else if (Model == AircraftModel.FA18C)
+			{
+				if (cfg == null)
+				{
+					cfg = new FA18Configuration();
+				}
+				var p = new Preset(name, cfg);
+				Presets.Add(p);
+				return p;
+			} else
 			{
 				throw new Exception();
 			}

@@ -22,7 +22,8 @@ namespace DTC.Models.DCS
 		public string GetCommand(string cmdName)
 		{
 			var cmd = Commands[cmdName];
-			var str = "{'device': '" + ID + "', 'code': '" + cmd.ID + "', 'delay': '" + cmd.Delay + "', 'activate': '" + cmd.Activate + "'},";
+			var activate = ("" + cmd.Activate + "").Replace(",",".");
+			var str = "{'device': '" + ID + "', 'code': '" + cmd.ID + "', 'delay': '" + cmd.Delay + "', 'activate': '" + activate + "'},";
 			return str.Replace("'", "\"");
 		}
 	}

@@ -1,13 +1,13 @@
 ﻿using DTC.Models;
 using DTC.Models.Base;
 using DTC.Models.DCS;
-using DTC.Models.F16.Waypoints;
+using DTC.Models.FA18.Waypoints;
 using DTC.UI.Base;
 using System;
 using System.Globalization;
 using System.Windows.Forms;
 
-namespace DTC.UI.Aircrafts.F16
+namespace DTC.UI.Aircrafts.FA18
 {
 	public partial class WaypointEdit : UserControl
 	{
@@ -197,7 +197,7 @@ namespace DTC.UI.Aircrafts.F16
 			if (cboAirbases.SelectedIndex > -1)
 			{
 				var item = (AirbaseComboBoxItem)cboAirbases.SelectedItem;
-				var wpt = new Waypoint(0, item.Airbase, item.Latitude, item.Longitude, item.Elevation);
+				var wpt = new Waypoint(0, item.Airbase, item.Latitude.Substring(0,10), item.Longitude.Substring(0,11), item.Elevation);
 				LoadWaypoint(wpt);
 			}
 		}
@@ -214,7 +214,7 @@ namespace DTC.UI.Aircrafts.F16
 						txtWptLatLong.Text = latitude + " " + longitude;
 						txtWptElevation.Text = elevation;
 					}));
-				}, new DdmShortFormatter());
+				}, new DmsShortFormatter());
 			}
 			else
 			{

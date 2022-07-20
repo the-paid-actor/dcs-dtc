@@ -5,6 +5,7 @@ using System;
 using System.Collections.Generic;
 using System.Windows.Forms;
 using DTC.Models.F16;
+using DTC.Models.FA18;
 
 namespace DTC.UI.CommonPages
 {
@@ -43,6 +44,20 @@ namespace DTC.UI.CommonPages
 					new Aircrafts.F16.HARMPage(this, cfg.HARM),
 					new Aircrafts.F16.HTSPage(this, cfg.HTS),
 					new Aircrafts.F16.MiscPage(this, cfg.Misc)
+				};
+			} else if (_aircraft.Model == AircraftModel.FA18C)
+			{
+				var cfg = (FA18Configuration)configuration;
+				return new AircraftSettingPage[]
+				{
+					new Aircrafts.FA18.UploadToJetPage(this, cfg),
+					new Aircrafts.FA18.LoadSavePage(this, cfg),
+					new Aircrafts.FA18.WaypointsPage(this, cfg.Waypoints),
+					new Aircrafts.FA18.SequencePage(this, cfg.Sequences),
+					new Aircrafts.FA18.PrePlannedPage(this, cfg.PrePlanned),
+					new Aircrafts.FA18.CMSPage(this, cfg.CMS),
+					new Aircrafts.FA18.RadioPage(this, cfg.Radios),
+					new Aircrafts.FA18.MiscPage(this, cfg.Misc)
 				};
 			}
 			throw new Exception();

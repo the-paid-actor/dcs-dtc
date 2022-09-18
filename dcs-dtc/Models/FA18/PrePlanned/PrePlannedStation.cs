@@ -10,18 +10,17 @@ namespace DTC.Models.FA18.PrePlanned
     {
         public StationType stationType {  get; set; }  
 
-        public int stationNumber { get; }
-        public PrePlannedCoordinate PP1 {  get; set; }  
-        public PrePlannedCoordinate PP2 {  get; set; }  
-        public PrePlannedCoordinate PP3 {  get; set; }  
-        public PrePlannedCoordinate PP4 {  get; set; }  
-        public PrePlannedCoordinate PP5 {  get; set; }  
+        public int stationNumber { get; set; }
+        public Dictionary<int, PrePlannedCoordinate> PP;
 
         public bool AnySelected
         {
             get
             {
-                return PP1.Enabled || PP2.Enabled || PP3.Enabled || PP4.Enabled || PP5.Enabled;
+                foreach (var p in PP.Values)
+                    if (p.Enabled)
+                        return true;
+                return false;
             }
         }
 
@@ -30,11 +29,9 @@ namespace DTC.Models.FA18.PrePlanned
             stationType = StationType.GBU38;
             stationNumber = number;
 
-            PP1 = new PrePlannedCoordinate();
-            PP2 = new PrePlannedCoordinate();
-            PP3 = new PrePlannedCoordinate();
-            PP4 = new PrePlannedCoordinate();  
-            PP5 = new PrePlannedCoordinate();
+            PP = new Dictionary<int, PrePlannedCoordinate>();
+            for (int i = 1; i <= 5; i++)
+                PP.Add(i, new PrePlannedCoordinate());
         }
         public StationType fromString(string s)
         {

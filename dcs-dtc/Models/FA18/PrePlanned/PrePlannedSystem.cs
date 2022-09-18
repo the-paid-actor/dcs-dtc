@@ -10,19 +10,18 @@ namespace DTC.Models.FA18.PrePlanned
     {
 		public bool EnableUpload { get; set; }
 		public bool Station5ToConsider { get; set; }
-        public PrePlannedStation Sta2 { get; set; }
-        public PrePlannedStation Sta3 { get; set; } 
-        public PrePlannedStation Sta7 { get; set; } 
-        public PrePlannedStation Sta8 { get; set; }
+
+        public Dictionary<int, PrePlannedStation> Stations;
 
         public PrePlannedSystem()
         {
             EnableUpload = false;
 
-            Sta2 = new PrePlannedStation(2);
-            Sta3 = new PrePlannedStation(3);
-            Sta7 = new PrePlannedStation(7);
-            Sta8 = new PrePlannedStation(8);
+            Stations = new Dictionary<int, PrePlannedStation>();
+            Stations.Add(2, new PrePlannedStation(2));
+            Stations.Add(3, new PrePlannedStation(3));
+            Stations.Add(7, new PrePlannedStation(7));
+            Stations.Add(8, new PrePlannedStation(8));
         }
     }
 }

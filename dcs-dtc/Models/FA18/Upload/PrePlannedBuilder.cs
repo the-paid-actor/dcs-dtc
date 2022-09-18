@@ -21,10 +21,10 @@ namespace DTC.Models.FA18.Upload
 			var ufc = _aircraft.GetDevice("UFC");
 			var lmfd = _aircraft.GetDevice("LMFD");
 			var doneStations = new List<PrePlannedStation>();
-			var sta2 = _cfg.PrePlanned.Sta2;
-			var sta3 = _cfg.PrePlanned.Sta3;
-			var sta7 = _cfg.PrePlanned.Sta7;
-			var sta8 = _cfg.PrePlanned.Sta8;
+			var sta2 = _cfg.PrePlanned.Stations[2];
+			var sta3 = _cfg.PrePlanned.Stations[3];
+			var sta7 = _cfg.PrePlanned.Stations[7];
+			var sta8 = _cfg.PrePlanned.Stations[8];
 
 			AppendCommand(lmfd.GetCommand("OSB-18")); // MENU
 			AppendCommand(lmfd.GetCommand("OSB-05")); // STORES
@@ -146,32 +146,32 @@ namespace DTC.Models.FA18.Upload
         {
 			var sb = new StringBuilder();
 
-			if(station.PP1.Enabled)
+			if(station.PP[1].Enabled)
             {
-				sb.Append(InputCoordinate(lmfd, ufc, station.PP1));
+				sb.Append(InputCoordinate(lmfd, ufc, station.PP[1]));
             }
-			if(station.PP2.Enabled)
+			if(station.PP[2].Enabled)
             {
                 sb.Append(lmfd.GetCommand("OSB-07")); // PP2
-				sb.Append(InputCoordinate(lmfd, ufc, station.PP2));
+				sb.Append(InputCoordinate(lmfd, ufc, station.PP[2]));
                 sb.Append(lmfd.GetCommand("OSB-06")); // PP1
             }
-			if(station.PP3.Enabled)
+			if(station.PP[3].Enabled)
             {
                 sb.Append(lmfd.GetCommand("OSB-08")); // PP3
-				sb.Append(InputCoordinate(lmfd, ufc, station.PP3));
+				sb.Append(InputCoordinate(lmfd, ufc, station.PP[3]));
                 sb.Append(lmfd.GetCommand("OSB-06")); // PP1
             }
-			if(station.PP4.Enabled)
+			if(station.PP[4].Enabled)
             {
                 sb.Append(lmfd.GetCommand("OSB-09")); // PP4
-				sb.Append(InputCoordinate(lmfd, ufc, station.PP4));
+				sb.Append(InputCoordinate(lmfd, ufc, station.PP[4]));
                 sb.Append(lmfd.GetCommand("OSB-06")); // PP1
             }
-			if(station.PP5.Enabled)
+			if(station.PP[5].Enabled)
             {
                 sb.Append(lmfd.GetCommand("OSB-10")); // PP5
-				sb.Append(InputCoordinate(lmfd, ufc, station.PP5));
+				sb.Append(InputCoordinate(lmfd, ufc, station.PP[5]));
                 sb.Append(lmfd.GetCommand("OSB-06")); // PP1
             }
 

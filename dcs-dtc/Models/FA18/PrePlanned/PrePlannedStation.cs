@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace DTC.Models.FA18.PrePlanned
 {
-    public class PrePlannedStation
+    public class PrePlannedStation:IComparable<PrePlannedStation>
     {
         public StationType stationType {  get; set; }  
 
@@ -85,6 +85,22 @@ namespace DTC.Models.FA18.PrePlanned
                 default:
                     return "Other-AG";
             }
+        }
+
+        private int StepOrder() {
+            switch (stationNumber) {
+                case 8: return 1;
+                case 2: return 2;
+                case 7: return 3;
+                case 3: return 4;
+                default:
+                    throw new ApplicationException("Internal error -- invalid station number:" + stationNumber);
+            }
+        }
+
+        public int CompareTo(PrePlannedStation other)
+        {
+            return StepOrder().CompareTo(other.StepOrder());
         }
     }
 

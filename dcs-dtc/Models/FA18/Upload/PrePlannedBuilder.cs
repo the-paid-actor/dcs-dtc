@@ -18,162 +18,110 @@ namespace DTC.Models.FA18.Upload
 
         public override void Build()
         {
-			var ufc = _aircraft.GetDevice("UFC");
-			var lmfd = _aircraft.GetDevice("LMFD");
-			var doneStations = new List<PrePlannedStation>();
-			var sta2 = _cfg.PrePlanned.Stations[2];
-			var sta3 = _cfg.PrePlanned.Stations[3];
-			var sta7 = _cfg.PrePlanned.Stations[7];
-			var sta8 = _cfg.PrePlanned.Stations[8];
+            var ufc = _aircraft.GetDevice("UFC");
+            var lmfd = _aircraft.GetDevice("LMFD");
 
-			AppendCommand(lmfd.GetCommand("OSB-18")); // MENU
-			AppendCommand(lmfd.GetCommand("OSB-05")); // STORES
-			AppendCommand(Wait());
+            /* get a group of stations to be configured */
+            var stationGroups = GroupStationsByPayloadType();
 
-			if(sta2.AnySelected) {
-				var stationList = new List<PrePlannedStation> { sta2 };
-				if (hasSameWeapon(sta8, sta2)) stationList.Insert(0, sta8);
-				if (hasSameWeapon(sta7, sta2)) stationList.Add(sta7);
-				if (hasSameWeapon(sta3, sta2)) stationList.Add(sta3);
+            AppendCommand(lmfd.GetCommand("OSB-18")); // MENU
+            AppendCommand(lmfd.GetCommand("OSB-05")); // STORES
+            AppendCommand(Wait());
 
-				AppendCommand(StartCondition(GetCondition(sta2)));
-                AppendCommand(lmfd.GetCommand("OSB-06")); // First-BTN aka Sta2
-                AppendCommand(GetDsplyCommand(lmfd, sta2.stationType)); // JDAM/JSOW/SLAM/SLMR-DSPLY
+            for (int group_no = 0; group_no < stationGroups.Count; group_no++) {
+                var group = stationGroups[group_no];
+                string wpnGroupSelectCmd = lmfd.GetCommand(groupNo_to_WpnTypeSelectCmd(group_no));
+                var firstStation = group[0]; /* first station in group (with same type of payload) */
+
+                AppendCommand(StartCondition(GetCondition(firstStation)));
+                AppendCommand(wpnGroupSelectCmd); // Weapon group select (top row OSB)
+                AppendCommand(GetDsplyCommand(lmfd, firstStation.stationType)); // JDAM/JSOW/SLAM/SLMR-DSPLY
                 AppendCommand(lmfd.GetCommand("OSB-04")); // MSN
-				foreach (PrePlannedStation station in stationList) {
-                    AppendCommand(InputStation(lmfd, ufc, station));
-                    AppendCommand(lmfd.GetCommand("OSB-13")); // STEP
-
-					doneStations.Add(station);
-				}
-                AppendCommand(lmfd.GetCommand("OSB-19")); // RETURN
-                AppendCommand(lmfd.GetCommand("OSB-06")); // First-BTN aka Sta2
-				if (isJdam(sta2)) AppendCommand(lmfd.GetCommand("OSB-06")); 
-				AppendCommand(EndCondition(GetCondition(sta2)));
-            }
-			if (sta3.AnySelected && !doneStations.Contains(sta3)) {
-				var stationList = new List<PrePlannedStation> { sta3 };
-				if (hasSameWeapon(sta7, sta3)) stationList.Insert(0, sta7);
-				if (hasSameWeapon(sta8, sta3)) stationList.Insert(0, sta8);
-
-				AppendCommand(StartCondition(GetCondition(sta3)));
-				var buttonNumber = 6;
-				if (sta2.stationType != StationType.AA) buttonNumber++;
-                AppendCommand(lmfd.GetCommand("OSB-0" + buttonNumber));
-
-                AppendCommand(GetDsplyCommand(lmfd, sta3.stationType)); // JDAM/JSOW/SLAM/SLMR-DSPLY
-                AppendCommand(lmfd.GetCommand("OSB-04")); // MSN
-				foreach (PrePlannedStation station in stationList) {
-                    AppendCommand(InputStation(lmfd, ufc, station));
-                    AppendCommand(lmfd.GetCommand("OSB-13")); // STEP
-
-					doneStations.Add(station);
-				}
-
-                AppendCommand(lmfd.GetCommand("OSB-19")); // RETURN
-                AppendCommand(lmfd.GetCommand("OSB-0" + buttonNumber)); 
-				if (isJdam(sta3)) AppendCommand(lmfd.GetCommand("OSB-0" + buttonNumber)); 
-				AppendCommand(EndCondition(GetCondition(sta3)));
-			}
-
-			if (sta7.AnySelected && !doneStations.Contains(sta7)) {
-				var stationList = new List<PrePlannedStation> { sta7 };
-				if (hasSameWeapon(sta8, sta7)) stationList.Insert(0, sta8);
-
-				AppendCommand(StartCondition(GetCondition(sta7)));
-
-				var buttonNumber = 6;
-				if (_cfg.PrePlanned.Station5ToConsider) buttonNumber++;
-				if (sta2.stationType != StationType.AA) buttonNumber++;
-				if (sta3.stationType != StationType.AA && sta3.stationType != sta2.stationType) buttonNumber++;
-                AppendCommand(lmfd.GetCommand("OSB-0" + buttonNumber)); 
-
-                AppendCommand(GetDsplyCommand(lmfd, sta7.stationType)); // JDAM/JSOW/SLAM/SLMR-DSPLY
-                AppendCommand(lmfd.GetCommand("OSB-04")); // MSN
-				foreach (PrePlannedStation station in stationList) {
-                    AppendCommand(InputStation(lmfd, ufc, station));
-                    AppendCommand(lmfd.GetCommand("OSB-13")); // STEP
-
-					doneStations.Add(station);
-				}
-
-                AppendCommand(lmfd.GetCommand("OSB-19")); // RETURN
-                AppendCommand(lmfd.GetCommand("OSB-0" + buttonNumber)); 
-				if (isJdam(sta7)) AppendCommand(lmfd.GetCommand("OSB-0" + buttonNumber)); 
-				AppendCommand(EndCondition(GetCondition(sta7)));
-			}
-
-			if (sta8.AnySelected && !doneStations.Contains(sta8)) {
-				var station = sta8;
-
-				AppendCommand(StartCondition(GetCondition(sta8)));
-
-				var buttonNumber = 6;
-				if (_cfg.PrePlanned.Station5ToConsider) buttonNumber++;
-				if (sta2.stationType != StationType.AA) buttonNumber++;
-				if (sta3.stationType != StationType.AA && sta3.stationType != sta2.stationType) buttonNumber++;
-				if (sta7.stationType != StationType.AA && 
-					sta7.stationType != sta2.stationType && 
-					sta7.stationType != sta3.stationType) buttonNumber++;
-				if(buttonNumber == 10) AppendCommand(lmfd.GetCommand("OSB-10")); 
-				else AppendCommand(lmfd.GetCommand("OSB-0" + buttonNumber)); 
-
-                AppendCommand(GetDsplyCommand(lmfd, sta8.stationType)); // JDAM/JSOW/SLAM/SLMR-DSPLY
-                AppendCommand(lmfd.GetCommand("OSB-04")); // MSN
-                AppendCommand(InputStation(lmfd, ufc, station));
-                AppendCommand(lmfd.GetCommand("OSB-13")); // STEP
-
-                doneStations.Add(station);
-
-                AppendCommand(lmfd.GetCommand("OSB-19")); // RETURN
-				if(buttonNumber == 10) AppendCommand(lmfd.GetCommand("OSB-10")); 
-				else AppendCommand(lmfd.GetCommand("OSB-0" + buttonNumber)); 
-				if (isJdam(station))
+                foreach (var sta in group)
                 {
-                    if(buttonNumber == 10) AppendCommand(lmfd.GetCommand("OSB-10")); 
-                    else AppendCommand(lmfd.GetCommand("OSB-0" + buttonNumber)); 
+                    AppendCommand(InputStation(lmfd, ufc, sta));
+                    AppendCommand(lmfd.GetCommand("OSB-13")); // STEP to next station of same station type
                 }
-				AppendCommand(EndCondition(GetCondition(sta8)));
-			}
+                AppendCommand(lmfd.GetCommand("OSB-19")); // RETURN
+                AppendCommand(wpnGroupSelectCmd); // Weapon group select (top row OSB)
+                if (isJdamOrJsow(firstStation.stationType))
+                    AppendCommand(wpnGroupSelectCmd); // Weapon group select (top row OSB)
+                AppendCommand(EndCondition(GetCondition(firstStation)));
+            }
         }
 
-		private bool hasSameWeapon(PrePlannedStation sta, PrePlannedStation reference)
+        private List<List<PrePlannedStation>> GroupStationsByPayloadType()
         {
-			return (sta.AnySelected && sta.stationType == reference.stationType);
+            List<List<PrePlannedStation>> rv = new List<List<PrePlannedStation>>();
+
+            /* station_numbers: order in which we traverse the stations -- 
+             * this is the order that the different payload types are 
+             * displayed at the screen OSBs */
+            int[] station_numbers = new int[] { 2, 3, 7, 8 };
+
+            /* put each station into a group with the same payload types */
+            foreach (var sta_n in station_numbers)
+            {
+                var sta = _cfg.PrePlanned.Stations[sta_n];
+                if (sta.stationType == StationType.AA)
+                    continue;
+                bool foundGroup = false;
+                for (int group_no = 0; group_no < rv.Count; group_no++)
+                {
+                    var group = rv[group_no];
+                    if (group[0].stationType == sta.stationType)
+                    {
+                        group.Add(sta);
+                        foundGroup = true;
+                        break;
+                    }
+                }
+
+                /* If we didn't find a group with the same payload type,
+                 * add a new one containing the station to be added. */
+                if (!foundGroup)
+                    rv.Add(new List<PrePlannedStation> { sta });
+            }
+
+            /* sort stations in each group by step order 
+             * (using IComparable interface of PrePlannedStation) */
+            foreach (var group in rv)
+                group.Sort();
+
+            return rv;
+        }
+
+        private string groupNo_to_WpnTypeSelectCmd(int group_no)
+        {
+            int btn_no = group_no + 6;
+            if (_cfg.PrePlanned.Station5ToConsider && btn_no >= 8) btn_no++; /* station 5 introduces an extra option between stations 2,3 and 7,8 */
+            string wpnGroupSelectCmd = String.Format("OSB-{0:00}", btn_no);  /* command name for payload type select (top row OSB) */
+            return wpnGroupSelectCmd;
         }
 
 		private string InputStation(Device lmfd, Device ufc, PrePlannedStation station)
         {
 			var sb = new StringBuilder();
 
-			if(station.PP[1].Enabled)
+            bool returnToPP1 = false;
+            for (int i = 1; i <= 5; i++)
             {
-				sb.Append(InputCoordinate(lmfd, ufc, station.PP[1]));
+                if (!station.PP[i].Enabled)
+                    continue;
+
+                /* select PP if necessary */
+                if (i != 1)
+                {
+                    sb.Append(lmfd.GetCommand(String.Format("OSB-{0:00}", 5 + i)));
+                    returnToPP1 = true;
+                }
+
+                /* return to PP1 if other PP was selected */
+                sb.Append(InputCoordinate(lmfd, ufc, station.PP[i]));
             }
-			if(station.PP[2].Enabled)
-            {
-                sb.Append(lmfd.GetCommand("OSB-07")); // PP2
-				sb.Append(InputCoordinate(lmfd, ufc, station.PP[2]));
+
+            if (returnToPP1)
                 sb.Append(lmfd.GetCommand("OSB-06")); // PP1
-            }
-			if(station.PP[3].Enabled)
-            {
-                sb.Append(lmfd.GetCommand("OSB-08")); // PP3
-				sb.Append(InputCoordinate(lmfd, ufc, station.PP[3]));
-                sb.Append(lmfd.GetCommand("OSB-06")); // PP1
-            }
-			if(station.PP[4].Enabled)
-            {
-                sb.Append(lmfd.GetCommand("OSB-09")); // PP4
-				sb.Append(InputCoordinate(lmfd, ufc, station.PP[4]));
-                sb.Append(lmfd.GetCommand("OSB-06")); // PP1
-            }
-			if(station.PP[5].Enabled)
-            {
-                sb.Append(lmfd.GetCommand("OSB-10")); // PP5
-				sb.Append(InputCoordinate(lmfd, ufc, station.PP[5]));
-                sb.Append(lmfd.GetCommand("OSB-06")); // PP1
-            }
 
 			return sb.ToString();
         }
@@ -209,26 +157,16 @@ namespace DTC.Models.FA18.Upload
 
 		private string GetDsplyCommand(Device lmfd, StationType type)
         {
-			var dsplyCommand = "";
             switch(type)
             {
                 case StationType.GBU38:
-                    dsplyCommand = lmfd.GetCommand("OSB-11");
-                    break;
                 case StationType.GBU32:
-                    dsplyCommand = lmfd.GetCommand("OSB-11");
-                    break;
                 case StationType.GBU31NP:
-                    dsplyCommand = lmfd.GetCommand("OSB-11");
-                    break;
                 case StationType.GBU31PP:
-                    dsplyCommand = lmfd.GetCommand("OSB-11");
-                    break;
+                    return lmfd.GetCommand("OSB-11");
                 default:
-                    dsplyCommand = lmfd.GetCommand("OSB-12");
-                    break;
+                    return lmfd.GetCommand("OSB-12");
             }
-			return dsplyCommand;
         }
 
 		private string GetCondition(PrePlannedStation station)
@@ -265,19 +203,19 @@ namespace DTC.Models.FA18.Upload
 			return condition + station.stationNumber;
         }
 
-		// Name is only slightly misleading as it will return true also for JSOWs.
-		// The reason behind this is that both JDAM and JSOW display the same behaviour when deselecting.
-		private bool isJdam(PrePlannedStation station)
-        {
-			switch (station.stationType)
+		private bool isJdamOrJsow(StationType stationType)
+    {
+			switch (stationType)
 			{
-				case StationType.GBU38: return true;
-				case StationType.GBU32: return true;
-				case StationType.GBU31NP: return true;
-				case StationType.GBU31PP: return true;
-				case StationType.JSOWA: return true;
-				case StationType.JSOWC: return true;
-				default: return false;
+				case StationType.GBU38:
+				case StationType.GBU32:
+				case StationType.GBU31NP:
+				case StationType.GBU31PP:
+				case StationType.JSOWA:
+				case StationType.JSOWC:
+					return true;
+				default:
+					return false;
 			}
         }
 

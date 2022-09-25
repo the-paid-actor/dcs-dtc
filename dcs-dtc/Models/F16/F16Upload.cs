@@ -5,6 +5,7 @@ using System.Text;
 using DTC.Models.F16;
 using DTC.Models.Base;
 using DTC.Models.F16.Upload;
+using System.Windows.Forms;
 
 namespace DTC.Models
 {
@@ -77,16 +78,23 @@ namespace DTC.Models
 
 			if (str != "")
 			{
-				using (var tcpClient = new TcpClient("127.0.0.1", tcpPort))
-				using (var ns = tcpClient.GetStream())
-				using (var sw = new StreamWriter(ns))
+				try
 				{
-					var data = "[" + str + "]";
-					Console.WriteLine(data);
+					using (var tcpClient = new TcpClient("127.0.0.1", tcpPort))
+					using (var ns = tcpClient.GetStream())
+					using (var sw = new StreamWriter(ns))
+					{
+						var data = "[" + str + "]";
+						Console.WriteLine(data);
 
-					sw.WriteLine(data);
-					sw.Flush();
+						sw.WriteLine(data);
+						sw.Flush();
+					}
 				}
+				catch (SocketException e)
+				{
+                    MessageBox.Show("Error:" + e.ToString(), "Connection error!", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
 			}
 		}
 	}

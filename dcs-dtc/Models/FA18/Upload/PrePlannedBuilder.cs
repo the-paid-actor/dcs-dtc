@@ -1,5 +1,7 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Text;
+using System.Text.RegularExpressions;
 using DTC.Models.DCS;
 using DTC.Models.FA18.PrePlanned;
 
@@ -279,58 +281,53 @@ namespace DTC.Models.FA18.Upload
 			}
         }
 
-		private string BuildCoordinate(Device ufc, string coord)
-		{
-			var sb = new StringBuilder();
 
-			var latStr = RemoveSeparators(coord.Replace(" ", ""));
-			var i = 0;
-			var lon = false;
-			var longLon = false;
 
-			foreach (var c in latStr.ToCharArray())
+		private string BuildCoordinate(Device ufc, string coord) {
+            var sb = new StringBuilder();
+            
+			/* enter hemisphere */
+			switch (coord[0]) {
+				case 'N':
+                    sb.Append(ufc.GetCommand("2"));
+                    break;
+                case 'S':
+                    sb.Append(ufc.GetCommand("8"));
+                    break;
+                case 'E':
+                    sb.Append(ufc.GetCommand("6"));
+                    break;
+                case 'W':
+                    sb.Append(ufc.GetCommand("4"));
+                    break;
+            }
+
+            /* remove everything thats not a digit */
+            string digits = Regex.Replace(coord, "[^0-9]", "");
+
+			if (digits.Length == 9)
 			{
-				if (c == 'N')
-				{
-					sb.Append(ufc.GetCommand("2"));
-					i = 0;
-				}
-				else if (c == 'S')
-				{
-					sb.Append(ufc.GetCommand("8"));
-					i = 0;
-				}
-				else if (c == 'E')
-				{
-					sb.Append(ufc.GetCommand("6"));
-					i = 0;
-					lon = true;	
-				}
-				else if (c == 'W')
-				{
-					sb.Append(ufc.GetCommand("4"));
-					i = 0;
-					lon = true;
-				}
-				else
-				{
-                    if (!(i == 0 && c == '0' && lon))
-                    {
-						if(i == 0 && c == '1' && lon) longLon = true;
-
-                        sb.Append(ufc.GetCommand(c.ToString()));
-                        i++;
-                        lon = false;
-                    }					
-					if(i == 6 && !longLon || longLon && i == 7) {
-						sb.Append(WaitLong());
-						sb.Append(ufc.GetCommand("ENT"));
-						sb.Append(WaitLong());
-					}
-							
-				}
+				/* If this is a 9 digit coordinate (longitude) and has a leading zero, then remove that */
+				if (digits[0] == '0')
+					digits = digits.Substring(1);
 			}
+			else if (digits.Length != 8) /* neither 9 nor 8 digits (we got an invalid input) -- this should not happen */
+				throw new ApplicationException("Internal error: number of digits should be 8 or 9 -- (digits:\"" + digits + "\")");
+
+			for (int i = 0; i < digits.Length; i++)
+			{
+				sb.Append(ufc.GetCommand(digits.Substring(i, 1)));
+                
+				/* two digits before the end we press ENT */
+				if (digits.Length - 1 - i == 2)
+				{
+                    sb.Append(WaitLong());
+                    sb.Append(ufc.GetCommand("ENT"));
+                    sb.Append(WaitLong());
+                }
+			}
+			
 			return sb.ToString();
-		}
+        }
     }
 }

@@ -131,7 +131,7 @@ namespace DTC.UI.Aircrafts.FA18
             this.txtWptLatLong.HidePromptOnLeave = false;
             this.txtWptLatLong.InsertKeyMode = System.Windows.Forms.InsertKeyMode.Default;
             this.txtWptLatLong.Location = new System.Drawing.Point(152, 47);
-            this.txtWptLatLong.Mask = ">L 00°00\\.0000 L 000°00\\.0000";
+            this.txtWptLatLong.Mask = ">L 00°00\'00\\.00 L 000°00\'00\\.00";
             this.txtWptLatLong.Name = "txtWptLatLong";
             this.txtWptLatLong.PromptChar = '_';
             this.txtWptLatLong.Size = new System.Drawing.Size(270, 28);

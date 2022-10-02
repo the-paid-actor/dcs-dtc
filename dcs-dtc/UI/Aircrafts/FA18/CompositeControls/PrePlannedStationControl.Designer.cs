@@ -41,6 +41,7 @@
             this.cbPP4 = new System.Windows.Forms.CheckBox();
             this.cbPP5 = new System.Windows.Forms.CheckBox();
             this.dtcStackPanel1 = new DTC.UI.Base.Controls.DTCStackPanel();
+            this.btnSTP = new DTC.UI.Base.Controls.DTCButton();
             this.dtcStackPanel1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -198,6 +199,7 @@
             // 
             // dtcStackPanel1
             // 
+            this.dtcStackPanel1.Controls.Add(this.btnSTP);
             this.dtcStackPanel1.Controls.Add(this.cbPP5);
             this.dtcStackPanel1.Controls.Add(this.cbPP4);
             this.dtcStackPanel1.Controls.Add(this.cbPP3);
@@ -217,13 +219,27 @@
             this.dtcStackPanel1.Size = new System.Drawing.Size(505, 68);
             this.dtcStackPanel1.TabIndex = 2;
             // 
-            // UserControl1
+            // btnSTP
+            // 
+            this.btnSTP.BackColor = System.Drawing.Color.DarkKhaki;
+            this.btnSTP.FlatAppearance.BorderSize = 0;
+            this.btnSTP.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnSTP.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F);
+            this.btnSTP.Location = new System.Drawing.Point(392, 10);
+            this.btnSTP.Name = "btnSTP";
+            this.btnSTP.Size = new System.Drawing.Size(55, 47);
+            this.btnSTP.TabIndex = 12;
+            this.btnSTP.Text = "STP";
+            this.btnSTP.UseVisualStyleBackColor = false;
+            this.btnSTP.Click += new System.EventHandler(this.btnSTP_Click);
+            // 
+            // PrePlannedStationControl
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.Controls.Add(this.dtcStackPanel1);
             this.Margin = new System.Windows.Forms.Padding(0);
-            this.Name = "UserControl1";
+            this.Name = "PrePlannedStationControl";
             this.Size = new System.Drawing.Size(505, 68);
             this.dtcStackPanel1.ResumeLayout(false);
             this.dtcStackPanel1.PerformLayout();
@@ -246,5 +262,6 @@
         private System.Windows.Forms.CheckBox cbPP4;
         private System.Windows.Forms.CheckBox cbPP5;
         private Base.Controls.DTCStackPanel dtcStackPanel1;
+        private Base.Controls.DTCButton btnSTP;
     }
 }

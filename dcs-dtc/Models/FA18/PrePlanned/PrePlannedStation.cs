@@ -12,6 +12,17 @@ namespace DTC.Models.FA18.PrePlanned
 
         public int stationNumber { get; set; }
         public Dictionary<int, PrePlannedCoordinate> PP;
+        public PrePlannedSteerpoint[] Steerpoints = new PrePlannedSteerpoint[5]; /* for SLAM-ER */
+
+        public bool AnyStpEnabled {
+            get
+            {
+                foreach (var stp in Steerpoints)
+                    if (stp.Enabled)
+                        return true;
+                return false;
+            }
+        }
 
         public bool AnySelected
         {
@@ -32,6 +43,10 @@ namespace DTC.Models.FA18.PrePlanned
             PP = new Dictionary<int, PrePlannedCoordinate>();
             for (int i = 1; i <= 5; i++)
                 PP.Add(i, new PrePlannedCoordinate());
+
+            for (int i = 0; i < 5; i++) {
+                Steerpoints[i] = new PrePlannedSteerpoint();
+            }
         }
         public StationType fromString(string s)
         {

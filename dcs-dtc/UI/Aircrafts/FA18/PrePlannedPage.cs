@@ -18,6 +18,7 @@ namespace DTC.UI.Aircrafts.FA18
         private PrePlannedSystem _preplanned;
         private PrePlannedEdit _edit;
         private PrePlannedOverview _overview;
+        private SteerPointEdit _stpEdit;
         public PrePlannedPage(AircraftPage parent, PrePlannedSystem pps) : base(parent)
         {
             InitializeComponent();
@@ -26,16 +27,19 @@ namespace DTC.UI.Aircrafts.FA18
 			_edit.Visible = false;
             _overview = new PrePlannedOverview(_preplanned);
             _overview.Visible = false;
+            _stpEdit = new SteerPointEdit(callback2);
+            _stpEdit.Visible = false;
 
-            prePlannedStationControl2.Connect(pps.Stations[2], _parent, _edit);
-            prePlannedStationControl3.Connect(pps.Stations[3], _parent, _edit);
-            prePlannedStationControl7.Connect(pps.Stations[7], _parent, _edit);
-            prePlannedStationControl8.Connect(pps.Stations[8], _parent, _edit);
+            prePlannedStationControl2.Connect(pps.Stations[2], _parent, _edit, _stpEdit);
+            prePlannedStationControl3.Connect(pps.Stations[3], _parent, _edit, _stpEdit);
+            prePlannedStationControl7.Connect(pps.Stations[7], _parent, _edit, _stpEdit);
+            prePlannedStationControl8.Connect(pps.Stations[8], _parent, _edit, _stpEdit);
 
             cbSta5.Checked = pps.Station5ToConsider;
 
 			this.Controls.Add(this._edit);
 			this.Controls.Add(this._overview);
+            this.Controls.Add(this._stpEdit);
         }
 
 		public override string GetPageTitle()
@@ -46,6 +50,10 @@ namespace DTC.UI.Aircrafts.FA18
         private void callback(PrePlannedCoordinate coord, int station, int position)
         {
             _preplanned.Stations[station].PP[position] = coord;
+            _parent.DataChangedCallback();
+        }
+        private void callback2()
+        {
             _parent.DataChangedCallback();
         }
 

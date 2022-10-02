@@ -1,9 +1,11 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Drawing;
 using System.Text;
 using System.Text.RegularExpressions;
 using DTC.Models.DCS;
 using DTC.Models.FA18.PrePlanned;
+using static System.Collections.Specialized.BitVector32;
 
 namespace DTC.Models.FA18.Upload
 {
@@ -35,6 +37,31 @@ namespace DTC.Models.FA18.Upload
 
                 AppendCommand(StartCondition(GetCondition(firstStation)));
                 AppendCommand(wpnGroupSelectCmd); // Weapon group select (top row OSB)
+
+                if (firstStation.stationType == StationType.SLAMER || firstStation.stationType == StationType.SLAM)
+                {
+                    bool hasAnyStp = false;
+                    foreach (var sta in group)
+                    {
+                        if (sta.AnyStpEnabled)
+                        {
+                            hasAnyStp = true;
+                            break;
+                        }
+                    }
+
+                    if (hasAnyStp)
+                    {
+                        AppendCommand(lmfd.GetCommand("OSB-11")); // STP select
+                        foreach (var sta in group)
+                        {
+                            AppendCommand(InputSteerpoints(lmfd, ufc, sta));
+                            AppendCommand(lmfd.GetCommand("OSB-13")); // STEP to next station of same station type
+                        }
+                        AppendCommand(lmfd.GetCommand("OSB-11")); // STP deselect
+                    }
+                }
+                
                 AppendCommand(GetDsplyCommand(lmfd, firstStation.stationType)); // JDAM/JSOW/SLAM/SLMR-DSPLY
                 AppendCommand(lmfd.GetCommand("OSB-04")); // MSN
                 foreach (var sta in group)
@@ -48,6 +75,68 @@ namespace DTC.Models.FA18.Upload
                     AppendCommand(wpnGroupSelectCmd); // Weapon group select (top row OSB)
                 AppendCommand(EndCondition(GetCondition(firstStation)));
             }
+        }
+
+        private string InputSteerpoints(Device lmfd, Device ufc, PrePlannedStation sta)
+        {
+            if (!sta.AnyStpEnabled)
+                return "";
+
+            var sb = new StringBuilder();
+
+            for (int i = 1; i <= 5; i++) {
+                sb.Append(ufc.GetCommand("Opt1")); // STP1
+                sb.Append(Wait());
+                sb.Append(ufc.GetCommand("Opt5")); // DEL
+                sb.Append(Wait());
+            }
+
+            int stpProgNumber = 1;
+            foreach (var stp in sta.Steerpoints) {
+                if (!stp.Enabled) continue;
+                
+                sb.Append(ufc.GetCommand(String.Format("Opt{0}", stpProgNumber)));
+                sb.Append(Wait());
+
+                if (stp.useCoordinate)
+                {
+                    sb.Append(ufc.GetCommand("Opt3")); // POSN
+                    sb.Append(Wait());
+                    sb.Append(ufc.GetCommand("Opt1")); // LAT
+                    sb.Append(Wait());
+                    sb.Append(BuildCoordinate(ufc, stp.Lat));
+                    sb.Append(ufc.GetCommand("ENT"));
+                    sb.Append(WaitLong());
+
+                    sb.Append(ufc.GetCommand("Opt3")); // POSN
+                    sb.Append(Wait());
+                    sb.Append(ufc.GetCommand("Opt3")); // LON
+                    sb.Append(Wait());
+                    sb.Append(BuildCoordinate(ufc, stp.Lon));
+                    sb.Append(ufc.GetCommand("ENT"));
+                    sb.Append(WaitLong());
+
+                    sb.Append(ufc.GetCommand("Opt4")); // ELEV
+                    sb.Append(Wait());
+                    sb.Append(ufc.GetCommand("Opt3")); // FEET
+                    sb.Append(Wait());
+                    sb.Append(BuildDigits(ufc, stp.Elev.ToString())); // Enter elevation
+                    sb.Append(ufc.GetCommand("ENT"));
+                    sb.Append(WaitLong());
+                }
+                else
+                {
+                    sb.Append(ufc.GetCommand("Opt2")); // WYPT
+                    sb.Append(Wait());
+                    sb.Append(BuildDigits(ufc, stp.waypointNumber.ToString())); // Enter waypoint number
+                    sb.Append(ufc.GetCommand("ENT"));
+                    sb.Append(WaitLong());
+                }
+
+                stpProgNumber++;
+            }
+
+            return sb.ToString();
         }
 
         private List<List<PrePlannedStation>> GroupStationsByPayloadType()

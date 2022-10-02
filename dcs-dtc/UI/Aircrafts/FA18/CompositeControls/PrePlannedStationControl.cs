@@ -12,6 +12,7 @@ namespace DTC.UI.Aircrafts.FA18.CompositeControls
         private PrePlannedStation station;
         private AircraftPage _parent;
         private PrePlannedEdit _edit;
+        SteerPointEdit _stpEdit;
         private Dictionary<int, CheckBox> cbPP;
 
         public PrePlannedStationControl()
@@ -35,11 +36,12 @@ namespace DTC.UI.Aircrafts.FA18.CompositeControls
             staPP5.Tag = 5;
         }
 
-        public void Connect(PrePlannedStation station, AircraftPage _parent, PrePlannedEdit _edit) {
+        public void Connect(PrePlannedStation station, AircraftPage _parent, PrePlannedEdit _edit, SteerPointEdit _stpEdit) {
             this.station = station;
             this.label1.Text = "Station " + station.stationNumber;
             this._parent = _parent;
             this._edit = _edit;
+            this._stpEdit = _stpEdit;
 
             ddType.Text = PrePlannedStation.TypeToString(station.stationType);
 
@@ -78,7 +80,15 @@ namespace DTC.UI.Aircrafts.FA18.CompositeControls
                     cb.Enabled = true;
                 station.stationType = station.fromString(ddType.SelectedItem.ToString());
             }
+            
+            btnSTP.Visible = (ddType.SelectedItem.ToString() == "SLAMER");
+
             _parent.DataChangedCallback();
+        }
+
+        private void btnSTP_Click(object sender, EventArgs e)
+        {
+            _stpEdit.ShowDialog(station);
         }
     }
 }

@@ -6,9 +6,40 @@ using DTC.Models.FA18;
 using DTC.Models.Base;
 using DTC.Models.FA18.Upload;
 using System.Windows.Forms;
+using DTC.Models.DCS;
+using DTC.Models.Presets;
 
 namespace DTC.Models
 {
+	internal class FA18PreUploadInit : BaseBuilder
+	{
+
+		public FA18PreUploadInit(IAircraftDeviceManager aircraft, StringBuilder sb) : base(aircraft, sb)
+		{
+		}
+
+		public override void Build()
+		{
+            var lmfd = _aircraft.GetDevice("LMFD");
+            /* If not on the TAC page, then press OSB 18 */
+            AppendCommand(StartCondition("LMFD_NOT_TAC"));
+            AppendCommand(lmfd.GetCommand("OSB-18"));
+            AppendCommand(EndCondition("LMFD_NOT_TAC"));
+            AppendCommand(lmfd.GetCommand("OSB-03")); /* HUD */
+
+            var rmfd = _aircraft.GetDevice("RMFD");
+            /* If not on the SUPT page, then press OSB 18 */
+            AppendCommand(StartCondition("RMFD_NOT_SUPT"));
+            AppendCommand(rmfd.GetCommand("OSB-18"));
+            AppendCommand(EndCondition("RMFD_NOT_SUPT"));
+            /* If not on the SUPT page, then press OSB 18 */
+            AppendCommand(StartCondition("RMFD_NOT_SUPT"));
+            AppendCommand(rmfd.GetCommand("OSB-18"));
+            AppendCommand(EndCondition("RMFD_NOT_SUPT"));
+            AppendCommand(rmfd.GetCommand("OSB-15")); /* FCS */
+        }
+    }
+
 	public class FA18Upload
 	{
 		private int tcpPort = 42070;
@@ -26,6 +57,9 @@ namespace DTC.Models
 		public void Load()
 		{
 			var sb = new StringBuilder();
+
+			var preInit = new FA18PreUploadInit(fa18, sb);
+			preInit.Build();
 
 			if (_cfg.Waypoints.EnableUpload)
 			{

@@ -20,6 +20,11 @@ namespace DTC.UI.CommonPages
 		{
 			MainForm.AddPage(new PresetsPage(PresetsStore.GetAircraft(AircraftModel.FA18C)));
 		}
+		
+		private void btnAH64_Click(object sender, System.EventArgs e)
+		{
+            		MainForm.AddPage(new PresetsPage(PresetsStore.GetAircraft(AircraftModel.AH64D)));
+        	}
 
 		private void btnWptDatabase_Click(object sender, System.EventArgs e)
 		{

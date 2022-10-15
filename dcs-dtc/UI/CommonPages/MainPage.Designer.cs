@@ -31,6 +31,7 @@ namespace DTC.UI.CommonPages
 		{
             this.btnF16 = new System.Windows.Forms.Button();
             this.btnF18 = new System.Windows.Forms.Button();
+	    this.btnAH64 = new System.Windows.Forms.Button();
             this.btnWptDatabase = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
@@ -66,6 +67,23 @@ namespace DTC.UI.CommonPages
             this.btnF18.UseVisualStyleBackColor = true;
             this.btnF18.Click += new System.EventHandler(this.btnF18_Click);
             // 
+            // btnAH64
+            // 
+            this.btnAH64.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnAH64.Font = new System.Drawing.Font("Microsoft Sans Serif", 18F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnAH64.ForeColor = System.Drawing.Color.Black;
+            this.btnAH64.Image = global::DTC.Properties.Resources.AH64;
+            this.btnAH64.Location = new System.Drawing.Point(20, 186);
+            this.btnAH64.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.btnAH64.Name = "btnAH64";
+            this.btnAH64.Padding = new System.Windows.Forms.Padding(8);
+            this.btnAH64.Size = new System.Drawing.Size(300, 154);
+            this.btnAH64.TabIndex = 5;
+            this.btnAH64.Text = "AH-64D Apache";
+            this.btnAH64.TextAlign = System.Drawing.ContentAlignment.TopLeft;
+            this.btnAH64.UseVisualStyleBackColor = true;
+            this.btnAH64.Click += new System.EventHandler(this.btnAH64_Click);
+            // 
             // btnWptDatabase
             // 
             this.btnWptDatabase.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
@@ -90,6 +108,7 @@ namespace DTC.UI.CommonPages
             this.BackColor = System.Drawing.Color.PaleGoldenrod;
             this.Controls.Add(this.btnF16);
             this.Controls.Add(this.btnF18);
+            this.Controls.Add(this.btnAH64);
             this.Controls.Add(this.btnWptDatabase);
             this.Name = "MainPage";
             this.Size = new System.Drawing.Size(669, 434);
@@ -101,6 +120,7 @@ namespace DTC.UI.CommonPages
 
 		private System.Windows.Forms.Button btnF16;
 		private System.Windows.Forms.Button btnF18;
+		private System.Windows.Forms.Button btnAH64;
 		private System.Windows.Forms.Button btnWptDatabase;
 	}
 }

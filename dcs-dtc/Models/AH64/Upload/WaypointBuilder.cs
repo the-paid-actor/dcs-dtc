@@ -53,6 +53,10 @@ namespace DTC.Models.AH64.Upload
                 {
                     AppendCommand(mpd.GetCommand("L4"));
                 }
+                if (wpt.Type == "CM")
+                {
+                    AppendCommand(mpd.GetCommand("L5"));
+                }
                 if (wpt.Type == "TG")
                 {
                     AppendCommand(mpd.GetCommand("L6"));

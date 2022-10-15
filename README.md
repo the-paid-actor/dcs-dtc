@@ -2,7 +2,7 @@
 
 https://github.com/the-paid-actor/dcs-dtc
 
-This is a mod for DCS that works as a DTC (Data Cartridge) for the F-16 and F/A-18.
+This is a mod for DCS that works as a DTC (Data Cartridge) for the F-16, F/A-18 AND AH-64D.
 
 Features:
 
@@ -21,6 +21,9 @@ Features:
   - Radar/Barometric altitude warning setting
   - AP BLIM setting
   - TACAN Channel/Band setting
+- Allows uploading to the AH-64D CPG cockpit:
+  - Waypoints
+  - Radios
 - Enables you to share and receive settings from other people using this mod, either by file or clipboard
 - Allows capturing a waypoint coordinate using the F10 view in DCS, or a "markpoint" by flying over a point in the map.
 
@@ -30,8 +33,8 @@ This application is written using .NET Framework 4.7.2. You may want to download
 
 ## Installation
 
-- Grab the zip file from the Releases tab on Github.
-- Unzip it into a folder of your choice.
+- Grab the files from the Releases tab on Github.
+- Copy into a folder of your choice.
 - Copy the DCSDTC.lua file into `C:\Users\<your user name>\Saved Games\DCS\Scripts`. Substitute `C:` for the drive 
   where your Windows is installed and `DCS` for `DCS.openbeta` if you are on the beta version.
 - In that same folder, edit a file named `Export.lua`. If the file does not exists, create it yourself.
@@ -52,6 +55,9 @@ Affected by this are the following features:
 
 The setting of Pre-Planned coordinates relies on the settings for all stations being correct. 
 If those settings are not correct, results may vary from everything working fine, the coordinates being set on the wrong station or any station not receving the set coordinates.
+
+AH-64D waypoints are in MGRS format. Point types and certain (not all) Idents are implemented. Verify type & ident are compatible, as this is not validated atm. Also map capture is not yet available for the AH-64D.
+
 ## Help
 
 Contact me on Discord (The_Paid_Actor#1368) if you have issues, questions or suggestions.

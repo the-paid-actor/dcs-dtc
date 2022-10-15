@@ -6,6 +6,7 @@ using System.Collections.Generic;
 using System.Windows.Forms;
 using DTC.Models.F16;
 using DTC.Models.FA18;
+using DTC.Models.AH64;
 
 namespace DTC.UI.CommonPages
 {
@@ -58,6 +59,17 @@ namespace DTC.UI.CommonPages
 					new Aircrafts.FA18.CMSPage(this, cfg.CMS),
 					new Aircrafts.FA18.RadioPage(this, cfg.Radios),
 					new Aircrafts.FA18.MiscPage(this, cfg.Misc)
+				};
+			}
+			else if (_aircraft.Model == AircraftModel.AH64D)
+			{
+				var cfg = (AH64Configuration)configuration;
+				return new AircraftSettingPage[]
+				{
+				    new Aircrafts.AH64.UploadToJetPage(this, cfg),
+				    new Aircrafts.AH64.LoadSavePage(this, cfg),
+				    new Aircrafts.AH64.WaypointsPage(this, cfg.Waypoints),
+				    new Aircrafts.AH64.RadioPage(this, cfg.Radios)
 				};
 			}
 			throw new Exception();

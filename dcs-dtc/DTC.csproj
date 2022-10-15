@@ -79,6 +79,17 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Models\DCS\Emitters.cs" />
+    <Compile Include="Models\AH64\AH64Configuration.cs" />
+    <Compile Include="Models\AH64\AH64Commands.cs" />
+    <Compile Include="Models\AH64\AH64Upload.cs" />
+    <Compile Include="Models\AH64\Radios\RadioChannel.cs" />
+    <Compile Include="Models\AH64\Radios\Radio.cs" />
+    <Compile Include="Models\AH64\Radios\RadioSystem.cs" />
+    <Compile Include="Models\AH64\Radios\RadioType.cs" />
+    <Compile Include="Models\AH64\Upload\RadioBuilder.cs" />
+    <Compile Include="Models\AH64\Upload\WaypointBuilder.cs" />
+    <Compile Include="Models\AH64\Waypoints\WaypointSystem.cs" />
+    <Compile Include="Models\AH64\Waypoints\Waypoint.cs" />
     <Compile Include="Models\FA18\CMS\CMSystem.cs" />
     <Compile Include="Models\FA18\CMS\Program.cs" />
     <Compile Include="Models\FA18\PrePlanned\PrePlannedCoordinate.cs" />
@@ -134,6 +145,36 @@
     <Compile Include="Models\Presets\Aircraft.cs" />
     <Compile Include="Models\Presets\Preset.cs" />
     <Compile Include="Models\WaypointDB\WaypointDB.cs" />
+    <Compile Include="UI\Aircrafts\AH64\UploadToJetPage.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="UI\Aircrafts\AH64\UploadToJetPage.Designer.cs">
+      <DependentUpon>UploadToJetPage.cs</DependentUpon>
+    </Compile>
+    <Compile Include="UI\Aircrafts\AH64\RadioPage.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="UI\Aircrafts\AH64\RadioPage.Designer.cs">
+      <DependentUpon>RadioPage.cs</DependentUpon>
+    </Compile>
+    <Compile Include="UI\Aircrafts\AH64\LoadSavePage.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="UI\Aircrafts\AH64\LoadSavePage.Designer.cs">
+      <DependentUpon>LoadSavePage.cs</DependentUpon>
+    </Compile>
+    <Compile Include="UI\Aircrafts\AH64\WaypointEdit.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="UI\Aircrafts\AH64\WaypointEdit.Designer.cs">
+      <DependentUpon>WaypointEdit.cs</DependentUpon>
+    </Compile>
+    <Compile Include="UI\Aircrafts\AH64\WaypointsPage.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="UI\Aircrafts\AH64\WaypointsPage.Designer.cs">
+      <DependentUpon>WaypointsPage.cs</DependentUpon>
+    </Compile>
     <Compile Include="UI\Aircrafts\FA18\CMSPage.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -364,6 +405,21 @@
     <Compile Include="UI\CommonPages\PresetsPage.Designer.cs">
       <DependentUpon>PresetsPage.cs</DependentUpon>
     </Compile>
+    <EmbeddedResource Include="UI\Aircrafts\AH64\LoadSavePage.resx">
+      <DependentUpon>LoadSavePage.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UI\Aircrafts\AH64\RadioPage.resx">
+      <DependentUpon>RadioPage.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UI\Aircrafts\AH64\UploadToJetPage.resx">
+      <DependentUpon>UploadToJetPage.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UI\Aircrafts\AH64\WaypointEdit.resx">
+      <DependentUpon>WaypointEdit.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UI\Aircrafts\AH64\WaypointsPage.resx">
+      <DependentUpon>WaypointsPage.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="UI\Aircrafts\FA18\CMSPage.resx">
       <DependentUpon>CMSPage.cs</DependentUpon>
     </EmbeddedResource>
@@ -505,6 +561,7 @@
   <ItemGroup>
     <None Include="Resources\F16.png" />
     <None Include="Resources\FA18.png" />
+    <None Include="Resources\AH64.png" />
     <Content Include="Resources\Iconleak-Atrous-Disk.ico" />
     <None Include="Resources\Waypoints.png" />
     <Content Include="Structure.txt" />

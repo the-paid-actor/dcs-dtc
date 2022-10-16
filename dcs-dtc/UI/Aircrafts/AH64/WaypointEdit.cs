@@ -20,6 +20,26 @@ namespace DTC.UI.Aircrafts.AH64
 
         public delegate void WaypointEditCallback(WaypointEditResult result, Waypoint wpt);
 
+        private class PointTypeComboBoxItem
+        {
+            public string PointType;
+            public string Ident;
+            public string Description;
+
+            public PointTypeComboBoxItem(string pointType, string ident, string description)
+            {
+                PointType = pointType;
+                Ident = ident;
+                Description = description;
+
+            }
+
+            public override string ToString()
+            {
+                return $"{PointType} - {Description}";
+            }
+        }
+
         private readonly WaypointEditCallback _callback;
         private WaypointSystem _flightPlan;
         private Waypoint _waypoint = null;
@@ -27,6 +47,17 @@ namespace DTC.UI.Aircrafts.AH64
         public WaypointEdit(WaypointSystem flightPlan, WaypointEditCallback callback)
         {
             InitializeComponent();
+
+            foreach (var pointtype in PointType.PointTypes)
+            {
+                txtWptType.Items.Add(pointtype.Type);
+                foreach (var ident in pointtype.Idents)
+                {
+                    cboPointType.Items.Add(new PointTypeComboBoxItem(pointtype.Type, ident.Name, ident.Description));
+                    txtWptIdent.Items.Add(ident.Name);
+                }
+            }
+
             _callback = callback;
             _flightPlan = flightPlan;
         }
@@ -157,6 +188,16 @@ namespace DTC.UI.Aircrafts.AH64
             txtWptFree.Text = "WP1";
             txtWptElevation.Text = "0";
             txtWptMGRS.Focus();
+        }
+
+        private void cboPointType_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            if (cboPointType.SelectedIndex > -1)
+            {
+                var item = (PointTypeComboBoxItem)cboPointType.SelectedItem;
+                var wpt = new Waypoint(0, item.PointType, item.Ident,txtWptFree.Text,txtWptMGRS.Text,int.Parse(txtWptElevation.Text));
+                LoadWaypoint(wpt);
+            }
         }
     }
 }

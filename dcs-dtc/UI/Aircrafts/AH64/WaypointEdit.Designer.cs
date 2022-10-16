@@ -45,6 +45,8 @@ namespace DTC.UI.Aircrafts.AH64
             this.label3 = new System.Windows.Forms.Label();
             this.label4 = new System.Windows.Forms.Label();
             this.label5 = new System.Windows.Forms.Label();
+            this.cboPointType = new System.Windows.Forms.ComboBox();
+            this.label6 = new System.Windows.Forms.Label();
             this.panel1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -162,12 +164,7 @@ namespace DTC.UI.Aircrafts.AH64
             this.txtWptType.FormattingEnabled = true;
             this.txtWptType.IntegralHeight = false;
             this.txtWptType.ItemHeight = 25;
-            this.txtWptType.Items.AddRange(new object[] {
-            "WP",
-            "CM",
-            "TG",
-            "HZ"});
-            this.txtWptType.Location = new System.Drawing.Point(170, 60);
+            this.txtWptType.Location = new System.Drawing.Point(170, 103);
             this.txtWptType.Name = "txtWptType";
             this.txtWptType.Size = new System.Drawing.Size(80, 33);
             this.txtWptType.TabIndex = 8;
@@ -179,28 +176,7 @@ namespace DTC.UI.Aircrafts.AH64
             this.txtWptIdent.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.txtWptIdent.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F);
             this.txtWptIdent.FormattingEnabled = true;
-            this.txtWptIdent.Items.AddRange(new object[] {
-            "CC",
-            "LZ",
-            "WP",
-            "TU",
-            "WL",
-            "WS",
-            "AG",
-            "BP",
-            "FC",
-            "AD",
-            "AM",
-            "FI",
-            "ED",
-            "AE",
-            "EI",
-            "TG",
-            "6",
-            "15",
-            "ZU",
-            "S6"});
-            this.txtWptIdent.Location = new System.Drawing.Point(170, 108);
+            this.txtWptIdent.Location = new System.Drawing.Point(437, 109);
             this.txtWptIdent.Name = "txtWptIdent";
             this.txtWptIdent.Size = new System.Drawing.Size(80, 33);
             this.txtWptIdent.TabIndex = 9;
@@ -244,11 +220,11 @@ namespace DTC.UI.Aircrafts.AH64
             // label4
             // 
             this.label4.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F);
-            this.label4.Location = new System.Drawing.Point(12, 108);
+            this.label4.Location = new System.Drawing.Point(345, 104);
             this.label4.Margin = new System.Windows.Forms.Padding(0);
             this.label4.Name = "label4";
             this.label4.Padding = new System.Windows.Forms.Padding(8, 0, 0, 0);
-            this.label4.Size = new System.Drawing.Size(155, 38);
+            this.label4.Size = new System.Drawing.Size(89, 38);
             this.label4.TabIndex = 31;
             this.label4.Text = "Ident:";
             this.label4.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
@@ -256,7 +232,7 @@ namespace DTC.UI.Aircrafts.AH64
             // label5
             // 
             this.label5.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F);
-            this.label5.Location = new System.Drawing.Point(12, 60);
+            this.label5.Location = new System.Drawing.Point(12, 104);
             this.label5.Margin = new System.Windows.Forms.Padding(0);
             this.label5.Name = "label5";
             this.label5.Padding = new System.Windows.Forms.Padding(8, 0, 0, 0);
@@ -265,12 +241,39 @@ namespace DTC.UI.Aircrafts.AH64
             this.label5.Text = "Type:";
             this.label5.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
+            // cboPointType
+            // 
+            this.cboPointType.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cboPointType.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.cboPointType.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F);
+            this.cboPointType.FormattingEnabled = true;
+            this.cboPointType.Location = new System.Drawing.Point(170, 58);
+            this.cboPointType.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.cboPointType.Name = "cboPointType";
+            this.cboPointType.Size = new System.Drawing.Size(639, 37);
+            this.cboPointType.TabIndex = 33;
+            this.cboPointType.SelectedIndexChanged += new System.EventHandler(this.cboPointType_SelectedIndexChanged);
+            // 
+            // label6
+            // 
+            this.label6.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F);
+            this.label6.Location = new System.Drawing.Point(11, 58);
+            this.label6.Margin = new System.Windows.Forms.Padding(0);
+            this.label6.Name = "label6";
+            this.label6.Padding = new System.Windows.Forms.Padding(8, 0, 0, 0);
+            this.label6.Size = new System.Drawing.Size(155, 38);
+            this.label6.TabIndex = 34;
+            this.label6.Text = "Preset:";
+            this.label6.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            // 
             // WaypointEdit
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 20F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.PaleGoldenrod;
             this.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.Controls.Add(this.label6);
+            this.Controls.Add(this.cboPointType);
             this.Controls.Add(this.label5);
             this.Controls.Add(this.label4);
             this.Controls.Add(this.label3);
@@ -308,5 +311,7 @@ namespace DTC.UI.Aircrafts.AH64
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.Label label4;
         private System.Windows.Forms.Label label5;
+        private System.Windows.Forms.ComboBox cboPointType;
+        private System.Windows.Forms.Label label6;
     }
 }

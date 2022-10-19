@@ -63,5 +63,10 @@ namespace DTC.Models.AH64.Waypoints
                 wpt.Sequence = i + 1;
             }
         }
+
+        public int Count()
+        {
+            return Waypoints.Count;
+        }
     }
 }

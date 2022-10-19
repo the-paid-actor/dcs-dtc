@@ -31,16 +31,24 @@ namespace DTC.UI.Aircrafts.FA18
 				var txt = Clipboard.GetText();
 				_configToLoad = FA18Configuration.FromCompressedString(txt);
 			}
-			else
-			{
-				if (openFileDlg.ShowDialog() == DialogResult.OK)
-				{
-					var file = FileStorage.LoadFile(openFileDlg.FileName);
-					_configToLoad = FA18Configuration.FromJson(file);
-				}
-			}
+            if (optFile.Checked)
+            {
+                if (openFileDlg.ShowDialog() == DialogResult.OK)
+                {
+                    var file = FileStorage.LoadFile(openFileDlg.FileName);
+                    _configToLoad = FA18Configuration.FromJson(file);
+                }
+            }
+            if (optXML.Checked)
+            {
+                if (openFileDlg.ShowDialog() == DialogResult.OK)
+                {
+                    var file = FileStorage.LoadFile(openFileDlg.FileName);
+                    _configToLoad = FA18Configuration.FromCombatFliteXML(_mainConfig, file);
+                }
+            }
 
-			DisableLoadControls();
+            DisableLoadControls();
 
 			var enableLoad = false;
 
@@ -166,5 +174,14 @@ namespace DTC.UI.Aircrafts.FA18
 			grpSave.Visible = true;
 			DisableLoadControls();
 		}
-	}
+		private void optXML_CheckedChanged(object sender, EventArgs e)
+        {
+            _configToLoad = null;
+            grpLoad.Text = "Load from Combatflite XML";
+            //grpSave.Text = "Save to Clipboard";
+            grpLoad.Visible = true;
+            grpSave.Visible = false;
+            DisableLoadControls();
+        }
+    }
 }

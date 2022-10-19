@@ -21,7 +21,7 @@ namespace DTC.Models.AH64
 
             _cfg = cfg;
         }
-
+        internal AH64Configuration Cfg => _cfg;
         public void Load()
         {
             var sb = new StringBuilder();

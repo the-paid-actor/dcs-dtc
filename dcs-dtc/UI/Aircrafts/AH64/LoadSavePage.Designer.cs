@@ -41,6 +41,7 @@
             this.chkSaveWaypoints = new System.Windows.Forms.CheckBox();
             this.saveFileDlg = new System.Windows.Forms.SaveFileDialog();
             this.openFileDlg = new System.Windows.Forms.OpenFileDialog();
+            this.optXML = new System.Windows.Forms.RadioButton();
             this.grpLoad.SuspendLayout();
             this.grpSave.SuspendLayout();
             this.SuspendLayout();
@@ -218,11 +219,26 @@
             // 
             this.openFileDlg.FileName = "dtc.json";
             // 
+            // optXML
+            // 
+            this.optXML.AutoSize = true;
+            this.optXML.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F);
+            this.optXML.Location = new System.Drawing.Point(277, 23);
+            this.optXML.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.optXML.Name = "optXML";
+            this.optXML.Size = new System.Drawing.Size(189, 29);
+            this.optXML.TabIndex = 11;
+            this.optXML.TabStop = true;
+            this.optXML.Text = "CombatFlite XML";
+            this.optXML.UseVisualStyleBackColor = true;
+            this.optXML.CheckedChanged += new System.EventHandler(this.optXML_CheckedChanged);
+            // 
             // LoadSavePage
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 20F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.PaleGoldenrod;
+            this.Controls.Add(this.optXML);
             this.Controls.Add(this.grpSave);
             this.Controls.Add(this.grpLoad);
             this.Controls.Add(this.optClipboard);
@@ -251,5 +267,6 @@
         private System.Windows.Forms.CheckBox chkSaveWaypoints;
         private System.Windows.Forms.SaveFileDialog saveFileDlg;
         private System.Windows.Forms.OpenFileDialog openFileDlg;
+        private System.Windows.Forms.RadioButton optXML;
     }
 }

@@ -6,6 +6,7 @@ using DTC.Models.FA18;
 using DTC.Models.Base;
 using DTC.Models.FA18.Upload;
 
+
 namespace DTC.Models
 {
 	public class FA18Upload
@@ -21,8 +22,8 @@ namespace DTC.Models
 
 			_cfg = cfg;
 		}
-
-		public void Load()
+        internal FA18Configuration Cfg => _cfg;
+        public void Load()
 		{
 			var sb = new StringBuilder();
 

@@ -70,6 +70,7 @@ namespace DTC.Models.AH64.Upload
                 AppendCommand(ClearKU(ku));
                 AppendCommand(BuildString(ku, wpt.Mgrs));
                 AppendCommand(ku.GetCommand("ENTR"));
+                AppendCommand(BuildString(ku, wpt.Elevation.ToString()));
                 AppendCommand(ku.GetCommand("ENTR"));
                 AppendCommand(mpd.GetCommand("TSD"));
             }

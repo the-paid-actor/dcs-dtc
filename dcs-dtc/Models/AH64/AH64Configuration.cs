@@ -2,6 +2,11 @@
 using DTC.Models.Base;
 using DTC.Models.AH64.Waypoints;
 using DTC.Models.AH64.Radios;
+using CoordinateSharp;
+using System.Collections.Generic;
+using System.Xml.Linq;
+using System;
+using System.Xml.XPath;
 
 namespace DTC.Models.AH64
 {
@@ -68,6 +73,57 @@ namespace DTC.Models.AH64
             {
                 Radios = cfg.Radios;
             }
+        }
+
+        internal static AH64Configuration FromCombatFliteXML(AH64Configuration previous, string file)
+        {
+            const double feetPerMeter = 3.28084D;
+            XDocument doc = new XDocument();
+            doc = XDocument.Parse(file);
+            previous.Waypoints.Waypoints = new List<Waypoint>();
+            int i = 0;
+            foreach (var el in doc.XPathSelectElements("Objects/Waypoints/Waypoint"))
+            {
+                ++i;
+                var name = el.Element("Name")?.Value;
+                if (!string.IsNullOrEmpty(name))
+                {
+                    var names = name.Split('\n');
+                    name = names[names.Length - 1];
+                }
+                var pos = el.Element("Position");
+                if (pos == null)
+                {
+                    continue;
+                }
+
+                var lat = pos.Element("Latitude")?.Value;
+                var lon = pos.Element("Longitude")?.Value;
+                var dLat = double.Parse(lat.Replace('.', ','));
+                var dLon = double.Parse(lon.Replace('.', ','));
+                //if (
+                //    !double.TryParse(lat, out var dLat) ||
+                //    !double.TryParse(lon, out var dLon))
+                //{
+                //    continue;
+                //}
+                float.TryParse(pos.Element("Altitude")?.Value.Replace('.', ','), out var elevation);
+                var coord = new Coordinate(dLat, dLon);
+                lat = $"{(dLat > 0 ? 'N' : 'S')} {coord.Latitude.Degrees:00}.{coord.Latitude.DecimalMinute:00.000}";
+                lon = $"{(dLon > 0 ? 'E' : 'W')} {Math.Abs(coord.Longitude.Degrees):000}.{coord.Longitude.DecimalMinute:00.000}";
+
+                var s = coord.ToString();
+
+                previous.Waypoints.Waypoints.Add(new Waypoint(
+                    i,"WP","WP","", coord.MGRS.LongZone.ToString() + coord.MGRS.LatZone.ToString()+coord.MGRS.Digraph.ToString()+" "+coord.MGRS.Easting.ToString("00000").Substring(0,4) + " " + coord.MGRS.Northing.ToString("00000").Substring(0, 4),
+                    //string.IsNullOrEmpty(name) ? "" : name,
+                    //string.IsNullOrEmpty(lat) ? "N 00.00.000" : lat,
+                    //string.IsNullOrEmpty(lon) ? "E 000.00.000" : lon,
+                    (int)Math.Floor(elevation * feetPerMeter)
+                ));
+
+            }
+            return previous;
         }
         IConfiguration IConfiguration.Clone()
         {

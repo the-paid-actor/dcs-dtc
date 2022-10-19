@@ -56,7 +56,7 @@ Affected by this are the following features:
 The setting of Pre-Planned coordinates relies on the settings for all stations being correct. 
 If those settings are not correct, results may vary from everything working fine, the coordinates being set on the wrong station or any station not receving the set coordinates.
 
-AH-64D waypoints are in MGRS format. Point types and certain (not all) Idents are implemented. Verify type & ident are compatible, as this is not validated atm. Also map capture is not yet available for the AH-64D.
+AH-64D waypoints are in MGRS format. Point types and certain (not all) Idents are implemented. Verify type & ident are compatible, or select a preset. Also map capture is not yet available for the AH-64D.
 
 ## Help
 

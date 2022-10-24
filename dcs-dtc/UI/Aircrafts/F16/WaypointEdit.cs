@@ -161,7 +161,7 @@ namespace DTC.UI.Aircrafts.F16
 
 		private bool ValidateElevation()
 		{
-			if (!Util.IsValidInt(txtWptElevation.Text))
+			if (!Util.IsValidInt(txtWptElevation.Text) || int.Parse(txtWptElevation.Text) > 25000)
 			{
 				lblValidation.Text = "Invalid elevation";
 				txtWptElevation.Focus();
@@ -214,7 +214,7 @@ namespace DTC.UI.Aircrafts.F16
 						txtWptLatLong.Text = latitude + " " + longitude;
 						txtWptElevation.Text = elevation;
 					}));
-				});
+				}, new DdmShortFormatter());
 			}
 			else
 			{

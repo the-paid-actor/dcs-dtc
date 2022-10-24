@@ -5,9 +5,9 @@
 		public readonly int ID;
 		public readonly string Name;
 		public readonly int Delay;
-		public readonly int Activate;
+		public readonly double Activate;
 
-		public Command(int id, string name, int delay, int activate)
+		public Command(int id, string name, int delay, double activate)
 		{
 			ID = id;
 			Name = name;

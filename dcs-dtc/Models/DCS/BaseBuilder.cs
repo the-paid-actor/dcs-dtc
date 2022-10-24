@@ -38,6 +38,18 @@ namespace DTC.Models.DCS
 			return str.Replace("'", "\"");
 		}
 
+		protected static string WaitLong()
+		{
+			var str = "{'device':'wait', 'delay': 600},";
+			return str.Replace("'", "\"");
+		}
+
+		protected static string WaitVeryLong()
+		{
+			var str = "{'device':'wait', 'delay': 17000},";
+			return str.Replace("'", "\"");
+		}
+
 		protected static string StartCondition(string condition)
 		{
 			var str = "{'start_condition': '" + condition + "'},";
@@ -62,7 +74,7 @@ namespace DTC.Models.DCS
 
 		protected static string RemoveSeparators(string s)
 		{
-			return s.Replace(",", "").Replace(".", "");
+			return s.Replace(",", "").Replace(".", "").Replace("°","");
 		}
 	}
 }

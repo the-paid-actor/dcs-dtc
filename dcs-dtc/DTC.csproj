@@ -83,6 +83,7 @@
     <Compile Include="Models\FA18\CMS\Program.cs" />
     <Compile Include="Models\FA18\PrePlanned\PrePlannedCoordinate.cs" />
     <Compile Include="Models\FA18\PrePlanned\PrePlannedStation.cs" />
+    <Compile Include="Models\FA18\PrePlanned\PrePlannedSteerpoint.cs" />
     <Compile Include="Models\FA18\PrePlanned\PrePlannedSystem.cs" />
     <Compile Include="Models\FA18\Upload\CMSBuilder.cs" />
     <Compile Include="Models\FA18\Upload\PrePlannedBuilder.cs" />
@@ -143,6 +144,18 @@
     <Compile Include="UI\Aircrafts\FA18\CMSPage.Designer.cs">
       <DependentUpon>CMSPage.cs</DependentUpon>
     </Compile>
+    <Compile Include="UI\Aircrafts\FA18\CompositeControls\PrePlannedStationControl.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="UI\Aircrafts\FA18\CompositeControls\PrePlannedStationControl.Designer.cs">
+      <DependentUpon>PrePlannedStationControl.cs</DependentUpon>
+    </Compile>
+    <Compile Include="UI\Aircrafts\FA18\CompositeControls\SteerPointEditControl.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="UI\Aircrafts\FA18\CompositeControls\SteerPointEditControl.Designer.cs">
+      <DependentUpon>SteerPointEditControl.cs</DependentUpon>
+    </Compile>
     <Compile Include="UI\Aircrafts\FA18\LoadSavePage.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -172,6 +185,12 @@
     </Compile>
     <Compile Include="UI\Aircrafts\FA18\RadioPage.Designer.cs">
       <DependentUpon>RadioPage.cs</DependentUpon>
+    </Compile>
+    <Compile Include="UI\Aircrafts\FA18\SteerPointEdit.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="UI\Aircrafts\FA18\SteerPointEdit.Designer.cs">
+      <DependentUpon>SteerPointEdit.cs</DependentUpon>
     </Compile>
     <Compile Include="UI\Aircrafts\FA18\UploadToJetPage.cs">
       <SubType>UserControl</SubType>
@@ -382,6 +401,12 @@
     <EmbeddedResource Include="UI\Aircrafts\FA18\CMSPage.resx">
       <DependentUpon>CMSPage.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="UI\Aircrafts\FA18\CompositeControls\PrePlannedStationControl.resx">
+      <DependentUpon>PrePlannedStationControl.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UI\Aircrafts\FA18\CompositeControls\SteerPointEditControl.resx">
+      <DependentUpon>SteerPointEditControl.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="UI\Aircrafts\FA18\LoadSavePage.resx">
       <DependentUpon>LoadSavePage.cs</DependentUpon>
     </EmbeddedResource>
@@ -393,6 +418,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="UI\Aircrafts\FA18\RadioPage.resx">
       <DependentUpon>RadioPage.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UI\Aircrafts\FA18\SteerPointEdit.resx">
+      <DependentUpon>SteerPointEdit.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="UI\Aircrafts\FA18\UploadToJetPage.resx">
       <DependentUpon>UploadToJetPage.cs</DependentUpon>

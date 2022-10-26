@@ -4,7 +4,7 @@ namespace DTC.Models.FA18.PrePlanned
 {
     public class PrePlannedCoordinate
     {
-		public static Regex coordRegex = new Regex("^([N|S] \\d\\d°\\d\\d\\.\\d\\d\\d\\d) ([E|W] \\d\\d\\d°\\d\\d\\.\\d\\d\\d\\d)$");
+        public static Regex coordRegex = new Regex(@"^([NS] \d\d°\d\d'\d\d\.\d\d) ([EW] \d\d\d°\d\d'\d\d\.\d\d)$");
         public string Lat { get; set; }
         public string Lon { get; set; }
         public int Elev { get; set; }

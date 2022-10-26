@@ -29,40 +29,17 @@ namespace DTC.UI.Aircrafts.FA18
             var left = padding;
             this.Controls.Add(DTCLabel.Make("Station " + station.stationNumber, left, top, colWidth, rowHeight));
             top += padding + rowHeight;
-            this.Controls.Add(DTCLabel.Make(station.PP1.Lat, left, top, colWidth, rowHeight));
-            top += padding + rowHeight;
-            this.Controls.Add(DTCLabel.Make(station.PP1.Lon, left, top, colWidth, rowHeight));
-            top += padding + rowHeight;
-            this.Controls.Add(DTCLabel.Make(station.PP1.Elev.ToString() + " ft", left, top, colWidth, rowHeight));
-            left += padding + colWidth;
-            top -= 2*(padding + rowHeight);
-            this.Controls.Add(DTCLabel.Make(station.PP2.Lat, left, top, colWidth, rowHeight));
-            top += padding + rowHeight;
-            this.Controls.Add(DTCLabel.Make(station.PP2.Lon, left, top, colWidth, rowHeight));
-            top += padding + rowHeight;
-            this.Controls.Add(DTCLabel.Make(station.PP2.Elev.ToString() + " ft", left, top, colWidth, rowHeight));
-            left += padding + colWidth;
-            top -= 2*(padding + rowHeight);
-            this.Controls.Add(DTCLabel.Make(station.PP3.Lat, left, top, colWidth, rowHeight));
-            top += padding + rowHeight;
-            this.Controls.Add(DTCLabel.Make(station.PP3.Lon, left, top, colWidth, rowHeight));
-            top += padding + rowHeight;
-            this.Controls.Add(DTCLabel.Make(station.PP3.Elev.ToString() + " ft", left, top, colWidth, rowHeight));
-            left += padding + colWidth;
-            top -= 2*(padding + rowHeight);
-            this.Controls.Add(DTCLabel.Make(station.PP4.Lat, left, top, colWidth, rowHeight));
-            top += padding + rowHeight;
-            this.Controls.Add(DTCLabel.Make(station.PP4.Lon, left, top, colWidth, rowHeight));
-            top += padding + rowHeight;
-            this.Controls.Add(DTCLabel.Make(station.PP4.Elev.ToString() + " ft", left, top, colWidth, rowHeight));
-            left += padding + colWidth;
-            top -= 2*(padding + rowHeight);
-            this.Controls.Add(DTCLabel.Make(station.PP5.Lat, left, top, colWidth, rowHeight));
-            top += padding + rowHeight;
-            this.Controls.Add(DTCLabel.Make(station.PP5.Lon, left, top, colWidth, rowHeight));
-            top += padding + rowHeight;
-            this.Controls.Add(DTCLabel.Make(station.PP5.Elev.ToString() + " ft", left, top, colWidth, rowHeight));
-            left += padding + colWidth;
+
+            for (int i = 1; i <= 5; i++)
+            {
+                this.Controls.Add(DTCLabel.Make(station.PP[i].Lat, left, top, colWidth, rowHeight));
+                top += padding + rowHeight;
+                this.Controls.Add(DTCLabel.Make(station.PP[i].Lon, left, top, colWidth, rowHeight));
+                top += padding + rowHeight;
+                this.Controls.Add(DTCLabel.Make(station.PP[i].Elev.ToString() + " ft", left, top, colWidth, rowHeight));
+                left += padding + colWidth;
+                top -= 2 * (padding + rowHeight);
+            }
         }
 
 
@@ -71,35 +48,17 @@ namespace DTC.UI.Aircrafts.FA18
 			this.Visible = true;
 			this.BringToFront();
 
-            var top = 2*(padding + rowHeight);
-			DisplayStation(top, _prePlanned.Sta2);
-            top += 4*(padding + rowHeight) + padding;
-			DisplayStation(top, _prePlanned.Sta3);
-            top += 4*(padding + rowHeight) + padding;
-			DisplayStation(top, _prePlanned.Sta7);
-            top += 4*(padding + rowHeight) + padding;
-			DisplayStation(top, _prePlanned.Sta8);
-		}
-
-		private void btnSave_Click(object sender, EventArgs e)
-		{
+            var top = 2 * (padding + rowHeight);
+            foreach (PrePlannedStation sta in _prePlanned.Stations.Values)
+			{
+                DisplayStation(top, sta);
+                top += 4 * (padding + rowHeight) + padding;
+            }
 		}
 
 		private void lblClose_Click(object sender, EventArgs e)
 		{
-			CloseDialog();
-		}
-
-		private void CloseDialog()
-		{
-			DisposeWptCapture();
-
 			Visible = false;
 		}
-
-		private void DisposeWptCapture()
-		{
-		}
-
 	}
 }

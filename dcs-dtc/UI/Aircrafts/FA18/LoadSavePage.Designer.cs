@@ -41,7 +41,6 @@ namespace DTC.UI.Aircrafts.FA18
             this.chkLoadSeq = new System.Windows.Forms.CheckBox();
             this.btnLoadApply = new DTC.UI.Base.Controls.DTCButton();
             this.btnLoad = new DTC.UI.Base.Controls.DTCButton();
-            this.chkLoadMFDs = new System.Windows.Forms.CheckBox();
             this.chkLoadRadios = new System.Windows.Forms.CheckBox();
             this.chkLoadCMS = new System.Windows.Forms.CheckBox();
             this.chkLoadWaypoints = new System.Windows.Forms.CheckBox();
@@ -50,7 +49,6 @@ namespace DTC.UI.Aircrafts.FA18
             this.chkSavePP = new System.Windows.Forms.CheckBox();
             this.chkSaveSeq = new System.Windows.Forms.CheckBox();
             this.btnSave = new DTC.UI.Base.Controls.DTCButton();
-            this.chkSaveMFDs = new System.Windows.Forms.CheckBox();
             this.chkSaveRadios = new System.Windows.Forms.CheckBox();
             this.chkSaveCMS = new System.Windows.Forms.CheckBox();
             this.chkSaveWaypoints = new System.Windows.Forms.CheckBox();
@@ -103,7 +101,6 @@ namespace DTC.UI.Aircrafts.FA18
             this.grpLoad.Controls.Add(this.chkLoadSeq);
             this.grpLoad.Controls.Add(this.btnLoadApply);
             this.grpLoad.Controls.Add(this.btnLoad);
-            this.grpLoad.Controls.Add(this.chkLoadMFDs);
             this.grpLoad.Controls.Add(this.chkLoadRadios);
             this.grpLoad.Controls.Add(this.chkLoadCMS);
             this.grpLoad.Controls.Add(this.chkLoadWaypoints);
@@ -179,17 +176,6 @@ namespace DTC.UI.Aircrafts.FA18
             this.btnLoad.UseVisualStyleBackColor = false;
             this.btnLoad.Click += new System.EventHandler(this.btnLoad_Click);
             // 
-            // chkLoadMFDs
-            // 
-            this.chkLoadMFDs.Enabled = false;
-            this.chkLoadMFDs.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F);
-            this.chkLoadMFDs.Location = new System.Drawing.Point(18, 240);
-            this.chkLoadMFDs.Name = "chkLoadMFDs";
-            this.chkLoadMFDs.Size = new System.Drawing.Size(71, 25);
-            this.chkLoadMFDs.TabIndex = 0;
-            this.chkLoadMFDs.Text = "MFDs";
-            this.chkLoadMFDs.UseVisualStyleBackColor = true;
-            // 
             // chkLoadRadios
             // 
             this.chkLoadRadios.Enabled = false;
@@ -232,7 +218,6 @@ namespace DTC.UI.Aircrafts.FA18
             this.grpSave.Controls.Add(this.chkSavePP);
             this.grpSave.Controls.Add(this.chkSaveSeq);
             this.grpSave.Controls.Add(this.btnSave);
-            this.grpSave.Controls.Add(this.chkSaveMFDs);
             this.grpSave.Controls.Add(this.chkSaveRadios);
             this.grpSave.Controls.Add(this.chkSaveCMS);
             this.grpSave.Controls.Add(this.chkSaveWaypoints);
@@ -296,18 +281,6 @@ namespace DTC.UI.Aircrafts.FA18
             this.btnSave.Text = "Save";
             this.btnSave.UseVisualStyleBackColor = false;
             this.btnSave.Click += new System.EventHandler(this.btnSave_Click);
-            // 
-            // chkSaveMFDs
-            // 
-            this.chkSaveMFDs.Checked = true;
-            this.chkSaveMFDs.CheckState = System.Windows.Forms.CheckState.Checked;
-            this.chkSaveMFDs.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F);
-            this.chkSaveMFDs.Location = new System.Drawing.Point(18, 240);
-            this.chkSaveMFDs.Name = "chkSaveMFDs";
-            this.chkSaveMFDs.Size = new System.Drawing.Size(71, 25);
-            this.chkSaveMFDs.TabIndex = 0;
-            this.chkSaveMFDs.Text = "MFDs";
-            this.chkSaveMFDs.UseVisualStyleBackColor = true;
             // 
             // chkSaveRadios
             // 
@@ -382,13 +355,11 @@ namespace DTC.UI.Aircrafts.FA18
         private Controls.DTCGroupBox grpLoad;
         private DTCButton btnLoadApply;
         private DTCButton btnLoad;
-        private System.Windows.Forms.CheckBox chkLoadMFDs;
         private System.Windows.Forms.CheckBox chkLoadRadios;
         private System.Windows.Forms.CheckBox chkLoadCMS;
         private System.Windows.Forms.CheckBox chkLoadWaypoints;
         private Controls.DTCGroupBox grpSave;
         private DTCButton btnSave;
-        private System.Windows.Forms.CheckBox chkSaveMFDs;
         private System.Windows.Forms.CheckBox chkSaveRadios;
         private System.Windows.Forms.CheckBox chkSaveCMS;
         private System.Windows.Forms.CheckBox chkSaveWaypoints;

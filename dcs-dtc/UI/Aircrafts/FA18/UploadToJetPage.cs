@@ -51,7 +51,6 @@ namespace DTC.UI.Aircrafts.FA18
 			if (int.TryParse(txtWaypointStart.Text, out int n))
 			{
 				_cfg.Waypoints.SetSteerpointStart(n);
-				_cfg.Waypoints.SetSteerpointEnd();
 				_parent.DataChangedCallback();
 			}
 

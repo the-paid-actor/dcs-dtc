@@ -37,8 +37,8 @@ namespace DTC.UI.Aircrafts.FA18
             this.optClipboard = new System.Windows.Forms.RadioButton();
             this.grpLoad = new DTC.UI.Controls.DTCGroupBox();
             this.chkLoadMisc = new System.Windows.Forms.CheckBox();
-            this.chkLoadHTS = new System.Windows.Forms.CheckBox();
-            this.chkLoadHARM = new System.Windows.Forms.CheckBox();
+            this.chkLoadPP = new System.Windows.Forms.CheckBox();
+            this.chkLoadSeq = new System.Windows.Forms.CheckBox();
             this.btnLoadApply = new DTC.UI.Base.Controls.DTCButton();
             this.btnLoad = new DTC.UI.Base.Controls.DTCButton();
             this.chkLoadMFDs = new System.Windows.Forms.CheckBox();
@@ -47,8 +47,8 @@ namespace DTC.UI.Aircrafts.FA18
             this.chkLoadWaypoints = new System.Windows.Forms.CheckBox();
             this.grpSave = new DTC.UI.Controls.DTCGroupBox();
             this.chkSaveMisc = new System.Windows.Forms.CheckBox();
-            this.chkSaveHTS = new System.Windows.Forms.CheckBox();
-            this.chkSaveHARM = new System.Windows.Forms.CheckBox();
+            this.chkSavePP = new System.Windows.Forms.CheckBox();
+            this.chkSaveSeq = new System.Windows.Forms.CheckBox();
             this.btnSave = new DTC.UI.Base.Controls.DTCButton();
             this.chkSaveMFDs = new System.Windows.Forms.CheckBox();
             this.chkSaveRadios = new System.Windows.Forms.CheckBox();
@@ -99,8 +99,8 @@ namespace DTC.UI.Aircrafts.FA18
             this.grpLoad.BorderRadius = 5;
             this.grpLoad.BorderWidth = 2;
             this.grpLoad.Controls.Add(this.chkLoadMisc);
-            this.grpLoad.Controls.Add(this.chkLoadHTS);
-            this.grpLoad.Controls.Add(this.chkLoadHARM);
+            this.grpLoad.Controls.Add(this.chkLoadPP);
+            this.grpLoad.Controls.Add(this.chkLoadSeq);
             this.grpLoad.Controls.Add(this.btnLoadApply);
             this.grpLoad.Controls.Add(this.btnLoad);
             this.grpLoad.Controls.Add(this.chkLoadMFDs);
@@ -128,27 +128,27 @@ namespace DTC.UI.Aircrafts.FA18
             this.chkLoadMisc.Text = "Misc";
             this.chkLoadMisc.UseVisualStyleBackColor = true;
             // 
-            // chkLoadHTS
+            // chkLoadPP
             // 
-            this.chkLoadHTS.Enabled = false;
-            this.chkLoadHTS.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F);
-            this.chkLoadHTS.Location = new System.Drawing.Point(18, 180);
-            this.chkLoadHTS.Name = "chkLoadHTS";
-            this.chkLoadHTS.Size = new System.Drawing.Size(60, 25);
-            this.chkLoadHTS.TabIndex = 1;
-            this.chkLoadHTS.Text = "HTS";
-            this.chkLoadHTS.UseVisualStyleBackColor = true;
+            this.chkLoadPP.Enabled = false;
+            this.chkLoadPP.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F);
+            this.chkLoadPP.Location = new System.Drawing.Point(18, 180);
+            this.chkLoadPP.Name = "chkLoadPP";
+            this.chkLoadPP.Size = new System.Drawing.Size(142, 25);
+            this.chkLoadPP.TabIndex = 1;
+            this.chkLoadPP.Text = "Pre Planned";
+            this.chkLoadPP.UseVisualStyleBackColor = true;
             // 
-            // chkLoadHARM
+            // chkLoadSeq
             // 
-            this.chkLoadHARM.Enabled = false;
-            this.chkLoadHARM.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F);
-            this.chkLoadHARM.Location = new System.Drawing.Point(18, 210);
-            this.chkLoadHARM.Name = "chkLoadHARM";
-            this.chkLoadHARM.Size = new System.Drawing.Size(76, 25);
-            this.chkLoadHARM.TabIndex = 1;
-            this.chkLoadHARM.Text = "HARM";
-            this.chkLoadHARM.UseVisualStyleBackColor = true;
+            this.chkLoadSeq.Enabled = false;
+            this.chkLoadSeq.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F);
+            this.chkLoadSeq.Location = new System.Drawing.Point(18, 210);
+            this.chkLoadSeq.Name = "chkLoadSeq";
+            this.chkLoadSeq.Size = new System.Drawing.Size(120, 25);
+            this.chkLoadSeq.TabIndex = 1;
+            this.chkLoadSeq.Text = "Sequences";
+            this.chkLoadSeq.UseVisualStyleBackColor = true;
             // 
             // btnLoadApply
             // 
@@ -229,8 +229,8 @@ namespace DTC.UI.Aircrafts.FA18
             this.grpSave.BorderRadius = 5;
             this.grpSave.BorderWidth = 2;
             this.grpSave.Controls.Add(this.chkSaveMisc);
-            this.grpSave.Controls.Add(this.chkSaveHTS);
-            this.grpSave.Controls.Add(this.chkSaveHARM);
+            this.grpSave.Controls.Add(this.chkSavePP);
+            this.grpSave.Controls.Add(this.chkSaveSeq);
             this.grpSave.Controls.Add(this.btnSave);
             this.grpSave.Controls.Add(this.chkSaveMFDs);
             this.grpSave.Controls.Add(this.chkSaveRadios);
@@ -258,29 +258,30 @@ namespace DTC.UI.Aircrafts.FA18
             this.chkSaveMisc.Text = "Misc";
             this.chkSaveMisc.UseVisualStyleBackColor = true;
             // 
-            // chkSaveHTS
+            // chkSavePP
             // 
-            this.chkSaveHTS.Checked = true;
-            this.chkSaveHTS.CheckState = System.Windows.Forms.CheckState.Checked;
-            this.chkSaveHTS.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F);
-            this.chkSaveHTS.Location = new System.Drawing.Point(18, 180);
-            this.chkSaveHTS.Name = "chkSaveHTS";
-            this.chkSaveHTS.Size = new System.Drawing.Size(60, 25);
-            this.chkSaveHTS.TabIndex = 1;
-            this.chkSaveHTS.Text = "HTS";
-            this.chkSaveHTS.UseVisualStyleBackColor = true;
+            this.chkSavePP.Checked = true;
+            this.chkSavePP.CheckState = System.Windows.Forms.CheckState.Checked;
+            this.chkSavePP.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F);
+            this.chkSavePP.Location = new System.Drawing.Point(18, 180);
+            this.chkSavePP.Name = "chkSavePP";
+            this.chkSavePP.Size = new System.Drawing.Size(120, 25);
+            this.chkSavePP.TabIndex = 1;
+            this.chkSavePP.Text = "Pre Planned";
+            this.chkSavePP.UseVisualStyleBackColor = true;
             // 
-            // chkSaveHARM
+            // chkSaveSeq
             // 
-            this.chkSaveHARM.Checked = true;
-            this.chkSaveHARM.CheckState = System.Windows.Forms.CheckState.Checked;
-            this.chkSaveHARM.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F);
-            this.chkSaveHARM.Location = new System.Drawing.Point(18, 210);
-            this.chkSaveHARM.Name = "chkSaveHARM";
-            this.chkSaveHARM.Size = new System.Drawing.Size(76, 25);
-            this.chkSaveHARM.TabIndex = 1;
-            this.chkSaveHARM.Text = "HARM";
-            this.chkSaveHARM.UseVisualStyleBackColor = true;
+            this.chkSaveSeq.Checked = true;
+            this.chkSaveSeq.CheckState = System.Windows.Forms.CheckState.Checked;
+            this.chkSaveSeq.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F);
+            this.chkSaveSeq.Location = new System.Drawing.Point(18, 210);
+            this.chkSaveSeq.Name = "chkSaveSeq";
+            this.chkSaveSeq.Size = new System.Drawing.Size(102, 25);
+            this.chkSaveSeq.TabIndex = 1;
+            this.chkSaveSeq.Text = "Sequences";
+            this.chkSaveSeq.UseVisualStyleBackColor = true;
+            this.chkSaveSeq.CheckedChanged += new System.EventHandler(this.chkSaveSeq_CheckedChanged);
             // 
             // btnSave
             // 
@@ -391,10 +392,10 @@ namespace DTC.UI.Aircrafts.FA18
         private System.Windows.Forms.CheckBox chkSaveRadios;
         private System.Windows.Forms.CheckBox chkSaveCMS;
         private System.Windows.Forms.CheckBox chkSaveWaypoints;
-        private System.Windows.Forms.CheckBox chkLoadHARM;
-        private System.Windows.Forms.CheckBox chkSaveHARM;
-        private System.Windows.Forms.CheckBox chkLoadHTS;
-        private System.Windows.Forms.CheckBox chkSaveHTS;
+        private System.Windows.Forms.CheckBox chkLoadSeq;
+        private System.Windows.Forms.CheckBox chkSaveSeq;
+        private System.Windows.Forms.CheckBox chkLoadPP;
+        private System.Windows.Forms.CheckBox chkSavePP;
         private System.Windows.Forms.CheckBox checkBox1;
         private System.Windows.Forms.CheckBox chkLoadMisc;
         private System.Windows.Forms.CheckBox chkSaveMisc;

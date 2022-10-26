@@ -17,12 +17,15 @@ namespace DTC.UI.Aircrafts.FA18
     {
         private PrePlannedSystem _preplanned;
         private PrePlannedEdit _edit;
+        private PrePlannedOverview _overview;
         public PrePlannedPage(AircraftPage parent, PrePlannedSystem pps) : base(parent)
         {
             InitializeComponent();
             _preplanned = pps;
             _edit = new PrePlannedEdit(callback);
 			_edit.Visible = false;
+            _overview = new PrePlannedOverview(_preplanned);
+            _overview.Visible = false;
 
             ddType2.Text = PrePlannedStation.TypeToString(pps.Sta2.stationType);
             ddType3.Text = PrePlannedStation.TypeToString(pps.Sta3.stationType);
@@ -52,6 +55,7 @@ namespace DTC.UI.Aircrafts.FA18
             cb84.Checked = pps.Sta8.PP4.Enabled;
             cb85.Checked = pps.Sta8.PP5.Enabled;
 			this.Controls.Add(this._edit);
+			this.Controls.Add(this._overview);
         }
 
 		public override string GetPageTitle()
@@ -443,6 +447,11 @@ namespace DTC.UI.Aircrafts.FA18
         {
             _preplanned.Station5ToConsider = cbSta5.Checked;
             _parent.DataChangedCallback();
+        }
+
+        private void btnOverview_click(object sender, EventArgs e)
+        {
+            _overview.ShowDialog();
         }
     }
 }

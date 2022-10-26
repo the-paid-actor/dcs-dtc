@@ -26,6 +26,7 @@ namespace DTC.Models.FA18.Upload
 
 			AppendCommand(lmfd.GetCommand("OSB-18")); // MENU
 			AppendCommand(lmfd.GetCommand("OSB-05")); // STORES
+			AppendCommand(Wait());
 
 			if(sta2.AnySelected) {
 				var stationList = new List<PrePlannedStation> { sta2 };
@@ -215,7 +216,10 @@ namespace DTC.Models.FA18.Upload
                 case StationType.GBU32:
                     dsplyCommand = lmfd.GetCommand("OSB-11");
                     break;
-                case StationType.GBU31:
+                case StationType.GBU31NP:
+                    dsplyCommand = lmfd.GetCommand("OSB-11");
+                    break;
+                case StationType.GBU31PP:
                     dsplyCommand = lmfd.GetCommand("OSB-11");
                     break;
                 default:
@@ -236,8 +240,11 @@ namespace DTC.Models.FA18.Upload
 				case StationType.GBU32:
 					condition = "STA_IS_GBUTT_";
 					break;
-				case StationType.GBU31:
+				case StationType.GBU31NP:
 					condition = "STA_IS_GBUTO_";
+					break;
+				case StationType.GBU31PP:
+					condition = "STA_IS_GBUTOP_";
 					break;
 				case StationType.JSOWA:
 					condition = "STA_IS_JSOWA_";
@@ -264,7 +271,8 @@ namespace DTC.Models.FA18.Upload
 			{
 				case StationType.GBU38: return true;
 				case StationType.GBU32: return true;
-				case StationType.GBU31: return true;
+				case StationType.GBU31NP: return true;
+				case StationType.GBU31PP: return true;
 				case StationType.JSOWA: return true;
 				case StationType.JSOWC: return true;
 				default: return false;
@@ -315,9 +323,9 @@ namespace DTC.Models.FA18.Upload
                         lon = false;
                     }					
 					if(i == 6 && !longLon || longLon && i == 7) {
-						sb.Append(Wait());
+						sb.Append(WaitLong());
 						sb.Append(ufc.GetCommand("ENT"));
-						sb.Append(Wait());
+						sb.Append(WaitLong());
 					}
 							
 				}

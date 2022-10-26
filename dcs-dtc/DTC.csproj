@@ -106,8 +106,11 @@
     <Compile Include="Models\DCS\IAircraftDeviceManager.cs" />
     <Compile Include="Models\F16\Misc\MiscSystem.cs" />
     <Compile Include="Models\DCS\BaseBuilder.cs" />
+    <Compile Include="Models\F16\TOS\TOSSetting.cs" />
+    <Compile Include="Models\F16\TOS\TOSSystem.cs" />
     <Compile Include="Models\F16\Upload\CMSBuilder.cs" />
     <Compile Include="Models\F16\Upload\HARMBuilder.cs" />
+    <Compile Include="Models\F16\Upload\TOSBuilder.cs" />
     <Compile Include="Models\F16\Upload\HTSBuilder.cs" />
     <Compile Include="Models\F16\Upload\MFDBuilder.cs" />
     <Compile Include="Models\F16\Upload\MiscBuilder.cs" />
@@ -151,6 +154,12 @@
     </Compile>
     <Compile Include="UI\Aircrafts\FA18\MiscPage.Designer.cs">
       <DependentUpon>MiscPage.cs</DependentUpon>
+    </Compile>
+    <Compile Include="UI\Aircrafts\FA18\PrePlannedOverview.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="UI\Aircrafts\FA18\PrePlannedOverview.Designer.cs">
+      <DependentUpon>PrePlannedOverview.cs</DependentUpon>
     </Compile>
     <Compile Include="UI\Aircrafts\FA18\PrePlannedPage.cs">
       <SubType>UserControl</SubType>
@@ -211,6 +220,12 @@
     </Compile>
     <Compile Include="UI\Aircrafts\F16\MiscPage.Designer.cs">
       <DependentUpon>MiscPage.cs</DependentUpon>
+    </Compile>
+    <Compile Include="UI\Aircrafts\F16\TOSPage.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="UI\Aircrafts\F16\TOSPage.Designer.cs">
+      <DependentUpon>TOSPage.cs</DependentUpon>
     </Compile>
     <Compile Include="UI\Base\Controls\DTCCheckBox.cs">
       <SubType>Component</SubType>
@@ -370,6 +385,9 @@
     <EmbeddedResource Include="UI\Aircrafts\FA18\LoadSavePage.resx">
       <DependentUpon>LoadSavePage.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="UI\Aircrafts\FA18\PrePlannedOverview.resx">
+      <DependentUpon>PrePlannedOverview.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="UI\Aircrafts\FA18\PrePlannedPage.resx">
       <DependentUpon>PrePlannedPage.cs</DependentUpon>
     </EmbeddedResource>
@@ -397,6 +415,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="UI\Aircrafts\F16\HTSPage.resx">
       <DependentUpon>HTSPage.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UI\Aircrafts\F16\TOSPage.resx">
+      <DependentUpon>TOSPage.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="UI\Base\Controls\DTCBreadCrumb.resx">
       <DependentUpon>DTCBreadCrumb.cs</DependentUpon>

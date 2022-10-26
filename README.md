@@ -42,7 +42,7 @@ local DCSDTClfs=require('lfs'); dofile(DCSDTClfs.writedir()..'Scripts/DCSDTC.lua
 ```
 
 ## Limitations
-Some settings in the F/A-18 are depending on the initial status and are thus not idempote.
+Some settings in the F/A-18 are depending on the initial status and are thus not idempotent.
 If the current status deviates from the default setting, it may not work at all or produce results different from what's intended.
 Affected by this are the following features:
   - Countermeasure settings

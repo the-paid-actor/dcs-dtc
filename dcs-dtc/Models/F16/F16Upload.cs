@@ -68,6 +68,12 @@ namespace DTC.Models
 				htsBuilder.Build();
 			}
 
+			if (_cfg.TOS.EnableUpload)
+			{
+				var tosBuilder = new TOSBuilder(_cfg, f16, sb);
+				tosBuilder.Build();
+			}
+
 			if (sb.Length > 0)
 			{
 				sb.Remove(sb.Length - 1, 1);

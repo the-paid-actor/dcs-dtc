@@ -34,18 +34,22 @@ namespace DTC.Models.FA18.Upload
 					var defaultPrg = _cfg.CMS.getDefaults()[i];
 
                     AppendCommand(lmfd.GetCommand("OSB-05")); // Chaff
+                    AppendCommand(Wait());
 					AdjustQty(lmfd, prg.ChaffQty, defaultPrg.ChaffQty);
                     AppendCommand(lmfd.GetCommand("OSB-05")); // Chaff
 
                     AppendCommand(lmfd.GetCommand("OSB-04")); // Flare
+                    AppendCommand(Wait());
 					AdjustQty(lmfd, prg.FlareQty, defaultPrg.FlareQty);
                     AppendCommand(lmfd.GetCommand("OSB-04")); // Flare
 
                     AppendCommand(lmfd.GetCommand("OSB-14")); // Rpt
+                    AppendCommand(Wait());
 					AdjustQty(lmfd, prg.Repeat, defaultPrg.Repeat);
                     AppendCommand(lmfd.GetCommand("OSB-14")); // Rpt
 
                     AppendCommand(lmfd.GetCommand("OSB-15")); // Interval
+                    AppendCommand(Wait());
 					AdjustInterval(lmfd, prg.Interval, defaultPrg.Interval);
                     AppendCommand(lmfd.GetCommand("OSB-15")); // Interval
 				}

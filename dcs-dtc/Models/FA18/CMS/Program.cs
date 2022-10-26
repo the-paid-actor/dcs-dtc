@@ -38,7 +38,7 @@ namespace DTC.Models.FA18.CMS
 
 		private bool ValidateInterval(string txt)
 		{
-            var regex = new Regex("^([012345],[0257][05])$");
+            var regex = new Regex("^([012345][,.][0257][05])$");
 			if (!decimal.TryParse(txt, out decimal f))
 			{
 				return false;

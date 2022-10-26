@@ -44,8 +44,10 @@ namespace DTC.Models.FA18.PrePlanned
                     return StationType.GBU38;
                 case "GBU32":
                     return StationType.GBU32;
-                case "GBU31":
-                    return StationType.GBU31;
+                case "GBU31-1/2":
+                    return StationType.GBU31NP;
+                case "GBU31-3/4":
+                    return StationType.GBU31PP;
                 case "JSOWA":
                     return StationType.JSOWA;
                 case "JSOWC":
@@ -69,8 +71,10 @@ namespace DTC.Models.FA18.PrePlanned
                     return "GBU38";
                 case StationType.GBU32:
                     return "GBU32";
-                case StationType.GBU31:
-                    return "GBU31";
+                case StationType.GBU31NP:
+                    return "GBU31-1/2";
+                case StationType.GBU31PP:
+                    return "GBU31-3/4";
                 case StationType.JSOWA:
                     return "JSOWA";
                 case StationType.JSOWC:
@@ -91,7 +95,8 @@ namespace DTC.Models.FA18.PrePlanned
     {
         GBU38,
         GBU32,
-        GBU31,
+        GBU31NP,
+        GBU31PP,
         JSOWA,
         JSOWC,
         SLAM,

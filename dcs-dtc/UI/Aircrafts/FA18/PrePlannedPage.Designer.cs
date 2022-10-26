@@ -81,6 +81,7 @@
             this.ddType2 = new DTC.UI.Base.Controls.DTCDropDown();
             this.label1 = new System.Windows.Forms.Label();
             this.cbSta5 = new DTC.UI.Base.Controls.DTCCheckBox();
+            this.btnOverview = new DTC.UI.Base.Controls.DTCButton();
             this.dtcStackPanel4.SuspendLayout();
             this.dtcStackPanel3.SuspendLayout();
             this.dtcStackPanel2.SuspendLayout();
@@ -103,13 +104,13 @@
             this.dtcStackPanel4.Controls.Add(this.label4);
             this.dtcStackPanel4.Location = new System.Drawing.Point(14, 268);
             this.dtcStackPanel4.Name = "dtcStackPanel4";
-            this.dtcStackPanel4.Size = new System.Drawing.Size(382, 68);
+            this.dtcStackPanel4.Size = new System.Drawing.Size(505, 68);
             this.dtcStackPanel4.TabIndex = 12;
             // 
             // cb85
             // 
             this.cb85.AutoSize = true;
-            this.cb85.Location = new System.Drawing.Point(340, 10);
+            this.cb85.Location = new System.Drawing.Point(357, 10);
             this.cb85.Name = "cb85";
             this.cb85.Size = new System.Drawing.Size(15, 14);
             this.cb85.TabIndex = 11;
@@ -119,7 +120,7 @@
             // cb84
             // 
             this.cb84.AutoSize = true;
-            this.cb84.Location = new System.Drawing.Point(290, 10);
+            this.cb84.Location = new System.Drawing.Point(307, 10);
             this.cb84.Name = "cb84";
             this.cb84.Size = new System.Drawing.Size(15, 14);
             this.cb84.TabIndex = 10;
@@ -129,7 +130,7 @@
             // cb83
             // 
             this.cb83.AutoSize = true;
-            this.cb83.Location = new System.Drawing.Point(238, 10);
+            this.cb83.Location = new System.Drawing.Point(255, 10);
             this.cb83.Name = "cb83";
             this.cb83.Size = new System.Drawing.Size(15, 14);
             this.cb83.TabIndex = 9;
@@ -139,7 +140,7 @@
             // cb82
             // 
             this.cb82.AutoSize = true;
-            this.cb82.Location = new System.Drawing.Point(189, 10);
+            this.cb82.Location = new System.Drawing.Point(206, 10);
             this.cb82.Name = "cb82";
             this.cb82.Size = new System.Drawing.Size(15, 14);
             this.cb82.TabIndex = 8;
@@ -149,7 +150,7 @@
             // cb81
             // 
             this.cb81.AutoSize = true;
-            this.cb81.Location = new System.Drawing.Point(140, 10);
+            this.cb81.Location = new System.Drawing.Point(157, 10);
             this.cb81.Name = "cb81";
             this.cb81.Size = new System.Drawing.Size(15, 14);
             this.cb81.TabIndex = 7;
@@ -162,7 +163,7 @@
             this.sta8PP5.FlatAppearance.BorderSize = 0;
             this.sta8PP5.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.sta8PP5.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F);
-            this.sta8PP5.Location = new System.Drawing.Point(325, 33);
+            this.sta8PP5.Location = new System.Drawing.Point(342, 33);
             this.sta8PP5.Name = "sta8PP5";
             this.sta8PP5.Size = new System.Drawing.Size(44, 24);
             this.sta8PP5.TabIndex = 6;
@@ -176,7 +177,7 @@
             this.sta8PP4.FlatAppearance.BorderSize = 0;
             this.sta8PP4.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.sta8PP4.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F);
-            this.sta8PP4.Location = new System.Drawing.Point(275, 33);
+            this.sta8PP4.Location = new System.Drawing.Point(292, 33);
             this.sta8PP4.Name = "sta8PP4";
             this.sta8PP4.Size = new System.Drawing.Size(44, 24);
             this.sta8PP4.TabIndex = 5;
@@ -190,7 +191,7 @@
             this.sta8PP3.FlatAppearance.BorderSize = 0;
             this.sta8PP3.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.sta8PP3.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F);
-            this.sta8PP3.Location = new System.Drawing.Point(225, 33);
+            this.sta8PP3.Location = new System.Drawing.Point(242, 33);
             this.sta8PP3.Name = "sta8PP3";
             this.sta8PP3.Size = new System.Drawing.Size(44, 24);
             this.sta8PP3.TabIndex = 4;
@@ -204,7 +205,7 @@
             this.sta8PP2.FlatAppearance.BorderSize = 0;
             this.sta8PP2.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.sta8PP2.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F);
-            this.sta8PP2.Location = new System.Drawing.Point(175, 33);
+            this.sta8PP2.Location = new System.Drawing.Point(192, 33);
             this.sta8PP2.Name = "sta8PP2";
             this.sta8PP2.Size = new System.Drawing.Size(44, 24);
             this.sta8PP2.TabIndex = 3;
@@ -218,7 +219,7 @@
             this.sta8PP1.FlatAppearance.BorderSize = 0;
             this.sta8PP1.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.sta8PP1.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F);
-            this.sta8PP1.Location = new System.Drawing.Point(125, 34);
+            this.sta8PP1.Location = new System.Drawing.Point(142, 34);
             this.sta8PP1.Name = "sta8PP1";
             this.sta8PP1.Size = new System.Drawing.Size(44, 24);
             this.sta8PP1.TabIndex = 2;
@@ -235,7 +236,8 @@
             this.ddType8.Items.AddRange(new object[] {
             "GBU38",
             "GBU32",
-            "GBU31",
+            "GBU31-1/2",
+            "GBU31-3/4",
             "JSOWA",
             "JSOWC",
             "SLAM",
@@ -244,7 +246,7 @@
             "Other-AG"});
             this.ddType8.Location = new System.Drawing.Point(9, 34);
             this.ddType8.Name = "ddType8";
-            this.ddType8.Size = new System.Drawing.Size(110, 24);
+            this.ddType8.Size = new System.Drawing.Size(127, 24);
             this.ddType8.TabIndex = 1;
             this.ddType8.SelectedIndexChanged += new System.EventHandler(this.ddType8_SelectedIndexChanged);
             // 
@@ -273,13 +275,13 @@
             this.dtcStackPanel3.Controls.Add(this.label3);
             this.dtcStackPanel3.Location = new System.Drawing.Point(14, 194);
             this.dtcStackPanel3.Name = "dtcStackPanel3";
-            this.dtcStackPanel3.Size = new System.Drawing.Size(382, 68);
+            this.dtcStackPanel3.Size = new System.Drawing.Size(505, 68);
             this.dtcStackPanel3.TabIndex = 12;
             // 
             // cb75
             // 
             this.cb75.AutoSize = true;
-            this.cb75.Location = new System.Drawing.Point(340, 10);
+            this.cb75.Location = new System.Drawing.Point(357, 10);
             this.cb75.Name = "cb75";
             this.cb75.Size = new System.Drawing.Size(15, 14);
             this.cb75.TabIndex = 11;
@@ -289,7 +291,7 @@
             // cb74
             // 
             this.cb74.AutoSize = true;
-            this.cb74.Location = new System.Drawing.Point(290, 10);
+            this.cb74.Location = new System.Drawing.Point(307, 10);
             this.cb74.Name = "cb74";
             this.cb74.Size = new System.Drawing.Size(15, 14);
             this.cb74.TabIndex = 10;
@@ -299,7 +301,7 @@
             // cb73
             // 
             this.cb73.AutoSize = true;
-            this.cb73.Location = new System.Drawing.Point(238, 10);
+            this.cb73.Location = new System.Drawing.Point(255, 10);
             this.cb73.Name = "cb73";
             this.cb73.Size = new System.Drawing.Size(15, 14);
             this.cb73.TabIndex = 9;
@@ -309,7 +311,7 @@
             // cb72
             // 
             this.cb72.AutoSize = true;
-            this.cb72.Location = new System.Drawing.Point(189, 10);
+            this.cb72.Location = new System.Drawing.Point(206, 10);
             this.cb72.Name = "cb72";
             this.cb72.Size = new System.Drawing.Size(15, 14);
             this.cb72.TabIndex = 8;
@@ -319,7 +321,7 @@
             // cb71
             // 
             this.cb71.AutoSize = true;
-            this.cb71.Location = new System.Drawing.Point(140, 10);
+            this.cb71.Location = new System.Drawing.Point(157, 10);
             this.cb71.Name = "cb71";
             this.cb71.Size = new System.Drawing.Size(15, 14);
             this.cb71.TabIndex = 7;
@@ -332,7 +334,7 @@
             this.sta7PP5.FlatAppearance.BorderSize = 0;
             this.sta7PP5.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.sta7PP5.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F);
-            this.sta7PP5.Location = new System.Drawing.Point(325, 33);
+            this.sta7PP5.Location = new System.Drawing.Point(342, 33);
             this.sta7PP5.Name = "sta7PP5";
             this.sta7PP5.Size = new System.Drawing.Size(44, 24);
             this.sta7PP5.TabIndex = 6;
@@ -346,7 +348,7 @@
             this.sta7PP4.FlatAppearance.BorderSize = 0;
             this.sta7PP4.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.sta7PP4.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F);
-            this.sta7PP4.Location = new System.Drawing.Point(275, 33);
+            this.sta7PP4.Location = new System.Drawing.Point(292, 33);
             this.sta7PP4.Name = "sta7PP4";
             this.sta7PP4.Size = new System.Drawing.Size(44, 24);
             this.sta7PP4.TabIndex = 5;
@@ -360,7 +362,7 @@
             this.sta7PP3.FlatAppearance.BorderSize = 0;
             this.sta7PP3.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.sta7PP3.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F);
-            this.sta7PP3.Location = new System.Drawing.Point(225, 33);
+            this.sta7PP3.Location = new System.Drawing.Point(242, 33);
             this.sta7PP3.Name = "sta7PP3";
             this.sta7PP3.Size = new System.Drawing.Size(44, 24);
             this.sta7PP3.TabIndex = 4;
@@ -374,7 +376,7 @@
             this.sta7PP2.FlatAppearance.BorderSize = 0;
             this.sta7PP2.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.sta7PP2.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F);
-            this.sta7PP2.Location = new System.Drawing.Point(175, 33);
+            this.sta7PP2.Location = new System.Drawing.Point(192, 33);
             this.sta7PP2.Name = "sta7PP2";
             this.sta7PP2.Size = new System.Drawing.Size(44, 24);
             this.sta7PP2.TabIndex = 3;
@@ -388,7 +390,7 @@
             this.sta7PP1.FlatAppearance.BorderSize = 0;
             this.sta7PP1.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.sta7PP1.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F);
-            this.sta7PP1.Location = new System.Drawing.Point(125, 34);
+            this.sta7PP1.Location = new System.Drawing.Point(142, 34);
             this.sta7PP1.Name = "sta7PP1";
             this.sta7PP1.Size = new System.Drawing.Size(44, 24);
             this.sta7PP1.TabIndex = 2;
@@ -405,7 +407,8 @@
             this.ddType7.Items.AddRange(new object[] {
             "GBU38",
             "GBU32",
-            "GBU31",
+            "GBU31-1/2",
+            "GBU31-3/4",
             "JSOWA",
             "JSOWC",
             "SLAM",
@@ -414,7 +417,7 @@
             "Other-AG"});
             this.ddType7.Location = new System.Drawing.Point(9, 34);
             this.ddType7.Name = "ddType7";
-            this.ddType7.Size = new System.Drawing.Size(110, 24);
+            this.ddType7.Size = new System.Drawing.Size(127, 24);
             this.ddType7.TabIndex = 1;
             this.ddType7.SelectedIndexChanged += new System.EventHandler(this.ddType7_SelectedIndexChanged);
             // 
@@ -443,13 +446,13 @@
             this.dtcStackPanel2.Controls.Add(this.label2);
             this.dtcStackPanel2.Location = new System.Drawing.Point(14, 91);
             this.dtcStackPanel2.Name = "dtcStackPanel2";
-            this.dtcStackPanel2.Size = new System.Drawing.Size(382, 68);
+            this.dtcStackPanel2.Size = new System.Drawing.Size(505, 68);
             this.dtcStackPanel2.TabIndex = 12;
             // 
             // cb35
             // 
             this.cb35.AutoSize = true;
-            this.cb35.Location = new System.Drawing.Point(340, 10);
+            this.cb35.Location = new System.Drawing.Point(357, 10);
             this.cb35.Name = "cb35";
             this.cb35.Size = new System.Drawing.Size(15, 14);
             this.cb35.TabIndex = 11;
@@ -459,7 +462,7 @@
             // cb34
             // 
             this.cb34.AutoSize = true;
-            this.cb34.Location = new System.Drawing.Point(290, 10);
+            this.cb34.Location = new System.Drawing.Point(307, 10);
             this.cb34.Name = "cb34";
             this.cb34.Size = new System.Drawing.Size(15, 14);
             this.cb34.TabIndex = 10;
@@ -469,7 +472,7 @@
             // cb33
             // 
             this.cb33.AutoSize = true;
-            this.cb33.Location = new System.Drawing.Point(238, 10);
+            this.cb33.Location = new System.Drawing.Point(255, 10);
             this.cb33.Name = "cb33";
             this.cb33.Size = new System.Drawing.Size(15, 14);
             this.cb33.TabIndex = 9;
@@ -479,7 +482,7 @@
             // cb32
             // 
             this.cb32.AutoSize = true;
-            this.cb32.Location = new System.Drawing.Point(189, 10);
+            this.cb32.Location = new System.Drawing.Point(206, 10);
             this.cb32.Name = "cb32";
             this.cb32.Size = new System.Drawing.Size(15, 14);
             this.cb32.TabIndex = 8;
@@ -489,7 +492,7 @@
             // cb31
             // 
             this.cb31.AutoSize = true;
-            this.cb31.Location = new System.Drawing.Point(140, 10);
+            this.cb31.Location = new System.Drawing.Point(157, 10);
             this.cb31.Name = "cb31";
             this.cb31.Size = new System.Drawing.Size(15, 14);
             this.cb31.TabIndex = 7;
@@ -502,7 +505,7 @@
             this.sta3PP5.FlatAppearance.BorderSize = 0;
             this.sta3PP5.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.sta3PP5.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F);
-            this.sta3PP5.Location = new System.Drawing.Point(325, 33);
+            this.sta3PP5.Location = new System.Drawing.Point(342, 33);
             this.sta3PP5.Name = "sta3PP5";
             this.sta3PP5.Size = new System.Drawing.Size(44, 24);
             this.sta3PP5.TabIndex = 6;
@@ -516,7 +519,7 @@
             this.sta3PP4.FlatAppearance.BorderSize = 0;
             this.sta3PP4.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.sta3PP4.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F);
-            this.sta3PP4.Location = new System.Drawing.Point(275, 33);
+            this.sta3PP4.Location = new System.Drawing.Point(292, 33);
             this.sta3PP4.Name = "sta3PP4";
             this.sta3PP4.Size = new System.Drawing.Size(44, 24);
             this.sta3PP4.TabIndex = 5;
@@ -530,7 +533,7 @@
             this.sta3PP3.FlatAppearance.BorderSize = 0;
             this.sta3PP3.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.sta3PP3.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F);
-            this.sta3PP3.Location = new System.Drawing.Point(225, 33);
+            this.sta3PP3.Location = new System.Drawing.Point(242, 33);
             this.sta3PP3.Name = "sta3PP3";
             this.sta3PP3.Size = new System.Drawing.Size(44, 24);
             this.sta3PP3.TabIndex = 4;
@@ -544,7 +547,7 @@
             this.sta3PP2.FlatAppearance.BorderSize = 0;
             this.sta3PP2.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.sta3PP2.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F);
-            this.sta3PP2.Location = new System.Drawing.Point(175, 33);
+            this.sta3PP2.Location = new System.Drawing.Point(192, 33);
             this.sta3PP2.Name = "sta3PP2";
             this.sta3PP2.Size = new System.Drawing.Size(44, 24);
             this.sta3PP2.TabIndex = 3;
@@ -558,7 +561,7 @@
             this.sta3PP1.FlatAppearance.BorderSize = 0;
             this.sta3PP1.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.sta3PP1.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F);
-            this.sta3PP1.Location = new System.Drawing.Point(125, 34);
+            this.sta3PP1.Location = new System.Drawing.Point(142, 34);
             this.sta3PP1.Name = "sta3PP1";
             this.sta3PP1.Size = new System.Drawing.Size(44, 24);
             this.sta3PP1.TabIndex = 2;
@@ -575,7 +578,8 @@
             this.ddType3.Items.AddRange(new object[] {
             "GBU38",
             "GBU32",
-            "GBU31",
+            "GBU31-1/2",
+            "GBU31-3/4",
             "JSOWA",
             "JSOWC",
             "SLAM",
@@ -584,7 +588,7 @@
             "Other-AG"});
             this.ddType3.Location = new System.Drawing.Point(9, 34);
             this.ddType3.Name = "ddType3";
-            this.ddType3.Size = new System.Drawing.Size(110, 24);
+            this.ddType3.Size = new System.Drawing.Size(127, 24);
             this.ddType3.TabIndex = 1;
             this.ddType3.SelectedIndexChanged += new System.EventHandler(this.ddType3_SelectedIndexChanged);
             // 
@@ -613,13 +617,13 @@
             this.dtcStackPanel1.Controls.Add(this.label1);
             this.dtcStackPanel1.Location = new System.Drawing.Point(14, 17);
             this.dtcStackPanel1.Name = "dtcStackPanel1";
-            this.dtcStackPanel1.Size = new System.Drawing.Size(382, 68);
+            this.dtcStackPanel1.Size = new System.Drawing.Size(505, 68);
             this.dtcStackPanel1.TabIndex = 1;
             // 
             // cb25
             // 
             this.cb25.AutoSize = true;
-            this.cb25.Location = new System.Drawing.Point(340, 10);
+            this.cb25.Location = new System.Drawing.Point(357, 10);
             this.cb25.Name = "cb25";
             this.cb25.Size = new System.Drawing.Size(15, 14);
             this.cb25.TabIndex = 11;
@@ -629,7 +633,7 @@
             // cb24
             // 
             this.cb24.AutoSize = true;
-            this.cb24.Location = new System.Drawing.Point(290, 10);
+            this.cb24.Location = new System.Drawing.Point(307, 10);
             this.cb24.Name = "cb24";
             this.cb24.Size = new System.Drawing.Size(15, 14);
             this.cb24.TabIndex = 10;
@@ -639,7 +643,7 @@
             // cb23
             // 
             this.cb23.AutoSize = true;
-            this.cb23.Location = new System.Drawing.Point(238, 10);
+            this.cb23.Location = new System.Drawing.Point(255, 10);
             this.cb23.Name = "cb23";
             this.cb23.Size = new System.Drawing.Size(15, 14);
             this.cb23.TabIndex = 9;
@@ -649,7 +653,7 @@
             // cb22
             // 
             this.cb22.AutoSize = true;
-            this.cb22.Location = new System.Drawing.Point(189, 10);
+            this.cb22.Location = new System.Drawing.Point(206, 10);
             this.cb22.Name = "cb22";
             this.cb22.Size = new System.Drawing.Size(15, 14);
             this.cb22.TabIndex = 8;
@@ -659,7 +663,7 @@
             // cb21
             // 
             this.cb21.AutoSize = true;
-            this.cb21.Location = new System.Drawing.Point(140, 10);
+            this.cb21.Location = new System.Drawing.Point(157, 10);
             this.cb21.Name = "cb21";
             this.cb21.Size = new System.Drawing.Size(15, 14);
             this.cb21.TabIndex = 7;
@@ -672,7 +676,7 @@
             this.sta2PP5.FlatAppearance.BorderSize = 0;
             this.sta2PP5.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.sta2PP5.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F);
-            this.sta2PP5.Location = new System.Drawing.Point(325, 33);
+            this.sta2PP5.Location = new System.Drawing.Point(342, 33);
             this.sta2PP5.Name = "sta2PP5";
             this.sta2PP5.Size = new System.Drawing.Size(44, 24);
             this.sta2PP5.TabIndex = 6;
@@ -686,7 +690,7 @@
             this.sta2PP4.FlatAppearance.BorderSize = 0;
             this.sta2PP4.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.sta2PP4.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F);
-            this.sta2PP4.Location = new System.Drawing.Point(275, 33);
+            this.sta2PP4.Location = new System.Drawing.Point(292, 33);
             this.sta2PP4.Name = "sta2PP4";
             this.sta2PP4.Size = new System.Drawing.Size(44, 24);
             this.sta2PP4.TabIndex = 5;
@@ -700,7 +704,7 @@
             this.sta2PP3.FlatAppearance.BorderSize = 0;
             this.sta2PP3.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.sta2PP3.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F);
-            this.sta2PP3.Location = new System.Drawing.Point(225, 33);
+            this.sta2PP3.Location = new System.Drawing.Point(242, 33);
             this.sta2PP3.Name = "sta2PP3";
             this.sta2PP3.Size = new System.Drawing.Size(44, 24);
             this.sta2PP3.TabIndex = 4;
@@ -714,7 +718,7 @@
             this.sta2PP2.FlatAppearance.BorderSize = 0;
             this.sta2PP2.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.sta2PP2.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F);
-            this.sta2PP2.Location = new System.Drawing.Point(175, 33);
+            this.sta2PP2.Location = new System.Drawing.Point(192, 33);
             this.sta2PP2.Name = "sta2PP2";
             this.sta2PP2.Size = new System.Drawing.Size(44, 24);
             this.sta2PP2.TabIndex = 3;
@@ -728,7 +732,7 @@
             this.sta2PP1.FlatAppearance.BorderSize = 0;
             this.sta2PP1.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.sta2PP1.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F);
-            this.sta2PP1.Location = new System.Drawing.Point(125, 34);
+            this.sta2PP1.Location = new System.Drawing.Point(142, 34);
             this.sta2PP1.Name = "sta2PP1";
             this.sta2PP1.Size = new System.Drawing.Size(44, 24);
             this.sta2PP1.TabIndex = 2;
@@ -745,7 +749,8 @@
             this.ddType2.Items.AddRange(new object[] {
             "GBU38",
             "GBU32",
-            "GBU31",
+            "GBU31-1/2",
+            "GBU31-3/4",
             "JSOWA",
             "JSOWC",
             "SLAM",
@@ -754,7 +759,7 @@
             "Other-AG"});
             this.ddType2.Location = new System.Drawing.Point(9, 34);
             this.ddType2.Name = "ddType2";
-            this.ddType2.Size = new System.Drawing.Size(110, 24);
+            this.ddType2.Size = new System.Drawing.Size(127, 24);
             this.ddType2.TabIndex = 1;
             this.ddType2.SelectedIndexChanged += new System.EventHandler(this.ddType2_SelectedIndexChanged);
             // 
@@ -779,11 +784,26 @@
             this.cbSta5.UseVisualStyleBackColor = true;
             this.cbSta5.CheckedChanged += new System.EventHandler(this.cbSta5_CheckedChanged);
             // 
+            // btnOverview
+            // 
+            this.btnOverview.BackColor = System.Drawing.Color.DarkKhaki;
+            this.btnOverview.FlatAppearance.BorderSize = 0;
+            this.btnOverview.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnOverview.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F);
+            this.btnOverview.Location = new System.Drawing.Point(14, 355);
+            this.btnOverview.Name = "btnOverview";
+            this.btnOverview.Size = new System.Drawing.Size(136, 24);
+            this.btnOverview.TabIndex = 12;
+            this.btnOverview.Text = "Show Overview";
+            this.btnOverview.UseVisualStyleBackColor = false;
+            this.btnOverview.Click += new System.EventHandler(this.btnOverview_click);
+            // 
             // PrePlannedPage
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.PaleGoldenrod;
+            this.Controls.Add(this.btnOverview);
             this.Controls.Add(this.cbSta5);
             this.Controls.Add(this.dtcStackPanel4);
             this.Controls.Add(this.dtcStackPanel3);
@@ -859,5 +879,6 @@
         private Base.Controls.DTCDropDown ddType8;
         private System.Windows.Forms.Label label4;
         private Base.Controls.DTCCheckBox cbSta5;
+        private Base.Controls.DTCButton btnOverview;
     }
 }

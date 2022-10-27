@@ -32,9 +32,9 @@ namespace DTC.UI.Aircrafts.FA18
 
             for (int i = 1; i <= 5; i++)
             {
-                this.Controls.Add(DTCLabel.Make(station.PP[i].Lat, left, top, colWidth, rowHeight));
+                this.Controls.Add(DTCLabel.Make(station.PP[i].Lat.Replace(" ", ""), left, top, colWidth, rowHeight));
                 top += padding + rowHeight;
-                this.Controls.Add(DTCLabel.Make(station.PP[i].Lon, left, top, colWidth, rowHeight));
+                this.Controls.Add(DTCLabel.Make(station.PP[i].Lon.Replace(" ", ""), left, top, colWidth, rowHeight));
                 top += padding + rowHeight;
                 this.Controls.Add(DTCLabel.Make(station.PP[i].Elev.ToString() + " ft", left, top, colWidth, rowHeight));
                 left += padding + colWidth;
@@ -60,5 +60,5 @@ namespace DTC.UI.Aircrafts.FA18
 		{
 			Visible = false;
 		}
-	}
+    }
 }

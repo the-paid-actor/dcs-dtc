@@ -33,14 +33,14 @@ namespace DTC.UI.Aircrafts.FA18
 		{
             this.lblTitle = new System.Windows.Forms.Label();
             this.btnCapture = new System.Windows.Forms.Button();
-            this.btnSave = new DTC.UI.Base.Controls.DTCButton();
             this.pnlTop = new System.Windows.Forms.Panel();
             this.lblClose = new System.Windows.Forms.Label();
-            this.txtWptElevation = new DTC.UI.Base.Controls.DTCTextBox();
-            this.txtWptLatLong = new DTC.UI.Base.Controls.DTCTextBox();
             this.label1 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
             this.lblValidation = new System.Windows.Forms.Label();
+            this.btnSave = new DTC.UI.Base.Controls.DTCButton();
+            this.txtWptLatLong = new DTC.UI.Base.Controls.DTCTextBox();
+            this.txtWptElevation = new DTC.UI.Base.Controls.DTCTextBox();
             this.pnlTop.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -71,20 +71,6 @@ namespace DTC.UI.Aircrafts.FA18
             this.btnCapture.UseVisualStyleBackColor = false;
             this.btnCapture.Click += new System.EventHandler(this.btnCapture_Click);
             // 
-            // btnSave
-            // 
-            this.btnSave.BackColor = System.Drawing.Color.DarkKhaki;
-            this.btnSave.FlatAppearance.BorderSize = 0;
-            this.btnSave.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnSave.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F);
-            this.btnSave.Location = new System.Drawing.Point(427, 142);
-            this.btnSave.Name = "btnSave";
-            this.btnSave.Size = new System.Drawing.Size(120, 25);
-            this.btnSave.TabIndex = 16;
-            this.btnSave.Text = "&Save";
-            this.btnSave.UseVisualStyleBackColor = false;
-            this.btnSave.Click += new System.EventHandler(this.btnSave_Click);
-            // 
             // pnlTop
             // 
             this.pnlTop.BackColor = System.Drawing.Color.DarkKhaki;
@@ -109,34 +95,6 @@ namespace DTC.UI.Aircrafts.FA18
             this.lblClose.Text = "X";
             this.lblClose.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             this.lblClose.Click += new System.EventHandler(this.lblClose_Click);
-            // 
-            // txtWptElevation
-            // 
-            this.txtWptElevation.AllowPromptAsInput = true;
-            this.txtWptElevation.BackColor = System.Drawing.SystemColors.Window;
-            this.txtWptElevation.HidePromptOnLeave = false;
-            this.txtWptElevation.InsertKeyMode = System.Windows.Forms.InsertKeyMode.Default;
-            this.txtWptElevation.Location = new System.Drawing.Point(152, 83);
-            this.txtWptElevation.Mask = "";
-            this.txtWptElevation.Name = "txtWptElevation";
-            this.txtWptElevation.PromptChar = '_';
-            this.txtWptElevation.Size = new System.Drawing.Size(100, 28);
-            this.txtWptElevation.TabIndex = 14;
-            this.txtWptElevation.ValidatingType = null;
-            // 
-            // txtWptLatLong
-            // 
-            this.txtWptLatLong.AllowPromptAsInput = false;
-            this.txtWptLatLong.BackColor = System.Drawing.SystemColors.Window;
-            this.txtWptLatLong.HidePromptOnLeave = false;
-            this.txtWptLatLong.InsertKeyMode = System.Windows.Forms.InsertKeyMode.Default;
-            this.txtWptLatLong.Location = new System.Drawing.Point(152, 47);
-            this.txtWptLatLong.Mask = ">L 00°00\'00\\.00 L 000°00\'00\\.00";
-            this.txtWptLatLong.Name = "txtWptLatLong";
-            this.txtWptLatLong.PromptChar = '_';
-            this.txtWptLatLong.Size = new System.Drawing.Size(270, 28);
-            this.txtWptLatLong.TabIndex = 12;
-            this.txtWptLatLong.ValidatingType = null;
             // 
             // label1
             // 
@@ -173,6 +131,48 @@ namespace DTC.UI.Aircrafts.FA18
             this.lblValidation.Size = new System.Drawing.Size(548, 25);
             this.lblValidation.TabIndex = 28;
             this.lblValidation.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            // 
+            // btnSave
+            // 
+            this.btnSave.BackColor = System.Drawing.Color.DarkKhaki;
+            this.btnSave.FlatAppearance.BorderSize = 0;
+            this.btnSave.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnSave.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F);
+            this.btnSave.Location = new System.Drawing.Point(427, 142);
+            this.btnSave.Name = "btnSave";
+            this.btnSave.Size = new System.Drawing.Size(120, 25);
+            this.btnSave.TabIndex = 16;
+            this.btnSave.Text = "&Save";
+            this.btnSave.UseVisualStyleBackColor = false;
+            this.btnSave.Click += new System.EventHandler(this.btnSave_Click);
+            // 
+            // txtWptLatLong
+            // 
+            this.txtWptLatLong.AllowPromptAsInput = false;
+            this.txtWptLatLong.BackColor = System.Drawing.SystemColors.Window;
+            this.txtWptLatLong.HidePromptOnLeave = false;
+            this.txtWptLatLong.InsertKeyMode = System.Windows.Forms.InsertKeyMode.Default;
+            this.txtWptLatLong.Location = new System.Drawing.Point(152, 47);
+            this.txtWptLatLong.Mask = ">L 00°00\'00\\.00\'\' L 000°00\'00\\.00\'\'";
+            this.txtWptLatLong.Name = "txtWptLatLong";
+            this.txtWptLatLong.PromptChar = '_';
+            this.txtWptLatLong.Size = new System.Drawing.Size(270, 28);
+            this.txtWptLatLong.TabIndex = 12;
+            this.txtWptLatLong.ValidatingType = null;
+            // 
+            // txtWptElevation
+            // 
+            this.txtWptElevation.AllowPromptAsInput = true;
+            this.txtWptElevation.BackColor = System.Drawing.SystemColors.Window;
+            this.txtWptElevation.HidePromptOnLeave = false;
+            this.txtWptElevation.InsertKeyMode = System.Windows.Forms.InsertKeyMode.Default;
+            this.txtWptElevation.Location = new System.Drawing.Point(152, 83);
+            this.txtWptElevation.Mask = "";
+            this.txtWptElevation.Name = "txtWptElevation";
+            this.txtWptElevation.PromptChar = '_';
+            this.txtWptElevation.Size = new System.Drawing.Size(100, 28);
+            this.txtWptElevation.TabIndex = 14;
+            this.txtWptElevation.ValidatingType = null;
             // 
             // PrePlannedEdit
             // 

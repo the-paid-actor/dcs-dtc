@@ -67,7 +67,7 @@ namespace DTC.UI
             this.label2.RightToLeft = System.Windows.Forms.RightToLeft.No;
             this.label2.Size = new System.Drawing.Size(101, 15);
             this.label2.TabIndex = 1;
-            this.label2.Text = "V 3.3.0 - RC 12";
+            this.label2.Text = "V 3.3.0 - RC 14";
             // 
             // pnlContent
             // 

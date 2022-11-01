@@ -21,9 +21,9 @@ namespace DTC.Models
 
 			_cfg = cfg;
 		}
-        internal F16Configuration Cfg => _cfg;
+        	internal F16Configuration Cfg => _cfg;
 
-        public void Load()
+        	public void Load()
 		{
 			var sb = new StringBuilder();
 

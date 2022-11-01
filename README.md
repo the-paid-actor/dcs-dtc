@@ -33,7 +33,8 @@ This application is written using .NET Framework 4.7.2. You may want to download
 
 ## Installation
 
-- Grab the files from the Releases tab on Github.
+- Grab the zip file from the Releases tab on Github.
+- Unzip it into a folder of your choice.
 - Copy into a folder of your choice.
 - Copy the DCSDTC.lua file into `C:\Users\<your user name>\Saved Games\DCS\Scripts`. Substitute `C:` for the drive 
   where your Windows is installed and `DCS` for `DCS.openbeta` if you are on the beta version.

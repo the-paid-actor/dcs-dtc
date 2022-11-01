@@ -20,11 +20,11 @@ namespace DTC.Models.Presets
 				{
 					return "F/A-18C";
 				}
-                else if (Model == AircraftModel.AH64D)
-                {
-                    return "AH-64D";
-                }
-                throw new Exception();
+				else if (Model == AircraftModel.AH64D)
+				{
+				    return "AH-64D";
+				}
+				throw new Exception();
 			}
 		}
 

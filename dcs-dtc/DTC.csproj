@@ -95,6 +95,8 @@
     <Compile Include="Models\AH64\Upload\WaypointBuilder.cs" />
     <Compile Include="Models\AH64\Waypoints\WaypointSystem.cs" />
     <Compile Include="Models\AH64\Waypoints\Waypoint.cs" />
+    <Compile Include="Models\F16\TOS\TOSSetting.cs" />
+    <Compile Include="Models\F16\TOS\TOSSystem.cs" />
     <Compile Include="Models\FA18\CMS\CMSystem.cs" />
     <Compile Include="Models\FA18\CMS\Program.cs" />
     <Compile Include="Models\FA18\PrePlanned\PrePlannedCoordinate.cs" />

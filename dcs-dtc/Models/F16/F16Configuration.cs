@@ -4,6 +4,7 @@ using DTC.Models.F16.CMS;
 using DTC.Models.F16.MFD;
 using DTC.Models.F16.Waypoints;
 using DTC.Models.F16.Radios;
+using DTC.Models.F16.TOS;
 using Newtonsoft.Json;
 using DTC.Models.Base;
 using DTC.Models.F16.HARMHTS;
@@ -11,6 +12,7 @@ using DTC.Models.F16.Misc;
 using System.Xml.Linq;
 using System.Xml.XPath;
 using CoordinateSharp;
+
 
 namespace DTC.Models.F16
 {
@@ -22,7 +24,8 @@ namespace DTC.Models.F16
 		public MFDSystem MFD = new MFDSystem();
 		public HARMSystem HARM = new HARMSystem();
 		public HTSSystem HTS = new HTSSystem();
-		public MiscSystem Misc = new MiscSystem();
+        public TOSSystem TOS = new TOSSystem();
+        public MiscSystem Misc = new MiscSystem();
 
 		public string ToJson()
 		{
@@ -105,7 +108,11 @@ namespace DTC.Models.F16
 			{
 				HTS = cfg.HTS;
 			}
-			if (cfg.Misc != null)
+            if (cfg.TOS != null)
+            {
+                TOS = cfg.TOS;
+            }
+            if (cfg.Misc != null)
 			{
 				Misc = cfg.Misc;
 			}

@@ -161,7 +161,6 @@ namespace DTC.UI.Aircrafts.AH64
         {
             _configToLoad = null;
             grpLoad.Text = "Load from Combatflite XML";
-            //grpSave.Text = "Save to Clipboard";
             grpLoad.Visible = true;
             grpSave.Visible = false;
             DisableLoadControls();

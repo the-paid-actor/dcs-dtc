@@ -63,14 +63,14 @@ namespace DTC.Models.AH64.Upload
                 }
                 AppendCommand(mpd.GetCommand("L1"));
 
-                AppendCommand(BuildString(ku,wpt.Ident));
+                AppendCommand(BuildInputString(ku,wpt.Ident));
                 AppendCommand(ku.GetCommand("ENTR"));
-                AppendCommand(BuildString(ku, wpt.Free));
+                AppendCommand(BuildInputString(ku, wpt.Free));
                 AppendCommand(ku.GetCommand("ENTR"));
                 AppendCommand(ClearKU(ku));
-                AppendCommand(BuildString(ku, wpt.Mgrs));
+                AppendCommand(BuildInputString(ku, wpt.Mgrs));
                 AppendCommand(ku.GetCommand("ENTR"));
-                AppendCommand(BuildString(ku, wpt.Elevation.ToString()));
+                AppendCommand(BuildInputString(ku, wpt.Elevation.ToString()));
                 AppendCommand(ku.GetCommand("ENTR"));
                 AppendCommand(mpd.GetCommand("TSD"));
             }
@@ -78,13 +78,13 @@ namespace DTC.Models.AH64.Upload
 
         }
 
-        private string BuildString(Device ku, string mgrs)
+        private string BuildInputString(Device ku, string input)
         {
             var sb = new StringBuilder();
 
-            var mgrsStr = RemoveSeparators(mgrs.Replace(" ", ""));
+            var inputStr = RemoveSeparators(input.Replace(" ", ""));
 
-            foreach (var c in mgrsStr.ToCharArray())
+            foreach (var c in inputStr.ToCharArray())
             {
                 sb.Append(ku.GetCommand(c.ToString()));
             }

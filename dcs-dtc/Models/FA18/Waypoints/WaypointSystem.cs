@@ -61,9 +61,5 @@ namespace DTC.Models.FA18.Waypoints
 				wpt.Sequence = i + 1;
 			}
 		}
-		public int Count()
-        {
-            return Waypoints.Count;
-        }
     }
 }

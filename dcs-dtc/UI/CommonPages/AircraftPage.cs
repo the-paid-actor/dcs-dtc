@@ -66,7 +66,7 @@ namespace DTC.UI.CommonPages
 				var cfg = (AH64Configuration)configuration;
 				return new AircraftSettingPage[]
 				{
-				    new Aircrafts.AH64.UploadToJetPage(this, cfg),
+				    new Aircrafts.AH64.UploadToHeliPage(this, cfg),
 				    new Aircrafts.AH64.LoadSavePage(this, cfg),
 				    new Aircrafts.AH64.WaypointsPage(this, cfg.Waypoints),
 				    new Aircrafts.AH64.RadioPage(this, cfg.Radios)

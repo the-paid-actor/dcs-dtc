@@ -6,7 +6,7 @@ namespace DTC.Models.AH64.Waypoints
 {
     public class Waypoint
     {
-        private static Regex MGRSRegex = new Regex("^(\\d\\d\\s[A-Z][A-Z][A-Z]\\s\\d\\d\\d\\d\\s\\d\\d\\d\\d)$"); //MGRS format like 40 RDR 5123 6456
+        private static Regex MGRSRegex = new Regex("^(\\d{2}\\s*[A-Z]\\s*[A-Z]{2}\\s*\\d{4}\\s*\\d{4})$"); //MGRS format like 40 RDR 5123 6456
 
         public int Sequence { get; set; }
         public string Type { get; set; }

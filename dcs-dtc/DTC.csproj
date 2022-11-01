@@ -150,11 +150,11 @@
     <Compile Include="Models\Presets\Aircraft.cs" />
     <Compile Include="Models\Presets\Preset.cs" />
     <Compile Include="Models\WaypointDB\WaypointDB.cs" />
-    <Compile Include="UI\Aircrafts\AH64\UploadToJetPage.cs">
+    <Compile Include="UI\Aircrafts\AH64\UploadToHeliPage.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="UI\Aircrafts\AH64\UploadToJetPage.Designer.cs">
-      <DependentUpon>UploadToJetPage.cs</DependentUpon>
+    <Compile Include="UI\Aircrafts\AH64\UploadToHeliPage.Designer.cs">
+      <DependentUpon>UploadToHeliPage.cs</DependentUpon>
     </Compile>
     <Compile Include="UI\Aircrafts\AH64\RadioPage.cs">
       <SubType>UserControl</SubType>
@@ -416,8 +416,8 @@
     <EmbeddedResource Include="UI\Aircrafts\AH64\RadioPage.resx">
       <DependentUpon>RadioPage.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="UI\Aircrafts\AH64\UploadToJetPage.resx">
-      <DependentUpon>UploadToJetPage.cs</DependentUpon>
+    <EmbeddedResource Include="UI\Aircrafts\AH64\UploadToHeliPage.resx">
+      <DependentUpon>UploadToHeliPage.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="UI\Aircrafts\AH64\WaypointEdit.resx">
       <DependentUpon>WaypointEdit.cs</DependentUpon>

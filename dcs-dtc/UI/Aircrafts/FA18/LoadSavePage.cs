@@ -31,24 +31,16 @@ namespace DTC.UI.Aircrafts.FA18
 				var txt = Clipboard.GetText();
 				_configToLoad = FA18Configuration.FromCompressedString(txt);
 			}
-            if (optFile.Checked)
-            {
-                if (openFileDlg.ShowDialog() == DialogResult.OK)
-                {
-                    var file = FileStorage.LoadFile(openFileDlg.FileName);
-                    _configToLoad = FA18Configuration.FromJson(file);
-                }
-            }
-            if (optXML.Checked)
-            {
-                if (openFileDlg.ShowDialog() == DialogResult.OK)
-                {
-                    var file = FileStorage.LoadFile(openFileDlg.FileName);
-                    _configToLoad = FA18Configuration.FromCombatFliteXML(_mainConfig, file);
-                }
-            }
+			else
+			{
+				if (openFileDlg.ShowDialog() == DialogResult.OK)
+				{
+					var file = FileStorage.LoadFile(openFileDlg.FileName);
+					_configToLoad = FA18Configuration.FromJson(file);
+				}
+			}
 
-            DisableLoadControls();
+			DisableLoadControls();
 
 			var enableLoad = false;
 
@@ -64,9 +56,24 @@ namespace DTC.UI.Aircrafts.FA18
 					chkLoadRadios.Enabled = true;
 					enableLoad = true;
 				}
+				if (_configToLoad.CMS != null)
+				{
+					chkLoadCMS.Enabled = true;
+					enableLoad = true;
+				}
 				if (_configToLoad.Misc != null)
 				{
 					chkLoadMisc.Enabled = true;
+					enableLoad = true;
+				}
+				if (_configToLoad.PrePlanned != null)
+				{
+					chkLoadPP.Enabled = true;
+					enableLoad = true;
+				}
+				if (_configToLoad.Sequences != null)
+				{
+					chkLoadSeq.Enabled = true;
 					enableLoad = true;
 				}
 
@@ -109,6 +116,30 @@ namespace DTC.UI.Aircrafts.FA18
 			{
 				load = true;
 			}
+			if (!chkLoadCMS.Checked)
+			{
+				cfg.CMS = null;
+			}
+			else
+			{
+				load = true;
+			}
+			if (!chkLoadPP.Checked)
+			{
+				cfg.PrePlanned = null;
+			}
+			else
+			{
+				load = true;
+			}
+			if (!chkLoadSeq.Checked)
+			{
+				cfg.Sequences = null;
+			}
+			else
+			{
+				load = true;
+			}
 
 			if (load)
 			{
@@ -128,6 +159,18 @@ namespace DTC.UI.Aircrafts.FA18
 			if (!chkSaveRadios.Checked)
 			{
 				cfg.Radios = null;
+			}
+			if (!chkSaveCMS.Checked)
+			{
+				cfg.CMS = null;
+			}
+			if (!chkSavePP.Checked)
+			{
+				cfg.PrePlanned = null;
+			}
+			if (!chkSaveSeq.Checked)
+			{
+				cfg.Sequences = null;
 			}
 			if (!chkSaveMisc.Checked)
 			{
@@ -151,7 +194,10 @@ namespace DTC.UI.Aircrafts.FA18
 		{
 			chkLoadWaypoints.Enabled = false;
 			chkLoadRadios.Enabled = false;
+			chkLoadCMS.Enabled = false;
 			chkLoadMisc.Enabled = false;
+			chkLoadPP.Enabled = false;
+			chkLoadSeq.Enabled = false;
 			btnLoadApply.Enabled = false;
 		}
 
@@ -174,14 +220,10 @@ namespace DTC.UI.Aircrafts.FA18
 			grpSave.Visible = true;
 			DisableLoadControls();
 		}
-		private void optXML_CheckedChanged(object sender, EventArgs e)
+
+        private void chkSaveSeq_CheckedChanged(object sender, EventArgs e)
         {
-            _configToLoad = null;
-            grpLoad.Text = "Load from Combatflite XML";
-            //grpSave.Text = "Save to Clipboard";
-            grpLoad.Visible = true;
-            grpSave.Visible = false;
-            DisableLoadControls();
+
         }
     }
 }

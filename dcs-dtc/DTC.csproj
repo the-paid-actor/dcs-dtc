@@ -578,5 +578,8 @@
     <None Include="Resources\2560px-Brown-dominant__highland__ERDL_camouflage_pattern_swatch.svg.png" />
     <None Include="Resources\tablet.png" />
   </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Models\FA18\TOS\" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

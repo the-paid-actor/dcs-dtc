@@ -3,34 +3,34 @@ using DTC.UI.Base.Controls;
 
 namespace DTC.UI.Aircrafts.F16
 {
-    partial class LoadSavePage
-    {
-        /// <summary> 
-        /// Required designer variable.
-        /// </summary>
-        private System.ComponentModel.IContainer components = null;
+	partial class LoadSavePage
+	{
+		/// <summary> 
+		/// Required designer variable.
+		/// </summary>
+		private System.ComponentModel.IContainer components = null;
 
-        /// <summary> 
-        /// Clean up any resources being used.
-        /// </summary>
-        /// <param name="disposing">true if managed resources should be disposed; otherwise, false.</param>
-        protected override void Dispose(bool disposing)
-        {
-            if (disposing && (components != null))
-            {
-                components.Dispose();
-            }
-            base.Dispose(disposing);
-        }
+		/// <summary> 
+		/// Clean up any resources being used.
+		/// </summary>
+		/// <param name="disposing">true if managed resources should be disposed; otherwise, false.</param>
+		protected override void Dispose(bool disposing)
+		{
+			if (disposing && (components != null))
+			{
+				components.Dispose();
+			}
+			base.Dispose(disposing);
+		}
 
-        #region Component Designer generated code
+		#region Component Designer generated code
 
-        /// <summary> 
-        /// Required method for Designer support - do not modify 
-        /// the contents of this method with the code editor.
-        /// </summary>
-        private void InitializeComponent()
-        {
+		/// <summary> 
+		/// Required method for Designer support - do not modify 
+		/// the contents of this method with the code editor.
+		/// </summary>
+		private void InitializeComponent()
+		{
             this.openFileDlg = new System.Windows.Forms.OpenFileDialog();
             this.saveFileDlg = new System.Windows.Forms.SaveFileDialog();
             this.optFile = new System.Windows.Forms.RadioButton();
@@ -398,33 +398,33 @@ namespace DTC.UI.Aircrafts.F16
             this.ResumeLayout(false);
             this.PerformLayout();
 
-        }
+		}
 
-        #endregion
-        private System.Windows.Forms.OpenFileDialog openFileDlg;
-        private System.Windows.Forms.SaveFileDialog saveFileDlg;
-        private System.Windows.Forms.RadioButton optFile;
-        private System.Windows.Forms.RadioButton optClipboard;
-        private Controls.DTCGroupBox grpLoad;
-        private DTCButton btnLoadApply;
-        private DTCButton btnLoad;
-        private System.Windows.Forms.CheckBox chkLoadMFDs;
-        private System.Windows.Forms.CheckBox chkLoadRadios;
-        private System.Windows.Forms.CheckBox chkLoadCMS;
-        private System.Windows.Forms.CheckBox chkLoadWaypoints;
-        private Controls.DTCGroupBox grpSave;
-        private DTCButton btnSave;
-        private System.Windows.Forms.CheckBox chkSaveMFDs;
-        private System.Windows.Forms.CheckBox chkSaveRadios;
-        private System.Windows.Forms.CheckBox chkSaveCMS;
-        private System.Windows.Forms.CheckBox chkSaveWaypoints;
-        private System.Windows.Forms.CheckBox chkLoadHARM;
-        private System.Windows.Forms.CheckBox chkSaveHARM;
-        private System.Windows.Forms.CheckBox chkLoadHTS;
-        private System.Windows.Forms.CheckBox chkSaveHTS;
-        private System.Windows.Forms.CheckBox checkBox1;
-        private System.Windows.Forms.CheckBox chkLoadMisc;
-        private System.Windows.Forms.CheckBox chkSaveMisc;
+		#endregion
+		private System.Windows.Forms.OpenFileDialog openFileDlg;
+		private System.Windows.Forms.SaveFileDialog saveFileDlg;
+		private System.Windows.Forms.RadioButton optFile;
+		private System.Windows.Forms.RadioButton optClipboard;
+		private Controls.DTCGroupBox grpLoad;
+		private DTCButton btnLoadApply;
+		private DTCButton btnLoad;
+		private System.Windows.Forms.CheckBox chkLoadMFDs;
+		private System.Windows.Forms.CheckBox chkLoadRadios;
+		private System.Windows.Forms.CheckBox chkLoadCMS;
+		private System.Windows.Forms.CheckBox chkLoadWaypoints;
+		private Controls.DTCGroupBox grpSave;
+		private DTCButton btnSave;
+		private System.Windows.Forms.CheckBox chkSaveMFDs;
+		private System.Windows.Forms.CheckBox chkSaveRadios;
+		private System.Windows.Forms.CheckBox chkSaveCMS;
+		private System.Windows.Forms.CheckBox chkSaveWaypoints;
+		private System.Windows.Forms.CheckBox chkLoadHARM;
+		private System.Windows.Forms.CheckBox chkSaveHARM;
+		private System.Windows.Forms.CheckBox chkLoadHTS;
+		private System.Windows.Forms.CheckBox chkSaveHTS;
+		private System.Windows.Forms.CheckBox checkBox1;
+		private System.Windows.Forms.CheckBox chkLoadMisc;
+		private System.Windows.Forms.CheckBox chkSaveMisc;
         private System.Windows.Forms.CheckBox chkLoadTOS;
         private System.Windows.Forms.CheckBox chkSaveTOS;
     }

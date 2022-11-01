@@ -27,13 +27,13 @@ namespace DTC.Models.Base
 			return Path.Combine(path, "dtc-airbases.json");
 		}
 
-        private static string GetIdentsFilePath()
-        {
-            var path = GetCurrentFolder();
-            return Path.Combine(path, "dtc-idents.json");
-        }
+        	private static string GetIdentsFilePath()
+       		{
+            		var path = GetCurrentFolder();
+            		return Path.Combine(path, "dtc-idents.json");
+        	}
 
-        private static string GetEmittersFilePath()
+        	private static string GetEmittersFilePath()
 		{
 			var path = GetCurrentFolder();
 			return Path.Combine(path, "dtc-emitters.json");

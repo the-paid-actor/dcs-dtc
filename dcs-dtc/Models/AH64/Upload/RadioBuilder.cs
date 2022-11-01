@@ -17,8 +17,8 @@ namespace DTC.Models.AH64.Upload
 
         public override void Build()
         {
-            var mpd = _aircraft.GetDevice("CPG_Right_MPD");
-            var ku = _aircraft.GetDevice("CPG_KU");
+            var mpd = _aircraft.GetDevice("Right_MPD");
+            var ku = _aircraft.GetDevice("KU");
 
             AppendCommand(mpd.GetCommand("COM"));
             AppendCommand(mpd.GetCommand("B2"));

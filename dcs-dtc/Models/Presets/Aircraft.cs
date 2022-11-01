@@ -9,7 +9,7 @@ namespace DTC.Models.Presets
 {
 	public class Aircraft
 	{
-		public string Name {
+		public string Name { //Enter new models here
 			get
 			{
 				if (Model == AircraftModel.F16C)

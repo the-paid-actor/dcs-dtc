@@ -52,11 +52,11 @@ namespace DTC.Models.Presets
 			{
 				return typeof(FA18Configuration);
 			}
-            else if (Model == AircraftModel.AH64D)
-            {
-                return typeof(AH64Configuration);
-            }
-            throw new Exception();
+			else if (Model == AircraftModel.AH64D)
+			{
+				return typeof(AH64Configuration);
+			}
+			throw new Exception();
 		}
 
 		public Preset CreatePreset(string name, IConfiguration cfg = null)
@@ -81,17 +81,17 @@ namespace DTC.Models.Presets
 				Presets.Add(p);
 				return p;
 			}
-            else if (Model == AircraftModel.AH64D)
-            {
-                if (cfg == null)
-                {
-                    cfg = new AH64Configuration();
-                }
-                var p = new Preset(name, cfg);
-                Presets.Add(p);
-                return p;
-            }
-            else
+			else if (Model == AircraftModel.AH64D)
+			{
+				if (cfg == null)
+				{
+				    cfg = new AH64Configuration();
+				}
+				var p = new Preset(name, cfg);
+				Presets.Add(p);
+				return p;
+			    }
+			else
 			{
 				throw new Exception();
 			}

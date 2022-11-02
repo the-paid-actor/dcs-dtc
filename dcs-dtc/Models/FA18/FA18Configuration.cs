@@ -92,6 +92,10 @@ namespace DTC.Models.FA18
 			{
 				Sequences = cfg.Sequences;
 			}
+			if (cfg.PrePlanned != null)
+			{
+				PrePlanned = cfg.PrePlanned;
+			}
 			if (cfg.Radios != null)
 			{
 				Radios = cfg.Radios;

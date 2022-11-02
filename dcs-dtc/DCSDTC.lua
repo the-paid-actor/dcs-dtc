@@ -276,6 +276,24 @@ local function checkConditionHTSOnMFD(mfd)
 	return true
 end
 
+local function checkConditionLmfdNotTac()
+	local table = parse_indication(2);
+	local str = table["TAC_id:23"]
+	if str == "TAC" then
+		return false
+	end 
+	return true
+end
+
+local function checkConditionRmfdNotSupt()
+	local table = parse_indication(3);
+	local str = table["SUPT_id:12"]
+	if str == "SUPT" then
+		return false
+	end 
+	return true
+end
+
 local function checkCondition(condition)
 	if condition == "NOT_IN_AA" then
 		return checkConditionNotInAAMode();
@@ -293,6 +311,8 @@ local function checkCondition(condition)
 		return  checkConditionIsJdam(string.match(condition, "%d+"), 82);
 	elseif condition:find("^STA_IS_GBUTO_") ~= nil then -- GBU31
 		return  checkConditionIsJdam(string.match(condition, "%d+"), 84);
+	elseif condition:find("^STA_IS_GBUTOP_") ~= nil then -- GBU31 - Penetrating
+		return  checkConditionIsJdam(string.match(condition, "%d+"), 109);
 	elseif condition:find("^STA_IS_GBUTT_") ~= nil then -- GBU32
 		return  checkConditionIsJdam(string.match(condition, "%d+"), 83);
 	elseif condition:find("^STA_IS_JSOWA_") ~= nil then
@@ -323,6 +343,10 @@ local function checkCondition(condition)
 		return checkConditionTACANBandX();
 	elseif condition == "TACAN_BAND_Y" then
 		return checkConditionTACANBandY();
+	elseif condition == "LMFD_NOT_TAC" then
+		return checkConditionLmfdNotTac();
+	elseif condition == "RMFD_NOT_SUPT" then
+		return checkConditionRmfdNotSupt();
 	else
 		return false
 	end

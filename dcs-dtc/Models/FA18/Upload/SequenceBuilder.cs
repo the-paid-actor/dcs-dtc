@@ -23,44 +23,47 @@ namespace DTC.Models.FA18.Upload
 
 			var ufc = _aircraft.GetDevice("UFC");
 			var rmfd = _aircraft.GetDevice("RMFD");
-			AppendCommand(rmfd.GetCommand("OSB-18")); // MENU
-			AppendCommand(rmfd.GetCommand("OSB-18")); // MENU
-			AppendCommand(rmfd.GetCommand("OSB-02")); // HSI
+			if (s1Enabled || s2Enabled || s3Enabled)
+			{
+				AppendCommand(rmfd.GetCommand("OSB-18")); // MENU
+				AppendCommand(rmfd.GetCommand("OSB-18")); // MENU
+				AppendCommand(rmfd.GetCommand("OSB-02")); // HSI
 
-			AppendCommand(rmfd.GetCommand("OSB-10")); // DATA
-			AppendCommand(rmfd.GetCommand("OSB-07")); // WYPT
-			AppendCommand(rmfd.GetCommand("OSB-01")); // SEQUFC
+				AppendCommand(rmfd.GetCommand("OSB-10")); // DATA
+				AppendCommand(rmfd.GetCommand("OSB-07")); // WYPT
+				AppendCommand(rmfd.GetCommand("OSB-01")); // SEQUFC
 
-			if(s1Enabled)
-            {
-				ClearSequence(ufc);
-                AppendCommand(rmfd.GetCommand("OSB-01")); // SEQUFC
-				EnterSequence(ufc, seq1);
-            }
-			AppendCommand(rmfd.GetCommand("OSB-15")); // SEQX
-			AppendCommand(rmfd.GetCommand("OSB-15")); // SEQX
-			if(s2Enabled)
-            {
-				ClearSequence(ufc);
-                AppendCommand(rmfd.GetCommand("OSB-01")); // SEQUFC
-				EnterSequence(ufc, seq2);
-            }
-			AppendCommand(rmfd.GetCommand("OSB-15")); // SEQX
-			AppendCommand(rmfd.GetCommand("OSB-15")); // SEQX
-			if(s3Enabled)
-            {
-				ClearSequence(ufc);
-                AppendCommand(rmfd.GetCommand("OSB-01")); // SEQUFC
-				EnterSequence(ufc, seq3);
-            }
-			AppendCommand(rmfd.GetCommand("OSB-15")); // SEQX
-			AppendCommand(rmfd.GetCommand("OSB-15")); // SEQX
+				if (s1Enabled)
+				{
+					ClearSequence(ufc);
+					AppendCommand(rmfd.GetCommand("OSB-01")); // SEQUFC
+					EnterSequence(ufc, seq1);
+				}
+				AppendCommand(rmfd.GetCommand("OSB-15")); // SEQX
+				AppendCommand(rmfd.GetCommand("OSB-15")); // SEQX
+				if (s2Enabled)
+				{
+					ClearSequence(ufc);
+					AppendCommand(rmfd.GetCommand("OSB-01")); // SEQUFC
+					EnterSequence(ufc, seq2);
+				}
+				AppendCommand(rmfd.GetCommand("OSB-15")); // SEQX
+				AppendCommand(rmfd.GetCommand("OSB-15")); // SEQX
+				if (s3Enabled)
+				{
+					ClearSequence(ufc);
+					AppendCommand(rmfd.GetCommand("OSB-01")); // SEQUFC
+					EnterSequence(ufc, seq3);
+				}
+				AppendCommand(rmfd.GetCommand("OSB-15")); // SEQX
+				AppendCommand(rmfd.GetCommand("OSB-15")); // SEQX
 
-            AppendCommand(Wait());
-			AppendCommand(rmfd.GetCommand("OSB-18"));
-            AppendCommand(Wait());
-			AppendCommand(rmfd.GetCommand("OSB-18"));
-			AppendCommand(rmfd.GetCommand("OSB-15"));
+				AppendCommand(Wait());
+				AppendCommand(rmfd.GetCommand("OSB-18"));
+				AppendCommand(Wait());
+				AppendCommand(rmfd.GetCommand("OSB-18"));
+				AppendCommand(rmfd.GetCommand("OSB-15"));
+			}
         }
 
 		public void ClearSequence(Device ufc)

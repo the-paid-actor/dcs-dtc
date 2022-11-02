@@ -6,22 +6,32 @@ using System.Threading.Tasks;
 
 namespace DTC.Models.FA18.PrePlanned
 {
-    public class PrePlannedStation
+    public class PrePlannedStation:IComparable<PrePlannedStation>
     {
         public StationType stationType {  get; set; }  
 
-        public int stationNumber { get; }
-        public PrePlannedCoordinate PP1 {  get; set; }  
-        public PrePlannedCoordinate PP2 {  get; set; }  
-        public PrePlannedCoordinate PP3 {  get; set; }  
-        public PrePlannedCoordinate PP4 {  get; set; }  
-        public PrePlannedCoordinate PP5 {  get; set; }  
+        public int stationNumber { get; set; }
+        public Dictionary<int, PrePlannedCoordinate> PP;
+        public PrePlannedSteerpoint[] Steerpoints = new PrePlannedSteerpoint[5]; /* for SLAM-ER */
+
+        public bool AnyStpEnabled {
+            get
+            {
+                foreach (var stp in Steerpoints)
+                    if (stp.Enabled)
+                        return true;
+                return false;
+            }
+        }
 
         public bool AnySelected
         {
             get
             {
-                return PP1.Enabled || PP2.Enabled || PP3.Enabled || PP4.Enabled || PP5.Enabled;
+                foreach (var p in PP.Values)
+                    if (p.Enabled)
+                        return true;
+                return false;
             }
         }
 
@@ -30,11 +40,13 @@ namespace DTC.Models.FA18.PrePlanned
             stationType = StationType.GBU38;
             stationNumber = number;
 
-            PP1 = new PrePlannedCoordinate();
-            PP2 = new PrePlannedCoordinate();
-            PP3 = new PrePlannedCoordinate();
-            PP4 = new PrePlannedCoordinate();  
-            PP5 = new PrePlannedCoordinate();
+            PP = new Dictionary<int, PrePlannedCoordinate>();
+            for (int i = 1; i <= 5; i++)
+                PP.Add(i, new PrePlannedCoordinate());
+
+            for (int i = 0; i < 5; i++) {
+                Steerpoints[i] = new PrePlannedSteerpoint();
+            }
         }
         public StationType fromString(string s)
         {
@@ -44,8 +56,10 @@ namespace DTC.Models.FA18.PrePlanned
                     return StationType.GBU38;
                 case "GBU32":
                     return StationType.GBU32;
-                case "GBU31":
-                    return StationType.GBU31;
+                case "GBU31-1/2":
+                    return StationType.GBU31NP;
+                case "GBU31-3/4":
+                    return StationType.GBU31PP;
                 case "JSOWA":
                     return StationType.JSOWA;
                 case "JSOWC":
@@ -69,8 +83,10 @@ namespace DTC.Models.FA18.PrePlanned
                     return "GBU38";
                 case StationType.GBU32:
                     return "GBU32";
-                case StationType.GBU31:
-                    return "GBU31";
+                case StationType.GBU31NP:
+                    return "GBU31-1/2";
+                case StationType.GBU31PP:
+                    return "GBU31-3/4";
                 case StationType.JSOWA:
                     return "JSOWA";
                 case StationType.JSOWC:
@@ -85,13 +101,30 @@ namespace DTC.Models.FA18.PrePlanned
                     return "Other-AG";
             }
         }
+
+        private int StepOrder() {
+            switch (stationNumber) {
+                case 8: return 1;
+                case 2: return 2;
+                case 7: return 3;
+                case 3: return 4;
+                default:
+                    throw new ApplicationException("Internal error -- invalid station number:" + stationNumber);
+            }
+        }
+
+        public int CompareTo(PrePlannedStation other)
+        {
+            return StepOrder().CompareTo(other.StepOrder());
+        }
     }
 
     public enum StationType
     {
         GBU38,
         GBU32,
-        GBU31,
+        GBU31NP,
+        GBU31PP,
         JSOWA,
         JSOWC,
         SLAM,

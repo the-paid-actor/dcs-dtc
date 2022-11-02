@@ -127,7 +127,7 @@ namespace DTC.UI.Aircrafts.FA18
 				{
 					this.ParentForm.Invoke(new MethodInvoker(delegate ()
 					{
-						txtWptLatLong.Text = latitude + " " + longitude;
+						txtWptLatLong.Text = latitude + "'' " + longitude;
 						txtWptElevation.Text = elevation;
 					}));
 				}, new DmsLongFormatter());

@@ -35,14 +35,14 @@ namespace DTC.Models.FA18.Upload
                 if (!ch.ToBeUpdated)
                     continue;
                 AppendCommand(ufc.GetCommand(radioCmd));
-                AppendCommand(Wait());
-                AppendCommand(Wait());
+                AppendCommand(WaitLong());
 
                 var freq = ch.GetFrequency().ToString();
                 freq = DeleteLeadingZeros(RemoveSeparators(freq));
 
                 AppendCommand(BuildDigits(ufc, freq));
                 AppendCommand(ufc.GetCommand("ENT"));
+                AppendCommand(Wait());
             }
             for (var i = 0; i < 5; i++)
             {

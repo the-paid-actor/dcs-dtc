@@ -9,6 +9,7 @@ using System.Windows.Forms;
 using DTC.Models.DCS;
 using DTC.Models.Presets;
 
+
 namespace DTC.Models
 {
 	internal class FA18PreUploadInit : BaseBuilder
@@ -53,8 +54,8 @@ namespace DTC.Models
 
 			_cfg = cfg;
 		}
-
-		public void Load()
+        internal FA18Configuration Cfg => _cfg;
+        public void Load()
 		{
 			var sb = new StringBuilder();
 

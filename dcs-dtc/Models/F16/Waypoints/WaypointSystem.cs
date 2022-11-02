@@ -63,5 +63,5 @@ namespace DTC.Models.F16.Waypoints
 				wpt.Sequence = i + 1;
 			}
 		}
-	}
+    }
 }

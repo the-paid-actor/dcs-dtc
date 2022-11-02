@@ -61,6 +61,9 @@
     <AssemblyOriginatorKeyFile>dtc.key.snk</AssemblyOriginatorKeyFile>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="CoordinateSharp, Version=2.14.2.1, Culture=neutral, PublicKeyToken=f45e02df057b7725, processorArchitecture=MSIL">
+      <HintPath>..\packages\CoordinateSharp.2.14.2.1\lib\net40\CoordinateSharp.dll</HintPath>
+    </Reference>
     <Reference Include="Newtonsoft.Json, Version=13.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
       <HintPath>..\packages\Newtonsoft.Json.13.0.1\lib\net45\Newtonsoft.Json.dll</HintPath>
     </Reference>
@@ -78,7 +81,22 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Models\AH64\Waypoints\Ident.cs" />
+    <Compile Include="Models\AH64\Waypoints\PointType.cs" />
     <Compile Include="Models\DCS\Emitters.cs" />
+    <Compile Include="Models\AH64\AH64Configuration.cs" />
+    <Compile Include="Models\AH64\AH64Commands.cs" />
+    <Compile Include="Models\AH64\AH64Upload.cs" />
+    <Compile Include="Models\AH64\Radios\RadioChannel.cs" />
+    <Compile Include="Models\AH64\Radios\Radio.cs" />
+    <Compile Include="Models\AH64\Radios\RadioSystem.cs" />
+    <Compile Include="Models\AH64\Radios\RadioType.cs" />
+    <Compile Include="Models\AH64\Upload\RadioBuilder.cs" />
+    <Compile Include="Models\AH64\Upload\WaypointBuilder.cs" />
+    <Compile Include="Models\AH64\Waypoints\WaypointSystem.cs" />
+    <Compile Include="Models\AH64\Waypoints\Waypoint.cs" />
+    <Compile Include="Models\F16\TOS\TOSSetting.cs" />
+    <Compile Include="Models\F16\TOS\TOSSystem.cs" />
     <Compile Include="Models\FA18\CMS\CMSystem.cs" />
     <Compile Include="Models\FA18\CMS\Program.cs" />
     <Compile Include="Models\FA18\PrePlanned\PrePlannedCoordinate.cs" />
@@ -138,6 +156,36 @@
     <Compile Include="Models\Presets\Aircraft.cs" />
     <Compile Include="Models\Presets\Preset.cs" />
     <Compile Include="Models\WaypointDB\WaypointDB.cs" />
+    <Compile Include="UI\Aircrafts\AH64\UploadToHeliPage.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="UI\Aircrafts\AH64\UploadToHeliPage.Designer.cs">
+      <DependentUpon>UploadToHeliPage.cs</DependentUpon>
+    </Compile>
+    <Compile Include="UI\Aircrafts\AH64\RadioPage.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="UI\Aircrafts\AH64\RadioPage.Designer.cs">
+      <DependentUpon>RadioPage.cs</DependentUpon>
+    </Compile>
+    <Compile Include="UI\Aircrafts\AH64\LoadSavePage.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="UI\Aircrafts\AH64\LoadSavePage.Designer.cs">
+      <DependentUpon>LoadSavePage.cs</DependentUpon>
+    </Compile>
+    <Compile Include="UI\Aircrafts\AH64\WaypointEdit.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="UI\Aircrafts\AH64\WaypointEdit.Designer.cs">
+      <DependentUpon>WaypointEdit.cs</DependentUpon>
+    </Compile>
+    <Compile Include="UI\Aircrafts\AH64\WaypointsPage.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="UI\Aircrafts\AH64\WaypointsPage.Designer.cs">
+      <DependentUpon>WaypointsPage.cs</DependentUpon>
+    </Compile>
     <Compile Include="UI\Aircrafts\FA18\CMSPage.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -398,6 +446,21 @@
     <Compile Include="UI\CommonPages\PresetsPage.Designer.cs">
       <DependentUpon>PresetsPage.cs</DependentUpon>
     </Compile>
+    <EmbeddedResource Include="UI\Aircrafts\AH64\LoadSavePage.resx">
+      <DependentUpon>LoadSavePage.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UI\Aircrafts\AH64\RadioPage.resx">
+      <DependentUpon>RadioPage.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UI\Aircrafts\AH64\UploadToHeliPage.resx">
+      <DependentUpon>UploadToHeliPage.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UI\Aircrafts\AH64\WaypointEdit.resx">
+      <DependentUpon>WaypointEdit.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UI\Aircrafts\AH64\WaypointsPage.resx">
+      <DependentUpon>WaypointsPage.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="UI\Aircrafts\FA18\CMSPage.resx">
       <DependentUpon>CMSPage.cs</DependentUpon>
     </EmbeddedResource>
@@ -515,6 +578,9 @@
     <None Include="dtc-emitters.json">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
+    <None Include="dtc-idents.json">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
     <None Include="dtc-settings.json">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
@@ -554,11 +620,15 @@
   <ItemGroup>
     <None Include="Resources\F16.png" />
     <None Include="Resources\FA18.png" />
+    <None Include="Resources\AH64.png" />
     <Content Include="Resources\Iconleak-Atrous-Disk.ico" />
     <None Include="Resources\Waypoints.png" />
     <Content Include="Structure.txt" />
     <None Include="Resources\2560px-Brown-dominant__highland__ERDL_camouflage_pattern_swatch.svg.png" />
     <None Include="Resources\tablet.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Models\FA18\TOS\" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

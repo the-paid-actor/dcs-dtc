@@ -1,6 +1,7 @@
 ﻿using DTC.Models.Base;
 using DTC.Models.F16;
 using DTC.Models.FA18;
+using DTC.Models.AH64;
 using System;
 using System.Collections.Generic;
 
@@ -18,6 +19,10 @@ namespace DTC.Models.Presets
 				else if (Model == AircraftModel.FA18C)
 				{
 					return "F/A-18C";
+				}
+				else if (Model == AircraftModel.AH64D)
+				{
+				    return "AH-64D";
 				}
 				throw new Exception();
 			}
@@ -42,9 +47,14 @@ namespace DTC.Models.Presets
 			if (Model == AircraftModel.F16C)
 			{
 				return typeof(F16Configuration);
-			} else if (Model == AircraftModel.FA18C)
+			}
+			else if (Model == AircraftModel.FA18C)
 			{
 				return typeof(FA18Configuration);
+			}
+			else if (Model == AircraftModel.AH64D)
+			{
+				return typeof(AH64Configuration);
 			}
 			throw new Exception();
 		}
@@ -70,7 +80,18 @@ namespace DTC.Models.Presets
 				var p = new Preset(name, cfg);
 				Presets.Add(p);
 				return p;
-			} else
+			}
+			else if (Model == AircraftModel.AH64D)
+			{
+				if (cfg == null)
+				{
+				    cfg = new AH64Configuration();
+				}
+				var p = new Preset(name, cfg);
+				Presets.Add(p);
+				return p;
+			    }
+			else
 			{
 				throw new Exception();
 			}

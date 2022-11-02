@@ -53,5 +53,5 @@ namespace DTC.Models.FA18.Waypoints
 				wpt.Sequence = i + 1;
 			}
 		}
-	}
+    }
 }

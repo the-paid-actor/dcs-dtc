@@ -1,4 +1,5 @@
-﻿using DTC.Models.DCS;
+﻿using DTC.Models.AH64.Waypoints;
+using DTC.Models.DCS;
 using DTC.Models.Presets;
 using Newtonsoft.Json;
 using System;
@@ -26,7 +27,13 @@ namespace DTC.Models.Base
 			return Path.Combine(path, "dtc-airbases.json");
 		}
 
-		private static string GetEmittersFilePath()
+        	private static string GetIdentsFilePath()
+       		{
+            		var path = GetCurrentFolder();
+            		return Path.Combine(path, "dtc-idents.json");
+        	}
+
+        	private static string GetEmittersFilePath()
 		{
 			var path = GetCurrentFolder();
 			return Path.Combine(path, "dtc-emitters.json");
@@ -128,6 +135,23 @@ namespace DTC.Models.Base
 			{
 			}
 			return null;
+		}
+
+		public static PointType[] LoadIdents()
+		{
+            try
+            {
+                var path = GetIdentsFilePath();
+                if (File.Exists(path))
+                {
+                    var json = File.ReadAllText(path);
+                    return JsonConvert.DeserializeObject<PointType[]>(json);
+                }
+            }
+            catch
+            {
+            }
+            return null;
 		}
 
 		public static Emitter[] LoadEmitters()

@@ -131,12 +131,6 @@ namespace DTC.Models.FA18
                 var lon = pos.Element("Longitude")?.Value;
                 var dLat = double.Parse(lat.Replace('.', ','));
                 var dLon = double.Parse(lon.Replace('.', ','));
-                //if (
-                //    !double.TryParse(lat, out var dLat) ||
-                //    !double.TryParse(lon, out var dLon))
-                //{
-                //    continue;
-                //}
                 float.TryParse(pos.Element("Altitude")?.Value.Replace('.', ','), out var elevation);
                 var coord = new Coordinate(dLat, dLon);
                 lat = $"{(dLat > 0 ? 'N' : 'S')} {coord.Latitude.Degrees:00}.{coord.Latitude.DecimalMinute:00.000}";

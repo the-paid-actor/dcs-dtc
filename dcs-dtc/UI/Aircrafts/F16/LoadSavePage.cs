@@ -1,4 +1,5 @@
-﻿using DTC.Models.Base;
+﻿using DTC.Models.AH64;
+using DTC.Models.Base;
 using DTC.Models.F16;
 using DTC.UI.CommonPages;
 using System;
@@ -31,16 +32,24 @@ namespace DTC.UI.Aircrafts.F16
 				var txt = Clipboard.GetText();
 				_configToLoad = F16Configuration.FromCompressedString(txt);
 			}
-			else
-			{
+            if (optFile.Checked)
+            {
 				if (openFileDlg.ShowDialog() == DialogResult.OK)
 				{
 					var file = FileStorage.LoadFile(openFileDlg.FileName);
 					_configToLoad = F16Configuration.FromJson(file);
 				}
 			}
+            if (optXML.Checked)
+            {
+                if (openFileDlg.ShowDialog() == DialogResult.OK)
+                {
+                    var file = FileStorage.LoadFile(openFileDlg.FileName);
+                    _configToLoad = F16Configuration.FromCombatFliteXML(_mainConfig, file);
+                }
+            }
 
-			DisableLoadControls();
+            DisableLoadControls();
 
 			var enableLoad = false;
 
@@ -261,5 +270,13 @@ namespace DTC.UI.Aircrafts.F16
 			grpSave.Visible = true;
 			DisableLoadControls();
 		}
+        private void optXML_CheckedChanged(object sender, EventArgs e)
+        {
+            _configToLoad = null;
+            grpLoad.Text = "Load from Combatflite XML";
+            grpLoad.Visible = true;
+            grpSave.Visible = false;
+            DisableLoadControls();
+        }
     }
 }

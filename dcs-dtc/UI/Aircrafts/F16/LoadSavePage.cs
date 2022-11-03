@@ -32,22 +32,22 @@ namespace DTC.UI.Aircrafts.F16
 				var txt = Clipboard.GetText();
 				_configToLoad = F16Configuration.FromCompressedString(txt);
 			}
-            if (optFile.Checked)
-            {
+            		if (optFile.Checked)
+            		{
 				if (openFileDlg.ShowDialog() == DialogResult.OK)
 				{
 					var file = FileStorage.LoadFile(openFileDlg.FileName);
 					_configToLoad = F16Configuration.FromJson(file);
 				}
 			}
-            if (optXML.Checked)
-            {
-                if (openFileDlg.ShowDialog() == DialogResult.OK)
-                {
-                    var file = FileStorage.LoadFile(openFileDlg.FileName);
-                    _configToLoad = F16Configuration.FromCombatFliteXML(_mainConfig, file);
-                }
-            }
+            		if (optXML.Checked)
+            		{
+               			if (openFileDlg.ShowDialog() == DialogResult.OK)
+                		{
+                    			var file = FileStorage.LoadFile(openFileDlg.FileName);
+                    			_configToLoad = F16Configuration.FromCombatFliteXML(_mainConfig, file);
+                		}
+            		}
 
             DisableLoadControls();
 

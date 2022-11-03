@@ -270,13 +270,13 @@ namespace DTC.UI.Aircrafts.F16
 			grpSave.Visible = true;
 			DisableLoadControls();
 		}
-        private void optXML_CheckedChanged(object sender, EventArgs e)
-        {
-            _configToLoad = null;
-            grpLoad.Text = "Load from Combatflite XML";
-            grpLoad.Visible = true;
-            grpSave.Visible = false;
-            DisableLoadControls();
-        }
+		private void optXML_CheckedChanged(object sender, EventArgs e)
+		{
+		    _configToLoad = null;
+		    grpLoad.Text = "Load from Combatflite XML";
+		    grpLoad.Visible = true;
+		    grpSave.Visible = false;
+		    DisableLoadControls();
+		}
     }
 }

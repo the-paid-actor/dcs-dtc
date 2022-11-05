@@ -159,7 +159,7 @@ namespace DTC.UI.Aircrafts.AH64
 
         private bool ValidateElevation()
         {
-            if (!Util.IsValidInt(txtWptElevation.Text))
+            if (!Util.IsValidInt(txtWptElevation.Text) && !Util.Equals(txtWptElevation.Text,""))
             {
                 lblValidation.Text = "Invalid elevation";
                 txtWptElevation.Focus();

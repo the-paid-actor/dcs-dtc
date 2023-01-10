@@ -214,7 +214,7 @@ namespace DTC.UI.Aircrafts.F16
 						txtWptLatLong.Text = latitude + " " + longitude;
 						txtWptElevation.Text = elevation;
 					}));
-				}, new DdmShortFormatter());
+				}, new DdmMidFormatter());
 			}
 			else
 			{

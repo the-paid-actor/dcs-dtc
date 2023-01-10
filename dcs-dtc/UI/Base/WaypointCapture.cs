@@ -85,7 +85,23 @@ namespace DTC.UI.Base
         string FormatLon(string hem, Decimal longDegrees, Decimal longMinutes, Decimal longSeconds);
     }
 
-    public class DdmShortFormatter : CoordinateFormatter
+     public class DdmShortFormatter : CoordinateFormatter
+    {
+        string CoordinateFormatter.FormatLat(string hem, Decimal latDegrees, Decimal latMinutes, Decimal latSeconds)
+        {
+            var latStr = $"{hem} {latDegrees.ToString("00")}.{WaypointCapture.TruncateDecimal(latMinutes, 3).ToString("00.00", CultureInfo.InvariantCulture)}";
+            return latStr;
+        }
+
+        string CoordinateFormatter.FormatLon(string hem, Decimal longDegrees, Decimal longMinutes, Decimal longSeconds)
+        {
+            var longStr = $"{hem} {longDegrees.ToString("000")}.{WaypointCapture.TruncateDecimal(longMinutes, 3).ToString("00.000", CultureInfo.InvariantCulture)}";
+            return longStr;
+        }
+    }
+
+
+    public class DdmMidFormatter : CoordinateFormatter
     {
         string CoordinateFormatter.FormatLat(string hem, Decimal latDegrees, Decimal latMinutes, Decimal latSeconds)
         {

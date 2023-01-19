@@ -29,14 +29,18 @@ namespace DTC.Models.DCS
                 sb.Append(d.GetCommand(c.ToString()));
             }
 
-            return sb.ToString();
-        }
-
-        protected static string Wait()
-        {
-            var str = "{'device':'wait', 'delay': 200},";
-            return str.Replace("'", "\"");
-        }
+			return sb.ToString();
+		}
+		protected static string WaitShort()
+		{
+			var str = "{'device':'wait', 'delay': 100},";
+			return str.Replace("'", "\"");
+		}
+		protected static string Wait()
+		{
+			var str = "{'device':'wait', 'delay': 200},";
+			return str.Replace("'", "\"");
+		}
 
         protected static string WaitLong()
         {

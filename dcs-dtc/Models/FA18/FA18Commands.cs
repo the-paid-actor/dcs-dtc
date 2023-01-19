@@ -111,12 +111,15 @@ namespace DTC.Models.FA18
             radarAltimeter.AddCommand(new Command(3002, "Increase", delayRot, 0.015));
             radarAltimeter.AddCommand(new Command(3001, "Test", delay, 1));
             AddDevice(radarAltimeter);
+			var cmds = new Device(54, "CMDS");
+			cmds.AddCommand(new Command(3001, "ON", -1, 0.1));
+			cmds.AddCommand(new Command(3001, "OFF", -1, -1));
+			cmds.AddCommand(new Command(3001, "BYPASS", -1, 1));
+			AddDevice(cmds);
 
-            var cmds = new Device(54, "CMDS");
-            cmds.AddCommand(new Command(3001, "ON", -1, 0.1));
-            cmds.AddCommand(new Command(3001, "OFF", -1, -1));
-            cmds.AddCommand(new Command(3001, "BYPASS", -1, 1));
-            AddDevice(cmds);
+			var rwr = new Device(53, "RWR");
+			rwr.AddCommand(new Command(3001, "ON", -1, 1));
+			AddDevice(rwr);
         }
 
         private void AddDevice(Device d)

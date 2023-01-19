@@ -28,6 +28,8 @@ namespace DTC.Models.FA18.Misc
         public bool ILSToBeUpdated { get; set; }
         public int ILSChannel { get; set; }
         public bool HideMapOnHSI { get; set; }
+        public bool UFCIFFToBeUpdated { get; set; }
+		public bool UFCDLToBeUpdated { get; set; }
         public bool EnableUpload { get; set; }
 
         public MiscSystem()
@@ -41,8 +43,11 @@ namespace DTC.Models.FA18.Misc
             TACANChannel = 1;
             TACANBand = TACANBands.X;
 
-            EnableUpload = true;
-        }
+			UFCIFFToBeUpdated = true;
+			UFCDLToBeUpdated = true;
+
+			EnableUpload = true;
+		}
 
         public string SetBullseyeWP(string txt)
         {

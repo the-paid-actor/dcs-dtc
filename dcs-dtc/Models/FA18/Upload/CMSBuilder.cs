@@ -12,21 +12,38 @@ namespace DTC.Models.FA18.Upload
             _cfg = cfg;
         }
 
-        public override void Build()
-        {
-            var lmfd = _aircraft.GetDevice("LMFD");
-            var cmds = _aircraft.GetDevice("CMDS");
+		public override void Build()
+		{
+			var lmfd = _aircraft.GetDevice("LMFD");
+			var cmds = _aircraft.GetDevice("CMDS");
+            var rwr = _aircraft.GetDevice("RWR");
 
             AppendCommand(lmfd.GetCommand("OSB-18")); // Menu
             AppendCommand(lmfd.GetCommand("OSB-17")); // EW
 
+            AppendCommand(StartCondition("EWHUD_OFF"));  
+            
+            AppendCommand(StartCondition("RWR_OFF"));
+            AppendCommand(rwr.GetCommand("ON")); //RWR On
+            AppendCommand(EndCondition("RWR_OFF"));
+            AppendCommand(WaitLong());
+
+            AppendCommand(lmfd.GetCommand("OSB-14")); // HUD
+            AppendCommand(EndCondition("EWHUD_OFF"));
+
+            AppendCommand(Wait());
+            AppendCommand(StartCondition("DispenserOff"));
+            AppendCommand(lmfd.GetCommand("OSB-08")); // ALE-47
+            AppendCommand(EndCondition("DispenserOff"));
+            AppendCommand(Wait());
+
             AppendCommand(StartCondition("DispenserOff"));
             AppendCommand(cmds.GetCommand("ON"));
-            AppendCommand(WaitVeryLong());
-            AppendCommand(EndCondition("DispenserOff"));
-
+			AppendCommand(WaitVeryLong());
             AppendCommand(lmfd.GetCommand("OSB-08")); // ALE-47
-            AppendCommand(lmfd.GetCommand("OSB-09")); // ARM
+            AppendCommand(EndCondition("DispenserOff"));
+            
+			AppendCommand(lmfd.GetCommand("OSB-09")); // ARM
 
             for (var i = 0; i < _cfg.CMS.Programs.Length; i++)
             {

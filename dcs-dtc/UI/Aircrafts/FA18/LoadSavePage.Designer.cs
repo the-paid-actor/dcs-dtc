@@ -36,6 +36,7 @@ namespace DTC.UI.Aircrafts.FA18
             this.optFile = new System.Windows.Forms.RadioButton();
             this.optClipboard = new System.Windows.Forms.RadioButton();
             this.grpLoad = new DTC.UI.Base.Controls.DTCGroupBox();
+            this.chkLoadAAWeapons = new System.Windows.Forms.CheckBox();
             this.chkLoadMisc = new System.Windows.Forms.CheckBox();
             this.chkLoadPP = new System.Windows.Forms.CheckBox();
             this.chkLoadSeq = new System.Windows.Forms.CheckBox();
@@ -45,6 +46,7 @@ namespace DTC.UI.Aircrafts.FA18
             this.chkLoadCMS = new System.Windows.Forms.CheckBox();
             this.chkLoadWaypoints = new System.Windows.Forms.CheckBox();
             this.grpSave = new DTC.UI.Base.Controls.DTCGroupBox();
+            this.chkSaveAAWeapons = new System.Windows.Forms.CheckBox();
             this.chkSaveMisc = new System.Windows.Forms.CheckBox();
             this.chkSavePP = new System.Windows.Forms.CheckBox();
             this.chkSaveSeq = new System.Windows.Forms.CheckBox();
@@ -53,8 +55,6 @@ namespace DTC.UI.Aircrafts.FA18
             this.chkSaveCMS = new System.Windows.Forms.CheckBox();
             this.chkSaveWaypoints = new System.Windows.Forms.CheckBox();
             this.checkBox1 = new System.Windows.Forms.CheckBox();
-            this.chkLoadAAWeapons = new System.Windows.Forms.CheckBox();
-            this.chkSaveAAWeapons = new System.Windows.Forms.CheckBox();
             this.grpLoad.SuspendLayout();
             this.grpSave.SuspendLayout();
             this.SuspendLayout();
@@ -116,6 +116,17 @@ namespace DTC.UI.Aircrafts.FA18
             this.grpLoad.TabStop = false;
             this.grpLoad.Text = "Load";
             this.grpLoad.Visible = false;
+            // 
+            // chkLoadAAWeapons
+            // 
+            this.chkLoadAAWeapons.Enabled = false;
+            this.chkLoadAAWeapons.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F);
+            this.chkLoadAAWeapons.Location = new System.Drawing.Point(18, 121);
+            this.chkLoadAAWeapons.Name = "chkLoadAAWeapons";
+            this.chkLoadAAWeapons.Size = new System.Drawing.Size(120, 25);
+            this.chkLoadAAWeapons.TabIndex = 2;
+            this.chkLoadAAWeapons.Text = "A/A Weapons";
+            this.chkLoadAAWeapons.UseVisualStyleBackColor = true;
             // 
             // chkLoadMisc
             // 
@@ -235,6 +246,18 @@ namespace DTC.UI.Aircrafts.FA18
             this.grpSave.Text = "Save";
             this.grpSave.Visible = false;
             // 
+            // chkSaveAAWeapons
+            // 
+            this.chkSaveAAWeapons.Checked = true;
+            this.chkSaveAAWeapons.CheckState = System.Windows.Forms.CheckState.Checked;
+            this.chkSaveAAWeapons.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F);
+            this.chkSaveAAWeapons.Location = new System.Drawing.Point(18, 121);
+            this.chkSaveAAWeapons.Name = "chkSaveAAWeapons";
+            this.chkSaveAAWeapons.Size = new System.Drawing.Size(120, 25);
+            this.chkSaveAAWeapons.TabIndex = 2;
+            this.chkSaveAAWeapons.Text = "A/A Weapons";
+            this.chkSaveAAWeapons.UseVisualStyleBackColor = true;
+            // 
             // chkSaveMisc
             // 
             this.chkSaveMisc.Checked = true;
@@ -331,29 +354,6 @@ namespace DTC.UI.Aircrafts.FA18
             this.checkBox1.TabIndex = 8;
             this.checkBox1.Text = "checkBox1";
             this.checkBox1.UseVisualStyleBackColor = true;
-            // 
-            // chkLoadAAWeapons
-            // 
-            this.chkLoadAAWeapons.Enabled = false;
-            this.chkLoadAAWeapons.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F);
-            this.chkLoadAAWeapons.Location = new System.Drawing.Point(18, 121);
-            this.chkLoadAAWeapons.Name = "chkLoadAAWeapons";
-            this.chkLoadAAWeapons.Size = new System.Drawing.Size(63, 25);
-            this.chkLoadAAWeapons.TabIndex = 2;
-            this.chkLoadAAWeapons.Text = "A/A Weapons";
-            this.chkLoadAAWeapons.UseVisualStyleBackColor = true;
-            // 
-            // chkSaveAAWeapons
-            // 
-            this.chkSaveAAWeapons.Checked = true;
-            this.chkSaveAAWeapons.CheckState = System.Windows.Forms.CheckState.Checked;
-            this.chkSaveAAWeapons.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F);
-            this.chkSaveAAWeapons.Location = new System.Drawing.Point(18, 121);
-            this.chkSaveAAWeapons.Name = "chkSaveAAWeapons";
-            this.chkSaveAAWeapons.Size = new System.Drawing.Size(63, 25);
-            this.chkSaveAAWeapons.TabIndex = 2;
-            this.chkSaveAAWeapons.Text = "A/A Weapons";
-            this.chkSaveAAWeapons.UseVisualStyleBackColor = true;
             // 
             // LoadSavePage
             // 

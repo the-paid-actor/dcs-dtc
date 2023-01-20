@@ -88,6 +88,11 @@ namespace DTC.Models
 				var miscBuilder = new MiscBuilder(_cfg, fa18, sb);
 				miscBuilder.Build();
 			}
+			if (_cfg.AAWeapons.EnableUpload)
+			{
+				var aaweaponsBuilder = new AAWeaponsBuilder(_cfg, fa18, sb);
+				aaweaponsBuilder.Build();
+			}
 
 			if (sb.Length > 0)
 			{

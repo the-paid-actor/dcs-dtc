@@ -77,6 +77,11 @@ namespace DTC.UI.Aircrafts.FA18
 					chkLoadSeq.Enabled = true;
 					enableLoad = true;
 				}
+				if (_configToLoad.AAWeapons != null)
+                {
+					chkLoadAAWeapons.Enabled = true;
+					enableLoad = true;
+                }
 
 				if (enableLoad == true)
 				{
@@ -136,6 +141,10 @@ namespace DTC.UI.Aircrafts.FA18
 			if (!chkLoadSeq.Checked)
 			{
 				cfg.Sequences = null;
+			}
+			if (!chkLoadAAWeapons.Checked)
+			{
+				cfg.AAWeapons = null;
 			}
 			else
 			{
@@ -199,6 +208,7 @@ namespace DTC.UI.Aircrafts.FA18
 			chkLoadMisc.Enabled = false;
 			chkLoadPP.Enabled = false;
 			chkLoadSeq.Enabled = false;
+			chkLoadAAWeapons.Enabled = false;
 			btnLoadApply.Enabled = false;
 		}
 

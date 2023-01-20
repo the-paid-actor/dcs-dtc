@@ -44,6 +44,7 @@ namespace DTC.UI.Aircrafts.FA18
             this.cbSequences = new System.Windows.Forms.CheckBox();
             this.cbPrePlanned = new System.Windows.Forms.CheckBox();
             this.cbCMS = new System.Windows.Forms.CheckBox();
+            this.cbAAWeapons = new System.Windows.Forms.CheckBox();
             this.SuspendLayout();
             // 
             // chkRadios
@@ -51,7 +52,7 @@ namespace DTC.UI.Aircrafts.FA18
             this.chkRadios.Checked = true;
             this.chkRadios.CheckState = System.Windows.Forms.CheckState.Checked;
             this.chkRadios.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F);
-            this.chkRadios.Location = new System.Drawing.Point(16, 150);
+            this.chkRadios.Location = new System.Drawing.Point(16, 183);
             this.chkRadios.Margin = new System.Windows.Forms.Padding(4);
             this.chkRadios.Name = "chkRadios";
             this.chkRadios.Size = new System.Drawing.Size(78, 25);
@@ -126,7 +127,7 @@ namespace DTC.UI.Aircrafts.FA18
             this.chkMisc.Checked = true;
             this.chkMisc.CheckState = System.Windows.Forms.CheckState.Checked;
             this.chkMisc.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F);
-            this.chkMisc.Location = new System.Drawing.Point(16, 183);
+            this.chkMisc.Location = new System.Drawing.Point(16, 216);
             this.chkMisc.Margin = new System.Windows.Forms.Padding(4);
             this.chkMisc.Name = "chkMisc";
             this.chkMisc.Size = new System.Drawing.Size(167, 25);
@@ -177,11 +178,26 @@ namespace DTC.UI.Aircrafts.FA18
             this.cbCMS.UseVisualStyleBackColor = true;
             this.cbCMS.CheckedChanged += new System.EventHandler(this.cbCMS_CheckedChanged);
             // 
+            // cbAAWeapons
+            // 
+            this.cbAAWeapons.Checked = true;
+            this.cbAAWeapons.CheckState = System.Windows.Forms.CheckState.Checked;
+            this.cbAAWeapons.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F);
+            this.cbAAWeapons.Location = new System.Drawing.Point(16, 150);
+            this.cbAAWeapons.Margin = new System.Windows.Forms.Padding(4);
+            this.cbAAWeapons.Name = "cbAAWeapons";
+            this.cbAAWeapons.Size = new System.Drawing.Size(201, 25);
+            this.cbAAWeapons.TabIndex = 11;
+            this.cbAAWeapons.Text = "A/A Weapons";
+            this.cbAAWeapons.UseVisualStyleBackColor = true;
+            this.cbAAWeapons.CheckedChanged += new System.EventHandler(this.cbAAWeapons_CheckedChanged);
+            // 
             // UploadToJetPage
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(96F, 96F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Dpi;
             this.BackColor = System.Drawing.Color.PaleGoldenrod;
+            this.Controls.Add(this.cbAAWeapons);
             this.Controls.Add(this.cbCMS);
             this.Controls.Add(this.cbPrePlanned);
             this.Controls.Add(this.cbSequences);
@@ -211,5 +227,6 @@ namespace DTC.UI.Aircrafts.FA18
         private System.Windows.Forms.CheckBox cbSequences;
         private System.Windows.Forms.CheckBox cbPrePlanned;
         private System.Windows.Forms.CheckBox cbCMS;
+        private System.Windows.Forms.CheckBox cbAAWeapons;
     }
 }

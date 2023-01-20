@@ -27,6 +27,7 @@ namespace DTC.UI.Aircrafts.FA18
             cbCMS.Checked = _cfg.CMS.EnableUpload;
             chkRadios.Checked = _cfg.Radios.EnableUpload;
             chkMisc.Checked = _cfg.Misc.EnableUpload;
+            cbAAWeapons.Checked = _cfg.AAWeapons.EnableUpload;
 
             CheckUploadButtonEnabled();
             cockpitUploadHelper = new CockpitUploadHelper(_jetInterface.Load);
@@ -40,7 +41,8 @@ namespace DTC.UI.Aircrafts.FA18
                 _cfg.PrePlanned.EnableUpload ||
                 _cfg.CMS.EnableUpload ||
                 _cfg.Radios.EnableUpload ||
-                _cfg.Misc.EnableUpload
+                _cfg.Misc.EnableUpload ||
+				_cfg.AAWeapons.EnableUpload
                 );
         }
 
@@ -107,8 +109,14 @@ namespace DTC.UI.Aircrafts.FA18
             _parent.DataChangedCallback();
             CheckUploadButtonEnabled();
         }
+        private void cbAAWeapons_CheckedChanged(object sender, EventArgs e)
+		{
+			_cfg.AAWeapons.EnableUpload = cbAAWeapons.Checked;
+			_parent.DataChangedCallback();
+			CheckUploadButtonEnabled();
+		}
 
-        private void label1_Click(object sender, EventArgs e)
+		private void label1_Click(object sender, EventArgs e)
         {
 
         }

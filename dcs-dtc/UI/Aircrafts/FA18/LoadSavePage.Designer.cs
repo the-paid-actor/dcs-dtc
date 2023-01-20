@@ -53,6 +53,8 @@ namespace DTC.UI.Aircrafts.FA18
             this.chkSaveCMS = new System.Windows.Forms.CheckBox();
             this.chkSaveWaypoints = new System.Windows.Forms.CheckBox();
             this.checkBox1 = new System.Windows.Forms.CheckBox();
+            this.chkLoadAAWeapons = new System.Windows.Forms.CheckBox();
+            this.chkSaveAAWeapons = new System.Windows.Forms.CheckBox();
             this.grpLoad.SuspendLayout();
             this.grpSave.SuspendLayout();
             this.SuspendLayout();
@@ -96,6 +98,7 @@ namespace DTC.UI.Aircrafts.FA18
             this.grpLoad.BorderColor = System.Drawing.Color.Black;
             this.grpLoad.BorderRadius = 5;
             this.grpLoad.BorderWidth = 2;
+            this.grpLoad.Controls.Add(this.chkLoadAAWeapons);
             this.grpLoad.Controls.Add(this.chkLoadMisc);
             this.grpLoad.Controls.Add(this.chkLoadPP);
             this.grpLoad.Controls.Add(this.chkLoadSeq);
@@ -118,7 +121,7 @@ namespace DTC.UI.Aircrafts.FA18
             // 
             this.chkLoadMisc.Enabled = false;
             this.chkLoadMisc.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F);
-            this.chkLoadMisc.Location = new System.Drawing.Point(18, 150);
+            this.chkLoadMisc.Location = new System.Drawing.Point(18, 183);
             this.chkLoadMisc.Name = "chkLoadMisc";
             this.chkLoadMisc.Size = new System.Drawing.Size(60, 25);
             this.chkLoadMisc.TabIndex = 1;
@@ -129,7 +132,7 @@ namespace DTC.UI.Aircrafts.FA18
             // 
             this.chkLoadPP.Enabled = false;
             this.chkLoadPP.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F);
-            this.chkLoadPP.Location = new System.Drawing.Point(18, 180);
+            this.chkLoadPP.Location = new System.Drawing.Point(18, 214);
             this.chkLoadPP.Name = "chkLoadPP";
             this.chkLoadPP.Size = new System.Drawing.Size(142, 25);
             this.chkLoadPP.TabIndex = 1;
@@ -140,7 +143,7 @@ namespace DTC.UI.Aircrafts.FA18
             // 
             this.chkLoadSeq.Enabled = false;
             this.chkLoadSeq.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F);
-            this.chkLoadSeq.Location = new System.Drawing.Point(18, 210);
+            this.chkLoadSeq.Location = new System.Drawing.Point(18, 245);
             this.chkLoadSeq.Name = "chkLoadSeq";
             this.chkLoadSeq.Size = new System.Drawing.Size(120, 25);
             this.chkLoadSeq.TabIndex = 1;
@@ -154,7 +157,7 @@ namespace DTC.UI.Aircrafts.FA18
             this.btnLoadApply.FlatAppearance.BorderSize = 0;
             this.btnLoadApply.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnLoadApply.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F);
-            this.btnLoadApply.Location = new System.Drawing.Point(18, 270);
+            this.btnLoadApply.Location = new System.Drawing.Point(18, 276);
             this.btnLoadApply.Name = "btnLoadApply";
             this.btnLoadApply.Size = new System.Drawing.Size(120, 25);
             this.btnLoadApply.TabIndex = 0;
@@ -180,7 +183,7 @@ namespace DTC.UI.Aircrafts.FA18
             // 
             this.chkLoadRadios.Enabled = false;
             this.chkLoadRadios.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F);
-            this.chkLoadRadios.Location = new System.Drawing.Point(18, 120);
+            this.chkLoadRadios.Location = new System.Drawing.Point(18, 152);
             this.chkLoadRadios.Name = "chkLoadRadios";
             this.chkLoadRadios.Size = new System.Drawing.Size(78, 25);
             this.chkLoadRadios.TabIndex = 0;
@@ -214,6 +217,7 @@ namespace DTC.UI.Aircrafts.FA18
             this.grpSave.BorderColor = System.Drawing.Color.Black;
             this.grpSave.BorderRadius = 5;
             this.grpSave.BorderWidth = 2;
+            this.grpSave.Controls.Add(this.chkSaveAAWeapons);
             this.grpSave.Controls.Add(this.chkSaveMisc);
             this.grpSave.Controls.Add(this.chkSavePP);
             this.grpSave.Controls.Add(this.chkSaveSeq);
@@ -236,7 +240,7 @@ namespace DTC.UI.Aircrafts.FA18
             this.chkSaveMisc.Checked = true;
             this.chkSaveMisc.CheckState = System.Windows.Forms.CheckState.Checked;
             this.chkSaveMisc.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F);
-            this.chkSaveMisc.Location = new System.Drawing.Point(18, 150);
+            this.chkSaveMisc.Location = new System.Drawing.Point(18, 183);
             this.chkSaveMisc.Name = "chkSaveMisc";
             this.chkSaveMisc.Size = new System.Drawing.Size(60, 25);
             this.chkSaveMisc.TabIndex = 1;
@@ -248,7 +252,7 @@ namespace DTC.UI.Aircrafts.FA18
             this.chkSavePP.Checked = true;
             this.chkSavePP.CheckState = System.Windows.Forms.CheckState.Checked;
             this.chkSavePP.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F);
-            this.chkSavePP.Location = new System.Drawing.Point(18, 180);
+            this.chkSavePP.Location = new System.Drawing.Point(18, 214);
             this.chkSavePP.Name = "chkSavePP";
             this.chkSavePP.Size = new System.Drawing.Size(120, 25);
             this.chkSavePP.TabIndex = 1;
@@ -260,7 +264,7 @@ namespace DTC.UI.Aircrafts.FA18
             this.chkSaveSeq.Checked = true;
             this.chkSaveSeq.CheckState = System.Windows.Forms.CheckState.Checked;
             this.chkSaveSeq.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F);
-            this.chkSaveSeq.Location = new System.Drawing.Point(18, 210);
+            this.chkSaveSeq.Location = new System.Drawing.Point(18, 245);
             this.chkSaveSeq.Name = "chkSaveSeq";
             this.chkSaveSeq.Size = new System.Drawing.Size(102, 25);
             this.chkSaveSeq.TabIndex = 1;
@@ -274,7 +278,7 @@ namespace DTC.UI.Aircrafts.FA18
             this.btnSave.FlatAppearance.BorderSize = 0;
             this.btnSave.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnSave.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F);
-            this.btnSave.Location = new System.Drawing.Point(18, 270);
+            this.btnSave.Location = new System.Drawing.Point(18, 276);
             this.btnSave.Name = "btnSave";
             this.btnSave.Size = new System.Drawing.Size(120, 25);
             this.btnSave.TabIndex = 0;
@@ -287,7 +291,7 @@ namespace DTC.UI.Aircrafts.FA18
             this.chkSaveRadios.Checked = true;
             this.chkSaveRadios.CheckState = System.Windows.Forms.CheckState.Checked;
             this.chkSaveRadios.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F);
-            this.chkSaveRadios.Location = new System.Drawing.Point(18, 120);
+            this.chkSaveRadios.Location = new System.Drawing.Point(18, 152);
             this.chkSaveRadios.Name = "chkSaveRadios";
             this.chkSaveRadios.Size = new System.Drawing.Size(78, 25);
             this.chkSaveRadios.TabIndex = 0;
@@ -327,6 +331,29 @@ namespace DTC.UI.Aircrafts.FA18
             this.checkBox1.TabIndex = 8;
             this.checkBox1.Text = "checkBox1";
             this.checkBox1.UseVisualStyleBackColor = true;
+            // 
+            // chkLoadAAWeapons
+            // 
+            this.chkLoadAAWeapons.Enabled = false;
+            this.chkLoadAAWeapons.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F);
+            this.chkLoadAAWeapons.Location = new System.Drawing.Point(18, 121);
+            this.chkLoadAAWeapons.Name = "chkLoadAAWeapons";
+            this.chkLoadAAWeapons.Size = new System.Drawing.Size(63, 25);
+            this.chkLoadAAWeapons.TabIndex = 2;
+            this.chkLoadAAWeapons.Text = "A/A Weapons";
+            this.chkLoadAAWeapons.UseVisualStyleBackColor = true;
+            // 
+            // chkSaveAAWeapons
+            // 
+            this.chkSaveAAWeapons.Checked = true;
+            this.chkSaveAAWeapons.CheckState = System.Windows.Forms.CheckState.Checked;
+            this.chkSaveAAWeapons.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F);
+            this.chkSaveAAWeapons.Location = new System.Drawing.Point(18, 121);
+            this.chkSaveAAWeapons.Name = "chkSaveAAWeapons";
+            this.chkSaveAAWeapons.Size = new System.Drawing.Size(63, 25);
+            this.chkSaveAAWeapons.TabIndex = 2;
+            this.chkSaveAAWeapons.Text = "A/A Weapons";
+            this.chkSaveAAWeapons.UseVisualStyleBackColor = true;
             // 
             // LoadSavePage
             // 
@@ -370,5 +397,7 @@ namespace DTC.UI.Aircrafts.FA18
         private System.Windows.Forms.CheckBox checkBox1;
         private System.Windows.Forms.CheckBox chkLoadMisc;
         private System.Windows.Forms.CheckBox chkSaveMisc;
+        private System.Windows.Forms.CheckBox chkLoadAAWeapons;
+        private System.Windows.Forms.CheckBox chkSaveAAWeapons;
     }
 }

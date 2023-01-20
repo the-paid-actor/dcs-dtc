@@ -120,7 +120,19 @@ namespace DTC.Models.FA18
 			var rwr = new Device(53, "RWR");
 			rwr.AddCommand(new Command(3001, "ON", -1, 1));
 			AddDevice(rwr);
-        }
+
+			var sms = new Device(23, "SMS");
+			sms.AddCommand(new Command(3001, "AA-ModeDown", delayMFDs, 1));
+			sms.AddCommand(new Command(3001, "AA-ModeUp", delayMFDs, 0));
+			AddDevice(sms);
+
+			var hotas = new Device(13, "HOTAS");
+			hotas.AddCommand(new Command(3009, "Select-AIM7", -1, 1));
+			hotas.AddCommand(new Command(3011, "Select-AIM120", -1, 1));
+			hotas.AddCommand(new Command(3012, "Select-AIM9", -1, 1));
+			AddDevice(hotas);
+
+		}
 
         private void AddDevice(Device d)
         {

@@ -31,6 +31,9 @@ namespace DTC.UI.Aircrafts.FA18
 			cbSeq2.Checked = _sequences.EnableUpload2;
 			seq3.Text = _sequences.Seq3.ToString();
 			cbSeq3.Checked = _sequences.EnableUpload3;
+
+			fillWithAllWpts.Checked = _sequences.FillSeq1WithAllWaypoints;
+			includeWpt0.Checked = _sequences.IncludeWpt0WithFillSeq1;
 		}
 
 		public override string GetPageTitle()
@@ -67,7 +70,14 @@ namespace DTC.UI.Aircrafts.FA18
 
 		private void seq1_CheckedChanged(object sender, EventArgs e)
         {
-			if (!_sequences.Seq1.IsEmpty()) _sequences.EnableUpload1 = cbSeq1.Checked;
+			if (!fillWithAllWpts.Checked && cbSeq1.Checked)
+            {
+				_sequences.EnableUpload1 = false;
+            }
+			if (!_sequences.Seq1.IsEmpty() || fillWithAllWpts.Checked)
+			{
+				_sequences.EnableUpload1 = cbSeq1.Checked;
+			}
 			cbSeq1.Checked = _sequences.EnableUpload1;
 			_parent.DataChangedCallback();
         }
@@ -85,5 +95,57 @@ namespace DTC.UI.Aircrafts.FA18
 			cbSeq3.Checked = _sequences.EnableUpload3;
 			_parent.DataChangedCallback();
         }
-	}
+
+        private void fillWithAllWpts_CheckedChanged(object sender, EventArgs e)
+        {
+			if(fillWithAllWpts.Checked)
+            {
+                seq1.Enabled = false;
+                cbSeq1.Checked = true;
+                seq2.Enabled = false;
+                cbSeq2.Checked = false;
+                cbSeq2.Enabled = false;
+                seq3.Enabled = false;
+                cbSeq3.Checked = false;
+                cbSeq3.Enabled = false;
+				includeWpt0.Enabled = true;
+            } else {
+				if(_sequences.Seq1.IsEmpty())
+                {
+					cbSeq1.Checked = false;
+                }
+                seq1.Enabled = true;
+                seq2.Enabled = true;
+                cbSeq2.Enabled = true;
+                seq3.Enabled = true;
+                cbSeq3.Enabled = true;
+				includeWpt0.Enabled = false;
+				includeWpt0.Checked = false;
+            }
+
+			 _sequences.FillSeq1WithAllWaypoints = fillWithAllWpts.Checked;
+			_parent.DataChangedCallback();
+        }
+
+        private void includeWpt0_CheckedChanged(object sender, EventArgs e)
+        {
+			 _sequences.IncludeWpt0WithFillSeq1 = includeWpt0.Checked;
+			RefreshSeq1Text();
+			_parent.DataChangedCallback();
+
+        }
+
+        // Happens when the user enters the page
+        private void SequencePage_VisibleChanged(object sender, EventArgs e)
+        {
+			// Only really relevant if FillSeq1WithAllWaypoints is enabled:
+			// Update the Sequence 1 text in case the waypoints have changed on the Waypoints page.
+			RefreshSeq1Text();
+        }
+
+		private void RefreshSeq1Text()
+        {
+			seq1.Text = _sequences.Seq1.ToString();
+        }
+    }
 }

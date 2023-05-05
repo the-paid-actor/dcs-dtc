@@ -1,4 +1,5 @@
-﻿using System;
+﻿using DTC.Models.FA18.Waypoints;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -8,7 +9,24 @@ namespace DTC.Models.FA18.Sequences
 {
     public class SequenceSystem
     {
-        public Sequence Seq1 { get; }
+        public Sequence Seq1 { get
+            {
+                if(FillSeq1WithAllWaypoints) {
+                    int start= IncludeWpt0WithFillSeq1 ? 0 : 1;
+                    int count = WaypointSystem.Waypoints.Count();
+                    if(IncludeWpt0WithFillSeq1)
+                    {
+                        count += 1;
+                    }
+                    List<int> seq = Enumerable.Range(start, count).ToList();
+                    return new Sequence(seq); 
+                }
+                return _Seq1;
+            }
+        }
+
+        private Sequence _Seq1;
+
         public Sequence Seq2 { get; }
         public Sequence Seq3 { get; }
 		public bool EnableUpload { get; set; }
@@ -16,15 +34,25 @@ namespace DTC.Models.FA18.Sequences
 		public bool EnableUpload2 { get; set; }
 		public bool EnableUpload3 { get; set; }
 
-        public SequenceSystem()
+		public bool FillSeq1WithAllWaypoints { get; set; }
+		public bool IncludeWpt0WithFillSeq1 { get; set; }
+
+        private WaypointSystem WaypointSystem;
+
+        public SequenceSystem(WaypointSystem waypointSystem)
         {
-            Seq1 = new Sequence();
+            WaypointSystem = waypointSystem;
+
+            _Seq1 = new Sequence();
             Seq2 = new Sequence(); 
             Seq3 = new Sequence();  
             EnableUpload = false; 
             EnableUpload1 = false; 
             EnableUpload2 = false; 
-            EnableUpload3 = false; 
+            EnableUpload3 = false;
+
+            FillSeq1WithAllWaypoints = false;
+            IncludeWpt0WithFillSeq1 = false;
         }
    }
 
@@ -32,9 +60,13 @@ namespace DTC.Models.FA18.Sequences
     {
         public List<int> _seq { get; set; }
 
-        public Sequence()
+        public Sequence(List<int> seq = null)
         {
-            _seq = new List<int>();
+            if(seq == null)
+            {
+                seq = new List<int>();
+            }
+            _seq = seq;
         }
 
         public void Set(String s)

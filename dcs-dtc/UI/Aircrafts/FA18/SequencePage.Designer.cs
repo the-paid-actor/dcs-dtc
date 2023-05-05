@@ -42,6 +42,8 @@ namespace DTC.UI.Aircrafts.FA18
             this.cbSeq2 = new System.Windows.Forms.CheckBox();
             this.cbSeq3 = new System.Windows.Forms.CheckBox();
             this.label4 = new System.Windows.Forms.Label();
+            this.fillWithAllWpts = new System.Windows.Forms.CheckBox();
+            this.includeWpt0 = new System.Windows.Forms.CheckBox();
             this.SuspendLayout();
             // 
             // panel1
@@ -62,14 +64,14 @@ namespace DTC.UI.Aircrafts.FA18
             // 
             // seq2
             // 
-            this.seq2.Location = new System.Drawing.Point(74, 137);
+            this.seq2.Location = new System.Drawing.Point(74, 186);
             this.seq2.Name = "seq2";
             this.seq2.Size = new System.Drawing.Size(422, 20);
             this.seq2.TabIndex = 101;
             // 
             // seq3
             // 
-            this.seq3.Location = new System.Drawing.Point(74, 190);
+            this.seq3.Location = new System.Drawing.Point(74, 239);
             this.seq3.Name = "seq3";
             this.seq3.Size = new System.Drawing.Size(422, 20);
             this.seq3.TabIndex = 102;
@@ -86,7 +88,7 @@ namespace DTC.UI.Aircrafts.FA18
             // label2
             // 
             this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(71, 121);
+            this.label2.Location = new System.Drawing.Point(71, 170);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(65, 13);
             this.label2.TabIndex = 104;
@@ -95,7 +97,7 @@ namespace DTC.UI.Aircrafts.FA18
             // label3
             // 
             this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(71, 174);
+            this.label3.Location = new System.Drawing.Point(71, 223);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(65, 13);
             this.label3.TabIndex = 105;
@@ -113,7 +115,7 @@ namespace DTC.UI.Aircrafts.FA18
             // cbSeq2
             // 
             this.cbSeq2.AutoSize = true;
-            this.cbSeq2.Location = new System.Drawing.Point(53, 140);
+            this.cbSeq2.Location = new System.Drawing.Point(53, 189);
             this.cbSeq2.Name = "cbSeq2";
             this.cbSeq2.Size = new System.Drawing.Size(15, 14);
             this.cbSeq2.TabIndex = 107;
@@ -122,7 +124,7 @@ namespace DTC.UI.Aircrafts.FA18
             // cbSeq3
             // 
             this.cbSeq3.AutoSize = true;
-            this.cbSeq3.Location = new System.Drawing.Point(53, 193);
+            this.cbSeq3.Location = new System.Drawing.Point(53, 242);
             this.cbSeq3.Name = "cbSeq3";
             this.cbSeq3.Size = new System.Drawing.Size(15, 14);
             this.cbSeq3.TabIndex = 108;
@@ -137,11 +139,36 @@ namespace DTC.UI.Aircrafts.FA18
             this.label4.TabIndex = 109;
             this.label4.Text = "Sequences are entered as comma separated waypoint numbers. (ex. 1,5,8,9,15,53)";
             // 
+            // fillWithAllWpts
+            // 
+            this.fillWithAllWpts.AutoSize = true;
+            this.fillWithAllWpts.Location = new System.Drawing.Point(74, 112);
+            this.fillWithAllWpts.Name = "fillWithAllWpts";
+            this.fillWithAllWpts.Size = new System.Drawing.Size(123, 17);
+            this.fillWithAllWpts.TabIndex = 110;
+            this.fillWithAllWpts.Text = "Fill with all waypoints";
+            this.fillWithAllWpts.UseVisualStyleBackColor = true;
+            this.fillWithAllWpts.CheckedChanged += new System.EventHandler(this.fillWithAllWpts_CheckedChanged);
+            // 
+            // includeWpt0
+            // 
+            this.includeWpt0.AutoSize = true;
+            this.includeWpt0.Enabled = false;
+            this.includeWpt0.Location = new System.Drawing.Point(74, 135);
+            this.includeWpt0.Name = "includeWpt0";
+            this.includeWpt0.Size = new System.Drawing.Size(115, 17);
+            this.includeWpt0.TabIndex = 111;
+            this.includeWpt0.Text = "Include waypoint 0";
+            this.includeWpt0.UseVisualStyleBackColor = true;
+            this.includeWpt0.CheckedChanged += new System.EventHandler(this.includeWpt0_CheckedChanged);
+            // 
             // SequencePage
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.PaleGoldenrod;
+            this.Controls.Add(this.includeWpt0);
+            this.Controls.Add(this.fillWithAllWpts);
             this.Controls.Add(this.label4);
             this.Controls.Add(this.cbSeq3);
             this.Controls.Add(this.cbSeq2);
@@ -155,6 +182,7 @@ namespace DTC.UI.Aircrafts.FA18
             this.Controls.Add(this.panel1);
             this.Name = "SequencePage";
             this.Size = new System.Drawing.Size(689, 483);
+            this.VisibleChanged += new System.EventHandler(this.SequencePage_VisibleChanged);
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -172,5 +200,7 @@ namespace DTC.UI.Aircrafts.FA18
         private System.Windows.Forms.CheckBox cbSeq2;
         private System.Windows.Forms.CheckBox cbSeq3;
         private System.Windows.Forms.Label label4;
+        private System.Windows.Forms.CheckBox fillWithAllWpts;
+        private System.Windows.Forms.CheckBox includeWpt0;
     }
 }

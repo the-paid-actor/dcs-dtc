@@ -16,12 +16,17 @@ namespace DTC.Models.FA18
 {
 	public class FA18Configuration : IConfiguration
 	{
+		public SequenceSystem Sequences;
 		public WaypointSystem Waypoints = new WaypointSystem();
-		public SequenceSystem Sequences = new SequenceSystem();
 		public PrePlannedSystem PrePlanned = new PrePlannedSystem();
 		public RadioSystem Radios = new RadioSystem();
 		public CMSystem CMS = new CMSystem();
 		public MiscSystem Misc = new MiscSystem();
+
+		public FA18Configuration()
+        {
+			Sequences = new SequenceSystem(Waypoints);
+        }
 
 		public string ToJson()
 		{

@@ -138,7 +138,7 @@ namespace DTC.Models.FA18
                 //    continue;
                 //}
                 float.TryParse(pos.Element("Altitude")?.Value.Replace('.', ','), out var elevation);
-                var coord = new Coordinate(dLat, dLon);
+                var coord = new Coordinate(dLat, dLon, new EagerLoad(false));
                 lat = $"{(dLat > 0 ? 'N' : 'S')} {coord.Latitude.Degrees:00}.{coord.Latitude.DecimalMinute:00.000}";
                 lon = $"{(dLon > 0 ? 'E' : 'W')} {Math.Abs(coord.Longitude.Degrees):000}.{coord.Longitude.DecimalMinute:00.000}";
 

@@ -10,14 +10,52 @@ namespace DTC.Models.Base
 {
 	public class FileStorage
 	{
+		private static string storageFolder;
+
 		private static string GetCurrentFolder()
 		{
 			return Path.GetDirectoryName(System.Reflection.Assembly.GetEntryAssembly().Location);
 		}
 
+		private static string GetStorageFolder()
+		{
+			if (storageFolder == null)
+			{
+				try
+				{
+					storageFolder = IniFile.ReadValue(Path.Combine(GetCurrentFolder(), "dtc.ini"), "DTC", "StorageFolder");
+				}
+				catch
+				{
+				}
+
+				if (string.IsNullOrEmpty(storageFolder))
+				{
+					storageFolder = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments), "DCS-DTC");
+				}
+
+				try
+				{
+					Directory.CreateDirectory(storageFolder);
+				}
+				catch (Exception ex)
+				{
+					throw new Exception($"Unable to create storage folder: {storageFolder}. Check if the path is correct and that you have appropriate permissions.", ex);
+				}
+			}
+
+			return storageFolder;
+		}
+
+		private static void CopyDefaultSettingsFile(string path)
+		{
+			var defaultSettings = Path.Combine(GetCurrentFolder(), "dtc-settings.json");
+			File.Copy(defaultSettings, path);
+		}
+
 		private static string GetSettingsFilePath()
 		{
-			var path = GetCurrentFolder();
+			var path = GetStorageFolder();
 			return Path.Combine(path, "dtc-settings.json");
 		}
 
@@ -27,13 +65,13 @@ namespace DTC.Models.Base
 			return Path.Combine(path, "dtc-airbases.json");
 		}
 
-        	private static string GetIdentsFilePath()
-       		{
-            		var path = GetCurrentFolder();
-            		return Path.Combine(path, "dtc-idents.json");
-        	}
+		private static string GetIdentsFilePath()
+		{
+			var path = GetCurrentFolder();
+			return Path.Combine(path, "dtc-idents.json");
+		}
 
-        	private static string GetEmittersFilePath()
+		private static string GetEmittersFilePath()
 		{
 			var path = GetCurrentFolder();
 			return Path.Combine(path, "dtc-emitters.json");
@@ -44,15 +82,9 @@ namespace DTC.Models.Base
 			File.WriteAllText(GetSettingsFilePath(), json);
 		}
 
-		public static void PersistAirbasesFile(Theater[] theaters)
-		{
-			var json = JsonConvert.SerializeObject(theaters);
-			File.WriteAllText(GetAirbasesFilePath(), json);
-		}
-
 		private static string GetAircraftPresetsPath(Aircraft ac)
 		{
-			return Path.Combine(GetCurrentFolder(), "Presets", ac.GetAircraftModelName());
+			return Path.Combine(GetStorageFolder(), "Presets", ac.GetAircraftModelName());
 		}
 
 		public static Dictionary<string, IConfiguration> LoadPresets(Aircraft ac)
@@ -113,11 +145,11 @@ namespace DTC.Models.Base
 		public static string LoadSettingsFile()
 		{
 			var path = GetSettingsFilePath();
-			if (File.Exists(path))
+			if (!File.Exists(path))
 			{
-				return File.ReadAllText(path);
+				CopyDefaultSettingsFile(path);
 			}
-			return null;
+			return File.ReadAllText(path);
 		}
 
 		public static Theater[] LoadAirbases()

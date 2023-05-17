@@ -83,6 +83,7 @@
   <ItemGroup>
     <Compile Include="Models\AH64\Waypoints\Ident.cs" />
     <Compile Include="Models\AH64\Waypoints\PointType.cs" />
+    <Compile Include="Models\Base\IniFile.cs" />
     <Compile Include="Models\DCS\Emitters.cs" />
     <Compile Include="Models\AH64\AH64Configuration.cs" />
     <Compile Include="Models\AH64\AH64Commands.cs" />
@@ -565,6 +566,9 @@
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
     <None Include="dtc-idents.json">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="dtc.ini">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
     <None Include="dtc-settings.json">

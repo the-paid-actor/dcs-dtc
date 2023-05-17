@@ -7,6 +7,9 @@ namespace DTC.Models.F16.Waypoints
 		public List<Waypoint> Waypoints { get; set; }
 		public int SteerpointStart { get; set; }
 		public int SteerpointEnd { get; set; }
+		public bool OverrideRange { get; set; }
+		public bool EnableUploadCoordsElevation { get; set; }
+		public bool EnableUploadTOS { get; set; }
 		public bool EnableUpload { get; set; }
 
 		public WaypointSystem()
@@ -15,6 +18,8 @@ namespace DTC.Models.F16.Waypoints
 			SteerpointStart = 1;
 			SteerpointEnd = 20;
 			EnableUpload = true;
+			EnableUploadCoordsElevation = true;
+			EnableUploadTOS = true;
 		}
 
 		public Waypoint Add(Waypoint wpt)

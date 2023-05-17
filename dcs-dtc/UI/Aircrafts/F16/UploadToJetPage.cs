@@ -21,18 +21,20 @@ namespace DTC.UI.Aircrafts.F16
 
 			txtWaypointStart.LostFocus += TxtWaypointStart_LostFocus;
 			txtWaypointEnd.LostFocus += TxtWaypointEnd_LostFocus;
-			txtWaypointStart.Text = cfg.Waypoints.SteerpointStart.ToString();
-			txtWaypointEnd.Text = cfg.Waypoints.SteerpointEnd.ToString();
 			_cfg = cfg;
 
 			chkWaypoints.Checked = _cfg.Waypoints.EnableUpload;
+			chkCoordinatesElevation.Checked = _cfg.Waypoints.EnableUploadCoordsElevation;
+			chkTimeOverSteerpoint.Checked = _cfg.Waypoints.EnableUploadTOS;
+			chkOverwriteRange.Checked = _cfg.Waypoints.OverrideRange;
+			txtWaypointStart.Text = _cfg.Waypoints.SteerpointStart.ToString();
+			txtWaypointEnd.Text = _cfg.Waypoints.SteerpointEnd.ToString();
 			chkCMS.Checked = _cfg.CMS.EnableUpload;
 			chkRadios.Checked = _cfg.Radios.EnableUpload;
 			chkMisc.Checked = _cfg.Misc.EnableUpload;
 			chkMFDs.Checked = _cfg.MFD.EnableUpload;
 			chkHARM.Checked = _cfg.HARM.EnableUpload;
 			chkHTS.Checked = _cfg.HTS.EnableUpload;
-			chkTOS.Checked = _cfg.TOS.EnableUpload;
 
 			CheckUploadButtonEnabled();
 
@@ -51,7 +53,7 @@ namespace DTC.UI.Aircrafts.F16
 
 		private void CheckUploadButtonEnabled()
 		{
-			btnUpload.Enabled = (_cfg.Waypoints.EnableUpload || _cfg.CMS.EnableUpload || _cfg.Radios.EnableUpload || _cfg.Misc.EnableUpload || _cfg.MFD.EnableUpload || _cfg.HARM.EnableUpload || _cfg.HTS.EnableUpload || _cfg.TOS.EnableUpload );
+			btnUpload.Enabled = (_cfg.Waypoints.EnableUpload || _cfg.CMS.EnableUpload || _cfg.Radios.EnableUpload || _cfg.Misc.EnableUpload || _cfg.MFD.EnableUpload || _cfg.HARM.EnableUpload || _cfg.HTS.EnableUpload );
 		}
 
 		public override string GetPageTitle()
@@ -88,6 +90,9 @@ namespace DTC.UI.Aircrafts.F16
 
 		private void chkWaypoints_CheckedChanged(object sender, EventArgs e)
 		{
+			chkCoordinatesElevation.Enabled = chkWaypoints.Checked;
+			chkTimeOverSteerpoint.Enabled = chkWaypoints.Checked;
+			chkOverwriteRange.Enabled = chkWaypoints.Checked;
 			txtWaypointStart.Enabled = chkWaypoints.Checked;
 			txtWaypointEnd.Enabled = chkWaypoints.Checked;
 			_cfg.Waypoints.EnableUpload = chkWaypoints.Checked;
@@ -137,11 +142,24 @@ namespace DTC.UI.Aircrafts.F16
 			CheckUploadButtonEnabled();
 		}
 
-    private void chkTOS_CheckedChanged(object sender, EventArgs e)
-    {
-			_cfg.TOS.EnableUpload = chkTOS.Checked;
+		private void chkOverwriteRange_CheckedChanged(object sender, EventArgs e)
+		{
+			txtWaypointStart.Enabled = chkOverwriteRange.Checked;
+			txtWaypointEnd.Enabled = chkOverwriteRange.Checked;
+			_cfg.Waypoints.OverrideRange = chkOverwriteRange.Checked;
 			_parent.DataChangedCallback();
-			CheckUploadButtonEnabled();
-    }
-  }
+		}
+
+		private void chkCoordinatesElevation_CheckedChanged(object sender, EventArgs e)
+		{
+			_cfg.Waypoints.EnableUploadCoordsElevation = chkCoordinatesElevation.Checked;
+			_parent.DataChangedCallback();
+		}
+
+		private void chkTimeOverSteerpoint_CheckedChanged(object sender, EventArgs e)
+		{
+			_cfg.Waypoints.EnableUploadTOS = chkTimeOverSteerpoint.Checked;
+			_parent.DataChangedCallback();
+		}
+	}
 }

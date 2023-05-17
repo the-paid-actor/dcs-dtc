@@ -3,6 +3,7 @@ using DTC.Models.Base;
 using DTC.Models.DCS;
 using DTC.Models.F16.Waypoints;
 using DTC.UI.Base;
+using DTC.UI.Base.Controls;
 using System;
 using System.Globalization;
 using System.Windows.Forms;
@@ -86,13 +87,14 @@ namespace DTC.UI.Aircrafts.F16
 			txtWptName.Text = wpt.Name;
 			txtWptLatLong.Text = wpt.Latitude + " " + wpt.Longitude;
 			txtWptElevation.Text = wpt.Elevation.ToString();
+			txtTimeOverSteerpoint.Text = wpt.TimeOverSteerpoint;
 		}
 
 		private void btnSave_Click(object sender, EventArgs e)
 		{
 			if (ValidateFields())
 			{
-				var wpt = Waypoint.FromStrings(txtWptName.Text, txtWptLatLong.Text, txtWptElevation.Text);
+				var wpt = Waypoint.FromStrings(txtWptName.Text, txtWptLatLong.Text, txtWptElevation.Text, txtTimeOverSteerpoint.Text);
 
 				if (_waypoint == null)
 				{
@@ -106,6 +108,7 @@ namespace DTC.UI.Aircrafts.F16
 					_waypoint.Latitude = wpt.Latitude;
 					_waypoint.Longitude = wpt.Longitude;
 					_waypoint.Name = wpt.Name;
+					_waypoint.TimeOverSteerpoint = wpt.TimeOverSteerpoint;
 					_callback(WaypointEditResult.SaveAndClose, _waypoint);
 					CloseDialog();
 				}
@@ -140,11 +143,23 @@ namespace DTC.UI.Aircrafts.F16
 		private bool ValidateFields()
 		{
 			lblValidation.Text = "";
-			if (ValidateElevation() && ValidateLatLong() && ValidateName())
+			if (ValidateElevation() && ValidateLatLong() && ValidateName() && ValidateTOS())
 			{
 				return true;
 			}
 			return false;
+		}
+
+		private bool ValidateTOS()
+		{
+			if (!txtTimeOverSteerpoint.MaskFull || !Util.IsValidTime(txtTimeOverSteerpoint.Text))
+			{
+				lblValidation.Text = "Invalid time-over-steerpoint";
+				txtTimeOverSteerpoint.Focus();
+				return false;
+			}
+
+			return true;
 		}
 
 		private bool ValidateLatLong()
@@ -187,8 +202,9 @@ namespace DTC.UI.Aircrafts.F16
 		{
 			cboAirbases.SelectedIndex = -1;
 			txtWptName.Text = "WPT " + (_flightPlan.Waypoints.Count + 1).ToString();
-			txtWptLatLong.Text = "";
+			txtWptLatLong.Text = "N 00.00.000 E 000.00.000";
 			txtWptElevation.Text = "0";
+			txtTimeOverSteerpoint.Text = "00:00:00";
 			txtWptLatLong.Focus();
 		}
 
@@ -197,7 +213,7 @@ namespace DTC.UI.Aircrafts.F16
 			if (cboAirbases.SelectedIndex > -1)
 			{
 				var item = (AirbaseComboBoxItem)cboAirbases.SelectedItem;
-				var wpt = new Waypoint(0, item.Airbase, item.Latitude, item.Longitude, item.Elevation);
+				var wpt = new Waypoint(0, item.Airbase, item.Latitude, item.Longitude, item.Elevation, txtTimeOverSteerpoint.Text);
 				LoadWaypoint(wpt);
 			}
 		}

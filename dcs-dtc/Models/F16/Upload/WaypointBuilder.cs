@@ -16,12 +16,18 @@ namespace DTC.Models.F16.Upload
 		public override void Build()
 		{
 			var wpts = _cfg.Waypoints.Waypoints;
-			var wptStart = _cfg.Waypoints.SteerpointStart;
-			var wptEnd = wptStart + wpts.Count;
-
 			if (wpts.Count == 0)
 			{
 				return;
+			}
+
+			var wptStart = 1;
+			var wptEnd = wpts.Count;
+
+			if (_cfg.Waypoints.OverrideRange)
+			{
+				wptStart = _cfg.Waypoints.SteerpointStart;
+				wptEnd = _cfg.Waypoints.SteerpointEnd;
 			}
 
 			var wptDiff = wptEnd - wptStart + 1;
@@ -45,33 +51,57 @@ namespace DTC.Models.F16.Upload
 					wpt = wpts[wpts.Count - 1];
 				}
 
-				if (wpt.Blank)
-				{
-					continue;
-				}
-
 				AppendCommand(BuildDigits(ufc, (i + wptStart).ToString()));
 				AppendCommand(ufc.GetCommand("ENTR"));
 				AppendCommand(ufc.GetCommand("DOWN"));
 				AppendCommand(ufc.GetCommand("DOWN"));
 
-				AppendCommand(BuildCoordinate(ufc, wpt.Latitude));
-				AppendCommand(ufc.GetCommand("ENTR"));
+				if (_cfg.Waypoints.EnableUploadCoordsElevation && !wpt.IsCoordinateBlank)
+				{
+					AppendCommand(BuildCoordinate(ufc, wpt.Latitude));
+					AppendCommand(ufc.GetCommand("ENTR"));
+				}
 				AppendCommand(ufc.GetCommand("DOWN"));
 
-				AppendCommand(BuildCoordinate(ufc, wpt.Longitude));
-				AppendCommand(ufc.GetCommand("ENTR"));
+				if (_cfg.Waypoints.EnableUploadCoordsElevation && !wpt.IsCoordinateBlank)
+				{
+					AppendCommand(BuildCoordinate(ufc, wpt.Longitude));
+					AppendCommand(ufc.GetCommand("ENTR"));
+				}
 				AppendCommand(ufc.GetCommand("DOWN"));
 
-				AppendCommand(BuildDigits(ufc, wpt.Elevation.ToString()));
-				AppendCommand(ufc.GetCommand("ENTR"));
+				if (_cfg.Waypoints.EnableUploadCoordsElevation && !wpt.IsCoordinateBlank)
+				{
+					AppendCommand(BuildDigits(ufc, wpt.Elevation.ToString()));
+					AppendCommand(ufc.GetCommand("ENTR"));
+				}
 				AppendCommand(ufc.GetCommand("DOWN"));
+
+				if (_cfg.Waypoints.EnableUploadTOS && !string.IsNullOrEmpty(wpt.TimeOverSteerpoint))
+				{
+					AppendCommand(BuildTimeString(ufc, wpt.TimeOverSteerpoint));
+					AppendCommand(ufc.GetCommand("ENTR"));
+				}
 				AppendCommand(ufc.GetCommand("DOWN"));
 			}
 
 			AppendCommand(ufc.GetCommand("1"));
 			AppendCommand(ufc.GetCommand("ENTR"));
 			AppendCommand(ufc.GetCommand("RTN"));
+		}
+
+		private string BuildTimeString(Device ufc, string time)
+		{
+			StringBuilder sb = new StringBuilder();
+			for (int i = 0; i < time.Length; i++)
+			{
+				if (time[i] != ':')
+				{
+					sb.Append(ufc.GetCommand(time[i].ToString()));
+				}
+
+			}
+			return sb.ToString();
 		}
 
 		private string BuildCoordinate(Device ufc, string coord)

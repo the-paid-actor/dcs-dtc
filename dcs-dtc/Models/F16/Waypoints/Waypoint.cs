@@ -12,8 +12,9 @@ namespace DTC.Models.F16.Waypoints
 		public string Latitude { get; set; }
 		public string Longitude { get; set; }
 		public int Elevation { get; set; }
+		public string TimeOverSteerpoint { get; set; }
 
-		public bool Blank {
+		public bool IsCoordinateBlank {
 			get
 			{
 				var tmp = Latitude.Replace("N", "").Replace("S", "").Replace(".", "");
@@ -28,19 +29,20 @@ namespace DTC.Models.F16.Waypoints
 			}
 		}
 
-		public Waypoint(int seq, string name, string latitude, string longitude, int elevation)
+		public Waypoint(int seq, string name, string latitude, string longitude, int elevation, string timeOverSteerpoint)
 		{
 			Sequence = seq;
 			Name = name;
 			Latitude = latitude;
 			Longitude = longitude;
 			Elevation = elevation;
+			TimeOverSteerpoint = timeOverSteerpoint;
 		}
 
-		public static Waypoint FromStrings(string name, string coord, string elevation)
+		public static Waypoint FromStrings(string name, string coord, string elevation, string timeOverSteerpoint)
 		{
 			var match = coordRegex.Match(coord);
-			var wpt = new Waypoint(0, name, match.Groups[1].Value, match.Groups[2].Value, int.Parse(elevation));
+			var wpt = new Waypoint(0, name, match.Groups[1].Value, match.Groups[2].Value, int.Parse(elevation), timeOverSteerpoint);
 			return wpt;
 		}
 

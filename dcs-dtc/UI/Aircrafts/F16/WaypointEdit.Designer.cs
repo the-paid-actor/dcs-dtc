@@ -36,15 +36,17 @@ namespace DTC.UI.Aircrafts.F16
 			this.lblTitle = new System.Windows.Forms.Label();
 			this.label3 = new System.Windows.Forms.Label();
 			this.btnCapture = new System.Windows.Forms.Button();
-			this.btnSave = new DTC.UI.Base.Controls.DTCButton();
 			this.pnlTop = new System.Windows.Forms.Panel();
 			this.lblClose = new System.Windows.Forms.Label();
-			this.txtWptName = new DTC.UI.Base.Controls.DTCTextBox();
-			this.txtWptElevation = new DTC.UI.Base.Controls.DTCTextBox();
-			this.txtWptLatLong = new DTC.UI.Base.Controls.DTCTextBox();
 			this.label1 = new System.Windows.Forms.Label();
 			this.label2 = new System.Windows.Forms.Label();
 			this.lblValidation = new System.Windows.Forms.Label();
+			this.label4 = new System.Windows.Forms.Label();
+			this.txtTimeOverSteerpoint = new DTC.UI.Base.Controls.DTCTextBox();
+			this.btnSave = new DTC.UI.Base.Controls.DTCButton();
+			this.txtWptName = new DTC.UI.Base.Controls.DTCTextBox();
+			this.txtWptLatLong = new DTC.UI.Base.Controls.DTCTextBox();
+			this.txtWptElevation = new DTC.UI.Base.Controls.DTCTextBox();
 			this.pnlTop.SuspendLayout();
 			this.SuspendLayout();
 			// 
@@ -54,9 +56,9 @@ namespace DTC.UI.Aircrafts.F16
 			this.cboAirbases.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
 			this.cboAirbases.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F);
 			this.cboAirbases.FormattingEnabled = true;
-			this.cboAirbases.Location = new System.Drawing.Point(152, 36);
+			this.cboAirbases.Location = new System.Drawing.Point(164, 36);
 			this.cboAirbases.Name = "cboAirbases";
-			this.cboAirbases.Size = new System.Drawing.Size(395, 28);
+			this.cboAirbases.Size = new System.Drawing.Size(383, 28);
 			this.cboAirbases.TabIndex = 10;
 			this.cboAirbases.SelectedIndexChanged += new System.EventHandler(this.cboAirbases_SelectedIndexChanged);
 			// 
@@ -111,20 +113,6 @@ namespace DTC.UI.Aircrafts.F16
 			this.btnCapture.UseVisualStyleBackColor = false;
 			this.btnCapture.Click += new System.EventHandler(this.btnCapture_Click);
 			// 
-			// btnSave
-			// 
-			this.btnSave.BackColor = System.Drawing.Color.DarkKhaki;
-			this.btnSave.FlatAppearance.BorderSize = 0;
-			this.btnSave.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-			this.btnSave.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F);
-			this.btnSave.Location = new System.Drawing.Point(429, 197);
-			this.btnSave.Name = "btnSave";
-			this.btnSave.Size = new System.Drawing.Size(120, 25);
-			this.btnSave.TabIndex = 16;
-			this.btnSave.Text = "&Save";
-			this.btnSave.UseVisualStyleBackColor = false;
-			this.btnSave.Click += new System.EventHandler(this.btnSave_Click);
-			// 
 			// pnlTop
 			// 
 			this.pnlTop.BackColor = System.Drawing.Color.DarkKhaki;
@@ -149,48 +137,6 @@ namespace DTC.UI.Aircrafts.F16
 			this.lblClose.Text = "X";
 			this.lblClose.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
 			this.lblClose.Click += new System.EventHandler(this.lblClose_Click);
-			// 
-			// txtWptName
-			// 
-			this.txtWptName.AllowPromptAsInput = true;
-			this.txtWptName.BackColor = System.Drawing.SystemColors.Window;
-			this.txtWptName.HidePromptOnLeave = false;
-			this.txtWptName.InsertKeyMode = System.Windows.Forms.InsertKeyMode.Default;
-			this.txtWptName.Location = new System.Drawing.Point(152, 70);
-			this.txtWptName.Mask = "";
-			this.txtWptName.Name = "txtWptName";
-			this.txtWptName.PromptChar = '_';
-			this.txtWptName.Size = new System.Drawing.Size(395, 28);
-			this.txtWptName.TabIndex = 11;
-			this.txtWptName.ValidatingType = null;
-			// 
-			// txtWptElevation
-			// 
-			this.txtWptElevation.AllowPromptAsInput = true;
-			this.txtWptElevation.BackColor = System.Drawing.SystemColors.Window;
-			this.txtWptElevation.HidePromptOnLeave = false;
-			this.txtWptElevation.InsertKeyMode = System.Windows.Forms.InsertKeyMode.Default;
-			this.txtWptElevation.Location = new System.Drawing.Point(152, 138);
-			this.txtWptElevation.Mask = "";
-			this.txtWptElevation.Name = "txtWptElevation";
-			this.txtWptElevation.PromptChar = '_';
-			this.txtWptElevation.Size = new System.Drawing.Size(100, 28);
-			this.txtWptElevation.TabIndex = 14;
-			this.txtWptElevation.ValidatingType = null;
-			// 
-			// txtWptLatLong
-			// 
-			this.txtWptLatLong.AllowPromptAsInput = false;
-			this.txtWptLatLong.BackColor = System.Drawing.SystemColors.Window;
-			this.txtWptLatLong.HidePromptOnLeave = false;
-			this.txtWptLatLong.InsertKeyMode = System.Windows.Forms.InsertKeyMode.Default;
-			this.txtWptLatLong.Location = new System.Drawing.Point(152, 104);
-			this.txtWptLatLong.Mask = ">L 00\\.00\\.000 L 000\\.00\\.000";
-			this.txtWptLatLong.Name = "txtWptLatLong";
-			this.txtWptLatLong.PromptChar = '_';
-			this.txtWptLatLong.Size = new System.Drawing.Size(270, 28);
-			this.txtWptLatLong.TabIndex = 12;
-			this.txtWptLatLong.ValidatingType = null;
 			// 
 			// label1
 			// 
@@ -220,13 +166,95 @@ namespace DTC.UI.Aircrafts.F16
 			// 
 			this.lblValidation.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F);
 			this.lblValidation.ForeColor = System.Drawing.Color.Red;
-			this.lblValidation.Location = new System.Drawing.Point(1, 169);
+			this.lblValidation.Location = new System.Drawing.Point(4, 203);
 			this.lblValidation.Margin = new System.Windows.Forms.Padding(0);
 			this.lblValidation.Name = "lblValidation";
 			this.lblValidation.Padding = new System.Windows.Forms.Padding(5, 0, 0, 0);
-			this.lblValidation.Size = new System.Drawing.Size(548, 25);
+			this.lblValidation.Size = new System.Drawing.Size(543, 25);
 			this.lblValidation.TabIndex = 28;
 			this.lblValidation.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+			// 
+			// label4
+			// 
+			this.label4.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F);
+			this.label4.Location = new System.Drawing.Point(1, 172);
+			this.label4.Margin = new System.Windows.Forms.Padding(0);
+			this.label4.Name = "label4";
+			this.label4.Padding = new System.Windows.Forms.Padding(5, 0, 0, 0);
+			this.label4.Size = new System.Drawing.Size(160, 25);
+			this.label4.TabIndex = 30;
+			this.label4.Text = "Time Over Steerpoint:";
+			this.label4.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+			// 
+			// txtTimeOverSteerpoint
+			// 
+			this.txtTimeOverSteerpoint.AllowPromptAsInput = true;
+			this.txtTimeOverSteerpoint.BackColor = System.Drawing.SystemColors.Window;
+			this.txtTimeOverSteerpoint.HidePromptOnLeave = false;
+			this.txtTimeOverSteerpoint.InsertKeyMode = System.Windows.Forms.InsertKeyMode.Default;
+			this.txtTimeOverSteerpoint.Location = new System.Drawing.Point(164, 172);
+			this.txtTimeOverSteerpoint.Mask = "00:00:00";
+			this.txtTimeOverSteerpoint.Name = "txtTimeOverSteerpoint";
+			this.txtTimeOverSteerpoint.PromptChar = '_';
+			this.txtTimeOverSteerpoint.Size = new System.Drawing.Size(88, 28);
+			this.txtTimeOverSteerpoint.TabIndex = 29;
+			this.txtTimeOverSteerpoint.ValidatingType = null;
+			// 
+			// btnSave
+			// 
+			this.btnSave.BackColor = System.Drawing.Color.DarkKhaki;
+			this.btnSave.FlatAppearance.BorderSize = 0;
+			this.btnSave.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+			this.btnSave.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F);
+			this.btnSave.Location = new System.Drawing.Point(427, 231);
+			this.btnSave.Name = "btnSave";
+			this.btnSave.Size = new System.Drawing.Size(120, 25);
+			this.btnSave.TabIndex = 16;
+			this.btnSave.Text = "&Save";
+			this.btnSave.UseVisualStyleBackColor = false;
+			this.btnSave.Click += new System.EventHandler(this.btnSave_Click);
+			// 
+			// txtWptName
+			// 
+			this.txtWptName.AllowPromptAsInput = true;
+			this.txtWptName.BackColor = System.Drawing.SystemColors.Window;
+			this.txtWptName.HidePromptOnLeave = false;
+			this.txtWptName.InsertKeyMode = System.Windows.Forms.InsertKeyMode.Default;
+			this.txtWptName.Location = new System.Drawing.Point(164, 70);
+			this.txtWptName.Mask = "";
+			this.txtWptName.Name = "txtWptName";
+			this.txtWptName.PromptChar = '_';
+			this.txtWptName.Size = new System.Drawing.Size(383, 28);
+			this.txtWptName.TabIndex = 11;
+			this.txtWptName.ValidatingType = null;
+			// 
+			// txtWptLatLong
+			// 
+			this.txtWptLatLong.AllowPromptAsInput = false;
+			this.txtWptLatLong.BackColor = System.Drawing.SystemColors.Window;
+			this.txtWptLatLong.HidePromptOnLeave = false;
+			this.txtWptLatLong.InsertKeyMode = System.Windows.Forms.InsertKeyMode.Default;
+			this.txtWptLatLong.Location = new System.Drawing.Point(164, 104);
+			this.txtWptLatLong.Mask = ">L 00\\.00\\.000 L 000\\.00\\.000";
+			this.txtWptLatLong.Name = "txtWptLatLong";
+			this.txtWptLatLong.PromptChar = '_';
+			this.txtWptLatLong.Size = new System.Drawing.Size(258, 28);
+			this.txtWptLatLong.TabIndex = 12;
+			this.txtWptLatLong.ValidatingType = null;
+			// 
+			// txtWptElevation
+			// 
+			this.txtWptElevation.AllowPromptAsInput = true;
+			this.txtWptElevation.BackColor = System.Drawing.SystemColors.Window;
+			this.txtWptElevation.HidePromptOnLeave = false;
+			this.txtWptElevation.InsertKeyMode = System.Windows.Forms.InsertKeyMode.Default;
+			this.txtWptElevation.Location = new System.Drawing.Point(164, 138);
+			this.txtWptElevation.Mask = "";
+			this.txtWptElevation.Name = "txtWptElevation";
+			this.txtWptElevation.PromptChar = '_';
+			this.txtWptElevation.Size = new System.Drawing.Size(88, 28);
+			this.txtWptElevation.TabIndex = 14;
+			this.txtWptElevation.ValidatingType = null;
 			// 
 			// WaypointEdit
 			// 
@@ -234,6 +262,8 @@ namespace DTC.UI.Aircrafts.F16
 			this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
 			this.BackColor = System.Drawing.Color.PaleGoldenrod;
 			this.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+			this.Controls.Add(this.label4);
+			this.Controls.Add(this.txtTimeOverSteerpoint);
 			this.Controls.Add(this.lblValidation);
 			this.Controls.Add(this.label2);
 			this.Controls.Add(this.label1);
@@ -247,7 +277,7 @@ namespace DTC.UI.Aircrafts.F16
 			this.Controls.Add(this.label5);
 			this.Controls.Add(this.pnlTop);
 			this.Name = "WaypointEdit";
-			this.Size = new System.Drawing.Size(558, 231);
+			this.Size = new System.Drawing.Size(558, 266);
 			this.pnlTop.ResumeLayout(false);
 			this.ResumeLayout(false);
 
@@ -269,5 +299,7 @@ namespace DTC.UI.Aircrafts.F16
 		private System.Windows.Forms.Label label1;
 		private System.Windows.Forms.Label label2;
 		private System.Windows.Forms.Label lblValidation;
+		private DTCTextBox txtTimeOverSteerpoint;
+		private System.Windows.Forms.Label label4;
 	}
 }

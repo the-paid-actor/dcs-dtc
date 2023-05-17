@@ -26,5 +26,15 @@
 				return false;
 			}
 		}
+
+		public static bool IsValidTime(string txt)
+		{
+			var parts = txt.Split(':');
+			if (parts.Length < 3) return false;
+			if (parts[0].Trim() == "" || int.Parse(parts[0]) > 23) return false;
+			if (parts[1].Trim() == "" || int.Parse(parts[1]) > 59) return false;
+			if (parts[2].Trim() == "" || int.Parse(parts[2]) > 59) return false;
+			return true;
+		}
 	}
 }

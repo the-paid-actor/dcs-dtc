@@ -32,6 +32,7 @@ namespace DTC.UI.Aircrafts.F16
 		private void InitializeComponent()
 		{
 			System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
+			System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
 			System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
 			this.panel1 = new System.Windows.Forms.Panel();
 			this.btnDelete = new DTC.UI.Base.Controls.DTCButton();
@@ -42,6 +43,7 @@ namespace DTC.UI.Aircrafts.F16
 			this.colLatitude = new System.Windows.Forms.DataGridViewTextBoxColumn();
 			this.colLongitude = new System.Windows.Forms.DataGridViewTextBoxColumn();
 			this.colElevation = new System.Windows.Forms.DataGridViewTextBoxColumn();
+			this.TOS = new System.Windows.Forms.DataGridViewTextBoxColumn();
 			this.panel1.SuspendLayout();
 			((System.ComponentModel.ISupportInitialize)(this.dgWaypoints)).BeginInit();
 			this.SuspendLayout();
@@ -103,7 +105,7 @@ namespace DTC.UI.Aircrafts.F16
 			dataGridViewCellStyle1.ForeColor = System.Drawing.Color.Black;
 			dataGridViewCellStyle1.SelectionBackColor = System.Drawing.Color.DarkKhaki;
 			dataGridViewCellStyle1.SelectionForeColor = System.Drawing.Color.Black;
-			dataGridViewCellStyle1.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+			dataGridViewCellStyle1.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
 			this.dgWaypoints.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle1;
 			this.dgWaypoints.ColumnHeadersHeight = 30;
 			this.dgWaypoints.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.DisableResizing;
@@ -112,15 +114,16 @@ namespace DTC.UI.Aircrafts.F16
             this.colName,
             this.colLatitude,
             this.colLongitude,
-            this.colElevation});
-			dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-			dataGridViewCellStyle2.BackColor = System.Drawing.Color.Beige;
-			dataGridViewCellStyle2.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F);
-			dataGridViewCellStyle2.ForeColor = System.Drawing.SystemColors.ControlText;
-			dataGridViewCellStyle2.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-			dataGridViewCellStyle2.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-			dataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
-			this.dgWaypoints.DefaultCellStyle = dataGridViewCellStyle2;
+            this.colElevation,
+            this.TOS});
+			dataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+			dataGridViewCellStyle3.BackColor = System.Drawing.Color.Beige;
+			dataGridViewCellStyle3.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F);
+			dataGridViewCellStyle3.ForeColor = System.Drawing.SystemColors.ControlText;
+			dataGridViewCellStyle3.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+			dataGridViewCellStyle3.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+			dataGridViewCellStyle3.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
+			this.dgWaypoints.DefaultCellStyle = dataGridViewCellStyle3;
 			this.dgWaypoints.Dock = System.Windows.Forms.DockStyle.Fill;
 			this.dgWaypoints.EnableHeadersVisualStyles = false;
 			this.dgWaypoints.Location = new System.Drawing.Point(0, 35);
@@ -143,7 +146,7 @@ namespace DTC.UI.Aircrafts.F16
 			this.colSequence.HeaderText = "Seq";
 			this.colSequence.Name = "colSequence";
 			this.colSequence.ReadOnly = true;
-			this.colSequence.Width = 63;
+			this.colSequence.Width = 58;
 			// 
 			// colName
 			// 
@@ -155,32 +158,35 @@ namespace DTC.UI.Aircrafts.F16
 			// 
 			// colLatitude
 			// 
-			this.colLatitude.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells;
 			this.colLatitude.DataPropertyName = "Latitude";
 			this.colLatitude.HeaderText = "Latitude";
-			this.colLatitude.MinimumWidth = 120;
 			this.colLatitude.Name = "colLatitude";
 			this.colLatitude.ReadOnly = true;
-			this.colLatitude.Width = 120;
 			// 
 			// colLongitude
 			// 
-			this.colLongitude.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells;
 			this.colLongitude.DataPropertyName = "Longitude";
 			this.colLongitude.HeaderText = "Longitude";
-			this.colLongitude.MinimumWidth = 120;
 			this.colLongitude.Name = "colLongitude";
 			this.colLongitude.ReadOnly = true;
-			this.colLongitude.Width = 120;
 			// 
 			// colElevation
 			// 
-			this.colElevation.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.ColumnHeader;
 			this.colElevation.DataPropertyName = "Elevation";
+			dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight;
+			this.colElevation.DefaultCellStyle = dataGridViewCellStyle2;
 			this.colElevation.HeaderText = "Elevation";
 			this.colElevation.Name = "colElevation";
 			this.colElevation.ReadOnly = true;
-			this.colElevation.Width = 99;
+			this.colElevation.Width = 75;
+			// 
+			// TOS
+			// 
+			this.TOS.DataPropertyName = "TimeOverSteerpoint";
+			this.TOS.HeaderText = "TOS";
+			this.TOS.Name = "TOS";
+			this.TOS.ReadOnly = true;
+			this.TOS.Width = 75;
 			// 
 			// WaypointsPage
 			// 
@@ -207,5 +213,6 @@ namespace DTC.UI.Aircrafts.F16
 		private System.Windows.Forms.DataGridViewTextBoxColumn colLatitude;
 		private System.Windows.Forms.DataGridViewTextBoxColumn colLongitude;
 		private System.Windows.Forms.DataGridViewTextBoxColumn colElevation;
+		private System.Windows.Forms.DataGridViewTextBoxColumn TOS;
 	}
 }

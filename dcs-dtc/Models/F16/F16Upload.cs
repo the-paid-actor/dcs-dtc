@@ -52,6 +52,12 @@ namespace DTC.Models
 				miscBuilder.Build();
 			}
 
+			if (_cfg.HTS.EnableUpload)
+			{
+				var htsBuilder = new HTSBuilder(_cfg, f16, sb);
+				htsBuilder.Build();
+			}
+
 			if (_cfg.MFD.EnableUpload)
 			{
 				var mfdBuilder = new MFDBuilder(_cfg, f16, sb);
@@ -62,12 +68,6 @@ namespace DTC.Models
 			{
 				var harmBuilder = new HARMBuilder(_cfg, f16, sb);
 				harmBuilder.Build();
-			}
-
-			if (_cfg.HTS.EnableUpload)
-			{
-				var htsBuilder = new HTSBuilder(_cfg, f16, sb);
-				htsBuilder.Build();
 			}
 
 			if (_cfg.TOS.EnableUpload)

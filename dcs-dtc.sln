@@ -1,9 +1,11 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio Version 16
-VisualStudioVersion = 16.0.30907.101
+# Visual Studio Version 17
+VisualStudioVersion = 17.5.33424.131
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DTC", "dcs-dtc\DTC.csproj", "{9531AFEB-A6D9-4BA9-A7CE-C3EF9CABF21A}"
+EndProject
+Project("{54435603-DBB4-11D2-8724-00A0C9A8B90C}") = "installer", "installer\installer.vdproj", "{BD137F4A-B823-4BC5-BB73-AE13F414BD02}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -15,6 +17,8 @@ Global
 		{9531AFEB-A6D9-4BA9-A7CE-C3EF9CABF21A}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{9531AFEB-A6D9-4BA9-A7CE-C3EF9CABF21A}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{9531AFEB-A6D9-4BA9-A7CE-C3EF9CABF21A}.Release|Any CPU.Build.0 = Release|Any CPU
+		{BD137F4A-B823-4BC5-BB73-AE13F414BD02}.Debug|Any CPU.ActiveCfg = Debug
+		{BD137F4A-B823-4BC5-BB73-AE13F414BD02}.Release|Any CPU.ActiveCfg = Release
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

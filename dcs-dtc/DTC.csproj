@@ -76,7 +76,6 @@
     <Reference Include="System.Data" />
     <Reference Include="System.Deployment" />
     <Reference Include="System.Drawing" />
-    <Reference Include="System.Net.Http" />
     <Reference Include="System.Windows.Forms" />
     <Reference Include="System.Xml" />
   </ItemGroup>
@@ -559,21 +558,21 @@
     <None Include="DCSDTC.lua">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
-    <None Include="dtc-airbases.json">
+    <Content Include="dtc-airbases.json">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </None>
-    <None Include="dtc-emitters.json">
+    </Content>
+    <Content Include="dtc-emitters.json">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </None>
-    <None Include="dtc-idents.json">
+    </Content>
+    <Content Include="dtc-idents.json">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </None>
-    <None Include="dtc.ini">
+    </Content>
+    <Content Include="dtc.ini">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </None>
-    <None Include="dtc-settings.json">
+    </Content>
+    <Content Include="dtc-settings.json">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </None>
+    </Content>
     <None Include="dtc.key.snk" />
     <None Include="packages.config" />
     <None Include="Properties\Settings.settings">
@@ -611,9 +610,9 @@
     <None Include="Resources\F16.png" />
     <None Include="Resources\FA18.png" />
     <None Include="Resources\AH64.png" />
-    <Content Include="Resources\Iconleak-Atrous-Disk.ico" />
+    <None Include="Resources\Iconleak-Atrous-Disk.ico" />
     <None Include="Resources\Waypoints.png" />
-    <Content Include="Structure.txt" />
+    <None Include="Structure.txt" />
     <None Include="Resources\2560px-Brown-dominant__highland__ERDL_camouflage_pattern_swatch.svg.png" />
     <None Include="Resources\tablet.png" />
   </ItemGroup>

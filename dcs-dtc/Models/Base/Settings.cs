@@ -10,9 +10,24 @@ namespace DTC.Models.Base
 			public int UDPReceivePort;
 			public int CommandDelayMs;
 			public string UploadHotKey;
+			public bool AlwaysOnTop;
 		}
 
 		private static SettingsData currentSettings;
+
+		public static bool AlwaysOnTop
+		{
+			get
+			{
+				LoadSettings();
+				return currentSettings.AlwaysOnTop;
+			}
+			set
+			{
+				currentSettings.AlwaysOnTop = value;
+				SaveSettings();
+			}
+		}
 
 		public static string UploadHotKey
 		{

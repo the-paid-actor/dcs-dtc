@@ -1,4 +1,5 @@
-﻿using DTC.UI.Base;
+﻿using DTC.Models.Base;
+using DTC.UI.Base;
 using DTC.UI.Base.Controls;
 using DTC.UI.CommonPages;
 using System.Collections.Generic;
@@ -17,6 +18,7 @@ namespace DTC.UI
 			InitializeComponent();
 
 			ResetToPage(_mainPage);
+			this.TopMost = Settings.AlwaysOnTop;
 		}
 
 		private void SetPage(Page page)
@@ -74,6 +76,7 @@ namespace DTC.UI
 		private void lblPin_Click(object sender, System.EventArgs e)
 		{
 			this.TopMost = !this.TopMost;
+			Settings.AlwaysOnTop = this.TopMost;
 		}
 
 		private void lblClose_Click(object sender, System.EventArgs e)

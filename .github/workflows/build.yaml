@@ -18,7 +18,7 @@ jobs:
 
       - name: Setup VS Dev Environment
         uses: seanmiddleditch/gha-setup-vsdevenv@v4
-        
+
       - name: Setup NuGet
         uses: NuGet/setup-nuget@v1.0.5
         

@@ -16,6 +16,7 @@ namespace DTC.UI
 		public MainForm()
 		{
 			InitializeComponent();
+			lblVersion.Text = "Version " + Application.ProductVersion;
 
 			ResetToPage(_mainPage);
 			this.TopMost = Settings.AlwaysOnTop;

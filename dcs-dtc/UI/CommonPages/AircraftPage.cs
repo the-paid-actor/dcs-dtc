@@ -14,6 +14,7 @@ namespace DTC.UI.CommonPages
 	{
 		protected readonly Aircraft _aircraft;
 		protected readonly Preset _preset;
+		public AircraftSettingPage loadSavePage = null;
 
 		public override string PageTitle
 		{
@@ -34,10 +35,11 @@ namespace DTC.UI.CommonPages
 			if (_aircraft.Model == AircraftModel.F16C)
 			{
 				var cfg = (F16Configuration)configuration;
+				loadSavePage = new Aircrafts.F16.LoadSavePage(this, cfg); 
 				return new AircraftSettingPage[]
 				{
 					new Aircrafts.F16.UploadToJetPage(this, cfg),
-					new Aircrafts.F16.LoadSavePage(this, cfg),
+					loadSavePage,
 					new Aircrafts.F16.WaypointsPage(this, cfg.Waypoints),
 					new Aircrafts.F16.CMSPage(this, cfg.CMS),
 					new Aircrafts.F16.RadioPage(this, cfg.Radios),
@@ -49,10 +51,11 @@ namespace DTC.UI.CommonPages
 			} else if (_aircraft.Model == AircraftModel.FA18C)
 			{
 				var cfg = (FA18Configuration)configuration;
+				loadSavePage = new Aircrafts.FA18.LoadSavePage(this, cfg);
 				return new AircraftSettingPage[]
 				{
 					new Aircrafts.FA18.UploadToJetPage(this, cfg),
-					new Aircrafts.FA18.LoadSavePage(this, cfg),
+					loadSavePage,
 					new Aircrafts.FA18.WaypointsPage(this, cfg.Waypoints),
 					new Aircrafts.FA18.SequencePage(this, cfg.Sequences),
 					new Aircrafts.FA18.PrePlannedPage(this, cfg.PrePlanned),
@@ -64,10 +67,11 @@ namespace DTC.UI.CommonPages
 			else if (_aircraft.Model == AircraftModel.AH64D)
 			{
 				var cfg = (AH64Configuration)configuration;
+				loadSavePage = new Aircrafts.AH64.LoadSavePage(this, cfg);
 				return new AircraftSettingPage[]
 				{
 				    new Aircrafts.AH64.UploadToHeliPage(this, cfg),
-				    new Aircrafts.AH64.LoadSavePage(this, cfg),
+				    loadSavePage,
 				    new Aircrafts.AH64.WaypointsPage(this, cfg.Waypoints),
 				    new Aircrafts.AH64.RadioPage(this, cfg.Radios)
 				};

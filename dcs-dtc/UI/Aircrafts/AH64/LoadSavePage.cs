@@ -9,7 +9,7 @@ namespace DTC.UI.Aircrafts.AH64
 {
     public partial class LoadSavePage : DTC.UI.CommonPages.AircraftSettingPage
     {
-        private AH64Configuration _mainConfig;
+        public AH64Configuration _mainConfig;
         private AH64Configuration _configToLoad;
 
         public delegate void RefreshCallback();

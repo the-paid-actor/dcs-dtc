@@ -7,7 +7,7 @@ namespace DTC.UI.CommonPages
 {
 	public partial class PresetsPage : Page
 	{
-		private readonly Aircraft _aircraft;
+		public readonly Aircraft _aircraft;
 
 		public override string PageTitle {
 			get
@@ -50,10 +50,16 @@ namespace DTC.UI.CommonPages
 			}
 		}
 
-		private void ShowPreset(Preset preset)
+		public AircraftPage ShowPreset(Preset preset)
 		{
 			var acPage = new AircraftPage(_aircraft, preset);
 			MainForm.AddPage(acPage);
+			return acPage;
+		}
+
+		public void RefreshList()
+		{
+			dgPresets.RefreshList(_aircraft.Presets);
 		}
 
 		private void RefreshButtons()

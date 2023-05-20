@@ -1,5 +1,6 @@
 ﻿using Newtonsoft.Json;
 
+//TODO: Rework into Singleton and have static getters use getInstance() instead.
 namespace DTC.Models.Base
 {
 	public static class Settings
@@ -11,6 +12,8 @@ namespace DTC.Models.Base
 			public int CommandDelayMs;
 			public string UploadHotKey;
 			public bool AlwaysOnTop;
+			public int HTTPTCPServerPort;
+			public bool HTTPServerEnabled;
 		}
 
 		private static SettingsData currentSettings;
@@ -85,6 +88,34 @@ namespace DTC.Models.Base
 			}
 		}
 
+		public static int HTTPTCPServerPort
+		{
+			get
+			{
+				LoadSettings();
+				return currentSettings.HTTPTCPServerPort;
+			}
+			set
+			{
+				currentSettings.HTTPTCPServerPort = value;
+				SaveSettings();
+			}
+		}
+		
+		public static bool HTTPServerEnabled
+		{
+			get
+			{
+				LoadSettings();
+				return currentSettings.HTTPServerEnabled;
+			}
+			set
+			{
+				currentSettings.HTTPServerEnabled = value;
+				SaveSettings();
+			}
+		}
+
 		private static void SaveSettings()
 		{
 			var json = JsonConvert.SerializeObject(currentSettings);
@@ -125,6 +156,10 @@ namespace DTC.Models.Base
 			if (obj.UploadHotKey == "")
 			{
 				obj.UploadHotKey = "RCtrl+Back";
+			}
+			if (obj.HTTPTCPServerPort == 0)
+			{
+				obj.HTTPTCPServerPort = 43000;
 			}
 
 			currentSettings = obj;

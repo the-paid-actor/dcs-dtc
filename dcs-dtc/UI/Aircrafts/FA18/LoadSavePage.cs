@@ -8,7 +8,7 @@ namespace DTC.UI.Aircrafts.FA18
 {
 	public partial class LoadSavePage : AircraftSettingPage
 	{
-		private FA18Configuration _mainConfig;
+		public FA18Configuration _mainConfig;
 		private FA18Configuration _configToLoad;
 
 		public delegate void RefreshCallback();

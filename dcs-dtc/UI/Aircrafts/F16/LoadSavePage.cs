@@ -8,7 +8,7 @@ namespace DTC.UI.Aircrafts.F16
 {
 	public partial class LoadSavePage : AircraftSettingPage
 	{
-		private F16Configuration _mainConfig;
+		public F16Configuration _mainConfig;
 		private F16Configuration _configToLoad;
 
 		public delegate void RefreshCallback();

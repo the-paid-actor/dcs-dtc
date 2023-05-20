@@ -5,6 +5,7 @@ using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
 using System.IO;
+using System.Threading;
 
 namespace DTC.Models.Base
 {
@@ -77,9 +78,33 @@ namespace DTC.Models.Base
 			return Path.Combine(path, "dtc-emitters.json");
 		}
 
+		private static void WriteFile(string path, string content)
+		{
+			var retries = 3;
+			var interval = 1000;
+
+			while (retries > 0)
+			{
+				try
+				{
+					File.WriteAllText(path, content);
+					return;
+				}
+				catch (IOException)
+				{
+					retries--;
+					if (retries == 0)
+					{
+						throw;
+					}
+					Thread.Sleep(interval);
+				}
+			}
+		}
+
 		public static void PersistSettingsFile(string json)
 		{
-			File.WriteAllText(GetSettingsFilePath(), json);
+			WriteFile(GetSettingsFilePath(), json);
 		}
 
 		private static string GetAircraftPresetsPath(Aircraft ac)
@@ -106,7 +131,7 @@ namespace DTC.Models.Base
 			return dic;
 		}
 
-		internal static void DeletePreset(Aircraft ac, Preset preset)
+		public static void DeletePreset(Aircraft ac, Preset preset)
 		{
 			var path = Path.Combine(GetAircraftPresetsPath(ac), preset.Name + ".json");
 			if (File.Exists(path))
@@ -120,7 +145,7 @@ namespace DTC.Models.Base
 			var path = GetAircraftPresetsPath(ac);
 			Directory.CreateDirectory(path);
 			var json = JsonConvert.SerializeObject(preset.Configuration);
-			File.WriteAllText(Path.Combine(path, preset.Name + ".json"), json);
+			WriteFile(Path.Combine(path, preset.Name + ".json"), json);
 		}
 
 		public static void RenamePresetFile(Aircraft aircraft, Preset preset, string oldName)
@@ -196,7 +221,7 @@ namespace DTC.Models.Base
 		public static void Save(IConfiguration cfg, string path)
 		{
 			var json = cfg.ToJson();
-			File.WriteAllText(path, json);
+			WriteFile(path, json);
 		}
 	}
 }

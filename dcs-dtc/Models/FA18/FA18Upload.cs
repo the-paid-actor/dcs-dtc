@@ -1,20 +1,13 @@
-﻿using System;
-using System.IO;
-using System.Net.Sockets;
-using System.Text;
+﻿using System.Text;
 using DTC.Models.FA18;
 using DTC.Models.Base;
 using DTC.Models.FA18.Upload;
-using System.Windows.Forms;
 using DTC.Models.DCS;
-using DTC.Models.Presets;
-
 
 namespace DTC.Models
 {
 	internal class FA18PreUploadInit : BaseBuilder
 	{
-
 		public FA18PreUploadInit(IAircraftDeviceManager aircraft, StringBuilder sb) : base(aircraft, sb)
 		{
 		}
@@ -43,19 +36,17 @@ namespace DTC.Models
 
 	public class FA18Upload
 	{
-		private int tcpPort = 42070;
-
 		private FA18Configuration _cfg;
 		private FA18Commands fa18 = new FA18Commands();
 
 		public FA18Upload(FA18Configuration cfg)
 		{
-			tcpPort = Settings.TCPSendPort;
-
 			_cfg = cfg;
 		}
-        internal FA18Configuration Cfg => _cfg;
-        public void Load()
+
+		internal FA18Configuration Cfg => _cfg;
+
+		public void Load()
 		{
 			var sb = new StringBuilder();
 
@@ -107,23 +98,7 @@ namespace DTC.Models
 
 			if (str != "")
 			{
-				try
-				{
-					using (var tcpClient = new TcpClient("127.0.0.1", tcpPort))
-					using (var ns = tcpClient.GetStream())
-					using (var sw = new StreamWriter(ns))
-					{
-						var data = "[" + str + "]";
-						Console.WriteLine(data);
-
-						sw.WriteLine(data);
-						sw.Flush();
-					}
-				}
-				catch (SocketException e)
-				{
-					MessageBox.Show("Error:" + e.ToString(), "Connection error!", MessageBoxButtons.OK, MessageBoxIcon.Error);
-				}
+				DataSender.Send(str);
 			}
 		}
 	}

@@ -1,30 +1,23 @@
-﻿using System;
-using System.IO;
-using System.Net.Sockets;
-using System.Text;
+﻿using System.Text;
 using DTC.Models.F16;
 using DTC.Models.Base;
 using DTC.Models.F16.Upload;
-using System.Windows.Forms;
 
 namespace DTC.Models
 {
 	public class F16Upload
 	{
-		private int tcpPort = 42070;
-
 		private F16Configuration _cfg;
 		private F16Commands f16 = new F16Commands();
 
 		public F16Upload(F16Configuration cfg)
 		{
-			tcpPort = Settings.TCPSendPort;
-
 			_cfg = cfg;
 		}
-        	internal F16Configuration Cfg => _cfg;
 
-        	public void Load()
+		internal F16Configuration Cfg => _cfg;
+
+		public void Load()
 		{
 			var sb = new StringBuilder();
 
@@ -79,23 +72,7 @@ namespace DTC.Models
 
 			if (str != "")
 			{
-				try
-				{
-					using (var tcpClient = new TcpClient("127.0.0.1", tcpPort))
-					using (var ns = tcpClient.GetStream())
-					using (var sw = new StreamWriter(ns))
-					{
-						var data = "[" + str + "]";
-						Console.WriteLine(data);
-
-						sw.WriteLine(data);
-						sw.Flush();
-					}
-				}
-				catch (SocketException e)
-				{
-                    MessageBox.Show("Error:" + e.ToString(), "Connection error!", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                }
+				DataSender.Send(str);
 			}
 		}
 	}

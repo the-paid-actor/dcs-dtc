@@ -138,8 +138,7 @@ namespace DTC.UI.CommonPages
 			{
 				var preset = (Preset)dgPresets.SelectedRows[0].DataBoundItem;
 
-				DialogResult dialogResult = MessageBox.Show("Do you really want to delete " + preset.Name + "?", "Delete", MessageBoxButtons.YesNo);
-				if (dialogResult == DialogResult.Yes)
+				if (DTCMessageBox.ShowQuestion("Do you really want to delete " + preset.Name + "?"))
 				{
 					_aircraft.DeletePreset(preset);
 					dgPresets.RefreshList(_aircraft.Presets);

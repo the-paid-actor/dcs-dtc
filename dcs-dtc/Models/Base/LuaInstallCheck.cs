@@ -1,7 +1,6 @@
 ﻿using System;
 using System.IO;
 using System.Runtime.InteropServices;
-using System.Windows.Forms;
 
 namespace DTC.Models.Base
 {
@@ -16,7 +15,7 @@ namespace DTC.Models.Base
 			var savedGamesPath = SHGetKnownFolderPath(SavedGamesFolderGuid, 0);
 			if (string.IsNullOrEmpty(savedGamesPath))
 			{
-				MessageBox.Show("Saved Games folder not found. Cannot continue.", "DTC");
+				DTCMessageBox.ShowError("Saved Games folder not found. Cannot continue.");
 				return false;
 			}
 
@@ -65,7 +64,7 @@ namespace DTC.Models.Base
 
 			if (!dcsStablePathExists && !dcsOpenBetaPathExists)
 			{
-				MessageBox.Show("DCS or DCS.openbeta folder not found under Saved Games.\n\nPlease run DCS once, then exit DCS and try again.", "DTC");
+				DTCMessageBox.ShowError("DCS or DCS.openbeta folder not found under Saved Games.\n\nPlease run DCS once, then exit DCS and try again.");
 				return false;
 			}
 
@@ -80,7 +79,7 @@ namespace DTC.Models.Base
 
 			if (!Settings.LuaInstallStable && !Settings.LuaInstallOpenBeta)
 			{
-				MessageBox.Show("Cannot continue since DTC is not installed on either DCS or DCS.openbeta folder under Saved Games.", "DTC");
+				DTCMessageBox.ShowError("Cannot continue since DTC is not installed on either DCS or DCS.openbeta folder under Saved Games.");
 				return false;
 			}
 
@@ -121,7 +120,7 @@ namespace DTC.Models.Base
 				}
 				else
 				{
-					MessageBox.Show($"Incorrect DCSDTC.lua install on {exportLuaPath}.\n\nPlease delete the incorrect line, run DTC again, and it will be installed automatically.");
+					DTCMessageBox.ShowError($"Incorrect DCSDTC.lua install on {exportLuaPath}.\n\nPlease delete the incorrect line, run DTC again, and it will be installed automatically.");
 					return false;
 				}
 			}
@@ -146,7 +145,7 @@ namespace DTC.Models.Base
 			if (dtcLuaInstalled || dtcLuaUpdated)
 			{
 				var txt = dtcLuaInstalled ? "installed" : "updated";
-				MessageBox.Show($"DCSDTC.lua was {txt} in {path}. If DCS is running, please restart DCS.", "DTC");
+				DTCMessageBox.ShowInfo($"DCSDTC.lua was {txt} in {path}. If DCS is running, please restart DCS.");
 			}
 
 			return true;
@@ -154,8 +153,7 @@ namespace DTC.Models.Base
 
 		private static bool AskUserToInstall(string path)
 		{
-			var result = MessageBox.Show($"DTC is not installed at {path}. Do you want to install it?", "DTC", MessageBoxButtons.YesNo);
-			return result == DialogResult.Yes;
+			return DTCMessageBox.ShowQuestion($"DTC is not installed at {path}. Do you want to install it?");
 		}
 	}
 }

@@ -48,6 +48,6 @@ jobs:
         with:
           repo_token: ${{ secrets.GITHUB_TOKEN }}
           file: installer/Release/dtc-setup.msi
-          asset_name: dtc-setup-${{ github.ref }}.msi
+          asset_name: dtc-setup-${{ github.ref_name }}.msi
           tag: ${{ github.ref }}
           overwrite: true

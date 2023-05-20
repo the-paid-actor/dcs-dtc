@@ -184,6 +184,7 @@ namespace DTC.UI
             this.Text = "Form1";
             this.TopMost = true;
             this.TransparencyKey = System.Drawing.Color.Red;
+			this.Load += MainForm_Load;
             this.pnlBackground.ResumeLayout(false);
             this.pnlBackground.PerformLayout();
             this.pnlContent.ResumeLayout(false);

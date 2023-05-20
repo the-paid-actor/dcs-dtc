@@ -21,6 +21,15 @@ namespace DTC.UI
 			this.TopMost = Settings.AlwaysOnTop;
 		}
 
+		private void MainForm_Load(object sender, System.EventArgs e)
+		{
+			this.Activate();
+			if (!LuaInstallCheck.Check())
+			{
+				Application.Exit();
+			}
+		}
+
 		private void SetPage(Page page)
 		{
 			pnlPages.Controls.Add(page);

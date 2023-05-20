@@ -11,9 +11,81 @@ namespace DTC.Models.Base
 			public int CommandDelayMs;
 			public string UploadHotKey;
 			public bool AlwaysOnTop;
+			public string LuaInstallFolderStable;
+			public string LuaInstallStable;
+			public string LuaInstallFolderOpenBeta;
+			public string LuaInstallOpenBeta;
 		}
 
 		private static SettingsData currentSettings;
+
+		public static bool LuaInstallStable
+		{
+			get
+			{
+				LoadSettings();
+
+				if (string.IsNullOrEmpty(currentSettings.LuaInstallStable))
+				{
+					return true;
+				}
+
+				return bool.Parse(currentSettings.LuaInstallStable);
+			}
+			set
+			{
+				currentSettings.LuaInstallStable = value.ToString();
+				SaveSettings();
+			}
+		}
+
+		public static bool LuaInstallOpenBeta
+		{
+			get
+			{
+				LoadSettings();
+
+				if (string.IsNullOrEmpty(currentSettings.LuaInstallOpenBeta))
+				{
+					return true;
+				}
+
+				return bool.Parse(currentSettings.LuaInstallOpenBeta);
+			}
+			set
+			{
+				currentSettings.LuaInstallOpenBeta = value.ToString();
+				SaveSettings();
+			}
+		}
+
+		public static string LuaInstallFolderStable
+		{
+			get
+			{
+				LoadSettings();
+				return currentSettings.LuaInstallFolderStable;
+			}
+			set
+			{
+				currentSettings.LuaInstallFolderStable = value;
+				SaveSettings();
+			}
+		}
+
+		public static string LuaInstallFolderOpenBeta
+		{
+			get
+			{
+				LoadSettings();
+				return currentSettings.LuaInstallFolderOpenBeta;
+			}
+			set
+			{
+				currentSettings.LuaInstallFolderOpenBeta = value;
+				SaveSettings();
+			}
+		}
 
 		public static bool AlwaysOnTop
 		{

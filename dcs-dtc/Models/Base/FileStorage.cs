@@ -13,7 +13,7 @@ namespace DTC.Models.Base
 	{
 		private static string storageFolder;
 
-		private static string GetCurrentFolder()
+		public static string GetCurrentFolder()
 		{
 			return Path.GetDirectoryName(System.Reflection.Assembly.GetEntryAssembly().Location);
 		}

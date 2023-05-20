@@ -59,6 +59,15 @@ If those settings are not correct, results may vary from everything working fine
 
 AH-64D waypoints are in MGRS format. Point types and certain (not all) Idents are implemented. Verify type & ident are compatible, or select a preset. Also map capture is not yet available for the AH-64D.
 
+## Loading settings via link
+Once the application is running, you can create and/or open a link in the following format to load data for the F-16, FA-18 or AH-64:
+
+  - http://localhost:43000/f16#rA8AAB......PAAA=
+  - http://localhost:43000/fa18#rA8AAB......PAAA=
+  - http://localhost:43000/ah64#rA8AAB......PAAA=
+
+The letters behind # must be exactly what you would otherwise copy into your clipboard to load for that given airplane.
+
 ## Help
 
 Contact me on Discord (The_Paid_Actor#1368) if you have issues, questions or suggestions.

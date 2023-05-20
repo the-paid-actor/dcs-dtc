@@ -2,9 +2,8 @@ name: Build
 
 on:  
   push:
-    branches: [ main ]
-  pull_request:
-    branches: [ main ]
+    tags:
+      - '*'
 
 jobs:  
   build:    
@@ -42,4 +41,13 @@ jobs:
       - uses: actions/upload-artifact@v2
         with:
           name: build-result
-          path: installer/Release/installer.msi
+          path: installer/Release/dtc-setup.msi
+
+      - name: Upload binaries to release
+        uses: svenstaro/upload-release-action@v2
+        with:
+          repo_token: ${{ secrets.GITHUB_TOKEN }}
+          file: installer/Release/dtc-setup.msi
+          asset_name: dtc-setup
+          tag: ${{ github.ref }}
+          overwrite: true

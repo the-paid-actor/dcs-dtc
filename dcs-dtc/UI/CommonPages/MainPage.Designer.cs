@@ -38,7 +38,7 @@ namespace DTC.UI.CommonPages
 			// btnF16
 			// 
 			this.btnF16.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-			this.btnF16.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+			this.btnF16.Font = new System.Drawing.Font("Microsoft Sans Serif", 11F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
 			this.btnF16.ForeColor = System.Drawing.Color.Black;
 			this.btnF16.Image = global::DTC.Properties.Resources.F16;
 			this.btnF16.Location = new System.Drawing.Point(23, 14);
@@ -54,7 +54,7 @@ namespace DTC.UI.CommonPages
 			// btnF18
 			// 
 			this.btnF18.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-			this.btnF18.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+			this.btnF18.Font = new System.Drawing.Font("Microsoft Sans Serif", 11F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
 			this.btnF18.ForeColor = System.Drawing.Color.Black;
 			this.btnF18.Image = global::DTC.Properties.Resources.FA18;
 			this.btnF18.Location = new System.Drawing.Point(272, 14);
@@ -70,7 +70,7 @@ namespace DTC.UI.CommonPages
 			// btnAH64
 			// 
 			this.btnAH64.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-			this.btnAH64.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold);
+			this.btnAH64.Font = new System.Drawing.Font("Microsoft Sans Serif", 11F, System.Drawing.FontStyle.Bold);
 			this.btnAH64.ForeColor = System.Drawing.Color.Black;
 			this.btnAH64.Image = global::DTC.Properties.Resources.AH64;
 			this.btnAH64.Location = new System.Drawing.Point(521, 14);
@@ -78,9 +78,10 @@ namespace DTC.UI.CommonPages
 			this.btnAH64.Padding = new System.Windows.Forms.Padding(5);
 			this.btnAH64.Size = new System.Drawing.Size(226, 150);
 			this.btnAH64.TabIndex = 5;
-			this.btnAH64.Text = "AH-64D Apache";
+			this.btnAH64.Text = "AH-64D Apache Longbow";
 			this.btnAH64.TextAlign = System.Drawing.ContentAlignment.TopLeft;
 			this.btnAH64.UseVisualStyleBackColor = true;
+			this.btnAH64.Visible = false;
 			this.btnAH64.Click += new System.EventHandler(this.btnAH64_Click);
 			// 
 			// btnWptDatabase

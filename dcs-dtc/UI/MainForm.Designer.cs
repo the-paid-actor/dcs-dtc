@@ -1,4 +1,5 @@
 ﻿
+using DTC.Models.Base;
 using System.Reflection;
 
 namespace DTC.UI
@@ -20,6 +21,8 @@ namespace DTC.UI
 			{
 				components.Dispose();
 			}
+			DataReceiver.DataReceived -= DataReceiver_DataReceived;
+			DataReceiver.Stop();
 			base.Dispose(disposing);
 		}
 
@@ -185,6 +188,7 @@ namespace DTC.UI
 			this.Text = "Form1";
 			this.TopMost = true;
 			this.TransparencyKey = System.Drawing.Color.Red;
+			this.Load += MainForm_Load;
 			this.pnlBackground.ResumeLayout(false);
 			this.pnlContent.ResumeLayout(false);
 			this.pnlTop.ResumeLayout(false);

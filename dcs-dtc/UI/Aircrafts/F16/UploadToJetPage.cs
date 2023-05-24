@@ -1,7 +1,6 @@
 ﻿using DTC.Models;
 using DTC.Models.Base;
 using DTC.Models.F16;
-using DTC.UI.Base.GlobalHotKey;
 using DTC.UI.CommonPages;
 using System;
 
@@ -12,7 +11,7 @@ namespace DTC.UI.Aircrafts.F16
 		private F16Upload _jetInterface;
 		private readonly F16Configuration _cfg;
 
-		private KeyboardHookManager _keyboardHookManager;
+		private long uploadPressedTimestamp = 0;
 
 		public UploadToJetPage(AircraftPage parent, F16Configuration cfg) : base(parent)
 		{
@@ -38,16 +37,23 @@ namespace DTC.UI.Aircrafts.F16
 
 			CheckUploadButtonEnabled();
 
-			_keyboardHookManager = new KeyboardHookManager();
-			_keyboardHookManager.Start();
+			DataReceiver.DataReceived += this.DataReceiver_DataReceived;
+		}
 
-			HotKey hotkey;
-			if (ParseHotKey.TryParse(Settings.UploadHotKey, out hotkey))
+		private void DataReceiver_DataReceived(DataReceiver.Data d)
+		{
+			if (d.upload == "1" && uploadPressedTimestamp == 0)
 			{
-				_keyboardHookManager.RegisterHotkey(hotkey.Modifiers, (int)hotkey.Key, () =>
+				uploadPressedTimestamp = DateTime.Now.Ticks;
+			}
+			if (d.upload == "0" && uploadPressedTimestamp != 0)
+			{
+				var timespan = new TimeSpan(DateTime.Now.Ticks - uploadPressedTimestamp);
+				if (timespan.TotalMilliseconds > 1000)
 				{
 					_jetInterface.Load();
-				});
+				}
+				uploadPressedTimestamp = 0;
 			}
 		}
 

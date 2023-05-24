@@ -449,12 +449,36 @@ function LuaExportAfterNextFrame()
 	local elevation = LoGetAltitude(loX, loZ)
 	local coords = LoLoCoordinatesToGeoCoordinates(loX, loZ)
 	local model = LoGetSelfData()["Name"];
-	
+
+	local uploadCommand = "0";
+	local showDTCCommand = "0";
+	local hideDTCCommand = "0";
+	local mainPanel = GetDevice(0);
+
+	if model ==	"F-16C_50" then
+		local wxButton = mainPanel:get_argument_value(187);
+		local flirIncDec = mainPanel:get_argument_value(188);
+		if wxButton == 1 then uploadCommand = "1" end
+		if flirIncDec == 1 then showDTCCommand = "1" end
+		if flirIncDec == -1 then hideDTCCommand = "1" end
+	end
+
+	if model == "FA-18C_hornet" then
+		local ipButton = mainPanel:get_argument_value(99);
+		local hudVideoSwitch = mainPanel:get_argument_value(144);
+		if ipButton == 1 then uploadCommand = "1" end
+		if hudVideoSwitch >= 0.2 then showDTCCommand = "1" end
+		if hudVideoSwitch > 0 and hudVideoSwitch < 0.2 then hideDTCCommand = "1" end
+	end
+
 	local toSend = "{"..
 		"\"model\": ".."\""..model.."\""..
 		", ".."\"latitude\": ".."\""..coords.latitude.."\""..
 		", ".."\"longitude\": ".."\""..coords.longitude.."\""..
 		", ".."\"elevation\": ".."\""..elevation.."\""..
+		", ".."\"upload\": ".."\""..uploadCommand.."\""..
+		", ".."\"showDTC\": ".."\""..showDTCCommand.."\""..
+		", ".."\"hideDTC\": ".."\""..hideDTCCommand.."\""..
 		"}"
 
 	if pcall(function()

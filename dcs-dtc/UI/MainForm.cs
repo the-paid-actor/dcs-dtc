@@ -2,6 +2,7 @@
 using DTC.UI.Base;
 using DTC.UI.Base.Controls;
 using DTC.UI.CommonPages;
+using System;
 using System.Collections.Generic;
 using System.Windows.Forms;
 
@@ -13,6 +14,9 @@ namespace DTC.UI
 
 		private Stack<Page> _pages = new Stack<Page>();
 
+		private bool showDTCPressed = false;
+		private bool hideDTCPressed = false;
+
 		public MainForm()
 		{
 			InitializeComponent();
@@ -20,6 +24,42 @@ namespace DTC.UI
 
 			ResetToPage(_mainPage);
 			this.TopMost = Settings.AlwaysOnTop;
+
+			DataReceiver.DataReceived += DataReceiver_DataReceived;
+			DataReceiver.Start();
+		}
+
+		private void DataReceiver_DataReceived(DataReceiver.Data d)
+		{
+			if (d.showDTC == "1" && !showDTCPressed)
+			{
+				showDTCPressed = true;
+				Invoke(new Action(() =>
+				{
+					SetTopMost(true);
+					WindowState = FormWindowState.Normal;
+				}));
+			}
+
+			if (d.showDTC == "0" && showDTCPressed)
+			{
+				showDTCPressed = false;
+			}
+
+			if (d.hideDTC == "1" && !hideDTCPressed)
+			{
+				hideDTCPressed = true;
+				Invoke(new Action(() =>
+				{
+					SetTopMost(false);
+					WindowState = FormWindowState.Minimized;
+				}));
+			}
+
+			if (d.hideDTC == "0" && hideDTCPressed)
+			{
+				hideDTCPressed = false;
+			}
 		}
 
 		private void MainForm_Load(object sender, System.EventArgs e)
@@ -85,8 +125,13 @@ namespace DTC.UI
 
 		private void lblPin_Click(object sender, System.EventArgs e)
 		{
-			this.TopMost = !this.TopMost;
-			Settings.AlwaysOnTop = this.TopMost;
+			SetTopMost(!this.TopMost);
+		}
+
+		public void SetTopMost(bool topMost)
+		{
+			this.TopMost = topMost;
+			Settings.AlwaysOnTop = topMost;
 		}
 
 		private void lblClose_Click(object sender, System.EventArgs e)

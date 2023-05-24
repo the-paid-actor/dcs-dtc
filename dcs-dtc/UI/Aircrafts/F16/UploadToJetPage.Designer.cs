@@ -1,4 +1,5 @@
 ﻿
+using DTC.Models.Base;
 using DTC.UI.Base.Controls;
 using System;
 
@@ -21,8 +22,8 @@ namespace DTC.UI.Aircrafts.F16
 			{
 				components.Dispose();
 			}
-      _keyboardHookManager.Stop();
-      base.Dispose(disposing);
+			DataReceiver.DataReceived -= DataReceiver_DataReceived;
+			base.Dispose(disposing);
 		}
 
 		#region Component Designer generated code

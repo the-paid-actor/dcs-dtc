@@ -1,4 +1,5 @@
 ﻿using DTC.Models;
+using DTC.Models.Base;
 using DTC.Models.FA18;
 using DTC.UI.CommonPages;
 using System;
@@ -9,6 +10,8 @@ namespace DTC.UI.Aircrafts.FA18
 	{
 		private FA18Upload _jetInterface;
 		private readonly FA18Configuration _cfg;
+
+		private long uploadPressedTimestamp = 0;
 
 		public UploadToJetPage(AircraftPage parent, FA18Configuration cfg) : base(parent)
 		{
@@ -27,6 +30,25 @@ namespace DTC.UI.Aircrafts.FA18
 			chkMisc.Checked = _cfg.Misc.EnableUpload;
 
 			CheckUploadButtonEnabled();
+
+			DataReceiver.DataReceived += this.DataReceiver_DataReceived;
+		}
+
+		private void DataReceiver_DataReceived(DataReceiver.Data d)
+		{
+			if (d.upload == "1" && uploadPressedTimestamp == 0)
+			{
+				uploadPressedTimestamp = DateTime.Now.Ticks;
+			}
+			if (d.upload == "0" && uploadPressedTimestamp != 0)
+			{
+				var timespan = new TimeSpan(DateTime.Now.Ticks - uploadPressedTimestamp);
+				if (timespan.TotalMilliseconds > 1000)
+				{
+					_jetInterface.Load();
+				}
+				uploadPressedTimestamp = 0;
+			}
 		}
 
 		private void CheckUploadButtonEnabled()

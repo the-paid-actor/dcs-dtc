@@ -1,7 +1,4 @@
-﻿using DTC.Models;
-using DTC.Models.Base;
-using DTC.Models.AH64;
-using DTC.UI.Base.GlobalHotKey;
+﻿using DTC.Models.AH64;
 using DTC.UI.CommonPages;
 using System;
 
@@ -12,7 +9,6 @@ namespace DTC.UI.Aircrafts.AH64
         private AH64Upload _jetInterface;
         private readonly AH64Configuration _cfg;
 
-        private KeyboardHookManager _keyboardHookManager;
         public UploadToHeliPage(AircraftPage parent, AH64Configuration cfg) : base(parent)
         {
             InitializeComponent();
@@ -28,18 +24,6 @@ namespace DTC.UI.Aircrafts.AH64
             chkRadios.Checked = _cfg.Radios.EnableUpload;
 
             CheckUploadButtonEnabled();
-
-            _keyboardHookManager = new KeyboardHookManager();
-            _keyboardHookManager.Start();
-
-            HotKey hotkey;
-            if (ParseHotKey.TryParse(Settings.UploadHotKey, out hotkey))
-            {
-                _keyboardHookManager.RegisterHotkey(hotkey.Modifiers, (int)hotkey.Key, () =>
-                {
-                    _jetInterface.Load();
-                });
-            }
         }
         private void CheckUploadButtonEnabled()
         {

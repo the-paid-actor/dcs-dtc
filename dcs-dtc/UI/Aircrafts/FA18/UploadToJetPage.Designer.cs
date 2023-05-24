@@ -1,4 +1,5 @@
 ﻿
+using DTC.Models.Base;
 using DTC.UI.Base.Controls;
 
 namespace DTC.UI.Aircrafts.FA18
@@ -20,6 +21,7 @@ namespace DTC.UI.Aircrafts.FA18
 			{
 				components.Dispose();
 			}
+			DataReceiver.DataReceived -= DataReceiver_DataReceived;
 			base.Dispose(disposing);
 		}
 

@@ -9,7 +9,6 @@ namespace DTC.Models.Base
 			public int TCPSendPort;
 			public int UDPReceivePort;
 			public int CommandDelayMs;
-			public string UploadHotKey;
 			public bool AlwaysOnTop;
 			public string LuaInstallFolderStable;
 			public string LuaInstallStable;
@@ -101,20 +100,6 @@ namespace DTC.Models.Base
 			}
 		}
 
-		public static string UploadHotKey
-		{
-			get
-			{
-				LoadSettings();
-				return currentSettings.UploadHotKey;
-			}
-			set
-			{
-				currentSettings.UploadHotKey = value;
-				SaveSettings();
-			}
-		}
-
 		public static int TCPSendPort
 		{
 			get
@@ -193,10 +178,6 @@ namespace DTC.Models.Base
 			if (obj.CommandDelayMs == 0)
 			{
 				obj.CommandDelayMs = 200;
-			}
-			if (obj.UploadHotKey == "")
-			{
-				obj.UploadHotKey = "RCtrl+Back";
 			}
 
 			currentSettings = obj;

@@ -558,9 +558,9 @@
     <EmbeddedResource Include="UI\CommonPages\PresetsPage.resx">
       <DependentUpon>PresetsPage.cs</DependentUpon>
     </EmbeddedResource>
-    <None Include="DCSDTC.lua">
+    <Content Include="DCSDTC.lua">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </None>
+    </Content>
     <Content Include="dtc-airbases.json">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>

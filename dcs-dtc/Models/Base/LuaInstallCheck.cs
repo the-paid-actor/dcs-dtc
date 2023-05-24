@@ -43,6 +43,10 @@ namespace DTC.Models.Base
 						Settings.LuaInstallStable = false;
 					}
 				}
+				else
+				{
+					dcsStablePathExists = true;
+				}
 			}
 
 			if (Settings.LuaInstallOpenBeta)
@@ -59,6 +63,10 @@ namespace DTC.Models.Base
 					{
 						Settings.LuaInstallOpenBeta = false;
 					}
+				}
+				else
+				{
+					dcsOpenBetaPathExists = true;
 				}
 			}
 

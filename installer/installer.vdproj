@@ -288,15 +288,15 @@
         {
         "Name" = "8:Microsoft Visual Studio"
         "ProductName" = "8:DTC for DCS"
-        "ProductCode" = "8:{22C817DA-982A-4A9F-BD18-AE8FF84A4828}"
-        "PackageCode" = "8:{2A9A24FF-3034-4EAF-9AB1-00B831E83D5C}"
+        "ProductCode" = "8:{43EF73FF-2F30-43E9-8197-860D8ECC8962}"
+        "PackageCode" = "8:{11B1C04A-0B64-4B53-8216-32C308756783}"
         "UpgradeCode" = "8:{3D5849D5-76B8-466F-9C16-2B1A020D0784}"
         "AspNetVersion" = "8:2.0.50727.0"
         "RestartWWWService" = "11:FALSE"
         "RemovePreviousVersions" = "11:TRUE"
         "DetectNewerInstalledVersion" = "11:TRUE"
         "InstallAllUsers" = "11:TRUE"
-        "ProductVersion" = "8:4.0.1"
+        "ProductVersion" = "8:4.0.2"
         "Manufacturer" = "8:The_Paid_Actor"
         "ARPHELPTELEPHONE" = "8:"
         "ARPHELPLINK" = "8:"
@@ -824,7 +824,7 @@
         {
             "{5259A561-127C-4D43-A0A1-72F10C7B3BF8}:_9627F270C0644579B7D9F4F8BB4279CF"
             {
-            "SourcePath" = "8:..\\dcs-dtc\\obj\\Debug\\DTC.exe"
+            "SourcePath" = "8:..\\dcs-dtc\\obj\\Release\\DTC.exe"
             "TargetName" = "8:"
             "Tag" = "8:"
             "Folder" = "8:_C0338CF17BED4AC190E0B5237AF500E4"

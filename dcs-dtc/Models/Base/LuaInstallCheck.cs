@@ -47,7 +47,7 @@ namespace DTC.Models.Base
 
 			if (Settings.LuaInstallOpenBeta)
 			{
-				if (string.IsNullOrEmpty(Settings.LuaInstallFolderStable))
+				if (string.IsNullOrEmpty(Settings.LuaInstallFolderOpenBeta))
 				{
 					var dcsOpenBetaPath = Path.Combine(savedGamesPath, "DCS.openbeta");
 					dcsOpenBetaPathExists = Directory.Exists(dcsOpenBetaPath);

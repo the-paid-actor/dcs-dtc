@@ -36,7 +36,9 @@ namespace DTC.Models.F16.Upload
 
 			AppendCommand(ufc.GetCommand("RTN"));
 			AppendCommand(ufc.GetCommand("RTN"));
-			AppendCommand(ufc.GetCommand("4"));
+			AppendCommand(ufc.GetCommand("LIST"));
+			AppendCommand(ufc.GetCommand("1"));
+			AppendCommand(ufc.GetCommand("SEQ"));
 
 			for (var i = 0; i < wptDiff; i++)
 			{
@@ -53,7 +55,6 @@ namespace DTC.Models.F16.Upload
 
 				AppendCommand(BuildDigits(ufc, (i + wptStart).ToString()));
 				AppendCommand(ufc.GetCommand("ENTR"));
-				AppendCommand(ufc.GetCommand("DOWN"));
 				AppendCommand(ufc.GetCommand("DOWN"));
 
 				if (_cfg.Waypoints.EnableUploadCoordsElevation && !wpt.IsCoordinateBlank)

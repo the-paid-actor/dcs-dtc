@@ -39,12 +39,12 @@ namespace DTC.UI
 			this.lblVersion = new System.Windows.Forms.Label();
 			this.pnlContent = new System.Windows.Forms.Panel();
 			this.pnlPages = new System.Windows.Forms.Panel();
-			this.breadCrumbs = new DTC.UI.Base.Controls.DTCBreadCrumb();
 			this.pnlTop = new System.Windows.Forms.Panel();
 			this.lblMinimize = new System.Windows.Forms.Label();
 			this.lblPin = new System.Windows.Forms.Label();
 			this.label1 = new System.Windows.Forms.Label();
 			this.lblClose = new System.Windows.Forms.Label();
+			this.breadCrumbs = new DTC.UI.Base.Controls.DTCBreadCrumb();
 			this.pnlBackground.SuspendLayout();
 			this.pnlContent.SuspendLayout();
 			this.pnlTop.SuspendLayout();
@@ -52,7 +52,7 @@ namespace DTC.UI
 			// 
 			// pnlBackground
 			// 
-			this.pnlBackground.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("pnlBackground.BackgroundImage")));
+			this.pnlBackground.BackgroundImage = global::DTC.Properties.Resources.tablet;
 			this.pnlBackground.Controls.Add(this.lblVersion);
 			this.pnlBackground.Controls.Add(this.pnlContent);
 			this.pnlBackground.Dock = System.Windows.Forms.DockStyle.Fill;
@@ -92,15 +92,6 @@ namespace DTC.UI
 			this.pnlPages.Name = "pnlPages";
 			this.pnlPages.Size = new System.Drawing.Size(770, 390);
 			this.pnlPages.TabIndex = 4;
-			// 
-			// breadCrumbs
-			// 
-			this.breadCrumbs.BackColor = System.Drawing.Color.DarkKhaki;
-			this.breadCrumbs.Dock = System.Windows.Forms.DockStyle.Top;
-			this.breadCrumbs.Location = new System.Drawing.Point(0, 30);
-			this.breadCrumbs.Name = "breadCrumbs";
-			this.breadCrumbs.Size = new System.Drawing.Size(770, 30);
-			this.breadCrumbs.TabIndex = 2;
 			// 
 			// pnlTop
 			// 
@@ -174,11 +165,20 @@ namespace DTC.UI
 			this.lblClose.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
 			this.lblClose.Click += new System.EventHandler(this.lblClose_Click);
 			// 
+			// breadCrumbs
+			// 
+			this.breadCrumbs.BackColor = System.Drawing.Color.DarkKhaki;
+			this.breadCrumbs.Dock = System.Windows.Forms.DockStyle.Top;
+			this.breadCrumbs.Location = new System.Drawing.Point(0, 30);
+			this.breadCrumbs.Name = "breadCrumbs";
+			this.breadCrumbs.Size = new System.Drawing.Size(770, 30);
+			this.breadCrumbs.TabIndex = 2;
+			// 
 			// MainForm
 			// 
 			this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
 			this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-			this.BackColor = System.Drawing.Color.Red;
+			this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(1)))), ((int)(((byte)(1)))), ((int)(((byte)(1)))));
 			this.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center;
 			this.ClientSize = new System.Drawing.Size(916, 664);
 			this.Controls.Add(this.pnlBackground);
@@ -187,8 +187,7 @@ namespace DTC.UI
 			this.Name = "MainForm";
 			this.Text = "Form1";
 			this.TopMost = true;
-			this.TransparencyKey = System.Drawing.Color.Red;
-			this.Load += MainForm_Load;
+			this.TransparencyKey = System.Drawing.Color.FromArgb(((int)(((byte)(1)))), ((int)(((byte)(1)))), ((int)(((byte)(1)))));
 			this.pnlBackground.ResumeLayout(false);
 			this.pnlContent.ResumeLayout(false);
 			this.pnlTop.ResumeLayout(false);

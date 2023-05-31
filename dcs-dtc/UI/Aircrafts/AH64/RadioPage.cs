@@ -46,9 +46,12 @@ namespace DTC.UI.Aircrafts.AH64
                 RadioChannel channel = (RadioChannel)radio.Channels[i];
                 var chk = new DTCCheckBox();
                 chk.Checked = channel.ToBeUpdated;
-                chk.RelatedTo = channel.Channel.ToString();
                 chk.Width = 20;
-                chk.CheckedChanged += chk_OnChange;
+                chk.CheckedChanged += (obj, sender) =>
+                {
+                    channel.ToBeUpdated = chk.Checked;
+                    _parent.DataChangedCallback();
+                };
                 tblRadio.Controls.Add(chk, 0, i);
                 var lbl = new Label();
                 lbl.Text = "Channel " + channel.Channel.ToString();
@@ -78,15 +81,6 @@ namespace DTC.UI.Aircrafts.AH64
             var txt = ((DTCTextBox)sender);
             var channel = (RadioChannel)txt.Tag;
             txt.Text = channel.SetFrequency(txt.Text);
-            _parent.DataChangedCallback();
-        }
-
-        private void chk_OnChange(object sender, EventArgs e)
-        {
-            var chk = ((DTCCheckBox)sender);
-            var channel = (RadioChannel)chk.Parent.Controls.OfType<DTCTextBox>()
-                .First(x => ((RadioChannel)x.Tag).Channel.ToString() == chk.RelatedTo).Tag;
-            channel.ToBeUpdated = chk.Checked;
             _parent.DataChangedCallback();
         }
     }

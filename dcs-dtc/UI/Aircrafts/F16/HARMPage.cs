@@ -55,12 +55,12 @@ namespace DTC.UI.Aircrafts.F16
             {
                 var table = _harm.Tables[i];
                 left = padding;
+                this.Controls.Add(DTCCheckBox.Make(left, top, chkWidth, bigRow, table.ToBeUpdated, (chk) =>
+                {
+                    table.ToBeUpdated = chk.Checked;
+                    _parent.DataChangedCallback();
+                }));
 
-                var chkHarmTable = new DTCCheckBox();
-                chkHarmTable.RelatedTo = i.ToString();
-                chkHarmTable.Checked = table.ToBeUpdated;
-                chkHarmTable.CheckedChanged += chk_OnChange;
-                this.Controls.Add(DTCCheckBox.Make(chkHarmTable, left, top, chkWidth, bigRow));
                 left += padding + chkWidth;
                 this.Controls.Add(DTCLabel.Make($"Threat Table {i + 1}", left, top, labelWidth, bigRow));
                 left += padding + labelWidth;
@@ -114,7 +114,7 @@ namespace DTC.UI.Aircrafts.F16
         private void BtnEdit_Click(object sender, System.EventArgs e)
         {
             var table = (int)((DTCButton)sender).Tag;
-            var list = new EmitterList(_harm.Tables[table].Emitters, 5, false, EmitterListOk, EmitterListCancel,true);
+            var list = new EmitterList(_harm.Tables[table].Emitters, 5, false, EmitterListOk, EmitterListCancel, true);
             list.Tag = table;
             this.Controls.Add(list);
             list.Dock = DockStyle.Fill;
@@ -145,14 +145,6 @@ namespace DTC.UI.Aircrafts.F16
         public override string GetPageTitle()
         {
             return "HARM";
-        }
-
-        private void chk_OnChange(object sender, EventArgs e)
-        {
-            var chk = ((DTCCheckBox)sender);
-            var table = _harm.Tables[int.Parse(chk.RelatedTo)];
-            table.ToBeUpdated = chk.Checked;
-            _parent.DataChangedCallback();
         }
     }
 }

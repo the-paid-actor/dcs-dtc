@@ -41,7 +41,6 @@
             this.cbSta5.AutoSize = true;
             this.cbSta5.Location = new System.Drawing.Point(14, 168);
             this.cbSta5.Name = "cbSta5";
-            this.cbSta5.RelatedTo = null;
             this.cbSta5.Size = new System.Drawing.Size(188, 17);
             this.cbSta5.TabIndex = 13;
             this.cbSta5.Text = "Station 5 has Bomb/DataLink Pod";

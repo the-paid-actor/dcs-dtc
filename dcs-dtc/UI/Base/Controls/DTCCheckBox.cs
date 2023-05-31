@@ -1,29 +1,29 @@
-﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System.Drawing;
 using System.Windows.Forms;
 
 namespace DTC.UI.Base.Controls
 {
     public partial class DTCCheckBox : CheckBox
     {
-        public string RelatedTo { get; set; }
-        public DTCCheckBox()
-        {
-            InitializeComponent();
-        }
+        public delegate void CheckBoxChangedCallback(DTCCheckBox chk);
 
-        public static DTCCheckBox Make(DTCCheckBox chk, int x, int y,int chkWidth, int height)
+        public static DTCCheckBox Make(int x, int y, int chkWidth, int height, bool initialValue, CheckBoxChangedCallback callback)
         {
+            var chk = new DTCCheckBox();
             chk.Location = new Point(x, y);
             chk.AutoSize = false;
             chk.Size = new Size(chkWidth, height);
+            chk.Checked = initialValue;
+            chk.CheckedChanged += (sender, args) =>
+            {
+                callback(chk);
+            };
             return chk;
+        }
+
+        public DTCCheckBox()
+        {
+            InitializeComponent();
         }
     }
 }

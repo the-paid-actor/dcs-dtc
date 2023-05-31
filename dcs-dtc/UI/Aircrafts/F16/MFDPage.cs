@@ -47,11 +47,12 @@ namespace DTC.UI.Aircrafts.F16
             foreach (var cfg in _mfdSystem.Configurations)
             {
                 left = padding;
-                var chkUpdateProgram = new DTCCheckBox();
-                chkUpdateProgram.RelatedTo = Enum.GetName(typeof(Mode), cfg.Mode);
-                chkUpdateProgram.Checked = cfg.ToBeUpdated;
-                chkUpdateProgram.CheckedChanged += chk_OnChange;
-                this.Controls.Add(DTCCheckBox.Make(chkUpdateProgram, left, top + ((rowHeight + padding) / 2), chkWidth, rowHeight));
+                this.Controls.Add(DTCCheckBox.Make(left, top + ((rowHeight + padding) / 2), chkWidth, rowHeight, cfg.ToBeUpdated, (chk) =>
+                {
+                    cfg.ToBeUpdated = chk.Checked;
+                    _parent.DataChangedCallback();
+                }));
+
                 left += padding + chkWidth;
                 var modeName = Enum.GetName(typeof(Mode), cfg.Mode);
                 this.Controls.Add(DTCLabel.Make(modeName, left, top, labelWidth, padding + rowHeight * 2));
@@ -107,14 +108,6 @@ namespace DTC.UI.Aircrafts.F16
         public override string GetPageTitle()
         {
             return "MFDs";
-        }
-
-        private void chk_OnChange(object sender, EventArgs e)
-        {
-            var chk = ((DTCCheckBox)sender);
-            var mode = _mfdSystem.Configurations.First(c => Enum.GetName(typeof(Mode), c.Mode) == chk.RelatedTo);
-            mode.ToBeUpdated = chk.Checked;
-            _parent.DataChangedCallback();
         }
     }
 }

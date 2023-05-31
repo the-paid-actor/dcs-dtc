@@ -50,11 +50,11 @@ namespace DTC.UI.Aircrafts.FA18
                 var program = _cms.Programs[i];
 
                 left = padding;
-                var chkUpdateProgram = new DTCCheckBox();
-                chkUpdateProgram.RelatedTo = i.ToString();
-                chkUpdateProgram.Checked = program.ToBeUpdated;                
-                chkUpdateProgram.CheckedChanged += chk_OnChange;
-                this.Controls.Add(DTCCheckBox.Make(chkUpdateProgram,left, top, chkWidth, rowHeight));
+                this.Controls.Add(DTCCheckBox.Make(left, top, chkWidth, rowHeight, program.ToBeUpdated, (chk) =>
+                {
+                    program.ToBeUpdated = chk.Checked;
+                    _parent.DataChangedCallback();
+                }));
 
                 this.Controls.Add(DTCLabel.Make("Program " + (i + 1).ToString(), left + 20, top, columnWidth, rowHeight));
                 left += columnWidth + padding;
@@ -121,14 +121,6 @@ namespace DTC.UI.Aircrafts.FA18
             var txt = (DTCTextBox)sender;
             var callback = (TextBoxChangedCallback)txt.Tag;
             callback(txt);
-        }
-
-        private void chk_OnChange(object sender, EventArgs e)
-        {
-            var chk = ((DTCCheckBox)sender);
-            var program = _cms.Programs[int.Parse(chk.RelatedTo)];
-            program.ToBeUpdated = chk.Checked;
-            _parent.DataChangedCallback();
         }
     }
 }

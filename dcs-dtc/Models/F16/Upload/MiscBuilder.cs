@@ -23,10 +23,8 @@ namespace DTC.Models.F16.Upload
                 BuildCARA(ufc);
             if (_cfg.Misc.MSLFloorToBeUpdated)
                 BuildMSLFloor(ufc);
-            if (_cfg.Misc.TGPCodeToBeUpdated)
-                BuildTGP(ufc);
-            if (_cfg.Misc.LSTCodeToBeUpdated)
-                BuildLST(ufc);
+            if (_cfg.Misc.LaserSettingsToBeUpdated)
+                BuildLaserSettings(ufc);
             if (_cfg.Misc.BullseyeToBeUpdated)
                 BuildBullseye(ufc);
             if (_cfg.Misc.TACANToBeUpdated)
@@ -71,30 +69,22 @@ namespace DTC.Models.F16.Upload
             AppendCommand(ufc.GetCommand("RTN"));
         }
 
-        private void BuildTGP(DCS.Device ufc)
+        private void BuildLaserSettings(DCS.Device ufc)
         {
-            // TGP
             AppendCommand(ufc.GetCommand("LIST"));
             AppendCommand(ufc.GetCommand("0"));
             AppendCommand(ufc.GetCommand("5"));
 
             AppendCommand(BuildDigits(ufc, _cfg.Misc.TGPCode.ToString()));
             AppendCommand(ufc.GetCommand("ENTR"));
-            AppendCommand(ufc.GetCommand("RTN"));
-        }
-
-        private void BuildLST(DCS.Device ufc)
-        {
-            // LST
-            AppendCommand(ufc.GetCommand("LIST"));
-            AppendCommand(ufc.GetCommand("0"));
-            AppendCommand(ufc.GetCommand("5"));
             AppendCommand(ufc.GetCommand("DOWN"));
 
             AppendCommand(BuildDigits(ufc, _cfg.Misc.LSTCode.ToString()));
             AppendCommand(ufc.GetCommand("ENTR"));
             AppendCommand(ufc.GetCommand("DOWN"));
 
+            AppendCommand(BuildDigits(ufc, _cfg.Misc.LaserStartTime.ToString()));
+            AppendCommand(ufc.GetCommand("ENTR"));
             AppendCommand(ufc.GetCommand("RTN"));
         }
 
@@ -106,23 +96,14 @@ namespace DTC.Models.F16.Upload
             AppendCommand(ufc.GetCommand("8"));
             AppendCommand(Wait());
 
-            if (_cfg.Misc.EnableBullseye)
-            {
-                AppendCommand(StartCondition("BULLS_NOT_SELECTED"));
-                AppendCommand(ufc.GetCommand("0"));
-                AppendCommand(EndCondition("BULLS_NOT_SELECTED"));
+            AppendCommand(StartCondition("BULLS_NOT_SELECTED"));
+            AppendCommand(ufc.GetCommand("0"));
+            AppendCommand(EndCondition("BULLS_NOT_SELECTED"));
 
-                AppendCommand(ufc.GetCommand("DOWN"));
-                AppendCommand(BuildDigits(ufc, DeleteLeadingZeros(_cfg.Misc.BullseyeWP.ToString())));
-                AppendCommand(ufc.GetCommand("ENTR"));
-                AppendCommand(ufc.GetCommand("DOWN"));
-            }
-            else
-            {
-                AppendCommand(StartCondition("BULLS_SELECTED"));
-                AppendCommand(ufc.GetCommand("0"));
-                AppendCommand(EndCondition("BULLS_SELECTED"));
-            }
+            AppendCommand(ufc.GetCommand("DOWN"));
+            AppendCommand(BuildDigits(ufc, DeleteLeadingZeros(_cfg.Misc.BullseyeWP.ToString())));
+            AppendCommand(ufc.GetCommand("ENTR"));
+            AppendCommand(ufc.GetCommand("DOWN"));
 
             AppendCommand(ufc.GetCommand("RTN"));
         }

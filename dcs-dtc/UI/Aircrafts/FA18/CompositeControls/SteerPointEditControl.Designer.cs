@@ -56,7 +56,6 @@
             this.cbEnable.AutoSize = true;
             this.cbEnable.Location = new System.Drawing.Point(3, 8);
             this.cbEnable.Name = "cbEnable";
-            this.cbEnable.RelatedTo = null;
             this.cbEnable.Size = new System.Drawing.Size(15, 14);
             this.cbEnable.TabIndex = 1;
             this.cbEnable.UseVisualStyleBackColor = true;

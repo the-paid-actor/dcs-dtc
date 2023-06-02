@@ -1,4 +1,5 @@
-﻿using DTC.Models.F16.Waypoints;
+﻿using DTC.Models.Base;
+using DTC.Models.F16.Waypoints;
 using DTC.UI.Base;
 using DTC.UI.CommonPages;
 using System;
@@ -8,120 +9,107 @@ using System.Windows.Forms;
 
 namespace DTC.UI.Aircrafts.F16
 {
-	public partial class WaypointsPage : AircraftSettingPage
-	{
-		private WaypointSystem _waypoints;
-		private WaypointEdit _wptEditDialog;
+    public partial class WaypointsPage : AircraftSettingPage
+    {
+        private WaypointSystem _waypoints;
+        private WaypointEdit _wptEditDialog;
 
-		public WaypointsPage(AircraftPage parent, WaypointSystem wpts) : base(parent)
-		{
-			InitializeComponent();
+        public WaypointsPage(AircraftPage parent, WaypointSystem wpts) : base(parent)
+        {
+            InitializeComponent();
 
-			_waypoints = wpts;
-			_wptEditDialog = new WaypointEdit(_waypoints, this.WptDialogEditCallback);
-			_wptEditDialog.Visible = false;
-			dgWaypoints.ReorderCallback = Reorder;
-			this.Controls.Add(this._wptEditDialog);
+            _waypoints = wpts;
+            _wptEditDialog = new WaypointEdit(_waypoints, this.WptDialogEditCallback);
+            _wptEditDialog.Visible = false;
+            dgWaypoints.ReorderCallback = Reorder;
+            this.Controls.Add(this._wptEditDialog);
 
-			RefreshList();
-		}
+            RefreshList();
+        }
 
-		private void Reorder(int indexFrom, int indexTo)
-		{
-			_waypoints.Reorder(indexFrom, indexTo);
-			RefreshList();
-		}
+        private void Reorder(int indexFrom, int indexTo)
+        {
+            _waypoints.Reorder(indexFrom, indexTo);
+            RefreshList();
+        }
 
-		public override string GetPageTitle()
-		{
-			return "Waypoints";
-		}
+        public override string GetPageTitle()
+        {
+            return "Waypoints";
+        }
 
-		private void WptDialogEditCallback(WaypointEdit.WaypointEditResult result, Waypoint wpt)
-		{
-			if (result != WaypointEdit.WaypointEditResult.Close) {
-				_parent.DataChangedCallback();
-				this.RefreshList();
-			}
+        private void WptDialogEditCallback()
+        {
+            _parent.DataChangedCallback();
+            this.RefreshList();
+        }
 
-			if (result != WaypointEdit.WaypointEditResult.Add)
-			{
-				this.ToggleEnabled();
-			}
-		}
+        private void btnAdd_Click(object sender, EventArgs e)
+        {
+            System.Diagnostics.Debug.WriteLine(this.Size);
+            ShowWptDialog();
+        }
 
-		private void btnAdd_Click(object sender, EventArgs e)
-		{
-			ShowWptDialog();
-		}
+        private void ShowWptDialog(Waypoint wpt = null)
+        {
+            this._wptEditDialog.Location = new Point(0, 0);
+            this._wptEditDialog.Size = this.Size;
+            _wptEditDialog.ShowDialog(wpt);
+            this.RefreshList();
+        }
 
-		private void ShowWptDialog(Waypoint wpt = null)
-		{
-			this.ToggleEnabled();
+        private void RefreshList()
+        {
+            dgWaypoints.RefreshList(_waypoints.Waypoints);
+        }
 
-			this._wptEditDialog.Location = new Point(
-				(this.Size.Width - this._wptEditDialog.Size.Width) / 2,
-				(this.Size.Height - this._wptEditDialog.Size.Height) / 2);
+        private void btnDelete_Click(object sender, EventArgs e)
+        {
+            if (!DTCMessageBox.ShowQuestion("Are you sure you want to delete this waypoint?"))
+            {
+                return;
+            }
 
-			_wptEditDialog.ShowDialog(wpt);
-			this.RefreshList();
-		}
+            var wptsToDelete = new List<Waypoint>();
 
-		private void ToggleEnabled()
-		{
-			_parent.ToggleEnabled();
-			dgWaypoints.Enabled = !dgWaypoints.Enabled;
-			btnAdd.Enabled = !btnAdd.Enabled;
-			btnDelete.Enabled = dgWaypoints.Enabled && dgWaypoints.SelectedRows.Count > 0;
-		}
+            foreach (DataGridViewRow row in dgWaypoints.SelectedRows)
+            {
+                var wpt = (Waypoint)row.DataBoundItem;
+                wptsToDelete.Add(wpt);
+            }
 
-		private void RefreshList()
-		{
-			dgWaypoints.RefreshList(_waypoints.Waypoints);
-		}
+            foreach (var wpt in wptsToDelete)
+            {
+                _waypoints.Remove(wpt);
+            }
 
-		private void btnDelete_Click(object sender, EventArgs e)
-		{
-			var wptsToDelete = new List<Waypoint>();
+            _parent.DataChangedCallback();
+            RefreshList();
+            dgWaypoints.Focus();
+        }
 
-			foreach (DataGridViewRow row in dgWaypoints.SelectedRows)
-			{
-				var wpt = (Waypoint)row.DataBoundItem;
-				wptsToDelete.Add(wpt);
-			}
+        private void btnCapture_Click(object sender, EventArgs e)
+        {
+            var cap = new WaypointCaptureCrosshair();
+            cap.Show();
+        }
 
-			foreach(var wpt in wptsToDelete)
-			{
-				_waypoints.Remove(wpt);
-			}
+        private void dgWaypoints_SelectionChanged(object sender, EventArgs e)
+        {
+            btnDelete.Enabled = dgWaypoints.Enabled && dgWaypoints.SelectedRows.Count > 0;
+        }
 
-			_parent.DataChangedCallback();
-			RefreshList();
-			dgWaypoints.Focus();
-		}
+        private void dgWaypoints_DataError(object sender, DataGridViewDataErrorEventArgs e)
+        {
+            Console.WriteLine("error");
+        }
 
-		private void btnCapture_Click(object sender, EventArgs e)
-		{
-			var cap = new WaypointCaptureCrosshair();
-			cap.Show();
-		}
-
-		private void dgWaypoints_SelectionChanged(object sender, EventArgs e)
-		{
-			btnDelete.Enabled = dgWaypoints.Enabled && dgWaypoints.SelectedRows.Count > 0;
-		}
-
-		private void dgWaypoints_DataError(object sender, DataGridViewDataErrorEventArgs e)
-		{
-			Console.WriteLine("error");
-		}
-
-		private void dgWaypoints_DoubleClick(object sender, EventArgs e)
-		{
-			if (dgWaypoints.SelectedRows.Count > 0)
-			{
-				ShowWptDialog((Waypoint)dgWaypoints.SelectedRows[0].DataBoundItem);
-			}
-		}
-	}
+        private void dgWaypoints_DoubleClick(object sender, EventArgs e)
+        {
+            if (dgWaypoints.SelectedRows.Count > 0)
+            {
+                ShowWptDialog((Waypoint)dgWaypoints.SelectedRows[0].DataBoundItem);
+            }
+        }
+    }
 }

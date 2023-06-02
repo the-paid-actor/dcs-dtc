@@ -1,241 +1,391 @@
-﻿using DTC.Models;
-using DTC.Models.Base;
+﻿using DTC.Models.Base;
 using DTC.Models.DCS;
 using DTC.Models.F16.Waypoints;
 using DTC.UI.Base;
-using DTC.UI.Base.Controls;
 using System;
-using System.Globalization;
 using System.Windows.Forms;
 
 namespace DTC.UI.Aircrafts.F16
 {
-	public partial class WaypointEdit : UserControl
-	{
-		public enum WaypointEditResult
-		{
-			Add = 1,
-			SaveAndClose = 2,
-			Close = 3
-		}
+    public partial class WaypointEdit : UserControl
+    {
+        public enum WaypointEditResult
+        {
+            Add = 1,
+            SaveAndClose = 2,
+            Close = 3
+        }
 
-		public delegate void WaypointEditCallback(WaypointEditResult result, Waypoint wpt);
+        public delegate void WaypointEditCallback();
 
-		private class AirbaseComboBoxItem
-		{
-			public string Theatre;
-			public string Airbase;
-			public string Latitude;
-			public string Longitude;
-			public int Elevation;
+        private class AirbaseComboBoxItem
+        {
+            public string Theatre;
+            public string Airbase;
+            public string Latitude;
+            public string Longitude;
+            public int Elevation;
 
-			public AirbaseComboBoxItem(string theatre, string airbase, string latitude, string longitude, int elevation)
-			{
-				Theatre = theatre;
-				Airbase = airbase;
-				Latitude = latitude;
-				Longitude = longitude;
-				Elevation = elevation;
-			}
+            public AirbaseComboBoxItem(string theatre, string airbase, string latitude, string longitude, int elevation)
+            {
+                Theatre = theatre;
+                Airbase = airbase;
+                Latitude = latitude;
+                Longitude = longitude;
+                Elevation = elevation;
+            }
 
-			public override string ToString()
-			{
-				return $"{Theatre} - {Airbase}";
-			}
-		}
+            public override string ToString()
+            {
+                return $"{Theatre} - {Airbase}";
+            }
+        }
 
-		private readonly WaypointEditCallback _callback;
-		private WaypointSystem _flightPlan;
-		private Waypoint _waypoint = null;
-		private WaypointCapture _waypointCapture;
+        private readonly WaypointEditCallback _callback;
+        private WaypointSystem _waypoints;
+        private Waypoint _waypoint = null;
+        private WaypointCapture _waypointCapture;
+        private bool _addMode = false;
 
-		public WaypointEdit(WaypointSystem flightPlan, WaypointEditCallback callback)
-		{
-			InitializeComponent();
+        public WaypointEdit(WaypointSystem waypoints, WaypointEditCallback callback)
+        {
+            InitializeComponent();
+            LoadAirbases();
 
-			foreach (var theater in Theater.Theaters)
-			{
-				foreach (var ab in theater.Airbases)
-				{
-					cboAirbases.Items.Add(new AirbaseComboBoxItem(theater.Name, ab.Name, ab.Latitude, ab.Longitude, ab.Elevation));
-				}
-			}
+            _callback = callback;
+            _waypoints = waypoints;
+        }
 
-			_callback = callback;
-			_flightPlan = flightPlan;
-		}
+        private void LoadAirbases()
+        {
+            foreach (var theater in Theater.Theaters)
+            {
+                foreach (var ab in theater.Airbases)
+                {
+                    cboAirbases.Items.Add(new AirbaseComboBoxItem(theater.Name, ab.Name, ab.Latitude, ab.Longitude, ab.Elevation));
+                }
+            }
+        }
 
-		public void ShowDialog(Waypoint wpt = null)
-		{
-			this.Visible = true;
-			this.BringToFront();
-			_waypoint = wpt;
+        public void ShowDialog(Waypoint wpt = null)
+        {
+            this.Visible = true;
+            this.BringToFront();
+            cboAirbases.SelectedIndex = -1;
+            lblValidation.Text = "";
 
-			if (wpt != null)
-			{
-				LoadWaypoint(wpt);
-				txtWptName.Focus();
-			}
-			else
-			{
-				ResetFields();
-			}
-		}
+            if (wpt == null)
+            {
+                _addMode = true;
+                _waypoint = new Waypoint(_waypoints.Waypoints.Count + 1);
+                _waypoint.Name = "WPT " + _waypoint.Sequence.ToString();
+            }
+            else
+            {
+                _addMode = false;
+                _waypoint = wpt;
+            }
 
-		private void LoadWaypoint(Waypoint wpt)
-		{
-			txtWptName.Text = wpt.Name;
-			txtWptLatLong.Text = wpt.Latitude + " " + wpt.Longitude;
-			txtWptElevation.Text = wpt.Elevation.ToString();
-			txtTimeOverSteerpoint.Text = wpt.TimeOverSteerpoint;
-		}
+            LoadWaypoint();
+            txtWptName.Focus();
+        }
 
-		private void btnSave_Click(object sender, EventArgs e)
-		{
-			if (ValidateFields())
-			{
-				var wpt = Waypoint.FromStrings(txtWptName.Text, txtWptLatLong.Text, txtWptElevation.Text, txtTimeOverSteerpoint.Text);
+        private void btnSave_Click(object sender, EventArgs e)
+        {
+            if (!SaveWaypoint()) return;
 
-				if (_waypoint == null)
-				{
-					_flightPlan.Add(wpt);
-					_callback(WaypointEditResult.Add, wpt);
-					ResetFields();
-				} 
-				else
-				{
-					_waypoint.Elevation = wpt.Elevation;
-					_waypoint.Latitude = wpt.Latitude;
-					_waypoint.Longitude = wpt.Longitude;
-					_waypoint.Name = wpt.Name;
-					_waypoint.TimeOverSteerpoint = wpt.TimeOverSteerpoint;
-					_callback(WaypointEditResult.SaveAndClose, _waypoint);
-					CloseDialog();
-				}
-			}
-		}
+            if (_addMode)
+            {
+                _waypoints.Add(_waypoint);
+                _callback();
+                ShowDialog();
+            }
+            else
+            {
+                _callback();
+                CloseDialog();
+            }
+        }
 
-		private void lblClose_Click(object sender, EventArgs e)
-		{
-			_callback(WaypointEditResult.Close, null);
-			CloseDialog();
-		}
+        private void btnCancel_Click(object sender, EventArgs e)
+        {
+            CloseDialog();
+        }
 
-		private void CloseDialog()
-		{
-			_waypoint = null;
-			DisposeWptCapture();
+        private void CloseDialog()
+        {
+            _waypoint = null;
+            DisposeWptCapture();
 
-			Visible = false;
-			ResetFields();
-		}
+            Visible = false;
+        }
 
-		private void DisposeWptCapture()
-		{
-			if (_waypointCapture != null)
-			{
-				btnCapture.Text = "Start Capture";
-				_waypointCapture.Dispose();
-				_waypointCapture = null;
-			}
-		}
+        private void DisposeWptCapture()
+        {
+            if (_waypointCapture != null)
+            {
+                btnCapture.Text = "Start Capture";
+                _waypointCapture.Dispose();
+                _waypointCapture = null;
+            }
+        }
 
-		private bool ValidateFields()
-		{
-			lblValidation.Text = "";
-			if (ValidateElevation() && ValidateLatLong() && ValidateName() && ValidateTOS())
-			{
-				return true;
-			}
-			return false;
-		}
+        private void cboAirbases_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            if (cboAirbases.SelectedIndex > -1)
+            {
+                var item = (AirbaseComboBoxItem)cboAirbases.SelectedItem;
+                _waypoint.Name = item.Airbase;
+                _waypoint.SetCoordinate(item.Latitude + " " + item.Longitude);
+                _waypoint.Elevation = item.Elevation;
+                LoadWaypoint();
+            }
+        }
 
-		private bool ValidateTOS()
-		{
-			if (!txtTimeOverSteerpoint.MaskFull || !Util.IsValidTime(txtTimeOverSteerpoint.Text))
-			{
-				lblValidation.Text = "Invalid time-over-steerpoint";
-				txtTimeOverSteerpoint.Focus();
-				return false;
-			}
+        private void btnCapture_Click(object sender, EventArgs e)
+        {
+            if (_waypointCapture == null)
+            {
+                btnCapture.Text = "Stop Capture";
+                _waypointCapture = new WaypointCapture((string latitude, string longitude, string elevation) =>
+                {
+                    this.ParentForm.Invoke(new MethodInvoker(delegate ()
+                    {
+                        txtWptLatLong.Text = latitude + " " + longitude;
+                        txtWptElevation.Text = elevation;
+                    }));
+                }, new DdmShortFormatter());
+            }
+            else
+            {
+                DisposeWptCapture();
+            }
+        }
 
-			return true;
-		}
+        private void chkUseOA_CheckedChanged(object sender, EventArgs e)
+        {
+            pnlOA.Visible = chkUseOA.Checked;
+            UpdateOAVIPVRPPanels();
+        }
 
-		private bool ValidateLatLong()
-		{
-			if (!txtWptLatLong.MaskFull || !Waypoint.IsCoordinateValid(txtWptLatLong.Text))
-			{
-				lblValidation.Text = "Invalid coordinate";
-				txtWptLatLong.Focus();
-				return false;
-			}
+        private void chkUseVIP_CheckedChanged(object sender, EventArgs e)
+        {
+            if (chkUseVIP.Checked)
+            {
+                if (!ClearVIPVRPOtherWpts())
+                {
+                    chkUseVIP.Checked = false;
+                    return;
+                }
+            }
 
-			return true;
-		}
+            if (chkUseVIP.Checked && chkUseVRP.Checked)
+            {
+                chkUseVRP.Checked = false;
+            }
 
-		private bool ValidateElevation()
-		{
-			if (!Util.IsValidInt(txtWptElevation.Text) || int.Parse(txtWptElevation.Text) > 25000)
-			{
-				lblValidation.Text = "Invalid elevation";
-				txtWptElevation.Focus();
-				return false;
-			}
+            UpdateOAVIPVRPPanels();
+        }
 
-			return true;
-		}
+        private void chkUseVRP_CheckedChanged(object sender, EventArgs e)
+        {
+            if (chkUseVRP.Checked)
+            {
+                if (!ClearVIPVRPOtherWpts())
+                {
+                    chkUseVRP.Checked = false;
+                    return;
+                }
+            }
 
-		private bool ValidateName()
-		{
-			if (txtWptName.Text == "")
-			{
-				lblValidation.Text = "Name required";
-				txtWptName.Focus();
-				return false;
-			}
+            if (chkUseVRP.Checked && chkUseVIP.Checked)
+            {
+                chkUseVIP.Checked = false;
+            }
 
-			return true;
-		}
+            UpdateOAVIPVRPPanels();
+        }
 
-		private void ResetFields()
-		{
-			cboAirbases.SelectedIndex = -1;
-			txtWptName.Text = "WPT " + (_flightPlan.Waypoints.Count + 1).ToString();
-			txtWptLatLong.Text = "N 00.00.000 E 000.00.000";
-			txtWptElevation.Text = "0";
-			txtTimeOverSteerpoint.Text = "00:00:00";
-			txtWptLatLong.Focus();
-		}
+        private void UpdateOAVIPVRPPanels()
+        {
+            pnlVIP.Visible = chkUseVIP.Checked;
+            pnlVRP.Visible = chkUseVRP.Checked;
 
-		private void cboAirbases_SelectedIndexChanged(object sender, EventArgs e)
-		{
-			if (cboAirbases.SelectedIndex > -1)
-			{
-				var item = (AirbaseComboBoxItem)cboAirbases.SelectedItem;
-				var wpt = new Waypoint(0, item.Airbase, item.Latitude, item.Longitude, item.Elevation, txtTimeOverSteerpoint.Text);
-				LoadWaypoint(wpt);
-			}
-		}
+            var topVIPPanel = pnlOA.Top;
+            var topVRPPanel = pnlOA.Top;
 
-		private void btnCapture_Click(object sender, EventArgs e)
-		{
-			if (_waypointCapture == null)
-			{
-				btnCapture.Text = "Stop Capture";
-				_waypointCapture = new WaypointCapture((string latitude, string longitude, string elevation) =>
-				{
-					this.ParentForm.Invoke(new MethodInvoker(delegate ()
-					{
-						txtWptLatLong.Text = latitude + " " + longitude;
-						txtWptElevation.Text = elevation;
-					}));
-				}, new DdmShortFormatter());
-			}
-			else
-			{
-				DisposeWptCapture();
-			}
-		}
-	}
+            if (pnlOA.Visible)
+            {
+                topVIPPanel += pnlOA.Height;
+                topVRPPanel += pnlOA.Height;
+            }
+
+            pnlVIP.Top = topVIPPanel;
+            pnlVRP.Top = topVRPPanel;
+        }
+
+        private bool ClearVIPVRPOtherWpts()
+        {
+            foreach (var wpt in _waypoints.Waypoints)
+            {
+                if (wpt == _waypoint) continue;
+
+                if (wpt.UseVIP || wpt.UseVRP)
+                {
+                    if (DTCMessageBox.ShowQuestion("Only one steerpoint can be designated as VIP or VRP.\nThis will clear VIP/VRP from other steerpoints. Do you want to proceed?"))
+                    {
+                        wpt.UseVIP = false;
+                        wpt.UseVRP = false;
+                        _callback();
+                        break;
+                    }
+                    else
+                    {
+                        return false;
+                    }
+                }
+            }
+
+            return true;
+        }
+
+        private void LoadWaypoint()
+        {
+            txtWptName.Text = _waypoint.Name;
+            txtWptLatLong.Text = _waypoint.Latitude + " " + _waypoint.Longitude;
+            txtWptElevation.Value = _waypoint.Elevation;
+            txtTimeOverSteerpoint.Text = _waypoint.TimeOverSteerpoint;
+
+            chkUseOA.Checked = _waypoint.UseOA;
+            if (_waypoint.UseOA)
+            {
+                txtOA1Range.Value = _waypoint.OffsetAimpoint1.Range;
+                txtOA1Bearing.Value = _waypoint.OffsetAimpoint1.Bearing;
+                txtOA1Elev.Value = _waypoint.OffsetAimpoint1.Elevation;
+
+                txtOA2Range.Value = _waypoint.OffsetAimpoint2.Range;
+                txtOA2Bearing.Value = _waypoint.OffsetAimpoint2.Bearing;
+                txtOA2Elev.Value = _waypoint.OffsetAimpoint2.Elevation;
+            }
+
+            chkUseVIP.Checked = _waypoint.UseVIP;
+
+            if (_waypoint.UseVIP)
+            {
+                txtVIPtoTGTRange.Value = _waypoint.VIPtoTGT.Range;
+                txtVIPtoTGTBearing.Value = _waypoint.VIPtoTGT.Bearing;
+                txtVIPtoTGTElev.Value = _waypoint.VIPtoTGT.Elevation;
+
+                txtVIPtoPUPRange.Value = _waypoint.VIPtoPUP.Range;
+                txtVIPtoPUPBearing.Value = _waypoint.VIPtoPUP.Bearing;
+                txtVIPtoPUPElev.Value = _waypoint.VIPtoPUP.Elevation;
+            }
+
+            chkUseVRP.Checked = _waypoint.UseVRP;
+
+            if (_waypoint.UseVRP)
+            {
+                txtTGTtoVRPRange.Value = _waypoint.TGTtoVRP.Range;
+                txtTGTtoVRPBearing.Value = _waypoint.TGTtoVRP.Bearing;
+                txtTGTtoVRPElev.Value = _waypoint.TGTtoVRP.Elevation;
+
+                txtTGTtoPUPRange.Value = _waypoint.TGTtoPUP.Range;
+                txtTGTtoPUPBearing.Value = _waypoint.TGTtoPUP.Bearing;
+                txtTGTtoPUPElev.Value = _waypoint.TGTtoPUP.Elevation;
+            }
+
+            UpdateOAVIPVRPPanels();
+        }
+
+        private bool SaveWaypoint()
+        {
+            if (txtWptName.Text == "")
+            {
+                lblValidation.Text = "Name required";
+                txtWptName.Focus();
+                return false;
+            }
+
+            if (!txtWptLatLong.MaskFull || !Waypoint.IsCoordinateValid(txtWptLatLong.Text))
+            {
+                lblValidation.Text = "Invalid coordinate";
+                txtWptLatLong.Focus();
+                return false;
+            }
+
+            if (!txtTimeOverSteerpoint.MaskFull || !Util.IsValidTime(txtTimeOverSteerpoint.Text))
+            {
+                lblValidation.Text = "Invalid time-over-steerpoint";
+                txtTimeOverSteerpoint.Focus();
+                return false;
+            }
+
+            _waypoint.Name = txtWptName.Text;
+            _waypoint.SetCoordinate(txtWptLatLong.Text);
+            _waypoint.Elevation = (int)(txtWptElevation.Value ?? 0);
+            _waypoint.TimeOverSteerpoint = txtTimeOverSteerpoint.Text;
+
+            _waypoint.UseOA = chkUseOA.Checked;
+
+            if (_waypoint.UseOA)
+            {
+                if (_waypoint.OffsetAimpoint1 == null) _waypoint.OffsetAimpoint1 = new Offset();
+                _waypoint.OffsetAimpoint1.Range = txtOA1Range.Value ?? 0;
+                _waypoint.OffsetAimpoint1.Bearing = txtOA1Bearing.Value ?? 0;
+                _waypoint.OffsetAimpoint1.Elevation = txtOA1Elev.Value ?? 0;
+
+                if (_waypoint.OffsetAimpoint2 == null) _waypoint.OffsetAimpoint2 = new Offset();
+                _waypoint.OffsetAimpoint2.Range = txtOA2Range.Value ?? 0;
+                _waypoint.OffsetAimpoint2.Bearing = txtOA2Bearing.Value ?? 0;
+                _waypoint.OffsetAimpoint2.Elevation = txtOA2Elev.Value ?? 0;
+            }
+            else
+            {
+                _waypoint.OffsetAimpoint1 = null;
+                _waypoint.OffsetAimpoint2 = null;
+            }
+
+            _waypoint.UseVIP = chkUseVIP.Checked;
+
+            if (_waypoint.UseVIP)
+            {
+                if (_waypoint.VIPtoTGT == null) _waypoint.VIPtoTGT = new Offset();
+                _waypoint.VIPtoTGT.Range = txtVIPtoTGTRange.Value ?? 0;
+                _waypoint.VIPtoTGT.Bearing = txtVIPtoTGTBearing.Value ?? 0;
+                _waypoint.VIPtoTGT.Elevation = txtVIPtoTGTElev.Value ?? 0;
+
+                if (_waypoint.VIPtoPUP == null) _waypoint.VIPtoPUP = new Offset();
+                _waypoint.VIPtoPUP.Range = txtVIPtoPUPRange.Value ?? 0;
+                _waypoint.VIPtoPUP.Bearing = txtVIPtoPUPBearing.Value ?? 0;
+                _waypoint.VIPtoPUP.Elevation = txtVIPtoPUPElev.Value ?? 0;
+            }
+            else
+            {
+                _waypoint.VIPtoTGT = null;
+                _waypoint.VIPtoPUP = null;
+            }
+
+            _waypoint.UseVRP = chkUseVRP.Checked;
+
+            if (_waypoint.UseVRP)
+            {
+                if (_waypoint.TGTtoVRP == null) _waypoint.TGTtoVRP = new Offset();
+                _waypoint.TGTtoVRP.Range = txtTGTtoVRPRange.Value ?? 0;
+                _waypoint.TGTtoVRP.Bearing = txtTGTtoVRPBearing.Value ?? 0;
+                _waypoint.TGTtoVRP.Elevation = txtTGTtoVRPElev.Value ?? 0;
+
+                if (_waypoint.TGTtoPUP == null) _waypoint.TGTtoPUP = new Offset();
+                _waypoint.TGTtoPUP.Range = txtTGTtoPUPRange.Value ?? 0;
+                _waypoint.TGTtoPUP.Bearing = txtTGTtoPUPBearing.Value ?? 0;
+                _waypoint.TGTtoPUP.Elevation = txtTGTtoPUPElev.Value ?? 0;
+            }
+            else
+            {
+                _waypoint.TGTtoVRP = null;
+                _waypoint.TGTtoPUP = null;
+            }
+
+            return true;
+        }
+    }
 }

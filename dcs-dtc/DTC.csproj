@@ -536,6 +536,7 @@
     </EmbeddedResource>
     <EmbeddedResource Include="UI\Aircrafts\F16\WaypointsPage.resx">
       <DependentUpon>WaypointsPage.cs</DependentUpon>
+      <SubType>Designer</SubType>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>

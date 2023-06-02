@@ -562,7 +562,7 @@
     <EmbeddedResource Include="UI\CommonPages\PresetsPage.resx">
       <DependentUpon>PresetsPage.cs</DependentUpon>
     </EmbeddedResource>
-    <Content Include="DCSDTC.lua">
+    <Content Include="DCS\DCSDTC.lua">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
     <Content Include="dtc-airbases.json">
@@ -578,6 +578,15 @@
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
     <Content Include="dtc-settings.json">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="DCS\DCSDTC\commonFunctions.lua">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="DCS\DCSDTC\f16Functions.lua">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="DCS\DCSDTC\f18Functions.lua">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
     <None Include="dtc.key.snk" />

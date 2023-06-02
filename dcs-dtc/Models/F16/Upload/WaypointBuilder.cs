@@ -159,11 +159,25 @@ namespace DTC.Models.F16.Upload
             AppendCommand(ufc.GetCommand("LIST"));
             AppendCommand(ufc.GetCommand("3"));
 
+            AppendCommand(Wait());
+
+            AppendCommand(StartCondition("VIP_TO_TGT_NOT_SELECTED"));
+            AppendCommand(ufc.GetCommand("SEQ"));
+            AppendCommand(EndCondition("VIP_TO_TGT_NOT_SELECTED"));
+
+            AppendCommand(StartCondition("VIP_TO_TGT_NOT_HIGHLIGHTED"));
+            AppendCommand(ufc.GetCommand("0"));
+            AppendCommand(EndCondition("VIP_TO_TGT_NOT_HIGHLIGHTED"));
+
             BuildVIPDetail(ufc, stptId, wpt.VIPtoTGT);
             AppendCommand(ufc.GetCommand("SEQ"));
+
+            AppendCommand(StartCondition("VIP_TO_PUP_NOT_HIGHLIGHTED"));
+            AppendCommand(ufc.GetCommand("0"));
+            AppendCommand(EndCondition("VIP_TO_PUP_NOT_HIGHLIGHTED"));
+
             BuildVIPDetail(ufc, stptId, wpt.VIPtoPUP);
             AppendCommand(ufc.GetCommand("SEQ"));
-
             AppendCommand(ufc.GetCommand("RTN"));
         }
 
@@ -208,12 +222,25 @@ namespace DTC.Models.F16.Upload
             AppendCommand(ufc.GetCommand("LIST"));
             AppendCommand(ufc.GetCommand("9"));
 
-            BuildVRPDetail(ufc, stptId, wpt.TGTtoVRP);
+            AppendCommand(Wait());
 
+            AppendCommand(StartCondition("TGT_TO_VRP_NOT_SELECTED"));
             AppendCommand(ufc.GetCommand("SEQ"));
+            AppendCommand(EndCondition("TGT_TO_VRP_NOT_SELECTED"));
+
+            AppendCommand(StartCondition("TGT_TO_VRP_NOT_HIGHLIGHTED"));
+            AppendCommand(ufc.GetCommand("0"));
+            AppendCommand(EndCondition("TGT_TO_VRP_NOT_HIGHLIGHTED"));
+
+            BuildVRPDetail(ufc, stptId, wpt.TGTtoVRP);
+            AppendCommand(ufc.GetCommand("SEQ"));
+
+            AppendCommand(StartCondition("TGT_TO_PUP_NOT_HIGHLIGHTED"));
+            AppendCommand(ufc.GetCommand("0"));
+            AppendCommand(EndCondition("TGT_TO_PUP_NOT_HIGHLIGHTED"));
+
             BuildVRPDetail(ufc, stptId, wpt.TGTtoPUP);
             AppendCommand(ufc.GetCommand("SEQ"));
-
             AppendCommand(ufc.GetCommand("RTN"));
         }
 

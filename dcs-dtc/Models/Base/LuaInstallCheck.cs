@@ -134,7 +134,7 @@ namespace DTC.Models.Base
 			}
 
 			var dcsDtcLuaPath = Path.Combine(scriptsFolder, "DCSDTC.lua");
-			var originalDcsDtcLuaPath = Path.Combine(FileStorage.GetCurrentFolder(), "DCSDTC.lua");
+			var originalDcsDtcLuaPath = Path.Combine(FileStorage.GetCurrentFolder(), "DCS", "DCSDTC.lua");
 			if (!File.Exists(dcsDtcLuaPath))
 			{
 				dtcLuaInstalled = true;
@@ -150,16 +150,50 @@ namespace DTC.Models.Base
 				File.Copy(originalDcsDtcLuaPath, dcsDtcLuaPath, true);
 			}
 
-			if (dtcLuaInstalled || dtcLuaUpdated)
+			var folderChanged = CopyDCSDTCFolder(scriptsFolder);
+
+			if (dtcLuaInstalled || dtcLuaUpdated || folderChanged)
 			{
 				var txt = dtcLuaInstalled ? "installed" : "updated";
-				DTCMessageBox.ShowInfo($"DCSDTC.lua was {txt} in {path}. If DCS is running, please restart DCS.");
+				DTCMessageBox.ShowInfo($"DCSDTC.lua was {txt} in {path}.\n\nIf DCS is running, please restart DCS.");
 			}
 
 			return true;
 		}
 
-		private static bool AskUserToInstall(string path)
+        private static bool CopyDCSDTCFolder(string scriptsFolder)
+        {
+			var changed = false;
+			var localFolder = Path.Combine(FileStorage.GetCurrentFolder(), "DCS", "DCSDTC");
+			var remoteFolder = Path.Combine(scriptsFolder, "DCSDTC");
+
+			if (!Directory.Exists(remoteFolder))
+			{
+				Directory.CreateDirectory(remoteFolder);
+			}
+
+			foreach (var localFile in Directory.GetFiles(localFolder))
+			{
+				var remoteFile = Path.Combine(remoteFolder, Path.GetFileName(localFile));
+				if (!File.Exists(remoteFile))
+				{
+					File.Copy(localFile, remoteFile);
+					changed = true;
+				}
+
+				var localFileContent = File.ReadAllText(localFile);
+				var remoteFileContent = File.ReadAllText(remoteFile);
+				if (localFileContent != remoteFileContent)
+				{
+                    File.Copy(localFile, remoteFile, true);
+                    changed = true;
+                }
+			}
+
+			return changed;
+        }
+
+        private static bool AskUserToInstall(string path)
 		{
 			return DTCMessageBox.ShowQuestion($"DTC is not installed at {path}. Do you want to install it?");
 		}

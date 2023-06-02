@@ -45,6 +45,27 @@ namespace DTC.UI.Aircrafts.FA18
                 }));
             }
 
+            //Bullseye
+            {
+                left = padding;
+                top += padding + rowHeight;
+                this.Controls.Add(DTCCheckBox.Make(left, top, chkWidth, rowHeight, _misc.BullseyeToBeUpdated, (chk) =>
+                {
+                    _misc.BullseyeToBeUpdated = chk.Checked;
+                    _parent.DataChangedCallback();
+                }));
+
+                left += padding + chkWidth;
+                this.Controls.Add(DTCLabel.Make("Enable Bullseye", left, top, colWidth, rowHeight));
+
+                left += padding + colWidth;
+                this.Controls.Add(DTCTextBox.Make(left, top, 30, rowHeight, "00", _misc.BullseyeWP.ToString(), (txt) =>
+                {
+                    txt.Text = _misc.SetBullseyeWP(txt.Text);
+                    _parent.DataChangedCallback();
+                }));
+            }
+
             //Baro ALT
             {
                 left = padding;

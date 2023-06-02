@@ -15,7 +15,9 @@ namespace DTC.Models.FA18.Misc
 
 		public int Bingo { get; set; }
 		public bool BingoToBeUpdated { get; set; }
-		public int BaroWarn { get; set; }
+        public bool BullseyeToBeUpdated { get; set; }
+        public int BullseyeWP { get; set; }
+        public int BaroWarn { get; set; }
 		public bool BaroToBeUpdated { get; set; }
 		public int RadarWarn { get; set; }
 		public bool RadarToBeUpdated { get; set; }
@@ -39,7 +41,16 @@ namespace DTC.Models.FA18.Misc
 			EnableUpload = true;
 		}
 
-		public string SetTacanChannel(string txt)
+        public string SetBullseyeWP(string txt)
+        {
+            if (int.TryParse(txt, out int val))
+            {
+                BullseyeWP = val;
+            }
+            return BullseyeWP.ToString();
+        }
+
+        public string SetTacanChannel(string txt)
 		{
 			if (int.TryParse(txt, out int val))
 			{

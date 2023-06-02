@@ -1,4 +1,5 @@
 ﻿using DTC.Models.DCS;
+using System;
 using System.Text;
 
 namespace DTC.Models.FA18.Upload
@@ -12,6 +13,17 @@ namespace DTC.Models.FA18.Upload
             _cfg = cfg;
         }
 
+        private void selectWp0(Device rmfd, int i)
+        {
+            if (i < 140) // It might not notice on the first pass, so we go around once more
+            {
+                AppendCommand(StartCondition("NOT_AT_WP0"));
+                AppendCommand(rmfd.GetCommand("OSB-13"));
+                AppendCommand(EndCondition("NOT_AT_WP0"));
+                selectWp0(rmfd, i + 1);
+            }
+        }
+
         public override void Build()
         {
             var ufc = _aircraft.GetDevice("UFC");
@@ -21,6 +33,8 @@ namespace DTC.Models.FA18.Upload
 
             if (_cfg.Misc.BingoToBeUpdated)
                 BuildBingo(ifei);
+            if (_cfg.Misc.BullseyeToBeUpdated)
+                BuildBullseye();
             if (_cfg.Misc.TACANToBeUpdated)
                 BuildTACAN(ufc);
             if (_cfg.Misc.BaroToBeUpdated)
@@ -29,6 +43,36 @@ namespace DTC.Models.FA18.Upload
                 BuildRadarWarn(radAlt);
             if (_cfg.Misc.BlimTac)
                 BuildTacBlim(rmfd);
+        }
+
+        private void BuildBullseye()
+        {
+            var rmfd = _aircraft.GetDevice("RMFD");
+            AppendCommand(rmfd.GetCommand("OSB-18")); // MENU
+            AppendCommand(rmfd.GetCommand("OSB-18")); // MENU
+            AppendCommand(rmfd.GetCommand("OSB-02")); // HSI
+
+            AppendCommand(rmfd.GetCommand("OSB-10")); // DATA
+            AppendCommand(rmfd.GetCommand("OSB-07")); // WYPT
+
+            selectWp0(rmfd, 0);
+            for (var i = 0; i < _cfg.Misc.BullseyeWP; i++)
+            {
+                AppendCommand(rmfd.GetCommand("OSB-12"));
+            }
+
+            AppendCommand(rmfd.GetCommand("OSB-02"));
+
+            for (var i = 0; i < _cfg.Misc.BullseyeWP; i++)
+            {
+                AppendCommand(rmfd.GetCommand("OSB-13")); // Prev Waypoint
+            }
+
+            AppendCommand(Wait());
+            AppendCommand(rmfd.GetCommand("OSB-18"));
+            AppendCommand(Wait());
+            AppendCommand(rmfd.GetCommand("OSB-18"));
+            AppendCommand(rmfd.GetCommand("OSB-15"));
         }
 
         private void BuildBingo(DCS.Device ifei)

@@ -6,166 +6,171 @@ using System;
 
 namespace DTC.UI.Aircrafts.F16
 {
-	public partial class UploadToJetPage : AircraftSettingPage
-	{
-		private F16Upload _jetInterface;
-		private readonly F16Configuration _cfg;
+    public partial class UploadToJetPage : AircraftSettingPage
+    {
+        private F16Upload _jetInterface;
+        private readonly F16Configuration _cfg;
 
-		private long uploadPressedTimestamp = 0;
+        private long uploadPressedTimestamp = 0;
 
-		public UploadToJetPage(AircraftPage parent, F16Configuration cfg) : base(parent)
-		{
-			InitializeComponent();
-			_jetInterface = new F16Upload(cfg);
+        public UploadToJetPage(AircraftPage parent, F16Configuration cfg) : base(parent)
+        {
+            InitializeComponent();
+            _jetInterface = new F16Upload(cfg);
 
-			txtWaypointStart.LostFocus += TxtWaypointStart_LostFocus;
-			txtWaypointEnd.LostFocus += TxtWaypointEnd_LostFocus;
-			_cfg = cfg;
+            txtWaypointStart.LostFocus += TxtWaypointStart_LostFocus;
+            txtWaypointEnd.LostFocus += TxtWaypointEnd_LostFocus;
+            _cfg = cfg;
 
-			chkWaypoints.Checked = _cfg.Waypoints.EnableUpload;
-			chkCoordinatesElevation.Checked = _cfg.Waypoints.EnableUploadCoordsElevation;
-			chkTimeOverSteerpoint.Checked = _cfg.Waypoints.EnableUploadTOS;
-			chkOverwriteRange.Checked = _cfg.Waypoints.OverrideRange;
-			txtWaypointStart.Text = _cfg.Waypoints.SteerpointStart.ToString();
-			txtWaypointEnd.Text = _cfg.Waypoints.SteerpointEnd.ToString();
-			chkCMS.Checked = _cfg.CMS.EnableUpload;
-			chkRadios.Checked = _cfg.Radios.EnableUpload;
-			chkMisc.Checked = _cfg.Misc.EnableUpload;
-			chkMFDs.Checked = _cfg.MFD.EnableUpload;
-			chkHARM.Checked = _cfg.HARM.EnableUpload;
-			chkHTS.Checked = _cfg.HTS.EnableUpload;
+            chkWaypoints.Checked = _cfg.Waypoints.EnableUpload;
+            chkCoordinatesElevation.Checked = _cfg.Waypoints.EnableUploadCoordsElevation;
+            chkTimeOverSteerpoint.Checked = _cfg.Waypoints.EnableUploadTOS;
+            chkOverwriteRange.Checked = _cfg.Waypoints.OverrideRange;
+            txtWaypointStart.Text = _cfg.Waypoints.SteerpointStart.ToString();
+            txtWaypointEnd.Text = _cfg.Waypoints.SteerpointEnd.ToString();
+            chkCMS.Checked = _cfg.CMS.EnableUpload;
+            chkRadios.Checked = _cfg.Radios.EnableUpload;
+            chkMisc.Checked = _cfg.Misc.EnableUpload;
+            chkMFDs.Checked = _cfg.MFD.EnableUpload;
+            chkHARM.Checked = _cfg.HARM.EnableUpload;
+            chkHTS.Checked = _cfg.HTS.EnableUpload;
 
-			CheckUploadButtonEnabled();
+            CheckUploadButtonEnabled();
 
-			DataReceiver.DataReceived += this.DataReceiver_DataReceived;
-		}
+            DataReceiver.DataReceived += this.DataReceiver_DataReceived;
+        }
 
-		private void DataReceiver_DataReceived(DataReceiver.Data d)
-		{
-			if (d.upload == "1" && uploadPressedTimestamp == 0)
-			{
-				uploadPressedTimestamp = DateTime.Now.Ticks;
-			}
-			if (d.upload == "0" && uploadPressedTimestamp != 0)
-			{
-				var timespan = new TimeSpan(DateTime.Now.Ticks - uploadPressedTimestamp);
-				if (timespan.TotalMilliseconds > 1000)
-				{
-					_jetInterface.Load();
-				}
-				uploadPressedTimestamp = 0;
-			}
-		}
+        private void DataReceiver_DataReceived(DataReceiver.Data d)
+        {
+            if (d.upload == "1" && uploadPressedTimestamp == 0)
+            {
+                uploadPressedTimestamp = DateTime.Now.Ticks;
+            }
+            if (d.upload == "0")
+            {
+                uploadPressedTimestamp = 0;
+            }
 
-		private void CheckUploadButtonEnabled()
-		{
-			btnUpload.Enabled = (_cfg.Waypoints.EnableUpload || _cfg.CMS.EnableUpload || _cfg.Radios.EnableUpload || _cfg.Misc.EnableUpload || _cfg.MFD.EnableUpload || _cfg.HARM.EnableUpload || _cfg.HTS.EnableUpload );
-		}
+            if (uploadPressedTimestamp != 0)
+            {
+                var timespan = new TimeSpan(DateTime.Now.Ticks - uploadPressedTimestamp);
+                if (timespan.TotalMilliseconds > 1000)
+                {
+                    uploadPressedTimestamp = 0;
+                    _jetInterface.Load();
+                }
+            }
+        }
 
-		public override string GetPageTitle()
-		{
-			return "Upload to Jet";
-		}
+        private void CheckUploadButtonEnabled()
+        {
+            btnUpload.Enabled = (_cfg.Waypoints.EnableUpload || _cfg.CMS.EnableUpload || _cfg.Radios.EnableUpload || _cfg.Misc.EnableUpload || _cfg.MFD.EnableUpload || _cfg.HARM.EnableUpload || _cfg.HTS.EnableUpload);
+        }
 
-		private void TxtWaypointEnd_LostFocus(object sender, EventArgs e)
-		{
-			if (int.TryParse(txtWaypointEnd.Text, out int n))
-			{
-				_cfg.Waypoints.SetSteerpointEnd(n);
-				_parent.DataChangedCallback();
-			}
+        public override string GetPageTitle()
+        {
+            return "Upload to Jet";
+        }
 
-			txtWaypointEnd.Text = _cfg.Waypoints.SteerpointEnd.ToString();
-		}
+        private void TxtWaypointEnd_LostFocus(object sender, EventArgs e)
+        {
+            if (int.TryParse(txtWaypointEnd.Text, out int n))
+            {
+                _cfg.Waypoints.SetSteerpointEnd(n);
+                _parent.DataChangedCallback();
+            }
 
-		private void TxtWaypointStart_LostFocus(object sender, EventArgs e)
-		{
-			if (int.TryParse(txtWaypointStart.Text, out int n))
-			{
-				_cfg.Waypoints.SetSteerpointStart(n);
-				_parent.DataChangedCallback();
-			}
+            txtWaypointEnd.Text = _cfg.Waypoints.SteerpointEnd.ToString();
+        }
 
-			txtWaypointStart.Text = _cfg.Waypoints.SteerpointStart.ToString();
-		}
+        private void TxtWaypointStart_LostFocus(object sender, EventArgs e)
+        {
+            if (int.TryParse(txtWaypointStart.Text, out int n))
+            {
+                _cfg.Waypoints.SetSteerpointStart(n);
+                _parent.DataChangedCallback();
+            }
 
-		private void btnUpload_Click(object sender, EventArgs e)
-		{
-			_jetInterface.Load();
-		}
+            txtWaypointStart.Text = _cfg.Waypoints.SteerpointStart.ToString();
+        }
 
-		private void chkWaypoints_CheckedChanged(object sender, EventArgs e)
-		{
-			chkCoordinatesElevation.Enabled = chkWaypoints.Checked;
-			chkTimeOverSteerpoint.Enabled = chkWaypoints.Checked;
-			chkOverwriteRange.Enabled = chkWaypoints.Checked;
-			txtWaypointStart.Enabled = chkWaypoints.Checked;
-			txtWaypointEnd.Enabled = chkWaypoints.Checked;
-			_cfg.Waypoints.EnableUpload = chkWaypoints.Checked;
-			_parent.DataChangedCallback();
-			CheckUploadButtonEnabled();
-		}
+        private void btnUpload_Click(object sender, EventArgs e)
+        {
+            _jetInterface.Load();
+        }
 
-		private void chkCMS_CheckedChanged(object sender, EventArgs e)
-		{
-			_cfg.CMS.EnableUpload = chkCMS.Checked;
-			_parent.DataChangedCallback();
-			CheckUploadButtonEnabled();
-		}
+        private void chkWaypoints_CheckedChanged(object sender, EventArgs e)
+        {
+            chkCoordinatesElevation.Enabled = chkWaypoints.Checked;
+            chkTimeOverSteerpoint.Enabled = chkWaypoints.Checked;
+            chkOverwriteRange.Enabled = chkWaypoints.Checked;
+            txtWaypointStart.Enabled = chkWaypoints.Checked;
+            txtWaypointEnd.Enabled = chkWaypoints.Checked;
+            _cfg.Waypoints.EnableUpload = chkWaypoints.Checked;
+            _parent.DataChangedCallback();
+            CheckUploadButtonEnabled();
+        }
 
-		private void chkRadios_CheckedChanged(object sender, EventArgs e)
-		{
-			_cfg.Radios.EnableUpload = chkRadios.Checked;
-			_parent.DataChangedCallback();
-			CheckUploadButtonEnabled();
-		}
+        private void chkCMS_CheckedChanged(object sender, EventArgs e)
+        {
+            _cfg.CMS.EnableUpload = chkCMS.Checked;
+            _parent.DataChangedCallback();
+            CheckUploadButtonEnabled();
+        }
 
-		private void chkMisc_CheckedChanged(object sender, EventArgs e)
-		{
-			_cfg.Misc.EnableUpload = chkMisc.Checked;
-			_parent.DataChangedCallback();
-			CheckUploadButtonEnabled();
-		}
+        private void chkRadios_CheckedChanged(object sender, EventArgs e)
+        {
+            _cfg.Radios.EnableUpload = chkRadios.Checked;
+            _parent.DataChangedCallback();
+            CheckUploadButtonEnabled();
+        }
 
-		private void chkMFDs_CheckedChanged(object sender, EventArgs e)
-		{
-			_cfg.MFD.EnableUpload = chkMFDs.Checked;
-			_parent.DataChangedCallback();
-			CheckUploadButtonEnabled();
-		}
+        private void chkMisc_CheckedChanged(object sender, EventArgs e)
+        {
+            _cfg.Misc.EnableUpload = chkMisc.Checked;
+            _parent.DataChangedCallback();
+            CheckUploadButtonEnabled();
+        }
 
-		private void chkHARM_CheckedChanged(object sender, EventArgs e)
-		{
-			_cfg.HARM.EnableUpload = chkHARM.Checked;
-			_parent.DataChangedCallback();
-			CheckUploadButtonEnabled();
-		}
+        private void chkMFDs_CheckedChanged(object sender, EventArgs e)
+        {
+            _cfg.MFD.EnableUpload = chkMFDs.Checked;
+            _parent.DataChangedCallback();
+            CheckUploadButtonEnabled();
+        }
 
-		private void chkHTS_CheckedChanged(object sender, EventArgs e)
-		{
-			_cfg.HTS.EnableUpload = chkHTS.Checked;
-			_parent.DataChangedCallback();
-			CheckUploadButtonEnabled();
-		}
+        private void chkHARM_CheckedChanged(object sender, EventArgs e)
+        {
+            _cfg.HARM.EnableUpload = chkHARM.Checked;
+            _parent.DataChangedCallback();
+            CheckUploadButtonEnabled();
+        }
 
-		private void chkOverwriteRange_CheckedChanged(object sender, EventArgs e)
-		{
-			txtWaypointStart.Enabled = chkOverwriteRange.Checked;
-			txtWaypointEnd.Enabled = chkOverwriteRange.Checked;
-			_cfg.Waypoints.OverrideRange = chkOverwriteRange.Checked;
-			_parent.DataChangedCallback();
-		}
+        private void chkHTS_CheckedChanged(object sender, EventArgs e)
+        {
+            _cfg.HTS.EnableUpload = chkHTS.Checked;
+            _parent.DataChangedCallback();
+            CheckUploadButtonEnabled();
+        }
 
-		private void chkCoordinatesElevation_CheckedChanged(object sender, EventArgs e)
-		{
-			_cfg.Waypoints.EnableUploadCoordsElevation = chkCoordinatesElevation.Checked;
-			_parent.DataChangedCallback();
-		}
+        private void chkOverwriteRange_CheckedChanged(object sender, EventArgs e)
+        {
+            txtWaypointStart.Enabled = chkOverwriteRange.Checked;
+            txtWaypointEnd.Enabled = chkOverwriteRange.Checked;
+            _cfg.Waypoints.OverrideRange = chkOverwriteRange.Checked;
+            _parent.DataChangedCallback();
+        }
 
-		private void chkTimeOverSteerpoint_CheckedChanged(object sender, EventArgs e)
-		{
-			_cfg.Waypoints.EnableUploadTOS = chkTimeOverSteerpoint.Checked;
-			_parent.DataChangedCallback();
-		}
-	}
+        private void chkCoordinatesElevation_CheckedChanged(object sender, EventArgs e)
+        {
+            _cfg.Waypoints.EnableUploadCoordsElevation = chkCoordinatesElevation.Checked;
+            _parent.DataChangedCallback();
+        }
+
+        private void chkTimeOverSteerpoint_CheckedChanged(object sender, EventArgs e)
+        {
+            _cfg.Waypoints.EnableUploadTOS = chkTimeOverSteerpoint.Checked;
+            _parent.DataChangedCallback();
+        }
+    }
 }

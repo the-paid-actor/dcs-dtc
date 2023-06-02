@@ -36,20 +36,25 @@ namespace DTC.UI.Aircrafts.FA18
 
 		private void DataReceiver_DataReceived(DataReceiver.Data d)
 		{
-			if (d.upload == "1" && uploadPressedTimestamp == 0)
-			{
-				uploadPressedTimestamp = DateTime.Now.Ticks;
-			}
-			if (d.upload == "0" && uploadPressedTimestamp != 0)
-			{
-				var timespan = new TimeSpan(DateTime.Now.Ticks - uploadPressedTimestamp);
-				if (timespan.TotalMilliseconds > 1000)
-				{
-					_jetInterface.Load();
-				}
-				uploadPressedTimestamp = 0;
-			}
-		}
+            if (d.upload == "1" && uploadPressedTimestamp == 0)
+            {
+                uploadPressedTimestamp = DateTime.Now.Ticks;
+            }
+            if (d.upload == "0")
+            {
+                uploadPressedTimestamp = 0;
+            }
+
+            if (uploadPressedTimestamp != 0)
+            {
+                var timespan = new TimeSpan(DateTime.Now.Ticks - uploadPressedTimestamp);
+                if (timespan.TotalMilliseconds > 1000)
+                {
+                    uploadPressedTimestamp = 0;
+                    _jetInterface.Load();
+                }
+            }
+        }
 
 		private void CheckUploadButtonEnabled()
 		{

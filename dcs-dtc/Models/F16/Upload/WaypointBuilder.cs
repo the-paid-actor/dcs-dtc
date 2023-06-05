@@ -1,5 +1,6 @@
 ﻿using DTC.Models.DCS;
 using DTC.Models.F16.Waypoints;
+using System;
 using System.Collections.Generic;
 using System.Text;
 
@@ -133,7 +134,12 @@ namespace DTC.Models.F16.Upload
             AppendCommand(ufc.GetCommand("ENTR"));
             AppendCommand(ufc.GetCommand("DOWN"));
 
-            AppendCommand(BuildDigits(ufc, oa.Elevation.ToString()));
+            if (oa.Elevation < 0)
+            {
+                AppendCommand(ufc.GetCommand("0"));
+                AppendCommand(ufc.GetCommand("0"));
+            }
+            AppendCommand(BuildDigits(ufc, Math.Abs(oa.Elevation).ToString()));
             AppendCommand(ufc.GetCommand("ENTR"));
             AppendCommand(ufc.GetCommand("DOWN"));
         }
@@ -196,7 +202,12 @@ namespace DTC.Models.F16.Upload
             AppendCommand(ufc.GetCommand("ENTR"));
             AppendCommand(ufc.GetCommand("DOWN"));
 
-            AppendCommand(BuildDigits(ufc, vip.Elevation.ToString()));
+            if (vip.Elevation < 0)
+            {
+                AppendCommand(ufc.GetCommand("0"));
+                AppendCommand(ufc.GetCommand("0"));
+            }
+            AppendCommand(BuildDigits(ufc, Math.Abs(vip.Elevation).ToString()));
             AppendCommand(ufc.GetCommand("ENTR"));
             AppendCommand(ufc.GetCommand("DOWN"));
         }
@@ -259,7 +270,12 @@ namespace DTC.Models.F16.Upload
             AppendCommand(ufc.GetCommand("ENTR"));
             AppendCommand(ufc.GetCommand("DOWN"));
 
-            AppendCommand(BuildDigits(ufc, vrp.Elevation.ToString()));
+            if (vrp.Elevation < 0)
+            {
+                AppendCommand(ufc.GetCommand("0"));
+                AppendCommand(ufc.GetCommand("0"));
+            }
+            AppendCommand(BuildDigits(ufc, Math.Abs(vrp.Elevation).ToString()));
             AppendCommand(ufc.GetCommand("ENTR"));
             AppendCommand(ufc.GetCommand("DOWN"));
         }

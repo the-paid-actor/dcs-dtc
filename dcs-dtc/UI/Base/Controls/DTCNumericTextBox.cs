@@ -95,6 +95,15 @@ namespace DTC.UI.Base.Controls
         {
             if (e.KeyChar == (char)Keys.Back) return;
             if (allowedChars.Contains(e.KeyChar)) return;
+            if (MinimumValue < 0 && e.KeyChar == '-')
+            {
+                if (textBox.Text == "" || 
+                    textBox.SelectionLength == textBox.TextLength ||
+                    (textBox.SelectionStart == 0 && textBox.SelectionLength == 0 && textBox.Text.First() != '-'))
+                {
+                    return;
+                }
+            }
             e.Handled = true;
         }
 

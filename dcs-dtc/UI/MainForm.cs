@@ -8,140 +8,148 @@ using System.Windows.Forms;
 
 namespace DTC.UI
 {
-	public partial class MainForm : Form
-	{
-		private MainPage _mainPage = new MainPage();
+    public partial class MainForm : Form
+    {
+        private MainPage _mainPage = new MainPage();
 
-		private Stack<Page> _pages = new Stack<Page>();
+        private Stack<Page> _pages = new Stack<Page>();
 
-		private bool showDTCPressed = false;
-		private bool hideDTCPressed = false;
+        private bool showDTCPressed = false;
+        private bool hideDTCPressed = false;
 
-		public MainForm()
-		{
-			InitializeComponent();
-			lblVersion.Text = "Version " + Application.ProductVersion;
+        public MainForm()
+        {
+            InitializeComponent();
+            lblVersion.Text = "Version " + Application.ProductVersion;
 
-			ResetToPage(_mainPage);
-			this.TopMost = Settings.AlwaysOnTop;
+            ResetToPage(_mainPage);
+            this.TopMost = Settings.AlwaysOnTop;
 
-			DataReceiver.DataReceived += DataReceiver_DataReceived;
-			DataReceiver.Start();
-		}
+            DataReceiver.DataReceived += DataReceiver_DataReceived;
+            DataReceiver.Start();
+        }
 
-		private void DataReceiver_DataReceived(DataReceiver.Data d)
-		{
-			if (d.showDTC == "1" && !showDTCPressed)
-			{
-				showDTCPressed = true;
-				Invoke(new Action(() =>
-				{
-					SetTopMost(true);
-					WindowState = FormWindowState.Normal;
-				}));
-			}
+        private void DataReceiver_DataReceived(DataReceiver.Data d)
+        {
+            if (d.showDTC == "1" && !showDTCPressed)
+            {
+                showDTCPressed = true;
+                Invoke(new Action(() =>
+                {
+                    SetTopMost(true);
+                    WindowState = FormWindowState.Normal;
+                }));
+            }
 
-			if (d.showDTC == "0" && showDTCPressed)
-			{
-				showDTCPressed = false;
-			}
+            if (d.showDTC == "0" && showDTCPressed)
+            {
+                showDTCPressed = false;
+            }
 
-			if (d.hideDTC == "1" && !hideDTCPressed)
-			{
-				hideDTCPressed = true;
-				Invoke(new Action(() =>
-				{
-					SetTopMost(false);
-					WindowState = FormWindowState.Minimized;
-				}));
-			}
+            if (d.hideDTC == "1" && !hideDTCPressed)
+            {
+                hideDTCPressed = true;
+                Invoke(new Action(() =>
+                {
+                    SetTopMost(false);
+                    WindowState = FormWindowState.Minimized;
+                }));
+            }
 
-			if (d.hideDTC == "0" && hideDTCPressed)
-			{
-				hideDTCPressed = false;
-			}
-		}
+            if (d.hideDTC == "0" && hideDTCPressed)
+            {
+                hideDTCPressed = false;
+            }
+        }
 
-		private void MainForm_Load(object sender, System.EventArgs e)
-		{
-			this.Activate();
-			if (!LuaInstallCheck.Check())
-			{
-				Application.Exit();
-			}
-		}
+        private void MainForm_Load(object sender, System.EventArgs e)
+        {
+            this.Activate();
+            if (!LuaInstallCheck.Check())
+            {
+                Application.Exit();
+            }
+        }
 
-		private void SetPage(Page page)
-		{
-			pnlPages.Controls.Add(page);
-			page.Dock = DockStyle.Fill;
-			page.Visible = true;
-			page.BringToFront();
-		}
+        private void SetPage(Page page)
+        {
+            pnlPages.Controls.Add(page);
+            page.Dock = DockStyle.Fill;
+            page.Visible = true;
+            page.BringToFront();
+        }
 
-		private void ResetToPage(Page page)
-		{
-			pnlPages.Controls.Clear();
+        private void ResetToPage(Page page)
+        {
+            foreach (Control control in pnlPages.Controls)
+            {
+                if (control != page)
+                {
+                    control.Dispose();
+                }
+            }
 
-			SetPage(page);
+            pnlPages.Controls.Clear();
 
-			_pages.Clear();
-			_pages.Push(page);
+            SetPage(page);
 
-			breadCrumbs.SetCrumbs(new DTCBreadCrumb.Crumb(page.PageTitle, () => { ResetToPage(page); }));
-		}
+            _pages.Clear();
+            _pages.Push(page);
 
-		public void AddPage(Page page)
-		{
-			SetPage(page);
+            breadCrumbs.SetCrumbs(new DTCBreadCrumb.Crumb(page.PageTitle, () => { ResetToPage(page); }));
+        }
 
-			_pages.Push(page);
+        public void AddPage(Page page)
+        {
+            SetPage(page);
 
-			breadCrumbs.AddCrumb(new DTCBreadCrumb.Crumb(page.PageTitle, () => { PopUntilPage(page); }));
-		}
+            _pages.Push(page);
 
-		private void PopUntilPage(Page page)
-		{
-			while (_pages.Peek() != page)
-			{
-				var p = _pages.Pop();
-				pnlPages.Controls.Remove(p);
-				p.Dispose();
-				breadCrumbs.PopCrumb();
-			}
+            breadCrumbs.AddCrumb(new DTCBreadCrumb.Crumb(page.PageTitle, () => { PopUntilPage(page); }));
+        }
 
-			SetPage(page);
-		}
+        private void PopUntilPage(Page page)
+        {
+            while (_pages.Peek() != page)
+            {
+                var p = _pages.Pop();
+                pnlPages.Controls.Remove(p);
+                p.Dispose();
+                breadCrumbs.PopCrumb();
+            }
 
-		private void pnlBackground_MouseDown(object sender, MouseEventArgs e)
-		{
-			Draggable.Drag(Handle, e);
-		}
+            SetPage(page);
+        }
 
-		public void ToggleEnabled()
-		{
-			//_planeForm.ToggleEnabled();
-		}
+        private void pnlBackground_MouseDown(object sender, MouseEventArgs e)
+        {
+            Draggable.Drag(Handle, e);
+        }
 
-		private void lblPin_Click(object sender, System.EventArgs e)
-		{
-			SetTopMost(!this.TopMost);
-		}
+        public void ToggleEnabled()
+        {
+            //_planeForm.ToggleEnabled();
+        }
 
-		public void SetTopMost(bool topMost)
-		{
-			this.TopMost = topMost;
-			Settings.AlwaysOnTop = topMost;
-		}
+        private void lblPin_Click(object sender, System.EventArgs e)
+        {
+            SetTopMost(!this.TopMost);
+        }
 
-		private void lblClose_Click(object sender, System.EventArgs e)
-		{
-			this.Close();
-		}
+        public void SetTopMost(bool topMost)
+        {
+            this.TopMost = topMost;
+            Settings.AlwaysOnTop = topMost;
+        }
 
-		private void lblMinimize_Click(object sender, System.EventArgs e)
-		{
-			this.WindowState = FormWindowState.Minimized;
-		}
-	}
+        private void lblClose_Click(object sender, System.EventArgs e)
+        {
+            this.Close();
+        }
+
+        private void lblMinimize_Click(object sender, System.EventArgs e)
+        {
+            this.WindowState = FormWindowState.Minimized;
+        }
+    }
 }

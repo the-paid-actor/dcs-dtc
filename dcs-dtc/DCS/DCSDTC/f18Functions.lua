@@ -86,7 +86,7 @@ end
 
 function DTC_FA18C_CheckCondition_LmfdNotTac()
 	local table = DTC_ParseDisplay(2);
-	local str = table["TAC_id:23"]
+	local str = table["TAC_id:23"] or ""
 	if str == "TAC" then
 		return false
 	end 
@@ -95,7 +95,7 @@ end
 
 function DTC_FA18C_CCheckCondition_RmfdNotSupt()
 	local table = DTC_ParseDisplay(3);
-	local str = table["SUPT_id:12"]
+	local str = table["SUPT_id:13"] or ""
 	if str == "SUPT" then
 		return false
 	end 

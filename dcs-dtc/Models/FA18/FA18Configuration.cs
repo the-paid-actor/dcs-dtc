@@ -14,97 +14,117 @@ using System.Xml.XPath;
 
 namespace DTC.Models.FA18
 {
-	public class FA18Configuration : IConfiguration
-	{
-		public WaypointSystem Waypoints = new WaypointSystem();
-		public SequenceSystem Sequences = new SequenceSystem();
-		public PrePlannedSystem PrePlanned = new PrePlannedSystem();
-		public RadioSystem Radios = new RadioSystem();
-		public CMSystem CMS = new CMSystem();
-		public MiscSystem Misc = new MiscSystem();
+    public class FA18Configuration : IConfiguration
+    {
+        public WaypointSystem Waypoints = new WaypointSystem();
+        public SequenceSystem Sequences = new SequenceSystem();
+        public PrePlannedSystem PrePlanned = new PrePlannedSystem();
+        public RadioSystem Radios = new RadioSystem();
+        public CMSystem CMS = new CMSystem();
+        public MiscSystem Misc = new MiscSystem();
 
-		public string ToJson()
-		{
-			var json = JsonConvert.SerializeObject(this);
-			return json;
-		}
+        public string ToJson()
+        {
+            var json = JsonConvert.SerializeObject(this);
+            return json;
+        }
 
-		public string ToCompressedString()
-		{
-			var json = ToJson();
-			return StringCompressor.CompressString(json);
-		}
+        public string ToCompressedString()
+        {
+            var json = ToJson();
+            return StringCompressor.CompressString(json);
+        }
 
-		public static FA18Configuration FromJson(string s)
-		{
-			try
-			{
-				var cfg = JsonConvert.DeserializeObject<FA18Configuration>(s);
-				cfg.AfterLoadFromJson();
-				return cfg;
-			}
-			catch
-			{
-				return null;
-			}
-		}
+        public static FA18Configuration FromJson(string s)
+        {
+            try
+            {
+                var cfg = JsonConvert.DeserializeObject<FA18Configuration>(s);
+                cfg.AfterLoadFromJson();
+                return cfg;
+            }
+            catch
+            {
+                return null;
+            }
+        }
 
-		public void AfterLoadFromJson()
-		{
-		}
+        public void AfterLoadFromJson()
+        {
+            FixWaypointCoordinateFormat();
+        }
 
-		public static FA18Configuration FromCompressedString(string s)
-		{
-			try
-			{
-				var json = StringCompressor.DecompressString(s);
-				var cfg = FromJson(json);
-				return cfg;
-			}
-			catch
-			{
-				return null;
-			}
-		}
+        private void FixWaypointCoordinateFormat()
+        {
+            if (this.Waypoints == null) return;
 
-		public FA18Configuration Clone()
-		{
-			var json = ToJson();
-			var cfg = FromJson(json);
-			return cfg;
-		}
+            foreach (var wpt in this.Waypoints.Waypoints)
+            {
+                if (!wpt.Latitude.Contains("°"))
+                {
+                    var parts = wpt.Latitude.Split('.');
+                    wpt.Latitude = $"{parts[0]}°{parts[1]}.{parts[2]}’";
+                }
+                if (!wpt.Longitude.Contains("°"))
+                {
+                    var parts = wpt.Longitude.Split('.');
+                    wpt.Longitude = $"{parts[0]}°{parts[1]}.{parts[2]}’";
+                }
+            }
+        }
 
-		public void CopyConfiguration(FA18Configuration cfg)
-		{
-			if (cfg.Waypoints != null)
-			{
-				Waypoints = cfg.Waypoints;
-			}
-			if (cfg.Radios != null)
-			{
-				Radios = cfg.Radios;
-			}
-			if (cfg.Misc != null)
-			{
-				Misc = cfg.Misc;
-			}
-			if (cfg.Sequences != null)
-			{
-				Sequences = cfg.Sequences;
-			}
-			if (cfg.PrePlanned != null)
-			{
-				PrePlanned = cfg.PrePlanned;
-			}
-			if (cfg.Radios != null)
-			{
-				Radios = cfg.Radios;
-			}
-			if (cfg.CMS != null)
-			{
-				CMS = cfg.CMS;
-			}
-		}
+        public static FA18Configuration FromCompressedString(string s)
+        {
+            try
+            {
+                var json = StringCompressor.DecompressString(s);
+                var cfg = FromJson(json);
+                return cfg;
+            }
+            catch
+            {
+                return null;
+            }
+        }
+
+        public FA18Configuration Clone()
+        {
+            var json = ToJson();
+            var cfg = FromJson(json);
+            return cfg;
+        }
+
+        public void CopyConfiguration(FA18Configuration cfg)
+        {
+            if (cfg.Waypoints != null)
+            {
+                Waypoints = cfg.Waypoints;
+            }
+            if (cfg.Radios != null)
+            {
+                Radios = cfg.Radios;
+            }
+            if (cfg.Misc != null)
+            {
+                Misc = cfg.Misc;
+            }
+            if (cfg.Sequences != null)
+            {
+                Sequences = cfg.Sequences;
+            }
+            if (cfg.PrePlanned != null)
+            {
+                PrePlanned = cfg.PrePlanned;
+            }
+            if (cfg.Radios != null)
+            {
+                Radios = cfg.Radios;
+            }
+            if (cfg.CMS != null)
+            {
+                CMS = cfg.CMS;
+            }
+        }
         internal static FA18Configuration FromCombatFliteXML(FA18Configuration previous, string file)
         {
             const double feetPerMeter = 3.28084D;
@@ -138,7 +158,7 @@ namespace DTC.Models.FA18
                 //    continue;
                 //}
                 float.TryParse(pos.Element("Altitude")?.Value.Replace('.', ','), out var elevation);
-                var coord = new Coordinate(dLat, dLon, new EagerLoad(false));
+                var coord = new CoordinateSharp.Coordinate(dLat, dLon, new EagerLoad(false));
                 lat = $"{(dLat > 0 ? 'N' : 'S')} {coord.Latitude.Degrees:00}.{coord.Latitude.DecimalMinute:00.000}";
                 lon = $"{(dLon > 0 ? 'E' : 'W')} {Math.Abs(coord.Longitude.Degrees):000}.{coord.Longitude.DecimalMinute:00.000}";
 
@@ -156,8 +176,8 @@ namespace DTC.Models.FA18
             return previous;
         }
         IConfiguration IConfiguration.Clone()
-		{
-			return Clone();
-		}
-	}
+        {
+            return Clone();
+        }
+    }
 }

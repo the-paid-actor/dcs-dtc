@@ -1,4 +1,5 @@
-﻿using System;
+﻿using DTC.Models.Base;
+using System;
 using System.Text.RegularExpressions;
 
 namespace DTC.Models.F16.Waypoints
@@ -12,8 +13,6 @@ namespace DTC.Models.F16.Waypoints
 
     public class Waypoint
     {
-        private static Regex coordRegex = new Regex("^([N|S] \\d\\d\\.\\d\\d\\.\\d\\d\\d) ([E|W] \\d\\d\\d\\.\\d\\d\\.\\d\\d\\d)$");
-
         public int Sequence { get; set; }
         public string Name { get; set; }
         public string Latitude { get; set; }
@@ -69,16 +68,21 @@ namespace DTC.Models.F16.Waypoints
             TimeOverSteerpoint = "00:00:00";
         }
 
+        public string GetCoordinate()
+        {
+            return Latitude + " " + Longitude;
+        }
+
         public void SetCoordinate(string coord)
         {
-            var match = coordRegex.Match(coord);
+            var match = Coordinate.DegreesMinutesThousandthsRegex.Match(coord);
             Latitude = match.Groups[1].Value;
             Longitude = match.Groups[2].Value;
         }
 
         public static bool IsCoordinateValid(string coord)
         {
-            var match = coordRegex.Match(coord);
+            var match = Coordinate.DegreesMinutesThousandthsRegex.Match(coord);
             return match.Success;
         }
     }

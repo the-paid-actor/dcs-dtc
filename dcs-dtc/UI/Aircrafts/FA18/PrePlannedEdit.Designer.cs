@@ -39,7 +39,7 @@ namespace DTC.UI.Aircrafts.FA18
             this.label2 = new System.Windows.Forms.Label();
             this.lblValidation = new System.Windows.Forms.Label();
             this.btnSave = new DTC.UI.Base.Controls.DTCButton();
-            this.txtWptLatLong = new DTC.UI.Base.Controls.DTCTextBox();
+            this.txtWptLatLong = new DTC.UI.Base.Controls.DTCCoordinateTextBox();
             this.txtWptElevation = new DTC.UI.Base.Controls.DTCTextBox();
             this.pnlTop.SuspendLayout();
             this.SuspendLayout();
@@ -153,7 +153,7 @@ namespace DTC.UI.Aircrafts.FA18
             this.txtWptLatLong.HidePromptOnLeave = false;
             this.txtWptLatLong.InsertKeyMode = System.Windows.Forms.InsertKeyMode.Default;
             this.txtWptLatLong.Location = new System.Drawing.Point(152, 47);
-            this.txtWptLatLong.Mask = ">L 00°00\'00\\.00\'\' L 000°00\'00\\.00\'\'";
+            this.txtWptLatLong.Format = Models.Base.CoordinateFormat.DegreesMinutesSecondsHundredths;
             this.txtWptLatLong.Name = "txtWptLatLong";
             this.txtWptLatLong.PromptChar = '_';
             this.txtWptLatLong.Size = new System.Drawing.Size(270, 28);
@@ -196,7 +196,7 @@ namespace DTC.UI.Aircrafts.FA18
 		}
 
 		#endregion
-		private DTC.UI.Base.Controls.DTCTextBox txtWptLatLong;
+		private DTC.UI.Base.Controls.DTCCoordinateTextBox txtWptLatLong;
 		private DTC.UI.Base.Controls.DTCTextBox txtWptElevation;
 		private System.Windows.Forms.Label lblTitle;
 		private System.Windows.Forms.Panel pnlTop;

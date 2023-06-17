@@ -147,14 +147,14 @@ namespace DTC.UI.Aircrafts.F16
             if (_waypointCapture == null)
             {
                 btnCapture.Text = "Stop Capture";
-                _waypointCapture = new WaypointCapture((string latitude, string longitude, string elevation) =>
+                _waypointCapture = new WaypointCapture((Coordinate coord, string elevation) =>
                 {
                     this.ParentForm.Invoke(new MethodInvoker(delegate ()
                     {
-                        txtWptLatLong.Text = latitude + " " + longitude;
+                        txtWptLatLong.Text = coord.ToDegreesMinutesThousandths();
                         txtWptElevation.Text = elevation;
                     }));
-                }, new DdmShortFormatter());
+                });
             }
             else
             {

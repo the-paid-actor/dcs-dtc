@@ -1,12 +1,11 @@
-﻿using System;
+﻿using DTC.Models.Base;
+using System;
 using System.Text.RegularExpressions;
 
 namespace DTC.Models.FA18.Waypoints
 {
 	public class Waypoint
 	{
-		private static Regex coordRegex = new Regex("^([N|S] \\d\\d\\.\\d\\d\\.\\d\\d) ([E|W] \\d\\d\\d\\.\\d\\d\\.\\d\\d)$");
-
 		public int Sequence { get; set; }
 		public string Name { get; set; }
 		public string Latitude { get; set; }
@@ -39,14 +38,26 @@ namespace DTC.Models.FA18.Waypoints
 
 		public static Waypoint FromStrings(string name, string coord, string elevation)
 		{
-			var match = coordRegex.Match(coord);
+			var match = Coordinate.DegreesMinutesHundredthsRegex.Match(coord);
 			var wpt = new Waypoint(0, name, match.Groups[1].Value, match.Groups[2].Value, int.Parse(elevation));
 			return wpt;
 		}
 
-		public static bool IsCoordinateValid(string coord)
+		public string GetCoordinate()
 		{
-			var match = coordRegex.Match(coord);
+			return Latitude + " " + Longitude;
+		}
+
+        public void SetCoordinate(string coord)
+        {
+            var match = Coordinate.DegreesMinutesHundredthsRegex.Match(coord);
+            Latitude = match.Groups[1].Value;
+            Longitude = match.Groups[2].Value;
+        }
+
+        public static bool IsCoordinateValid(string coord)
+		{
+			var match = Coordinate.DegreesMinutesHundredthsRegex.Match(coord);
 			return match.Success;
 		}
 	}

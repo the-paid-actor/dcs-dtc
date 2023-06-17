@@ -159,13 +159,13 @@ namespace DTC.UI.Aircrafts.FA18.CompositeControls
                 btnCapture.Text = "Capturing...";
                 CtrlsEnableSet(false);
 
-                _waypointCapture = new WaypointCapture((string latitude, string longitude, string elevation) =>
+                _waypointCapture = new WaypointCapture((Coordinate coord, string elevation) =>
                 {
                     this.Invoke(new MethodInvoker(delegate ()
                     {
-                        txtCoord.Text = latitude + " " + longitude;
+                        txtCoord.Text = coord.ToDegreesMinutesSecondsHundredths();
                     }));
-                }, new DmsLongFormatter());
+                });
             }
             else
             {

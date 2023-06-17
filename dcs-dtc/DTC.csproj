@@ -82,6 +82,7 @@
   <ItemGroup>
     <Compile Include="Models\AH64\Waypoints\Ident.cs" />
     <Compile Include="Models\AH64\Waypoints\PointType.cs" />
+    <Compile Include="Models\Base\Coordinate.cs" />
     <Compile Include="Models\Base\DataReceiver.cs" />
     <Compile Include="Models\Base\DataSender.cs" />
     <Compile Include="Models\Base\LuaInstallCheck.cs" />
@@ -286,6 +287,9 @@
     </Compile>
     <Compile Include="UI\Aircrafts\F16\MiscPage.Designer.cs">
       <DependentUpon>MiscPage.cs</DependentUpon>
+    </Compile>
+    <Compile Include="UI\Base\Controls\DTCCoordinateTextBox.cs">
+      <SubType>UserControl</SubType>
     </Compile>
     <Compile Include="UI\Base\Controls\DTCNumericTextBox.cs">
       <SubType>UserControl</SubType>

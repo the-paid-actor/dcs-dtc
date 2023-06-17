@@ -41,7 +41,7 @@ namespace DTC.UI.Aircrafts.FA18
             this.lblClose = new System.Windows.Forms.Label();
             this.txtWptName = new DTC.UI.Base.Controls.DTCTextBox();
             this.txtWptElevation = new DTC.UI.Base.Controls.DTCTextBox();
-            this.txtWptLatLong = new DTC.UI.Base.Controls.DTCTextBox();
+            this.txtWptLatLong = new DTC.UI.Base.Controls.DTCCoordinateTextBox();
             this.label1 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
             this.lblValidation = new System.Windows.Forms.Label();
@@ -185,7 +185,7 @@ namespace DTC.UI.Aircrafts.FA18
             this.txtWptLatLong.HidePromptOnLeave = false;
             this.txtWptLatLong.InsertKeyMode = System.Windows.Forms.InsertKeyMode.Default;
             this.txtWptLatLong.Location = new System.Drawing.Point(152, 104);
-            this.txtWptLatLong.Mask = ">L 00\\.00\\.00 L 000\\.00\\.00";
+            this.txtWptLatLong.Format = Models.Base.CoordinateFormat.DegreesMinutesHundredths;
             this.txtWptLatLong.Name = "txtWptLatLong";
             this.txtWptLatLong.PromptChar = '_';
             this.txtWptLatLong.Size = new System.Drawing.Size(270, 28);
@@ -256,7 +256,7 @@ namespace DTC.UI.Aircrafts.FA18
 		#endregion
 
 		private System.Windows.Forms.ComboBox cboAirbases;
-		private DTC.UI.Base.Controls.DTCTextBox txtWptLatLong;
+		private DTC.UI.Base.Controls.DTCCoordinateTextBox txtWptLatLong;
 		private System.Windows.Forms.Label label5;
 		private DTC.UI.Base.Controls.DTCTextBox txtWptName;
 		private DTC.UI.Base.Controls.DTCTextBox txtWptElevation;

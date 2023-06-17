@@ -1,4 +1,5 @@
 ﻿using DTC.UI.Base.Controls;
+using System;
 using System.Windows.Forms;
 
 namespace DTC.UI.CommonPages
@@ -28,15 +29,17 @@ namespace DTC.UI.CommonPages
 
         public Control[] MakeTGPCodeControls(int left, int top, int height, string initialValue, TGPCodeChangedCallback callback)
         {
-            var labelWidth = 30;
             var cboWidth = 40;
             var padding = 5;
-            var lblFirstDigit = DTCLabel.Make("1", left, top, labelWidth, height);
 
-            left += labelWidth + padding;
+            var cboFirstDigit = DTCDropDown.Make(left, top, cboWidth);
+            cboFirstDigit.Items.AddRange(new object[] { 1, 2 });
+            cboFirstDigit.SelectedItem = int.Parse(initialValue.Substring(0, 1));
+
+            left += cboWidth + padding;
 
             var cboSecondDigit = DTCDropDown.Make(left, top, cboWidth);
-            cboSecondDigit.Items.AddRange(new object[] { 5, 6, 7 });
+            cboSecondDigit.Items.AddRange(new object[] { 1, 2, 3, 4, 5, 6, 7, 8 });
             cboSecondDigit.SelectedItem = int.Parse(initialValue.Substring(1, 1));
 
             left += cboWidth + padding;
@@ -51,20 +54,20 @@ namespace DTC.UI.CommonPages
             cboFourthDigit.Items.AddRange(new object[] { 1, 2, 3, 4, 5, 6, 7, 8 });
             cboFourthDigit.SelectedItem = int.Parse(initialValue.Substring(3, 1));
 
-            cboSecondDigit.SelectedIndexChanged += (sender, args) =>
+            void changed(object sender, EventArgs args)
             {
-                callback("1" + (int)cboSecondDigit.SelectedItem + (int)cboThirdDigit.SelectedItem + (int)cboFourthDigit.SelectedItem);
-            };
-            cboThirdDigit.SelectedIndexChanged += (sender, args) =>
-            {
-                callback("1" + (int)cboSecondDigit.SelectedItem + (int)cboThirdDigit.SelectedItem + (int)cboFourthDigit.SelectedItem);
-            };
-            cboFourthDigit.SelectedIndexChanged += (sender, args) =>
-            {
-                callback("1" + (int)cboSecondDigit.SelectedItem + (int)cboThirdDigit.SelectedItem + (int)cboFourthDigit.SelectedItem);
-            };
+                callback(cboFirstDigit.SelectedItem.ToString() + 
+                    cboSecondDigit.SelectedItem.ToString() + 
+                    cboThirdDigit.SelectedItem.ToString() + 
+                    cboFourthDigit.SelectedItem.ToString());
+            }
 
-            return new Control[] { lblFirstDigit, cboSecondDigit, cboThirdDigit, cboFourthDigit };
+            cboFirstDigit.SelectedIndexChanged += changed;
+            cboSecondDigit.SelectedIndexChanged += changed;
+            cboThirdDigit.SelectedIndexChanged += changed;
+            cboFourthDigit.SelectedIndexChanged += changed;
+
+            return new Control[] { cboFirstDigit, cboSecondDigit, cboThirdDigit, cboFourthDigit };
         }
     }
 }

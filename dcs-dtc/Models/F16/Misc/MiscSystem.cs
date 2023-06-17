@@ -163,9 +163,9 @@ namespace DTC.Models.F16.Misc
                 if
                 (
                     txt.Length == 4 &&
-                    txt.Substring(0, 1) == "1" &&
-                    int.Parse(txt.Substring(1, 1)) >= 5 &&
-                    int.Parse(txt.Substring(1, 1)) <= 7 &&
+                    (txt.Substring(0, 1) == "1" || txt.Substring(0, 1) == "2") &&
+                    int.Parse(txt.Substring(1, 1)) >= 1 &&
+                    int.Parse(txt.Substring(1, 1)) <= 8 &&
                     int.Parse(txt.Substring(2, 1)) >= 1 &&
                     int.Parse(txt.Substring(2, 1)) <= 8 &&
                     int.Parse(txt.Substring(3, 1)) >= 1 &&
@@ -185,9 +185,9 @@ namespace DTC.Models.F16.Misc
                 if
                 (
                     txt.Length == 4 &&
-                    txt.Substring(0, 1) == "1" &&
-                    int.Parse(txt.Substring(1, 1)) >= 5 &&
-                    int.Parse(txt.Substring(1, 1)) <= 7 &&
+                    (txt.Substring(0, 1) == "1" || txt.Substring(0, 1) == "2") &&
+                    int.Parse(txt.Substring(1, 1)) >= 1 &&
+                    int.Parse(txt.Substring(1, 1)) <= 8 &&
                     int.Parse(txt.Substring(2, 1)) >= 1 &&
                     int.Parse(txt.Substring(2, 1)) <= 8 &&
                     int.Parse(txt.Substring(3, 1)) >= 1 &&

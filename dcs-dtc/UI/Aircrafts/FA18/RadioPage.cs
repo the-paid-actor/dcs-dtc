@@ -63,8 +63,8 @@ namespace DTC.UI.Aircrafts.FA18
                 txt.Width = 100;
                 txt.Anchor = AnchorStyles.Left;
                 txt.Font = new System.Drawing.Font("Microsoft Sans Serif", 10);
-                txt.Mask = @"900\.00";
-                txt.Text = String.Format(System.Globalization.CultureInfo.InvariantCulture, @"{0:0.00}", channel.Frequency);
+                txt.Mask = @"900\.000";
+                txt.Text = String.Format(System.Globalization.CultureInfo.InvariantCulture, @"{0:0.000}", channel.Frequency);
                 txt.Tag = channel;
                 txt.LostFocus += Txt_LostFocus;
                 tblRadio.Controls.Add(txt, 2, i);

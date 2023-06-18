@@ -93,13 +93,22 @@ function DTC_FA18C_CheckCondition_LmfdNotTac()
 	return true
 end
 
-function DTC_FA18C_CCheckCondition_RmfdNotSupt()
+function DTC_FA18C_CheckCondition_RmfdNotSupt()
 	local table = DTC_ParseDisplay(3);
 	local str = table["SUPT_id:13"] or ""
 	if str == "SUPT" then
 		return false
 	end 
 	return true
+end
+
+function DTC_FA18C_CCheckCondition_NotBullseye()
+	local table = DTC_ParseDisplay(3);
+	local str = table["A/A WP_1_box__id:12"] or "x"
+	if str == "x" then
+		return true
+	end 
+	return false
 end
 
 function DTC_FA18C_CheckCondition(condition)
@@ -130,7 +139,9 @@ function DTC_FA18C_CheckCondition(condition)
 	elseif condition == "LMFD_NOT_TAC" then
 		return DTC_FA18C_CheckCondition_LmfdNotTac();
 	elseif condition == "RMFD_NOT_SUPT" then
-		return DTC_FA18C_CCheckCondition_RmfdNotSupt();
+		return DTC_FA18C_CheckCondition_RmfdNotSupt();
+	elseif condition == "NOT_BULLSEYE" then
+		return DTC_FA18C_CCheckCondition_NotBullseye();
 	else
 		return false
 	end

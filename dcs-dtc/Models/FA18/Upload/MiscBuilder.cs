@@ -1,5 +1,4 @@
 ﻿using DTC.Models.DCS;
-using System;
 using System.Text;
 
 namespace DTC.Models.FA18.Upload
@@ -19,6 +18,7 @@ namespace DTC.Models.FA18.Upload
             {
                 AppendCommand(StartCondition("NOT_AT_WP0"));
                 AppendCommand(rmfd.GetCommand("OSB-13"));
+                AppendCommand(Wait());
                 AppendCommand(EndCondition("NOT_AT_WP0"));
                 selectWp0(rmfd, i + 1);
             }
@@ -62,6 +62,10 @@ namespace DTC.Models.FA18.Upload
             }
 
             AppendCommand(rmfd.GetCommand("OSB-02"));
+            AppendCommand(Wait());
+            AppendCommand(StartCondition("NOT_BULLSEYE"));
+            AppendCommand(rmfd.GetCommand("OSB-02"));
+            AppendCommand(EndCondition("NOT_BULLSEYE"));
 
             for (var i = 0; i < _cfg.Misc.BullseyeWP; i++)
             {

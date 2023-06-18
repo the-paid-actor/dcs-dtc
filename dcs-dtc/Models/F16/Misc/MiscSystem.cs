@@ -11,7 +11,7 @@ namespace DTC.Models.F16.Misc
 
     public class MiscSystem
     {
-        private static Regex ilsRegex = new Regex(@"^1[0-1][8|9|0|1]\.[1|3|5|7|9][0|5]$");
+        private static Regex ilsRegex = new Regex(@"^1[0-1][8|9|0|1]\.[1|3|5|7|9]?[0|5]?$");
 
         public int Bingo { get; set; }
         public bool BingoToBeUpdated { get; set; }

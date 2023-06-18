@@ -8,25 +8,33 @@ This is a mod for DCS that works as a DTC (Data Cartridge) for the F-16 and F/A-
 
 - Allows uploading to the F-16 cockpit:
   - Waypoints
-  - Countermeasure settings
+    - Coordinates / elevation
+    - Time over steerpoint
+    - Offset aimpoints
+    - VIP / VRP settings
+  - Countermeasure programs and bingo settings
   - Radios
-  - MFD pages settings for the major modes (NAV, AA, AG, DGFT, MSL)
+  - MFD page settings for all master modes (NAV, AA, AG, DGFT, MSL)
   - HARM threat tables
   - HTS threat tables and class selection
   - Bingo fuel setting
+  - Bullseye setting
   - Low altitude warning settings
-  - TGP laser and LST codes
+  - TGP laser and LST codes and auto-lasing timer
   - TACAN channel and ILS frequency
 - Allows uploading to the F/A-18 cockpit:
   - Waypoints
   - Waypoint sequences
-  - Countermeasure settings
-  - Weapon Pre-Planned coordinates
+  - JDAM/JSOW/SLAM pre-planned coordinates
+  - SLAM-ER waypoints
+  - Countermeasure programs
   - Radios
   - Bingo fuel setting
+  - Bullseye setting
   - Radar/Barometric altitude warning setting
   - AP BLIM setting
-  - TACAN Channel/Band setting
+  - TACAN Channel/Band and ILS channel
+  - HSI Map visibility
 - Enables you to share and receive settings from other people using this mod, either by file or clipboard
 - Allows capturing a waypoint coordinate using the F10 view in DCS, or a "markpoint" by flying over a point in the map.
 - Saves the settings and presets in the DCS-DTC folder under Documents.
@@ -72,7 +80,6 @@ If the current status deviates from the default setting, it may not work at all 
 Affected by this are the following features:
   - Countermeasure settings
   - Bingo fuel setting
-  - AP BLIM setting
   - Pre-Planned coordinates
 
 The setting of Pre-Planned coordinates relies on the settings for all stations being correct. If those settings are not correct, results may vary from everything working fine, the coordinates being set on the wrong station or any station not receving the set coordinates.

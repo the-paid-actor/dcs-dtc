@@ -33,28 +33,73 @@ namespace DTC.Models.FA18.Upload
 
             if (_cfg.Misc.BingoToBeUpdated)
                 BuildBingo(ifei);
-            if (_cfg.Misc.BullseyeToBeUpdated)
-                BuildBullseye();
+
+            if (_cfg.Misc.ILSToBeUpdated)
+                BuildILS(ufc);
             if (_cfg.Misc.TACANToBeUpdated)
                 BuildTACAN(ufc);
-            if (_cfg.Misc.BaroToBeUpdated)
-                BuildBaroWarn(ufc, rmfd);
+
+            if (_cfg.Misc.BaroToBeUpdated ||
+                _cfg.Misc.HideMapOnHSI ||
+                _cfg.Misc.BullseyeToBeUpdated ||
+                _cfg.Misc.BlimTac)
+            {
+                AppendCommand(rmfd.GetCommand("OSB-18")); // MENU
+                AppendCommand(rmfd.GetCommand("OSB-18")); // MENU
+                AppendCommand(rmfd.GetCommand("OSB-02")); // HSI
+
+                if (_cfg.Misc.HideMapOnHSI)
+                    BuildHideMapOnHSI(rmfd);
+
+                AppendCommand(rmfd.GetCommand("OSB-10")); // DATA
+                AppendCommand(rmfd.GetCommand("OSB-06")); // A/C
+
+                if (_cfg.Misc.BaroToBeUpdated)
+                    BuildBaroWarn(ufc, rmfd);
+                if (_cfg.Misc.BlimTac)
+                    BuildTacBlim(rmfd);
+
+                AppendCommand(rmfd.GetCommand("OSB-07")); // WYPT
+
+                if (_cfg.Misc.BullseyeToBeUpdated)
+                    BuildBullseye(rmfd);
+
+                AppendCommand(rmfd.GetCommand("OSB-18")); // Menu
+                AppendCommand(rmfd.GetCommand("OSB-18")); // Menu
+                AppendCommand(rmfd.GetCommand("OSB-15")); // FCS
+            }
+
             if (_cfg.Misc.RadarToBeUpdated)
                 BuildRadarWarn(radAlt);
-            if (_cfg.Misc.BlimTac)
-                BuildTacBlim(rmfd);
         }
 
-        private void BuildBullseye()
+        private void BuildHideMapOnHSI(DCS.Device rmfd)
         {
-            var rmfd = _aircraft.GetDevice("RMFD");
-            AppendCommand(rmfd.GetCommand("OSB-18")); // MENU
-            AppendCommand(rmfd.GetCommand("OSB-18")); // MENU
-            AppendCommand(rmfd.GetCommand("OSB-02")); // HSI
+            AppendCommand(rmfd.GetCommand("OSB-03")); // MODE
+            AppendCommand(StartCondition("MAP_BOXED"));
+            AppendCommand(rmfd.GetCommand("OSB-03")); // MODE
+            AppendCommand(EndCondition("MAP_BOXED"));
+            AppendCommand(StartCondition("MAP_UNBOXED"));
+            AppendCommand(rmfd.GetCommand("OSB-01")); // SLEW
+            AppendCommand(EndCondition("MAP_UNBOXED"));
+        }
 
-            AppendCommand(rmfd.GetCommand("OSB-10")); // DATA
-            AppendCommand(rmfd.GetCommand("OSB-07")); // WYPT
+        private void BuildBaroWarn(DCS.Device ufc, DCS.Device mfd)
+        {
+            AppendCommand(mfd.GetCommand("OSB-20")); // Baro
+            AppendCommand(BuildDigits(ufc, _cfg.Misc.BaroWarn.ToString())); // Alt
+            AppendCommand(ufc.GetCommand("ENT")); // Enter
+        }
 
+        private void BuildTacBlim(DCS.Device mfd)
+        {
+            AppendCommand(StartCondition("NAV_BLIM"));
+            AppendCommand(mfd.GetCommand("OSB-04")); // BLIM
+            AppendCommand(EndCondition("NAV_BLIM"));
+        }
+
+        private void BuildBullseye(DCS.Device rmfd)
+        {
             selectWp0(rmfd, 0);
             for (var i = 0; i < _cfg.Misc.BullseyeWP; i++)
             {
@@ -71,12 +116,6 @@ namespace DTC.Models.FA18.Upload
             {
                 AppendCommand(rmfd.GetCommand("OSB-13")); // Prev Waypoint
             }
-
-            AppendCommand(Wait());
-            AppendCommand(rmfd.GetCommand("OSB-18"));
-            AppendCommand(Wait());
-            AppendCommand(rmfd.GetCommand("OSB-18"));
-            AppendCommand(rmfd.GetCommand("OSB-15"));
         }
 
         private void BuildBingo(DCS.Device ifei)
@@ -89,21 +128,6 @@ namespace DTC.Models.FA18.Upload
                 AppendCommand(Wait());
             }
             AppendCommand(EndCondition("BINGO_ZERO"));
-        }
-
-        private void BuildBaroWarn(DCS.Device ufc, DCS.Device mfd)
-        {
-            AppendCommand(mfd.GetCommand("OSB-18")); // Menu
-            AppendCommand(mfd.GetCommand("OSB-18")); // Menu
-            AppendCommand(mfd.GetCommand("OSB-02")); // HSI
-            AppendCommand(mfd.GetCommand("OSB-10")); // DATA
-            AppendCommand(mfd.GetCommand("OSB-06")); // A/C
-            AppendCommand(mfd.GetCommand("OSB-20")); // Baro
-            AppendCommand(BuildDigits(ufc, _cfg.Misc.BaroWarn.ToString())); // Alt
-            AppendCommand(ufc.GetCommand("ENT")); // Enter
-            AppendCommand(mfd.GetCommand("OSB-18")); // Menu
-            AppendCommand(mfd.GetCommand("OSB-18")); // Menu
-            AppendCommand(mfd.GetCommand("OSB-15")); // FCS
         }
 
         private void BuildRadarWarn(DCS.Device radAlt)
@@ -159,22 +183,8 @@ namespace DTC.Models.FA18.Upload
             }
         }
 
-        private void BuildTacBlim(DCS.Device mfd)
-        {
-            AppendCommand(mfd.GetCommand("OSB-18")); // Menu
-            AppendCommand(mfd.GetCommand("OSB-18")); // Menu
-            AppendCommand(mfd.GetCommand("OSB-02")); // HSI
-            AppendCommand(mfd.GetCommand("OSB-10")); // DATA
-            AppendCommand(mfd.GetCommand("OSB-06")); // A/C
-            AppendCommand(mfd.GetCommand("OSB-04")); // BLIM
-            AppendCommand(mfd.GetCommand("OSB-18")); // Menu
-            AppendCommand(mfd.GetCommand("OSB-18")); // Menu
-            AppendCommand(mfd.GetCommand("OSB-15")); // FCS
-        }
-
         private void BuildTACAN(DCS.Device ufc)
         {
-            //TACAN
             AppendCommand(ufc.GetCommand("TCN"));
 
             AppendCommand(BuildDigits(ufc, _cfg.Misc.TACANChannel.ToString()));
@@ -188,8 +198,15 @@ namespace DTC.Models.FA18.Upload
             {
                 AppendCommand(ufc.GetCommand("Opt5"));
             }
+        }
 
-            AppendCommand(ufc.GetCommand("OnOff"));
+        private void BuildILS(DCS.Device ufc)
+        {
+            if (_cfg.Misc.ILSChannel == 0) return;
+
+            AppendCommand(ufc.GetCommand("ILS"));
+            AppendCommand(BuildDigits(ufc, _cfg.Misc.ILSChannel.ToString()));
+            AppendCommand(ufc.GetCommand("ENT"));
         }
     }
 }

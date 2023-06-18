@@ -1,6 +1,7 @@
 ﻿using DTC.Models.FA18.Misc;
 using DTC.UI.Base.Controls;
 using DTC.UI.CommonPages;
+using System.Collections.Generic;
 
 namespace DTC.UI.Aircrafts.FA18
 {
@@ -162,6 +163,51 @@ namespace DTC.UI.Aircrafts.FA18
                     };
                     this.Controls.Add(cboTacanBand);
                 }
+            }
+
+            //ILS
+            {
+                left = padding;
+                top += padding + rowHeight;
+                this.Controls.Add(DTCCheckBox.Make(left, top, chkWidth, rowHeight, _misc.ILSToBeUpdated, (chk) =>
+                {
+                    _misc.ILSToBeUpdated = chk.Checked;
+                    _parent.DataChangedCallback();
+                }));
+
+                left += padding + chkWidth;
+                this.Controls.Add(DTCLabel.Make("ILS Channel", left, top, colWidth, rowHeight));
+
+                left += padding + colWidth;
+                var items = new List<string>() { "" };
+                for (var i = 1; i <= 20; i++)
+                {
+                    items.Add(i.ToString());
+                }
+
+                var cboIls = DTCDropDown.Make(left, top, colWidth);
+                cboIls.Items.AddRange(items.ToArray());
+                cboIls.SelectedItem = _misc.ILSChannel == 0 ? "" : _misc.ILSChannel.ToString();
+                cboIls.SelectedIndexChanged += (sender, args) =>
+                {
+                    _misc.ILSChannel = cboIls.SelectedItem.ToString() != "" ? int.Parse(cboIls.SelectedItem.ToString()) : 0;
+                    _parent.DataChangedCallback();
+                };
+                this.Controls.Add(cboIls);
+            }
+
+            //Map on HSI
+            {
+                left = padding;
+                top += padding + rowHeight;
+                this.Controls.Add(DTCCheckBox.Make(left, top, chkWidth, rowHeight, _misc.HideMapOnHSI, (chk) =>
+                {
+                    _misc.HideMapOnHSI = chk.Checked;
+                    _parent.DataChangedCallback();
+                }));
+
+                left += padding + chkWidth;
+                this.Controls.Add(DTCLabel.Make("Hide MAP on HSI", left, top, colWidth, rowHeight));
             }
         }
     }

@@ -221,6 +221,4 @@ function DTC_F16CM_AfterNextFrame(params)
 	if wxButton == 1 then params["uploadCommand"] = "1" end
 	if flirIncDec == 1 then params["showDTCCommand"] = "1" end
 	if flirIncDec == -1 then params["hideDTCCommand"] = "1" end
-
-	--DTC_DebugDisplay(DTC_F16CM_GetDED())
 end

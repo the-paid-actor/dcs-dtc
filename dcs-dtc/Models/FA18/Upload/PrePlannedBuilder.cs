@@ -1,22 +1,20 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Drawing;
 using System.Text;
 using System.Text.RegularExpressions;
 using DTC.Models.DCS;
 using DTC.Models.FA18.PrePlanned;
-using static System.Collections.Specialized.BitVector32;
 
 namespace DTC.Models.FA18.Upload
 {
     internal class PrePlannedBuilder : BaseBuilder
     {
-		private FA18Configuration _cfg;
+        private FA18Configuration _cfg;
 
-		public PrePlannedBuilder(FA18Configuration cfg, IAircraftDeviceManager aircraft, StringBuilder sb) : base(aircraft, sb)
-		{
-			_cfg = cfg;
-		}
+        public PrePlannedBuilder(FA18Configuration cfg, IAircraftDeviceManager aircraft, StringBuilder sb) : base(aircraft, sb)
+        {
+            _cfg = cfg;
+        }
 
         public override void Build()
         {
@@ -30,7 +28,8 @@ namespace DTC.Models.FA18.Upload
             AppendCommand(lmfd.GetCommand("OSB-05")); // STORES
             AppendCommand(Wait());
 
-            for (int group_no = 0; group_no < stationGroups.Count; group_no++) {
+            for (int group_no = 0; group_no < stationGroups.Count; group_no++)
+            {
                 var group = stationGroups[group_no];
                 string wpnGroupSelectCmd = lmfd.GetCommand(groupNo_to_WpnTypeSelectCmd(group_no));
                 var firstStation = group[0]; /* first station in group (with same type of payload) */
@@ -61,7 +60,7 @@ namespace DTC.Models.FA18.Upload
                         AppendCommand(lmfd.GetCommand("OSB-11")); // STP deselect
                     }
                 }
-                
+
                 AppendCommand(GetDsplyCommand(lmfd, firstStation.stationType)); // JDAM/JSOW/SLAM/SLMR-DSPLY
                 AppendCommand(lmfd.GetCommand("OSB-04")); // MSN
                 foreach (var sta in group)
@@ -84,7 +83,8 @@ namespace DTC.Models.FA18.Upload
 
             var sb = new StringBuilder();
 
-            for (int i = 1; i <= 5; i++) {
+            for (int i = 1; i <= 5; i++)
+            {
                 sb.Append(ufc.GetCommand("Opt1")); // STP1
                 sb.Append(Wait());
                 sb.Append(ufc.GetCommand("Opt5")); // DEL
@@ -92,9 +92,10 @@ namespace DTC.Models.FA18.Upload
             }
 
             int stpProgNumber = 1;
-            foreach (var stp in sta.Steerpoints) {
+            foreach (var stp in sta.Steerpoints)
+            {
                 if (!stp.Enabled) continue;
-                
+
                 sb.Append(ufc.GetCommand(String.Format("Opt{0}", stpProgNumber)));
                 sb.Append(Wait());
 
@@ -188,9 +189,9 @@ namespace DTC.Models.FA18.Upload
             return wpnGroupSelectCmd;
         }
 
-		private string InputStation(Device lmfd, Device ufc, PrePlannedStation station)
+        private string InputStation(Device lmfd, Device ufc, PrePlannedStation station)
         {
-			var sb = new StringBuilder();
+            var sb = new StringBuilder();
 
             bool returnToPP1 = false;
             for (int i = 1; i <= 5; i++)
@@ -212,41 +213,41 @@ namespace DTC.Models.FA18.Upload
             if (returnToPP1)
                 sb.Append(lmfd.GetCommand("OSB-06")); // PP1
 
-			return sb.ToString();
+            return sb.ToString();
         }
 
-		private string InputCoordinate(Device lmfd, Device ufc, PrePlannedCoordinate coord)
+        private string InputCoordinate(Device lmfd, Device ufc, PrePlannedCoordinate coord)
         {
-			var sb = new StringBuilder();
+            var sb = new StringBuilder();
             sb.Append(lmfd.GetCommand("OSB-14")); // TGT-UFC
-			sb.Append(ufc.GetCommand("Opt4")); // Elev
-			sb.Append(Wait());
-			sb.Append(ufc.GetCommand("Opt3")); // Feet
-			sb.Append(Wait());
-			sb.Append(BuildDigits(ufc, coord.Elev.ToString())); // Enter elevation
-			sb.Append(ufc.GetCommand("ENT"));
-			sb.Append(WaitLong());
+            sb.Append(ufc.GetCommand("Opt4")); // Elev
+            sb.Append(Wait());
+            sb.Append(ufc.GetCommand("Opt3")); // Feet
+            sb.Append(Wait());
+            sb.Append(BuildDigits(ufc, coord.Elev.ToString())); // Enter elevation
+            sb.Append(ufc.GetCommand("ENT"));
+            sb.Append(WaitLong());
             sb.Append(lmfd.GetCommand("OSB-14")); // TGT-UFC
             sb.Append(lmfd.GetCommand("OSB-14")); // TGT-UFC
-			sb.Append(ufc.GetCommand("Opt3")); // Pos
-			sb.Append(Wait());
-			sb.Append(ufc.GetCommand("Opt1")); // Lat
-			sb.Append(Wait());
-			sb.Append(BuildCoordinate(ufc, coord.Lat));
-			sb.Append(ufc.GetCommand("ENT"));
-			sb.Append(WaitLong());
-			sb.Append(ufc.GetCommand("Opt3")); // Lon
-			sb.Append(Wait());
-			sb.Append(BuildCoordinate(ufc, coord.Lon));
-			sb.Append(ufc.GetCommand("ENT"));
-			sb.Append(WaitLong());
+            sb.Append(ufc.GetCommand("Opt3")); // Pos
+            sb.Append(Wait());
+            sb.Append(ufc.GetCommand("Opt1")); // Lat
+            sb.Append(Wait());
+            sb.Append(BuildCoordinate(ufc, coord.Lat));
+            sb.Append(ufc.GetCommand("ENT"));
+            sb.Append(WaitLong());
+            sb.Append(ufc.GetCommand("Opt3")); // Lon
+            sb.Append(Wait());
+            sb.Append(BuildCoordinate(ufc, coord.Lon));
+            sb.Append(ufc.GetCommand("ENT"));
+            sb.Append(WaitLong());
             sb.Append(lmfd.GetCommand("OSB-14")); // TGT-UFC
-			return sb.ToString();
+            return sb.ToString();
         }
 
-		private string GetDsplyCommand(Device lmfd, StationType type)
+        private string GetDsplyCommand(Device lmfd, StationType type)
         {
-            switch(type)
+            switch (type)
             {
                 case StationType.GBU38:
                 case StationType.GBU32:
@@ -258,64 +259,66 @@ namespace DTC.Models.FA18.Upload
             }
         }
 
-		private string GetCondition(PrePlannedStation station)
+        private string GetCondition(PrePlannedStation station)
         {
-			var condition = "";
+            var condition = "";
             switch (station.stationType)
             {
-				case StationType.GBU38:
-					condition = "STA_IS_GBUTE_";
-					break;
-				case StationType.GBU32:
-					condition = "STA_IS_GBUTT_";
-					break;
-				case StationType.GBU31NP:
-					condition = "STA_IS_GBUTO_";
-					break;
-				case StationType.GBU31PP:
-					condition = "STA_IS_GBUTOP_";
-					break;
-				case StationType.JSOWA:
-					condition = "STA_IS_JSOWA_";
-					break;
-				case StationType.JSOWC:
-					condition = "STA_IS_JSOWC_";
-					break;
-				case StationType.SLAM:
-					condition = "STA_IS_SLAM_";
-					break;
-				case StationType.SLAMER:
-					condition = "STA_IS_SLAMER_";
-					break;
+                case StationType.GBU38:
+                    condition = "STA_IS_GBUTE_";
+                    break;
+                case StationType.GBU32:
+                    condition = "STA_IS_GBUTT_";
+                    break;
+                case StationType.GBU31NP:
+                    condition = "STA_IS_GBUTO_";
+                    break;
+                case StationType.GBU31PP:
+                    condition = "STA_IS_GBUTOP_";
+                    break;
+                case StationType.JSOWA:
+                    condition = "STA_IS_JSOWA_";
+                    break;
+                case StationType.JSOWC:
+                    condition = "STA_IS_JSOWC_";
+                    break;
+                case StationType.SLAM:
+                    condition = "STA_IS_SLAM_";
+                    break;
+                case StationType.SLAMER:
+                    condition = "STA_IS_SLAMER_";
+                    break;
             }
 
-			return condition + station.stationNumber;
+            return condition + station.stationNumber;
         }
 
-		private bool isJdamOrJsow(StationType stationType)
-    {
-			switch (stationType)
-			{
-				case StationType.GBU38:
-				case StationType.GBU32:
-				case StationType.GBU31NP:
-				case StationType.GBU31PP:
-				case StationType.JSOWA:
-				case StationType.JSOWC:
-					return true;
-				default:
-					return false;
-			}
+        private bool isJdamOrJsow(StationType stationType)
+        {
+            switch (stationType)
+            {
+                case StationType.GBU38:
+                case StationType.GBU32:
+                case StationType.GBU31NP:
+                case StationType.GBU31PP:
+                case StationType.JSOWA:
+                case StationType.JSOWC:
+                    return true;
+                default:
+                    return false;
+            }
         }
 
 
 
-		private string BuildCoordinate(Device ufc, string coord) {
+        private string BuildCoordinate(Device ufc, string coord)
+        {
             var sb = new StringBuilder();
-            
-			/* enter hemisphere */
-			switch (coord[0]) {
-				case 'N':
+
+            /* enter hemisphere */
+            switch (coord[0])
+            {
+                case 'N':
                     sb.Append(ufc.GetCommand("2"));
                     break;
                 case 'S':
@@ -332,29 +335,29 @@ namespace DTC.Models.FA18.Upload
             /* remove everything thats not a digit */
             string digits = Regex.Replace(coord, "[^0-9]", "");
 
-			if (digits.Length == 9)
-			{
-				/* If this is a 9 digit coordinate (longitude) and has a leading zero, then remove that */
-				if (digits[0] == '0')
-					digits = digits.Substring(1);
-			}
-			else if (digits.Length != 8) /* neither 9 nor 8 digits (we got an invalid input) -- this should not happen */
-				throw new ApplicationException("Internal error: number of digits should be 8 or 9 -- (digits:\"" + digits + "\")");
+            if (digits.Length == 9)
+            {
+                /* If this is a 9 digit coordinate (longitude) and has a leading zero, then remove that */
+                if (digits[0] == '0')
+                    digits = digits.Substring(1);
+            }
+            else if (digits.Length != 8) /* neither 9 nor 8 digits (we got an invalid input) -- this should not happen */
+                throw new ApplicationException("Internal error: number of digits should be 8 or 9 -- (digits:\"" + digits + "\")");
 
-			for (int i = 0; i < digits.Length; i++)
-			{
-				sb.Append(ufc.GetCommand(digits.Substring(i, 1)));
-                
-				/* two digits before the end we press ENT */
-				if (digits.Length - 1 - i == 2)
-				{
+            for (int i = 0; i < digits.Length; i++)
+            {
+                sb.Append(ufc.GetCommand(digits.Substring(i, 1)));
+
+                /* two digits before the end we press ENT */
+                if (digits.Length - 1 - i == 2)
+                {
                     sb.Append(WaitLong());
                     sb.Append(ufc.GetCommand("ENT"));
                     sb.Append(WaitLong());
                 }
-			}
-			
-			return sb.ToString();
+            }
+
+            return sb.ToString();
         }
     }
 }

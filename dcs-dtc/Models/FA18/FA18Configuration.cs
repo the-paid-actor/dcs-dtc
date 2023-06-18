@@ -164,13 +164,15 @@ namespace DTC.Models.FA18
 
                 var s = coord.ToString();
 
-                previous.Waypoints.Waypoints.Add(new Waypoint(
-                    i,
-                    string.IsNullOrEmpty(name) ? "" : name,
-                    string.IsNullOrEmpty(lat) ? "N 00.00.000" : lat,
-                    string.IsNullOrEmpty(lon) ? "E 000.00.000" : lon,
-                    (int)Math.Floor(elevation * feetPerMeter)
-                ));
+                var coordStr = string.IsNullOrEmpty(lat) ? "N 00.00.000" : lat;
+                coordStr = coordStr + " " + (string.IsNullOrEmpty(lon) ? "E 000.00.000" : lon);
+                var wpt = new Waypoint();
+                wpt.Sequence = i;
+                wpt.Name = string.IsNullOrEmpty(name) ? "" : name;
+                wpt.SetCoordinate(coordStr);
+                wpt.Elevation = (int)Math.Floor(elevation * feetPerMeter);
+
+                previous.Waypoints.Waypoints.Add(wpt);
 
             }
             return previous;

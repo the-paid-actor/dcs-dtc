@@ -27,22 +27,6 @@ namespace DTC.Models.FA18.Waypoints
 			}
 		}
 
-		public Waypoint(int seq, string name, string latitude, string longitude, int elevation)
-		{
-			Sequence = seq;
-			Name = name;
-			Latitude = latitude;
-			Longitude = longitude;
-			Elevation = elevation;
-		}
-
-		public static Waypoint FromStrings(string name, string coord, string elevation)
-		{
-			var match = Coordinate.DegreesMinutesHundredthsRegex.Match(coord);
-			var wpt = new Waypoint(0, name, match.Groups[1].Value, match.Groups[2].Value, int.Parse(elevation));
-			return wpt;
-		}
-
 		public string GetCoordinate()
 		{
 			return Latitude + " " + Longitude;

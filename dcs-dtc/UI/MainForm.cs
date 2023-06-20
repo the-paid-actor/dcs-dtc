@@ -29,6 +29,11 @@ namespace DTC.UI
             DataReceiver.Start();
         }
 
+        protected override bool ShowWithoutActivation
+        {
+            get { return true; }
+        }
+
         private void DataReceiver_DataReceived(DataReceiver.Data d)
         {
             if (d.showDTC == "1" && !showDTCPressed)
@@ -36,8 +41,8 @@ namespace DTC.UI
                 showDTCPressed = true;
                 Invoke(new Action(() =>
                 {
+                    BringToFront();
                     SetTopMost(true);
-                    WindowState = FormWindowState.Normal;
                 }));
             }
 
@@ -52,7 +57,7 @@ namespace DTC.UI
                 Invoke(new Action(() =>
                 {
                     SetTopMost(false);
-                    WindowState = FormWindowState.Minimized;
+                    SendToBack();
                 }));
             }
 

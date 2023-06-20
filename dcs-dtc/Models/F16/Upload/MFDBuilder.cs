@@ -26,17 +26,17 @@ namespace DTC.Models.F16.Upload
 
             AppendCommand(Wait());
 
-            AppendCommand(StartCondition("NOT_IN_AA"));
+            AppendCommand(StartCondition("NotInAAMode"));
 
             AppendCommand(ufc.GetCommand("SEQ"));
-            AppendCommand(StartCondition("NOT_IN_AG"));
+            AppendCommand(StartCondition("NotInAGMode"));
             
             if (_cfg.MFD.Configurations.Any(c => c.ToBeUpdated))
             {
                 BuildMFD();
             }
 
-            AppendCommand(EndCondition("NOT_IN_AG"));
+            AppendCommand(EndCondition("NotInAGMode"));
 
             AppendCommand(ufc.GetCommand("RTN"));
             AppendCommand(ufc.GetCommand("RTN"));
@@ -45,7 +45,7 @@ namespace DTC.Models.F16.Upload
             AppendCommand(ufc.GetCommand("8"));
             AppendCommand(ufc.GetCommand("SEQ"));
 
-            AppendCommand(EndCondition("NOT_IN_AA"));
+            AppendCommand(EndCondition("NotInAAMode"));
 
             AppendCommand(ufc.GetCommand("RTN"));
         }             
@@ -148,13 +148,9 @@ namespace DTC.Models.F16.Upload
             else if (page == Page.HAD)
             {
                 AppendCommand(d.GetCommand("OSB-02-HAD"));
-
-                var condition = (isLeftMFD ? "LMFD_HTS" : "RMFD_HTS");
-                AppendCommand(StartCondition(condition));
-
+                AppendCommand(StartCondition("HTSOnMFD", isLeftMFD ? "left" : "right"));
                 BuildHTSOnMFDIfOn(isLeftMFD, d);
-
-                AppendCommand(EndCondition(condition));
+                AppendCommand(EndCondition("HTSOnMFD"));
             }
             else if (page == Page.HSD)
             {
@@ -191,10 +187,9 @@ namespace DTC.Models.F16.Upload
         {
             AppendCommand(d.GetCommand("OSB-04-RCCE"));
 
-            var subCondition = (isLeftMFD ? "LMFD_HTS_ALL_NOT_SELECTED" : "RMFD_HTS_ALL_NOT_SELECTED");
-            AppendCommand(StartCondition(subCondition));
+            AppendCommand(StartCondition("HTSAllNotSelected", isLeftMFD ? "left" : "right"));
             AppendCommand(d.GetCommand("OSB-05"));
-            AppendCommand(EndCondition(subCondition));
+            AppendCommand(EndCondition("HTSAllNotSelected"));
 
             AppendCommand(d.GetCommand("OSB-05"));
 

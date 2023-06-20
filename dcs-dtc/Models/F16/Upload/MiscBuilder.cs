@@ -96,9 +96,9 @@ namespace DTC.Models.F16.Upload
             AppendCommand(ufc.GetCommand("8"));
             AppendCommand(Wait());
 
-            AppendCommand(StartCondition("BULLS_NOT_SELECTED"));
+            AppendCommand(StartCondition("BullseyeNotSelected"));
             AppendCommand(ufc.GetCommand("0"));
-            AppendCommand(EndCondition("BULLS_NOT_SELECTED"));
+            AppendCommand(EndCondition("BullseyeNotSelected"));
 
             AppendCommand(ufc.GetCommand("DOWN"));
             AppendCommand(BuildDigits(ufc, DeleteLeadingZeros(_cfg.Misc.BullseyeWP.ToString())));
@@ -118,17 +118,17 @@ namespace DTC.Models.F16.Upload
 
             if (_cfg.Misc.TACANBand == F16.Misc.TACANBands.X)
             {
-                AppendCommand(StartCondition("TACAN_BAND_Y"));
+                AppendCommand(StartCondition("TACANBandY"));
                 AppendCommand(ufc.GetCommand("0"));
                 AppendCommand(ufc.GetCommand("ENTR"));
-                AppendCommand(EndCondition("TACAN_BAND_Y"));
+                AppendCommand(EndCondition("TACANBandY"));
             }
             else
             {
-                AppendCommand(StartCondition("TACAN_BAND_X"));
+                AppendCommand(StartCondition("TACANBandX"));
                 AppendCommand(ufc.GetCommand("0"));
                 AppendCommand(ufc.GetCommand("ENTR"));
-                AppendCommand(EndCondition("TACAN_BAND_X"));
+                AppendCommand(EndCondition("TACANBandX"));
             }
 
             AppendCommand(ufc.GetCommand("RTN"));

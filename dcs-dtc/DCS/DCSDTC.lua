@@ -54,26 +54,11 @@ function LuaExportStart()
     end
 end
 
-local function checkConditionNew(condition, param1, param2)
+local function checkCondition(condition, param1, param2)
     local ac = DTC_GetPlayerAircraftType();
     local funcName = 'DTC_'..ac..'_CheckCondition_'..condition;
     local res = _G[funcName](param1, param2)
     return res
-end
-
-local function checkCondition(condition, param1, param2)
-    if condition:find("^COND_") ~= nil then
-        return checkConditionNew(condition:sub(6), param1, param2);
-    end
-
-    local ac = DTC_GetPlayerAircraftType();
-    if ac == "F16CM" then
-        return DTC_F16CM_CheckCondition(condition, param1, param2)
-    elseif ac == "FA18C" then 
-        return DTC_FA18C_CheckCondition(condition, param1, param2);
-    else
-        return false
-    end
 end
 
 function LuaExportBeforeNextFrame()

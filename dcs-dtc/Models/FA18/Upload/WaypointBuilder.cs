@@ -17,9 +17,9 @@ namespace DTC.Models.FA18.Upload
         {
             if (i < 140) // It might not notice on the first pass, so we go around once more
             {
-                AppendCommand(StartCondition("NOT_AT_WP0"));
+                AppendCommand(StartCondition("NotAtWp0"));
                 AppendCommand(rmfd.GetCommand("OSB-13"));
-                AppendCommand(EndCondition("NOT_AT_WP0"));
+                AppendCommand(EndCondition("NotAtWp0"));
                 selectWp0(rmfd, i + 1);
             }
         }

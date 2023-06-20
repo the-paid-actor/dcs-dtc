@@ -34,7 +34,7 @@ namespace DTC.UI.Base.Controls
         {
             get
             {
-                if (float.TryParse(textBox.Text, out var value))
+                if (float.TryParse(textBox.Text, NumberStyles.Number, CultureInfo.InvariantCulture, out var value))
                 {
                     return value;
                 }
@@ -70,7 +70,7 @@ namespace DTC.UI.Base.Controls
 
         private void TextBox_Validating(object sender, System.ComponentModel.CancelEventArgs e)
         {
-            if (float.TryParse(textBox.Text, out float result))
+            if (float.TryParse(textBox.Text, NumberStyles.Number, CultureInfo.InvariantCulture, out float result))
             {
                 var min = MinimumValue;
                 var max = MaximumValue;

@@ -39,11 +39,11 @@ namespace DTC.Models.FA18.Upload
                 var firstStation = group[0]; /* first station in group (with same type of payload) */
 
                 //If its already selected, de-selects it
-                AppendCommand(StartConditionNew("StationSelected", firstStation.stationNumber.ToString()));
+                AppendCommand(StartCondition("StationSelected", firstStation.stationNumber.ToString()));
                 AppendCommand(wpnGroupSelectCmd); // Weapon group select (top row OSB)
-                AppendCommand(EndConditionNew("StationSelected"));
+                AppendCommand(EndCondition("StationSelected"));
 
-                AppendCommand(StartConditionNew("CheckStore", GetDCSWeaponCode(firstStation), firstStation.stationNumber.ToString()));
+                AppendCommand(StartCondition("CheckStore", GetDCSWeaponCode(firstStation), firstStation.stationNumber.ToString()));
                 AppendCommand(wpnGroupSelectCmd); // Weapon group select (top row OSB)
 
                 if (firstStation.stationType == StationType.SLAMER || firstStation.stationType == StationType.SLAM)
@@ -72,11 +72,13 @@ namespace DTC.Models.FA18.Upload
 
                 AppendCommand(GetDisplayCommand(lmfd, firstStation.stationType)); // JDAM/JSOW/SLAM/SLMR-DSPLY
                 AppendCommand(lmfd.GetCommand("OSB-04")); // MSN
+                AppendCommand(Wait());
 
                 //If its on TOO, switches to PP
-                AppendCommand(StartConditionNew("IsTargetOfOpportunity"));
+                AppendCommand(StartCondition("IsTargetOfOpportunity"));
                 AppendCommand(lmfd.GetCommand("OSB-05")); // TOO/PP
-                AppendCommand(EndConditionNew("IsTargetOfOpportunity"));
+                AppendCommand(Wait());
+                AppendCommand(EndCondition("IsTargetOfOpportunity"));
 
                 foreach (var sta in group)
                 {
@@ -92,7 +94,7 @@ namespace DTC.Models.FA18.Upload
                     AppendCommand(wpnGroupSelectCmd); // Weapon group select (top row OSB)
                 }
 
-                AppendCommand(EndConditionNew("CheckStore"));
+                AppendCommand(EndCondition("CheckStore"));
             }
         }
 
@@ -224,9 +226,10 @@ namespace DTC.Models.FA18.Upload
                 firstPPEnabled = Math.Min(i, firstPPEnabled);
 
                 /* select PP if necessary */
-                sb.Append(StartConditionNew("IsPPNotSelected", i.ToString()));
+                sb.Append(StartCondition("IsPPNotSelected", i.ToString()));
                 sb.Append(lmfd.GetCommand(string.Format("OSB-{0:00}", 5 + i)));
-                sb.Append(EndConditionNew("IsPPNotSelected"));
+                AppendCommand(Wait());
+                sb.Append(EndCondition("IsPPNotSelected"));
 
                 sb.Append(InputCoordinate(lmfd, ufc, station.PP[i]));
 

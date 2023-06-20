@@ -167,20 +167,20 @@ namespace DTC.Models.F16.Upload
 
             AppendCommand(Wait());
 
-            AppendCommand(StartCondition("VIP_TO_TGT_NOT_SELECTED"));
+            AppendCommand(StartCondition("VIP_TO_TGT_NotSelected"));
             AppendCommand(ufc.GetCommand("SEQ"));
-            AppendCommand(EndCondition("VIP_TO_TGT_NOT_SELECTED"));
+            AppendCommand(EndCondition("VIP_TO_TGT_NotSelected"));
 
-            AppendCommand(StartCondition("VIP_TO_TGT_NOT_HIGHLIGHTED"));
+            AppendCommand(StartCondition("VIP_TO_TGT_NotHighlighted"));
             AppendCommand(ufc.GetCommand("0"));
-            AppendCommand(EndCondition("VIP_TO_TGT_NOT_HIGHLIGHTED"));
+            AppendCommand(EndCondition("VIP_TO_TGT_NotHighlighted"));
 
             BuildVIPDetail(ufc, stptId, wpt.VIPtoTGT);
             AppendCommand(ufc.GetCommand("SEQ"));
 
-            AppendCommand(StartCondition("VIP_TO_PUP_NOT_HIGHLIGHTED"));
+            AppendCommand(StartCondition("VIP_TO_PUP_NotHighlighted"));
             AppendCommand(ufc.GetCommand("0"));
-            AppendCommand(EndCondition("VIP_TO_PUP_NOT_HIGHLIGHTED"));
+            AppendCommand(EndCondition("VIP_TO_PUP_NotHighlighted"));
 
             BuildVIPDetail(ufc, stptId, wpt.VIPtoPUP);
             AppendCommand(ufc.GetCommand("SEQ"));
@@ -235,20 +235,20 @@ namespace DTC.Models.F16.Upload
 
             AppendCommand(Wait());
 
-            AppendCommand(StartCondition("TGT_TO_VRP_NOT_SELECTED"));
+            AppendCommand(StartCondition("TGT_TO_VRP_NotSelected"));
             AppendCommand(ufc.GetCommand("SEQ"));
-            AppendCommand(EndCondition("TGT_TO_VRP_NOT_SELECTED"));
+            AppendCommand(EndCondition("TGT_TO_VRP_NotSelected"));
 
-            AppendCommand(StartCondition("TGT_TO_VRP_NOT_HIGHLIGHTED"));
+            AppendCommand(StartCondition("TGT_TO_VRP_NotHighlighted"));
             AppendCommand(ufc.GetCommand("0"));
-            AppendCommand(EndCondition("TGT_TO_VRP_NOT_HIGHLIGHTED"));
+            AppendCommand(EndCondition("TGT_TO_VRP_NotHighlighted"));
 
             BuildVRPDetail(ufc, stptId, wpt.TGTtoVRP);
             AppendCommand(ufc.GetCommand("SEQ"));
 
-            AppendCommand(StartCondition("TGT_TO_PUP_NOT_HIGHLIGHTED"));
+            AppendCommand(StartCondition("TGT_TO_PUP_NotHighlighted"));
             AppendCommand(ufc.GetCommand("0"));
-            AppendCommand(EndCondition("TGT_TO_PUP_NOT_HIGHLIGHTED"));
+            AppendCommand(EndCondition("TGT_TO_PUP_NotHighlighted"));
 
             BuildVRPDetail(ufc, stptId, wpt.TGTtoPUP);
             AppendCommand(ufc.GetCommand("SEQ"));

@@ -16,20 +16,20 @@ namespace DTC.Models
 		{
             var lmfd = _aircraft.GetDevice("LMFD");
             /* If not on the TAC page, then press OSB 18 */
-            AppendCommand(StartCondition("LMFD_NOT_TAC"));
+            AppendCommand(StartCondition("LmfdNotTac"));
             AppendCommand(lmfd.GetCommand("OSB-18"));
-            AppendCommand(EndCondition("LMFD_NOT_TAC"));
+            AppendCommand(EndCondition("LmfdNotTac"));
             AppendCommand(lmfd.GetCommand("OSB-03")); /* HUD */
 
             var rmfd = _aircraft.GetDevice("RMFD");
             /* If not on the SUPT page, then press OSB 18 */
-            AppendCommand(StartCondition("RMFD_NOT_SUPT"));
+            AppendCommand(StartCondition("RmfdNotSupt"));
             AppendCommand(rmfd.GetCommand("OSB-18"));
-            AppendCommand(EndCondition("RMFD_NOT_SUPT"));
+            AppendCommand(EndCondition("RmfdNotSupt"));
             /* If not on the SUPT page, then press OSB 18 */
-            AppendCommand(StartCondition("RMFD_NOT_SUPT"));
+            AppendCommand(StartCondition("RmfdNotSupt"));
             AppendCommand(rmfd.GetCommand("OSB-18"));
-            AppendCommand(EndCondition("RMFD_NOT_SUPT"));
+            AppendCommand(EndCondition("RmfdNotSupt"));
             AppendCommand(rmfd.GetCommand("OSB-15")); /* FCS */
         }
     }

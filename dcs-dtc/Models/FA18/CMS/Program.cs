@@ -1,4 +1,5 @@
-﻿using System.Text.RegularExpressions;
+﻿using System.Globalization;
+using System.Text.RegularExpressions;
 
 namespace DTC.Models.FA18.CMS
 {
@@ -39,7 +40,7 @@ namespace DTC.Models.FA18.CMS
 		private bool ValidateInterval(string txt)
 		{
             var regex = new Regex("^([012345][,.][0257][05])$");
-			if (!decimal.TryParse(txt, out decimal f))
+			if (!decimal.TryParse(txt, NumberStyles.Number, CultureInfo.InvariantCulture, out decimal f))
 			{
 				return false;
 			}

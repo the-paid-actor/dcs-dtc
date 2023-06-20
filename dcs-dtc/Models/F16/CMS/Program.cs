@@ -1,4 +1,6 @@
-﻿namespace DTC.Models.F16.CMS
+﻿using System.Globalization;
+
+namespace DTC.Models.F16.CMS
 {
 	public class Program
 	{
@@ -46,7 +48,7 @@
 
 		private bool ValidateBurstInterval(string txt)
 		{
-			if (!decimal.TryParse(txt, out decimal f))
+			if (!decimal.TryParse(txt, NumberStyles.Number, CultureInfo.InvariantCulture, out decimal f))
 			{
 				return false;
 			}

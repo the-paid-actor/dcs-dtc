@@ -27,10 +27,10 @@ namespace DTC.Models.F16.Upload
 
             AppendCommand(Wait());
 
-            AppendCommand(StartCondition("NOT_IN_AA"));
+            AppendCommand(StartCondition("NotInAAMode"));
 
             AppendCommand(ufc.GetCommand("SEQ"));
-            AppendCommand(StartCondition("NOT_IN_AG"));
+            AppendCommand(StartCondition("NotInAGMode"));
             
             
             if (_cfg.HARM.Tables.Any(t => t.ToBeUpdated))
@@ -38,7 +38,7 @@ namespace DTC.Models.F16.Upload
                 BuildHARM();
             }
             
-            AppendCommand(EndCondition("NOT_IN_AG"));
+            AppendCommand(EndCondition("NotInAGMode"));
 
             AppendCommand(ufc.GetCommand("RTN"));
             AppendCommand(ufc.GetCommand("RTN"));
@@ -47,7 +47,7 @@ namespace DTC.Models.F16.Upload
             AppendCommand(ufc.GetCommand("8"));
             AppendCommand(ufc.GetCommand("SEQ"));
 
-            AppendCommand(EndCondition("NOT_IN_AA"));
+            AppendCommand(EndCondition("NotInAAMode"));
 
             AppendCommand(ufc.GetCommand("RTN"));
         }

@@ -16,15 +16,6 @@ function DTC_FA18C_GetIFEI()
 	return DTC_ParseDisplay(5)
 end
 
-function DTC_FA18C_CheckCondition_AtWp0()
-	local table = DTC_FA18C_GetRightDDI();
-	local str = table["WYPT_Page_Number"]
-	if str == "0" then
-		return true
-	end 
-	return false
-end
-
 function DTC_FA18C_CheckCondition_NotAtWp0()
 	local table = DTC_FA18C_GetRightDDI();
 	local str = table["WYPT_Page_Number"]
@@ -137,7 +128,7 @@ function DTC_FA18C_CheckCondition_MapUnboxed()
 	return false
 end
 
-function DTC_FA18C_CheckCondition_NavBlim()
+function DTC_FA18C_CheckCondition_IsBankLimitOnNav()
 	local table = DTC_FA18C_GetRightDDI();
 	local str = table["_1__id:13"] or ""
 	if str == "N" then
@@ -146,41 +137,13 @@ function DTC_FA18C_CheckCondition_NavBlim()
 	return false
 end
 
-function DTC_FA18C_CheckCondition_DispOff()
+function DTC_FA18C_CheckCondition_DispenserOff()
 	local table = DTC_FA18C_GetLeftDDI();
 	local str = table["EW_ALE47_MODE_label_cross_Root"] or "x"
 	if str == "" then
 		return true
 	end 
 	return false
-end
-
-function DTC_FA18C_CheckCondition(condition)
-	if condition == "NOT_AT_WP0" then
-		return DTC_FA18C_CheckCondition_NotAtWp0();
-	elseif condition == "AT_WP0" then
-		return DTC_FA18C_CheckCondition_AtWp0();
-	elseif condition == "BINGO_ZERO" then
-		return DTC_FA18C_CheckCondition_BingoIsZero();
-	elseif condition:find("^IN_SEQ_") ~= nil then
-		return DTC_FA18C_CheckCondition_InSequence(string.match(condition, "%d+"));
-	elseif condition == "LMFD_NOT_TAC" then
-		return DTC_FA18C_CheckCondition_LmfdNotTac();
-	elseif condition == "RMFD_NOT_SUPT" then
-		return DTC_FA18C_CheckCondition_RmfdNotSupt();
-	elseif condition == "NOT_BULLSEYE" then
-		return DTC_FA18C_CheckCondition_NotBullseye();
-	elseif condition == "MAP_BOXED" then
-		return DTC_FA18C_CheckCondition_MapBoxed();
-	elseif condition == "MAP_UNBOXED" then
-		return DTC_FA18C_CheckCondition_MapUnboxed();
-	elseif condition == "NAV_BLIM" then
-		return DTC_FA18C_CheckCondition_NavBlim();
-	elseif condition == "DISP_OFF" then
-		return DTC_FA18C_CheckCondition_DispOff();
-	else
-		return false
-	end
 end
 
 function DTC_FA18C_AfterNextFrame(params)

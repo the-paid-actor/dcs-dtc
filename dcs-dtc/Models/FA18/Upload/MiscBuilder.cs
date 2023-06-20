@@ -16,10 +16,10 @@ namespace DTC.Models.FA18.Upload
         {
             if (i < 140) // It might not notice on the first pass, so we go around once more
             {
-                AppendCommand(StartCondition("NOT_AT_WP0"));
+                AppendCommand(StartCondition("NotAtWp0"));
                 AppendCommand(rmfd.GetCommand("OSB-13"));
                 AppendCommand(Wait());
-                AppendCommand(EndCondition("NOT_AT_WP0"));
+                AppendCommand(EndCondition("NotAtWp0"));
                 selectWp0(rmfd, i + 1);
             }
         }
@@ -76,12 +76,12 @@ namespace DTC.Models.FA18.Upload
         private void BuildHideMapOnHSI(DCS.Device rmfd)
         {
             AppendCommand(rmfd.GetCommand("OSB-03")); // MODE
-            AppendCommand(StartCondition("MAP_BOXED"));
+            AppendCommand(StartCondition("MapBoxed"));
             AppendCommand(rmfd.GetCommand("OSB-03")); // MODE
-            AppendCommand(EndCondition("MAP_BOXED"));
-            AppendCommand(StartCondition("MAP_UNBOXED"));
+            AppendCommand(EndCondition("MapBoxed"));
+            AppendCommand(StartCondition("MapUnboxed"));
             AppendCommand(rmfd.GetCommand("OSB-01")); // SLEW
-            AppendCommand(EndCondition("MAP_UNBOXED"));
+            AppendCommand(EndCondition("MapUnboxed"));
         }
 
         private void BuildBaroWarn(DCS.Device ufc, DCS.Device mfd)
@@ -93,9 +93,9 @@ namespace DTC.Models.FA18.Upload
 
         private void BuildTacBlim(DCS.Device mfd)
         {
-            AppendCommand(StartCondition("NAV_BLIM"));
+            AppendCommand(StartCondition("IsBankLimitOnNav"));
             AppendCommand(mfd.GetCommand("OSB-04")); // BLIM
-            AppendCommand(EndCondition("NAV_BLIM"));
+            AppendCommand(EndCondition("IsBankLimitOnNav"));
         }
 
         private void BuildBullseye(DCS.Device rmfd)
@@ -108,9 +108,9 @@ namespace DTC.Models.FA18.Upload
 
             AppendCommand(rmfd.GetCommand("OSB-02"));
             AppendCommand(Wait());
-            AppendCommand(StartCondition("NOT_BULLSEYE"));
+            AppendCommand(StartCondition("NotBullseye"));
             AppendCommand(rmfd.GetCommand("OSB-02"));
-            AppendCommand(EndCondition("NOT_BULLSEYE"));
+            AppendCommand(EndCondition("NotBullseye"));
 
             for (var i = 0; i < _cfg.Misc.BullseyeWP; i++)
             {
@@ -121,13 +121,13 @@ namespace DTC.Models.FA18.Upload
         private void BuildBingo(DCS.Device ifei)
         {
             //Bingo
-            AppendCommand(StartCondition("BINGO_ZERO"));
+            AppendCommand(StartCondition("BingoIsZero"));
             for (var i = 0; i < _cfg.Misc.Bingo; i += 100)
             {
                 AppendCommand(ifei.GetCommand("UP"));
                 AppendCommand(Wait());
             }
-            AppendCommand(EndCondition("BINGO_ZERO"));
+            AppendCommand(EndCondition("BingoIsZero"));
         }
 
         private void BuildRadarWarn(DCS.Device radAlt)

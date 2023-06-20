@@ -50,9 +50,9 @@ namespace DTC.Models.DCS
             return str.Replace("'", "\"");
         }
 
-        protected static string StartConditionNew(string condition, params string[] parameters)
+        protected static string StartCondition(string condition, params string[] parameters)
         {
-            var str = "{'start_condition': 'COND_" + condition + "'";
+            var str = "{'start_condition': '" + condition + "'";
             if (parameters.Length > 0)
             {
                 for (int i = 0; i < parameters.Length; i++)
@@ -61,18 +61,6 @@ namespace DTC.Models.DCS
                 }
             }
             str += "},";
-            return str.Replace("'", "\"");
-        }
-
-        protected static string EndConditionNew(string condition)
-        {
-            var str = "{'end_condition': 'COND_" + condition + "'},";
-            return str.Replace("'", "\"");
-        }
-
-        protected static string StartCondition(string condition)
-        {
-            var str = "{'start_condition': '" + condition + "'},";
             return str.Replace("'", "\"");
         }
 

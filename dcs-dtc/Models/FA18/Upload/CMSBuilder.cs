@@ -20,10 +20,10 @@ namespace DTC.Models.FA18.Upload
             AppendCommand(lmfd.GetCommand("OSB-18")); // Menu
             AppendCommand(lmfd.GetCommand("OSB-17")); // EW
 
-            AppendCommand(StartCondition("DISP_OFF"));
+            AppendCommand(StartCondition("DispenserOff"));
             AppendCommand(cmds.GetCommand("ON"));
             AppendCommand(WaitVeryLong());
-            AppendCommand(EndCondition("DISP_OFF"));
+            AppendCommand(EndCondition("DispenserOff"));
 
             AppendCommand(lmfd.GetCommand("OSB-08")); // ALE-47
             AppendCommand(lmfd.GetCommand("OSB-09")); // ARM

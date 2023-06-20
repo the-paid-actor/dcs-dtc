@@ -20,7 +20,12 @@ namespace DTC.Models.F16
 			var delaySeq = delay;
 			var delayRtn = delay;
 
-			var ufc = new Device(17, "UFC");
+			var sms = new Device(22, "SMS");
+			sms.AddCommand(new Command(3002, "LEFT_HDPT", 0, 1));
+			sms.AddCommand(new Command(3003, "RIGHT_HDPT", 0, 1));
+			AddDevice(sms);
+
+            var ufc = new Device(17, "UFC");
 			ufc.AddCommand(new Command(3002, "0", 0, 1));
 			ufc.AddCommand(new Command(3003, "1", 0, 1));
 			ufc.AddCommand(new Command(3004, "2", 0, 1));

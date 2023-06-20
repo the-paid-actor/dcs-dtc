@@ -68,13 +68,13 @@ namespace DTC.Models.FA18.Upload
         {
             for (var i = 0; i < 60; i++)
             {
-                AppendCommand(StartCondition("IN_SEQ_" + i));
+                AppendCommand(StartCondition("InSequence", i.ToString()));
                 AppendCommand(ufc.GetCommand("Opt5")); // DEL
                 AppendCommand(Wait());
                 AppendCommand(BuildNumber(ufc, i));
                 AppendCommand(ufc.GetCommand("ENT")); // Enter
                 AppendCommand(Wait());
-                AppendCommand(EndCondition("IN_SEQ_" + i));
+                AppendCommand(EndCondition("InSequence"));
             }
         }
 

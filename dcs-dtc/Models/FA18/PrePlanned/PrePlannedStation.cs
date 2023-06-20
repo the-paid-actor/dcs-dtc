@@ -1,20 +1,18 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace DTC.Models.FA18.PrePlanned
 {
-    public class PrePlannedStation:IComparable<PrePlannedStation>
+    public class PrePlannedStation : IComparable<PrePlannedStation>
     {
-        public StationType stationType {  get; set; }  
+        public StationType stationType { get; set; }
 
         public int stationNumber { get; set; }
         public Dictionary<int, PrePlannedCoordinate> PP;
         public PrePlannedSteerpoint[] Steerpoints = new PrePlannedSteerpoint[5]; /* for SLAM-ER */
 
-        public bool AnyStpEnabled {
+        public bool AnyStpEnabled
+        {
             get
             {
                 foreach (var stp in Steerpoints)
@@ -44,11 +42,12 @@ namespace DTC.Models.FA18.PrePlanned
             for (int i = 1; i <= 5; i++)
                 PP.Add(i, new PrePlannedCoordinate());
 
-            for (int i = 0; i < 5; i++) {
+            for (int i = 0; i < 5; i++)
+            {
                 Steerpoints[i] = new PrePlannedSteerpoint();
             }
         }
-        public StationType fromString(string s)
+        public StationType FromString(string s)
         {
             switch (s)
             {
@@ -77,7 +76,7 @@ namespace DTC.Models.FA18.PrePlanned
 
         public static string TypeToString(StationType type)
         {
-            switch(type)
+            switch (type)
             {
                 case StationType.GBU38:
                     return "GBU38";
@@ -102,8 +101,10 @@ namespace DTC.Models.FA18.PrePlanned
             }
         }
 
-        private int StepOrder() {
-            switch (stationNumber) {
+        private int StepOrder()
+        {
+            switch (stationNumber)
+            {
                 case 8: return 1;
                 case 2: return 2;
                 case 7: return 3;
@@ -132,6 +133,4 @@ namespace DTC.Models.FA18.PrePlanned
         AA,
         OTHER
     }
-
-
 }

@@ -41,29 +41,39 @@ function LuaExportStart()
         end
     end
     
-	udpSpeaker = socket.udp()
-	udpSpeaker:settimeout(0)
-	tcpServer = socket.tcp()
+    udpSpeaker = socket.udp()
+    udpSpeaker:settimeout(0)
+    tcpServer = socket.tcp()
     successful, err = tcpServer:bind("127.0.0.1", tcpPort)
     tcpServer:listen(1)
     tcpServer:settimeout(0)
-	if not successful then
-		log.write("DCS-DTC", log.ERROR, "Error opening tcp socket - "..tostring(err))
-	else
-		log.write("DCS-DTC", log.INFO, "Opened connection")
-	end
+    if not successful then
+        log.write("DCS-DTC", log.ERROR, "Error opening tcp socket - "..tostring(err))
+    else
+        log.write("DCS-DTC", log.INFO, "Opened connection")
+    end
 end
 
+local function checkConditionNew(condition, param1, param2)
+    local ac = DTC_GetPlayerAircraftType();
+    local funcName = 'DTC_'..ac..'_CheckCondition_'..condition;
+    local res = _G[funcName](param1, param2)
+    return res
+end
 
-local function checkCondition(condition)
-	local ac = DTC_GetPlayerAircraftType();
-	if ac == "F16CM" then
-		return DTC_F16CM_CheckCondition(condition)
-	elseif ac == "FA18C" then 
-		return DTC_FA18C_CheckCondition(condition);
-	else
-		return false
-	end
+local function checkCondition(condition, param1, param2)
+    if condition:find("^COND_") ~= nil then
+        return checkConditionNew(condition:sub(6), param1, param2);
+    end
+
+    local ac = DTC_GetPlayerAircraftType();
+    if ac == "F16CM" then
+        return DTC_F16CM_CheckCondition(condition, param1, param2)
+    elseif ac == "FA18C" then 
+        return DTC_FA18C_CheckCondition(condition, param1, param2);
+    else
+        return false
+    end
 end
 
 function LuaExportBeforeNextFrame()
@@ -75,78 +85,80 @@ function LuaExportBeforeNextFrame()
     end
 
     if needDelay then
-		local currentTime = socket.gettime()
-		if ((currentTime - delayStart) > delayNeeded) then
-			needDelay = false
-			if device ~= "wait" then
-				GetDevice(device):performClickableAction(code, 0)
-			end
-		end
-	else
-		if keypressinprogress then
-			local keys = JSON:decode(data)
-			for i=nextIndex, #keys do
-				local keyObj = keys[i]
-				local startCondition = keyObj["start_condition"]
-				local endCondition = keyObj["end_condition"]
-				
-				if endCondition then
-					if endCondition == skipCondition then
-						skipCondition = nil
-						skip = false
-						nextIndex = i+1
-					end
-				elseif skip then
-					nextIndex = i+1	
-				elseif startCondition then
-					skipCondition = startCondition
-					skip = not checkCondition(startCondition)
-					nextIndex = i+1
-				else
+        local currentTime = socket.gettime()
+        if ((currentTime - delayStart) > delayNeeded) then
+            needDelay = false
+            if device ~= "wait" then
+                GetDevice(device):performClickableAction(code, 0)
+            end
+        end
+    else
+        if keypressinprogress then
+            local keys = JSON:decode(data)
+            for i=nextIndex, #keys do
+                local keyObj = keys[i]
+                local startCondition = keyObj["start_condition"]
+                local endCondition = keyObj["end_condition"]
+                
+                if endCondition then
+                    if endCondition == skipCondition then
+                        skipCondition = nil
+                        skip = false
+                        nextIndex = i+1
+                    end
+                elseif skip then
+                    nextIndex = i+1	
+                elseif startCondition then
+                    skipCondition = startCondition
+                    local param1 = keyObj["param1"]
+                    local param2 = keyObj["param2"]
+                    skip = not checkCondition(startCondition, param1, param2)
+                    nextIndex = i+1
+                else
 
-					device = keyObj["device"]
-					code = keyObj["code"]
-					delay = tonumber(keyObj["delay"])
+                    device = keyObj["device"]
+                    code = keyObj["code"]
+                    delay = tonumber(keyObj["delay"])
 
-					local activate = tonumber(keyObj["activate"])
+                    local activate = tonumber(keyObj["activate"])
 
-					if delay > 0 then
-						needDelay = true
-						delayNeeded = delay / 1000
-						delayStart = socket.gettime()
-						if device ~= "wait" then
-							GetDevice(device):performClickableAction(code, activate)
-						end
-						nextIndex = i+1
-						break
-					else
-						GetDevice(device):performClickableAction(code, activate)
-						if delay == 0 then
-							GetDevice(device):performClickableAction(code, 0)
-						end
-					end
-				end
-			end
-			if not needDelay then
-				keypressinprogress = false
-				nextIndex = 1
-			end
-		else
-		    local client, err = tcpServer:accept()
+                    if delay > 0 then
+                        needDelay = true
+                        delayNeeded = delay / 1000
+                        delayStart = socket.gettime()
+                        if device ~= "wait" then
+                            GetDevice(device):performClickableAction(code, activate)
+                        end
+                        nextIndex = i+1
+                        break
+                    else
+                        GetDevice(device):performClickableAction(code, activate)
+                        if delay == 0 then
+                            GetDevice(device):performClickableAction(code, 0)
+                        end
+                    end
+                end
+            end
+            if not needDelay then
+                keypressinprogress = false
+                nextIndex = 1
+            end
+        else
+            local client, err = tcpServer:accept()
 
             if client ~= nil then
                 client:settimeout(10)
-			    data, err = client:receive()
-			    if err then
-				    log.write("DCS-DTC", log.ERROR, "Error at receiving: "..err)  
-			    end
+                data, err = client:receive()
+                if err then
+                    log.write("DCS-DTC", log.ERROR, "Error at receiving: "..err)  
+                end
 
-			    if data then 
-				    keypressinprogress = true
-			    end
+                if data then 
+                    keypressinprogress = true
+                end
             end
-		end
-	end
+        end
+    end
 end
 
 function LuaExportAfterNextFrame()
@@ -158,39 +170,39 @@ function LuaExportAfterNextFrame()
     end
 
     local camPos = LoGetCameraPosition()
-	local loX = camPos['p']['x']
-	local loZ = camPos['p']['z']
-	local elevation = LoGetAltitude(loX, loZ)
-	local coords = LoLoCoordinatesToGeoCoordinates(loX, loZ)
-	local model = DTC_GetPlayerAircraftType();
+    local loX = camPos['p']['x']
+    local loZ = camPos['p']['z']
+    local elevation = LoGetAltitude(loX, loZ)
+    local coords = LoLoCoordinatesToGeoCoordinates(loX, loZ)
+    local model = DTC_GetPlayerAircraftType();
 
-	local params = {};
-	params["uploadCommand"] = "0";
-	params["showDTCCommand"] = "0";
-	params["hideDTCCommand"] = "0";
+    local params = {};
+    params["uploadCommand"] = "0";
+    params["showDTCCommand"] = "0";
+    params["hideDTCCommand"] = "0";
 
-	if model ==	"F16CM" then
-		DTC_F16CM_AfterNextFrame(params)
-	end
+    if model ==	"F16CM" then
+        DTC_F16CM_AfterNextFrame(params)
+    end
 
-	if model == "FA18C" then
-		DTC_FA18C_AfterNextFrame(params)
-	end
+    if model == "FA18C" then
+        DTC_FA18C_AfterNextFrame(params)
+    end
 
-	local toSend = "{"..
-		"\"model\": ".."\""..model.."\""..
-		", ".."\"latitude\": ".."\""..coords.latitude.."\""..
-		", ".."\"longitude\": ".."\""..coords.longitude.."\""..
-		", ".."\"elevation\": ".."\""..elevation.."\""..
-		", ".."\"upload\": ".."\""..params["uploadCommand"].."\""..
-		", ".."\"showDTC\": ".."\""..params["showDTCCommand"].."\""..
-		", ".."\"hideDTC\": ".."\""..params["hideDTCCommand"].."\""..
-		"}"
+    local toSend = "{"..
+        "\"model\": ".."\""..model.."\""..
+        ", ".."\"latitude\": ".."\""..coords.latitude.."\""..
+        ", ".."\"longitude\": ".."\""..coords.longitude.."\""..
+        ", ".."\"elevation\": ".."\""..elevation.."\""..
+        ", ".."\"upload\": ".."\""..params["uploadCommand"].."\""..
+        ", ".."\"showDTC\": ".."\""..params["showDTCCommand"].."\""..
+        ", ".."\"hideDTC\": ".."\""..params["hideDTCCommand"].."\""..
+        "}"
 
-	if pcall(function()
-		socket.try(udpSpeaker:sendto(toSend, "127.0.0.1", udpPort)) 
-	end) then
-	else
-		log.write("DCS-DTC", log.ERROR, "Unable to send data")
-	end
+    if pcall(function()
+        socket.try(udpSpeaker:sendto(toSend, "127.0.0.1", udpPort)) 
+    end) then
+    else
+        log.write("DCS-DTC", log.ERROR, "Unable to send data")
+    end
 end

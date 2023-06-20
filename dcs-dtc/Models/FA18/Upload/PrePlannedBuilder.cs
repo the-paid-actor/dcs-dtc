@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Text;
 using System.Text.RegularExpressions;
 using DTC.Models.DCS;
@@ -28,18 +29,26 @@ namespace DTC.Models.FA18.Upload
             AppendCommand(lmfd.GetCommand("OSB-05")); // STORES
             AppendCommand(Wait());
 
-            for (int group_no = 0; group_no < stationGroups.Count; group_no++)
+            for (int i = 0; i < stationGroups.Count; i++)
             {
-                var group = stationGroups[group_no];
-                string wpnGroupSelectCmd = lmfd.GetCommand(groupNo_to_WpnTypeSelectCmd(group_no));
+                var group = stationGroups[i];
+                var skip = !group.Any((station) => station.AnySelected || station.AnyStpEnabled);
+                if (skip) continue;
+
+                var wpnGroupSelectCmd = lmfd.GetCommand(groupNo_to_WpnTypeSelectCmd(i));
                 var firstStation = group[0]; /* first station in group (with same type of payload) */
 
-                AppendCommand(StartCondition(GetCondition(firstStation)));
+                //If its already selected, de-selects it
+                AppendCommand(StartConditionNew("StationSelected", firstStation.stationNumber.ToString()));
+                AppendCommand(wpnGroupSelectCmd); // Weapon group select (top row OSB)
+                AppendCommand(EndConditionNew("StationSelected"));
+
+                AppendCommand(StartConditionNew("CheckStore", GetDCSWeaponCode(firstStation), firstStation.stationNumber.ToString()));
                 AppendCommand(wpnGroupSelectCmd); // Weapon group select (top row OSB)
 
                 if (firstStation.stationType == StationType.SLAMER || firstStation.stationType == StationType.SLAM)
                 {
-                    bool hasAnyStp = false;
+                    var hasAnyStp = false;
                     foreach (var sta in group)
                     {
                         if (sta.AnyStpEnabled)
@@ -61,18 +70,29 @@ namespace DTC.Models.FA18.Upload
                     }
                 }
 
-                AppendCommand(GetDsplyCommand(lmfd, firstStation.stationType)); // JDAM/JSOW/SLAM/SLMR-DSPLY
+                AppendCommand(GetDisplayCommand(lmfd, firstStation.stationType)); // JDAM/JSOW/SLAM/SLMR-DSPLY
                 AppendCommand(lmfd.GetCommand("OSB-04")); // MSN
+
+                //If its on TOO, switches to PP
+                AppendCommand(StartConditionNew("IsTargetOfOpportunity"));
+                AppendCommand(lmfd.GetCommand("OSB-05")); // TOO/PP
+                AppendCommand(EndConditionNew("IsTargetOfOpportunity"));
+
                 foreach (var sta in group)
                 {
                     AppendCommand(InputStation(lmfd, ufc, sta));
                     AppendCommand(lmfd.GetCommand("OSB-13")); // STEP to next station of same station type
                 }
                 AppendCommand(lmfd.GetCommand("OSB-19")); // RETURN
+
+                //De-selects the station
                 AppendCommand(wpnGroupSelectCmd); // Weapon group select (top row OSB)
-                if (isJdamOrJsow(firstStation.stationType))
+                if (IsJdamOrJsow(firstStation.stationType))
+                {
                     AppendCommand(wpnGroupSelectCmd); // Weapon group select (top row OSB)
-                AppendCommand(EndCondition(GetCondition(firstStation)));
+                }
+
+                AppendCommand(EndConditionNew("CheckStore"));
             }
         }
 
@@ -193,25 +213,30 @@ namespace DTC.Models.FA18.Upload
         {
             var sb = new StringBuilder();
 
-            bool returnToPP1 = false;
+            var returnToPP = false;
+            var firstPPEnabled = 99;
+
             for (int i = 1; i <= 5; i++)
             {
                 if (!station.PP[i].Enabled)
                     continue;
 
-                /* select PP if necessary */
-                if (i != 1)
-                {
-                    sb.Append(lmfd.GetCommand(String.Format("OSB-{0:00}", 5 + i)));
-                    returnToPP1 = true;
-                }
+                firstPPEnabled = Math.Min(i, firstPPEnabled);
 
-                /* return to PP1 if other PP was selected */
+                /* select PP if necessary */
+                sb.Append(StartConditionNew("IsPPNotSelected", i.ToString()));
+                sb.Append(lmfd.GetCommand(string.Format("OSB-{0:00}", 5 + i)));
+                sb.Append(EndConditionNew("IsPPNotSelected"));
+
                 sb.Append(InputCoordinate(lmfd, ufc, station.PP[i]));
+
+                if (firstPPEnabled < i) returnToPP = true;
             }
 
-            if (returnToPP1)
-                sb.Append(lmfd.GetCommand("OSB-06")); // PP1
+            if (returnToPP)
+            {
+                sb.Append(lmfd.GetCommand(string.Format("OSB-{0:00}", 5 + firstPPEnabled)));
+            }
 
             return sb.ToString();
         }
@@ -245,7 +270,7 @@ namespace DTC.Models.FA18.Upload
             return sb.ToString();
         }
 
-        private string GetDsplyCommand(Device lmfd, StationType type)
+        private string GetDisplayCommand(Device lmfd, StationType type)
         {
             switch (type)
             {
@@ -259,41 +284,32 @@ namespace DTC.Models.FA18.Upload
             }
         }
 
-        private string GetCondition(PrePlannedStation station)
+        private string GetDCSWeaponCode(PrePlannedStation station)
         {
-            var condition = "";
             switch (station.stationType)
             {
                 case StationType.GBU38:
-                    condition = "STA_IS_GBUTE_";
-                    break;
+                    return "J-82";
                 case StationType.GBU32:
-                    condition = "STA_IS_GBUTT_";
-                    break;
+                    return "J-83";
                 case StationType.GBU31NP:
-                    condition = "STA_IS_GBUTO_";
-                    break;
+                    return "J-84";
                 case StationType.GBU31PP:
-                    condition = "STA_IS_GBUTOP_";
-                    break;
+                    return "J-109";
                 case StationType.JSOWA:
-                    condition = "STA_IS_JSOWA_";
-                    break;
+                    return "JSA";
                 case StationType.JSOWC:
-                    condition = "STA_IS_JSOWC_";
-                    break;
+                    return "JSC";
                 case StationType.SLAM:
-                    condition = "STA_IS_SLAM_";
-                    break;
+                    return "SLAM";
                 case StationType.SLAMER:
-                    condition = "STA_IS_SLAMER_";
-                    break;
+                    return "SLMR";
+                default:
+                    throw new Exception("Invalid weapon");
             }
-
-            return condition + station.stationNumber;
         }
 
-        private bool isJdamOrJsow(StationType stationType)
+        private bool IsJdamOrJsow(StationType stationType)
         {
             switch (stationType)
             {
@@ -308,8 +324,6 @@ namespace DTC.Models.FA18.Upload
                     return false;
             }
         }
-
-
 
         private string BuildCoordinate(Device ufc, string coord)
         {

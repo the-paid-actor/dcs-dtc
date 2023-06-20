@@ -55,47 +55,38 @@ function DTC_FA18C_CheckCondition_InSequence(i)
 	return false
 end
 
-function DTC_FA18C_CheckCondition_IsJdam(i, n)
+function DTC_FA18C_CheckCondition_CheckStore(wpn, station)
 	local table = DTC_FA18C_GetLeftDDI();
-	local str = table["STA".. i .. "_Label_TYPE"]
-	if str == "J-" .. n then 
-		return true 
+	local str = table["STA"..station.."_Label_TYPE"] or ""
+	if str == wpn then
+		return true
 	end
 	return false
 end
 
-function DTC_FA18C_CheckCondition_IsSlam(i)
+function DTC_FA18C_CheckCondition_StationSelected(station)
 	local table = DTC_FA18C_GetLeftDDI();
-	local str = table["STA".. i .. "_Label_TYPE"]
-	if str == "SLAM" then 
-		return true 
+	local str = table["STA"..station.."_Selective_Box_Line_02"] or "x"
+	if str == "" then
+		return true
 	end
 	return false
 end
 
-function DTC_FA18C_CheckCondition_IsSlamER(i)
+function DTC_FA18C_CheckCondition_IsTargetOfOpportunity()
 	local table = DTC_FA18C_GetLeftDDI();
-	local str = table["STA".. i .. "_Label_TYPE"]
-	if str == "SLMR" then 
-		return true 
+	local str = table["Miss_Type"] or ""
+	if str == "TOO1" then
+		return true
 	end
 	return false
 end
 
-function DTC_FA18C_CheckCondition_IsJsowA(i)
+function DTC_FA18C_CheckCondition_IsPPNotSelected(number)
 	local table = DTC_FA18C_GetLeftDDI();
-	local str = table["STA".. i .. "_Label_TYPE"]
-	if str == "JSA" then 
-		return true 
-	end
-	return false
-end
-
-function DTC_FA18C_CheckCondition_IsJsowC(i)
-	local table = DTC_FA18C_GetLeftDDI();
-	local str = table["STA".. i .. "_Label_TYPE"]
-	if str == "JSC" then 
-		return true 
+	local str = table["MISSION_Type"] or ""
+	if str ~= "PP"..number then
+		return true
 	end
 	return false
 end
@@ -173,22 +164,6 @@ function DTC_FA18C_CheckCondition(condition)
 		return DTC_FA18C_CheckCondition_BingoIsZero();
 	elseif condition:find("^IN_SEQ_") ~= nil then
 		return DTC_FA18C_CheckCondition_InSequence(string.match(condition, "%d+"));
-	elseif condition:find("^STA_IS_GBUTE_") ~= nil then -- GBU38
-		return DTC_FA18C_CheckCondition_IsJdam(string.match(condition, "%d+"), 82);
-	elseif condition:find("^STA_IS_GBUTO_") ~= nil then -- GBU31
-		return DTC_FA18C_CheckCondition_IsJdam(string.match(condition, "%d+"), 84);
-	elseif condition:find("^STA_IS_GBUTOP_") ~= nil then -- GBU31 - Penetrating
-		return DTC_FA18C_CheckCondition_IsJdam(string.match(condition, "%d+"), 109);
-	elseif condition:find("^STA_IS_GBUTT_") ~= nil then -- GBU32
-		return DTC_FA18C_CheckCondition_IsJdam(string.match(condition, "%d+"), 83);
-	elseif condition:find("^STA_IS_JSOWA_") ~= nil then
-		return DTC_FA18C_CheckCondition_IsJsowA(string.match(condition, "%d+"));
-	elseif condition:find("^STA_IS_JSOWC_") ~= nil then
-		return DTC_FA18C_CheckCondition_IsJsowA(string.match(condition, "%d+"));
-	elseif condition:find("^STA_IS_SLAM_") ~= nil then
-		return DTC_FA18C_CheckCondition_IsSlam(string.match(condition, "%d+"));
-	elseif condition:find("^STA_IS_SLAMER_") ~= nil then
-		return DTC_FA18C_CheckCondition_IsSlamER(string.match(condition, "%d+"));
 	elseif condition == "LMFD_NOT_TAC" then
 		return DTC_FA18C_CheckCondition_LmfdNotTac();
 	elseif condition == "RMFD_NOT_SUPT" then

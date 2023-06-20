@@ -19,12 +19,14 @@ namespace DTC.UI.Aircrafts.FA18.CompositeControls
         {
             InitializeComponent();
 
-            cbPP = new Dictionary<int, CheckBox>();
-            cbPP.Add(1, cbPP1);
-            cbPP.Add(2, cbPP2);
-            cbPP.Add(3, cbPP3);
-            cbPP.Add(4, cbPP4);
-            cbPP.Add(5, cbPP5);
+            cbPP = new Dictionary<int, CheckBox>
+            {
+                { 1, cbPP1 },
+                { 2, cbPP2 },
+                { 3, cbPP3 },
+                { 4, cbPP4 },
+                { 5, cbPP5 }
+            };
 
             for (int i = 1; i <= 5; i++)
                 cbPP[i].Tag = i;
@@ -36,7 +38,8 @@ namespace DTC.UI.Aircrafts.FA18.CompositeControls
             staPP5.Tag = 5;
         }
 
-        public void Connect(PrePlannedStation station, AircraftPage _parent, PrePlannedEdit _edit, SteerPointEdit _stpEdit) {
+        public void Connect(PrePlannedStation station, AircraftPage _parent, PrePlannedEdit _edit, SteerPointEdit _stpEdit)
+        {
             this.station = station;
             this.label1.Text = "Station " + station.stationNumber;
             this._parent = _parent;
@@ -68,19 +71,20 @@ namespace DTC.UI.Aircrafts.FA18.CompositeControls
         {
             if (ddType.SelectedItem.ToString() == "Other")
             {
-                foreach (var cb in cbPP.Values) {
+                foreach (var cb in cbPP.Values)
+                {
                     cb.Checked = false;
                     cb.Enabled = false;
                 }
-                station.stationType = station.fromString(ddType.SelectedItem.ToString());
+                station.stationType = station.FromString(ddType.SelectedItem.ToString());
             }
             else
             {
                 foreach (var cb in cbPP.Values)
                     cb.Enabled = true;
-                station.stationType = station.fromString(ddType.SelectedItem.ToString());
+                station.stationType = station.FromString(ddType.SelectedItem.ToString());
             }
-            
+
             btnSTP.Visible = (ddType.SelectedItem.ToString() == "SLAMER");
 
             _parent.DataChangedCallback();

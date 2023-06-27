@@ -33,7 +33,6 @@ local upstreamLuaExportStart = LuaExportStart
 local upstreamLuaExportAfterNextFrame = LuaExportAfterNextFrame
 local upstreamLuaExportBeforeNextFrame = LuaExportBeforeNextFrame
 
-
 function LuaExportStart()
     if upstreamLuaExportStart ~= nil then
         local successful, err = pcall(upstreamLuaExportStart)
@@ -166,6 +165,7 @@ function LuaExportAfterNextFrame()
     params["uploadCommand"] = "0";
     params["showDTCCommand"] = "0";
     params["hideDTCCommand"] = "0";
+    params["toggleDTCCommand"] = "0";
 
     if model ==	"F16CM" then
         DTC_F16CM_AfterNextFrame(params)
@@ -187,6 +187,7 @@ function LuaExportAfterNextFrame()
         ", ".."\"upload\": ".."\""..params["uploadCommand"].."\""..
         ", ".."\"showDTC\": ".."\""..params["showDTCCommand"].."\""..
         ", ".."\"hideDTC\": ".."\""..params["hideDTCCommand"].."\""..
+        ", ".."\"toggleDTC\": ".."\""..params["toggleDTCCommand"].."\""..
         "}"
 
     if pcall(function()

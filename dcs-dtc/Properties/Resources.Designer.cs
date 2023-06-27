@@ -73,6 +73,26 @@ namespace DTC.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap AH64 {
+            get {
+                object obj = ResourceManager.GetObject("AH64", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap F15E {
+            get {
+                object obj = ResourceManager.GetObject("F15E", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap F16 {
             get {
                 object obj = ResourceManager.GetObject("F16", resourceCulture);
@@ -86,16 +106,6 @@ namespace DTC.Properties {
         internal static System.Drawing.Bitmap FA18 {
             get {
                 object obj = ResourceManager.GetObject("FA18", resourceCulture);
-                return ((System.Drawing.Bitmap)(obj));
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized resource of type System.Drawing.Bitmap.
-        /// </summary>
-        internal static System.Drawing.Bitmap AH64 {
-            get {
-                object obj = ResourceManager.GetObject("AH64", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }

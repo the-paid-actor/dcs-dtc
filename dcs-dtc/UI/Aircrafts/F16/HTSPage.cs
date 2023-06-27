@@ -225,7 +225,7 @@ namespace DTC.UI.Aircrafts.F16
 
 		private CheckBox CreateCheckBox(int x, int y, string label, int entryIdx, bool selected)
 		{
-			var chk = new CheckBox();
+			var chk = new DTCCheckBox();
 			chk.Text = label;
 			chk.Left = x;
 			chk.Top = y;
@@ -237,7 +237,7 @@ namespace DTC.UI.Aircrafts.F16
 
 		private void Chk_CheckedChanged(object sender, System.EventArgs e)
 		{
-			var chk = ((CheckBox)sender);
+			var chk = ((DTCCheckBox)sender);
 			if (sender == chkManual)
 			{
 				_hts.ManualTableEnabled = chk.Checked;

@@ -23,7 +23,7 @@ namespace DTC.UI.Base.Controls
 			lbl.Location = new Point(x, y);
 			lbl.AutoSize = false;
 			lbl.Size = new Size(width, height);
-			return lbl;
+            return lbl;
 		}
 
 		public static DTCLabel Make(string label, int x, int y)

@@ -15,7 +15,8 @@ namespace DTC.Models.Base
 			public string upload;
 			public string showDTC;
 			public string hideDTC;
-		}
+			public string toggleDTC;
+        }
 
 		public static event Action<Data> DataReceived;
 

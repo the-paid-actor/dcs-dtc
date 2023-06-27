@@ -100,6 +100,14 @@
     <Compile Include="Models\AH64\Upload\WaypointBuilder.cs" />
     <Compile Include="Models\AH64\Waypoints\WaypointSystem.cs" />
     <Compile Include="Models\AH64\Waypoints\Waypoint.cs" />
+    <Compile Include="Models\F15E\Displays\DisplaySystem.cs" />
+    <Compile Include="Models\F15E\F15EConfiguration.cs" />
+    <Compile Include="Models\F15E\F15EUpload.cs" />
+    <Compile Include="Models\F15E\F15ECommands.cs" />
+    <Compile Include="Models\F15E\Upload\DisplayBuilder.cs" />
+    <Compile Include="Models\F15E\Waypoints\Waypoint.cs" />
+    <Compile Include="Models\F15E\Upload\WaypointBuilder.cs" />
+    <Compile Include="Models\F15E\Waypoints\WaypointSystem.cs" />
     <Compile Include="Models\FA18\CMS\CMSystem.cs" />
     <Compile Include="Models\FA18\CMS\Program.cs" />
     <Compile Include="Models\FA18\PrePlanned\PrePlannedCoordinate.cs" />
@@ -184,6 +192,36 @@
       <SubType>UserControl</SubType>
     </Compile>
     <Compile Include="UI\Aircrafts\AH64\WaypointsPage.Designer.cs">
+      <DependentUpon>WaypointsPage.cs</DependentUpon>
+    </Compile>
+    <Compile Include="UI\Aircrafts\F15E\LoadSavePage.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="UI\Aircrafts\F15E\LoadSavePage.Designer.cs">
+      <DependentUpon>LoadSavePage.cs</DependentUpon>
+    </Compile>
+    <Compile Include="UI\Aircrafts\F15E\DisplaysPage.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="UI\Aircrafts\F15E\DisplaysPage.Designer.cs">
+      <DependentUpon>DisplaysPage.cs</DependentUpon>
+    </Compile>
+    <Compile Include="UI\Aircrafts\F15E\UploadToJetPage.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="UI\Aircrafts\F15E\UploadToJetPage.Designer.cs">
+      <DependentUpon>UploadToJetPage.cs</DependentUpon>
+    </Compile>
+    <Compile Include="UI\Aircrafts\F15E\WaypointEdit.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="UI\Aircrafts\F15E\WaypointEdit.Designer.cs">
+      <DependentUpon>WaypointEdit.cs</DependentUpon>
+    </Compile>
+    <Compile Include="UI\Aircrafts\F15E\WaypointsPage.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="UI\Aircrafts\F15E\WaypointsPage.Designer.cs">
       <DependentUpon>WaypointsPage.cs</DependentUpon>
     </Compile>
     <Compile Include="UI\Aircrafts\FA18\CMSPage.cs">
@@ -445,6 +483,7 @@
     <Compile Include="UI\CommonPages\PresetsPage.Designer.cs">
       <DependentUpon>PresetsPage.cs</DependentUpon>
     </Compile>
+    <None Include="Resources\F15E.png" />
     <EmbeddedResource Include="UI\Aircrafts\AH64\LoadSavePage.resx">
       <DependentUpon>LoadSavePage.cs</DependentUpon>
     </EmbeddedResource>
@@ -459,6 +498,23 @@
     </EmbeddedResource>
     <EmbeddedResource Include="UI\Aircrafts\AH64\WaypointsPage.resx">
       <DependentUpon>WaypointsPage.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UI\Aircrafts\F15E\LoadSavePage.resx">
+      <DependentUpon>LoadSavePage.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UI\Aircrafts\F15E\DisplaysPage.resx">
+      <DependentUpon>DisplaysPage.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UI\Aircrafts\F15E\UploadToJetPage.resx">
+      <DependentUpon>UploadToJetPage.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UI\Aircrafts\F15E\WaypointEdit.resx">
+      <DependentUpon>WaypointEdit.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UI\Aircrafts\F15E\WaypointsPage.resx">
+      <DependentUpon>WaypointsPage.cs</DependentUpon>
+      <SubType>Designer</SubType>
     </EmbeddedResource>
     <EmbeddedResource Include="UI\Aircrafts\FA18\CMSPage.resx">
       <DependentUpon>CMSPage.cs</DependentUpon>

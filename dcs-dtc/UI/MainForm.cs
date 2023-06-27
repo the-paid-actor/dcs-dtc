@@ -16,6 +16,9 @@ namespace DTC.UI
 
         private bool showDTCPressed = false;
         private bool hideDTCPressed = false;
+        private bool toggleDTCPressed = false;
+
+        private bool showHideDTCState = false;
 
         public MainForm()
         {
@@ -36,13 +39,26 @@ namespace DTC.UI
 
         private void DataReceiver_DataReceived(DataReceiver.Data d)
         {
+            if (d.toggleDTC == "1" && !toggleDTCPressed)
+            {
+                toggleDTCPressed = true;
+                Invoke(new Action(() =>
+                {
+                    ShowHideDTC(!showHideDTCState);
+                }));
+            }
+
+            if (d.toggleDTC == "0" && toggleDTCPressed)
+            {
+                toggleDTCPressed = false;
+            }
+
             if (d.showDTC == "1" && !showDTCPressed)
             {
                 showDTCPressed = true;
                 Invoke(new Action(() =>
                 {
-                    BringToFront();
-                    SetTopMost(true);
+                    ShowHideDTC(true);
                 }));
             }
 
@@ -56,14 +72,29 @@ namespace DTC.UI
                 hideDTCPressed = true;
                 Invoke(new Action(() =>
                 {
-                    SetTopMost(false);
-                    SendToBack();
+                    ShowHideDTC(false);
                 }));
             }
 
             if (d.hideDTC == "0" && hideDTCPressed)
             {
                 hideDTCPressed = false;
+            }
+        }
+
+        private void ShowHideDTC(bool show)
+        {
+            if (show)
+            {
+                BringToFront();
+                SetTopMost(true);
+                showHideDTCState = true;
+            }
+            else
+            {
+                SetTopMost(false);
+                SendToBack();
+                showHideDTCState = false;
             }
         }
 

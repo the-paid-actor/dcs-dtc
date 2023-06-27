@@ -11,6 +11,7 @@ DTC_logFile = io.open(lfs.writedir() .. [[Logs\DCSDTC.log]], "w")
 dofile(lfs.writedir()..'Scripts/DCSDTC/commonFunctions.lua')
 dofile(lfs.writedir()..'Scripts/DCSDTC/f16Functions.lua')
 dofile(lfs.writedir()..'Scripts/DCSDTC/f18Functions.lua')
+dofile(lfs.writedir()..'Scripts/DCSDTC/f15EFunctions.lua')
 
 local needDelay = false
 local keypressinprogress = false
@@ -35,7 +36,7 @@ local upstreamLuaExportBeforeNextFrame = LuaExportBeforeNextFrame
 
 function LuaExportStart()
     if upstreamLuaExportStart ~= nil then
-        successful, err = pcall(upstreamLuaExportStart)
+        local successful, err = pcall(upstreamLuaExportStart)
         if not successful then
             log.write("DCS-DTC", log.ERROR, "Error in upstream LuaExportStart function"..tostring(err))
         end
@@ -44,7 +45,7 @@ function LuaExportStart()
     udpSpeaker = socket.udp()
     udpSpeaker:settimeout(0)
     tcpServer = socket.tcp()
-    successful, err = tcpServer:bind("127.0.0.1", tcpPort)
+    local successful, err = tcpServer:bind("127.0.0.1", tcpPort)
     tcpServer:listen(1)
     tcpServer:settimeout(0)
     if not successful then
@@ -63,7 +64,7 @@ end
 
 function LuaExportBeforeNextFrame()
     if upstreamLuaExportBeforeNextFrame ~= nil then
-        successful, err = pcall(upstreamLuaExportBeforeNextFrame)
+        local successful, err = pcall(upstreamLuaExportBeforeNextFrame)
         if not successful then
            log.write("DCS-DTC", log.ERROR, "Error in upstream LuaExportBeforeNextFrame function"..tostring(err))
         end
@@ -148,7 +149,7 @@ end
 
 function LuaExportAfterNextFrame()
     if upstreamLuaExportAfterNextFrame ~= nil then
-        successful, err = pcall(upstreamLuaExportAfterNextFrame)
+        local successful, err = pcall(upstreamLuaExportAfterNextFrame)
         if not successful then
             log.write("DCS-DTC", log.ERROR, "Error in upstream LuaExportAfterNextFrame function"..tostring(err))
         end
@@ -172,6 +173,10 @@ function LuaExportAfterNextFrame()
 
     if model == "FA18C" then
         DTC_FA18C_AfterNextFrame(params)
+    end
+
+    if model == "F15E" then
+        DTC_F15E_AfterNextFrame(params)
     end
 
     local toSend = "{"..

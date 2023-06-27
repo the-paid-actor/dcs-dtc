@@ -593,6 +593,9 @@
     <Content Include="DCS\DCSDTC\f18Functions.lua">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
+    <Content Include="DCS\DCSDTC\f15EFunctions.lua">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
     <None Include="dtc.key.snk" />
     <None Include="packages.config" />
     <None Include="Properties\Settings.settings">

@@ -19,6 +19,7 @@ function DTC_GetPlayerAircraftType()
 	local model = LoGetSelfData()["Name"];
     if model == "F-16C_50" then return "F16CM" end
     if model == "FA-18C_hornet" then return "FA18C" end
+    if model == "F-15ESE" then return "F15E" end
 	return model;
 end
 

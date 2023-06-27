@@ -4,7 +4,6 @@ using System.Windows.Forms;
 using DTC.Models.F16.CMS;
 using DTC.UI.Base.Controls;
 using DTC.UI.CommonPages;
-using System.Linq;
 
 namespace DTC.UI.Aircrafts.F16
 {
@@ -24,8 +23,8 @@ namespace DTC.UI.Aircrafts.F16
             var rowHeight = 20;
             var chkWidth = 20;
             var qtyMask = "00";
-            var burstIntervalMask = @"00.000";
-            var salvoIntervalMask = @"000.00";
+            var burstIntervalMask = @"00\.000";
+            var salvoIntervalMask = @"000\.00";
 
             this.SuspendLayout();
 

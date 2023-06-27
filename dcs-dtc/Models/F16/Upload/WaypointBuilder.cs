@@ -282,7 +282,7 @@ namespace DTC.Models.F16.Upload
 
         private class Helper
         {
-            public static string GetNumberString(float bearing)
+            public static string GetNumberString(decimal bearing)
             {
                 return bearing.ToString("###.0", System.Globalization.CultureInfo.InvariantCulture).Replace(".", "");
             }

@@ -33,7 +33,7 @@ namespace DTC.Models.F16.CMS
 
 		private bool ValidateQty(string txt)
 		{
-			if (!int.TryParse(txt, out int i))
+			if (!int.TryParse(txt, NumberStyles.Number, CultureInfo.InvariantCulture, out int i))
 			{
 				return false;
 			}
@@ -63,7 +63,7 @@ namespace DTC.Models.F16.CMS
 
 		private bool ValidateSalvoInterval(string txt)
 		{
-			if (!decimal.TryParse(txt, out decimal f))
+			if (!decimal.TryParse(txt, NumberStyles.Number, CultureInfo.InvariantCulture, out decimal f))
 			{
 				return false;
 			}
@@ -78,29 +78,29 @@ namespace DTC.Models.F16.CMS
 
 		public string GetChaffBurstQty()
 		{
-			return ChaffBurstQty.ToString("00");
+			return ChaffBurstQty.ToString("00", CultureInfo.InvariantCulture);
 		}
 
 		public string GetChaffBurstInterval()
 		{
-			return ChaffBurstInterval.ToString("00.000");
+			return ChaffBurstInterval.ToString("00.000", CultureInfo.InvariantCulture);
 		}
 
 		public string GetChaffSalvoQty()
 		{
-			return ChaffSalvoQty.ToString("00");
+			return ChaffSalvoQty.ToString("00", CultureInfo.InvariantCulture);
 		}
 
 		public string GetChaffSalvoInterval()
 		{
-			return ChaffSalvoInterval.ToString("000.00");
+			return ChaffSalvoInterval.ToString("000.00", CultureInfo.InvariantCulture);
 		}
 
 		public string SetChaffBurstQty(string txt)
 		{
 			if (ValidateQty(txt))
 			{
-				ChaffBurstQty = int.Parse(txt);
+				ChaffBurstQty = int.Parse(txt, CultureInfo.InvariantCulture);
 			}
 
 			return GetChaffBurstQty();
@@ -110,7 +110,7 @@ namespace DTC.Models.F16.CMS
 		{
 			if (ValidateBurstInterval(txt))
 			{
-				ChaffBurstInterval = decimal.Parse(txt);
+				ChaffBurstInterval = decimal.Parse(txt, CultureInfo.InvariantCulture);
 			}
 
 			return GetChaffBurstInterval();
@@ -120,7 +120,7 @@ namespace DTC.Models.F16.CMS
 		{
 			if (ValidateQty(txt))
 			{
-				ChaffSalvoQty = int.Parse(txt);
+				ChaffSalvoQty = int.Parse(txt, CultureInfo.InvariantCulture);
 			}
 
 			return GetChaffSalvoQty();
@@ -130,7 +130,7 @@ namespace DTC.Models.F16.CMS
 		{
 			if (ValidateSalvoInterval(txt))
 			{
-				ChaffSalvoInterval = decimal.Parse(txt);
+				ChaffSalvoInterval = decimal.Parse(txt, CultureInfo.InvariantCulture);
 			}
 
 			return GetChaffSalvoInterval();
@@ -138,29 +138,29 @@ namespace DTC.Models.F16.CMS
 
 		public string GetFlareBurstQty()
 		{
-			return FlareBurstQty.ToString("00");
+			return FlareBurstQty.ToString("00", CultureInfo.InvariantCulture);
 		}
 
 		public string GetFlareBurstInterval()
 		{
-			return FlareBurstInterval.ToString("00.000");
+			return FlareBurstInterval.ToString("00.000", CultureInfo.InvariantCulture);
 		}
 
 		public string GetFlareSalvoQty()
 		{
-			return FlareSalvoQty.ToString("00");
+			return FlareSalvoQty.ToString("00", CultureInfo.InvariantCulture);
 		}
 
 		public string GetFlareSalvoInterval()
 		{
-			return FlareSalvoInterval.ToString("000.00");
+			return FlareSalvoInterval.ToString("000.00", CultureInfo.InvariantCulture);
 		}
 
 		public string SetFlareBurstQty(string txt)
 		{
 			if (ValidateQty(txt))
 			{
-				FlareBurstQty = int.Parse(txt);
+				FlareBurstQty = int.Parse(txt, CultureInfo.InvariantCulture);
 			}
 
 			return GetFlareBurstQty();
@@ -170,7 +170,7 @@ namespace DTC.Models.F16.CMS
 		{
 			if (ValidateBurstInterval(txt))
 			{
-				FlareBurstInterval = decimal.Parse(txt);
+				FlareBurstInterval = decimal.Parse(txt, CultureInfo.InvariantCulture);
 			}
 
 			return GetFlareBurstInterval();
@@ -180,7 +180,7 @@ namespace DTC.Models.F16.CMS
 		{
 			if (ValidateQty(txt))
 			{
-				FlareSalvoQty = int.Parse(txt);
+				FlareSalvoQty = int.Parse(txt, CultureInfo.InvariantCulture);
 			}
 
 			return GetFlareSalvoQty();
@@ -190,7 +190,7 @@ namespace DTC.Models.F16.CMS
 		{
 			if (ValidateSalvoInterval(txt))
 			{
-				FlareSalvoInterval = decimal.Parse(txt);
+				FlareSalvoInterval = decimal.Parse(txt, CultureInfo.InvariantCulture);
 			}
 
 			return GetFlareSalvoInterval();

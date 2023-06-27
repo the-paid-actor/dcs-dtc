@@ -36,5 +36,10 @@
 			if (parts[2].Trim() == "" || int.Parse(parts[2]) > 59) return false;
 			return true;
 		}
+
+		public static string DecimalToString(decimal value)
+		{
+            return value.ToString("0.00", System.Globalization.CultureInfo.InvariantCulture);
+        }
 	}
 }

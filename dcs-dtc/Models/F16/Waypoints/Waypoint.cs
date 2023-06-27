@@ -6,9 +6,9 @@ namespace DTC.Models.F16.Waypoints
 {
     public class Offset
     {
-        public float Range { get; set; }
-        public float Bearing { get; set; }
-        public float Elevation { get; set; }
+        public decimal Range { get; set; }
+        public decimal Bearing { get; set; }
+        public decimal Elevation { get; set; }
     }
 
     public class Waypoint

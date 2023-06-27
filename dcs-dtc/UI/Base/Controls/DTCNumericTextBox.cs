@@ -27,14 +27,14 @@ namespace DTC.UI.Base.Controls
         }
 
         public bool AllowFraction { get; set; } = false;
-        public float MinimumValue { get; set; } = 0;
-        public float MaximumValue { get; set; } = 0;
+        public decimal MinimumValue { get; set; } = 0;
+        public decimal MaximumValue { get; set; } = 0;
 
-        public float? Value
+        public decimal? Value
         {
             get
             {
-                if (float.TryParse(textBox.Text, NumberStyles.Number, CultureInfo.InvariantCulture, out var value))
+                if (decimal.TryParse(textBox.Text, NumberStyles.Number, CultureInfo.InvariantCulture, out var value))
                 {
                     return value;
                 }
@@ -70,15 +70,15 @@ namespace DTC.UI.Base.Controls
 
         private void TextBox_Validating(object sender, System.ComponentModel.CancelEventArgs e)
         {
-            if (float.TryParse(textBox.Text, NumberStyles.Number, CultureInfo.InvariantCulture, out float result))
+            if (decimal.TryParse(textBox.Text, NumberStyles.Number, CultureInfo.InvariantCulture, out var result))
             {
                 var min = MinimumValue;
                 var max = MaximumValue;
 
                 if (unit == UnitEnum.Degree)
                 {
-                    max = 359f;
-                    if (AllowFraction) max = 359.9f;
+                    max = 359M;
+                    if (AllowFraction) max = 359.9M;
                 }
 
                 if (result < min || result > max)

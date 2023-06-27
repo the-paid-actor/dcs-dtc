@@ -12,6 +12,22 @@ function DTC_F16CM_GetRightMFD()
 	return DTC_ParseDisplay(5)
 end
 
+function DTC_F16CM_CheckCondition_LeftHdptNotOn()
+	local switch = GetDevice(0):get_argument_value(670)
+	if switch ~= 1 then
+		return true
+	end
+	return false
+end
+
+function DTC_F16CM_CheckCondition_RightHdptNotOn()
+	local switch = GetDevice(0):get_argument_value(671)
+	if switch ~= 1 then
+		return true
+	end
+	return false
+end
+
 function DTC_F16CM_CheckCondition_HARM()
 	local table = DTC_F16CM_GetDED();
 	local str = table["Misc Item 0 Name"];

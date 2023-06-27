@@ -17,8 +17,12 @@ namespace DTC.Models
             public override void Build()
             {
                 var sms = _aircraft.GetDevice("SMS");
+                AppendCommand(StartCondition("LeftHdptNotOn"));
                 AppendCommand(sms.GetCommand("LEFT_HDPT"));
+                AppendCommand(EndCondition("LeftHdptNotOn"));
+                AppendCommand(StartCondition("RightHdptNotOn"));
                 AppendCommand(sms.GetCommand("RIGHT_HDPT"));
+                AppendCommand(EndCondition("RightHdptNotOn"));
             }
         }
 

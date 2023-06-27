@@ -40,12 +40,6 @@
         "Entry"
         {
         "MsmKey" = "8:_UNDEFINED"
-        "OwnerKey" = "8:_8B737AA0B30B35F3C2E8103F2189AB9E"
-        "MsmSig" = "8:_UNDEFINED"
-        }
-        "Entry"
-        {
-        "MsmKey" = "8:_UNDEFINED"
         "OwnerKey" = "8:_9627F270C0644579B7D9F4F8BB4279CF"
         "MsmSig" = "8:_UNDEFINED"
         }
@@ -53,6 +47,12 @@
         {
         "MsmKey" = "8:_UNDEFINED"
         "OwnerKey" = "8:_E563DF42688EA3C32A831CC0BE6A8BFD"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
+        "MsmKey" = "8:_UNDEFINED"
+        "OwnerKey" = "8:_8B737AA0B30B35F3C2E8103F2189AB9E"
         "MsmSig" = "8:_UNDEFINED"
         }
     }
@@ -288,15 +288,15 @@
         {
         "Name" = "8:Microsoft Visual Studio"
         "ProductName" = "8:DTC for DCS"
-        "ProductCode" = "8:{BCFEA682-571E-42F0-8CF7-15100A03F23F}"
-        "PackageCode" = "8:{442F1705-E1F7-4F57-A581-A46F48A72EED}"
+        "ProductCode" = "8:{EE98E18C-C50C-4A8C-948B-90E98F292ABA}"
+        "PackageCode" = "8:{AD084AB8-96FB-4746-BBE4-FEDBE28DC204}"
         "UpgradeCode" = "8:{3D5849D5-76B8-466F-9C16-2B1A020D0784}"
         "AspNetVersion" = "8:2.0.50727.0"
         "RestartWWWService" = "11:FALSE"
         "RemovePreviousVersions" = "11:TRUE"
         "DetectNewerInstalledVersion" = "11:TRUE"
         "InstallAllUsers" = "11:TRUE"
-        "ProductVersion" = "8:4.1.3"
+        "ProductVersion" = "8:4.1.4"
         "Manufacturer" = "8:The_Paid_Actor"
         "ARPHELPTELEPHONE" = "8:"
         "ARPHELPLINK" = "8:"

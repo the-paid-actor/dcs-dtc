@@ -23,6 +23,10 @@ function DTC_F15E_GetFrontMPCD()
 	return DTC_ParseDisplay(4)
 end
 
+function DTC_F15E_GetUFC()
+	return DTC_ParseDisplay(8)
+end
+
 function DTC_F15E_GetDisplay(disp)
 	local table;
 	if disp == "FLMPD" then
@@ -94,6 +98,15 @@ function DTC_F15E_ClearProgrammedDisplay(disp, page)
 	end
 end
 --]]
+
+function DTC_F15E_CheckCondition_IsStrDifferent(expected)
+	local table = DTC_F15E_GetUFC(disp);
+	local str = table["UFC_SC_01"] or "";
+	if str ~= expected then
+		return true
+	end
+	return false
+end
 
 function DTC_F15E_CheckCondition_NoDisplaysProgrammed(disp)
 	local table = DTC_F15E_GetDisplay(disp);

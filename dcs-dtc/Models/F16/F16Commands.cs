@@ -10,7 +10,7 @@ namespace DTC.Models.F16
 
 		public F16Commands()
 		{
-			var delay = Settings.CommandDelayMs;
+			var delay = Settings.ViperCommandDelayMs;
 
 			var delayMFDs = delay / 4;
 			var delayList = delay / 4;

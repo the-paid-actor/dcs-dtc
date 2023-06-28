@@ -61,7 +61,7 @@ namespace DTC.Models.F15E.Upload
             AppendCommand(ufc.GetCommand("CLR"));
             AppendCommand(ufc.GetCommand("MENU"));
             AppendCommand(ufc.GetCommand("SHF"));
-            AppendCommand(ufc.GetCommand("3"));
+            AppendCommand(ufc.GetCommand("3")); //B
             AppendCommand(ufc.GetCommand("PB10"));
             AppendCommand(ufc.GetCommand("PB10"));
 
@@ -71,13 +71,35 @@ namespace DTC.Models.F15E.Upload
                 var wpt = kv.Value;
 
                 AppendCommand(BuildDigits(ufc, stptId));
-                if (wpt.Target)
-                {
-                    AppendCommand(ufc.GetCommand("."));
-                }
                 AppendCommand(ufc.GetCommand("SHF"));
                 AppendCommand(ufc.GetCommand("1"));
                 AppendCommand(ufc.GetCommand("PB1"));
+
+                AppendCommand(StartCondition("IsStrDifferent", "STR " + stptId + "A"));
+                AppendCommand(ufc.GetCommand("CLR"));
+                AppendCommand(ufc.GetCommand("CLR"));
+                AppendCommand(BuildDigits(ufc, stptId));
+                AppendCommand(ufc.GetCommand("."));
+                AppendCommand(ufc.GetCommand("SHF"));
+                AppendCommand(ufc.GetCommand("1"));
+                AppendCommand(ufc.GetCommand("PB1"));
+                AppendCommand(EndCondition("IsStrDifferent"));
+
+                AppendCommand(StartCondition("IsStrDifferent", "STR " + stptId + "A"));
+                AppendCommand(BuildDigits(ufc, stptId));
+                AppendCommand(ufc.GetCommand("SHF"));
+                AppendCommand(ufc.GetCommand("1"));
+                AppendCommand(ufc.GetCommand("PB1"));
+                AppendCommand(EndCondition("IsStrDifferent"));
+
+                if (wpt.Target)
+                {
+                    AppendCommand(BuildDigits(ufc, stptId));
+                    AppendCommand(ufc.GetCommand("."));
+                    AppendCommand(ufc.GetCommand("SHF"));
+                    AppendCommand(ufc.GetCommand("1"));
+                    AppendCommand(ufc.GetCommand("PB1"));
+                }
 
                 if (!wpt.IsCoordinateBlank)
                 {

@@ -43,6 +43,7 @@ namespace DTC.UI.Aircrafts.F15E
             this.colLatitude = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.colLongitude = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.colElevation = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.colExtra = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgWaypoints)).BeginInit();
             this.SuspendLayout();
@@ -113,7 +114,8 @@ namespace DTC.UI.Aircrafts.F15E
             this.colName,
             this.colLatitude,
             this.colLongitude,
-            this.colElevation});
+            this.colElevation,
+            this.colExtra});
             dataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
             dataGridViewCellStyle3.BackColor = System.Drawing.Color.Beige;
             dataGridViewCellStyle3.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F);
@@ -178,6 +180,13 @@ namespace DTC.UI.Aircrafts.F15E
             this.colElevation.ReadOnly = true;
             this.colElevation.Width = 75;
             // 
+            // colExtra
+            // 
+            this.colExtra.DataPropertyName = "ExtraDescription";
+            this.colExtra.HeaderText = "";
+            this.colExtra.Name = "colExtra";
+            this.colExtra.ReadOnly = true;
+            // 
             // WaypointsPage
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -203,5 +212,6 @@ namespace DTC.UI.Aircrafts.F15E
         private System.Windows.Forms.DataGridViewTextBoxColumn colLatitude;
         private System.Windows.Forms.DataGridViewTextBoxColumn colLongitude;
         private System.Windows.Forms.DataGridViewTextBoxColumn colElevation;
+        private System.Windows.Forms.DataGridViewTextBoxColumn colExtra;
     }
 }

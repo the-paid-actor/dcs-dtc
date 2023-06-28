@@ -9,7 +9,7 @@ namespace DTC.Models.AH64
         private Dictionary<string, Device> Devices = new Dictionary<string, Device>();
         public AH64Commands()
         {
-            var delay = Settings.CommandDelayMs;
+            var delay = 200;
 
             var mpd = new Device(47, "Right_MPD");
             mpd.AddCommand(new Command(3024, "L1", delay, 1));

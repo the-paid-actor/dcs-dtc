@@ -11,6 +11,17 @@ namespace DTC.Models.F15E.Waypoints
         public int Elevation { get; set; }
         public bool Target { get; set; }
 
+        [Newtonsoft.Json.JsonIgnore]
+        public string ExtraDescription
+        {
+            get
+            {
+                var str = "";
+                if (Target) str = str + "TGT";
+                return str;
+            }
+        }
+
         public bool IsCoordinateBlank
         {
             get

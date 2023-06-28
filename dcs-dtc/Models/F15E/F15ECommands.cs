@@ -11,8 +11,7 @@ namespace DTC.Models.F15E
 
 		public F15ECommands()
 		{
-			var delay = Settings.CommandDelayMs;
-            delay = delay / 4;
+			var delay = Settings.StrikeEagleCommandDelayMs;
 
             var ufc = new Device(56, "UFC_PILOT");
             ufc.AddCommand(new Command(3001, "PB1", delay, 1));

@@ -10,7 +10,7 @@ namespace DTC.Models.FA18
 
         public FA18Commands()
         {
-            var delay = Settings.CommandDelayMs;
+            var delay = Settings.HornetCommandDelayMs;
 
             var delayMFDs = delay;
             var delayUFC = delay / 4;

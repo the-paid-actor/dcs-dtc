@@ -87,8 +87,7 @@ namespace DTC.Models.Base
 
 			if (!Settings.LuaInstallStable && !Settings.LuaInstallOpenBeta)
 			{
-				DTCMessageBox.ShowError("Cannot continue since DTC is not installed on either DCS or DCS.openbeta folder under Saved Games.");
-				return false;
+				DTCMessageBox.ShowError("Warning - DTC is not installed on either DCS or DCS.openbeta folder under Saved Games.");
 			}
 
 			return true;

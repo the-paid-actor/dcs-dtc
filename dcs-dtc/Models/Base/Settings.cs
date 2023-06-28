@@ -8,8 +8,10 @@ namespace DTC.Models.Base
 		{
 			public int TCPSendPort;
 			public int UDPReceivePort;
-			public int CommandDelayMs;
-			public bool AlwaysOnTop;
+			public int StrikeEagleCommandDelayMs;
+			public int HornetCommandDelayMs;
+            public int ViperCommandDelayMs;
+            public bool AlwaysOnTop;
 			public string LuaInstallFolderStable;
 			public string LuaInstallStable;
 			public string LuaInstallFolderOpenBeta;
@@ -128,21 +130,49 @@ namespace DTC.Models.Base
 			}
 		}
 
-		public static int CommandDelayMs
-		{
-			get
-			{
-				LoadSettings();
-				return currentSettings.CommandDelayMs;
-			}
-			set
-			{
-				currentSettings.CommandDelayMs = value;
-				SaveSettings();
-			}
-		}
+        public static int StrikeEagleCommandDelayMs
+        {
+            get
+            {
+                LoadSettings();
+                return currentSettings.StrikeEagleCommandDelayMs;
+            }
+            set
+            {
+                currentSettings.StrikeEagleCommandDelayMs = value;
+                SaveSettings();
+            }
+        }
 
-		private static void SaveSettings()
+        public static int ViperCommandDelayMs
+        {
+            get
+            {
+                LoadSettings();
+                return currentSettings.ViperCommandDelayMs;
+            }
+            set
+            {
+                currentSettings.ViperCommandDelayMs = value;
+                SaveSettings();
+            }
+        }
+
+        public static int HornetCommandDelayMs
+        {
+            get
+            {
+                LoadSettings();
+                return currentSettings.HornetCommandDelayMs;
+            }
+            set
+            {
+                currentSettings.HornetCommandDelayMs = value;
+                SaveSettings();
+            }
+        }
+
+        private static void SaveSettings()
 		{
 			var json = JsonConvert.SerializeObject(currentSettings);
 			FileStorage.PersistSettingsFile(json);
@@ -175,12 +205,20 @@ namespace DTC.Models.Base
 			{
 				obj.UDPReceivePort = 43000;
 			}
-			if (obj.CommandDelayMs == 0)
-			{
-				obj.CommandDelayMs = 200;
-			}
+            if (obj.StrikeEagleCommandDelayMs == 0)
+            {
+                obj.StrikeEagleCommandDelayMs = 75;
+            }
+            if (obj.ViperCommandDelayMs == 0)
+            {
+                obj.ViperCommandDelayMs = 200;
+            }
+            if (obj.HornetCommandDelayMs == 0)
+            {
+                obj.HornetCommandDelayMs = 200;
+            }
 
-			currentSettings = obj;
+            currentSettings = obj;
 		}
 	}
 }

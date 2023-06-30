@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Linq;
 using DTC.Models.F15E.Displays;
 using DTC.UI.Base.Controls;
@@ -46,10 +47,10 @@ namespace DTC.UI.Aircrafts.F15E
             left = padding * 3;
             top += padding + rowHeight;
 
-            BuildDisplay(left, top, displaySystem.Pilot.MPCD);
+            BuildDisplay(left, top, displaySystem.Pilot.MPCD, true);
         }
 
-        private void BuildDisplay(int left, int top, DisplayConfig display)
+        private void BuildDisplay(int left, int top, DisplayConfig display, bool removeA2G = false)
         {
             this.Controls.Add(DTCLabel.Make("1", left, top, colWidth, rowHeight));
             left += padding + colWidth;
@@ -107,7 +108,22 @@ namespace DTC.UI.Aircrafts.F15E
             var d2Mode = display.SecondDisplayMode;
             var d3Mode = display.ThirdDisplayMode;
 
-            PopulateCombo<Display>(disp1);
+            var displayOptions = new List<string>();
+            foreach (var item in Enum.GetValues(typeof(Display)))
+            {
+                if (removeA2G && (Display)item == Display.AGRDR)
+                {
+                    continue;
+                }
+                displayOptions.Add(item.ToString());
+            }
+            var modeOptions = new List<string>();
+            foreach (var item in Enum.GetValues(typeof(DisplayMode)))
+            {
+                modeOptions.Add(item.ToString());
+            }
+
+            PopulateCombo(disp1, displayOptions);
 
             disp1.SelectedValueChanged += (s, e) =>
             {
@@ -124,13 +140,13 @@ namespace DTC.UI.Aircrafts.F15E
                 }
                 else
                 {
-                    display.FirstDisplay = (Display)disp1.SelectedItem;
+                    display.FirstDisplay = (Display)Enum.Parse(typeof(Display), disp1.SelectedItem.ToString());
                     _parent.DataChangedCallback();
 
                     disp1Mode.Enabled = true;
-                    PopulateCombo<DisplayMode>(disp1Mode);
+                    PopulateCombo(disp1Mode, modeOptions);
                     disp2.Enabled = true;
-                    PopulateCombo<Display>(disp2, new[] { disp1.SelectedItem});
+                    PopulateCombo(disp2, displayOptions, new[] { disp1.SelectedItem});
                 }
             };
 
@@ -149,13 +165,13 @@ namespace DTC.UI.Aircrafts.F15E
                 }
                 else
                 {
-                    display.SecondDisplay = (Display)disp2.SelectedItem;
+                    display.SecondDisplay = (Display)Enum.Parse(typeof(Display), disp2.SelectedItem.ToString());
                     _parent.DataChangedCallback();
 
                     disp2Mode.Enabled = true;
-                    PopulateCombo<DisplayMode>(disp2Mode, new[] { disp1Mode.SelectedItem });
+                    PopulateCombo(disp2Mode, modeOptions, new[] { disp1Mode.SelectedItem });
                     disp3.Enabled = true;
-                    PopulateCombo<Display>(disp3, new[] { disp1.SelectedItem, disp2.SelectedItem });
+                    PopulateCombo(disp3, displayOptions, new[] { disp1.SelectedItem, disp2.SelectedItem });
                 }
             };
 
@@ -171,11 +187,11 @@ namespace DTC.UI.Aircrafts.F15E
                 }
                 else
                 {
-                    display.ThirdDisplay = (Display)disp3.SelectedItem;
+                    display.ThirdDisplay = (Display)Enum.Parse(typeof(Display), disp3.SelectedItem.ToString());
                     _parent.DataChangedCallback();
 
                     disp3Mode.Enabled = true;
-                    PopulateCombo<DisplayMode>(disp3Mode, new[] { disp1Mode.SelectedItem, disp2Mode.SelectedItem });
+                    PopulateCombo(disp3Mode, displayOptions, new[] { disp1Mode.SelectedItem, disp2Mode.SelectedItem });
                 }
             };
 
@@ -186,14 +202,14 @@ namespace DTC.UI.Aircrafts.F15E
                     display.FirstDisplayMode = DisplayMode.None;
                     _parent.DataChangedCallback();
 
-                    PopulateCombo<DisplayMode>(disp2Mode);
+                    PopulateCombo(disp2Mode, modeOptions);
                 }
                 else
                 {
-                    display.FirstDisplayMode = (DisplayMode)disp1Mode.SelectedItem;
+                    display.FirstDisplayMode = (DisplayMode)Enum.Parse(typeof(DisplayMode), disp1Mode.SelectedItem.ToString());
                     _parent.DataChangedCallback();
 
-                    PopulateCombo<DisplayMode>(disp2Mode, new[] { disp1Mode.SelectedItem });
+                    PopulateCombo(disp2Mode, modeOptions, new[] { disp1Mode.SelectedItem });
                 }
             };
 
@@ -204,14 +220,14 @@ namespace DTC.UI.Aircrafts.F15E
                     display.SecondDisplayMode = DisplayMode.None;
                     _parent.DataChangedCallback();
 
-                    PopulateCombo<DisplayMode>(disp3Mode);
+                    PopulateCombo(disp3Mode, modeOptions);
                 }
                 else
                 {
-                    display.SecondDisplayMode = (DisplayMode)disp2Mode.SelectedItem;
+                    display.SecondDisplayMode = (DisplayMode)Enum.Parse(typeof(DisplayMode), disp2Mode.SelectedItem.ToString());
                     _parent.DataChangedCallback();
 
-                    PopulateCombo<DisplayMode>(disp3Mode, new[] { disp1Mode.SelectedItem, disp2Mode.SelectedItem });
+                    PopulateCombo(disp3Mode, modeOptions, new[] { disp1Mode.SelectedItem, disp2Mode.SelectedItem });
                 }
             };
 
@@ -224,32 +240,33 @@ namespace DTC.UI.Aircrafts.F15E
                 }
                 else
                 {
-                    display.ThirdDisplayMode = (DisplayMode)disp3Mode.SelectedItem;
+                    display.ThirdDisplayMode = (DisplayMode)Enum.Parse(typeof(DisplayMode), disp3Mode.SelectedItem.ToString());
                     _parent.DataChangedCallback();
                 }
             };
 
-            if (d1 != Display.None) { disp1.SelectedItem = d1; }
-            if (d2 != Display.None) { disp2.SelectedItem = d2; }
-            if (d3 != Display.None) { disp3.SelectedItem = d3; }
+            if (d1 != Display.None) { disp1.SelectedItem = d1.ToString(); }
+            if (d2 != Display.None) { disp2.SelectedItem = d2.ToString(); }
+            if (d3 != Display.None) { disp3.SelectedItem = d3.ToString(); }
 
-            if (d1Mode != DisplayMode.None) { disp1Mode.SelectedItem = d1Mode; }
-            if (d2Mode != DisplayMode.None) { disp2Mode.SelectedItem = d2Mode; }
-            if (d3Mode != DisplayMode.None) { disp3Mode.SelectedItem = d3Mode; }
+            if (d1Mode != DisplayMode.None) { disp1Mode.SelectedItem = d1Mode.ToString(); }
+            if (d2Mode != DisplayMode.None) { disp2Mode.SelectedItem = d2Mode.ToString(); }
+            if (d3Mode != DisplayMode.None) { disp3Mode.SelectedItem = d3Mode.ToString(); }
         }
 
-        private static void PopulateCombo<T>(DTCDropDown cbo, object[] removeItems = null) where T : Enum
+        private static void PopulateCombo(DTCDropDown cbo, List<string> items, object[] removeItems = null)
         {
             var selectedItem = cbo.SelectedItem;
+            var removeItemsStr = removeItems?.Select(x => x.ToString()).ToArray();
 
             cbo.Items.Clear();
-            foreach (T item in Enum.GetValues(typeof(T)))
+            foreach (var item in items)
             {
                 if (item.ToString() == "None")
                 {
                     cbo.Items.Add("");
                 }
-                else if (removeItems != null && removeItems.Contains(item.ToString()))
+                else if (removeItems != null && removeItemsStr.Contains(item.ToString()))
                 {
                     continue;
                 }

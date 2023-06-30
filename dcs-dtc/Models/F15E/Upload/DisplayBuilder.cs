@@ -94,6 +94,8 @@ namespace DTC.Models.F15E.Upload
 
             AppendCommand(device.GetCommand("PB06"));
 
+            SelectDisplay(device, display.FirstDisplay, false);
+
             AppendCommand(EndCondition("NoDisplaysProgrammed"));
         }
 
@@ -127,7 +129,7 @@ namespace DTC.Models.F15E.Upload
             }
         }
 
-        private void SelectDisplay(Device device, Display display)
+        private void SelectDisplay(Device device, Display display, bool returnToRoot = true)
         {
             if (display == Display.ADI)
             {
@@ -173,8 +175,11 @@ namespace DTC.Models.F15E.Upload
             {
                 AppendCommand(device.GetCommand("PB11"));
                 AppendCommand(device.GetCommand("PB02"));
-                AppendCommand(device.GetCommand("PB11"));
-                AppendCommand(device.GetCommand("PB11"));
+                if (returnToRoot)
+                {
+                    AppendCommand(device.GetCommand("PB11"));
+                    AppendCommand(device.GetCommand("PB11"));
+                }
             }
         }
     }

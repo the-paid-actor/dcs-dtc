@@ -27,8 +27,17 @@ namespace DTC.Models
                 waypointBuilder.Build();
             }
 
-            var displayBuilder = new DisplayBuilder(_cfg, F15E, sb);
-            displayBuilder.Build();
+            if (_cfg.Displays.EnableUpload)
+            {
+                var displayBuilder = new DisplayBuilder(_cfg, F15E, sb);
+                displayBuilder.Build();
+            }
+
+            if (_cfg.Misc.EnableUpload)
+            {
+                var miscBuilder = new MiscBuilder(_cfg, F15E, sb);
+                miscBuilder.Build();
+            }
 
             if (sb.Length > 0)
             {
@@ -39,7 +48,6 @@ namespace DTC.Models
 
             if (str != "")
             {
-                System.Diagnostics.Debug.WriteLine(str);
                 DataSender.Send(str);
             }
         }

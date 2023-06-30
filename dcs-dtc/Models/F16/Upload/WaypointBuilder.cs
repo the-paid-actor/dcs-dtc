@@ -2,6 +2,7 @@
 using DTC.Models.F16.Waypoints;
 using System;
 using System.Collections.Generic;
+using System.Globalization;
 using System.Text;
 
 namespace DTC.Models.F16.Upload
@@ -126,7 +127,7 @@ namespace DTC.Models.F16.Upload
             AppendCommand(ufc.GetCommand("ENTR"));
             AppendCommand(ufc.GetCommand("DOWN"));
 
-            AppendCommand(BuildDigits(ufc, oa.Range.ToString()));
+            AppendCommand(BuildDigits(ufc, RemoveSeparators(oa.Range.ToString(CultureInfo.InvariantCulture))));
             AppendCommand(ufc.GetCommand("ENTR"));
             AppendCommand(ufc.GetCommand("DOWN"));
 
@@ -139,7 +140,7 @@ namespace DTC.Models.F16.Upload
                 AppendCommand(ufc.GetCommand("0"));
                 AppendCommand(ufc.GetCommand("0"));
             }
-            AppendCommand(BuildDigits(ufc, Math.Abs(oa.Elevation).ToString()));
+            AppendCommand(BuildDigits(ufc, RemoveSeparators(Math.Abs(oa.Elevation).ToString(CultureInfo.InvariantCulture))));
             AppendCommand(ufc.GetCommand("ENTR"));
             AppendCommand(ufc.GetCommand("DOWN"));
         }
@@ -266,7 +267,7 @@ namespace DTC.Models.F16.Upload
             AppendCommand(ufc.GetCommand("ENTR"));
             AppendCommand(ufc.GetCommand("DOWN"));
 
-            AppendCommand(BuildDigits(ufc, vrp.Range.ToString()));
+            AppendCommand(BuildDigits(ufc, RemoveSeparators(vrp.Range.ToString(CultureInfo.InvariantCulture))));
             AppendCommand(ufc.GetCommand("ENTR"));
             AppendCommand(ufc.GetCommand("DOWN"));
 
@@ -275,7 +276,7 @@ namespace DTC.Models.F16.Upload
                 AppendCommand(ufc.GetCommand("0"));
                 AppendCommand(ufc.GetCommand("0"));
             }
-            AppendCommand(BuildDigits(ufc, Math.Abs(vrp.Elevation).ToString()));
+            AppendCommand(BuildDigits(ufc, RemoveSeparators(Math.Abs(vrp.Elevation).ToString(CultureInfo.InvariantCulture))));
             AppendCommand(ufc.GetCommand("ENTR"));
             AppendCommand(ufc.GetCommand("DOWN"));
         }

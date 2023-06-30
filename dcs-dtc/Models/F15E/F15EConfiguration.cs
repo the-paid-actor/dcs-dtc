@@ -1,5 +1,6 @@
 ﻿using DTC.Models.Base;
 using DTC.Models.F15E.Displays;
+using DTC.Models.F15E.Misc;
 using DTC.Models.F15E.Waypoints;
 using Newtonsoft.Json;
 
@@ -9,6 +10,7 @@ namespace DTC.Models.F15E
     {
         public WaypointSystem Waypoints = new WaypointSystem();
         public DisplaySystem Displays = new DisplaySystem();
+        public MiscSystem Misc = new MiscSystem();
 
         public string ToJson()
         {
@@ -66,6 +68,14 @@ namespace DTC.Models.F15E
             if (cfg.Waypoints != null)
             {
                 Waypoints = cfg.Waypoints;
+            }
+            if (cfg.Displays != null)
+            {
+                Displays = cfg.Displays;
+            }
+            if (cfg.Misc != null)
+            {
+                Misc = cfg.Misc;
             }
         }
 

@@ -52,5 +52,6 @@
     public class DisplaySystem
     {
         public PilotDisplays Pilot { get; set; } = new PilotDisplays();
+        public bool EnableUpload { get; set; }
     }
 }

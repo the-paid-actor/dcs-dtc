@@ -43,13 +43,14 @@
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
     <PlatformTarget>AnyCPU</PlatformTarget>
-    <DebugType>none</DebugType>
+    <DebugType>embedded</DebugType>
     <Optimize>false</Optimize>
     <OutputPath>bin\Release\</OutputPath>
     <DefineConstants>TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
     <Prefer32Bit>false</Prefer32Bit>
+    <DebugSymbols>true</DebugSymbols>
   </PropertyGroup>
   <PropertyGroup>
     <ApplicationIcon>Resources\Iconleak-Atrous-Disk.ico</ApplicationIcon>
@@ -104,7 +105,9 @@
     <Compile Include="Models\F15E\F15EConfiguration.cs" />
     <Compile Include="Models\F15E\F15EUpload.cs" />
     <Compile Include="Models\F15E\F15ECommands.cs" />
+    <Compile Include="Models\F15E\Misc\MiscSystem.cs" />
     <Compile Include="Models\F15E\Upload\DisplayBuilder.cs" />
+    <Compile Include="Models\F15E\Upload\MiscBuilder.cs" />
     <Compile Include="Models\F15E\Waypoints\Waypoint.cs" />
     <Compile Include="Models\F15E\Upload\WaypointBuilder.cs" />
     <Compile Include="Models\F15E\Waypoints\WaypointSystem.cs" />
@@ -205,6 +208,12 @@
     </Compile>
     <Compile Include="UI\Aircrafts\F15E\DisplaysPage.Designer.cs">
       <DependentUpon>DisplaysPage.cs</DependentUpon>
+    </Compile>
+    <Compile Include="UI\Aircrafts\F15E\MiscPage.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="UI\Aircrafts\F15E\MiscPage.Designer.cs">
+      <DependentUpon>MiscPage.cs</DependentUpon>
     </Compile>
     <Compile Include="UI\Aircrafts\F15E\UploadToJetPage.cs">
       <SubType>UserControl</SubType>

@@ -27,6 +27,9 @@ namespace DTC.UI.Aircrafts.F15E
             txtWaypointStart.Text = _cfg.Waypoints.SteerpointStart.ToString();
             txtWaypointEnd.Text = _cfg.Waypoints.SteerpointEnd.ToString();
 
+            chkDisplays.Checked = _cfg.Displays.EnableUpload;
+            chkMisc.Checked = _cfg.Misc.EnableUpload;
+
             CheckUploadButtonEnabled();
 
             DataReceiver.DataReceived += this.DataReceiver_DataReceived;
@@ -56,7 +59,7 @@ namespace DTC.UI.Aircrafts.F15E
 
         private void CheckUploadButtonEnabled()
         {
-            btnUpload.Enabled = (_cfg.Waypoints.EnableUpload);
+            btnUpload.Enabled = (_cfg.Waypoints.EnableUpload || _cfg.Displays.EnableUpload || _cfg.Misc.EnableUpload);
         }
 
         public override string GetPageTitle()
@@ -88,22 +91,7 @@ namespace DTC.UI.Aircrafts.F15E
 
         private void btnUpload_Click(object sender, EventArgs e)
         {
-            if (!ValidateSteerpoints()) return;
             _jetInterface.Load();
-        }
-
-        private bool ValidateSteerpoints()
-        {
-            //if (!_cfg.Waypoints.OverrideRange)
-            //{
-            //    if (_cfg.Waypoints.Waypoints.Count == 1)
-            //    {
-            //        DTCMessageBox.ShowError("To overwrite Sequence Point 1 you need to have more than one sequence point, since the Strike Eagle does not allow changing the selected steerpoint.");
-            //        return false;
-            //    }
-            //}
-
-            return true;
         }
 
         private void chkWaypoints_CheckedChanged(object sender, EventArgs e)
@@ -122,6 +110,20 @@ namespace DTC.UI.Aircrafts.F15E
             txtWaypointEnd.Enabled = chkOverwriteRange.Checked;
             _cfg.Waypoints.OverrideRange = chkOverwriteRange.Checked;
             _parent.DataChangedCallback();
+        }
+
+        private void chkDisplays_CheckedChanged(object sender, EventArgs e)
+        {
+            _cfg.Displays.EnableUpload = chkDisplays.Checked;
+            _parent.DataChangedCallback();
+            CheckUploadButtonEnabled();
+        }
+
+        private void chkMisc_CheckedChanged(object sender, EventArgs e)
+        {
+            _cfg.Misc.EnableUpload = chkMisc.Checked;
+            _parent.DataChangedCallback();
+            CheckUploadButtonEnabled();
         }
     }
 }

@@ -129,4 +129,13 @@ inputted into Steerpoint 5. And if you set "to" to a
 number greater than the number of waypoints, the 
 last waypoint will be repeated until the "to" number.</value>
   </data>
+  <data name="chkDisplays.ToolTip" xml:space="preserve">
+    <value>Allows you to control into which steerpoints on
+the jet your waypoints will start. For example, if
+you set "from" to 5, then Steerpoints 1 through 4
+on the jet will be skipped, and your WP1 will be
+inputted into Steerpoint 5. And if you set "to" to a 
+number greater than the number of waypoints, the 
+last waypoint will be repeated until the "to" number.</value>
+  </data>
 </root>

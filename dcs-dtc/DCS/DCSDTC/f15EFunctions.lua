@@ -99,6 +99,15 @@ function DTC_F15E_ClearProgrammedDisplay(disp, page)
 end
 --]]
 
+function DTC_F15E_CheckCondition_IsTACANBand(band)
+	local table = DTC_F15E_GetUFC(disp);
+	local str = table["UFC_SC_01"] or "";
+	if str ~= "" and str.sub(str, -1) == band then
+		return true
+	end
+	return false
+end
+
 function DTC_F15E_CheckCondition_IsStrDifferent(expected)
 	local table = DTC_F15E_GetUFC(disp);
 	local str = table["UFC_SC_01"] or "";

@@ -42,7 +42,9 @@ namespace DTC.UI.Aircrafts.F15E
             this.btnUpload = new DTC.UI.Base.Controls.DTCButton();
             this.toolTip1 = new System.Windows.Forms.ToolTip(this.components);
             this.chkOverwriteRange = new System.Windows.Forms.CheckBox();
+            this.chkDisplays = new System.Windows.Forms.CheckBox();
             this.label4 = new System.Windows.Forms.Label();
+            this.chkMisc = new System.Windows.Forms.CheckBox();
             this.SuspendLayout();
             // 
             // chkWaypoints
@@ -124,6 +126,21 @@ namespace DTC.UI.Aircrafts.F15E
             this.chkOverwriteRange.UseVisualStyleBackColor = true;
             this.chkOverwriteRange.CheckedChanged += new System.EventHandler(this.chkOverwriteRange_CheckedChanged);
             // 
+            // chkDisplays
+            // 
+            this.chkDisplays.Checked = true;
+            this.chkDisplays.CheckState = System.Windows.Forms.CheckState.Checked;
+            this.chkDisplays.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F);
+            this.chkDisplays.Location = new System.Drawing.Point(16, 84);
+            this.chkDisplays.Margin = new System.Windows.Forms.Padding(4);
+            this.chkDisplays.Name = "chkDisplays";
+            this.chkDisplays.Size = new System.Drawing.Size(234, 25);
+            this.chkDisplays.TabIndex = 32;
+            this.chkDisplays.Text = "Displays";
+            this.toolTip1.SetToolTip(this.chkDisplays, resources.GetString("chkDisplays.ToolTip"));
+            this.chkDisplays.UseVisualStyleBackColor = true;
+            this.chkDisplays.CheckedChanged += new System.EventHandler(this.chkDisplays_CheckedChanged);
+            // 
             // label4
             // 
             this.label4.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F);
@@ -136,11 +153,27 @@ namespace DTC.UI.Aircrafts.F15E
             this.label4.Text = "to:";
             this.label4.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
+            // chkMisc
+            // 
+            this.chkMisc.Checked = true;
+            this.chkMisc.CheckState = System.Windows.Forms.CheckState.Checked;
+            this.chkMisc.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F);
+            this.chkMisc.Location = new System.Drawing.Point(16, 117);
+            this.chkMisc.Margin = new System.Windows.Forms.Padding(4);
+            this.chkMisc.Name = "chkMisc";
+            this.chkMisc.Size = new System.Drawing.Size(234, 25);
+            this.chkMisc.TabIndex = 32;
+            this.chkMisc.Text = "Misc";
+            this.chkMisc.UseVisualStyleBackColor = true;
+            this.chkMisc.CheckedChanged += new System.EventHandler(this.chkMisc_CheckedChanged);
+            // 
             // UploadToJetPage
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 20F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.PaleGoldenrod;
+            this.Controls.Add(this.chkMisc);
+            this.Controls.Add(this.chkDisplays);
             this.Controls.Add(this.label4);
             this.Controls.Add(this.chkOverwriteRange);
             this.Controls.Add(this.btnUpload);
@@ -163,5 +196,7 @@ namespace DTC.UI.Aircrafts.F15E
 		private System.Windows.Forms.ToolTip toolTip1;
 		private System.Windows.Forms.CheckBox chkOverwriteRange;
 		private System.Windows.Forms.Label label4;
-	}
+        private System.Windows.Forms.CheckBox chkDisplays;
+        private System.Windows.Forms.CheckBox chkMisc;
+    }
 }

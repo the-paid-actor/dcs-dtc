@@ -46,7 +46,6 @@ namespace DTC.UI.Aircrafts.F16
 
         private void btnAdd_Click(object sender, EventArgs e)
         {
-            System.Diagnostics.Debug.WriteLine(this.Size);
             ShowWptDialog();
         }
 

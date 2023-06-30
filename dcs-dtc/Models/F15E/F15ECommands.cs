@@ -83,6 +83,11 @@ namespace DTC.Models.F15E
             {
                 frmpd.AddCommand(cmd);
             }
+
+            var fltInst = new Device(17, "FLTINST");
+            fltInst.AddCommand(new Command(3385, "BingoIncrease", 0, 0.1));
+            fltInst.AddCommand(new Command(3385, "BingoDecrease", 0, -0.1));
+            AddDevice(fltInst);
         }
 
         private void AddDevice(Device d)

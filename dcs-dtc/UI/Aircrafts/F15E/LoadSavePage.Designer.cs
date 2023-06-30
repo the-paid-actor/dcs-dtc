@@ -36,15 +36,17 @@ namespace DTC.UI.Aircrafts.F15E
             this.optFile = new System.Windows.Forms.RadioButton();
             this.optClipboard = new System.Windows.Forms.RadioButton();
             this.grpLoad = new DTC.UI.Controls.DTCGroupBox();
+            this.chkLoadDisplays = new System.Windows.Forms.CheckBox();
             this.btnLoadApply = new DTC.UI.Base.Controls.DTCButton();
             this.btnLoad = new DTC.UI.Base.Controls.DTCButton();
             this.chkLoadWaypoints = new System.Windows.Forms.CheckBox();
             this.grpSave = new DTC.UI.Controls.DTCGroupBox();
+            this.chkSaveDisplays = new System.Windows.Forms.CheckBox();
             this.btnSave = new DTC.UI.Base.Controls.DTCButton();
             this.chkSaveWaypoints = new System.Windows.Forms.CheckBox();
             this.checkBox1 = new System.Windows.Forms.CheckBox();
-            this.chkLoadDisplays = new System.Windows.Forms.CheckBox();
-            this.chkSaveDisplays = new System.Windows.Forms.CheckBox();
+            this.chkLoadMisc = new System.Windows.Forms.CheckBox();
+            this.chkSaveMisc = new System.Windows.Forms.CheckBox();
             this.grpLoad.SuspendLayout();
             this.grpSave.SuspendLayout();
             this.SuspendLayout();
@@ -88,6 +90,7 @@ namespace DTC.UI.Aircrafts.F15E
             this.grpLoad.BorderColor = System.Drawing.Color.Black;
             this.grpLoad.BorderRadius = 5;
             this.grpLoad.BorderWidth = 2;
+            this.grpLoad.Controls.Add(this.chkLoadMisc);
             this.grpLoad.Controls.Add(this.chkLoadDisplays);
             this.grpLoad.Controls.Add(this.btnLoadApply);
             this.grpLoad.Controls.Add(this.btnLoad);
@@ -101,6 +104,17 @@ namespace DTC.UI.Aircrafts.F15E
             this.grpLoad.TabStop = false;
             this.grpLoad.Text = "Load";
             this.grpLoad.Visible = false;
+            // 
+            // chkLoadDisplays
+            // 
+            this.chkLoadDisplays.Enabled = false;
+            this.chkLoadDisplays.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F);
+            this.chkLoadDisplays.Location = new System.Drawing.Point(18, 91);
+            this.chkLoadDisplays.Name = "chkLoadDisplays";
+            this.chkLoadDisplays.Size = new System.Drawing.Size(102, 25);
+            this.chkLoadDisplays.TabIndex = 1;
+            this.chkLoadDisplays.Text = "Displays";
+            this.chkLoadDisplays.UseVisualStyleBackColor = true;
             // 
             // btnLoadApply
             // 
@@ -147,6 +161,7 @@ namespace DTC.UI.Aircrafts.F15E
             this.grpSave.BorderColor = System.Drawing.Color.Black;
             this.grpSave.BorderRadius = 5;
             this.grpSave.BorderWidth = 2;
+            this.grpSave.Controls.Add(this.chkSaveMisc);
             this.grpSave.Controls.Add(this.chkSaveDisplays);
             this.grpSave.Controls.Add(this.btnSave);
             this.grpSave.Controls.Add(this.chkSaveWaypoints);
@@ -159,6 +174,18 @@ namespace DTC.UI.Aircrafts.F15E
             this.grpSave.TabStop = false;
             this.grpSave.Text = "Save";
             this.grpSave.Visible = false;
+            // 
+            // chkSaveDisplays
+            // 
+            this.chkSaveDisplays.Checked = true;
+            this.chkSaveDisplays.CheckState = System.Windows.Forms.CheckState.Checked;
+            this.chkSaveDisplays.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F);
+            this.chkSaveDisplays.Location = new System.Drawing.Point(18, 91);
+            this.chkSaveDisplays.Name = "chkSaveDisplays";
+            this.chkSaveDisplays.Size = new System.Drawing.Size(102, 25);
+            this.chkSaveDisplays.TabIndex = 1;
+            this.chkSaveDisplays.Text = "Displays";
+            this.chkSaveDisplays.UseVisualStyleBackColor = true;
             // 
             // btnSave
             // 
@@ -196,28 +223,28 @@ namespace DTC.UI.Aircrafts.F15E
             this.checkBox1.Text = "checkBox1";
             this.checkBox1.UseVisualStyleBackColor = true;
             // 
-            // chkLoadDisplays
+            // chkLoadMisc
             // 
-            this.chkLoadDisplays.Enabled = false;
-            this.chkLoadDisplays.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F);
-            this.chkLoadDisplays.Location = new System.Drawing.Point(18, 91);
-            this.chkLoadDisplays.Name = "chkLoadDisplays";
-            this.chkLoadDisplays.Size = new System.Drawing.Size(102, 25);
-            this.chkLoadDisplays.TabIndex = 1;
-            this.chkLoadDisplays.Text = "Displays";
-            this.chkLoadDisplays.UseVisualStyleBackColor = true;
+            this.chkLoadMisc.Enabled = false;
+            this.chkLoadMisc.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F);
+            this.chkLoadMisc.Location = new System.Drawing.Point(18, 122);
+            this.chkLoadMisc.Name = "chkLoadMisc";
+            this.chkLoadMisc.Size = new System.Drawing.Size(102, 25);
+            this.chkLoadMisc.TabIndex = 1;
+            this.chkLoadMisc.Text = "Misc";
+            this.chkLoadMisc.UseVisualStyleBackColor = true;
             // 
-            // chkSaveDisplays
+            // chkSaveMisc
             // 
-            this.chkSaveDisplays.Checked = true;
-            this.chkSaveDisplays.CheckState = System.Windows.Forms.CheckState.Checked;
-            this.chkSaveDisplays.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F);
-            this.chkSaveDisplays.Location = new System.Drawing.Point(18, 91);
-            this.chkSaveDisplays.Name = "chkSaveDisplays";
-            this.chkSaveDisplays.Size = new System.Drawing.Size(102, 25);
-            this.chkSaveDisplays.TabIndex = 1;
-            this.chkSaveDisplays.Text = "Displays";
-            this.chkSaveDisplays.UseVisualStyleBackColor = true;
+            this.chkSaveMisc.Checked = true;
+            this.chkSaveMisc.CheckState = System.Windows.Forms.CheckState.Checked;
+            this.chkSaveMisc.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F);
+            this.chkSaveMisc.Location = new System.Drawing.Point(18, 122);
+            this.chkSaveMisc.Name = "chkSaveMisc";
+            this.chkSaveMisc.Size = new System.Drawing.Size(102, 25);
+            this.chkSaveMisc.TabIndex = 1;
+            this.chkSaveMisc.Text = "Misc";
+            this.chkSaveMisc.UseVisualStyleBackColor = true;
             // 
             // LoadSavePage
             // 
@@ -253,5 +280,7 @@ namespace DTC.UI.Aircrafts.F15E
 		private System.Windows.Forms.CheckBox checkBox1;
         private System.Windows.Forms.CheckBox chkLoadDisplays;
         private System.Windows.Forms.CheckBox chkSaveDisplays;
+        private System.Windows.Forms.CheckBox chkLoadMisc;
+        private System.Windows.Forms.CheckBox chkSaveMisc;
     }
 }

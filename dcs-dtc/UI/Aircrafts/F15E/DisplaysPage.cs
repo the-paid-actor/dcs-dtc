@@ -191,7 +191,7 @@ namespace DTC.UI.Aircrafts.F15E
                     _parent.DataChangedCallback();
 
                     disp3Mode.Enabled = true;
-                    PopulateCombo(disp3Mode, displayOptions, new[] { disp1Mode.SelectedItem, disp2Mode.SelectedItem });
+                    PopulateCombo(disp3Mode, modeOptions, new[] { disp1Mode.SelectedItem, disp2Mode.SelectedItem });
                 }
             };
 

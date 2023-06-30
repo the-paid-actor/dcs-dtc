@@ -24,7 +24,7 @@ namespace DTC.UI.Aircrafts.FA18
             var rowHeight = 20;
             var chkWidth = 20;
             var qtyMask = "00";
-            var IntervalMask = @"0.00";
+            var IntervalMask = @"0\.00";
 
             this.SuspendLayout();
 

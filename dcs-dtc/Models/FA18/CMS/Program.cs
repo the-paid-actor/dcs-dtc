@@ -24,7 +24,7 @@ namespace DTC.Models.FA18.CMS
 
 		private bool ValidateQty(string txt)
 		{
-			if (!int.TryParse(txt, out int i))
+			if (!int.TryParse(txt, NumberStyles.Number, CultureInfo.InvariantCulture, out int i))
 			{
 				return false;
 			}
@@ -55,29 +55,29 @@ namespace DTC.Models.FA18.CMS
 
 		public string GetChaffQty()
 		{
-			return ChaffQty.ToString("00");
+			return ChaffQty.ToString("00", CultureInfo.InvariantCulture);
 		}
 
 		public string GetInterval()
 		{
-			return Interval.ToString("0.00");
+			return Interval.ToString("0.00", CultureInfo.InvariantCulture);
 		}
 
 		public string GetRepeat()
 		{
-			return Repeat.ToString("00");
+			return Repeat.ToString("00", CultureInfo.InvariantCulture);
 		}
 
 		public string GetFlareQty()
 		{
-			return FlareQty.ToString("00");
+			return FlareQty.ToString("00", CultureInfo.InvariantCulture);
 		}
 
 		public string SetChaffQty(string txt)
 		{
 			if (ValidateQty(txt))
 			{
-				ChaffQty = int.Parse(txt);
+				ChaffQty = int.Parse(txt, NumberStyles.Number, CultureInfo.InvariantCulture);
 			}
 
 			return GetChaffQty();
@@ -87,7 +87,7 @@ namespace DTC.Models.FA18.CMS
 		{
 			if (ValidateInterval(txt))
 			{
-				Interval = decimal.Parse(txt);
+				Interval = decimal.Parse(txt, NumberStyles.Number, CultureInfo.InvariantCulture);
 			}
 
 			return GetInterval();
@@ -97,7 +97,7 @@ namespace DTC.Models.FA18.CMS
 		{
 			if (ValidateQty(txt))
 			{
-				FlareQty = int.Parse(txt);
+				FlareQty = int.Parse(txt, NumberStyles.Number, CultureInfo.InvariantCulture);
 			}
 
 			return GetFlareQty();
@@ -107,7 +107,7 @@ namespace DTC.Models.FA18.CMS
 		{
 			if (ValidateQty(txt))
 			{
-				Repeat = int.Parse(txt);
+				Repeat = int.Parse(txt, NumberStyles.Number, CultureInfo.InvariantCulture);
 			}
 
 			return GetRepeat();

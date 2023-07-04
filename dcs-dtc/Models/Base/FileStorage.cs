@@ -5,6 +5,7 @@ using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
 using System.IO;
+using System.IO.Compression;
 using System.Threading;
 
 namespace DTC.Models.Base
@@ -175,6 +176,15 @@ namespace DTC.Models.Base
 				CopyDefaultSettingsFile(path);
 			}
 			return File.ReadAllText(path);
+		}
+
+		public static string LoadCombatFlite(string path)
+		{
+			using (ZipArchive archive = ZipFile.Open(path, ZipArchiveMode.Read))
+			{
+				var entry = archive.GetEntry("mission.xml");
+				return new StreamReader(entry.Open()).ReadToEnd();
+			}
 		}
 
 		public static Theater[] LoadAirbases()

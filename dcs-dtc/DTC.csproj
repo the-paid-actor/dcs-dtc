@@ -454,6 +454,12 @@
     <Compile Include="UI\Aircrafts\F16\WaypointsPage.Designer.cs">
       <DependentUpon>WaypointsPage.cs</DependentUpon>
     </Compile>
+    <Compile Include="UI\CommonPages\CombatFliteFlightSelector.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="UI\CommonPages\CombatFliteFlightSelector.Designer.cs">
+      <DependentUpon>CombatFliteFlightSelector.cs</DependentUpon>
+    </Compile>
     <Compile Include="UI\CommonPages\MainPage.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -622,6 +628,9 @@
       <Generator>ResXFileCodeGenerator</Generator>
       <SubType>Designer</SubType>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UI\CommonPages\CombatFliteFlightSelector.resx">
+      <DependentUpon>CombatFliteFlightSelector.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="UI\CommonPages\MainPage.resx">
       <DependentUpon>MainPage.cs</DependentUpon>

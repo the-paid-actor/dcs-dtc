@@ -1,30 +1,31 @@
 dofile(lfs.writedir()..'Scripts/DCSDTC/commonFunctions.lua')
 
 --Displays
--- 0 - ??
+-- 0 - NF FOV
 -- 1 - HUD
--- 2 - Left MPD
--- 3 - ??
--- 4 - MPCD
--- 5 - ??
--- 6 - Right MPD
--- 7 - ??
--- 8 - UFC
+-- 2 - Blank
+-- 3 - Left MPD
+-- 4 - ??
+-- 5 - MPCD
+-- 6 - ??
+-- 7 - Right MPD
+-- 8 - ??
+-- 9 - UFC
 
 function DTC_F15E_GetFrontLeftMPD()
-	return DTC_ParseDisplay(2)
+	return DTC_ParseDisplay(3)
 end
 
 function DTC_F15E_GetFrontRightMPD()
-	return DTC_ParseDisplay(6)
+	return DTC_ParseDisplay(7)
 end
 
 function DTC_F15E_GetFrontMPCD()
-	return DTC_ParseDisplay(4)
+	return DTC_ParseDisplay(5)
 end
 
 function DTC_F15E_GetUFC()
-	return DTC_ParseDisplay(8)
+	return DTC_ParseDisplay(9)
 end
 
 function DTC_F15E_GetDisplay(disp)

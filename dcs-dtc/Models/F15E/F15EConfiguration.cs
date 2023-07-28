@@ -40,6 +40,15 @@ namespace DTC.Models.F15E
 
         public void AfterLoadFromJson()
         {
+            if (this.Displays != null)
+            {
+                if (this.Displays.WSO == null) this.Displays.WSO = new WSODisplays();
+
+                if (this.Displays.WSO.LeftMPCD == null) this.Displays.WSO.LeftMPCD = new DisplayConfig();
+                if (this.Displays.WSO.LeftMPD == null) this.Displays.WSO.LeftMPD = new DisplayConfig();
+                if (this.Displays.WSO.RightMPD == null) this.Displays.WSO.RightMPD = new DisplayConfig();
+                if (this.Displays.WSO.RightMPCD == null) this.Displays.WSO.RightMPCD = new DisplayConfig();
+            }
         }
 
         public static F15EConfiguration FromCompressedString(string s)

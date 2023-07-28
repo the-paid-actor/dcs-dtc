@@ -1,5 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using DTC.Models.Base;
 using DTC.Models.DCS;
 
@@ -63,25 +62,53 @@ namespace DTC.Models.F15E
                 new Command(3080, "PB20", delay, 1)
             };
 
-            var flmpd = new Device(34, "FLMPD");
-            AddDevice(flmpd);
+            var frontLeftMPD = new Device(34, "FLMPD");
+            AddDevice(frontLeftMPD);
             foreach (var cmd in mpdCommands)
             {
-                flmpd.AddCommand(cmd);
+                frontLeftMPD.AddCommand(cmd);
             }
 
-            var fmpcd = new Device(35, "FMPCD");
-            AddDevice(fmpcd);
+            var frontMPCD = new Device(35, "FMPCD");
+            AddDevice(frontMPCD);
             foreach (var cmd in mpdCommands)
             {
-                fmpcd.AddCommand(cmd);
+                frontMPCD.AddCommand(cmd);
             }
 
-            var frmpd = new Device(36, "FRMPD");
-            AddDevice(frmpd);
+            var frontRightMPD = new Device(36, "FRMPD");
+            AddDevice(frontRightMPD);
             foreach (var cmd in mpdCommands)
             {
-                frmpd.AddCommand(cmd);
+                frontRightMPD.AddCommand(cmd);
+            }
+
+            var rearLeftMPCD = new Device(37, "RLMPCD");
+            AddDevice(rearLeftMPCD);
+            foreach (var cmd in mpdCommands)
+            {
+                rearLeftMPCD.AddCommand(cmd);
+            }
+
+            var rearLeftMPD = new Device(38, "RLMPD");
+            AddDevice(rearLeftMPD);
+            foreach (var cmd in mpdCommands)
+            {
+                rearLeftMPD.AddCommand(cmd);
+            }
+
+            var rearRightMPD = new Device(39, "RRMPD");
+            AddDevice(rearRightMPD);
+            foreach (var cmd in mpdCommands)
+            {
+                rearRightMPD.AddCommand(cmd);
+            }
+
+            var rearRightMPCD = new Device(40, "RRMPCD");
+            AddDevice(rearRightMPCD);
+            foreach (var cmd in mpdCommands)
+            {
+                rearRightMPCD.AddCommand(cmd);
             }
 
             var fltInst = new Device(17, "FLTINST");

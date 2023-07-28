@@ -24,6 +24,12 @@
         NAV = 3
     }
 
+    public enum DisplayUploadMode
+    {
+        Pilot = 1,
+        WSO = 2,
+    }
+
     public class DisplayConfig
     {
         public Display FirstDisplay { get; set; }
@@ -43,15 +49,19 @@
 
     public class WSODisplays
     {
-        public DisplayConfig LeftMPCD { get; set; }
-        public DisplayConfig LeftMPD { get; set; }
-        public DisplayConfig RightMPD { get; set; }
-        public DisplayConfig RightMPCD { get; set; }
+        public DisplayConfig LeftMPCD { get; set; } = new DisplayConfig();
+        public DisplayConfig LeftMPD { get; set; } = new DisplayConfig();
+        public DisplayConfig RightMPD { get; set; } = new DisplayConfig();
+        public DisplayConfig RightMPCD { get; set; } = new DisplayConfig();
     }
 
     public class DisplaySystem
     {
         public PilotDisplays Pilot { get; set; } = new PilotDisplays();
+        public WSODisplays WSO { get; set; } = new WSODisplays();
+
+        public DisplayUploadMode UploadMode { get; set; }
+
         public bool EnableUpload { get; set; }
     }
 }

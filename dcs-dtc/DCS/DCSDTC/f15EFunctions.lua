@@ -11,6 +11,10 @@ dofile(lfs.writedir()..'Scripts/DCSDTC/commonFunctions.lua')
 -- 7 - Right MPD
 -- 8 - ??
 -- 9 - UFC
+-- 10 - RLMPCD
+-- 12 - RLMPD
+-- 14 - RRMPD
+-- 16 - RRMPCD
 
 function DTC_F15E_GetFrontLeftMPD()
 	return DTC_ParseDisplay(3)
@@ -22,6 +26,22 @@ end
 
 function DTC_F15E_GetFrontMPCD()
 	return DTC_ParseDisplay(5)
+end
+
+function DTC_F15E_GetRearLeftMPCD()
+	return DTC_ParseDisplay(10)
+end
+
+function DTC_F15E_GetRearLeftMPD()
+	return DTC_ParseDisplay(12)
+end
+
+function DTC_F15E_GetRearRightMPD()
+	return DTC_ParseDisplay(14)
+end
+
+function DTC_F15E_GetRearRightMPCD()
+	return DTC_ParseDisplay(16)
 end
 
 function DTC_F15E_GetUFC()
@@ -36,6 +56,14 @@ function DTC_F15E_GetDisplay(disp)
 		table = DTC_F15E_GetFrontRightMPD();
 	elseif disp	== "FMPCD" then
 		table = DTC_F15E_GetFrontMPCD();
+	elseif disp	== "RLMPCD" then
+		table = DTC_F15E_GetRearLeftMPCD();
+	elseif disp	== "RLMPD" then
+		table = DTC_F15E_GetRearLeftMPD();
+	elseif disp	== "RRMPD" then
+		table = DTC_F15E_GetRearRightMPD();
+	elseif disp	== "RRMPCD" then
+		table = DTC_F15E_GetRearRightMPCD();
 	end
 	return table
 end
@@ -148,9 +176,13 @@ end
 
 function DTC_F15E_AfterNextFrame(params)
 	local mainPanel = GetDevice(0);
-	local ipButton = mainPanel:get_argument_value(297);
-	local emButton = mainPanel:get_argument_value(287);
+	local ipButtonFront = mainPanel:get_argument_value(297);
+	local ipButtonRear = mainPanel:get_argument_value(1322);
+	local emButtonFront = mainPanel:get_argument_value(287);
+	local emButtonRear = mainPanel:get_argument_value(1312);
 
-	if ipButton == 1 then params["uploadCommand"] = "1" end
-	if emButton == 1 then params["toggleDTCCommand"] = "1" end
+	if ipButtonFront == 1 then params["uploadCommand"] = "1" end
+	if ipButtonRear == 1 then params["uploadCommand"] = "1" end
+	if emButtonFront == 1 then params["toggleDTCCommand"] = "1" end
+	if emButtonRear == 1 then params["toggleDTCCommand"] = "1" end
 end

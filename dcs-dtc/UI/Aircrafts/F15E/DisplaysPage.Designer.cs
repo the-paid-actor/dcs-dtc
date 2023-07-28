@@ -29,19 +29,19 @@ namespace DTC.UI.Aircrafts.F15E
 		/// </summary>
 		private void InitializeComponent()
 		{
-			this.SuspendLayout();
-			// 
-			// MFDPage
-			// 
-			this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
-			this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-			this.BackColor = System.Drawing.Color.PaleGoldenrod;
-			this.Name = "MFDPage";
-			this.Size = new System.Drawing.Size(785, 640);
-			this.ResumeLayout(false);
+            this.SuspendLayout();
+            // 
+            // DisplaysPage
+            // 
+            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
+            this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.BackColor = System.Drawing.Color.PaleGoldenrod;
+            this.Name = "DisplaysPage";
+            this.Size = new System.Drawing.Size(500, 500);
+            this.ResumeLayout(false);
 
 		}
 
-		#endregion
-	}
+        #endregion
+    }
 }

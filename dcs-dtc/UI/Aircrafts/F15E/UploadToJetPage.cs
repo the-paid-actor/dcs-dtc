@@ -30,6 +30,9 @@ namespace DTC.UI.Aircrafts.F15E
             chkDisplays.Checked = _cfg.Displays.EnableUpload;
             chkMisc.Checked = _cfg.Misc.EnableUpload;
 
+            radDisplaysPilot.Checked = _cfg.Displays.UploadMode == Models.F15E.Displays.DisplayUploadMode.Pilot;
+            radDisplaysWSO.Checked = _cfg.Displays.UploadMode == Models.F15E.Displays.DisplayUploadMode.WSO;
+
             CheckUploadButtonEnabled();
 
             DataReceiver.DataReceived += this.DataReceiver_DataReceived;
@@ -124,6 +127,18 @@ namespace DTC.UI.Aircrafts.F15E
             _cfg.Misc.EnableUpload = chkMisc.Checked;
             _parent.DataChangedCallback();
             CheckUploadButtonEnabled();
+        }
+
+        private void radDisplaysPilot_CheckedChanged(object sender, EventArgs e)
+        {
+            _cfg.Displays.UploadMode = Models.F15E.Displays.DisplayUploadMode.Pilot;
+            _parent.DataChangedCallback();
+        }
+
+        private void radDisplaysWSO_CheckedChanged(object sender, EventArgs e)
+        {
+            _cfg.Displays.UploadMode = Models.F15E.Displays.DisplayUploadMode.WSO;
+            _parent.DataChangedCallback();
         }
     }
 }

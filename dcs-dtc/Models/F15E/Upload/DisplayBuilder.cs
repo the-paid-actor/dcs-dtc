@@ -1,8 +1,5 @@
 ﻿using DTC.Models.DCS;
 using DTC.Models.F15E.Displays;
-using DTC.Models.F15E.Waypoints;
-using System;
-using System.Collections.Generic;
 using System.Text;
 
 namespace DTC.Models.F15E.Upload
@@ -18,23 +15,51 @@ namespace DTC.Models.F15E.Upload
 
         public override void Build()
         {
-            var flmpd = _aircraft.GetDevice("FLMPD");
-            var frmpd = _aircraft.GetDevice("FRMPD");
-            var mpcd = _aircraft.GetDevice("FMPCD");
-
-            if (_cfg.Displays.Pilot.LeftMPD.FirstDisplay != Display.None)
+            if (_cfg.Displays.UploadMode == DisplayUploadMode.Pilot)
             {
-                BuildDisplay(flmpd, _cfg.Displays.Pilot.LeftMPD);
+                var frontLeftMPD = _aircraft.GetDevice("FLMPD");
+                if (_cfg.Displays.Pilot.LeftMPD.FirstDisplay != Display.None)
+                {
+                    BuildDisplay(frontLeftMPD, _cfg.Displays.Pilot.LeftMPD);
+                }
+
+                var frontRightMPD = _aircraft.GetDevice("FRMPD");
+                if (_cfg.Displays.Pilot.RightMPD.FirstDisplay != Display.None)
+                {
+                    BuildDisplay(frontRightMPD, _cfg.Displays.Pilot.RightMPD);
+                }
+
+                var frontMPCD = _aircraft.GetDevice("FMPCD");
+                if (_cfg.Displays.Pilot.MPCD.FirstDisplay != Display.None)
+                {
+                    BuildDisplay(frontMPCD, _cfg.Displays.Pilot.MPCD);
+                }
             }
-
-            if (_cfg.Displays.Pilot.RightMPD.FirstDisplay != Display.None)
+            else if (_cfg.Displays.UploadMode == DisplayUploadMode.WSO)
             {
-                BuildDisplay(frmpd, _cfg.Displays.Pilot.RightMPD);
-            }
+                var rearLeftMPCD = _aircraft.GetDevice("RLMPCD");
+                if (_cfg.Displays.WSO.LeftMPCD.FirstDisplay != Display.None)
+                {
+                    BuildDisplay(rearLeftMPCD, _cfg.Displays.WSO.LeftMPCD);
+                }
 
-            if (_cfg.Displays.Pilot.MPCD.FirstDisplay != Display.None)
-            {
-                BuildDisplay(mpcd, _cfg.Displays.Pilot.MPCD);
+                var rearLeftMPD = _aircraft.GetDevice("RLMPD");
+                if (_cfg.Displays.WSO.LeftMPD.FirstDisplay != Display.None)
+                {
+                    BuildDisplay(rearLeftMPD, _cfg.Displays.WSO.LeftMPD);
+                }
+
+                var rearRightMPD = _aircraft.GetDevice("RRMPD");
+                if (_cfg.Displays.WSO.RightMPD.FirstDisplay != Display.None)
+                {
+                    BuildDisplay(rearRightMPD, _cfg.Displays.WSO.RightMPD);
+                }
+
+                var rearRightMPCD = _aircraft.GetDevice("RRMPCD");
+                if (_cfg.Displays.WSO.RightMPCD.FirstDisplay != Display.None)
+                {
+                    BuildDisplay(rearRightMPCD, _cfg.Displays.WSO.RightMPCD);
+                }
             }
         }
 

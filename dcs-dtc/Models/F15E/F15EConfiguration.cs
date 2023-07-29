@@ -1,6 +1,7 @@
 ﻿using DTC.Models.Base;
 using DTC.Models.F15E.Displays;
 using DTC.Models.F15E.Misc;
+using DTC.Models.F15E.Radios;
 using DTC.Models.F15E.Waypoints;
 using Newtonsoft.Json;
 
@@ -9,6 +10,7 @@ namespace DTC.Models.F15E
     public class F15EConfiguration : IConfiguration
     {
         public WaypointSystem Waypoints = new WaypointSystem();
+        public RadioSystem Radios = new RadioSystem();
         public DisplaySystem Displays = new DisplaySystem();
         public MiscSystem Misc = new MiscSystem();
 

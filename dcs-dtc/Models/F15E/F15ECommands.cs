@@ -23,9 +23,11 @@ namespace DTC.Models.F15E
             ufc.AddCommand(new Command(3008, "PB8", delay, 1));
             ufc.AddCommand(new Command(3009, "PB9", delay, 1));
             ufc.AddCommand(new Command(3010, "PB10", delay, 1));
+            ufc.AddCommand(new Command(3019, "GCML", delay, 1));
             ufc.AddCommand(new Command(3020, "1", delay, 1));
             ufc.AddCommand(new Command(3021, "2", delay, 1));
             ufc.AddCommand(new Command(3022, "3", delay, 1));
+            ufc.AddCommand(new Command(3023, "GCMR", delay, 1));
             ufc.AddCommand(new Command(3025, "4", delay, 1));
             ufc.AddCommand(new Command(3026, "5", delay, 1));
             ufc.AddCommand(new Command(3027, "6", delay, 1));
@@ -37,6 +39,11 @@ namespace DTC.Models.F15E
             ufc.AddCommand(new Command(3033, "SHF", delay, 1));
             ufc.AddCommand(new Command(3038, "MENU", delay, 1));
             ufc.AddCommand(new Command(3035, "CLR", delay, 1));
+
+            ufc.AddCommand(new Command(3011, "PRESLCCW", delay, -1));
+            ufc.AddCommand(new Command(3012, "PRESRCCW", delay, -1));
+            ufc.AddCommand(new Command(3055, "PRESL", delay, 1));
+            ufc.AddCommand(new Command(3056, "PRESR", delay, 1));
             AddDevice(ufc);
 
             var mpdCommands = new Command[] {

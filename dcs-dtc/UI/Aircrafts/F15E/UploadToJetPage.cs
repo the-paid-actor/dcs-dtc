@@ -28,6 +28,7 @@ namespace DTC.UI.Aircrafts.F15E
             txtWaypointEnd.Text = _cfg.Waypoints.SteerpointEnd.ToString();
 
             chkDisplays.Checked = _cfg.Displays.EnableUpload;
+            chkRadios.Checked = _cfg.Radios.EnableUpload;
             chkMisc.Checked = _cfg.Misc.EnableUpload;
 
             radDisplaysPilot.Checked = _cfg.Displays.UploadMode == Models.F15E.Displays.DisplayUploadMode.Pilot;
@@ -62,7 +63,7 @@ namespace DTC.UI.Aircrafts.F15E
 
         private void CheckUploadButtonEnabled()
         {
-            btnUpload.Enabled = (_cfg.Waypoints.EnableUpload || _cfg.Displays.EnableUpload || _cfg.Misc.EnableUpload);
+            btnUpload.Enabled = (_cfg.Waypoints.EnableUpload || _cfg.Displays.EnableUpload || _cfg.Radios.EnableUpload || _cfg.Misc.EnableUpload);
         }
 
         public override string GetPageTitle()
@@ -118,6 +119,8 @@ namespace DTC.UI.Aircrafts.F15E
         private void chkDisplays_CheckedChanged(object sender, EventArgs e)
         {
             _cfg.Displays.EnableUpload = chkDisplays.Checked;
+            radDisplaysPilot.Enabled = chkDisplays.Checked;
+            radDisplaysWSO.Enabled = chkDisplays.Checked;
             _parent.DataChangedCallback();
             CheckUploadButtonEnabled();
         }
@@ -139,6 +142,13 @@ namespace DTC.UI.Aircrafts.F15E
         {
             _cfg.Displays.UploadMode = Models.F15E.Displays.DisplayUploadMode.WSO;
             _parent.DataChangedCallback();
+        }
+
+        private void chkRadios_CheckedChanged(object sender, EventArgs e)
+        {
+            _cfg.Radios.EnableUpload = chkRadios.Checked;
+            _parent.DataChangedCallback();
+            CheckUploadButtonEnabled();
         }
     }
 }

@@ -117,16 +117,4 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
-  <metadata name="toolTip1.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
-    <value>17, 17</value>
-  </metadata>
-  <data name="chkOverwriteRange.ToolTip" xml:space="preserve">
-    <value>Allows you to control into which steerpoints on
-the jet your waypoints will start. For example, if
-you set "from" to 5, then Steerpoints 1 through 4
-on the jet will be skipped, and your WP1 will be
-inputted into Steerpoint 5. And if you set "to" to a 
-number greater than the number of waypoints, the 
-last waypoint will be repeated until the "to" number.</value>
-  </data>
 </root>

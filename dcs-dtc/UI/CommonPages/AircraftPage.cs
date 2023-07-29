@@ -82,6 +82,7 @@ namespace DTC.UI.CommonPages
                     new Aircrafts.F15E.UploadToJetPage(this, cfg),
                     new Aircrafts.F15E.LoadSavePage(this, cfg),
                     new Aircrafts.F15E.WaypointsPage(this, cfg.Waypoints),
+                    new Aircrafts.F15E.RadiosPage(this, cfg.Radios),
                     new Aircrafts.F15E.DisplaysPage(this, cfg.Displays),
                     new Aircrafts.F15E.MiscPage(this, cfg.Misc)
                 };

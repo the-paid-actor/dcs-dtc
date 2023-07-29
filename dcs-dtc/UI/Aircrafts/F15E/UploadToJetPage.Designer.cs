@@ -47,6 +47,7 @@ namespace DTC.UI.Aircrafts.F15E
             this.chkMisc = new System.Windows.Forms.CheckBox();
             this.radDisplaysPilot = new System.Windows.Forms.RadioButton();
             this.radDisplaysWSO = new System.Windows.Forms.RadioButton();
+            this.chkRadios = new System.Windows.Forms.CheckBox();
             this.SuspendLayout();
             // 
             // chkWaypoints
@@ -133,13 +134,12 @@ namespace DTC.UI.Aircrafts.F15E
             this.chkDisplays.Checked = true;
             this.chkDisplays.CheckState = System.Windows.Forms.CheckState.Checked;
             this.chkDisplays.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F);
-            this.chkDisplays.Location = new System.Drawing.Point(16, 117);
+            this.chkDisplays.Location = new System.Drawing.Point(16, 150);
             this.chkDisplays.Margin = new System.Windows.Forms.Padding(4);
             this.chkDisplays.Name = "chkDisplays";
             this.chkDisplays.Size = new System.Drawing.Size(234, 25);
             this.chkDisplays.TabIndex = 32;
             this.chkDisplays.Text = "Displays";
-            this.toolTip1.SetToolTip(this.chkDisplays, resources.GetString("chkDisplays.ToolTip"));
             this.chkDisplays.UseVisualStyleBackColor = true;
             this.chkDisplays.CheckedChanged += new System.EventHandler(this.chkDisplays_CheckedChanged);
             // 
@@ -160,7 +160,7 @@ namespace DTC.UI.Aircrafts.F15E
             this.chkMisc.Checked = true;
             this.chkMisc.CheckState = System.Windows.Forms.CheckState.Checked;
             this.chkMisc.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F);
-            this.chkMisc.Location = new System.Drawing.Point(16, 84);
+            this.chkMisc.Location = new System.Drawing.Point(16, 117);
             this.chkMisc.Margin = new System.Windows.Forms.Padding(4);
             this.chkMisc.Name = "chkMisc";
             this.chkMisc.Size = new System.Drawing.Size(234, 25);
@@ -173,7 +173,7 @@ namespace DTC.UI.Aircrafts.F15E
             // 
             this.radDisplaysPilot.AutoSize = true;
             this.radDisplaysPilot.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.radDisplaysPilot.Location = new System.Drawing.Point(39, 149);
+            this.radDisplaysPilot.Location = new System.Drawing.Point(39, 182);
             this.radDisplaysPilot.Name = "radDisplaysPilot";
             this.radDisplaysPilot.Size = new System.Drawing.Size(53, 21);
             this.radDisplaysPilot.TabIndex = 33;
@@ -186,7 +186,7 @@ namespace DTC.UI.Aircrafts.F15E
             // 
             this.radDisplaysWSO.AutoSize = true;
             this.radDisplaysWSO.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.radDisplaysWSO.Location = new System.Drawing.Point(39, 176);
+            this.radDisplaysWSO.Location = new System.Drawing.Point(39, 209);
             this.radDisplaysWSO.Name = "radDisplaysWSO";
             this.radDisplaysWSO.Size = new System.Drawing.Size(59, 21);
             this.radDisplaysWSO.TabIndex = 33;
@@ -195,6 +195,20 @@ namespace DTC.UI.Aircrafts.F15E
             this.radDisplaysWSO.UseVisualStyleBackColor = true;
             this.radDisplaysWSO.CheckedChanged += new System.EventHandler(this.radDisplaysWSO_CheckedChanged);
             // 
+            // chkRadios
+            // 
+            this.chkRadios.Checked = true;
+            this.chkRadios.CheckState = System.Windows.Forms.CheckState.Checked;
+            this.chkRadios.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F);
+            this.chkRadios.Location = new System.Drawing.Point(16, 84);
+            this.chkRadios.Margin = new System.Windows.Forms.Padding(4);
+            this.chkRadios.Name = "chkRadios";
+            this.chkRadios.Size = new System.Drawing.Size(234, 25);
+            this.chkRadios.TabIndex = 32;
+            this.chkRadios.Text = "Radios";
+            this.chkRadios.UseVisualStyleBackColor = true;
+            this.chkRadios.CheckedChanged += new System.EventHandler(this.chkRadios_CheckedChanged);
+            // 
             // UploadToJetPage
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 20F);
@@ -202,6 +216,7 @@ namespace DTC.UI.Aircrafts.F15E
             this.BackColor = System.Drawing.Color.PaleGoldenrod;
             this.Controls.Add(this.radDisplaysWSO);
             this.Controls.Add(this.radDisplaysPilot);
+            this.Controls.Add(this.chkRadios);
             this.Controls.Add(this.chkMisc);
             this.Controls.Add(this.chkDisplays);
             this.Controls.Add(this.label4);
@@ -231,5 +246,6 @@ namespace DTC.UI.Aircrafts.F15E
         private System.Windows.Forms.CheckBox chkMisc;
         private System.Windows.Forms.RadioButton radDisplaysPilot;
         private System.Windows.Forms.RadioButton radDisplaysWSO;
+        private System.Windows.Forms.CheckBox chkRadios;
     }
 }

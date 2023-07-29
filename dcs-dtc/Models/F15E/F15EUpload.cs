@@ -33,6 +33,12 @@ namespace DTC.Models
                 displayBuilder.Build();
             }
 
+            if (_cfg.Radios.EnableUpload)
+            {
+                var radiosBuilder = new RadioBuilder(_cfg, F15E, sb);
+                radiosBuilder.Build();
+            }
+
             if (_cfg.Misc.EnableUpload)
             {
                 var miscBuilder = new MiscBuilder(_cfg, F15E, sb);

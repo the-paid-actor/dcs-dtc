@@ -106,7 +106,9 @@
     <Compile Include="Models\F15E\F15EUpload.cs" />
     <Compile Include="Models\F15E\F15ECommands.cs" />
     <Compile Include="Models\F15E\Misc\MiscSystem.cs" />
+    <Compile Include="Models\F15E\Radios\RadioSystem.cs" />
     <Compile Include="Models\F15E\Upload\DisplayBuilder.cs" />
+    <Compile Include="Models\F15E\Upload\RadioBuilder.cs" />
     <Compile Include="Models\F15E\Upload\MiscBuilder.cs" />
     <Compile Include="Models\F15E\Waypoints\Waypoint.cs" />
     <Compile Include="Models\F15E\Upload\WaypointBuilder.cs" />
@@ -196,6 +198,12 @@
     </Compile>
     <Compile Include="UI\Aircrafts\AH64\WaypointsPage.Designer.cs">
       <DependentUpon>WaypointsPage.cs</DependentUpon>
+    </Compile>
+    <Compile Include="UI\Aircrafts\F15E\RadiosPage.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="UI\Aircrafts\F15E\RadiosPage.Designer.cs">
+      <DependentUpon>RadiosPage.cs</DependentUpon>
     </Compile>
     <Compile Include="UI\Aircrafts\F15E\LoadSavePage.cs">
       <SubType>UserControl</SubType>
@@ -336,6 +344,9 @@
       <DependentUpon>MiscPage.cs</DependentUpon>
     </Compile>
     <Compile Include="UI\Base\Controls\DTCCoordinateTextBox.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="UI\Base\Controls\DTCRadioTextBox.cs">
       <SubType>UserControl</SubType>
     </Compile>
     <Compile Include="UI\Base\Controls\DTCNumericTextBox.cs">
@@ -507,6 +518,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="UI\Aircrafts\AH64\WaypointsPage.resx">
       <DependentUpon>WaypointsPage.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UI\Aircrafts\F15E\RadiosPage.resx">
+      <DependentUpon>RadiosPage.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="UI\Aircrafts\F15E\LoadSavePage.resx">
       <DependentUpon>LoadSavePage.cs</DependentUpon>

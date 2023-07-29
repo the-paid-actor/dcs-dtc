@@ -128,6 +128,53 @@ function DTC_F15E_ClearProgrammedDisplay(disp, page)
 end
 --]]
 
+function DTC_F15E_CheckCondition_IsRadioPresetOrFreqSelected(radio, mode)
+	local table = DTC_F15E_GetUFC(disp);
+	local radio1Preset = table["UFC_SC_06"] or "x";
+	local radio2Preset = table["UFC_SC_07"] or "x";
+	local radio1Freq = table["UFC_SC_05"] or "x";
+	local radio2Freq = table["UFC_SC_08"] or "x";
+
+	if radio == "1" then
+		if mode == "preset" then
+			return (string.sub(radio1Preset, 1, 1) == "*")
+		elseif mode == "freq" then
+			return (string.sub(radio1Freq, 1, 1) == "*")
+		end
+	elseif radio == "2" then
+		if mode == "preset" then
+			return (string.sub(radio2Preset, -1) == "*")
+		elseif mode == "freq" then
+			return (string.sub(radio2Freq, -1) == "*")
+		end
+	end
+
+	return false
+end
+
+function DTC_F15E_CheckCondition_IsRadioGuardEnabledDisabled(radio, mode)
+	local table = DTC_F15E_GetUFC(disp);
+	local radio1Freq = table["UFC_SC_05"] or "x";
+	local radio2Freq = table["UFC_SC_08"] or "x";
+	radio2Freq = radio2Freq:gsub("*", ""):gsub("%s+", "")
+
+	if radio == "1" then
+		if mode == "enabled" then
+			return string.sub(radio1Freq, -1) == "G"
+		elseif mode == "disabled" then
+			return string.sub(radio1Freq, -1) ~= "G"
+		end
+	elseif radio == "2" then
+		if mode == "enabled" then
+			return string.sub(radio2Freq, -1) == "G"
+		elseif mode == "disabled" then
+			return string.sub(radio2Freq, -1) ~= "G"
+		end
+	end
+
+	return false
+end
+
 function DTC_F15E_CheckCondition_IsTACANBand(band)
 	local table = DTC_F15E_GetUFC(disp);
 	local str = table["UFC_SC_01"] or "";

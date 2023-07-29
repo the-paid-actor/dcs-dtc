@@ -46,7 +46,8 @@ This is a mod for DCS that works as a DTC (Data Cartridge) for the F-16, F/A-18 
 ## Strike Eagle
 
 - Sequence Points and Target Points
-- Display settings for the Front Seat
+- Display settings for the Pilot and WSO
+- Radio Settings and Presets
 - Bingo fuel setting
 - Radar altitude warning setting
 - TACAN Channel/Band and ILS frequency
@@ -108,6 +109,12 @@ The setting of Pre-Planned coordinates relies on the settings for all stations b
 ## Strike Eagle
 
 If you have displays already programmed in the jet, the app will skip uploading the new displays configuration. This will be improved in a future version.
+
+From either seat (pilot/WSO) it is not possible to change displays on the other seat, given that the displays are only rendered when you occupy the respective position. That is the reason for the exclusive choice in the Upload page between uploading Pilot or WSO displays.
+
+Furthermore, the other settings (Waypoints, Radios, Misc) are only tested to work from the pilot seat. Currently there is no way to detect which seat is occupied from the LUA API. If such means become available in the future, a more streamlined system can be developed.
+
+Therefore, the suggestion is for the pilot to upload everything except the WSO displays, and the WSO upload only its displays.
 
 # Help
 

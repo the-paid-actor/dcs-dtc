@@ -33,6 +33,7 @@ namespace DTC.UI.Aircrafts.F16
 			}
 			else
 			{
+				openFileDlg.ShowHelp = true;
 				if (openFileDlg.ShowDialog() == DialogResult.OK)
 				{
 					var file = FileStorage.LoadFile(openFileDlg.FileName);

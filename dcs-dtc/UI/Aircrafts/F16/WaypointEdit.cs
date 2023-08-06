@@ -152,7 +152,7 @@ namespace DTC.UI.Aircrafts.F16
                     this.ParentForm.Invoke(new MethodInvoker(delegate ()
                     {
                         txtWptLatLong.Text = coord.ToDegreesMinutesThousandths();
-                        txtWptElevation.Text = elevation;
+                        txtWptElevation.Value = decimal.Parse(elevation);
                     }));
                 });
             }

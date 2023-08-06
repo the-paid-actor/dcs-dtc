@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using DTC.Models.Shared;
+using System.Collections.Generic;
 
 namespace DTC.Models.FA18.Waypoints
 {
@@ -7,8 +8,9 @@ namespace DTC.Models.FA18.Waypoints
 		public List<Waypoint> Waypoints { get; set; }
 		public int SteerpointStart { get; set; }
 		public bool EnableUpload { get; set; }
+        public WaypointCaptureSettings CaptureSettings { get; set; } = new WaypointCaptureSettings();
 
-		public WaypointSystem()
+        public WaypointSystem()
 		{
 			Waypoints = new List<Waypoint>();
 			SteerpointStart = 0;
@@ -53,5 +55,10 @@ namespace DTC.Models.FA18.Waypoints
 				wpt.Sequence = i + 1;
 			}
 		}
+
+        internal void Insert(int idxToInsert, Waypoint newWpt)
+        {
+            Waypoints.Insert(idxToInsert, newWpt);
+        }
     }
 }

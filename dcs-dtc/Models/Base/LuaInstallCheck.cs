@@ -149,9 +149,10 @@ namespace DTC.Models.Base
 				File.Copy(originalDcsDtcLuaPath, dcsDtcLuaPath, true);
 			}
 
-			var folderChanged = CopyDCSDTCFolder(scriptsFolder);
+            var folderChanged1 = CopyDCSDTCFolder("DCSDTC", scriptsFolder);
+            var folderChanged2 = CopyDCSDTCFolder("Hooks", scriptsFolder);
 
-			if (dtcLuaInstalled || dtcLuaUpdated || folderChanged)
+			if (dtcLuaInstalled || dtcLuaUpdated || folderChanged1 || folderChanged2)
 			{
 				var txt = dtcLuaInstalled ? "installed" : "updated";
 				DTCMessageBox.ShowInfo($"DCSDTC.lua was {txt} in {path}.\n\nIf DCS is running, please restart DCS.");
@@ -160,11 +161,11 @@ namespace DTC.Models.Base
 			return true;
 		}
 
-        private static bool CopyDCSDTCFolder(string scriptsFolder)
+        private static bool CopyDCSDTCFolder(string folderToCopy, string scriptsFolder)
         {
 			var changed = false;
-			var localFolder = Path.Combine(FileStorage.GetCurrentFolder(), "DCS", "DCSDTC");
-			var remoteFolder = Path.Combine(scriptsFolder, "DCSDTC");
+			var localFolder = Path.Combine(FileStorage.GetCurrentFolder(), "DCS", folderToCopy);
+			var remoteFolder = Path.Combine(scriptsFolder, folderToCopy);
 
 			if (!Directory.Exists(remoteFolder))
 			{

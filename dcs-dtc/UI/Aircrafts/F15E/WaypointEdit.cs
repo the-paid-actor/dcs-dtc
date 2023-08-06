@@ -78,7 +78,7 @@ namespace DTC.UI.Aircrafts.F15E
             {
                 _addMode = true;
                 _waypoint = new Waypoint(_waypoints.Waypoints.Count + 1);
-                _waypoint.Name = "WPT " + _waypoint.Sequence.ToString();
+                _waypoint.AutoName();
             }
             else
             {
@@ -152,7 +152,7 @@ namespace DTC.UI.Aircrafts.F15E
                     this.ParentForm.Invoke(new MethodInvoker(delegate ()
                     {
                         txtWptLatLong.Text = coord.ToDegreesMinutesThousandths();
-                        txtWptElevation.Text = elevation;
+                        txtWptElevation.Value = decimal.Parse(elevation);
                     }));
                 });
             }

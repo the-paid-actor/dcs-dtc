@@ -68,6 +68,11 @@ namespace DTC.Models.F16.Waypoints
             TimeOverSteerpoint = "00:00:00";
         }
 
+        public void AutoName()
+        {
+            Name = "WPT " + Sequence.ToString("00");
+        }
+
         public string GetCoordinate()
         {
             return Latitude + " " + Longitude;

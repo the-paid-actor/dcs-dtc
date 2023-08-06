@@ -4,10 +4,7 @@ using DTC.UI.Base.Controls;
 using System;
 using System.Collections.Generic;
 using System.Windows.Forms;
-using DTC.Models.F16;
-using DTC.Models.FA18;
-using DTC.Models.AH64;
-using DTC.Models.F15E;
+using System.Drawing;
 
 namespace DTC.UI.CommonPages
 {
@@ -15,6 +12,8 @@ namespace DTC.UI.CommonPages
     {
         protected readonly Aircraft _aircraft;
         protected readonly Preset _preset;
+
+        private DataReceiver2 dataReceiver;
 
         public override string PageTitle
         {
@@ -28,66 +27,23 @@ namespace DTC.UI.CommonPages
             _preset = preset;
 
             RefreshPages();
+
+            DataReceiver2.DataReceived += DataReceiver2_DataReceived; ;
+            DataReceiver2.Start();
         }
 
-        private AircraftSettingPage[] GetPages(IConfiguration configuration)
+        private void DataReceiver2_DataReceived(WaypointCaptureData[] obj)
         {
-            if (_aircraft.Model == AircraftModel.F16C)
-            {
-                var cfg = (F16Configuration)configuration;
-                return new AircraftSettingPage[]
-                {
-                    new Aircrafts.F16.UploadToJetPage(this, cfg),
-                    new Aircrafts.F16.LoadSavePage(this, cfg),
-                    new Aircrafts.F16.WaypointsPage(this, cfg.Waypoints),
-                    new Aircrafts.F16.CMSPage(this, cfg.CMS),
-                    new Aircrafts.F16.RadioPage(this, cfg.Radios),
-                    new Aircrafts.F16.MFDPage(this, cfg.MFD),
-                    new Aircrafts.F16.HARMPage(this, cfg.HARM),
-                    new Aircrafts.F16.HTSPage(this, cfg.HTS),
-                    new Aircrafts.F16.MiscPage(this, cfg.Misc)
-                };
-            }
-            else if (_aircraft.Model == AircraftModel.FA18C)
-            {
-                var cfg = (FA18Configuration)configuration;
-                return new AircraftSettingPage[]
-                {
-                    new Aircrafts.FA18.UploadToJetPage(this, cfg),
-                    new Aircrafts.FA18.LoadSavePage(this, cfg),
-                    new Aircrafts.FA18.WaypointsPage(this, cfg.Waypoints),
-                    new Aircrafts.FA18.SequencePage(this, cfg.Sequences),
-                    new Aircrafts.FA18.PrePlannedPage(this, cfg.PrePlanned),
-                    new Aircrafts.FA18.CMSPage(this, cfg.CMS),
-                    new Aircrafts.FA18.RadioPage(this, cfg.Radios),
-                    new Aircrafts.FA18.MiscPage(this, cfg.Misc)
-                };
-            }
-            else if (_aircraft.Model == AircraftModel.AH64D)
-            {
-                var cfg = (AH64Configuration)configuration;
-                return new AircraftSettingPage[]
-                {
-                    new Aircrafts.AH64.UploadToHeliPage(this, cfg),
-                    new Aircrafts.AH64.LoadSavePage(this, cfg),
-                    new Aircrafts.AH64.WaypointsPage(this, cfg.Waypoints),
-                    new Aircrafts.AH64.RadioPage(this, cfg.Radios)
-                };
-            }
-            else if (_aircraft.Model == AircraftModel.F15E)
-            {
-                var cfg = (F15EConfiguration)configuration;
-                return new AircraftSettingPage[]
-                {
-                    new Aircrafts.F15E.UploadToJetPage(this, cfg),
-                    new Aircrafts.F15E.LoadSavePage(this, cfg),
-                    new Aircrafts.F15E.WaypointsPage(this, cfg.Waypoints),
-                    new Aircrafts.F15E.RadiosPage(this, cfg.Radios),
-                    new Aircrafts.F15E.DisplaysPage(this, cfg.Displays),
-                    new Aircrafts.F15E.MiscPage(this, cfg.Misc)
-                };
-            }
-            throw new Exception();
+            this.Invoke(new Action<WaypointCaptureData[]>(WaypointCaptureReceived), new[] { obj });
+        }
+
+        protected virtual void WaypointCaptureReceived(WaypointCaptureData[] data)
+        {
+        }
+
+        protected virtual AircraftSettingPage[] GetPages(IConfiguration configuration)
+        {
+            throw new NotImplementedException();
         }
 
         private void SetPage(AircraftSettingPage page)
@@ -109,6 +65,15 @@ namespace DTC.UI.CommonPages
             PresetsStore.PresetChanged(_aircraft, _preset);
         }
 
+        protected AircraftSettingPage GetPageOfType<T>()
+        {
+            foreach (AircraftSettingPage ctl in pnlMain.Controls)
+            {
+                if (ctl is T) return ctl;
+            }
+            return null;
+        }
+
         internal void RefreshPages()
         {
             var pages = GetPages(_preset.Configuration);
@@ -123,11 +88,22 @@ namespace DTC.UI.CommonPages
             {
                 page.Visible = false;
                 var btn = new DTCButton();
+                btn.Height = 35;
                 btn.Text = page.GetPageTitle();
                 btn.Dock = DockStyle.Top;
+                btn.TextAlign = ContentAlignment.MiddleLeft;
+                btn.Font = new Font("Microsoft Sans Serif", 10);
                 btn.Click += (object sender, EventArgs e) =>
                 {
                     SetPage(page);
+                    foreach (var ctl in pnlLeft.Controls)
+                    {
+                        var b = ((DTCButton)ctl);
+                        b.BackColor = Color.DarkKhaki;
+                        b.Font = new Font("Microsoft Sans Serif", 10);
+                    }
+                    btn.BackColor = btn.FlatAppearance.MouseOverBackColor;
+                    btn.Font = new Font("Microsoft Sans Serif", 10, FontStyle.Bold);
                 };
 
                 page.Dock = DockStyle.Fill;

@@ -90,8 +90,7 @@ namespace DTC.UI.Aircrafts.FA18
         {
             if (ValidateFields())
             {
-                var wpt = new Waypoint();
-                wpt.Sequence = 0;
+                var wpt = new Waypoint(0);
                 wpt.Name = txtWptName.Text;
                 wpt.SetCoordinate(txtWptLatLong.Text);
                 wpt.Elevation = int.Parse(txtWptElevation.Text);
@@ -200,8 +199,7 @@ namespace DTC.UI.Aircrafts.FA18
             {
                 var item = (AirbaseComboBoxItem)cboAirbases.SelectedItem;
                 var c = Coordinate.FromString(item.Latitude, item.Longitude, CoordinateFormat.DegreesMinutesThousandths);
-                var wpt = new Waypoint();
-                wpt.Sequence = 0;
+                var wpt = new Waypoint(0);
                 wpt.Name = item.Airbase;
                 wpt.SetCoordinate(c.ToDegreesMinutesHundredths());
                 wpt.Elevation = item.Elevation;

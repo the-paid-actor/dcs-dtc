@@ -166,8 +166,7 @@ namespace DTC.Models.FA18
 
                 var coordStr = string.IsNullOrEmpty(lat) ? "N 00.00.000" : lat;
                 coordStr = coordStr + " " + (string.IsNullOrEmpty(lon) ? "E 000.00.000" : lon);
-                var wpt = new Waypoint();
-                wpt.Sequence = i;
+                var wpt = new Waypoint(i);
                 wpt.Name = string.IsNullOrEmpty(name) ? "" : name;
                 wpt.SetCoordinate(coordStr);
                 wpt.Elevation = (int)Math.Floor(elevation * feetPerMeter);

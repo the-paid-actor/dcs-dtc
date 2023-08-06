@@ -11,7 +11,9 @@ namespace DTC.UI.Base.Controls
 			this.Font = new Font("Microsoft Sans Serif", 10);
 			this.FlatStyle = FlatStyle.Flat;
 			this.FlatAppearance.BorderSize = 0;
-			this.Size = new Size(150, 40);
+            this.FlatAppearance.MouseDownBackColor = Color.Olive;
+			this.FlatAppearance.MouseOverBackColor = Color.FromArgb(158, 153, 89);
+            this.Size = new Size(150, 40);
 		}
 
 		public static DTCButton Make(string label, int x, int y, int width, int height)

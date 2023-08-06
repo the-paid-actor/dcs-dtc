@@ -52,7 +52,7 @@ namespace DTC.UI.CommonPages
 
 		private void ShowPreset(Preset preset)
 		{
-			var acPage = new AircraftPage(_aircraft, preset);
+			var acPage = AircraftPageFactory.Make(_aircraft, preset);
 			MainForm.AddPage(acPage);
 		}
 

@@ -57,7 +57,7 @@ namespace DTC.UI.Aircrafts.F15E
             this.RefreshList();
         }
 
-        private void RefreshList()
+        public void RefreshList()
         {
             dgWaypoints.RefreshList(_waypoints.Waypoints);
         }

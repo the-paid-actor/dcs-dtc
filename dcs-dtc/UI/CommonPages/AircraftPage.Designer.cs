@@ -1,4 +1,6 @@
 ﻿
+using DTC.Models.Base;
+
 namespace DTC.UI.CommonPages
 {
 	partial class AircraftPage
@@ -18,6 +20,7 @@ namespace DTC.UI.CommonPages
 			{
 				components.Dispose();
 			}
+            DataReceiver2.DataReceived -= DataReceiver2_DataReceived;
 			base.Dispose(disposing);
 		}
 

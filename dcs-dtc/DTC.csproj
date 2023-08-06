@@ -85,10 +85,12 @@
     <Compile Include="Models\AH64\Waypoints\PointType.cs" />
     <Compile Include="Models\Base\Coordinate.cs" />
     <Compile Include="Models\Base\DataReceiver.cs" />
+    <Compile Include="Models\Base\DataReceiver2.cs" />
     <Compile Include="Models\Base\DataSender.cs" />
     <Compile Include="Models\Base\LuaInstallCheck.cs" />
     <Compile Include="Models\Base\IniFile.cs" />
     <Compile Include="Models\Base\DTCMessageBox.cs" />
+    <Compile Include="Models\Base\UDPSocket.cs" />
     <Compile Include="Models\DCS\Emitters.cs" />
     <Compile Include="Models\AH64\AH64Configuration.cs" />
     <Compile Include="Models\AH64\AH64Commands.cs" />
@@ -112,6 +114,7 @@
     <Compile Include="Models\F15E\Upload\MiscBuilder.cs" />
     <Compile Include="Models\F15E\Waypoints\Waypoint.cs" />
     <Compile Include="Models\F15E\Upload\WaypointBuilder.cs" />
+    <Compile Include="Models\Shared\WaypointCaptureSettings.cs" />
     <Compile Include="Models\F15E\Waypoints\WaypointSystem.cs" />
     <Compile Include="Models\FA18\CMS\CMSystem.cs" />
     <Compile Include="Models\FA18\CMS\Program.cs" />
@@ -169,6 +172,9 @@
     <Compile Include="Models\Presets\Aircraft.cs" />
     <Compile Include="Models\Presets\Preset.cs" />
     <Compile Include="Models\WaypointDB\WaypointDB.cs" />
+    <Compile Include="UI\Aircrafts\AH64\AH64Page.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
     <Compile Include="UI\Aircrafts\AH64\UploadToHeliPage.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -199,6 +205,9 @@
     <Compile Include="UI\Aircrafts\AH64\WaypointsPage.Designer.cs">
       <DependentUpon>WaypointsPage.cs</DependentUpon>
     </Compile>
+    <Compile Include="UI\Aircrafts\F15E\F15EPage.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
     <Compile Include="UI\Aircrafts\F15E\RadiosPage.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -223,6 +232,12 @@
     <Compile Include="UI\Aircrafts\F15E\MiscPage.Designer.cs">
       <DependentUpon>MiscPage.cs</DependentUpon>
     </Compile>
+    <Compile Include="UI\CommonPages\WaypointCapturePage.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="UI\CommonPages\WaypointCapturePage.Designer.cs">
+      <DependentUpon>WaypointCapturePage.cs</DependentUpon>
+    </Compile>
     <Compile Include="UI\Aircrafts\F15E\UploadToJetPage.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -241,6 +256,9 @@
     <Compile Include="UI\Aircrafts\F15E\WaypointsPage.Designer.cs">
       <DependentUpon>WaypointsPage.cs</DependentUpon>
     </Compile>
+    <Compile Include="UI\Aircrafts\F16\F16Page.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
     <Compile Include="UI\Aircrafts\FA18\CMSPage.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -258,6 +276,9 @@
     </Compile>
     <Compile Include="UI\Aircrafts\FA18\CompositeControls\SteerPointEditControl.Designer.cs">
       <DependentUpon>SteerPointEditControl.cs</DependentUpon>
+    </Compile>
+    <Compile Include="UI\Aircrafts\FA18\FA18Page.cs">
+      <SubType>UserControl</SubType>
     </Compile>
     <Compile Include="UI\Aircrafts\FA18\LoadSavePage.cs">
       <SubType>UserControl</SubType>
@@ -403,7 +424,7 @@
     <Compile Include="UI\Base\WaypointCapture.cs" />
     <Compile Include="Models\F16\Radios\RadioChannel.cs" />
     <Compile Include="Models\F16\Radios\RadioType.cs" />
-    <Compile Include="Models\Base\UDPSocket.cs" />
+    <Compile Include="Models\Base\UDPSocket2.cs" />
     <Compile Include="Properties\Resources.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -415,6 +436,7 @@
     <Compile Include="UI\Aircrafts\F16\CMSPage.Designer.cs">
       <DependentUpon>CMSPage.cs</DependentUpon>
     </Compile>
+    <Compile Include="UI\CommonPages\AircraftPageFactory.cs" />
     <Compile Include="UI\CommonPages\AircraftSettingPage.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -503,6 +525,12 @@
     <Compile Include="UI\CommonPages\PresetsPage.Designer.cs">
       <DependentUpon>PresetsPage.cs</DependentUpon>
     </Compile>
+    <Content Include="DCS\Hooks\DCSDTCHook.lua">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="DCS\DCSDTC\waypointCapture.dlg">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
     <None Include="Resources\F15E.png" />
     <EmbeddedResource Include="UI\Aircrafts\AH64\LoadSavePage.resx">
       <DependentUpon>LoadSavePage.cs</DependentUpon>
@@ -527,6 +555,10 @@
     </EmbeddedResource>
     <EmbeddedResource Include="UI\Aircrafts\F15E\DisplaysPage.resx">
       <DependentUpon>DisplaysPage.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UI\CommonPages\WaypointCapturePage.resx">
+      <DependentUpon>WaypointCapturePage.cs</DependentUpon>
+      <SubType>Designer</SubType>
     </EmbeddedResource>
     <EmbeddedResource Include="UI\Aircrafts\F15E\UploadToJetPage.resx">
       <DependentUpon>UploadToJetPage.cs</DependentUpon>

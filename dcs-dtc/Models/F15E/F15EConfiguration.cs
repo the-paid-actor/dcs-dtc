@@ -80,6 +80,10 @@ namespace DTC.Models.F15E
             {
                 Waypoints = cfg.Waypoints;
             }
+            if (cfg.Radios != null)
+            {
+                Radios = cfg.Radios;
+            }
             if (cfg.Displays != null)
             {
                 Displays = cfg.Displays;

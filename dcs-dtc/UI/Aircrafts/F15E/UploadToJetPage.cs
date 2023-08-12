@@ -11,7 +11,6 @@ namespace DTC.UI.Aircrafts.F15E
         private F15EUpload _jetInterface;
         private readonly F15EConfiguration _cfg;
 
-        private long uploadPressedTimestamp = 0;
         private CockpitUploadHelper cockpitUploadHelper;
 
         public UploadToJetPage(AircraftPage parent, F15EConfiguration cfg) : base(parent)

@@ -11,7 +11,6 @@ namespace DTC.UI.Aircrafts.FA18
         private FA18Upload _jetInterface;
         private readonly FA18Configuration _cfg;
 
-        private long uploadPressedTimestamp = 0;
         private CockpitUploadHelper cockpitUploadHelper;
 
         public UploadToJetPage(AircraftPage parent, FA18Configuration cfg) : base(parent)

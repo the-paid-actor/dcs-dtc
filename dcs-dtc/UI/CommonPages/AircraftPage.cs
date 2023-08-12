@@ -13,8 +13,6 @@ namespace DTC.UI.CommonPages
         protected readonly Aircraft _aircraft;
         protected readonly Preset _preset;
 
-        private DataReceiver2 dataReceiver;
-
         public override string PageTitle
         {
             get { return _preset.Name; }

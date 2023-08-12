@@ -46,7 +46,9 @@ namespace DTC.UI.Base.Controls
             {
                 var str = value?.ToString(CultureInfo.InvariantCulture);
                 if (!string.IsNullOrEmpty(str) && AllowFraction && !str.Contains(".")) str = str + ".0";
+                suppressTextChanged = true;
                 textBox.Text = str;
+                suppressTextChanged = false;
                 currentValue = value;
             }
         }
@@ -145,12 +147,12 @@ namespace DTC.UI.Base.Controls
             e.Handled = true;
         }
 
-        bool inEvent = false;
+        bool suppressTextChanged = false;
 
         private void TextBox_TextChanged(object sender, EventArgs e)
         {
-            if (inEvent) return;
-            inEvent = true;
+            if (suppressTextChanged) return;
+            suppressTextChanged = true;
             textBox.Text = textBox.Text.Replace(".", "").Replace(" ", "");
 
             if (AllowFraction && textBox.Text.Length > 0)
@@ -167,7 +169,7 @@ namespace DTC.UI.Base.Controls
             }
 
             textBox.SelectionStart = textBox.Text.Length;
-            inEvent = false;
+            suppressTextChanged = false;
         }
 
         private bool _firstClick = true;

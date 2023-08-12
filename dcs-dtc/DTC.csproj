@@ -88,7 +88,7 @@
     <Compile Include="Models\Base\DataReceiver.cs" />
     <Compile Include="Models\Base\DataReceiver2.cs" />
     <Compile Include="Models\Base\DataSender.cs" />
-    <Compile Include="Models\Base\LuaInstallCheck.cs" />
+    <Compile Include="Models\Base\DCSInstallCheck.cs" />
     <Compile Include="Models\Base\IniFile.cs" />
     <Compile Include="Models\Base\DTCMessageBox.cs" />
     <Compile Include="Models\Base\UDPSocket.cs" />

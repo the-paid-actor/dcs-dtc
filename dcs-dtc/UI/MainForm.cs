@@ -101,7 +101,7 @@ namespace DTC.UI
         private void MainForm_Load(object sender, System.EventArgs e)
         {
             this.Activate();
-            if (!LuaInstallCheck.Check())
+            if (!DCSInstallCheck.Check())
             {
                 Application.Exit();
             }

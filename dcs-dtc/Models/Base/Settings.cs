@@ -12,7 +12,8 @@ namespace DTC.Models.Base
 			public int HornetCommandDelayMs;
             public int ViperCommandDelayMs;
             public bool AlwaysOnTop;
-			public string LuaInstallFolderStable;
+            public bool SkipDCSInstallCheck;
+            public string LuaInstallFolderStable;
 			public string LuaInstallStable;
 			public string LuaInstallFolderOpenBeta;
 			public string LuaInstallOpenBeta;
@@ -102,7 +103,21 @@ namespace DTC.Models.Base
 			}
 		}
 
-		public static int TCPSendPort
+        public static bool SkipDCSInstallCheck
+        {
+            get
+            {
+                LoadSettings();
+                return currentSettings.SkipDCSInstallCheck;
+            }
+            set
+            {
+                currentSettings.SkipDCSInstallCheck = value;
+                SaveSettings();
+            }
+        }
+
+        public static int TCPSendPort
 		{
 			get
 			{

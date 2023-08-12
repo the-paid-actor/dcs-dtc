@@ -35,8 +35,6 @@ namespace DTC.UI.Aircrafts.F16
             this.label3 = new System.Windows.Forms.Label();
             this.btnCapture = new System.Windows.Forms.Button();
             this.pnlTop = new System.Windows.Forms.Panel();
-            this.btnCancel = new DTC.UI.Base.Controls.DTCButton();
-            this.btnSave = new DTC.UI.Base.Controls.DTCButton();
             this.label1 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
             this.lblValidation = new System.Windows.Forms.Label();
@@ -47,36 +45,30 @@ namespace DTC.UI.Aircrafts.F16
             this.pnlOA = new System.Windows.Forms.Panel();
             this.label16 = new System.Windows.Forms.Label();
             this.label15 = new System.Windows.Forms.Label();
-            this.txtOA1Range = new DTC.UI.Base.Controls.DTCNumericTextBox();
-            this.txtOA1Bearing = new DTC.UI.Base.Controls.DTCNumericTextBox();
-            this.txtOA2Range = new DTC.UI.Base.Controls.DTCNumericTextBox();
-            this.txtOA1Elev = new DTC.UI.Base.Controls.DTCNumericTextBox();
-            this.txtOA2Bearing = new DTC.UI.Base.Controls.DTCNumericTextBox();
-            this.txtOA2Elev = new DTC.UI.Base.Controls.DTCNumericTextBox();
             this.pnlVIP = new System.Windows.Forms.Panel();
             this.label18 = new System.Windows.Forms.Label();
             this.label17 = new System.Windows.Forms.Label();
             this.label11 = new System.Windows.Forms.Label();
             this.label10 = new System.Windows.Forms.Label();
-            this.txtVIPtoPUPBearing = new DTC.UI.Base.Controls.DTCNumericTextBox();
             this.label9 = new System.Windows.Forms.Label();
+            this.pnlVRP = new System.Windows.Forms.Panel();
+            this.label19 = new System.Windows.Forms.Label();
+            this.label20 = new System.Windows.Forms.Label();
+            this.label14 = new System.Windows.Forms.Label();
+            this.label13 = new System.Windows.Forms.Label();
+            this.label12 = new System.Windows.Forms.Label();
+            this.txtTGTtoVRPElev = new DTC.UI.Base.Controls.DTCNumericTextBox();
+            this.txtTGTtoPUPRange = new DTC.UI.Base.Controls.DTCNumericTextBox();
+            this.txtTGTtoVRPBearing = new DTC.UI.Base.Controls.DTCNumericTextBox();
+            this.txtTGTtoVRPRange = new DTC.UI.Base.Controls.DTCNumericTextBox();
+            this.txtTGTtoPUPBearing = new DTC.UI.Base.Controls.DTCNumericTextBox();
+            this.txtTGTtoPUPElev = new DTC.UI.Base.Controls.DTCNumericTextBox();
+            this.txtVIPtoPUPBearing = new DTC.UI.Base.Controls.DTCNumericTextBox();
             this.txtVIPtoPUPRange = new DTC.UI.Base.Controls.DTCNumericTextBox();
             this.txtVIPtoPUPElev = new DTC.UI.Base.Controls.DTCNumericTextBox();
             this.txtVIPtoTGTBearing = new DTC.UI.Base.Controls.DTCNumericTextBox();
             this.txtVIPtoTGTElev = new DTC.UI.Base.Controls.DTCNumericTextBox();
             this.txtVIPtoTGTRange = new DTC.UI.Base.Controls.DTCNumericTextBox();
-            this.pnlVRP = new System.Windows.Forms.Panel();
-            this.label19 = new System.Windows.Forms.Label();
-            this.label20 = new System.Windows.Forms.Label();
-            this.label14 = new System.Windows.Forms.Label();
-            this.txtTGTtoVRPElev = new DTC.UI.Base.Controls.DTCNumericTextBox();
-            this.label13 = new System.Windows.Forms.Label();
-            this.txtTGTtoPUPRange = new DTC.UI.Base.Controls.DTCNumericTextBox();
-            this.label12 = new System.Windows.Forms.Label();
-            this.txtTGTtoVRPBearing = new DTC.UI.Base.Controls.DTCNumericTextBox();
-            this.txtTGTtoVRPRange = new DTC.UI.Base.Controls.DTCNumericTextBox();
-            this.txtTGTtoPUPBearing = new DTC.UI.Base.Controls.DTCNumericTextBox();
-            this.txtTGTtoPUPElev = new DTC.UI.Base.Controls.DTCNumericTextBox();
             this.cboAirbases = new DTC.UI.Base.Controls.DTCDropDown();
             this.chkUseOA = new DTC.UI.Base.Controls.DTCCheckBox();
             this.txtTimeOverSteerpoint = new DTC.UI.Base.Controls.DTCTextBox();
@@ -85,6 +77,14 @@ namespace DTC.UI.Aircrafts.F16
             this.txtWptName = new DTC.UI.Base.Controls.DTCTextBox();
             this.txtWptLatLong = new DTC.UI.Base.Controls.DTCCoordinateTextBox();
             this.txtWptElevation = new DTC.UI.Base.Controls.DTCNumericTextBox();
+            this.btnCancel = new DTC.UI.Base.Controls.DTCButton();
+            this.btnSave = new DTC.UI.Base.Controls.DTCButton();
+            this.txtOA1Range = new DTC.UI.Base.Controls.DTCNumericTextBox();
+            this.txtOA1Bearing = new DTC.UI.Base.Controls.DTCNumericTextBox();
+            this.txtOA2Range = new DTC.UI.Base.Controls.DTCNumericTextBox();
+            this.txtOA1Elev = new DTC.UI.Base.Controls.DTCNumericTextBox();
+            this.txtOA2Bearing = new DTC.UI.Base.Controls.DTCNumericTextBox();
+            this.txtOA2Elev = new DTC.UI.Base.Controls.DTCNumericTextBox();
             this.pnlTop.SuspendLayout();
             this.pnlOA.SuspendLayout();
             this.pnlVIP.SuspendLayout();
@@ -139,34 +139,6 @@ namespace DTC.UI.Aircrafts.F16
             this.pnlTop.Name = "pnlTop";
             this.pnlTop.Size = new System.Drawing.Size(588, 35);
             this.pnlTop.TabIndex = 25;
-            // 
-            // btnCancel
-            // 
-            this.btnCancel.BackColor = System.Drawing.Color.DarkKhaki;
-            this.btnCancel.FlatAppearance.BorderSize = 0;
-            this.btnCancel.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnCancel.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F);
-            this.btnCancel.Location = new System.Drawing.Point(131, 5);
-            this.btnCancel.Name = "btnCancel";
-            this.btnCancel.Size = new System.Drawing.Size(120, 25);
-            this.btnCancel.TabIndex = 24;
-            this.btnCancel.Text = "&Cancel";
-            this.btnCancel.UseVisualStyleBackColor = false;
-            this.btnCancel.Click += new System.EventHandler(this.btnCancel_Click);
-            // 
-            // btnSave
-            // 
-            this.btnSave.BackColor = System.Drawing.Color.DarkKhaki;
-            this.btnSave.FlatAppearance.BorderSize = 0;
-            this.btnSave.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnSave.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F);
-            this.btnSave.Location = new System.Drawing.Point(5, 5);
-            this.btnSave.Name = "btnSave";
-            this.btnSave.Size = new System.Drawing.Size(120, 25);
-            this.btnSave.TabIndex = 16;
-            this.btnSave.Text = "&Save";
-            this.btnSave.UseVisualStyleBackColor = false;
-            this.btnSave.Click += new System.EventHandler(this.btnSave_Click);
             // 
             // label1
             // 
@@ -293,84 +265,6 @@ namespace DTC.UI.Aircrafts.F16
             this.label15.Text = "Offset Aimpoint 1";
             this.label15.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
-            // txtOA1Range
-            // 
-            this.txtOA1Range.AllowFraction = false;
-            this.txtOA1Range.BackColor = System.Drawing.SystemColors.Window;
-            this.txtOA1Range.Location = new System.Drawing.Point(158, 31);
-            this.txtOA1Range.MaximumValue = 99999M;
-            this.txtOA1Range.MinimumValue = 0M;
-            this.txtOA1Range.Name = "txtOA1Range";
-            this.txtOA1Range.Size = new System.Drawing.Size(90, 25);
-            this.txtOA1Range.TabIndex = 18;
-            this.txtOA1Range.Unit = DTC.UI.Base.Controls.DTCNumericTextBox.UnitEnum.Feet;
-            this.txtOA1Range.Value = null;
-            // 
-            // txtOA1Bearing
-            // 
-            this.txtOA1Bearing.AllowFraction = true;
-            this.txtOA1Bearing.BackColor = System.Drawing.SystemColors.Window;
-            this.txtOA1Bearing.Location = new System.Drawing.Point(260, 31);
-            this.txtOA1Bearing.MaximumValue = 0M;
-            this.txtOA1Bearing.MinimumValue = 0M;
-            this.txtOA1Bearing.Name = "txtOA1Bearing";
-            this.txtOA1Bearing.Size = new System.Drawing.Size(90, 25);
-            this.txtOA1Bearing.TabIndex = 19;
-            this.txtOA1Bearing.Unit = DTC.UI.Base.Controls.DTCNumericTextBox.UnitEnum.Degree;
-            this.txtOA1Bearing.Value = null;
-            // 
-            // txtOA2Range
-            // 
-            this.txtOA2Range.AllowFraction = false;
-            this.txtOA2Range.BackColor = System.Drawing.SystemColors.Window;
-            this.txtOA2Range.Location = new System.Drawing.Point(158, 59);
-            this.txtOA2Range.MaximumValue = 99999M;
-            this.txtOA2Range.MinimumValue = 0M;
-            this.txtOA2Range.Name = "txtOA2Range";
-            this.txtOA2Range.Size = new System.Drawing.Size(90, 25);
-            this.txtOA2Range.TabIndex = 22;
-            this.txtOA2Range.Unit = DTC.UI.Base.Controls.DTCNumericTextBox.UnitEnum.Feet;
-            this.txtOA2Range.Value = null;
-            // 
-            // txtOA1Elev
-            // 
-            this.txtOA1Elev.AllowFraction = false;
-            this.txtOA1Elev.BackColor = System.Drawing.SystemColors.Window;
-            this.txtOA1Elev.Location = new System.Drawing.Point(362, 31);
-            this.txtOA1Elev.MaximumValue = 80000M;
-            this.txtOA1Elev.MinimumValue = -1500M;
-            this.txtOA1Elev.Name = "txtOA1Elev";
-            this.txtOA1Elev.Size = new System.Drawing.Size(90, 25);
-            this.txtOA1Elev.TabIndex = 20;
-            this.txtOA1Elev.Unit = DTC.UI.Base.Controls.DTCNumericTextBox.UnitEnum.Feet;
-            this.txtOA1Elev.Value = null;
-            // 
-            // txtOA2Bearing
-            // 
-            this.txtOA2Bearing.AllowFraction = true;
-            this.txtOA2Bearing.BackColor = System.Drawing.SystemColors.Window;
-            this.txtOA2Bearing.Location = new System.Drawing.Point(260, 59);
-            this.txtOA2Bearing.MaximumValue = 0M;
-            this.txtOA2Bearing.MinimumValue = 0m;
-            this.txtOA2Bearing.Name = "txtOA2Bearing";
-            this.txtOA2Bearing.Size = new System.Drawing.Size(90, 25);
-            this.txtOA2Bearing.TabIndex = 23;
-            this.txtOA2Bearing.Unit = DTC.UI.Base.Controls.DTCNumericTextBox.UnitEnum.Degree;
-            this.txtOA2Bearing.Value = null;
-            // 
-            // txtOA2Elev
-            // 
-            this.txtOA2Elev.AllowFraction = false;
-            this.txtOA2Elev.BackColor = System.Drawing.SystemColors.Window;
-            this.txtOA2Elev.Location = new System.Drawing.Point(362, 59);
-            this.txtOA2Elev.MaximumValue = 80000M;
-            this.txtOA2Elev.MinimumValue = -1500M;
-            this.txtOA2Elev.Name = "txtOA2Elev";
-            this.txtOA2Elev.Size = new System.Drawing.Size(90, 25);
-            this.txtOA2Elev.TabIndex = 24;
-            this.txtOA2Elev.Unit = DTC.UI.Base.Controls.DTCNumericTextBox.UnitEnum.Feet;
-            this.txtOA2Elev.Value = null;
-            // 
             // pnlVIP
             // 
             this.pnlVIP.Controls.Add(this.label18);
@@ -433,19 +327,6 @@ namespace DTC.UI.Aircrafts.F16
             this.label10.Text = "Bearing";
             this.label10.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
-            // txtVIPtoPUPBearing
-            // 
-            this.txtVIPtoPUPBearing.AllowFraction = true;
-            this.txtVIPtoPUPBearing.BackColor = System.Drawing.SystemColors.Window;
-            this.txtVIPtoPUPBearing.Location = new System.Drawing.Point(260, 59);
-            this.txtVIPtoPUPBearing.MaximumValue = 0M;
-            this.txtVIPtoPUPBearing.MinimumValue = 0M;
-            this.txtVIPtoPUPBearing.Name = "txtVIPtoPUPBearing";
-            this.txtVIPtoPUPBearing.Size = new System.Drawing.Size(90, 25);
-            this.txtVIPtoPUPBearing.TabIndex = 31;
-            this.txtVIPtoPUPBearing.Unit = DTC.UI.Base.Controls.DTCNumericTextBox.UnitEnum.Degree;
-            this.txtVIPtoPUPBearing.Value = null;
-            // 
             // label9
             // 
             this.label9.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F);
@@ -456,71 +337,6 @@ namespace DTC.UI.Aircrafts.F16
             this.label9.TabIndex = 27;
             this.label9.Text = "Elevation";
             this.label9.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            // 
-            // txtVIPtoPUPRange
-            // 
-            this.txtVIPtoPUPRange.AllowFraction = true;
-            this.txtVIPtoPUPRange.BackColor = System.Drawing.SystemColors.Window;
-            this.txtVIPtoPUPRange.Location = new System.Drawing.Point(158, 59);
-            this.txtVIPtoPUPRange.MaximumValue = 99.9M;
-            this.txtVIPtoPUPRange.MinimumValue = 0M;
-            this.txtVIPtoPUPRange.Name = "txtVIPtoPUPRange";
-            this.txtVIPtoPUPRange.Size = new System.Drawing.Size(90, 25);
-            this.txtVIPtoPUPRange.TabIndex = 30;
-            this.txtVIPtoPUPRange.Unit = DTC.UI.Base.Controls.DTCNumericTextBox.UnitEnum.NauticalMile;
-            this.txtVIPtoPUPRange.Value = null;
-            // 
-            // txtVIPtoPUPElev
-            // 
-            this.txtVIPtoPUPElev.AllowFraction = false;
-            this.txtVIPtoPUPElev.BackColor = System.Drawing.SystemColors.Window;
-            this.txtVIPtoPUPElev.Location = new System.Drawing.Point(362, 59);
-            this.txtVIPtoPUPElev.MaximumValue = 80000M;
-            this.txtVIPtoPUPElev.MinimumValue = -9999M;
-            this.txtVIPtoPUPElev.Name = "txtVIPtoPUPElev";
-            this.txtVIPtoPUPElev.Size = new System.Drawing.Size(90, 25);
-            this.txtVIPtoPUPElev.TabIndex = 32;
-            this.txtVIPtoPUPElev.Unit = DTC.UI.Base.Controls.DTCNumericTextBox.UnitEnum.Feet;
-            this.txtVIPtoPUPElev.Value = null;
-            // 
-            // txtVIPtoTGTBearing
-            // 
-            this.txtVIPtoTGTBearing.AllowFraction = true;
-            this.txtVIPtoTGTBearing.BackColor = System.Drawing.SystemColors.Window;
-            this.txtVIPtoTGTBearing.Location = new System.Drawing.Point(260, 31);
-            this.txtVIPtoTGTBearing.MaximumValue = 0M;
-            this.txtVIPtoTGTBearing.MinimumValue = 0M;
-            this.txtVIPtoTGTBearing.Name = "txtVIPtoTGTBearing";
-            this.txtVIPtoTGTBearing.Size = new System.Drawing.Size(90, 25);
-            this.txtVIPtoTGTBearing.TabIndex = 27;
-            this.txtVIPtoTGTBearing.Unit = DTC.UI.Base.Controls.DTCNumericTextBox.UnitEnum.Degree;
-            this.txtVIPtoTGTBearing.Value = null;
-            // 
-            // txtVIPtoTGTElev
-            // 
-            this.txtVIPtoTGTElev.AllowFraction = false;
-            this.txtVIPtoTGTElev.BackColor = System.Drawing.SystemColors.Window;
-            this.txtVIPtoTGTElev.Location = new System.Drawing.Point(362, 31);
-            this.txtVIPtoTGTElev.MaximumValue = 80000M;
-            this.txtVIPtoTGTElev.MinimumValue = -9999M;
-            this.txtVIPtoTGTElev.Name = "txtVIPtoTGTElev";
-            this.txtVIPtoTGTElev.Size = new System.Drawing.Size(90, 25);
-            this.txtVIPtoTGTElev.TabIndex = 28;
-            this.txtVIPtoTGTElev.Unit = DTC.UI.Base.Controls.DTCNumericTextBox.UnitEnum.Feet;
-            this.txtVIPtoTGTElev.Value = null;
-            // 
-            // txtVIPtoTGTRange
-            // 
-            this.txtVIPtoTGTRange.AllowFraction = true;
-            this.txtVIPtoTGTRange.BackColor = System.Drawing.SystemColors.Window;
-            this.txtVIPtoTGTRange.Location = new System.Drawing.Point(158, 31);
-            this.txtVIPtoTGTRange.MaximumValue = 99.9M;
-            this.txtVIPtoTGTRange.MinimumValue = 0M;
-            this.txtVIPtoTGTRange.Name = "txtVIPtoTGTRange";
-            this.txtVIPtoTGTRange.Size = new System.Drawing.Size(90, 25);
-            this.txtVIPtoTGTRange.TabIndex = 26;
-            this.txtVIPtoTGTRange.Unit = DTC.UI.Base.Controls.DTCNumericTextBox.UnitEnum.NauticalMile;
-            this.txtVIPtoTGTRange.Value = null;
             // 
             // pnlVRP
             // 
@@ -573,19 +389,6 @@ namespace DTC.UI.Aircrafts.F16
             this.label14.Text = "Range";
             this.label14.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
-            // txtTGTtoVRPElev
-            // 
-            this.txtTGTtoVRPElev.AllowFraction = false;
-            this.txtTGTtoVRPElev.BackColor = System.Drawing.SystemColors.Window;
-            this.txtTGTtoVRPElev.Location = new System.Drawing.Point(362, 31);
-            this.txtTGTtoVRPElev.MaximumValue = 80000M;
-            this.txtTGTtoVRPElev.MinimumValue = -9999M;
-            this.txtTGTtoVRPElev.Name = "txtTGTtoVRPElev";
-            this.txtTGTtoVRPElev.Size = new System.Drawing.Size(90, 25);
-            this.txtTGTtoVRPElev.TabIndex = 36;
-            this.txtTGTtoVRPElev.Unit = DTC.UI.Base.Controls.DTCNumericTextBox.UnitEnum.Feet;
-            this.txtTGTtoVRPElev.Value = null;
-            // 
             // label13
             // 
             this.label13.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F);
@@ -596,19 +399,6 @@ namespace DTC.UI.Aircrafts.F16
             this.label13.TabIndex = 27;
             this.label13.Text = "Bearing";
             this.label13.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            // 
-            // txtTGTtoPUPRange
-            // 
-            this.txtTGTtoPUPRange.AllowFraction = false;
-            this.txtTGTtoPUPRange.BackColor = System.Drawing.SystemColors.Window;
-            this.txtTGTtoPUPRange.Location = new System.Drawing.Point(158, 59);
-            this.txtTGTtoPUPRange.MaximumValue = 486090M;
-            this.txtTGTtoPUPRange.MinimumValue = 0M;
-            this.txtTGTtoPUPRange.Name = "txtTGTtoPUPRange";
-            this.txtTGTtoPUPRange.Size = new System.Drawing.Size(90, 25);
-            this.txtTGTtoPUPRange.TabIndex = 38;
-            this.txtTGTtoPUPRange.Unit = DTC.UI.Base.Controls.DTCNumericTextBox.UnitEnum.Feet;
-            this.txtTGTtoPUPRange.Value = null;
             // 
             // label12
             // 
@@ -621,13 +411,63 @@ namespace DTC.UI.Aircrafts.F16
             this.label12.Text = "Elevation";
             this.label12.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
+            // txtTGTtoVRPElev
+            // 
+            this.txtTGTtoVRPElev.AllowFraction = false;
+            this.txtTGTtoVRPElev.BackColor = System.Drawing.SystemColors.Window;
+            this.txtTGTtoVRPElev.Location = new System.Drawing.Point(362, 31);
+            this.txtTGTtoVRPElev.MaximumValue = new decimal(new int[] {
+            80000,
+            0,
+            0,
+            0});
+            this.txtTGTtoVRPElev.MinimumValue = new decimal(new int[] {
+            9999,
+            0,
+            0,
+            -2147483648});
+            this.txtTGTtoVRPElev.Name = "txtTGTtoVRPElev";
+            this.txtTGTtoVRPElev.Size = new System.Drawing.Size(90, 25);
+            this.txtTGTtoVRPElev.TabIndex = 36;
+            this.txtTGTtoVRPElev.Unit = DTC.UI.Base.Controls.DTCNumericTextBox.UnitEnum.Feet;
+            this.txtTGTtoVRPElev.Value = null;
+            // 
+            // txtTGTtoPUPRange
+            // 
+            this.txtTGTtoPUPRange.AllowFraction = false;
+            this.txtTGTtoPUPRange.BackColor = System.Drawing.SystemColors.Window;
+            this.txtTGTtoPUPRange.Location = new System.Drawing.Point(158, 59);
+            this.txtTGTtoPUPRange.MaximumValue = new decimal(new int[] {
+            486090,
+            0,
+            0,
+            0});
+            this.txtTGTtoPUPRange.MinimumValue = new decimal(new int[] {
+            0,
+            0,
+            0,
+            0});
+            this.txtTGTtoPUPRange.Name = "txtTGTtoPUPRange";
+            this.txtTGTtoPUPRange.Size = new System.Drawing.Size(90, 25);
+            this.txtTGTtoPUPRange.TabIndex = 38;
+            this.txtTGTtoPUPRange.Unit = DTC.UI.Base.Controls.DTCNumericTextBox.UnitEnum.Feet;
+            this.txtTGTtoPUPRange.Value = null;
+            // 
             // txtTGTtoVRPBearing
             // 
             this.txtTGTtoVRPBearing.AllowFraction = true;
             this.txtTGTtoVRPBearing.BackColor = System.Drawing.SystemColors.Window;
             this.txtTGTtoVRPBearing.Location = new System.Drawing.Point(260, 31);
-            this.txtTGTtoVRPBearing.MaximumValue = 0M;
-            this.txtTGTtoVRPBearing.MinimumValue = 0M;
+            this.txtTGTtoVRPBearing.MaximumValue = new decimal(new int[] {
+            0,
+            0,
+            0,
+            0});
+            this.txtTGTtoVRPBearing.MinimumValue = new decimal(new int[] {
+            0,
+            0,
+            0,
+            0});
             this.txtTGTtoVRPBearing.Name = "txtTGTtoVRPBearing";
             this.txtTGTtoVRPBearing.Size = new System.Drawing.Size(90, 25);
             this.txtTGTtoVRPBearing.TabIndex = 35;
@@ -639,8 +479,16 @@ namespace DTC.UI.Aircrafts.F16
             this.txtTGTtoVRPRange.AllowFraction = false;
             this.txtTGTtoVRPRange.BackColor = System.Drawing.SystemColors.Window;
             this.txtTGTtoVRPRange.Location = new System.Drawing.Point(158, 31);
-            this.txtTGTtoVRPRange.MaximumValue = 486090M;
-            this.txtTGTtoVRPRange.MinimumValue = 0M;
+            this.txtTGTtoVRPRange.MaximumValue = new decimal(new int[] {
+            486090,
+            0,
+            0,
+            0});
+            this.txtTGTtoVRPRange.MinimumValue = new decimal(new int[] {
+            0,
+            0,
+            0,
+            0});
             this.txtTGTtoVRPRange.Name = "txtTGTtoVRPRange";
             this.txtTGTtoVRPRange.Size = new System.Drawing.Size(90, 25);
             this.txtTGTtoVRPRange.TabIndex = 34;
@@ -652,8 +500,16 @@ namespace DTC.UI.Aircrafts.F16
             this.txtTGTtoPUPBearing.AllowFraction = true;
             this.txtTGTtoPUPBearing.BackColor = System.Drawing.SystemColors.Window;
             this.txtTGTtoPUPBearing.Location = new System.Drawing.Point(260, 59);
-            this.txtTGTtoPUPBearing.MaximumValue = 0M;
-            this.txtTGTtoPUPBearing.MinimumValue = 0M;
+            this.txtTGTtoPUPBearing.MaximumValue = new decimal(new int[] {
+            0,
+            0,
+            0,
+            0});
+            this.txtTGTtoPUPBearing.MinimumValue = new decimal(new int[] {
+            0,
+            0,
+            0,
+            0});
             this.txtTGTtoPUPBearing.Name = "txtTGTtoPUPBearing";
             this.txtTGTtoPUPBearing.Size = new System.Drawing.Size(90, 25);
             this.txtTGTtoPUPBearing.TabIndex = 39;
@@ -665,13 +521,147 @@ namespace DTC.UI.Aircrafts.F16
             this.txtTGTtoPUPElev.AllowFraction = false;
             this.txtTGTtoPUPElev.BackColor = System.Drawing.SystemColors.Window;
             this.txtTGTtoPUPElev.Location = new System.Drawing.Point(362, 59);
-            this.txtTGTtoPUPElev.MaximumValue = 80000M;
-            this.txtTGTtoPUPElev.MinimumValue = -9999M;
+            this.txtTGTtoPUPElev.MaximumValue = new decimal(new int[] {
+            80000,
+            0,
+            0,
+            0});
+            this.txtTGTtoPUPElev.MinimumValue = new decimal(new int[] {
+            9999,
+            0,
+            0,
+            -2147483648});
             this.txtTGTtoPUPElev.Name = "txtTGTtoPUPElev";
             this.txtTGTtoPUPElev.Size = new System.Drawing.Size(90, 25);
             this.txtTGTtoPUPElev.TabIndex = 40;
             this.txtTGTtoPUPElev.Unit = DTC.UI.Base.Controls.DTCNumericTextBox.UnitEnum.Feet;
             this.txtTGTtoPUPElev.Value = null;
+            // 
+            // txtVIPtoPUPBearing
+            // 
+            this.txtVIPtoPUPBearing.AllowFraction = true;
+            this.txtVIPtoPUPBearing.BackColor = System.Drawing.SystemColors.Window;
+            this.txtVIPtoPUPBearing.Location = new System.Drawing.Point(260, 59);
+            this.txtVIPtoPUPBearing.MaximumValue = new decimal(new int[] {
+            0,
+            0,
+            0,
+            0});
+            this.txtVIPtoPUPBearing.MinimumValue = new decimal(new int[] {
+            0,
+            0,
+            0,
+            0});
+            this.txtVIPtoPUPBearing.Name = "txtVIPtoPUPBearing";
+            this.txtVIPtoPUPBearing.Size = new System.Drawing.Size(90, 25);
+            this.txtVIPtoPUPBearing.TabIndex = 31;
+            this.txtVIPtoPUPBearing.Unit = DTC.UI.Base.Controls.DTCNumericTextBox.UnitEnum.Degree;
+            this.txtVIPtoPUPBearing.Value = null;
+            // 
+            // txtVIPtoPUPRange
+            // 
+            this.txtVIPtoPUPRange.AllowFraction = true;
+            this.txtVIPtoPUPRange.BackColor = System.Drawing.SystemColors.Window;
+            this.txtVIPtoPUPRange.Location = new System.Drawing.Point(158, 59);
+            this.txtVIPtoPUPRange.MaximumValue = new decimal(new int[] {
+            999,
+            0,
+            0,
+            65536});
+            this.txtVIPtoPUPRange.MinimumValue = new decimal(new int[] {
+            0,
+            0,
+            0,
+            0});
+            this.txtVIPtoPUPRange.Name = "txtVIPtoPUPRange";
+            this.txtVIPtoPUPRange.Size = new System.Drawing.Size(90, 25);
+            this.txtVIPtoPUPRange.TabIndex = 30;
+            this.txtVIPtoPUPRange.Unit = DTC.UI.Base.Controls.DTCNumericTextBox.UnitEnum.NauticalMile;
+            this.txtVIPtoPUPRange.Value = null;
+            // 
+            // txtVIPtoPUPElev
+            // 
+            this.txtVIPtoPUPElev.AllowFraction = false;
+            this.txtVIPtoPUPElev.BackColor = System.Drawing.SystemColors.Window;
+            this.txtVIPtoPUPElev.Location = new System.Drawing.Point(362, 59);
+            this.txtVIPtoPUPElev.MaximumValue = new decimal(new int[] {
+            80000,
+            0,
+            0,
+            0});
+            this.txtVIPtoPUPElev.MinimumValue = new decimal(new int[] {
+            9999,
+            0,
+            0,
+            -2147483648});
+            this.txtVIPtoPUPElev.Name = "txtVIPtoPUPElev";
+            this.txtVIPtoPUPElev.Size = new System.Drawing.Size(90, 25);
+            this.txtVIPtoPUPElev.TabIndex = 32;
+            this.txtVIPtoPUPElev.Unit = DTC.UI.Base.Controls.DTCNumericTextBox.UnitEnum.Feet;
+            this.txtVIPtoPUPElev.Value = null;
+            // 
+            // txtVIPtoTGTBearing
+            // 
+            this.txtVIPtoTGTBearing.AllowFraction = true;
+            this.txtVIPtoTGTBearing.BackColor = System.Drawing.SystemColors.Window;
+            this.txtVIPtoTGTBearing.Location = new System.Drawing.Point(260, 31);
+            this.txtVIPtoTGTBearing.MaximumValue = new decimal(new int[] {
+            0,
+            0,
+            0,
+            0});
+            this.txtVIPtoTGTBearing.MinimumValue = new decimal(new int[] {
+            0,
+            0,
+            0,
+            0});
+            this.txtVIPtoTGTBearing.Name = "txtVIPtoTGTBearing";
+            this.txtVIPtoTGTBearing.Size = new System.Drawing.Size(90, 25);
+            this.txtVIPtoTGTBearing.TabIndex = 27;
+            this.txtVIPtoTGTBearing.Unit = DTC.UI.Base.Controls.DTCNumericTextBox.UnitEnum.Degree;
+            this.txtVIPtoTGTBearing.Value = null;
+            // 
+            // txtVIPtoTGTElev
+            // 
+            this.txtVIPtoTGTElev.AllowFraction = false;
+            this.txtVIPtoTGTElev.BackColor = System.Drawing.SystemColors.Window;
+            this.txtVIPtoTGTElev.Location = new System.Drawing.Point(362, 31);
+            this.txtVIPtoTGTElev.MaximumValue = new decimal(new int[] {
+            80000,
+            0,
+            0,
+            0});
+            this.txtVIPtoTGTElev.MinimumValue = new decimal(new int[] {
+            9999,
+            0,
+            0,
+            -2147483648});
+            this.txtVIPtoTGTElev.Name = "txtVIPtoTGTElev";
+            this.txtVIPtoTGTElev.Size = new System.Drawing.Size(90, 25);
+            this.txtVIPtoTGTElev.TabIndex = 28;
+            this.txtVIPtoTGTElev.Unit = DTC.UI.Base.Controls.DTCNumericTextBox.UnitEnum.Feet;
+            this.txtVIPtoTGTElev.Value = null;
+            // 
+            // txtVIPtoTGTRange
+            // 
+            this.txtVIPtoTGTRange.AllowFraction = true;
+            this.txtVIPtoTGTRange.BackColor = System.Drawing.SystemColors.Window;
+            this.txtVIPtoTGTRange.Location = new System.Drawing.Point(158, 31);
+            this.txtVIPtoTGTRange.MaximumValue = new decimal(new int[] {
+            999,
+            0,
+            0,
+            65536});
+            this.txtVIPtoTGTRange.MinimumValue = new decimal(new int[] {
+            0,
+            0,
+            0,
+            0});
+            this.txtVIPtoTGTRange.Name = "txtVIPtoTGTRange";
+            this.txtVIPtoTGTRange.Size = new System.Drawing.Size(90, 25);
+            this.txtVIPtoTGTRange.TabIndex = 26;
+            this.txtVIPtoTGTRange.Unit = DTC.UI.Base.Controls.DTCNumericTextBox.UnitEnum.NauticalMile;
+            this.txtVIPtoTGTRange.Value = null;
             // 
             // cboAirbases
             // 
@@ -703,7 +693,7 @@ namespace DTC.UI.Aircrafts.F16
             this.txtTimeOverSteerpoint.HidePromptOnLeave = false;
             this.txtTimeOverSteerpoint.InsertKeyMode = System.Windows.Forms.InsertKeyMode.Default;
             this.txtTimeOverSteerpoint.Location = new System.Drawing.Point(463, 128);
-            this.txtTimeOverSteerpoint.Mask = "00:00:00";
+            this.txtTimeOverSteerpoint.Mask = "00\\:00\\:00";
             this.txtTimeOverSteerpoint.Name = "txtTimeOverSteerpoint";
             this.txtTimeOverSteerpoint.PromptChar = '_';
             this.txtTimeOverSteerpoint.Size = new System.Drawing.Size(120, 25);
@@ -765,13 +755,175 @@ namespace DTC.UI.Aircrafts.F16
             this.txtWptElevation.AllowFraction = false;
             this.txtWptElevation.BackColor = System.Drawing.SystemColors.Window;
             this.txtWptElevation.Location = new System.Drawing.Point(163, 128);
-            this.txtWptElevation.MaximumValue = 25000M;
-            this.txtWptElevation.MinimumValue = 0M;
+            this.txtWptElevation.MaximumValue = new decimal(new int[] {
+            25000,
+            0,
+            0,
+            0});
+            this.txtWptElevation.MinimumValue = new decimal(new int[] {
+            0,
+            0,
+            0,
+            0});
             this.txtWptElevation.Name = "txtWptElevation";
             this.txtWptElevation.Size = new System.Drawing.Size(130, 25);
             this.txtWptElevation.TabIndex = 14;
             this.txtWptElevation.Unit = DTC.UI.Base.Controls.DTCNumericTextBox.UnitEnum.Feet;
             this.txtWptElevation.Value = null;
+            // 
+            // btnCancel
+            // 
+            this.btnCancel.BackColor = System.Drawing.Color.DarkKhaki;
+            this.btnCancel.FlatAppearance.BorderSize = 0;
+            this.btnCancel.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnCancel.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F);
+            this.btnCancel.Location = new System.Drawing.Point(131, 5);
+            this.btnCancel.Name = "btnCancel";
+            this.btnCancel.Size = new System.Drawing.Size(120, 25);
+            this.btnCancel.TabIndex = 24;
+            this.btnCancel.Text = "&Cancel";
+            this.btnCancel.UseVisualStyleBackColor = false;
+            this.btnCancel.Click += new System.EventHandler(this.btnCancel_Click);
+            // 
+            // btnSave
+            // 
+            this.btnSave.BackColor = System.Drawing.Color.DarkKhaki;
+            this.btnSave.FlatAppearance.BorderSize = 0;
+            this.btnSave.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnSave.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F);
+            this.btnSave.Location = new System.Drawing.Point(5, 5);
+            this.btnSave.Name = "btnSave";
+            this.btnSave.Size = new System.Drawing.Size(120, 25);
+            this.btnSave.TabIndex = 16;
+            this.btnSave.Text = "&Save";
+            this.btnSave.UseVisualStyleBackColor = false;
+            this.btnSave.Click += new System.EventHandler(this.btnSave_Click);
+            // 
+            // txtOA1Range
+            // 
+            this.txtOA1Range.AllowFraction = false;
+            this.txtOA1Range.BackColor = System.Drawing.SystemColors.Window;
+            this.txtOA1Range.Location = new System.Drawing.Point(158, 31);
+            this.txtOA1Range.MaximumValue = new decimal(new int[] {
+            99999,
+            0,
+            0,
+            0});
+            this.txtOA1Range.MinimumValue = new decimal(new int[] {
+            0,
+            0,
+            0,
+            0});
+            this.txtOA1Range.Name = "txtOA1Range";
+            this.txtOA1Range.Size = new System.Drawing.Size(90, 25);
+            this.txtOA1Range.TabIndex = 18;
+            this.txtOA1Range.Unit = DTC.UI.Base.Controls.DTCNumericTextBox.UnitEnum.Feet;
+            this.txtOA1Range.Value = null;
+            // 
+            // txtOA1Bearing
+            // 
+            this.txtOA1Bearing.AllowFraction = true;
+            this.txtOA1Bearing.BackColor = System.Drawing.SystemColors.Window;
+            this.txtOA1Bearing.Location = new System.Drawing.Point(260, 31);
+            this.txtOA1Bearing.MaximumValue = new decimal(new int[] {
+            0,
+            0,
+            0,
+            0});
+            this.txtOA1Bearing.MinimumValue = new decimal(new int[] {
+            0,
+            0,
+            0,
+            0});
+            this.txtOA1Bearing.Name = "txtOA1Bearing";
+            this.txtOA1Bearing.Size = new System.Drawing.Size(90, 25);
+            this.txtOA1Bearing.TabIndex = 19;
+            this.txtOA1Bearing.Unit = DTC.UI.Base.Controls.DTCNumericTextBox.UnitEnum.Degree;
+            this.txtOA1Bearing.Value = null;
+            // 
+            // txtOA2Range
+            // 
+            this.txtOA2Range.AllowFraction = false;
+            this.txtOA2Range.BackColor = System.Drawing.SystemColors.Window;
+            this.txtOA2Range.Location = new System.Drawing.Point(158, 59);
+            this.txtOA2Range.MaximumValue = new decimal(new int[] {
+            99999,
+            0,
+            0,
+            0});
+            this.txtOA2Range.MinimumValue = new decimal(new int[] {
+            0,
+            0,
+            0,
+            0});
+            this.txtOA2Range.Name = "txtOA2Range";
+            this.txtOA2Range.Size = new System.Drawing.Size(90, 25);
+            this.txtOA2Range.TabIndex = 22;
+            this.txtOA2Range.Unit = DTC.UI.Base.Controls.DTCNumericTextBox.UnitEnum.Feet;
+            this.txtOA2Range.Value = null;
+            // 
+            // txtOA1Elev
+            // 
+            this.txtOA1Elev.AllowFraction = false;
+            this.txtOA1Elev.BackColor = System.Drawing.SystemColors.Window;
+            this.txtOA1Elev.Location = new System.Drawing.Point(362, 31);
+            this.txtOA1Elev.MaximumValue = new decimal(new int[] {
+            80000,
+            0,
+            0,
+            0});
+            this.txtOA1Elev.MinimumValue = new decimal(new int[] {
+            1500,
+            0,
+            0,
+            -2147483648});
+            this.txtOA1Elev.Name = "txtOA1Elev";
+            this.txtOA1Elev.Size = new System.Drawing.Size(90, 25);
+            this.txtOA1Elev.TabIndex = 20;
+            this.txtOA1Elev.Unit = DTC.UI.Base.Controls.DTCNumericTextBox.UnitEnum.Feet;
+            this.txtOA1Elev.Value = null;
+            // 
+            // txtOA2Bearing
+            // 
+            this.txtOA2Bearing.AllowFraction = true;
+            this.txtOA2Bearing.BackColor = System.Drawing.SystemColors.Window;
+            this.txtOA2Bearing.Location = new System.Drawing.Point(260, 59);
+            this.txtOA2Bearing.MaximumValue = new decimal(new int[] {
+            0,
+            0,
+            0,
+            0});
+            this.txtOA2Bearing.MinimumValue = new decimal(new int[] {
+            0,
+            0,
+            0,
+            0});
+            this.txtOA2Bearing.Name = "txtOA2Bearing";
+            this.txtOA2Bearing.Size = new System.Drawing.Size(90, 25);
+            this.txtOA2Bearing.TabIndex = 23;
+            this.txtOA2Bearing.Unit = DTC.UI.Base.Controls.DTCNumericTextBox.UnitEnum.Degree;
+            this.txtOA2Bearing.Value = null;
+            // 
+            // txtOA2Elev
+            // 
+            this.txtOA2Elev.AllowFraction = false;
+            this.txtOA2Elev.BackColor = System.Drawing.SystemColors.Window;
+            this.txtOA2Elev.Location = new System.Drawing.Point(362, 59);
+            this.txtOA2Elev.MaximumValue = new decimal(new int[] {
+            80000,
+            0,
+            0,
+            0});
+            this.txtOA2Elev.MinimumValue = new decimal(new int[] {
+            1500,
+            0,
+            0,
+            -2147483648});
+            this.txtOA2Elev.Name = "txtOA2Elev";
+            this.txtOA2Elev.Size = new System.Drawing.Size(90, 25);
+            this.txtOA2Elev.TabIndex = 24;
+            this.txtOA2Elev.Unit = DTC.UI.Base.Controls.DTCNumericTextBox.UnitEnum.Feet;
+            this.txtOA2Elev.Value = null;
             // 
             // WaypointEdit
             // 

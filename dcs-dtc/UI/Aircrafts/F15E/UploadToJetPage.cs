@@ -12,6 +12,7 @@ namespace DTC.UI.Aircrafts.F15E
         private readonly F15EConfiguration _cfg;
 
         private long uploadPressedTimestamp = 0;
+        private CockpitUploadHelper cockpitUploadHelper;
 
         public UploadToJetPage(AircraftPage parent, F15EConfiguration cfg) : base(parent)
         {
@@ -35,30 +36,7 @@ namespace DTC.UI.Aircrafts.F15E
             radDisplaysWSO.Checked = _cfg.Displays.UploadMode == Models.F15E.Displays.DisplayUploadMode.WSO;
 
             CheckUploadButtonEnabled();
-
-            DataReceiver.DataReceived += this.DataReceiver_DataReceived;
-        }
-
-        private void DataReceiver_DataReceived(DataReceiver.Data d)
-        {
-            if (d.upload == "1" && uploadPressedTimestamp == 0)
-            {
-                uploadPressedTimestamp = DateTime.Now.Ticks;
-            }
-            if (d.upload == "0")
-            {
-                uploadPressedTimestamp = 0;
-            }
-
-            if (uploadPressedTimestamp != 0)
-            {
-                var timespan = new TimeSpan(DateTime.Now.Ticks - uploadPressedTimestamp);
-                if (timespan.TotalMilliseconds > 1000)
-                {
-                    uploadPressedTimestamp = 0;
-                    _jetInterface.Load();
-                }
-            }
+            cockpitUploadHelper = new CockpitUploadHelper(_jetInterface.Load);
         }
 
         private void CheckUploadButtonEnabled()

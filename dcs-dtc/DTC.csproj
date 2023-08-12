@@ -83,6 +83,7 @@
   <ItemGroup>
     <Compile Include="Models\AH64\Waypoints\Ident.cs" />
     <Compile Include="Models\AH64\Waypoints\PointType.cs" />
+    <Compile Include="Models\Base\CockpitUploadHelper.cs" />
     <Compile Include="Models\Base\Coordinate.cs" />
     <Compile Include="Models\Base\DataReceiver.cs" />
     <Compile Include="Models\Base\DataReceiver2.cs" />

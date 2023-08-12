@@ -22,7 +22,7 @@ namespace DTC.UI.Aircrafts.F15E
 			{
 				components.Dispose();
 			}
-			DataReceiver.DataReceived -= DataReceiver_DataReceived;
+            cockpitUploadHelper.Dispose();
 			base.Dispose(disposing);
 		}
 

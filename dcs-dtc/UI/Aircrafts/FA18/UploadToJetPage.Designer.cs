@@ -21,7 +21,7 @@ namespace DTC.UI.Aircrafts.FA18
 			{
 				components.Dispose();
 			}
-			DataReceiver.DataReceived -= DataReceiver_DataReceived;
+			cockpitUploadHelper.Dispose();
 			base.Dispose(disposing);
 		}
 

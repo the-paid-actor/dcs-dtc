@@ -1,4 +1,4 @@
-﻿using DTC.Models.Base;
+﻿using DTC.Utilities;
 using DTC.Models.DCS;
 using DTC.Models.FA18.Waypoints;
 using DTC.UI.Base;

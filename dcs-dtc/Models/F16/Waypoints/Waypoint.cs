@@ -1,6 +1,4 @@
-﻿using DTC.Models.Base;
-using System;
-using System.Text.RegularExpressions;
+﻿using DTC.Utilities;
 
 namespace DTC.Models.F16.Waypoints
 {

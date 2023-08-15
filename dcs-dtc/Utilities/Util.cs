@@ -1,4 +1,4 @@
-﻿namespace DTC.Models.Base
+﻿namespace DTC.Utilities
 {
 	public class Util
 	{

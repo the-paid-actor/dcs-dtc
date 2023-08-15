@@ -2,7 +2,7 @@
 using System.IO;
 using System.Net.Sockets;
 
-namespace DTC.Models.Base
+namespace DTC.Utilities
 {
 	internal class DataSender
 	{

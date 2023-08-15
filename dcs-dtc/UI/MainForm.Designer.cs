@@ -21,8 +21,8 @@ namespace DTC.UI
 			{
 				components.Dispose();
 			}
-			DataReceiver.DataReceived -= DataReceiver_DataReceived;
-			DataReceiver.Stop();
+			DTC.Utilities.DataReceiver.DataReceived -= DataReceiver_DataReceived;
+			DTC.Utilities.DataReceiver.Stop();
 			base.Dispose(disposing);
 		}
 

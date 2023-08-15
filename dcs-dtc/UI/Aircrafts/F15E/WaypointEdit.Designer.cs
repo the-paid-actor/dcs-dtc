@@ -166,7 +166,7 @@ namespace DTC.UI.Aircrafts.F15E
             // 
             this.txtWptLatLong.AllowPromptAsInput = false;
             this.txtWptLatLong.BackColor = System.Drawing.SystemColors.Window;
-            this.txtWptLatLong.Format = DTC.Models.Base.CoordinateFormat.DegreesMinutesThousandths;
+            this.txtWptLatLong.Format = DTC.Utilities.CoordinateFormat.DegreesMinutesThousandths;
             this.txtWptLatLong.HidePromptOnLeave = false;
             this.txtWptLatLong.InsertKeyMode = System.Windows.Forms.InsertKeyMode.Default;
             this.txtWptLatLong.Location = new System.Drawing.Point(163, 97);

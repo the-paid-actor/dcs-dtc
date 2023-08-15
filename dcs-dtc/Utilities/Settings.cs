@@ -1,6 +1,6 @@
 ﻿using Newtonsoft.Json;
 
-namespace DTC.Models.Base
+namespace DTC.Utilities
 {
 	public static class Settings
 	{

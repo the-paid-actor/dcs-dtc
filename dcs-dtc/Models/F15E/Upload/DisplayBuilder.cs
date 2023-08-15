@@ -37,6 +37,9 @@ namespace DTC.Models.F15E.Upload
             }
             else if (_cfg.Displays.UploadMode == DisplayUploadMode.WSO)
             {
+                AppendCommand(StartCondition("GoToRearCockpit"));
+                AppendCommand(EndCondition("GoToRearCockpit"));
+
                 var rearLeftMPCD = _aircraft.GetDevice("RLMPCD");
                 if (_cfg.Displays.WSO.LeftMPCD.FirstDisplay != Display.None)
                 {

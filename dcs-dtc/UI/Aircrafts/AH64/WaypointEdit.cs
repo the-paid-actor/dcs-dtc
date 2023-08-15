@@ -1,10 +1,6 @@
-﻿using DTC.Models;
-using DTC.Models.Base;
-using DTC.Models.DCS;
+﻿using DTC.Utilities;
 using DTC.Models.AH64.Waypoints;
-using DTC.UI.Base;
 using System;
-using System.Globalization;
 using System.Windows.Forms;
 
 namespace DTC.UI.Aircrafts.AH64

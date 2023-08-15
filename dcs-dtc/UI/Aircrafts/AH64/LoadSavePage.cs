@@ -1,13 +1,12 @@
-﻿using DTC.Models.AH64;
-using DTC.Models.Base;
-
+﻿using DTC.Utilities;
+using DTC.Models.AH64;
 using DTC.UI.CommonPages;
 using System;
 using System.Windows.Forms;
 
 namespace DTC.UI.Aircrafts.AH64
 {
-    public partial class LoadSavePage : DTC.UI.CommonPages.AircraftSettingPage
+    public partial class LoadSavePage : AircraftSettingPage
     {
         private AH64Configuration _mainConfig;
         private AH64Configuration _configToLoad;

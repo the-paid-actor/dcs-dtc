@@ -1,4 +1,4 @@
-﻿using DTC.Models.Base;
+﻿using DTC.Utilities;
 
 namespace DTC.Models.F15E.Waypoints
 {

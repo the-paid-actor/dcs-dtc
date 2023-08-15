@@ -1,5 +1,4 @@
-﻿using DTC.Models.Base;
-using Newtonsoft.Json;
+﻿using DTC.Utilities;
 
 namespace DTC.Models.DCS
 {

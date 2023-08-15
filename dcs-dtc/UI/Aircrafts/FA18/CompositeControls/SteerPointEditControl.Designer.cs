@@ -67,7 +67,7 @@
             this.txtCoord.HidePromptOnLeave = false;
             this.txtCoord.InsertKeyMode = System.Windows.Forms.InsertKeyMode.Default;
             this.txtCoord.Location = new System.Drawing.Point(151, 3);
-            this.txtCoord.Format = Models.Base.CoordinateFormat.DegreesMinutesSecondsHundredths;
+            this.txtCoord.Format = DTC.Utilities.CoordinateFormat.DegreesMinutesSecondsHundredths;
             this.txtCoord.Name = "txtCoord";
             this.txtCoord.PromptChar = '_';
             this.txtCoord.Size = new System.Drawing.Size(224, 28);

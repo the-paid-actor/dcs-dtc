@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace DTC.Models.Base
+namespace DTC.Utilities
 {
     internal class CockpitUploadHelper : IDisposable
     {

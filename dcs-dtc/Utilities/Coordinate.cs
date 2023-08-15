@@ -3,7 +3,7 @@ using System;
 using System.Globalization;
 using System.Text.RegularExpressions;
 
-namespace DTC.Models.Base
+namespace DTC.Utilities
 {
     public enum CoordinateFormat
     {

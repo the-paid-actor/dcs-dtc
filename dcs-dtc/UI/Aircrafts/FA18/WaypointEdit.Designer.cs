@@ -185,7 +185,7 @@ namespace DTC.UI.Aircrafts.FA18
             this.txtWptLatLong.HidePromptOnLeave = false;
             this.txtWptLatLong.InsertKeyMode = System.Windows.Forms.InsertKeyMode.Default;
             this.txtWptLatLong.Location = new System.Drawing.Point(152, 104);
-            this.txtWptLatLong.Format = Models.Base.CoordinateFormat.DegreesMinutesHundredths;
+            this.txtWptLatLong.Format = DTC.Utilities.CoordinateFormat.DegreesMinutesHundredths;
             this.txtWptLatLong.Name = "txtWptLatLong";
             this.txtWptLatLong.PromptChar = '_';
             this.txtWptLatLong.Size = new System.Drawing.Size(270, 28);

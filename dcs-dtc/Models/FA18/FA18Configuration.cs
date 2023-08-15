@@ -1,4 +1,5 @@
-﻿using DTC.Models.FA18.Waypoints;
+﻿using DTC.Utilities;
+using DTC.Models.FA18.Waypoints;
 using DTC.Models.FA18.Sequences;
 using DTC.Models.FA18.Radios;
 using DTC.Models.FA18.PrePlanned;

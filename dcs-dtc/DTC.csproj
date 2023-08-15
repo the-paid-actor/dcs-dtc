@@ -83,15 +83,15 @@
   <ItemGroup>
     <Compile Include="Models\AH64\Waypoints\Ident.cs" />
     <Compile Include="Models\AH64\Waypoints\PointType.cs" />
-    <Compile Include="Models\Base\CockpitUploadHelper.cs" />
-    <Compile Include="Models\Base\Coordinate.cs" />
-    <Compile Include="Models\Base\DataReceiver.cs" />
-    <Compile Include="Models\Base\DataReceiver2.cs" />
-    <Compile Include="Models\Base\DataSender.cs" />
-    <Compile Include="Models\Base\DCSInstallCheck.cs" />
-    <Compile Include="Models\Base\IniFile.cs" />
-    <Compile Include="Models\Base\DTCMessageBox.cs" />
-    <Compile Include="Models\Base\UDPSocket.cs" />
+    <Compile Include="Utilities\CockpitUploadHelper.cs" />
+    <Compile Include="Utilities\Coordinate.cs" />
+    <Compile Include="Utilities\DataReceiver.cs" />
+    <Compile Include="Utilities\DataReceiver2.cs" />
+    <Compile Include="Utilities\DataSender.cs" />
+    <Compile Include="Utilities\DCSInstallCheck.cs" />
+    <Compile Include="Utilities\IniFile.cs" />
+    <Compile Include="Utilities\DTCMessageBox.cs" />
+    <Compile Include="Utilities\UDPSocket.cs" />
     <Compile Include="Models\DCS\Emitters.cs" />
     <Compile Include="Models\AH64\AH64Configuration.cs" />
     <Compile Include="Models\AH64\AH64Commands.cs" />
@@ -156,8 +156,8 @@
     <Compile Include="Models\Presets\PresetChangedCallback.cs" />
     <Compile Include="Models\Presets\PresetsStore.cs" />
     <Compile Include="Models\Base\IConfiguration.cs" />
-    <Compile Include="Models\Base\Settings.cs" />
-    <Compile Include="Models\Base\StringCompressor.cs" />
+    <Compile Include="Utilities\Settings.cs" />
+    <Compile Include="Utilities\StringCompressor.cs" />
     <Compile Include="Models\F16\F16Configuration.cs" />
     <Compile Include="Models\DCS\Airbase.cs" />
     <Compile Include="Models\DCS\Command.cs" />
@@ -169,7 +169,7 @@
     <Compile Include="Models\F16\MFD\ModeConfiguration.cs" />
     <Compile Include="Models\F16\MFD\Page.cs" />
     <Compile Include="Models\F16\Radios\RadioSystem.cs" />
-    <Compile Include="Models\Base\FileStorage.cs" />
+    <Compile Include="Utilities\FileStorage.cs" />
     <Compile Include="Models\Presets\Aircraft.cs" />
     <Compile Include="Models\Presets\Preset.cs" />
     <Compile Include="Models\WaypointDB\WaypointDB.cs" />
@@ -425,7 +425,7 @@
     <Compile Include="UI\Base\WaypointCapture.cs" />
     <Compile Include="Models\F16\Radios\RadioChannel.cs" />
     <Compile Include="Models\F16\Radios\RadioType.cs" />
-    <Compile Include="Models\Base\UDPSocket2.cs" />
+    <Compile Include="Utilities\UDPSocket2.cs" />
     <Compile Include="Properties\Resources.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -507,7 +507,7 @@
     <Compile Include="Models\F16\Waypoints\WaypointSystem.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Models\Base\Util.cs" />
+    <Compile Include="Utilities\Util.cs" />
     <Compile Include="UI\CommonPages\WaypointDatabase.cs">
       <SubType>UserControl</SubType>
     </Compile>

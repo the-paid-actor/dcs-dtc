@@ -2,7 +2,7 @@
 using System.IO;
 using System.Runtime.InteropServices;
 
-namespace DTC.Models.Base
+namespace DTC.Utilities
 {
     internal static class DCSInstallCheck
     {

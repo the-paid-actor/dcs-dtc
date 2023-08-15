@@ -1,5 +1,4 @@
-﻿using DTC.Models.Base;
-using System.Windows.Forms;
+﻿using DTC.Utilities;
 
 namespace DTC.Models.AH64.Waypoints
 {

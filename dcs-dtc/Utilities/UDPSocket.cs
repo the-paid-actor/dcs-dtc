@@ -3,17 +3,17 @@ using System.Net;
 using System.Net.Sockets;
 using System.Text;
 
-namespace DTC.Models.Base
+namespace DTC.Utilities
 {
-    public class UDPSocket2
+    public static class UDPSocket
     {
-        private Socket _socket;
+        private static Socket _socket;
         private const int bufSize = 8 * 1024;
-        private State state = new State();
-        private EndPoint epFrom = new IPEndPoint(IPAddress.Any, 0);
-        private AsyncCallback recv = null;
-        private bool _running = false;
-        private bool _stop = false;
+        private static State state = new State();
+        private static EndPoint epFrom = new IPEndPoint(IPAddress.Any, 0);
+        private static AsyncCallback recv = null;
+        private static bool _running = false;
+        private static bool _stop = false;
 
         public delegate void ReceiveCallback(string s);
 
@@ -22,7 +22,7 @@ namespace DTC.Models.Base
             public byte[] buffer = new byte[bufSize];
         }
 
-        public void StartReceiving(string address, int port, ReceiveCallback callback)
+        public static void StartReceiving(string address, int port, ReceiveCallback callback)
         {
             if (!_running)
             {
@@ -34,12 +34,12 @@ namespace DTC.Models.Base
             }
         }
 
-        public void Stop()
+        public static void Stop()
         {
             _stop = true;
         }
 
-        private void Receive(ReceiveCallback callback)
+        private static void Receive(ReceiveCallback callback)
         {
             _socket.BeginReceiveFrom(state.buffer, 0, bufSize, SocketFlags.None, ref epFrom, recv = (ar) =>
             {

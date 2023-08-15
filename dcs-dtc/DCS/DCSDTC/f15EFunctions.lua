@@ -68,6 +68,38 @@ function DTC_F15E_GetDisplay(disp)
 	return table
 end
 
+function DTC_F15E_CheckCondition_GoToFrontCockpit()
+	LoSetCommand(7)
+	if DTC_F15E_CheckCondition_IsInFrontCockpit() == false then
+		LoSetCommand(1602)
+	end
+	return true
+end
+
+function DTC_F15E_CheckCondition_GoToRearCockpit()
+	LoSetCommand(7)
+	if DTC_F15E_CheckCondition_IsInRearCockpit() == false then
+		LoSetCommand(1602)
+	end
+	return true
+end
+
+function DTC_F15E_CheckCondition_IsInFrontCockpit()
+	local table = DTC_F15E_GetFrontLeftMPD()
+	if next(table) == nil
+		return false
+	end
+	return true
+end
+
+function DTC_F15E_CheckCondition_IsInRearCockpit()
+	local table = DTC_F15E_GetRearLeftMPD()
+	if next(table) == nil
+		return false
+	end
+	return true
+end
+
 --[[
 function DTC_ClickCockpit(device, cmd)
 	device:performClickableAction(cmd, 1)

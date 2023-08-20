@@ -86,7 +86,7 @@ end
 
 function DTC_F15E_CheckCondition_IsInFrontCockpit()
 	local table = DTC_F15E_GetFrontLeftMPD()
-	if next(table) == nil
+	if next(table) == nil then
 		return false
 	end
 	return true
@@ -94,7 +94,7 @@ end
 
 function DTC_F15E_CheckCondition_IsInRearCockpit()
 	local table = DTC_F15E_GetRearLeftMPD()
-	if next(table) == nil
+	if next(table) == nil then
 		return false
 	end
 	return true

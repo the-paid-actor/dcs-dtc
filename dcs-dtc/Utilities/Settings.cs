@@ -220,9 +220,9 @@ namespace DTC.Utilities
 			{
 				obj.UDPReceivePort = 43000;
 			}
-            if (obj.StrikeEagleCommandDelayMs == 0)
+            if (obj.StrikeEagleCommandDelayMs < 80)
             {
-                obj.StrikeEagleCommandDelayMs = 75;
+                obj.StrikeEagleCommandDelayMs = 80;
             }
             if (obj.ViperCommandDelayMs == 0)
             {
@@ -234,6 +234,8 @@ namespace DTC.Utilities
             }
 
             currentSettings = obj;
+
+			SaveSettings();
 		}
 	}
 }

@@ -24,11 +24,22 @@ namespace DTC.Models.F15E.Upload
 
             AppendCommand(d.GetCommand("CLR"));
             AppendCommand(d.GetCommand("CLR"));
+            AppendCommand(d.GetCommand("CLR"));
+            AppendCommand(d.GetCommand("CLR"));
             AppendCommand(d.GetCommand("MENU"));
 
             BuildRadio(d, _cfg.Radios.Radio1, "PB5");
+
+            AppendCommand(d.GetCommand("CLR"));
+            AppendCommand(d.GetCommand("CLR"));
+            AppendCommand(d.GetCommand("CLR"));
+            AppendCommand(d.GetCommand("CLR"));
+            AppendCommand(d.GetCommand("MENU"));
+
             BuildRadio(d, _cfg.Radios.Radio2, "PB6");
 
+            AppendCommand(d.GetCommand("CLR"));
+            AppendCommand(d.GetCommand("CLR"));
             AppendCommand(d.GetCommand("CLR"));
             AppendCommand(d.GetCommand("CLR"));
             AppendCommand(d.GetCommand("MENU"));

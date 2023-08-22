@@ -24,9 +24,6 @@ jobs:
       - name: Navigate to Workspace
         run: cd $GITHUB_WORKSPACE
 
-      - name: Restore Packages
-        run: nuget restore dcs-dtc.sln
-
       - name: Disable Out of Process Building
         run: .\DisableOutOfProcBuild.exe
         working-directory: C:\Program Files\Microsoft Visual Studio\2022\Enterprise\Common7\IDE\CommonExtensions\Microsoft\VSI\DisableOutOfProcBuild

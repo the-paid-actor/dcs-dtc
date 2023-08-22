@@ -4,10 +4,12 @@ https://github.com/the-paid-actor/dcs-dtc
 
 This is a mod for DCS that works as a DTC (Data Cartridge) for the F-16, F/A-18 and F-15E.
 
-- **Create and recall presets** for each mission / server you fly, or however you want to organize your settings. These are saved in the DCS-DTC folder under Documents
-- **Upload** the settings from a preset to the aircraft
-- Enables you to **share and receive** settings from other people using this mod, either by file or clipboard
-- Allows **capturing a waypoint** coordinate using the F10 view in DCS, or a "markpoint" by flying over a point in the map.
+- **Create and recall presets** for each mission / server you fly, or however you want to organize your settings. These are saved in the DCS-DTC folder under Documents.
+- **Upload** the settings from a preset to the aircraft.
+- Enables you to **share and receive** settings from other people using this mod, either by file or clipboard.
+- VR-compatible method to **capture coordinates** using the F10 map view in DCS, or a "markpoint" by flying over a point in the map. Use the Ctrl+Shift+D shortcut to bring a capture dialog inside DCS.
+
+**For real-time support, bug reporting and feature suggestions** use the Discord channel - https://discord.gg/saCACg99EZ
 
 # Features by aircraft
 
@@ -54,7 +56,9 @@ This is a mod for DCS that works as a DTC (Data Cartridge) for the F-16, F/A-18 
 
 # Requirements
 
-This application is written using .NET Framework 4.7.2. You may want to download the latest version from the Microsoft website.
+This application is written using .NET 7.0. You may want to download the latest version from the Microsoft website. Look for the .NET Desktop Runtime on the link below.
+
+https://dotnet.microsoft.com/en-us/download/dotnet/7.0
 
 # Installation
 

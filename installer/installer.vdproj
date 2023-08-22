@@ -756,7 +756,7 @@
             "OutputGroupCanonicalName" = "8:PublishItems"
             "OutputProjectGuid" = "8:{3A7C24C7-CF79-41DA-87E0-9DB8087F8886}"
             "ShowKeyOutput" = "11:TRUE"
-            "PublishProfilePath" = "8:..\\dcs-dtc\\Properties\\PublishProfiles\\FolderProfile.pubxml"
+            "PublishProfilePath" = "8:Properties\\PublishProfiles\\FolderProfile.pubxml"
                 "ExcludeFilters"
                 {
                 }

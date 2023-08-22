@@ -31,12 +31,8 @@ jobs:
         run: .\DisableOutOfProcBuild.exe
         working-directory: C:\Program Files\Microsoft Visual Studio\2022\Enterprise\Common7\IDE\CommonExtensions\Microsoft\VSI\DisableOutOfProcBuild
 
-      - name: Build Solution
-        run: |
-          msbuild.exe dcs-dtc.sln /p:platform="Any CPU" /p:configuration="Release"
-
       - name: Build the Installer
-        run: DevEnv installer/installer.vdproj /build Release
+        run: DevEnv dcs-dtc.sln /build Release
 
       - uses: actions/upload-artifact@v2
         with:

@@ -1,7 +1,5 @@
 ﻿
-using DTC.Models.Base;
 using DTC.UI.Base.Controls;
-using System;
 
 namespace DTC.UI.Aircrafts.F16
 {

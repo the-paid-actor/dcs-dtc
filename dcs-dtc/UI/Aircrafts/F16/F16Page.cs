@@ -1,10 +1,8 @@
 ﻿using DTC.Utilities;
-using DTC.Models.Base;
 using DTC.Models.F16;
 using DTC.Models.F16.Waypoints;
 using DTC.Models.Presets;
 using DTC.UI.CommonPages;
-using System.Collections.Generic;
 
 namespace DTC.UI.Aircrafts.F16
 {

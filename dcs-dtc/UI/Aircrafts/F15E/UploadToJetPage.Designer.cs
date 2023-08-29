@@ -1,7 +1,4 @@
-﻿
-using DTC.Models.Base;
-using DTC.UI.Base.Controls;
-using System;
+﻿using DTC.UI.Base.Controls;
 
 namespace DTC.UI.Aircrafts.F15E
 {

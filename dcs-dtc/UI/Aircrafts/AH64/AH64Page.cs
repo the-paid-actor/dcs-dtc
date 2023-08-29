@@ -1,7 +1,7 @@
 ﻿using DTC.Models.AH64;
-using DTC.Models.Base;
 using DTC.Models.Presets;
 using DTC.UI.CommonPages;
+using DTC.Utilities;
 
 namespace DTC.UI.Aircrafts.AH64
 {

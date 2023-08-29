@@ -1,9 +1,7 @@
 ﻿using DTC.Utilities;
 using DTC.Models;
-using DTC.Models.Base;
 using DTC.Models.FA18;
 using DTC.UI.CommonPages;
-using System;
 
 namespace DTC.UI.Aircrafts.FA18
 {

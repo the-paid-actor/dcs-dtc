@@ -1,8 +1,4 @@
-﻿
-using DTC.Models.Base;
-using System.Reflection;
-
-namespace DTC.UI
+﻿namespace DTC.UI
 {
 	partial class MainForm
 	{

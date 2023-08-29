@@ -5,12 +5,9 @@ using DTC.Models.FA18.Radios;
 using DTC.Models.FA18.PrePlanned;
 using DTC.Models.FA18.CMS;
 using Newtonsoft.Json;
-using DTC.Models.Base;
 using DTC.Models.FA18.Misc;
 using CoordinateSharp;
-using System.Collections.Generic;
 using System.Xml.Linq;
-using System;
 using System.Xml.XPath;
 
 namespace DTC.Models.FA18

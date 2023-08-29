@@ -1,6 +1,4 @@
-﻿using System.Collections.Generic;
-using DTC.Models.Base;
-using DTC.Models.DCS;
+﻿using DTC.Models.DCS;
 
 namespace DTC.Models.AH64
 {

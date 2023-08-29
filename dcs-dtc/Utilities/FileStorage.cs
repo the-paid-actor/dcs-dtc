@@ -1,7 +1,5 @@
-﻿using DTC.Models.Base;
+﻿using DTC.Models.AH64.Waypoints;
 using DTC.Models.DCS;
-using DTC.Models.Presets;
-using DTC.Models.AH64.Waypoints;
 using Newtonsoft.Json;
 
 namespace DTC.Utilities;
@@ -104,12 +102,12 @@ public class FileStorage
         WriteFile(GetSettingsFilePath(), json);
     }
 
-    private static string GetAircraftPresetsPath(Aircraft ac)
+    private static string GetAircraftPresetsPath(IAircraft ac)
     {
         return Path.Combine(GetStorageFolder(), "Presets", ac.GetAircraftModelName());
     }
 
-    public static Dictionary<string, IConfiguration> LoadPresets(Aircraft ac)
+    public static Dictionary<string, IConfiguration> LoadPresets(IAircraft ac)
     {
         var path = GetAircraftPresetsPath(ac);
         var dic = new Dictionary<string, IConfiguration>();
@@ -128,7 +126,7 @@ public class FileStorage
         return dic;
     }
 
-    public static void DeletePreset(Aircraft ac, Preset preset)
+    public static void DeletePreset(IAircraft ac, IPreset preset)
     {
         var path = Path.Combine(GetAircraftPresetsPath(ac), preset.Name + ".json");
         if (File.Exists(path))
@@ -137,7 +135,7 @@ public class FileStorage
         }
     }
 
-    public static void PersistPreset(Aircraft ac, Preset preset)
+    public static void PersistPreset(IAircraft ac, IPreset preset)
     {
         var path = GetAircraftPresetsPath(ac);
         Directory.CreateDirectory(path);
@@ -145,7 +143,7 @@ public class FileStorage
         WriteFile(Path.Combine(path, preset.Name + ".json"), json);
     }
 
-    public static void RenamePresetFile(Aircraft aircraft, Preset preset, string oldName)
+    public static void RenamePresetFile(IAircraft aircraft, IPreset preset, string oldName)
     {
         var path = GetAircraftPresetsPath(aircraft);
         if (Directory.Exists(path))

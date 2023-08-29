@@ -1,15 +1,12 @@
 ﻿using DTC.Utilities;
-using DTC.Models.Base;
 using DTC.Models.F16;
 using DTC.Models.FA18;
 using DTC.Models.AH64;
-using System;
-using System.Collections.Generic;
 using DTC.Models.F15E;
 
 namespace DTC.Models.Presets
 {
-    public class Aircraft
+    public class Aircraft : IAircraft
     {
         public string Name
         {
@@ -35,12 +32,12 @@ namespace DTC.Models.Presets
             }
         }
 
-        public List<Preset> Presets { get; set; }
+        public List<IPreset> Presets { get; set; }
         public AircraftModel Model { get; set; }
 
         public Aircraft(AircraftModel model)
         {
-            Presets = new List<Preset>();
+            Presets = new List<IPreset>();
             Model = model;
         }
 
@@ -118,7 +115,7 @@ namespace DTC.Models.Presets
             }
         }
 
-        internal Preset ClonePreset(Preset preset)
+        internal IPreset ClonePreset(IPreset preset)
         {
             var p = preset.Clone();
             Presets.Add(p);
@@ -126,7 +123,7 @@ namespace DTC.Models.Presets
             return p;
         }
 
-        internal void DeletePreset(Preset preset)
+        internal void DeletePreset(IPreset preset)
         {
             Presets.Remove(preset);
             FileStorage.DeletePreset(this, preset);

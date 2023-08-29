@@ -1,11 +1,8 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Xml.Linq;
+﻿using System.Xml.Linq;
 using System.Xml.XPath;
 using CoordinateSharp;
 using Newtonsoft.Json;
 using DTC.Utilities;
-using DTC.Models.Base;
 using DTC.Models.AH64.Waypoints;
 using DTC.Models.AH64.Radios;
 

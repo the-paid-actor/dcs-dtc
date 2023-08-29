@@ -30,12 +30,12 @@
         {
             this.optFile = new System.Windows.Forms.RadioButton();
             this.optClipboard = new System.Windows.Forms.RadioButton();
-            this.grpLoad = new DTC.UI.Controls.DTCGroupBox();
+            this.grpLoad = new DTC.UI.Base.Controls.DTCGroupBox();
             this.btnLoadApply = new DTC.UI.Base.Controls.DTCButton();
             this.btnLoad = new DTC.UI.Base.Controls.DTCButton();
             this.chkLoadRadios = new System.Windows.Forms.CheckBox();
             this.chkLoadWaypoints = new System.Windows.Forms.CheckBox();
-            this.grpSave = new DTC.UI.Controls.DTCGroupBox();
+            this.grpSave = new DTC.UI.Base.Controls.DTCGroupBox();
             this.btnSave = new DTC.UI.Base.Controls.DTCButton();
             this.chkSaveRadios = new System.Windows.Forms.CheckBox();
             this.chkSaveWaypoints = new System.Windows.Forms.CheckBox();
@@ -256,12 +256,12 @@
 
         private System.Windows.Forms.RadioButton optFile;
         private System.Windows.Forms.RadioButton optClipboard;
-        private Controls.DTCGroupBox grpLoad;
+        private Base.Controls.DTCGroupBox grpLoad;
         private Base.Controls.DTCButton btnLoadApply;
         private Base.Controls.DTCButton btnLoad;
         private System.Windows.Forms.CheckBox chkLoadRadios;
         private System.Windows.Forms.CheckBox chkLoadWaypoints;
-        private Controls.DTCGroupBox grpSave;
+        private Base.Controls.DTCGroupBox grpSave;
         private Base.Controls.DTCButton btnSave;
         private System.Windows.Forms.CheckBox chkSaveRadios;
         private System.Windows.Forms.CheckBox chkSaveWaypoints;

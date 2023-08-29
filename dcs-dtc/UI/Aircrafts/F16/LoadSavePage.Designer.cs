@@ -35,7 +35,7 @@ namespace DTC.UI.Aircrafts.F16
 			this.saveFileDlg = new System.Windows.Forms.SaveFileDialog();
 			this.optFile = new System.Windows.Forms.RadioButton();
 			this.optClipboard = new System.Windows.Forms.RadioButton();
-			this.grpLoad = new DTC.UI.Controls.DTCGroupBox();
+			this.grpLoad = new DTC.UI.Base.Controls.DTCGroupBox();
 			this.chkLoadMisc = new System.Windows.Forms.CheckBox();
 			this.chkLoadHTS = new System.Windows.Forms.CheckBox();
 			this.chkLoadHARM = new System.Windows.Forms.CheckBox();
@@ -45,7 +45,7 @@ namespace DTC.UI.Aircrafts.F16
 			this.chkLoadRadios = new System.Windows.Forms.CheckBox();
 			this.chkLoadCMS = new System.Windows.Forms.CheckBox();
 			this.chkLoadWaypoints = new System.Windows.Forms.CheckBox();
-			this.grpSave = new DTC.UI.Controls.DTCGroupBox();
+			this.grpSave = new DTC.UI.Base.Controls.DTCGroupBox();
 			this.chkSaveMisc = new System.Windows.Forms.CheckBox();
 			this.chkSaveHTS = new System.Windows.Forms.CheckBox();
 			this.chkSaveHARM = new System.Windows.Forms.CheckBox();
@@ -378,14 +378,14 @@ namespace DTC.UI.Aircrafts.F16
 		private System.Windows.Forms.SaveFileDialog saveFileDlg;
 		private System.Windows.Forms.RadioButton optFile;
 		private System.Windows.Forms.RadioButton optClipboard;
-		private Controls.DTCGroupBox grpLoad;
+		private Base.Controls.DTCGroupBox grpLoad;
 		private DTCButton btnLoadApply;
 		private DTCButton btnLoad;
 		private System.Windows.Forms.CheckBox chkLoadMFDs;
 		private System.Windows.Forms.CheckBox chkLoadRadios;
 		private System.Windows.Forms.CheckBox chkLoadCMS;
 		private System.Windows.Forms.CheckBox chkLoadWaypoints;
-		private Controls.DTCGroupBox grpSave;
+		private Base.Controls.DTCGroupBox grpSave;
 		private DTCButton btnSave;
 		private System.Windows.Forms.CheckBox chkSaveMFDs;
 		private System.Windows.Forms.CheckBox chkSaveRadios;

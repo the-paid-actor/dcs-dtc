@@ -1,5 +1,4 @@
 ﻿using DTC.Utilities;
-using DTC.Models.Base;
 using DTC.Models.F15E.Displays;
 using DTC.Models.F15E.Misc;
 using DTC.Models.F15E.Radios;

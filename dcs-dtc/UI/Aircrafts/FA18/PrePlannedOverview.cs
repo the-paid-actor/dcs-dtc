@@ -1,12 +1,5 @@
-﻿using DTC.Models;
-using DTC.Models.Base;
-using DTC.Models.DCS;
-using DTC.Models.FA18.PrePlanned;
+﻿using DTC.Models.FA18.PrePlanned;
 using DTC.UI.Base.Controls;
-using DTC.UI.Base;
-using System;
-using System.Globalization;
-using System.Windows.Forms;
 
 namespace DTC.UI.Aircrafts.FA18
 {

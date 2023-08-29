@@ -67,7 +67,7 @@ namespace DTC.UI.CommonPages
 			btnDelete.Enabled = selected;
 		}
 
-		private void AddRenamePreset(Preset preset, Action callback = null)
+		private void AddRenamePreset(IPreset preset, Action callback = null)
 		{
 			var dialog = new PresetName();
 			this.Controls.Add(dialog);

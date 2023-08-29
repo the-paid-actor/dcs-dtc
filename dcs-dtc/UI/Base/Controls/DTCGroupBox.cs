@@ -1,9 +1,4 @@
-﻿using System;
-using System.Drawing;
-using System.Windows.Forms;
-using static DTC.UI.Base.Controls.GraphicsExtensions;
-
-namespace DTC.UI.Controls
+﻿namespace DTC.UI.Base.Controls
 {
   public class DTCGroupBox : GroupBox
   {

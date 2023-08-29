@@ -1,11 +1,6 @@
 ﻿using DTC.Utilities;
 using DTC.Models.Presets;
-using DTC.Models.Base;
 using DTC.UI.Base.Controls;
-using System;
-using System.Collections.Generic;
-using System.Windows.Forms;
-using System.Drawing;
 
 namespace DTC.UI.CommonPages
 {

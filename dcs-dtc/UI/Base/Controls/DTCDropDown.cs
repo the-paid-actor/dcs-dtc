@@ -3,7 +3,7 @@ using System.Windows.Forms;
 
 namespace DTC.UI.Base.Controls
 {
-	class DTCDropDown : ComboBox
+	public class DTCDropDown : ComboBox
 	{
 		public static DTCDropDown Make(int x, int y)
 		{

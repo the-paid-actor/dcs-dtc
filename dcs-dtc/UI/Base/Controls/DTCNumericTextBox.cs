@@ -1,13 +1,9 @@
-﻿using System;
-using System.Drawing;
-using System.Globalization;
-using System.Linq;
+﻿using System.Globalization;
 using System.Media;
-using System.Windows.Forms;
 
 namespace DTC.UI.Base.Controls
 {
-    internal class DTCNumericTextBox : UserControl
+    public class DTCNumericTextBox : UserControl
     {
         public delegate void TextBoxChangedCallback(DTCNumericTextBox textBox);
 

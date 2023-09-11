@@ -330,6 +330,7 @@ namespace DTC.UI.Aircrafts.FA18
             optCombatFlite.TabStop = true;
             optCombatFlite.Text = "CombatFlite";
             optCombatFlite.UseVisualStyleBackColor = true;
+            optCombatFlite.CheckedChanged += optCombatFlite_CheckedChanged;
             // 
             // LoadSavePage
             // 

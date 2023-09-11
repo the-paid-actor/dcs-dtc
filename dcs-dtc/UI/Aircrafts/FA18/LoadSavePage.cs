@@ -3,6 +3,7 @@ using DTC.Models.FA18;
 using DTC.UI.CommonPages;
 using System;
 using System.Windows.Forms;
+using DTC.Models.F16;
 
 namespace DTC.UI.Aircrafts.FA18
 {
@@ -31,7 +32,7 @@ namespace DTC.UI.Aircrafts.FA18
                 var txt = Clipboard.GetText();
                 _configToLoad = FA18Configuration.FromCompressedString(txt);
             }
-            else
+            else if(optFile.Checked)
             {
                 openFileDlg.ShowHelp = true;
                 if (openFileDlg.ShowDialog() == DialogResult.OK)
@@ -39,6 +40,22 @@ namespace DTC.UI.Aircrafts.FA18
                     var file = FileStorage.LoadFile(openFileDlg.FileName);
                     _configToLoad = FA18Configuration.FromJson(file);
                 }
+            }
+            else
+            {
+                openFileDlg.Filter = "CombatFlite files (*.cf)|*.cf";
+                if (openFileDlg.ShowDialog() == DialogResult.OK)
+                {
+                    string file = FileStorage.LoadCombatFlite(openFileDlg.FileName);
+
+                    var selector = new CombatFliteFlightSelector(file);
+                    if (selector.ShowDialog() == DialogResult.OK)
+                    {
+                        _configToLoad = FA18Configuration.FromCombatFlite(file, selector.SelectedItem);
+                    }
+                }
+                openFileDlg.Filter = string.Empty;
+                DisableLoadControls();
             }
 
             DisableLoadControls();
@@ -225,6 +242,14 @@ namespace DTC.UI.Aircrafts.FA18
         private void chkSaveSeq_CheckedChanged(object sender, EventArgs e)
         {
 
+        }
+        private void optCombatFlite_CheckedChanged(object sender, EventArgs e)
+        {
+            _configToLoad = null;
+            grpLoad.Text = "Load from CombatFlite";
+            grpLoad.Visible = true;
+            grpSave.Visible = false;
+            DisableLoadControls();
         }
     }
 }

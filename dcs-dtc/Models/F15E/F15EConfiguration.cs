@@ -80,7 +80,8 @@ namespace DTC.Models.F15E
                     Waypoints = new List<Waypoint>()
                 },
                 Displays = null,
-                Misc = null
+                Misc = null,
+                Radios = null
             };
 
             var flight = doc.XPathSelectElement($"//Route[Name='{flightName}']");

@@ -31,7 +31,7 @@ namespace DTC.UI.Aircrafts.F16
                 var txt = Clipboard.GetText();
                 _configToLoad = F16Configuration.FromCompressedString(txt);
             }
-            else
+            else if (optFile.Checked)
             {
                 openFileDlg.ShowHelp = true;
                 if (openFileDlg.ShowDialog() == DialogResult.OK)
@@ -40,8 +40,24 @@ namespace DTC.UI.Aircrafts.F16
                     _configToLoad = F16Configuration.FromJson(file);
                 }
             }
+            else
+            {
+                openFileDlg.Filter = "CombatFlite files (*.cf)|*.cf";
+                if (openFileDlg.ShowDialog() == DialogResult.OK)
+                {
+                    string file = FileStorage.LoadCombatFlite(openFileDlg.FileName);
 
-            DisableLoadControls();
+                    var selector = new CombatFliteFlightSelector(file);
+                    if (selector.ShowDialog() == DialogResult.OK)
+                    {
+                        _configToLoad = F16Configuration.FromCombatFlite(file, selector.SelectedItem);
+                    }
+                }
+                openFileDlg.Filter = string.Empty;
+                DisableLoadControls();
+            }
+
+            
 
             var enableLoad = false;
 
@@ -241,6 +257,14 @@ namespace DTC.UI.Aircrafts.F16
             grpSave.Text = "Save to Clipboard";
             grpLoad.Visible = true;
             grpSave.Visible = true;
+            DisableLoadControls();
+        }
+        private void optCombatFlite_CheckedChanged(object sender, EventArgs e)
+        {
+            _configToLoad = null;
+            grpLoad.Text = "Load from CombatFlite";
+            grpLoad.Visible = true;
+            grpSave.Visible = false;
             DisableLoadControls();
         }
     }

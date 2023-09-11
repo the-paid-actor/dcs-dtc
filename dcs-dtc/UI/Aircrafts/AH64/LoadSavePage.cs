@@ -114,7 +114,7 @@ namespace DTC.UI.Aircrafts.AH64
             {
                 cfg.Radios = null;
             }
-            
+
 
             if (optClipboard.Checked)
             {

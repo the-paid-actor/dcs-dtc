@@ -43,18 +43,18 @@ namespace DTC.UI.Aircrafts.F15E
             else
             {
                 openFileDlg.Filter = "CombatFlite files (*.cf)|*.cf";
-	            if (openFileDlg.ShowDialog() == DialogResult.OK)
-	            {
+                if (openFileDlg.ShowDialog() == DialogResult.OK)
+                {
                     string file = FileStorage.LoadCombatFlite(openFileDlg.FileName);
 
                     var selector = new CombatFliteFlightSelector(file);
                     if (selector.ShowDialog() == DialogResult.OK)
                     {
-	                    _configToLoad = F15EConfiguration.FromCombatFlite(file, selector.SelectedItem);
-					}
-	            }
+                        _configToLoad = F15EConfiguration.FromCombatFlite(file, selector.SelectedItem);
+                    }
+                }
                 openFileDlg.Filter = string.Empty;
-			}
+            }
 
             DisableLoadControls();
 
@@ -202,13 +202,18 @@ namespace DTC.UI.Aircrafts.F15E
             DisableLoadControls();
         }
 
-		private void optCombatFlite_CheckedChanged(object sender, EventArgs e)
-		{
-			_configToLoad = null;
-			grpLoad.Text = "Load from CombatFlite";
-			grpLoad.Visible = true;
-			grpSave.Visible = false;
-			DisableLoadControls();
-		}
-	}
+        private void optCombatFlite_CheckedChanged(object sender, EventArgs e)
+        {
+            _configToLoad = null;
+            grpLoad.Text = "Load from CombatFlite";
+            grpLoad.Visible = true;
+            grpSave.Visible = false;
+            DisableLoadControls();
+        }
+
+        private void grpSave_Enter(object sender, EventArgs e)
+        {
+
+        }
+    }
 }

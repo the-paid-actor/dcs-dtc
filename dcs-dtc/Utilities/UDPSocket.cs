@@ -3,7 +3,7 @@ using System.Net;
 using System.Net.Sockets;
 using System.Text;
 
-namespace DTC.Models.Base
+namespace DTC.Utilities
 {
     public static class UDPSocket
     {

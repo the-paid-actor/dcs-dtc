@@ -1,4 +1,4 @@
-﻿using DTC.Models.Base;
+﻿using DTC.Utilities;
 using DTC.Models.F15E;
 using DTC.UI.CommonPages;
 using System;
@@ -33,6 +33,7 @@ namespace DTC.UI.Aircrafts.F15E
             }
             else if (optFile.Checked)
             {
+                openFileDlg.ShowHelp = true;
                 if (openFileDlg.ShowDialog() == DialogResult.OK)
                 {
                     var file = FileStorage.LoadFile(openFileDlg.FileName);
@@ -69,6 +70,11 @@ namespace DTC.UI.Aircrafts.F15E
                 if (_configToLoad.Displays != null)
                 {
                     chkLoadDisplays.Enabled = true;
+                    enableLoad = true;
+                }
+                if (_configToLoad.Radios != null)
+                {
+                    chkLoadRadios.Enabled = true;
                     enableLoad = true;
                 }
                 if (_configToLoad.Misc != null)
@@ -108,6 +114,15 @@ namespace DTC.UI.Aircrafts.F15E
                 load = true;
             }
 
+            if (!chkLoadRadios.Checked)
+            {
+                cfg.Radios = null;
+            }
+            else
+            {
+                load = true;
+            }
+
             if (!chkLoadMisc.Checked)
             {
                 cfg.Misc = null;
@@ -136,6 +151,10 @@ namespace DTC.UI.Aircrafts.F15E
             {
                 cfg.Displays = null;
             }
+            if (!chkSaveRadios.Checked)
+            {
+                cfg.Radios = null;
+            }
             if (!chkSaveMisc.Checked)
             {
                 cfg.Misc = null;
@@ -158,6 +177,7 @@ namespace DTC.UI.Aircrafts.F15E
         {
             chkLoadWaypoints.Enabled = false;
             chkLoadDisplays.Enabled = false;
+            chkLoadRadios.Enabled = false;
             chkLoadMisc.Enabled = false;
             btnLoadApply.Enabled = false;
         }

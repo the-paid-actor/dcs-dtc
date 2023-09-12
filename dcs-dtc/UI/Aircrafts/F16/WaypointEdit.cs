@@ -1,4 +1,4 @@
-﻿using DTC.Models.Base;
+﻿using DTC.Utilities;
 using DTC.Models.DCS;
 using DTC.Models.F16.Waypoints;
 using DTC.UI.Base;
@@ -152,7 +152,7 @@ namespace DTC.UI.Aircrafts.F16
                     this.ParentForm.Invoke(new MethodInvoker(delegate ()
                     {
                         txtWptLatLong.Text = coord.ToDegreesMinutesThousandths();
-                        txtWptElevation.Text = elevation;
+                        txtWptElevation.Value = decimal.Parse(elevation);
                     }));
                 });
             }

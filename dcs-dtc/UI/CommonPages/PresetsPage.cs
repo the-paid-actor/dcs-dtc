@@ -1,4 +1,4 @@
-﻿using DTC.Models.Base;
+﻿using DTC.Utilities;
 using DTC.Models.Presets;
 using System;
 using System.Windows.Forms;
@@ -52,7 +52,7 @@ namespace DTC.UI.CommonPages
 
 		private void ShowPreset(Preset preset)
 		{
-			var acPage = new AircraftPage(_aircraft, preset);
+			var acPage = AircraftPageFactory.Make(_aircraft, preset);
 			MainForm.AddPage(acPage);
 		}
 
@@ -67,7 +67,7 @@ namespace DTC.UI.CommonPages
 			btnDelete.Enabled = selected;
 		}
 
-		private void AddRenamePreset(Preset preset, Action callback = null)
+		private void AddRenamePreset(IPreset preset, Action callback = null)
 		{
 			var dialog = new PresetName();
 			this.Controls.Add(dialog);

@@ -1,6 +1,5 @@
-﻿using System;
-using System.Collections.Generic;
-using DTC.Models.Base;
+﻿using System.Collections.Generic;
+using DTC.Utilities;
 using DTC.Models.DCS;
 
 namespace DTC.Models.F15E
@@ -24,9 +23,11 @@ namespace DTC.Models.F15E
             ufc.AddCommand(new Command(3008, "PB8", delay, 1));
             ufc.AddCommand(new Command(3009, "PB9", delay, 1));
             ufc.AddCommand(new Command(3010, "PB10", delay, 1));
+            ufc.AddCommand(new Command(3019, "GCML", delay, 1));
             ufc.AddCommand(new Command(3020, "1", delay, 1));
             ufc.AddCommand(new Command(3021, "2", delay, 1));
             ufc.AddCommand(new Command(3022, "3", delay, 1));
+            ufc.AddCommand(new Command(3023, "GCMR", delay, 1));
             ufc.AddCommand(new Command(3025, "4", delay, 1));
             ufc.AddCommand(new Command(3026, "5", delay, 1));
             ufc.AddCommand(new Command(3027, "6", delay, 1));
@@ -38,6 +39,11 @@ namespace DTC.Models.F15E
             ufc.AddCommand(new Command(3033, "SHF", delay, 1));
             ufc.AddCommand(new Command(3038, "MENU", delay, 1));
             ufc.AddCommand(new Command(3035, "CLR", delay, 1));
+
+            ufc.AddCommand(new Command(3011, "PRESLCCW", delay, -1));
+            ufc.AddCommand(new Command(3012, "PRESRCCW", delay, -1));
+            ufc.AddCommand(new Command(3055, "PRESL", delay, 1));
+            ufc.AddCommand(new Command(3056, "PRESR", delay, 1));
             AddDevice(ufc);
 
             var mpdCommands = new Command[] {
@@ -63,25 +69,53 @@ namespace DTC.Models.F15E
                 new Command(3080, "PB20", delay, 1)
             };
 
-            var flmpd = new Device(34, "FLMPD");
-            AddDevice(flmpd);
+            var frontLeftMPD = new Device(34, "FLMPD");
+            AddDevice(frontLeftMPD);
             foreach (var cmd in mpdCommands)
             {
-                flmpd.AddCommand(cmd);
+                frontLeftMPD.AddCommand(cmd);
             }
 
-            var fmpcd = new Device(35, "FMPCD");
-            AddDevice(fmpcd);
+            var frontMPCD = new Device(35, "FMPCD");
+            AddDevice(frontMPCD);
             foreach (var cmd in mpdCommands)
             {
-                fmpcd.AddCommand(cmd);
+                frontMPCD.AddCommand(cmd);
             }
 
-            var frmpd = new Device(36, "FRMPD");
-            AddDevice(frmpd);
+            var frontRightMPD = new Device(36, "FRMPD");
+            AddDevice(frontRightMPD);
             foreach (var cmd in mpdCommands)
             {
-                frmpd.AddCommand(cmd);
+                frontRightMPD.AddCommand(cmd);
+            }
+
+            var rearLeftMPCD = new Device(37, "RLMPCD");
+            AddDevice(rearLeftMPCD);
+            foreach (var cmd in mpdCommands)
+            {
+                rearLeftMPCD.AddCommand(cmd);
+            }
+
+            var rearLeftMPD = new Device(38, "RLMPD");
+            AddDevice(rearLeftMPD);
+            foreach (var cmd in mpdCommands)
+            {
+                rearLeftMPD.AddCommand(cmd);
+            }
+
+            var rearRightMPD = new Device(39, "RRMPD");
+            AddDevice(rearRightMPD);
+            foreach (var cmd in mpdCommands)
+            {
+                rearRightMPD.AddCommand(cmd);
+            }
+
+            var rearRightMPCD = new Device(40, "RRMPCD");
+            AddDevice(rearRightMPCD);
+            foreach (var cmd in mpdCommands)
+            {
+                rearRightMPCD.AddCommand(cmd);
             }
 
             var fltInst = new Device(17, "FLTINST");

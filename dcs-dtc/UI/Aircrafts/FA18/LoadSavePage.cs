@@ -1,4 +1,4 @@
-﻿using DTC.Models.Base;
+﻿using DTC.Utilities;
 using DTC.Models.FA18;
 using DTC.UI.CommonPages;
 using System;
@@ -33,6 +33,7 @@ namespace DTC.UI.Aircrafts.FA18
 			}
 			else
 			{
+				openFileDlg.ShowHelp = true;
 				if (openFileDlg.ShowDialog() == DialogResult.OK)
 				{
 					var file = FileStorage.LoadFile(openFileDlg.FileName);

@@ -1,6 +1,6 @@
 ﻿using System.Text;
+using DTC.Utilities;
 using DTC.Models.F15E;
-using DTC.Models.Base;
 using DTC.Models.F15E.Upload;
 
 namespace DTC.Models
@@ -31,6 +31,12 @@ namespace DTC.Models
             {
                 var displayBuilder = new DisplayBuilder(_cfg, F15E, sb);
                 displayBuilder.Build();
+            }
+
+            if (_cfg.Radios.EnableUpload)
+            {
+                var radiosBuilder = new RadioBuilder(_cfg, F15E, sb);
+                radiosBuilder.Build();
             }
 
             if (_cfg.Misc.EnableUpload)

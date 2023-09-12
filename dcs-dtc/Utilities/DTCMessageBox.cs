@@ -1,6 +1,6 @@
 ﻿using System.Windows.Forms;
 
-namespace DTC.Models.Base
+namespace DTC.Utilities
 {
 	internal static class DTCMessageBox
 	{

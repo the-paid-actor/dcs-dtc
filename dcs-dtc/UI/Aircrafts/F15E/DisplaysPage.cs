@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Windows.Forms;
 using DTC.Models.F15E.Displays;
 using DTC.UI.Base.Controls;
 using DTC.UI.CommonPages;
@@ -13,6 +14,7 @@ namespace DTC.UI.Aircrafts.F15E
 
         private int padding = 5;
         private int colWidth = 85;
+        private int halfColWidth = 55;
         private int rowHeight = 24;
 
         public DisplaysPage(AircraftPage parent, DisplaySystem mfdSystem) : base(parent)
@@ -20,80 +22,104 @@ namespace DTC.UI.Aircrafts.F15E
             displaySystem = mfdSystem;
             InitializeComponent();
 
-            var top = padding;
-            var left = padding;
+            var left = 5;
+            var top = 5;
 
             this.Controls.Add(DTCLabel.Make("Pilot", left, top, colWidth, rowHeight));
-            left = padding * 2;
-            top += padding + rowHeight;
 
-            this.Controls.Add(DTCLabel.Make("Left MPD", left, top, colWidth, rowHeight));
-            left = padding * 3;
-            top += padding + rowHeight;
+            top += rowHeight + padding;
+            BuildPilot(this, left, top);
 
-            BuildDisplay(left, top, displaySystem.Pilot.LeftMPD);
-            left = padding * 2;
-            top += padding + rowHeight + padding + rowHeight;
+            top += (rowHeight * 3) + (padding * 3) + padding * 2;
+            this.Controls.Add(DTCLabel.Make("WSO", left, top, colWidth, rowHeight));
 
-            this.Controls.Add(DTCLabel.Make("Right MPD", left, top, colWidth, rowHeight));
-            left = padding * 3;
-            top += padding + rowHeight;
-
-            BuildDisplay(left, top, displaySystem.Pilot.RightMPD);
-            left = padding * 2;
-            top += padding + rowHeight + padding + rowHeight;
-
-            this.Controls.Add(DTCLabel.Make("MPCD", left, top, colWidth, rowHeight));
-            left = padding * 3;
-            top += padding + rowHeight;
-
-            BuildDisplay(left, top, displaySystem.Pilot.MPCD, true);
+            top += rowHeight + padding;
+            BuildWSO(this, left, top);
         }
 
-        private void BuildDisplay(int left, int top, DisplayConfig display, bool removeA2G = false)
+        private void BuildPilot(Control parentControl, int left, int top)
         {
-            this.Controls.Add(DTCLabel.Make("1", left, top, colWidth, rowHeight));
-            left += padding + colWidth;
+            var originalLeft = left;
 
-            this.Controls.Add(DTCLabel.Make("Mode", left, top, colWidth, rowHeight));
-            left += padding + colWidth;
+            parentControl.Controls.Add(DTCLabel.Make("L MPD", left, top, 65, rowHeight));
 
-            this.Controls.Add(DTCLabel.Make("2", left, top, colWidth, rowHeight));
-            left += padding + colWidth;
+            left = padding + 65;
+            BuildDisplay(parentControl, left, top, displaySystem.Pilot.LeftMPD);
 
-            this.Controls.Add(DTCLabel.Make("Mode", left, top, colWidth, rowHeight));
-            left += padding + colWidth;
-
-            this.Controls.Add(DTCLabel.Make("3", left, top, colWidth, rowHeight));
-            left += padding + colWidth;
-
-            this.Controls.Add(DTCLabel.Make("Mode", left, top, colWidth, rowHeight));
-
-            left = padding * 3;
+            left = originalLeft;
             top += padding + rowHeight;
+            parentControl.Controls.Add(DTCLabel.Make("R MPD", left, top, 65, rowHeight));
+
+            left = padding + 65;
+            BuildDisplay(parentControl, left, top, displaySystem.Pilot.RightMPD);
+
+            left = originalLeft;
+            top += padding + rowHeight;
+            parentControl.Controls.Add(DTCLabel.Make("MPCD", left, top, 65, rowHeight));
+
+            left = padding + 65;
+            BuildDisplay(parentControl, left, top, displaySystem.Pilot.MPCD, true);
+        }
+
+        private void BuildWSO(Control parentControl, int left, int top)
+        {
+            var originalLeft = left;
+
+            parentControl.Controls.Add(DTCLabel.Make("L MPCD", left, top, 65, rowHeight));
+
+            left = padding + 65;
+            BuildDisplay(parentControl, left, top, displaySystem.WSO.LeftMPCD, true);
+
+            left = originalLeft;
+            top += padding + rowHeight;
+            parentControl.Controls.Add(DTCLabel.Make("L MPD", left, top, 65, rowHeight));
+
+            left = padding + 65;
+            BuildDisplay(parentControl, left, top, displaySystem.WSO.LeftMPD);
+
+            left = originalLeft;
+            top += padding + rowHeight;
+            parentControl.Controls.Add(DTCLabel.Make("R MPD", left, top, 65, rowHeight));
+
+            left = padding + 65;
+            BuildDisplay(parentControl, left, top, displaySystem.WSO.RightMPD);
+
+            left = originalLeft;
+            top += padding + rowHeight;
+            parentControl.Controls.Add(DTCLabel.Make("R MPCD", left, top, 65, rowHeight));
+
+            left = padding + 65;
+            BuildDisplay(parentControl, left, top, displaySystem.WSO.RightMPCD, true);
+        }
+
+        private void BuildDisplay(Control parentControl, int left, int top, DisplayConfig display, bool removeA2G = false)
+        {
+            var originalLeft = left;
+
+            left = originalLeft;
 
             var disp1 = DTCDropDown.Make(left, top, colWidth);
-            this.Controls.Add(disp1);
+            parentControl.Controls.Add(disp1);
             left += padding + colWidth;
 
-            var disp1Mode = DTCDropDown.Make(left, top, colWidth);
-            this.Controls.Add(disp1Mode);
+            var disp1Mode = DTCDropDown.Make(left, top, halfColWidth);
+            parentControl.Controls.Add(disp1Mode);
             left += padding + colWidth;
 
             var disp2 = DTCDropDown.Make(left, top, colWidth);
-            this.Controls.Add(disp2);
+            parentControl.Controls.Add(disp2);
             left += padding + colWidth;
 
-            var disp2Mode = DTCDropDown.Make(left, top, colWidth);
-            this.Controls.Add(disp2Mode);
+            var disp2Mode = DTCDropDown.Make(left, top, halfColWidth);
+            parentControl.Controls.Add(disp2Mode);
             left += padding + colWidth;
 
             var disp3 = DTCDropDown.Make(left, top, colWidth);
-            this.Controls.Add(disp3);
+            parentControl.Controls.Add(disp3);
             left += padding + colWidth;
 
-            var disp3Mode = DTCDropDown.Make(left, top, colWidth);
-            this.Controls.Add(disp3Mode);
+            var disp3Mode = DTCDropDown.Make(left, top, halfColWidth);
+            parentControl.Controls.Add(disp3Mode);
 
             disp2.Enabled = false;
             disp3.Enabled = false;

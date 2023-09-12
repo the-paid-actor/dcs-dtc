@@ -1,0 +1,238 @@
+dialog = {
+    ["type"] = "Window",
+    ["params"] = {
+        ["bounds"] = {
+            [1] = {
+                ["x"] = 0,
+                ["y"] = 0,
+                ["w"] = 430,
+                ["h"] = 300
+            }
+        },
+        ["draggable"] = false,
+        ["enabled"] = true,
+        ["hasCursor"] = false,
+        ["lockFlow"] = false,
+        ["modal"] = false,
+        ["offscreen"] = false,
+        ["resizable"] = false,
+        ["zOrder"] = 111,
+        ["text"] = ""
+    },
+    ["skin"] = {
+        ["params"] = {
+			["headerHeight"] = 0,
+            ["name"] = "windowSkin"
+        },
+        ["states"] = {
+            ["released"] = {
+                [1] = {
+                    ["bkg"] = {
+                        ["center_center"] = "0xcccccc00"
+                    }
+                }
+            }
+        }
+    },
+    ["children"] = {
+
+        ["crosshair"] = {
+            ["type"] = "Static",
+            ["params"] = {
+                ["bounds"] = {
+                    ["x"] = -21,
+                    ["y"] = -7,
+                    ["w"] = 59,
+                    ["h"] = 50
+                },
+                ["enabled"] = true,
+                ["visible"] = true,
+            },
+            ["skin"] = {
+                ["params"] = {
+                    ["name"] = "staticSkin"
+                },
+                ["states"] = {
+                    ["released"] = {
+                        [1] = {
+                            ["picture"] = {
+                                ["color"] = "0x000000ff",
+                                ["file"] = "dxgui\\skins\\skinME\\images\\buttons\\add_picture.png"
+                            }
+                        }
+                    }
+                }
+            }
+        },
+
+        ["coordLabel"] = {
+            ["type"] = "Static",
+            ["params"] = {
+                ["bounds"] = {
+                    ["x"] = 50,
+                    ["y"] = 0,
+                    ["w"] = 280,
+                    ["h"] = 20
+                }
+            },
+            ["skin"] = {
+                ["params"] = {
+                    ["name"] = "staticSkin2_ME"
+                },
+                ["states"] = {
+                    ["released"] = {
+                        [1] = {
+                            ["text"] = {
+                                ["color"] = "0x000000FF",
+                                ["fontSize"] = 14,
+                            }
+                        }
+                    }
+                }
+            },
+        },
+
+        ["addButton"] = {
+            ["type"] = "Button",
+            ["params"] = {
+                ["bounds"] = {
+                    ["x"] = 48,
+                    ["y"] = 20,
+                    ["w"] = 90,
+                    ["h"] = 30
+                },
+                ["text"] = "Add STPT",
+            },
+            ["skin"] = {
+                ["params"] = {
+                    ["name"] = "buttonSkinAwacs"
+                }
+            },
+        },
+
+        ["addAsTgtButton"] = {
+            ["type"] = "Button",
+            ["params"] = {
+                ["bounds"] = {
+                    ["x"] = 138,
+                    ["y"] = 20,
+                    ["w"] = 90,
+                    ["h"] = 30
+                },
+                ["text"] = "Add TGT",
+            },
+            ["skin"] = {
+                ["params"] = {
+                    ["name"] = "buttonSkinAwacs"
+                }
+            },
+        },
+
+        ["undoButton"] = {
+            ["type"] = "Button",
+            ["params"] = {
+                ["bounds"] = {
+                    ["x"] = 228,
+                    ["y"] = 20,
+                    ["w"] = 60,
+                    ["h"] = 30
+                },
+                ["text"] = "Undo",
+            },
+            ["skin"] = {
+                ["params"] = {
+                    ["name"] = "buttonSkinAwacs"
+                }
+            },
+        },
+
+        ["clearButton"] = {
+            ["type"] = "Button",
+            ["params"] = {
+                ["bounds"] = {
+                    ["x"] = 288,
+                    ["y"] = 20,
+                    ["w"] = 63,
+                    ["h"] = 30
+                },
+                ["text"] = "Clear",
+            },
+            ["skin"] = {
+                ["params"] = {
+                    ["name"] = "buttonSkinAwacs"
+                }
+            },
+        },
+
+        ["coordListBox"] = {
+            ["type"] = "EditBox",
+            ["params"] = {
+                ["bounds"] = {
+                    ["x"] = 50,
+                    ["y"] = 52,
+                    ["w"] = 380,
+                    ["h"] = 200
+                },
+                ["multiline"] = true,
+                ["readOnly"] = true,
+                ["textWrapping"] = false,
+            },
+            ["skin"] = {
+                ["params"] = {
+                    ["name"] = "editBoxNew"
+                },
+                ["states"] = {
+                    ["released"] = {
+                        [2] = {
+                            ["bkg"] = {
+                                ["center_center"] = "0xffffff3f"
+                            },
+                            ["text"] = {
+                                ["font"] = "DejaVuLGCSansMono.ttf",
+                                ["color"] = "0x000000ff",
+                                ["fontSize"] = 14,
+                            }
+                        }
+                    }
+                }
+            },
+        },
+
+        ["sendToDTCButton"] = {
+            ["type"] = "Button",
+            ["params"] = {
+                ["bounds"] = {
+                    ["x"] = 48,
+                    ["y"] = 254,
+                    ["w"] = 114,
+                    ["h"] = 30
+                },
+                ["text"] = "Send to DTC",
+            },
+            ["skin"] = {
+                ["params"] = {
+                    ["name"] = "buttonSkinAwacs"
+                }
+            },
+        },
+
+        ["sendToJetButton"] = {
+            ["type"] = "Button",
+            ["params"] = {
+                ["bounds"] = {
+                    ["x"] = 162,
+                    ["y"] = 254,
+                    ["w"] = 162,
+                    ["h"] = 30
+                },
+                ["visible"] = false,
+                ["text"] = "Send to DTC + Jet",
+            },
+            ["skin"] = {
+                ["params"] = {
+                    ["name"] = "buttonSkinAwacs"
+                }
+            },
+        },
+    }
+}

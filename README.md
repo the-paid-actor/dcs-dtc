@@ -4,10 +4,12 @@ https://github.com/the-paid-actor/dcs-dtc
 
 This is a mod for DCS that works as a DTC (Data Cartridge) for the F-16, F/A-18 and F-15E.
 
-- **Create and recall presets** for each mission / server you fly, or however you want to organize your settings. These are saved in the DCS-DTC folder under Documents
-- **Upload** the settings from a preset to the aircraft
-- Enables you to **share and receive** settings from other people using this mod, either by file or clipboard
-- Allows **capturing a waypoint** coordinate using the F10 view in DCS, or a "markpoint" by flying over a point in the map.
+- **Create and recall presets** for each mission / server you fly, or however you want to organize your settings. These are saved in the DCS-DTC folder under Documents.
+- **Upload** the settings from a preset to the aircraft.
+- Enables you to **share and receive** settings from other people using this mod, either by file or clipboard.
+- VR-compatible method to **capture coordinates** using the F10 map view in DCS, or a "markpoint" by flying over a point in the map. Use the Ctrl+Shift+D shortcut to bring a capture dialog inside DCS.
+
+**For real-time support, bug reporting and feature suggestions** use the Discord channel - https://discord.gg/saCACg99EZ
 
 # Features by aircraft
 
@@ -46,14 +48,17 @@ This is a mod for DCS that works as a DTC (Data Cartridge) for the F-16, F/A-18 
 ## Strike Eagle
 
 - Sequence Points and Target Points
-- Display settings for the Front Seat
+- Display settings for the Pilot and WSO
+- Radio Settings and Presets
 - Bingo fuel setting
 - Radar altitude warning setting
 - TACAN Channel/Band and ILS frequency
 
 # Requirements
 
-This application is written using .NET Framework 4.7.2. You may want to download the latest version from the Microsoft website.
+This application is written using .NET 7.0. You may want to download the latest version from the Microsoft website. Look for the .NET Desktop Runtime on the link below.
+
+https://dotnet.microsoft.com/en-us/download/dotnet/7.0
 
 # Installation
 
@@ -108,6 +113,12 @@ The setting of Pre-Planned coordinates relies on the settings for all stations b
 ## Strike Eagle
 
 If you have displays already programmed in the jet, the app will skip uploading the new displays configuration. This will be improved in a future version.
+
+From either seat (pilot/WSO) it is not possible to change displays on the other seat, given that the displays are only rendered when you occupy the respective position. That is the reason for the exclusive choice in the Upload page between uploading Pilot or WSO displays.
+
+Furthermore, the other settings (Waypoints, Radios, Misc) are only tested to work from the pilot seat. Currently there is no way to detect which seat is occupied from the LUA API. If such means become available in the future, a more streamlined system can be developed.
+
+Therefore, the suggestion is for the pilot to upload everything except the WSO displays, and the WSO upload only its displays.
 
 # Help
 

@@ -1,6 +1,4 @@
-﻿using DTC.Models.Base;
-using System;
-using System.Text.RegularExpressions;
+﻿using DTC.Utilities;
 
 namespace DTC.Models.F16.Waypoints
 {
@@ -66,6 +64,11 @@ namespace DTC.Models.F16.Waypoints
         {
             Sequence = seq;
             TimeOverSteerpoint = "00:00:00";
+        }
+
+        public void AutoName()
+        {
+            Name = "WPT " + Sequence.ToString("00");
         }
 
         public string GetCoordinate()

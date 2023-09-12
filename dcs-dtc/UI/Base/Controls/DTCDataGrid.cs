@@ -92,6 +92,8 @@ namespace DTC.UI.Base.Controls
                 if (e.Effect == DragDropEffects.Move)
                 {
                     ReorderCallback(_dragIndexFrom, _dragIndexTo);
+                    this.ClearSelection();
+                    this.Rows[_dragIndexTo].Selected = true;
                 }
             }
         }

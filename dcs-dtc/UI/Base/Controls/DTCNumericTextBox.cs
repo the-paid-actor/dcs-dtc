@@ -1,24 +1,26 @@
-﻿using System;
-using System.Drawing;
-using System.Globalization;
-using System.Linq;
+﻿using System.Globalization;
 using System.Media;
-using System.Windows.Forms;
 
 namespace DTC.UI.Base.Controls
 {
-    internal class DTCNumericTextBox : UserControl
+    public class DTCNumericTextBox : UserControl
     {
+        public delegate void TextBoxChangedCallback(DTCNumericTextBox textBox);
+
         public enum UnitEnum
         {
+            None,
             Degree,
             Feet,
             NauticalMile
         }
 
+        public event TextBoxChangedCallback TextBoxChanged;
+
         private TextBox textBox;
         private DTCLabel label;
         private UnitEnum unit;
+        private decimal? currentValue;
 
         public override string Text
         {
@@ -34,17 +36,16 @@ namespace DTC.UI.Base.Controls
         {
             get
             {
-                if (decimal.TryParse(textBox.Text, NumberStyles.Number, CultureInfo.InvariantCulture, out var value))
-                {
-                    return value;
-                }
-                return null;
+                return currentValue;
             }
             set
             {
                 var str = value?.ToString(CultureInfo.InvariantCulture);
                 if (!string.IsNullOrEmpty(str) && AllowFraction && !str.Contains(".")) str = str + ".0";
+                suppressTextChanged = true;
                 textBox.Text = str;
+                suppressTextChanged = false;
+                currentValue = value;
             }
         }
 
@@ -57,6 +58,15 @@ namespace DTC.UI.Base.Controls
             set
             {
                 unit = value;
+                label.Visible = true;
+                textBox.Width = label.Left - 5;
+
+                if (unit == UnitEnum.None)
+                {
+                    label.Visible = false;
+                    textBox.Width += label.Right - textBox.Right - 5;
+                }
+
                 if (unit == UnitEnum.Degree) label.Text = "°";
                 if (unit == UnitEnum.Feet) label.Text = "ft";
                 if (unit == UnitEnum.NauticalMile) label.Text = "nm";
@@ -70,6 +80,25 @@ namespace DTC.UI.Base.Controls
 
         private void TextBox_Validating(object sender, System.ComponentModel.CancelEventArgs e)
         {
+            if (!ValidateValue())
+            {
+                SystemSounds.Beep.Play();
+                e.Cancel = true;
+            }
+        }
+
+        private bool ValidateValue()
+        {
+            if (string.IsNullOrEmpty(textBox.Text))
+            {
+                if (currentValue != null)
+                {
+                    currentValue = null;
+                    TextBoxChanged?.Invoke(this);
+                }
+                return true;
+            }
+
             if (decimal.TryParse(textBox.Text, NumberStyles.Number, CultureInfo.InvariantCulture, out var result))
             {
                 var min = MinimumValue;
@@ -83,10 +112,17 @@ namespace DTC.UI.Base.Controls
 
                 if (result < min || result > max)
                 {
-                    SystemSounds.Exclamation.Play();
-                    e.Cancel = true;
+                    return false;
+                }
+
+                if (currentValue != result)
+                {
+                    currentValue = result;
+                    TextBoxChanged?.Invoke(this);
                 }
             }
+
+            return true;
         }
 
         private char[] allowedChars = {'0', '1', '2', '3', '4', '5', '6', '7', '8', '9'};
@@ -107,12 +143,12 @@ namespace DTC.UI.Base.Controls
             e.Handled = true;
         }
 
-        bool inEvent = false;
+        bool suppressTextChanged = false;
 
         private void TextBox_TextChanged(object sender, EventArgs e)
         {
-            if (inEvent) return;
-            inEvent = true;
+            if (suppressTextChanged) return;
+            suppressTextChanged = true;
             textBox.Text = textBox.Text.Replace(".", "").Replace(" ", "");
 
             if (AllowFraction && textBox.Text.Length > 0)
@@ -129,7 +165,7 @@ namespace DTC.UI.Base.Controls
             }
 
             textBox.SelectionStart = textBox.Text.Length;
-            inEvent = false;
+            suppressTextChanged = false;
         }
 
         private bool _firstClick = true;
@@ -157,6 +193,7 @@ namespace DTC.UI.Base.Controls
         private void TextBox_LostFocus(object sender, EventArgs e)
         {
             _firstClick = true;
+            ValidateValue();
             OnLostFocus(e);
         }
 

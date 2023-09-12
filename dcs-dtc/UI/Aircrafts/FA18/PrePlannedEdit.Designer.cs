@@ -153,7 +153,7 @@ namespace DTC.UI.Aircrafts.FA18
             this.txtWptLatLong.HidePromptOnLeave = false;
             this.txtWptLatLong.InsertKeyMode = System.Windows.Forms.InsertKeyMode.Default;
             this.txtWptLatLong.Location = new System.Drawing.Point(152, 47);
-            this.txtWptLatLong.Format = Models.Base.CoordinateFormat.DegreesMinutesSecondsHundredths;
+            this.txtWptLatLong.Format = DTC.Utilities.CoordinateFormat.DegreesMinutesSecondsHundredths;
             this.txtWptLatLong.Name = "txtWptLatLong";
             this.txtWptLatLong.PromptChar = '_';
             this.txtWptLatLong.Size = new System.Drawing.Size(270, 28);
@@ -176,8 +176,8 @@ namespace DTC.UI.Aircrafts.FA18
             // 
             // PrePlannedEdit
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
-            this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.AutoScaleDimensions = new System.Drawing.SizeF(96F, 96F);
+            this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Dpi;
             this.BackColor = System.Drawing.Color.PaleGoldenrod;
             this.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.Controls.Add(this.lblValidation);

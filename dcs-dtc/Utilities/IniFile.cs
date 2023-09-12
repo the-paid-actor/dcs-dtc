@@ -1,7 +1,7 @@
 ﻿using System.Runtime.InteropServices;
 using System.Text;
 
-namespace DTC.Models.Base
+namespace DTC.Utilities
 {
 	public static class IniFile
 	{

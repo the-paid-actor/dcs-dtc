@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using DTC.Models.Shared;
+using System.Collections.Generic;
 
 namespace DTC.Models.F16.Waypoints
 {
@@ -11,8 +12,9 @@ namespace DTC.Models.F16.Waypoints
 		public bool EnableUploadCoordsElevation { get; set; }
 		public bool EnableUploadTOS { get; set; }
 		public bool EnableUpload { get; set; }
+        public WaypointCaptureSettings CaptureSettings { get; set; } = new WaypointCaptureSettings();
 
-		public WaypointSystem()
+        public WaypointSystem()
 		{
 			Waypoints = new List<Waypoint>();
 			SteerpointStart = 1;
@@ -68,5 +70,10 @@ namespace DTC.Models.F16.Waypoints
 				wpt.Sequence = i + 1;
 			}
 		}
+
+        internal void Insert(int idxToInsert, Waypoint newWpt)
+        {
+            Waypoints.Insert(idxToInsert, newWpt);
+        }
     }
 }

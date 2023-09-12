@@ -35,19 +35,21 @@ namespace DTC.UI.Aircrafts.F15E
             this.saveFileDlg = new System.Windows.Forms.SaveFileDialog();
             this.optFile = new System.Windows.Forms.RadioButton();
             this.optClipboard = new System.Windows.Forms.RadioButton();
-            this.grpLoad = new DTC.UI.Controls.DTCGroupBox();
+            this.grpLoad = new DTC.UI.Base.Controls.DTCGroupBox();
             this.chkLoadMisc = new System.Windows.Forms.CheckBox();
             this.chkLoadDisplays = new System.Windows.Forms.CheckBox();
             this.btnLoadApply = new DTC.UI.Base.Controls.DTCButton();
             this.btnLoad = new DTC.UI.Base.Controls.DTCButton();
             this.chkLoadWaypoints = new System.Windows.Forms.CheckBox();
-            this.grpSave = new DTC.UI.Controls.DTCGroupBox();
+            this.grpSave = new DTC.UI.Base.Controls.DTCGroupBox();
             this.chkSaveMisc = new System.Windows.Forms.CheckBox();
             this.chkSaveDisplays = new System.Windows.Forms.CheckBox();
             this.btnSave = new DTC.UI.Base.Controls.DTCButton();
             this.chkSaveWaypoints = new System.Windows.Forms.CheckBox();
             this.checkBox1 = new System.Windows.Forms.CheckBox();
             this.optCombatFlite = new System.Windows.Forms.RadioButton();
+            this.chkLoadRadios = new System.Windows.Forms.CheckBox();
+            this.chkSaveRadios = new System.Windows.Forms.CheckBox();
             this.grpLoad.SuspendLayout();
             this.grpSave.SuspendLayout();
             this.SuspendLayout();
@@ -93,6 +95,7 @@ namespace DTC.UI.Aircrafts.F15E
             this.grpLoad.BorderColor = System.Drawing.Color.Black;
             this.grpLoad.BorderRadius = 5;
             this.grpLoad.BorderWidth = 2;
+            this.grpLoad.Controls.Add(this.chkLoadRadios);
             this.grpLoad.Controls.Add(this.chkLoadMisc);
             this.grpLoad.Controls.Add(this.chkLoadDisplays);
             this.grpLoad.Controls.Add(this.btnLoadApply);
@@ -114,10 +117,9 @@ namespace DTC.UI.Aircrafts.F15E
             // 
             this.chkLoadMisc.Enabled = false;
             this.chkLoadMisc.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F);
-            this.chkLoadMisc.Location = new System.Drawing.Point(27, 188);
-            this.chkLoadMisc.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.chkLoadMisc.Location = new System.Drawing.Point(18, 153);
             this.chkLoadMisc.Name = "chkLoadMisc";
-            this.chkLoadMisc.Size = new System.Drawing.Size(153, 38);
+            this.chkLoadMisc.Size = new System.Drawing.Size(102, 25);
             this.chkLoadMisc.TabIndex = 1;
             this.chkLoadMisc.Text = "Misc";
             this.chkLoadMisc.UseVisualStyleBackColor = true;
@@ -182,6 +184,7 @@ namespace DTC.UI.Aircrafts.F15E
             this.grpSave.BorderColor = System.Drawing.Color.Black;
             this.grpSave.BorderRadius = 5;
             this.grpSave.BorderWidth = 2;
+            this.grpSave.Controls.Add(this.chkSaveRadios);
             this.grpSave.Controls.Add(this.chkSaveMisc);
             this.grpSave.Controls.Add(this.chkSaveDisplays);
             this.grpSave.Controls.Add(this.btnSave);
@@ -203,10 +206,9 @@ namespace DTC.UI.Aircrafts.F15E
             this.chkSaveMisc.Checked = true;
             this.chkSaveMisc.CheckState = System.Windows.Forms.CheckState.Checked;
             this.chkSaveMisc.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F);
-            this.chkSaveMisc.Location = new System.Drawing.Point(27, 188);
-            this.chkSaveMisc.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.chkSaveMisc.Location = new System.Drawing.Point(18, 153);
             this.chkSaveMisc.Name = "chkSaveMisc";
-            this.chkSaveMisc.Size = new System.Drawing.Size(153, 38);
+            this.chkSaveMisc.Size = new System.Drawing.Size(102, 25);
             this.chkSaveMisc.TabIndex = 1;
             this.chkSaveMisc.Text = "Misc";
             this.chkSaveMisc.UseVisualStyleBackColor = true;
@@ -276,11 +278,33 @@ namespace DTC.UI.Aircrafts.F15E
             this.optCombatFlite.Text = "CombatFlite";
             this.optCombatFlite.UseVisualStyleBackColor = true;
             this.optCombatFlite.CheckedChanged += new System.EventHandler(this.optCombatFlite_CheckedChanged);
+            // chkLoadRadios
+            // 
+            this.chkLoadRadios.Enabled = false;
+            this.chkLoadRadios.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F);
+            this.chkLoadRadios.Location = new System.Drawing.Point(18, 122);
+            this.chkLoadRadios.Name = "chkLoadRadios";
+            this.chkLoadRadios.Size = new System.Drawing.Size(102, 25);
+            this.chkLoadRadios.TabIndex = 1;
+            this.chkLoadRadios.Text = "Radios";
+            this.chkLoadRadios.UseVisualStyleBackColor = true;
+            // 
+            // chkSaveRadios
+            // 
+            this.chkSaveRadios.Checked = true;
+            this.chkSaveRadios.CheckState = System.Windows.Forms.CheckState.Checked;
+            this.chkSaveRadios.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F);
+            this.chkSaveRadios.Location = new System.Drawing.Point(18, 122);
+            this.chkSaveRadios.Name = "chkSaveRadios";
+            this.chkSaveRadios.Size = new System.Drawing.Size(102, 25);
+            this.chkSaveRadios.TabIndex = 1;
+            this.chkSaveRadios.Text = "Radios";
+            this.chkSaveRadios.UseVisualStyleBackColor = true;
             // 
             // LoadSavePage
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 20F);
-            this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.AutoScaleDimensions = new System.Drawing.SizeF(96F, 96F);
+            this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Dpi;
             this.BackColor = System.Drawing.Color.PaleGoldenrod;
             this.Controls.Add(this.optCombatFlite);
             this.Controls.Add(this.checkBox1);
@@ -303,11 +327,11 @@ namespace DTC.UI.Aircrafts.F15E
         private System.Windows.Forms.SaveFileDialog saveFileDlg;
         private System.Windows.Forms.RadioButton optFile;
         private System.Windows.Forms.RadioButton optClipboard;
-        private Controls.DTCGroupBox grpLoad;
+        private Base.Controls.DTCGroupBox grpLoad;
         private DTCButton btnLoadApply;
         private DTCButton btnLoad;
         private System.Windows.Forms.CheckBox chkLoadWaypoints;
-        private Controls.DTCGroupBox grpSave;
+        private Base.Controls.DTCGroupBox grpSave;
         private DTCButton btnSave;
         private System.Windows.Forms.CheckBox chkSaveWaypoints;
         private System.Windows.Forms.CheckBox checkBox1;
@@ -316,5 +340,8 @@ namespace DTC.UI.Aircrafts.F15E
         private System.Windows.Forms.CheckBox chkLoadMisc;
         private System.Windows.Forms.CheckBox chkSaveMisc;
         private System.Windows.Forms.RadioButton optCombatFlite;
+        private System.Windows.Forms.CheckBox chkLoadRadios;
+        private System.Windows.Forms.CheckBox chkSaveRadios;
+
     }
 }

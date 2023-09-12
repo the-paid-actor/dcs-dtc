@@ -1,6 +1,6 @@
 ﻿using Newtonsoft.Json;
 
-namespace DTC.Models.Base
+namespace DTC.Utilities
 {
 	public static class Settings
 	{
@@ -12,7 +12,8 @@ namespace DTC.Models.Base
 			public int HornetCommandDelayMs;
             public int ViperCommandDelayMs;
             public bool AlwaysOnTop;
-			public string LuaInstallFolderStable;
+            public bool SkipDCSInstallCheck;
+            public string LuaInstallFolderStable;
 			public string LuaInstallStable;
 			public string LuaInstallFolderOpenBeta;
 			public string LuaInstallOpenBeta;
@@ -102,7 +103,21 @@ namespace DTC.Models.Base
 			}
 		}
 
-		public static int TCPSendPort
+        public static bool SkipDCSInstallCheck
+        {
+            get
+            {
+                LoadSettings();
+                return currentSettings.SkipDCSInstallCheck;
+            }
+            set
+            {
+                currentSettings.SkipDCSInstallCheck = value;
+                SaveSettings();
+            }
+        }
+
+        public static int TCPSendPort
 		{
 			get
 			{
@@ -205,9 +220,9 @@ namespace DTC.Models.Base
 			{
 				obj.UDPReceivePort = 43000;
 			}
-            if (obj.StrikeEagleCommandDelayMs == 0)
+            if (obj.StrikeEagleCommandDelayMs < 80)
             {
-                obj.StrikeEagleCommandDelayMs = 75;
+                obj.StrikeEagleCommandDelayMs = 80;
             }
             if (obj.ViperCommandDelayMs == 0)
             {
@@ -219,6 +234,8 @@ namespace DTC.Models.Base
             }
 
             currentSettings = obj;
+
+			SaveSettings();
 		}
 	}
 }

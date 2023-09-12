@@ -1,8 +1,4 @@
-﻿
-using DTC.Models.Base;
-using System.Reflection;
-
-namespace DTC.UI
+﻿namespace DTC.UI
 {
 	partial class MainForm
 	{
@@ -21,8 +17,8 @@ namespace DTC.UI
 			{
 				components.Dispose();
 			}
-			DataReceiver.DataReceived -= DataReceiver_DataReceived;
-			DataReceiver.Stop();
+			DTC.Utilities.DataReceiver.DataReceived -= DataReceiver_DataReceived;
+			DTC.Utilities.DataReceiver.Stop();
 			base.Dispose(disposing);
 		}
 
@@ -176,8 +172,8 @@ namespace DTC.UI
             // 
             // MainForm
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
-            this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.AutoScaleDimensions = new System.Drawing.SizeF(96F, 96F);
+            this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Dpi;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(1)))), ((int)(((byte)(1)))), ((int)(((byte)(1)))));
             this.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center;
             this.ClientSize = new System.Drawing.Size(916, 664);
@@ -185,7 +181,7 @@ namespace DTC.UI
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "MainForm";
-            this.Text = "Form1";
+            this.Text = "DTC for DCS";
             this.TopMost = true;
             this.TransparencyKey = System.Drawing.Color.FromArgb(((int)(((byte)(1)))), ((int)(((byte)(1)))), ((int)(((byte)(1)))));
             this.Load += new System.EventHandler(this.MainForm_Load);

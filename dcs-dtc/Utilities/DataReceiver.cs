@@ -1,7 +1,7 @@
 ﻿using Newtonsoft.Json;
 using System;
 
-namespace DTC.Models.Base
+namespace DTC.Utilities
 {
 	public class DataReceiver
 	{

@@ -1,4 +1,4 @@
-﻿using DTC.Models.Base;
+﻿using DTC.Utilities;
 using DTC.UI.Base;
 using DTC.UI.Base.Controls;
 using DTC.UI.CommonPages;
@@ -101,7 +101,7 @@ namespace DTC.UI
         private void MainForm_Load(object sender, System.EventArgs e)
         {
             this.Activate();
-            if (!LuaInstallCheck.Check())
+            if (!DCSInstallCheck.Check())
             {
                 Application.Exit();
             }

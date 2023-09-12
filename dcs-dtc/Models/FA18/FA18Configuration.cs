@@ -1,15 +1,13 @@
-﻿using DTC.Models.FA18.Waypoints;
+﻿using DTC.Utilities;
+using DTC.Models.FA18.Waypoints;
 using DTC.Models.FA18.Sequences;
 using DTC.Models.FA18.Radios;
 using DTC.Models.FA18.PrePlanned;
 using DTC.Models.FA18.CMS;
 using Newtonsoft.Json;
-using DTC.Models.Base;
 using DTC.Models.FA18.Misc;
 using CoordinateSharp;
-using System.Collections.Generic;
 using System.Xml.Linq;
-using System;
 using System.Xml.XPath;
 
 namespace DTC.Models.FA18
@@ -166,8 +164,7 @@ namespace DTC.Models.FA18
 
                 var coordStr = string.IsNullOrEmpty(lat) ? "N 00.00.000" : lat;
                 coordStr = coordStr + " " + (string.IsNullOrEmpty(lon) ? "E 000.00.000" : lon);
-                var wpt = new Waypoint();
-                wpt.Sequence = i;
+                var wpt = new Waypoint(i);
                 wpt.Name = string.IsNullOrEmpty(name) ? "" : name;
                 wpt.SetCoordinate(coordStr);
                 wpt.Elevation = (int)Math.Floor(elevation * feetPerMeter);

@@ -52,6 +52,9 @@ namespace DTC.Models.F15E.Upload
                 jetStpts.Add(stptId, wpt);
             }
 
+            AppendCommand(StartCondition("GoToFrontCockpit"));
+            AppendCommand(EndCondition("GoToFrontCockpit"));
+
             BuildWaypoints(ufc, jetStpts);
         }
 

@@ -25,7 +25,7 @@ jobs:
         run: cd $GITHUB_WORKSPACE
 
       - name: Restore Packages
-        run: nuget restore dcs-dtc.sln
+        run: dotnet restore dcs-dtc/DTC.csproj
 
       - name: Disable Out of Process Building
         run: .\DisableOutOfProcBuild.exe
@@ -33,7 +33,7 @@ jobs:
 
       - name: Build Solution
         run: |
-          msbuild.exe dcs-dtc.sln /p:platform="Any CPU" /p:configuration="Release"
+          dotnet publish -c Release -p:PublishProfile=FolderProfile dcs-dtc\DTC.csproj
 
       - name: Build the Installer
         run: DevEnv installer/installer.vdproj /build Release

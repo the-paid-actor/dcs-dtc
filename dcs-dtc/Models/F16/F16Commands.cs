@@ -1,6 +1,6 @@
-﻿using System.Collections.Generic;
-using DTC.Models.Base;
+﻿using DTC.Utilities;
 using DTC.Models.DCS;
+using System.Collections.Generic;
 
 namespace DTC.Models.F16
 {

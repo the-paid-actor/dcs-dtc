@@ -82,7 +82,7 @@ namespace DTC.Models.DCS
 
         protected static string RemoveSeparators(string s)
         {
-            return s.Replace(",", "").Replace(".", "").Replace("°", "").Replace("’", "").Replace("”", "");
+            return s.Replace(",", "").Replace(".", "").Replace("°", "").Replace("’", "").Replace("”", "").Replace("\"", "").Replace("'","");
         }
     }
 }

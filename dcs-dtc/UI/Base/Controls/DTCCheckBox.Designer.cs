@@ -30,7 +30,7 @@
         {
             components = new System.ComponentModel.Container();
             this.Font = new System.Drawing.Font("Microsoft Sans Serif", 10);
-            //this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            //this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Dpi;
         }
 
         #endregion

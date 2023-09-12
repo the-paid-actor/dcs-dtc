@@ -3,7 +3,7 @@ using System.IO;
 using System.IO.Compression;
 using System.Text;
 
-namespace DTC.Models.Base
+namespace DTC.Utilities
 {
   public static class StringCompressor
   {

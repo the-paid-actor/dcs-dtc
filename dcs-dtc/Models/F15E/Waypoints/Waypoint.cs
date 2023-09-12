@@ -1,4 +1,4 @@
-﻿using DTC.Models.Base;
+﻿using DTC.Utilities;
 
 namespace DTC.Models.F15E.Waypoints
 {
@@ -59,6 +59,11 @@ namespace DTC.Models.F15E.Waypoints
         {
             var match = Coordinate.DegreesMinutesThousandthsRegex.Match(coord);
             return match.Success;
+        }
+
+        public void AutoName()
+        {
+            Name = (Target ? "TGT " : "WPT ") + Sequence.ToString("00");
         }
     }
 }

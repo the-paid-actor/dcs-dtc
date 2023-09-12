@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using DTC.Models.Shared;
+using System.Collections.Generic;
 
 namespace DTC.Models.F15E.Waypoints
 {
@@ -9,6 +10,7 @@ namespace DTC.Models.F15E.Waypoints
 		public int SteerpointEnd { get; set; }
 		public bool OverrideRange { get; set; }
 		public bool EnableUpload { get; set; }
+		public WaypointCaptureSettings CaptureSettings { get; set; } = new WaypointCaptureSettings();
 
 		public WaypointSystem()
 		{
@@ -64,5 +66,10 @@ namespace DTC.Models.F15E.Waypoints
 				wpt.Sequence = i + 1;
 			}
 		}
+
+        internal void Insert(int idxToInsert, Waypoint newWpt)
+        {
+            Waypoints.Insert(idxToInsert, newWpt);
+        }
     }
 }

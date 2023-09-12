@@ -75,7 +75,7 @@ namespace DTC.UI.Aircrafts.FA18
 			btnDelete.Enabled = dgWaypoints.Enabled && dgWaypoints.SelectedRows.Count > 0;
 		}
 
-		private void RefreshList()
+		public void RefreshList()
 		{
 			dgWaypoints.RefreshList(_waypoints.Waypoints);
 		}

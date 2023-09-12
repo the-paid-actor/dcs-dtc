@@ -1,4 +1,4 @@
-﻿using DTC.Models.Base;
+﻿using DTC.Utilities;
 using DTC.Models.F15E.Waypoints;
 using DTC.UI.Base;
 using DTC.UI.CommonPages;
@@ -57,7 +57,7 @@ namespace DTC.UI.Aircrafts.F15E
             this.RefreshList();
         }
 
-        private void RefreshList()
+        public void RefreshList()
         {
             dgWaypoints.RefreshList(_waypoints.Waypoints);
         }

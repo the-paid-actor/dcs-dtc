@@ -17,7 +17,7 @@ namespace DTC.UI.CommonPages
             // Populate the combobox with the flight names
             var doc = XDocument.Parse(file);
             var flights = doc.XPathSelectElements("//Route").Select(r => r.Element("Name")?.Value);
-            comboBoxFlight.Items.AddRange(flights.ToArray<object>());
+            comboBoxFlight.Items.AddRange(flights.OrderBy(s => s).ToArray<object>());
 
             // Select the first flight
             comboBoxFlight.SelectedIndex = 0;

@@ -9,6 +9,7 @@ using DTC.Models.FA18.Misc;
 using CoordinateSharp;
 using System.Xml.Linq;
 using System.Xml.XPath;
+using System.Globalization;
 
 
 namespace DTC.Models.FA18
@@ -91,27 +92,25 @@ namespace DTC.Models.FA18
             var flight = doc.XPathSelectElement($"//Route[Name='{flightName}']");
             if (flight == null)
                 return cfg;
-
+            
             int counter = 0;
-            foreach (var xmlWaypoint in flight.XPathSelectElements("./Waypoints/Waypoint"))
+            foreach (var (xmlWaypoint, i) in flight.XPathSelectElements("./Waypoints/Waypoint").Select((xmlWaypoint, i) => (xmlWaypoint, i)))
             {
-                ++counter;
-                if (counter == 1)
-                    continue;
+                var lat = double.Parse(xmlWaypoint.Element("Lat")?.Value, CultureInfo.InvariantCulture);
+                var lon = double.Parse(xmlWaypoint.Element("Lon")?.Value, CultureInfo.InvariantCulture);
+                var ele = double.Parse(xmlWaypoint.Element("Altitude")?.Value, CultureInfo.InvariantCulture);
 
-                string lat = xmlWaypoint.Element("Lat")?.Value.Replace('.', ',');
-                string lon = xmlWaypoint.Element("Lon")?.Value.Replace('.', ',');
                 if (lat == null || lon == null)
                     continue;
 
-                var coordinate = new CoordinateSharp.Coordinate(double.Parse(lat), double.Parse(lon));
-                cfg.Waypoints.Waypoints.Add(new Waypoint(counter - 1)
+                var coordinate = new CoordinateSharp.Coordinate(lat, lon);
+
+                cfg.Waypoints.Waypoints.Add(new Waypoint(i)
                 {
                     Name = xmlWaypoint.Element("Name")?.Value,
                     Latitude = $"{coordinate.Latitude.Position} {coordinate.Latitude.Degrees:00}°{coordinate.Latitude.DecimalMinute:00.00}’".Replace(',', '.'),
                     Longitude = $"{coordinate.Longitude.Position} {coordinate.Longitude.Degrees:000}°{coordinate.Longitude.DecimalMinute:00.00}’".Replace(',', '.'),
-                    Elevation = int.Parse(xmlWaypoint.Element("Altitude")?.Value ?? "0"),
-                    //Target = xmlWaypoint.Element("Target")?.Value == "Target"
+                    Elevation = Convert.ToInt32(ele),
                 });
             }
             return cfg;

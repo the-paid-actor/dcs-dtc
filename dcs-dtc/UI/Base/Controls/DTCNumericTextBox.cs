@@ -41,7 +41,19 @@ namespace DTC.UI.Base.Controls
             set
             {
                 var str = value?.ToString(CultureInfo.InvariantCulture);
-                if (!string.IsNullOrEmpty(str) && AllowFraction && !str.Contains(".")) str = str + ".0";
+
+                if (!string.IsNullOrEmpty(str))
+                {
+                    if (AllowFraction && !str.Contains("."))
+                    {
+                        str = str + ".0";
+                    }
+                    if (!AllowFraction && str.Contains("."))
+                    {
+                        str = str.Split('.')[0];
+                    }
+                }
+
                 suppressTextChanged = true;
                 textBox.Text = str;
                 suppressTextChanged = false;

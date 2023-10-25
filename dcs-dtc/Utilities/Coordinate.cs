@@ -57,7 +57,7 @@ namespace DTC.Utilities
             this.Format = format;
         }
 
-        private string ToDegreesMinutesDecimal(int roundDigits)
+        private (string,string) ToDegreesMinutesDecimal(int roundDigits)
         {
             string formatLatLong(CoordinatePart part, int leadingDegZeros)
             {
@@ -72,28 +72,28 @@ namespace DTC.Utilities
 
             var latStr = formatLatLong(this.c.Latitude, 2);
             var lonStr = formatLatLong(this.c.Longitude, 3);
-            return latStr + " " + lonStr;
+            return (latStr, lonStr);
         }
 
-        public string ToDegreesMinutesHundredths()
+        public (string,string) ToDegreesMinutesHundredths()
         {
             //DD°MM.MM’;
             return ToDegreesMinutesDecimal(2);
         }
 
-        public string ToDegreesMinutesThousandths()
+        public (string,string) ToDegreesMinutesThousandths()
         {
             //DD°MM.MMM’;
             return ToDegreesMinutesDecimal(3);
         }
 
-        public string ToDegreesMinutesTenThousandths()
+        public (string,string) ToDegreesMinutesTenThousandths()
         {
             //DD°MM.MMMM’;
             return ToDegreesMinutesDecimal(4);
         }
 
-        public string ToDegreesMinutesSeconds()
+        public (string,string) ToDegreesMinutesSeconds()
         {
             //DD°MM’SS”;
             string formatLatLong(CoordinatePart part, int leadingDegZeros)
@@ -107,10 +107,10 @@ namespace DTC.Utilities
 
             var latStr = formatLatLong(this.c.Latitude, 2);
             var lonStr = formatLatLong(this.c.Longitude, 3);
-            return latStr + " " + lonStr;
+            return (latStr, lonStr);
         }
 
-        public string ToDegreesMinutesSecondsHundredths()
+        public (string,string) ToDegreesMinutesSecondsHundredths()
         {
             //DD°MM’SS.SS”;
             string formatLatLong(CoordinatePart part, int leadingDegZeros)
@@ -128,7 +128,7 @@ namespace DTC.Utilities
 
             var latStr = formatLatLong(this.c.Latitude, 2);
             var lonStr = formatLatLong(this.c.Longitude, 3);
-            return latStr + " " + lonStr;
+            return (latStr, lonStr);
         }
 
         public string ToMGRSSixDigits()

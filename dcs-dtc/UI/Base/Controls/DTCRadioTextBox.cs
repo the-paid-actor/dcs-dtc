@@ -1,10 +1,5 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Drawing;
-using System.Globalization;
-using System.Linq;
+﻿using System.Globalization;
 using System.Media;
-using System.Windows.Forms;
 
 namespace DTC.UI.Base.Controls
 {
@@ -68,7 +63,7 @@ namespace DTC.UI.Base.Controls
 
         public bool AllowNegative { get; set; } = false;
         public decimal FractionInterval { get; set; } = 0;
-        public List<decimal> AllowedFractions { get; } = new List<decimal>();
+        public bool F16Radio { get; set; } = false;
 
         public List<FrequencyBand> AllowedRanges { get; } = new List<FrequencyBand>();
 
@@ -103,6 +98,7 @@ namespace DTC.UI.Base.Controls
                 if (e.Cancel)
                 {
                     SystemSounds.Exclamation.Play();
+                    textBox.ForeColor = Color.Red;
                     return;
                 }
 
@@ -110,6 +106,7 @@ namespace DTC.UI.Base.Controls
                 if (e.Cancel)
                 {
                     SystemSounds.Exclamation.Play();
+                    textBox.ForeColor = Color.Red;
                     return;
                 }
             }
@@ -119,12 +116,16 @@ namespace DTC.UI.Base.Controls
         {
             decimal fraction = number % 1;
 
-            if (AllowedFractions.Count > 0)
+            if (F16Radio)
             {
-                return AllowedFractions.Contains(fraction);
+                var str = fraction.ToString(CultureInfo.InvariantCulture);
+                var ch = str.Last();
+                if (ch == '0' || ch == '2' || ch == '5' || ch == '7')
+                {
+                    return true;
+                }
             }
-
-            if (FractionInterval > 0)
+            else if (FractionInterval > 0)
             {
                 decimal remainder = fraction % FractionInterval;
                 return remainder == 0;
@@ -169,10 +170,14 @@ namespace DTC.UI.Base.Controls
 
         private void TextBox_TextChanged(object sender, EventArgs e)
         {
+            textBox.ForeColor = Color.Black;
+
             if (inEvent) return;
 
             if (textBox.Text.Length == 0)
             {
+                this.label.Text = "";
+                OnTextChanged(e);
                 return;
             }
 
@@ -197,9 +202,17 @@ namespace DTC.UI.Base.Controls
                 }
             }
 
+            if (str == "0.00")
+            {
+                str = "";
+                this.label.Text = "";
+            }
+
             textBox.Text = str;
             textBox.SelectionStart = textBox.Text.Length;
             inEvent = false;
+
+            OnTextChanged(e);
         }
 
         private bool _firstClick = true;

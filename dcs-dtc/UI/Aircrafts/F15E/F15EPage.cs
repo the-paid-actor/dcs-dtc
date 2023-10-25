@@ -42,7 +42,7 @@ namespace DTC.UI.Aircrafts.F15E
                 var coord = Coordinate.FromString(d.latitude, d.longitude, CoordinateFormat.NativeDCSFormat);
                 var wpt = new Waypoint(0);
                 wpt.Target = d.target;
-                wpt.SetCoordinate(coord.ToDegreesMinutesThousandths());
+                wpt.SetCoordinate(string.Join(" ", coord.ToDegreesMinutesThousandths()));
                 wpt.Elevation = int.Parse(d.elevation);
                 newWptList.Add(wpt);
             }

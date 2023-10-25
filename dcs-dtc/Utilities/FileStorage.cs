@@ -139,7 +139,11 @@ public class FileStorage
     {
         var path = GetAircraftPresetsPath(ac);
         Directory.CreateDirectory(path);
-        var json = JsonConvert.SerializeObject(preset.Configuration);
+        var json = JsonConvert.SerializeObject(preset.Configuration, Formatting.Indented, new JsonSerializerSettings
+        {
+            NullValueHandling = NullValueHandling.Ignore,
+            DefaultValueHandling = DefaultValueHandling.Ignore
+        });
         WriteFile(Path.Combine(path, preset.Name + ".json"), json);
     }
 

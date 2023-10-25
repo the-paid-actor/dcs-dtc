@@ -163,7 +163,7 @@ namespace DTC.UI.Aircrafts.FA18.CompositeControls
                 {
                     this.Invoke(new MethodInvoker(delegate ()
                     {
-                        txtCoord.Text = coord.ToDegreesMinutesSecondsHundredths();
+                        txtCoord.Text = string.Join(" ", coord.ToDegreesMinutesSecondsHundredths());
                     }));
                 });
             }

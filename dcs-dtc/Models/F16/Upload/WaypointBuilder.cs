@@ -127,7 +127,7 @@ namespace DTC.Models.F16.Upload
             AppendCommand(ufc.GetCommand("ENTR"));
             AppendCommand(ufc.GetCommand("DOWN"));
 
-            AppendCommand(BuildDigits(ufc, RemoveSeparators(oa.Range.ToString(CultureInfo.InvariantCulture))));
+            AppendCommand(BuildDigits(ufc, RemoveSeparators(((int)oa.Range).ToString(CultureInfo.InvariantCulture))));
             AppendCommand(ufc.GetCommand("ENTR"));
             AppendCommand(ufc.GetCommand("DOWN"));
 
@@ -140,7 +140,7 @@ namespace DTC.Models.F16.Upload
                 AppendCommand(ufc.GetCommand("0"));
                 AppendCommand(ufc.GetCommand("0"));
             }
-            AppendCommand(BuildDigits(ufc, RemoveSeparators(Math.Abs(oa.Elevation).ToString(CultureInfo.InvariantCulture))));
+            AppendCommand(BuildDigits(ufc, RemoveSeparators(Math.Abs((int)oa.Elevation).ToString(CultureInfo.InvariantCulture))));
             AppendCommand(ufc.GetCommand("ENTR"));
             AppendCommand(ufc.GetCommand("DOWN"));
         }
@@ -208,7 +208,7 @@ namespace DTC.Models.F16.Upload
                 AppendCommand(ufc.GetCommand("0"));
                 AppendCommand(ufc.GetCommand("0"));
             }
-            AppendCommand(BuildDigits(ufc, Math.Abs(vip.Elevation).ToString()));
+            AppendCommand(BuildDigits(ufc, Math.Abs((int)vip.Elevation).ToString()));
             AppendCommand(ufc.GetCommand("ENTR"));
             AppendCommand(ufc.GetCommand("DOWN"));
         }
@@ -267,7 +267,7 @@ namespace DTC.Models.F16.Upload
             AppendCommand(ufc.GetCommand("ENTR"));
             AppendCommand(ufc.GetCommand("DOWN"));
 
-            AppendCommand(BuildDigits(ufc, RemoveSeparators(vrp.Range.ToString(CultureInfo.InvariantCulture))));
+            AppendCommand(BuildDigits(ufc, RemoveSeparators(((int)vrp.Range).ToString(CultureInfo.InvariantCulture))));
             AppendCommand(ufc.GetCommand("ENTR"));
             AppendCommand(ufc.GetCommand("DOWN"));
 
@@ -276,7 +276,7 @@ namespace DTC.Models.F16.Upload
                 AppendCommand(ufc.GetCommand("0"));
                 AppendCommand(ufc.GetCommand("0"));
             }
-            AppendCommand(BuildDigits(ufc, RemoveSeparators(Math.Abs(vrp.Elevation).ToString(CultureInfo.InvariantCulture))));
+            AppendCommand(BuildDigits(ufc, RemoveSeparators(Math.Abs((int)vrp.Elevation).ToString(CultureInfo.InvariantCulture))));
             AppendCommand(ufc.GetCommand("ENTR"));
             AppendCommand(ufc.GetCommand("DOWN"));
         }

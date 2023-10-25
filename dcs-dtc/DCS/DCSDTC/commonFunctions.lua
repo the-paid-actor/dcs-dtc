@@ -3,6 +3,14 @@ function DTC_Log(str)
 	DTC_logFile:flush();
 end
 
+function DTC_DCSLogInfo(str)
+	log.write("DCS-DTC", log.INFO, str)
+end
+
+function DTC_DCSLogError(str)
+	log.write("DCS-DTC", log.ERROR, str)
+end
+
 function DTC_ParseDisplay(indicator_id)  -- Thanks to [FSF]Ian code
 	local t = {}
 	local li = list_indication(indicator_id)

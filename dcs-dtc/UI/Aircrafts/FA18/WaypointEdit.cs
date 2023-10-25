@@ -201,7 +201,7 @@ namespace DTC.UI.Aircrafts.FA18
                 var c = Coordinate.FromString(item.Latitude, item.Longitude, CoordinateFormat.DegreesMinutesThousandths);
                 var wpt = new Waypoint(0);
                 wpt.Name = item.Airbase;
-                wpt.SetCoordinate(c.ToDegreesMinutesHundredths());
+                wpt.SetCoordinate(string.Join(" ", c.ToDegreesMinutesHundredths()));
                 wpt.Elevation = item.Elevation;
                 LoadWaypoint(wpt);
             }
@@ -216,7 +216,7 @@ namespace DTC.UI.Aircrafts.FA18
                 {
                     this.ParentForm.Invoke(new MethodInvoker(delegate ()
                     {
-                        txtWptLatLong.Text = coord.ToDegreesMinutesHundredths();
+                        txtWptLatLong.Text = string.Join(" ", coord.ToDegreesMinutesHundredths());
                         txtWptElevation.Text = elevation;
                     }));
                 });

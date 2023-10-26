@@ -1,6 +1,4 @@
-﻿using System;
-using System.IO;
-using System.Runtime.InteropServices;
+﻿using System.Runtime.InteropServices;
 
 namespace DTC.Utilities
 {
@@ -8,7 +6,10 @@ namespace DTC.Utilities
     {
         [DllImport("shell32.dll", CharSet = CharSet.Unicode, ExactSpelling = true, PreserveSig = false)]
         static extern string SHGetKnownFolderPath([MarshalAs(UnmanagedType.LPStruct)] Guid rfid, uint dwFlags, IntPtr hToken = default);
+
         static Guid SavedGamesFolderGuid = new Guid("4C5C32FF-BB9D-43b0-B5B4-2D72E54EAAA4");
+
+        private const string MAIN_LUA_FILE = "DCSDTC.lua";
 
         public static bool Check()
         {
@@ -119,13 +120,13 @@ namespace DTC.Utilities
             }
 
             var exportLuaContent = File.ReadAllText(exportLuaPath);
-            if (!exportLuaContent.Contains("local DCSDTClfs=require('lfs'); dofile(DCSDTClfs.writedir()..'Scripts/DCSDTC.lua')"))
+            if (!exportLuaContent.Contains("local DCSDTClfs=require('lfs'); dofile(DCSDTClfs.writedir()..'Scripts/" + MAIN_LUA_FILE + "')"))
             {
-                if (!exportLuaContent.Contains("DCSDTC.lua"))
+                if (!exportLuaContent.Contains(MAIN_LUA_FILE))
                 {
                     if (!userAsked && AskUserToInstall(path) == false) return false;
                     dtcLuaInstalled = true;
-                    exportLuaContent += "\n\nlocal DCSDTClfs=require('lfs'); dofile(DCSDTClfs.writedir()..'Scripts/DCSDTC.lua')";
+                    exportLuaContent += "\n\nlocal DCSDTClfs=require('lfs'); dofile(DCSDTClfs.writedir()..'Scripts/" + MAIN_LUA_FILE + "')";
                     File.WriteAllText(exportLuaPath, exportLuaContent);
                 }
                 else
@@ -135,8 +136,8 @@ namespace DTC.Utilities
                 }
             }
 
-            var dcsDtcLuaPath = Path.Combine(scriptsFolder, "DCSDTC.lua");
-            var originalDcsDtcLuaPath = Path.Combine(FileStorage.GetCurrentFolder(), "DCS", "DCSDTC.lua");
+            var dcsDtcLuaPath = Path.Combine(scriptsFolder, MAIN_LUA_FILE);
+            var originalDcsDtcLuaPath = Path.Combine(FileStorage.GetCurrentFolder(), "DCS", MAIN_LUA_FILE);
             if (!File.Exists(dcsDtcLuaPath))
             {
                 dtcLuaInstalled = true;

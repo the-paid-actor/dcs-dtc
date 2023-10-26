@@ -124,7 +124,8 @@ namespace DTC.UI.Aircrafts.FA18
                 {
                     this.ParentForm.Invoke(new MethodInvoker(delegate ()
                     {
-                        txtWptLatLong.Text = string.Join(" ", coord.ToDegreesMinutesSecondsHundredths());
+                        var latlon = coord.ToDegreesMinutesSecondsHundredths();
+                        txtWptLatLong.Text = latlon.Item1 + " " + latlon.Item2;
                         txtWptElevation.Text = elevation;
                     }));
                 });

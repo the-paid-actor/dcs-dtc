@@ -44,7 +44,7 @@ namespace DTC.UI.Aircrafts.FA18
             {
                 var coord = Coordinate.FromString(d.latitude, d.longitude, CoordinateFormat.NativeDCSFormat);
                 var wpt = new Waypoint(0);
-                wpt.SetCoordinate(string.Join(" ", coord.ToDegreesMinutesHundredths()));
+                wpt.SetCoordinate(coord.ToDegreesMinutesHundredths());
                 wpt.Elevation = int.Parse(d.elevation);
                 newWptList.Add(wpt);
             }

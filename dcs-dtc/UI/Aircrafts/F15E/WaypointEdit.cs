@@ -151,7 +151,8 @@ namespace DTC.UI.Aircrafts.F15E
                 {
                     this.ParentForm.Invoke(new MethodInvoker(delegate ()
                     {
-                        txtWptLatLong.Text = string.Join(" ", coord.ToDegreesMinutesThousandths());
+                        var latlon = coord.ToDegreesMinutesThousandths();
+                        txtWptLatLong.Text = latlon.Item1 + " " + latlon.Item2;
                         txtWptElevation.Value = decimal.Parse(elevation);
                     }));
                 });

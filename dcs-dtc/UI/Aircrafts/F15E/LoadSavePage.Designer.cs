@@ -31,317 +31,320 @@ namespace DTC.UI.Aircrafts.F15E
         /// </summary>
         private void InitializeComponent()
         {
-            this.openFileDlg = new System.Windows.Forms.OpenFileDialog();
-            this.saveFileDlg = new System.Windows.Forms.SaveFileDialog();
-            this.optFile = new System.Windows.Forms.RadioButton();
-            this.optClipboard = new System.Windows.Forms.RadioButton();
-            this.grpLoad = new DTC.UI.Base.Controls.DTCGroupBox();
-            this.chkLoadMisc = new System.Windows.Forms.CheckBox();
-            this.chkLoadDisplays = new System.Windows.Forms.CheckBox();
-            this.btnLoadApply = new DTC.UI.Base.Controls.DTCButton();
-            this.btnLoad = new DTC.UI.Base.Controls.DTCButton();
-            this.chkLoadWaypoints = new System.Windows.Forms.CheckBox();
-            this.grpSave = new DTC.UI.Base.Controls.DTCGroupBox();
-            this.chkSaveMisc = new System.Windows.Forms.CheckBox();
-            this.chkSaveDisplays = new System.Windows.Forms.CheckBox();
-            this.btnSave = new DTC.UI.Base.Controls.DTCButton();
-            this.chkSaveWaypoints = new System.Windows.Forms.CheckBox();
-            this.checkBox1 = new System.Windows.Forms.CheckBox();
-            this.chkLoadRadios = new System.Windows.Forms.CheckBox();
-            this.chkSaveRadios = new System.Windows.Forms.CheckBox();
-            this.optCombatFlite = new System.Windows.Forms.RadioButton();
-            this.grpLoad.SuspendLayout();
-            this.grpSave.SuspendLayout();
-            this.SuspendLayout();
+            openFileDlg = new OpenFileDialog();
+            saveFileDlg = new SaveFileDialog();
+            optFile = new RadioButton();
+            optClipboard = new RadioButton();
+            grpLoad = new DTCGroupBox();
+            chkLoadRadios = new CheckBox();
+            chkLoadMisc = new CheckBox();
+            chkLoadDisplays = new CheckBox();
+            btnLoadApply = new DTCButton();
+            btnLoad = new DTCButton();
+            chkLoadWaypoints = new CheckBox();
+            grpSave = new DTCGroupBox();
+            chkSaveRadios = new CheckBox();
+            chkSaveMisc = new CheckBox();
+            chkSaveDisplays = new CheckBox();
+            btnSave = new DTCButton();
+            chkSaveWaypoints = new CheckBox();
+            checkBox1 = new CheckBox();
+            optCombatFlite = new RadioButton();
+            grpLoad.SuspendLayout();
+            grpSave.SuspendLayout();
+            SuspendLayout();
             // 
             // openFileDlg
             // 
-            this.openFileDlg.FileName = "dtc.json";
+            openFileDlg.FileName = "dtc.json";
             // 
             // saveFileDlg
             // 
-            this.saveFileDlg.DefaultExt = "json";
+            saveFileDlg.DefaultExt = "json";
             // 
             // optFile
             // 
-            this.optFile.AutoSize = true;
-            this.optFile.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F);
-            this.optFile.Location = new System.Drawing.Point(24, 28);
-            this.optFile.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
-            this.optFile.Name = "optFile";
-            this.optFile.Size = new System.Drawing.Size(68, 29);
-            this.optFile.TabIndex = 7;
-            this.optFile.TabStop = true;
-            this.optFile.Text = "File";
-            this.optFile.UseVisualStyleBackColor = true;
-            this.optFile.CheckedChanged += new System.EventHandler(this.optFile_CheckedChanged);
+            optFile.AutoSize = true;
+            optFile.Font = new Font("Microsoft Sans Serif", 10F, FontStyle.Regular, GraphicsUnit.Point);
+            optFile.Location = new Point(40, 54);
+            optFile.Margin = new Padding(7, 10, 7, 10);
+            optFile.Name = "optFile";
+            optFile.Size = new Size(68, 29);
+            optFile.TabIndex = 7;
+            optFile.TabStop = true;
+            optFile.Text = "File";
+            optFile.UseVisualStyleBackColor = true;
+            optFile.CheckedChanged += optFile_CheckedChanged;
             // 
             // optClipboard
             // 
-            this.optClipboard.AutoSize = true;
-            this.optClipboard.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F);
-            this.optClipboard.Location = new System.Drawing.Point(111, 28);
-            this.optClipboard.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
-            this.optClipboard.Name = "optClipboard";
-            this.optClipboard.Size = new System.Drawing.Size(121, 29);
-            this.optClipboard.TabIndex = 7;
-            this.optClipboard.TabStop = true;
-            this.optClipboard.Text = "Clipboard";
-            this.optClipboard.UseVisualStyleBackColor = true;
-            this.optClipboard.CheckedChanged += new System.EventHandler(this.optClipboard_CheckedChanged);
+            optClipboard.AutoSize = true;
+            optClipboard.Font = new Font("Microsoft Sans Serif", 10F, FontStyle.Regular, GraphicsUnit.Point);
+            optClipboard.Location = new Point(185, 54);
+            optClipboard.Margin = new Padding(7, 10, 7, 10);
+            optClipboard.Name = "optClipboard";
+            optClipboard.Size = new Size(121, 29);
+            optClipboard.TabIndex = 7;
+            optClipboard.TabStop = true;
+            optClipboard.Text = "Clipboard";
+            optClipboard.UseVisualStyleBackColor = true;
+            optClipboard.CheckedChanged += optClipboard_CheckedChanged;
             // 
             // grpLoad
             // 
-            this.grpLoad.BorderColor = System.Drawing.Color.Black;
-            this.grpLoad.BorderRadius = 5;
-            this.grpLoad.BorderWidth = 2;
-            this.grpLoad.Controls.Add(this.chkLoadRadios);
-            this.grpLoad.Controls.Add(this.chkLoadMisc);
-            this.grpLoad.Controls.Add(this.chkLoadDisplays);
-            this.grpLoad.Controls.Add(this.btnLoadApply);
-            this.grpLoad.Controls.Add(this.btnLoad);
-            this.grpLoad.Controls.Add(this.chkLoadWaypoints);
-            this.grpLoad.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F);
-            this.grpLoad.LabelIndent = 10;
-            this.grpLoad.Location = new System.Drawing.Point(24, 77);
-            this.grpLoad.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
-            this.grpLoad.Name = "grpLoad";
-            this.grpLoad.Padding = new System.Windows.Forms.Padding(4, 5, 4, 5);
-            this.grpLoad.Size = new System.Drawing.Size(308, 489);
-            this.grpLoad.TabIndex = 6;
-            this.grpLoad.TabStop = false;
-            this.grpLoad.Text = "Load";
-            this.grpLoad.Visible = false;
-            // 
-            // chkLoadMisc
-            // 
-            this.chkLoadMisc.Enabled = false;
-            this.chkLoadMisc.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F);
-            this.chkLoadMisc.Location = new System.Drawing.Point(18, 153);
-            this.chkLoadMisc.Name = "chkLoadMisc";
-            this.chkLoadMisc.Size = new System.Drawing.Size(102, 25);
-            this.chkLoadMisc.TabIndex = 1;
-            this.chkLoadMisc.Text = "Misc";
-            this.chkLoadMisc.UseVisualStyleBackColor = true;
-            // 
-            // chkLoadDisplays
-            // 
-            this.chkLoadDisplays.Enabled = false;
-            this.chkLoadDisplays.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F);
-            this.chkLoadDisplays.Location = new System.Drawing.Point(27, 140);
-            this.chkLoadDisplays.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
-            this.chkLoadDisplays.Name = "chkLoadDisplays";
-            this.chkLoadDisplays.Size = new System.Drawing.Size(153, 38);
-            this.chkLoadDisplays.TabIndex = 1;
-            this.chkLoadDisplays.Text = "Displays";
-            this.chkLoadDisplays.UseVisualStyleBackColor = true;
-            // 
-            // btnLoadApply
-            // 
-            this.btnLoadApply.BackColor = System.Drawing.Color.DarkKhaki;
-            this.btnLoadApply.Enabled = false;
-            this.btnLoadApply.FlatAppearance.BorderSize = 0;
-            this.btnLoadApply.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnLoadApply.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F);
-            this.btnLoadApply.Location = new System.Drawing.Point(27, 422);
-            this.btnLoadApply.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
-            this.btnLoadApply.Name = "btnLoadApply";
-            this.btnLoadApply.Size = new System.Drawing.Size(180, 38);
-            this.btnLoadApply.TabIndex = 0;
-            this.btnLoadApply.Text = "Apply";
-            this.btnLoadApply.UseVisualStyleBackColor = false;
-            this.btnLoadApply.Click += new System.EventHandler(this.btnLoadApply_Click);
-            // 
-            // btnLoad
-            // 
-            this.btnLoad.BackColor = System.Drawing.Color.DarkKhaki;
-            this.btnLoad.FlatAppearance.BorderSize = 0;
-            this.btnLoad.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnLoad.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F);
-            this.btnLoad.Location = new System.Drawing.Point(27, 46);
-            this.btnLoad.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
-            this.btnLoad.Name = "btnLoad";
-            this.btnLoad.Size = new System.Drawing.Size(180, 38);
-            this.btnLoad.TabIndex = 0;
-            this.btnLoad.Text = "Load";
-            this.btnLoad.UseVisualStyleBackColor = false;
-            this.btnLoad.Click += new System.EventHandler(this.btnLoad_Click);
-            // 
-            // chkLoadWaypoints
-            // 
-            this.chkLoadWaypoints.Enabled = false;
-            this.chkLoadWaypoints.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F);
-            this.chkLoadWaypoints.Location = new System.Drawing.Point(27, 92);
-            this.chkLoadWaypoints.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
-            this.chkLoadWaypoints.Name = "chkLoadWaypoints";
-            this.chkLoadWaypoints.Size = new System.Drawing.Size(153, 38);
-            this.chkLoadWaypoints.TabIndex = 0;
-            this.chkLoadWaypoints.Text = "Waypoints";
-            this.chkLoadWaypoints.UseVisualStyleBackColor = true;
-            // 
-            // grpSave
-            // 
-            this.grpSave.BorderColor = System.Drawing.Color.Black;
-            this.grpSave.BorderRadius = 5;
-            this.grpSave.BorderWidth = 2;
-            this.grpSave.Controls.Add(this.chkSaveRadios);
-            this.grpSave.Controls.Add(this.chkSaveMisc);
-            this.grpSave.Controls.Add(this.chkSaveDisplays);
-            this.grpSave.Controls.Add(this.btnSave);
-            this.grpSave.Controls.Add(this.chkSaveWaypoints);
-            this.grpSave.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F);
-            this.grpSave.LabelIndent = 10;
-            this.grpSave.Location = new System.Drawing.Point(364, 77);
-            this.grpSave.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
-            this.grpSave.Name = "grpSave";
-            this.grpSave.Padding = new System.Windows.Forms.Padding(4, 5, 4, 5);
-            this.grpSave.Size = new System.Drawing.Size(304, 489);
-            this.grpSave.TabIndex = 7;
-            this.grpSave.TabStop = false;
-            this.grpSave.Text = "Save";
-            this.grpSave.Visible = false;
-            // 
-            // chkSaveMisc
-            // 
-            this.chkSaveMisc.Checked = true;
-            this.chkSaveMisc.CheckState = System.Windows.Forms.CheckState.Checked;
-            this.chkSaveMisc.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F);
-            this.chkSaveMisc.Location = new System.Drawing.Point(18, 153);
-            this.chkSaveMisc.Name = "chkSaveMisc";
-            this.chkSaveMisc.Size = new System.Drawing.Size(102, 25);
-            this.chkSaveMisc.TabIndex = 1;
-            this.chkSaveMisc.Text = "Misc";
-            this.chkSaveMisc.UseVisualStyleBackColor = true;
-            // 
-            // chkSaveDisplays
-            // 
-            this.chkSaveDisplays.Checked = true;
-            this.chkSaveDisplays.CheckState = System.Windows.Forms.CheckState.Checked;
-            this.chkSaveDisplays.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F);
-            this.chkSaveDisplays.Location = new System.Drawing.Point(27, 140);
-            this.chkSaveDisplays.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
-            this.chkSaveDisplays.Name = "chkSaveDisplays";
-            this.chkSaveDisplays.Size = new System.Drawing.Size(153, 38);
-            this.chkSaveDisplays.TabIndex = 1;
-            this.chkSaveDisplays.Text = "Displays";
-            this.chkSaveDisplays.UseVisualStyleBackColor = true;
-            // 
-            // btnSave
-            // 
-            this.btnSave.BackColor = System.Drawing.Color.DarkKhaki;
-            this.btnSave.FlatAppearance.BorderSize = 0;
-            this.btnSave.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnSave.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F);
-            this.btnSave.Location = new System.Drawing.Point(27, 422);
-            this.btnSave.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
-            this.btnSave.Name = "btnSave";
-            this.btnSave.Size = new System.Drawing.Size(180, 38);
-            this.btnSave.TabIndex = 0;
-            this.btnSave.Text = "Save";
-            this.btnSave.UseVisualStyleBackColor = false;
-            this.btnSave.Click += new System.EventHandler(this.btnSave_Click);
-            // 
-            // chkSaveWaypoints
-            // 
-            this.chkSaveWaypoints.Checked = true;
-            this.chkSaveWaypoints.CheckState = System.Windows.Forms.CheckState.Checked;
-            this.chkSaveWaypoints.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F);
-            this.chkSaveWaypoints.Location = new System.Drawing.Point(27, 92);
-            this.chkSaveWaypoints.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
-            this.chkSaveWaypoints.Name = "chkSaveWaypoints";
-            this.chkSaveWaypoints.Size = new System.Drawing.Size(153, 38);
-            this.chkSaveWaypoints.TabIndex = 0;
-            this.chkSaveWaypoints.Text = "Waypoints";
-            this.chkSaveWaypoints.UseVisualStyleBackColor = true;
-            // 
-            // checkBox1
-            // 
-            this.checkBox1.AutoSize = true;
-            this.checkBox1.Location = new System.Drawing.Point(-22, -23);
-            this.checkBox1.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
-            this.checkBox1.Name = "checkBox1";
-            this.checkBox1.Size = new System.Drawing.Size(113, 24);
-            this.checkBox1.TabIndex = 8;
-            this.checkBox1.Text = "checkBox1";
-            this.checkBox1.UseVisualStyleBackColor = true;
+            grpLoad.BorderColor = Color.Black;
+            grpLoad.BorderRadius = 5;
+            grpLoad.BorderWidth = 2;
+            grpLoad.Controls.Add(chkLoadRadios);
+            grpLoad.Controls.Add(chkLoadMisc);
+            grpLoad.Controls.Add(chkLoadDisplays);
+            grpLoad.Controls.Add(btnLoadApply);
+            grpLoad.Controls.Add(btnLoad);
+            grpLoad.Controls.Add(chkLoadWaypoints);
+            grpLoad.Font = new Font("Microsoft Sans Serif", 10F, FontStyle.Regular, GraphicsUnit.Point);
+            grpLoad.LabelIndent = 10;
+            grpLoad.Location = new Point(40, 108);
+            grpLoad.Margin = new Padding(7, 10, 7, 10);
+            grpLoad.Name = "grpLoad";
+            grpLoad.Padding = new Padding(7, 10, 7, 10);
+            grpLoad.Size = new Size(378, 484);
+            grpLoad.TabIndex = 6;
+            grpLoad.TabStop = false;
+            grpLoad.Text = "Load";
+            grpLoad.Visible = false;
             // 
             // chkLoadRadios
             // 
-            this.chkLoadRadios.Enabled = false;
-            this.chkLoadRadios.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F);
-            this.chkLoadRadios.Location = new System.Drawing.Point(18, 122);
-            this.chkLoadRadios.Name = "chkLoadRadios";
-            this.chkLoadRadios.Size = new System.Drawing.Size(102, 25);
-            this.chkLoadRadios.TabIndex = 1;
-            this.chkLoadRadios.Text = "Radios";
-            this.chkLoadRadios.UseVisualStyleBackColor = true;
+            chkLoadRadios.Enabled = false;
+            chkLoadRadios.Font = new Font("Microsoft Sans Serif", 10F, FontStyle.Regular, GraphicsUnit.Point);
+            chkLoadRadios.Location = new Point(30, 235);
+            chkLoadRadios.Margin = new Padding(5, 6, 5, 6);
+            chkLoadRadios.Name = "chkLoadRadios";
+            chkLoadRadios.Size = new Size(170, 48);
+            chkLoadRadios.TabIndex = 1;
+            chkLoadRadios.Text = "Radios";
+            chkLoadRadios.UseVisualStyleBackColor = true;
+            // 
+            // chkLoadMisc
+            // 
+            chkLoadMisc.Enabled = false;
+            chkLoadMisc.Font = new Font("Microsoft Sans Serif", 10F, FontStyle.Regular, GraphicsUnit.Point);
+            chkLoadMisc.Location = new Point(30, 327);
+            chkLoadMisc.Margin = new Padding(5, 6, 5, 6);
+            chkLoadMisc.Name = "chkLoadMisc";
+            chkLoadMisc.Size = new Size(170, 48);
+            chkLoadMisc.TabIndex = 1;
+            chkLoadMisc.Text = "Misc";
+            chkLoadMisc.UseVisualStyleBackColor = true;
+            // 
+            // chkLoadDisplays
+            // 
+            chkLoadDisplays.Enabled = false;
+            chkLoadDisplays.Font = new Font("Microsoft Sans Serif", 10F, FontStyle.Regular, GraphicsUnit.Point);
+            chkLoadDisplays.Location = new Point(30, 269);
+            chkLoadDisplays.Margin = new Padding(7, 10, 7, 10);
+            chkLoadDisplays.Name = "chkLoadDisplays";
+            chkLoadDisplays.Size = new Size(255, 73);
+            chkLoadDisplays.TabIndex = 1;
+            chkLoadDisplays.Text = "Displays";
+            chkLoadDisplays.UseVisualStyleBackColor = true;
+            // 
+            // btnLoadApply
+            // 
+            btnLoadApply.BackColor = Color.DarkKhaki;
+            btnLoadApply.Enabled = false;
+            btnLoadApply.FlatAppearance.BorderSize = 0;
+            btnLoadApply.FlatStyle = FlatStyle.Flat;
+            btnLoadApply.Font = new Font("Microsoft Sans Serif", 10F, FontStyle.Regular, GraphicsUnit.Point);
+            btnLoadApply.Location = new Point(30, 391);
+            btnLoadApply.Margin = new Padding(7, 10, 7, 10);
+            btnLoadApply.Name = "btnLoadApply";
+            btnLoadApply.Size = new Size(300, 73);
+            btnLoadApply.TabIndex = 0;
+            btnLoadApply.Text = "Apply";
+            btnLoadApply.UseVisualStyleBackColor = false;
+            btnLoadApply.Click += btnLoadApply_Click;
+            // 
+            // btnLoad
+            // 
+            btnLoad.BackColor = Color.DarkKhaki;
+            btnLoad.FlatAppearance.BorderSize = 0;
+            btnLoad.FlatStyle = FlatStyle.Flat;
+            btnLoad.Font = new Font("Microsoft Sans Serif", 10F, FontStyle.Regular, GraphicsUnit.Point);
+            btnLoad.Location = new Point(45, 88);
+            btnLoad.Margin = new Padding(7, 10, 7, 10);
+            btnLoad.Name = "btnLoad";
+            btnLoad.Size = new Size(300, 73);
+            btnLoad.TabIndex = 0;
+            btnLoad.Text = "Load";
+            btnLoad.UseVisualStyleBackColor = false;
+            btnLoad.Click += btnLoad_Click;
+            // 
+            // chkLoadWaypoints
+            // 
+            chkLoadWaypoints.Enabled = false;
+            chkLoadWaypoints.Font = new Font("Microsoft Sans Serif", 10F, FontStyle.Regular, GraphicsUnit.Point);
+            chkLoadWaypoints.Location = new Point(30, 176);
+            chkLoadWaypoints.Margin = new Padding(7, 10, 7, 10);
+            chkLoadWaypoints.Name = "chkLoadWaypoints";
+            chkLoadWaypoints.Size = new Size(255, 73);
+            chkLoadWaypoints.TabIndex = 0;
+            chkLoadWaypoints.Text = "Waypoints";
+            chkLoadWaypoints.UseVisualStyleBackColor = true;
+            // 
+            // grpSave
+            // 
+            grpSave.BorderColor = Color.Black;
+            grpSave.BorderRadius = 5;
+            grpSave.BorderWidth = 2;
+            grpSave.Controls.Add(chkSaveRadios);
+            grpSave.Controls.Add(chkSaveMisc);
+            grpSave.Controls.Add(chkSaveDisplays);
+            grpSave.Controls.Add(btnSave);
+            grpSave.Controls.Add(chkSaveWaypoints);
+            grpSave.Font = new Font("Microsoft Sans Serif", 10F, FontStyle.Regular, GraphicsUnit.Point);
+            grpSave.LabelIndent = 10;
+            grpSave.Location = new Point(448, 108);
+            grpSave.Margin = new Padding(7, 10, 7, 10);
+            grpSave.Name = "grpSave";
+            grpSave.Padding = new Padding(7, 10, 7, 10);
+            grpSave.Size = new Size(349, 484);
+            grpSave.TabIndex = 7;
+            grpSave.TabStop = false;
+            grpSave.Text = "Save";
+            grpSave.Visible = false;
             // 
             // chkSaveRadios
             // 
-            this.chkSaveRadios.Checked = true;
-            this.chkSaveRadios.CheckState = System.Windows.Forms.CheckState.Checked;
-            this.chkSaveRadios.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F);
-            this.chkSaveRadios.Location = new System.Drawing.Point(18, 122);
-            this.chkSaveRadios.Name = "chkSaveRadios";
-            this.chkSaveRadios.Size = new System.Drawing.Size(102, 25);
-            this.chkSaveRadios.TabIndex = 1;
-            this.chkSaveRadios.Text = "Radios";
-            this.chkSaveRadios.UseVisualStyleBackColor = true;
-            //
+            chkSaveRadios.Checked = true;
+            chkSaveRadios.CheckState = CheckState.Checked;
+            chkSaveRadios.Font = new Font("Microsoft Sans Serif", 10F, FontStyle.Regular, GraphicsUnit.Point);
+            chkSaveRadios.Location = new Point(12, 235);
+            chkSaveRadios.Margin = new Padding(5, 6, 5, 6);
+            chkSaveRadios.Name = "chkSaveRadios";
+            chkSaveRadios.Size = new Size(170, 48);
+            chkSaveRadios.TabIndex = 1;
+            chkSaveRadios.Text = "Radios";
+            chkSaveRadios.UseVisualStyleBackColor = true;
+            // 
+            // chkSaveMisc
+            // 
+            chkSaveMisc.Checked = true;
+            chkSaveMisc.CheckState = CheckState.Checked;
+            chkSaveMisc.Font = new Font("Microsoft Sans Serif", 10F, FontStyle.Regular, GraphicsUnit.Point);
+            chkSaveMisc.Location = new Point(12, 327);
+            chkSaveMisc.Margin = new Padding(5, 6, 5, 6);
+            chkSaveMisc.Name = "chkSaveMisc";
+            chkSaveMisc.Size = new Size(170, 48);
+            chkSaveMisc.TabIndex = 1;
+            chkSaveMisc.Text = "Misc";
+            chkSaveMisc.UseVisualStyleBackColor = true;
+            // 
+            // chkSaveDisplays
+            // 
+            chkSaveDisplays.Checked = true;
+            chkSaveDisplays.CheckState = CheckState.Checked;
+            chkSaveDisplays.Font = new Font("Microsoft Sans Serif", 10F, FontStyle.Regular, GraphicsUnit.Point);
+            chkSaveDisplays.Location = new Point(14, 269);
+            chkSaveDisplays.Margin = new Padding(7, 10, 7, 10);
+            chkSaveDisplays.Name = "chkSaveDisplays";
+            chkSaveDisplays.Size = new Size(255, 73);
+            chkSaveDisplays.TabIndex = 1;
+            chkSaveDisplays.Text = "Displays";
+            chkSaveDisplays.UseVisualStyleBackColor = true;
+            // 
+            // btnSave
+            // 
+            btnSave.BackColor = Color.DarkKhaki;
+            btnSave.FlatAppearance.BorderSize = 0;
+            btnSave.FlatStyle = FlatStyle.Flat;
+            btnSave.Font = new Font("Microsoft Sans Serif", 10F, FontStyle.Regular, GraphicsUnit.Point);
+            btnSave.Location = new Point(14, 391);
+            btnSave.Margin = new Padding(7, 10, 7, 10);
+            btnSave.Name = "btnSave";
+            btnSave.Size = new Size(300, 73);
+            btnSave.TabIndex = 0;
+            btnSave.Text = "Save";
+            btnSave.UseVisualStyleBackColor = false;
+            btnSave.Click += btnSave_Click;
+            // 
+            // chkSaveWaypoints
+            // 
+            chkSaveWaypoints.Checked = true;
+            chkSaveWaypoints.CheckState = CheckState.Checked;
+            chkSaveWaypoints.Font = new Font("Microsoft Sans Serif", 10F, FontStyle.Regular, GraphicsUnit.Point);
+            chkSaveWaypoints.Location = new Point(12, 176);
+            chkSaveWaypoints.Margin = new Padding(7, 10, 7, 10);
+            chkSaveWaypoints.Name = "chkSaveWaypoints";
+            chkSaveWaypoints.Size = new Size(255, 73);
+            chkSaveWaypoints.TabIndex = 0;
+            chkSaveWaypoints.Text = "Waypoints";
+            chkSaveWaypoints.UseVisualStyleBackColor = true;
+            // 
+            // checkBox1
+            // 
+            checkBox1.AutoSize = true;
+            checkBox1.Location = new Point(-37, -44);
+            checkBox1.Margin = new Padding(7, 10, 7, 10);
+            checkBox1.Name = "checkBox1";
+            checkBox1.Size = new Size(121, 29);
+            checkBox1.TabIndex = 8;
+            checkBox1.Text = "checkBox1";
+            checkBox1.UseVisualStyleBackColor = true;
+            // 
             // optCombatFlite
             // 
-            this.optCombatFlite.AutoSize = true;
-            this.optCombatFlite.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F);
-            this.optCombatFlite.Location = new System.Drawing.Point(242, 28);
-            this.optCombatFlite.Margin = new System.Windows.Forms.Padding(6, 8, 6, 8);
-            this.optCombatFlite.Name = "optCombatFlite";
-            this.optCombatFlite.Size = new System.Drawing.Size(142, 29);
-            this.optCombatFlite.TabIndex = 9;
-            this.optCombatFlite.TabStop = true;
-            this.optCombatFlite.Text = "CombatFlite";
-            this.optCombatFlite.UseVisualStyleBackColor = true;
-            this.optCombatFlite.CheckedChanged += new System.EventHandler(this.optCombatFlite_CheckedChanged);
+            optCombatFlite.AutoSize = true;
+            optCombatFlite.Font = new Font("Microsoft Sans Serif", 10F, FontStyle.Regular, GraphicsUnit.Point);
+            optCombatFlite.Location = new Point(403, 54);
+            optCombatFlite.Margin = new Padding(10, 15, 10, 15);
+            optCombatFlite.Name = "optCombatFlite";
+            optCombatFlite.Size = new Size(142, 29);
+            optCombatFlite.TabIndex = 9;
+            optCombatFlite.TabStop = true;
+            optCombatFlite.Text = "CombatFlite";
+            optCombatFlite.UseVisualStyleBackColor = true;
+            optCombatFlite.CheckedChanged += optCombatFlite_CheckedChanged;
             // 
             // LoadSavePage
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
-            this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.BackColor = System.Drawing.Color.PaleGoldenrod;
-            this.Controls.Add(this.optCombatFlite);
-            this.Controls.Add(this.checkBox1);
-            this.Controls.Add(this.grpSave);
-            this.Controls.Add(this.grpLoad);
-            this.Controls.Add(this.optClipboard);
-            this.Controls.Add(this.optFile);
-            this.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
-            this.Name = "LoadSavePage";
-            this.Size = new System.Drawing.Size(1509, 1568);
-            this.grpLoad.ResumeLayout(false);
-            this.grpSave.ResumeLayout(false);
-            this.ResumeLayout(false);
-            this.PerformLayout();
-
+            AutoScaleDimensions = new SizeF(10F, 25F);
+            AutoScaleMode = AutoScaleMode.Font;
+            BackColor = Color.PaleGoldenrod;
+            Controls.Add(optCombatFlite);
+            Controls.Add(checkBox1);
+            Controls.Add(grpSave);
+            Controls.Add(grpLoad);
+            Controls.Add(optClipboard);
+            Controls.Add(optFile);
+            Margin = new Padding(7, 10, 7, 10);
+            Name = "LoadSavePage";
+            Size = new Size(2515, 3015);
+            grpLoad.ResumeLayout(false);
+            grpSave.ResumeLayout(false);
+            ResumeLayout(false);
+            PerformLayout();
         }
 
-		#endregion
-		private System.Windows.Forms.OpenFileDialog openFileDlg;
+        #endregion
+        private System.Windows.Forms.OpenFileDialog openFileDlg;
 		private System.Windows.Forms.SaveFileDialog saveFileDlg;
 		private System.Windows.Forms.RadioButton optFile;
 		private System.Windows.Forms.RadioButton optClipboard;
-		private Controls.DTCGroupBox grpLoad;
+		private Base.Controls.DTCGroupBox grpLoad;
 		private DTCButton btnLoadApply;
 		private DTCButton btnLoad;
 		private System.Windows.Forms.CheckBox chkLoadWaypoints;
-		private Controls.DTCGroupBox grpSave;
+		private Base.Controls.DTCGroupBox grpSave;
 		private DTCButton btnSave;
 		private System.Windows.Forms.CheckBox chkSaveWaypoints;
 		private System.Windows.Forms.CheckBox checkBox1;
         private System.Windows.Forms.CheckBox chkLoadDisplays;
-        private System.Windows.Forms.CheckBox chkSaveDisplays;
         private System.Windows.Forms.CheckBox chkLoadMisc;
-        private System.Windows.Forms.CheckBox chkSaveMisc;
         private System.Windows.Forms.CheckBox chkLoadRadios;
         private System.Windows.Forms.CheckBox chkSaveRadios;
         private System.Windows.Forms.RadioButton optCombatFlite;
+        private CheckBox chkSaveMisc;
+        private CheckBox chkSaveDisplays;
     }
 }

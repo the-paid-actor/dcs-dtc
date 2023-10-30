@@ -1,6 +1,7 @@
 ﻿using DTC.Models.AH64.Waypoints;
 using DTC.Models.DCS;
 using Newtonsoft.Json;
+using System.IO.Compression;
 
 namespace DTC.Utilities;
 
@@ -11,6 +12,15 @@ public class FileStorage
     public static string GetCurrentFolder()
     {
         return System.AppContext.BaseDirectory;
+    }
+
+    public static string LoadCombatFlite(string path)
+    {
+        using (ZipArchive archive = ZipFile.Open(path, ZipArchiveMode.Read))
+        {
+            var entry = archive.GetEntry("mission.xml");
+            return new StreamReader(entry.Open()).ReadToEnd();
+        }
     }
 
     private static string GetStorageFolder()

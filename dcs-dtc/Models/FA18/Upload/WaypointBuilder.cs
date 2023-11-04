@@ -15,13 +15,23 @@ namespace DTC.Models.FA18.Upload
 
         private void selectWp0(Device rmfd, int i)
         {
-            if (i < 140) // It might not notice on the first pass, so we go around once more
-            {
+            if (i < 35) // Half of waypoints, will seek up or down depending on what's closest
+			{
+
                 AppendCommand(StartCondition("NotAtWp0"));
+
+                AppendCommand(StartCondition("WpLTE34"));
                 AppendCommand(rmfd.GetCommand("OSB-13"));
+                AppendCommand(EndCondition("WpLTE34"));
+
+                AppendCommand(StartCondition("WpGTE35"));
+                AppendCommand(rmfd.GetCommand("OSB-12"));
+                AppendCommand(EndCondition("WpGTE35"));
+
+                AppendCommand(WaitShort());
                 AppendCommand(EndCondition("NotAtWp0"));
                 selectWp0(rmfd, i + 1);
-            }
+			}
         }
         public override void Build()
         {

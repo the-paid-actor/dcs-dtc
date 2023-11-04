@@ -16,16 +16,31 @@ namespace DTC.Models.FA18.Upload
         {
             var lmfd = _aircraft.GetDevice("LMFD");
             var cmds = _aircraft.GetDevice("CMDS");
+            var rwr = _aircraft.GetDevice("RWR");
 
             AppendCommand(lmfd.GetCommand("OSB-18")); // Menu
             AppendCommand(lmfd.GetCommand("OSB-17")); // EW
+
+            AppendCommand(StartCondition("EWHUDOff"));
+            
+            AppendCommand(StartCondition("RWROff"));
+            AppendCommand(rwr.GetCommand("ON")); //RWR On
+            AppendCommand(WaitLong());
+            AppendCommand(EndCondition("RWROff"));
+            
+            AppendCommand(lmfd.GetCommand("OSB-14")); // HUD
+            AppendCommand(EndCondition("EWHUDOff"));
 
             AppendCommand(StartCondition("DispenserOff"));
             AppendCommand(cmds.GetCommand("ON"));
             AppendCommand(WaitVeryLong());
             AppendCommand(EndCondition("DispenserOff"));
 
+            AppendCommand(Wait());
+            AppendCommand(StartCondition("CMSNotArm"));
             AppendCommand(lmfd.GetCommand("OSB-08")); // ALE-47
+            AppendCommand(EndCondition("CMSNotArm"));
+
             AppendCommand(lmfd.GetCommand("OSB-09")); // ARM
 
             for (var i = 0; i < _cfg.CMS.Programs.Length; i++)
@@ -54,9 +69,10 @@ namespace DTC.Models.FA18.Upload
                     AppendCommand(Wait());
                     AdjustInterval(lmfd, prg.Interval, defaultPrg.Interval);
                     AppendCommand(lmfd.GetCommand("OSB-15")); // Interval
+
+                    AppendCommand(lmfd.GetCommand("OSB-19")); // Save
                 }
 
-                AppendCommand(lmfd.GetCommand("OSB-19")); // Save
                 AppendCommand(lmfd.GetCommand("OSB-20")); // Step
             }
             AppendCommand(lmfd.GetCommand("OSB-09")); // RTN

@@ -25,6 +25,7 @@ namespace DTC.UI.Aircrafts.FA18
                 new SequencePage(this, cfg.Sequences),
                 new PrePlannedPage(this, cfg.PrePlanned),
                 new CMSPage(this, cfg.CMS),
+                new AAWeaponsPage(this, cfg.AAWeapons),
                 new RadioPage(this, cfg.Radios),
                 new MiscPage(this, cfg.Misc)
             };

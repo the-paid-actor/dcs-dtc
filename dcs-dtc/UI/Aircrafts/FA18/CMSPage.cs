@@ -29,7 +29,18 @@ namespace DTC.UI.Aircrafts.FA18
             this.SuspendLayout();
 
             var top = padding;
-            var left = padding + 2 * (columnWidth + padding);
+            var left = padding;
+
+            this.Controls.Add(DTCCheckBox.Make(left, top, chkWidth, rowHeight, _cms.EWHUDToBeUpdated, (chk) =>
+            {
+                _cms.EWHUDToBeUpdated = chk.Checked;
+                _parent.DataChangedCallback();
+            }));
+            left += padding + chkWidth;
+            this.Controls.Add(DTCLabel.Make("EW HUD - On", left, top, columnWidth+10, rowHeight));
+
+            top += rowHeight + padding;
+            left = padding + 2 * (columnWidth + padding);
 
             this.Controls.Add(DTCLabel.Make("Chaff Qty", left, top, columnWidth, rowHeight));
             left += columnWidth + padding;

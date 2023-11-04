@@ -14,11 +14,20 @@ namespace DTC.Models.FA18.Upload
 
         private void selectWp0(Device rmfd, int i)
         {
-            if (i < 140) // It might not notice on the first pass, so we go around once more
+            if (i < 35) // Half of waypoints, will seek up or down depending on what's closest
             {
+                
                 AppendCommand(StartCondition("NotAtWp0"));
+
+                AppendCommand(StartCondition("WpLTE34"));
                 AppendCommand(rmfd.GetCommand("OSB-13"));
-                AppendCommand(Wait());
+                AppendCommand(EndCondition("WpLTE34"));
+
+                AppendCommand(StartCondition("WpGTE35"));
+                AppendCommand(rmfd.GetCommand("OSB-12"));
+                AppendCommand(EndCondition("WpGTE35"));
+
+                AppendCommand(WaitShort());
                 AppendCommand(EndCondition("NotAtWp0"));
                 selectWp0(rmfd, i + 1);
             }
@@ -42,7 +51,10 @@ namespace DTC.Models.FA18.Upload
             if (_cfg.Misc.BaroToBeUpdated ||
                 _cfg.Misc.HideMapOnHSI ||
                 _cfg.Misc.BullseyeToBeUpdated ||
-                _cfg.Misc.BlimTac)
+                _cfg.Misc.BlimTac ||
+                _cfg.Misc.RadarToBeUpdated ||
+                _cfg.Misc.UFCIFFToBeUpdated ||
+                _cfg.Misc.UFCDLToBeUpdated)
             {
                 AppendCommand(rmfd.GetCommand("OSB-18")); // MENU
                 AppendCommand(rmfd.GetCommand("OSB-18")); // MENU
@@ -56,8 +68,14 @@ namespace DTC.Models.FA18.Upload
 
                 if (_cfg.Misc.BaroToBeUpdated)
                     BuildBaroWarn(ufc, rmfd);
+                if (_cfg.Misc.RadarToBeUpdated)
+                    BuildRadarWarn(radAlt);
                 if (_cfg.Misc.BlimTac)
                     BuildTacBlim(rmfd);
+                if (_cfg.Misc.UFCIFFToBeUpdated)
+                    BuildUFCIFF(ufc);
+                if (_cfg.Misc.UFCDLToBeUpdated)
+                    BuildUFCDL(ufc);
 
                 AppendCommand(rmfd.GetCommand("OSB-07")); // WYPT
 
@@ -101,21 +119,41 @@ namespace DTC.Models.FA18.Upload
         private void BuildBullseye(DCS.Device rmfd)
         {
             selectWp0(rmfd, 0);
-            for (var i = 0; i < _cfg.Misc.BullseyeWP; i++)
+            if (_cfg.Misc.BullseyeWP <= 34)
             {
-                AppendCommand(rmfd.GetCommand("OSB-12"));
+                for (var i = 0; i < _cfg.Misc.BullseyeWP; i++)
+                {
+                    AppendCommand(rmfd.GetCommand("OSB-12"));
+                }
+
+                AppendCommand(Wait());
+                AppendCommand(StartCondition("NotBullseye"));
+                AppendCommand(rmfd.GetCommand("OSB-02"));
+                AppendCommand(EndCondition("NotBullseye"));
+
+                for (var i = 0; i < _cfg.Misc.BullseyeWP; i++)
+                {
+                    AppendCommand(rmfd.GetCommand("OSB-13")); // Prev Waypoint
+                }
             }
-
-            AppendCommand(rmfd.GetCommand("OSB-02"));
-            AppendCommand(Wait());
-            AppendCommand(StartCondition("NotBullseye"));
-            AppendCommand(rmfd.GetCommand("OSB-02"));
-            AppendCommand(EndCondition("NotBullseye"));
-
-            for (var i = 0; i < _cfg.Misc.BullseyeWP; i++)
+            else if (_cfg.Misc.BullseyeWP >= 35)
             {
-                AppendCommand(rmfd.GetCommand("OSB-13")); // Prev Waypoint
-            }
+                var r = 69 - _cfg.Misc.BullseyeWP;
+                for (var i = 0; i < r; i++)
+                {
+                    AppendCommand(rmfd.GetCommand("OSB-13"));
+                }
+
+                AppendCommand(Wait());
+                AppendCommand(StartCondition("NotBullseye"));
+                AppendCommand(rmfd.GetCommand("OSB-02"));
+                AppendCommand(EndCondition("NotBullseye"));
+
+                for (var i = 0; i < r; i++)
+                {
+                    AppendCommand(rmfd.GetCommand("OSB-12"));
+                }
+            }           
         }
 
         private void BuildBingo(DCS.Device ifei)
@@ -207,6 +245,37 @@ namespace DTC.Models.FA18.Upload
             AppendCommand(ufc.GetCommand("ILS"));
             AppendCommand(BuildDigits(ufc, _cfg.Misc.ILSChannel.ToString()));
             AppendCommand(ufc.GetCommand("ENT"));
+        }
+
+        private void BuildUFCIFF(DCS.Device ufc)
+        {
+            AppendCommand(ufc.GetCommand("AP"));
+            AppendCommand(ufc.GetCommand("IFF"));
+            AppendCommand(Wait());
+
+            AppendCommand(StartCondition("UFCIFFOff"));
+            AppendCommand(ufc.GetCommand("OnOff"));
+            AppendCommand(EndCondition("UFCIFFOff"));
+
+        }
+
+        private void BuildUFCDL(DCS.Device ufc)
+        {
+            AppendCommand(ufc.GetCommand("AP"));
+            AppendCommand(ufc.GetCommand("DL"));
+            AppendCommand(WaitShort());
+
+            AppendCommand(StartCondition("UFCDLOff"));
+            AppendCommand(ufc.GetCommand("OnOff"));
+            AppendCommand(EndCondition("UFCDLOff"));
+
+            AppendCommand(ufc.GetCommand("DL"));
+            AppendCommand(Wait());
+
+            AppendCommand(StartCondition("UFCDLOff"));
+            AppendCommand(ufc.GetCommand("OnOff"));
+            AppendCommand(EndCondition("UFCDLOff"));
+
         }
     }
 }

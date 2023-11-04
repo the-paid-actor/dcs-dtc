@@ -209,6 +209,34 @@ namespace DTC.UI.Aircrafts.FA18
                 left += padding + chkWidth;
                 this.Controls.Add(DTCLabel.Make("Hide MAP on HSI", left, top, colWidth, rowHeight));
             }
+
+            //UFC IFF
+            {
+                left = padding;
+                top += padding + rowHeight;
+                this.Controls.Add(DTCCheckBox.Make(left, top, chkWidth, rowHeight, _misc.UFCIFFToBeUpdated, (chk) =>
+                {
+                    _misc.UFCIFFToBeUpdated = chk.Checked;
+                    _parent.DataChangedCallback();
+                }));
+
+                left += padding + chkWidth;
+                this.Controls.Add(DTCLabel.Make("UFC: IFF-ON", left, top, colWidth, rowHeight));
+            }
+
+            //UFC Datalink
+            {
+                left = padding;
+                top += padding + rowHeight;
+                this.Controls.Add(DTCCheckBox.Make(left, top, chkWidth, rowHeight, _misc.UFCDLToBeUpdated, (chk) =>
+                {
+                    _misc.UFCDLToBeUpdated = chk.Checked;
+                    _parent.DataChangedCallback();
+                }));
+
+                left += padding + chkWidth;
+                this.Controls.Add(DTCLabel.Make("UFC: Datalink L4/L16-ON", left, top, colWidth, rowHeight));
+            }
         }
     }
 }

@@ -1,10 +1,15 @@
 ﻿using DTC.Utilities;
+using System.Text.RegularExpressions;
 
 namespace DTC.Models.FA18.Waypoints
 {
     public class Waypoint
     {
-        public int Sequence { get; set; }
+        public static Regex CoordinateRegex { get; private set; } = Coordinate.DegreesMinutesTenThousandthsRegex;
+		public static CoordinateFormat CoordinateFormat { get; private set; } = CoordinateFormat.DegreesMinutesTenThousandths;
+		public static string CoordinateMask { get; private set; } = Coordinate.DegreesMinutesTenThousandthsMask;
+
+		public int Sequence { get; set; }
         public string Name { get; set; }
         public string Latitude { get; set; }
         public string Longitude { get; set; }
@@ -43,7 +48,7 @@ namespace DTC.Models.FA18.Waypoints
 
         public void SetCoordinate(string coord)
         {
-            var match = Coordinate.DegreesMinutesHundredthsRegex.Match(coord);
+            var match = CoordinateRegex.Match(coord);
             Latitude = match.Groups[1].Value;
             Longitude = match.Groups[2].Value;
         }
@@ -56,7 +61,7 @@ namespace DTC.Models.FA18.Waypoints
 
         public static bool IsCoordinateValid(string coord)
         {
-            var match = Coordinate.DegreesMinutesHundredthsRegex.Match(coord);
+            var match = CoordinateRegex.Match(coord);
             return match.Success;
         }
     }

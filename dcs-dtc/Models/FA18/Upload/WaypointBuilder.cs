@@ -90,7 +90,7 @@ namespace DTC.Models.FA18.Upload
             AppendCommand(rmfd.GetCommand("OSB-15"));
         }
 
-        private string BuildCoordinate(Device ufc, string coord)
+        private string BuildCoordinateOld(Device ufc, string coord)
         {
             var sb = new StringBuilder();
 
@@ -142,5 +142,119 @@ namespace DTC.Models.FA18.Upload
 
             return sb.ToString();
         }
-    }
+
+		private string BuildCoordinate(Device ufc, string coord)
+		{
+			// FG - rework to add the option of precise coordinate input
+			/*
+			 * Input of coordinates varies in precise mode if the aircraft is in DCML on SEC
+			 * This here will only work in DCML, as it is the default mode in DCS, and there no efficient way to check which mode the aircraft is in
+			 * 
+			 * DCML
+			 *	Not PRECISE :
+			 *		N123456 > ENT
+			 *		E1234567 > ENT
+			 *		Warning, in not PRECISE, only 6 digits for longitude if first one is 0 : E012345 > ENT
+			 *		
+			 *	PRECISE : N1234 > ENT > 5678
+			 *	
+			 * SEC (not used here information only)
+			 *	Not PRECISE : N123456 > ENT
+			 *	PRECISE : N123456 > ENT > 78
+			*/
+			//
+
+			StringBuilder sb = new StringBuilder();
+
+			string sInputCleaned = RemoveSeparators(coord.Replace(" ", ""));
+			if (sInputCleaned.Length < 1) // we only require the hemisphere or meridian side, for the rest we will remplace any missing digit by 0
+				throw new Exception($"Input coordinate string is incorrect {coord}");
+
+			// hemisphere
+			int iLongitudeOffset = 0; // one more digit for longitudes
+			char c = sInputCleaned[0];
+			if (c == 'N')
+			{
+				sb.Append(ufc.GetCommand("2"));
+			}
+			else if (c == 'S')
+			{
+				sb.Append(ufc.GetCommand("8"));
+			}
+			else if (c == 'E')
+			{
+				sb.Append(ufc.GetCommand("6"));
+				iLongitudeOffset = 1;
+			}
+			else if (c == 'W')
+			{
+				sb.Append(ufc.GetCommand("4"));
+				iLongitudeOffset = 1;
+			}
+			else
+			{
+				throw new Exception($"Input coordinate string is incorrect {coord}");
+			}
+
+			BuildCoordinate_NotPreciseDigits(ufc, sInputCleaned.Substring(1, sInputCleaned.Length - 1), iLongitudeOffset, sb);
+			BuildCoordinate_PreciseDigits(ufc, sInputCleaned.Substring(1, sInputCleaned.Length - 1), iLongitudeOffset, sb);
+
+			Console.WriteLine(sb.ToString());
+			return sb.ToString();
+		}
+
+		private void BuildCoordinate_NotPreciseDigits(Device ufc, string sInputCleanedDigits, int iLongitudeOffset, StringBuilder sb)
+		{
+			sb.Append(StartCondition("IsPreciseNotSelected"));
+
+			int iStartOffset = 0;
+			if (sInputCleanedDigits.Length > 1 && sInputCleanedDigits[0] == '0' && iLongitudeOffset > 0)
+				iStartOffset = 1; // ignore first 0 for longitude  if not precise
+
+			// first 4 or 5 digits
+			for (int i = 0 + iStartOffset; i < 4 + iLongitudeOffset; i++)
+			{
+				BuildCoordinate_AddDigit(ufc, sInputCleanedDigits, i, sb);
+			}
+
+			// not precise, add 2 more digits
+			for (int i = 4 + iLongitudeOffset; i < 6 + iLongitudeOffset; i++)
+			{
+				BuildCoordinate_AddDigit(ufc, sInputCleanedDigits, i, sb);
+			}
+			sb.Append(EndCondition("IsPreciseNotSelected"));
+		}
+
+		private void BuildCoordinate_PreciseDigits(Device ufc, string sInputCleanedDigits, int iLongitudeOffset, StringBuilder sb)
+		{
+			sb.Append(StartCondition("IsPreciseSelected"));
+			// first 4 or 5 digits
+			for (int i = 0; i < 4 + iLongitudeOffset; i++)
+			{
+				BuildCoordinate_AddDigit(ufc, sInputCleanedDigits, i, sb);
+			}
+
+			// enter and add 4 more digits
+			sb.Append(ufc.GetCommand("ENT"));
+			for (int i = 4 + iLongitudeOffset; i < 8 + iLongitudeOffset; i++)
+			{
+				BuildCoordinate_AddDigit(ufc, sInputCleanedDigits, i, sb);
+			}
+			sb.Append(EndCondition("IsPreciseSelected"));
+		}
+
+		private void BuildCoordinate_AddDigit(Device ufc, string sInputCleaned, int iInputPosition, StringBuilder sb)
+		{
+			char c = '0';
+			if (!string.IsNullOrEmpty(sInputCleaned) && iInputPosition < sInputCleaned.Length)
+			{
+				c = sInputCleaned[iInputPosition];
+			}
+
+			if (c < 48 || c > 57)
+				throw new Exception($"Input coordinate string is incorrect {sInputCleaned}");
+
+			sb.Append(ufc.GetCommand(c.ToString()));
+		}
+	}
 }

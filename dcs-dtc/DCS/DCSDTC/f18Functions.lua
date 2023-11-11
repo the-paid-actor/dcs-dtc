@@ -124,6 +124,10 @@ function DTC_FA18C_CheckCondition_IsPreciseNotSelected()
 	return false
 end
 
+function DTC_FA18C_CheckCondition_IsPreciseSelected()
+	return not DTC_FA18C_CheckCondition_IsPreciseNotSelected()
+end
+
 function DTC_FA18C_CheckCondition_IsLatLongNotDecimal()
 	local table = DTC_FA18C_GetRightDDI();
 	local str = table["_1__id:17"] or ""

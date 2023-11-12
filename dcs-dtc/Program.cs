@@ -1,4 +1,5 @@
 ﻿using DTC.UI;
+using System.Globalization;
 
 namespace DTC;
 
@@ -12,6 +13,17 @@ static class Program
     {
         Application.EnableVisualStyles();
         Application.SetCompatibleTextRenderingDefault(false);
-        Application.Run(new MainForm());
+		InitializeCulture();
+
+		Application.Run(new MainForm());
     }
+
+	private static void InitializeCulture()
+	{
+		CultureInfo cultureInfo = CultureInfo.InvariantCulture;
+		//CultureInfo cultureInfo = new CultureInfo("fr-FR");
+		CultureInfo.DefaultThreadCurrentCulture = cultureInfo;
+		Thread.CurrentThread.CurrentCulture = cultureInfo;
+	}
+
 }

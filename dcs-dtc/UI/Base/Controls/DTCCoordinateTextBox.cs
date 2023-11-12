@@ -22,8 +22,6 @@ namespace DTC.UI.Base.Controls
                         textBox.Mask = Coordinate.DegreesMinutesHundredthsMask; break;
                     case CoordinateFormat.DegreesMinutesThousandths:
                         textBox.Mask = Coordinate.DegreesMinutesThousandthsMask; break;
-					case CoordinateFormat.DegreesMinutesTenThousandths:
-						textBox.Mask = Coordinate.DegreesMinutesTenThousandthsMask; break;
 					case CoordinateFormat.DegreesMinutesSecondsHundredths:
                         textBox.Mask = Coordinate.DegreesMinutesSecondsHundredthsMask; break;
                     default:

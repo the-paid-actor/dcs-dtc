@@ -20,14 +20,14 @@ namespace DTC.Utilities
     {
         public static Regex DegreesMinutesHundredthsRegex = new Regex("^([N|S] \\d\\d\\°\\d\\d\\.\\d\\d\\’) ([E|W] \\d\\d\\d\\°\\d\\d\\.\\d\\d\\’)$");
         public static Regex DegreesMinutesThousandthsRegex = new Regex("^([N|S] \\d\\d\\°\\d\\d\\.\\d\\d\\d\\’) ([E|W] \\d\\d\\d\\°\\d\\d\\.\\d\\d\\d\\’)$");
-		public static Regex DegreesMinutesTenThousandthsRegex = new Regex("^([N|S] \\d\\d\\°\\d\\d\\.\\d\\d\\d\\d\\’) ([E|W] \\d\\d\\d\\°\\d\\d\\.\\d\\d\\d\\d\\’)$");
 
 		public static string DegreesMinutesHundredthsMask = ">L 00°00\\.00’ L 000°00\\.00’";
         public static string DegreesMinutesThousandthsMask = ">L 00°00\\.000’ L 000°00\\.000’";
-		public static string DegreesMinutesTenThousandthsMask = ">L 00°00\\.0000’ L 000°00\\.0000’";
 		public static string DegreesMinutesSecondsHundredthsMask = ">L 00°00’00\\.00” L 000°00’00\\.00”";
 
         private readonly CoordinateSharp.Coordinate c;
+        public CoordinateSharp.Coordinate InternalCoordinateSharp {  get { return c; } }
+		
         public readonly CoordinateFormat Format;
 
         public static Coordinate FromString(string lat, string lon, CoordinateFormat format)

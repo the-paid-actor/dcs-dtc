@@ -47,29 +47,7 @@ namespace DTC.Models.FA18
             }
         }
 
-        public void AfterLoadFromJson()
-        {
-            FixWaypointCoordinateFormat();
-        }
-
-        private void FixWaypointCoordinateFormat()
-        {
-            if (this.Waypoints == null) return;
-
-            foreach (var wpt in this.Waypoints.Waypoints)
-            {
-                if (!wpt.Latitude.Contains("°"))
-                {
-                    var parts = wpt.Latitude.Split('.');
-                    wpt.Latitude = $"{parts[0]}°{parts[1]}.{parts[2]}’";
-                }
-                if (!wpt.Longitude.Contains("°"))
-                {
-                    var parts = wpt.Longitude.Split('.');
-                    wpt.Longitude = $"{parts[0]}°{parts[1]}.{parts[2]}’";
-                }
-            }
-        }
+        public void AfterLoadFromJson() { }
 
         public static FA18Configuration FromCompressedString(string s)
         {

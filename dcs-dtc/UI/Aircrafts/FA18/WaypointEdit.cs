@@ -4,6 +4,7 @@ using DTC.Models.FA18.Waypoints;
 using DTC.UI.Base;
 using System;
 using System.Windows.Forms;
+using System.Drawing;
 
 namespace DTC.UI.Aircrafts.FA18
 {
@@ -82,7 +83,8 @@ namespace DTC.UI.Aircrafts.FA18
 		private void LoadWaypoint(Waypoint wpt)
 		{
 			txtWptName.Text = wpt.Name;
-			txtWptLatLong.Text = wpt.Latitude + " " + wpt.Longitude;
+			TbCoordinates.Text = Waypoint.ToStringCoordinate(wpt.GetCoordinate());
+			DisplayCurrentCoordinateDetail();
 			txtWptElevation.Text = wpt.Elevation.ToString();
 		}
 
@@ -92,7 +94,7 @@ namespace DTC.UI.Aircrafts.FA18
 			{
 				var wpt = new Waypoint(0);
 				wpt.Name = txtWptName.Text;
-				wpt.SetCoordinate(txtWptLatLong.Text);
+				wpt.SetCoordinate(GetCurrentCoordinate());
 				wpt.Elevation = int.Parse(txtWptElevation.Text);
 
 				if (_waypoint == null)
@@ -150,10 +152,11 @@ namespace DTC.UI.Aircrafts.FA18
 
 		private bool ValidateLatLong()
 		{
-			if (!txtWptLatLong.MaskFull || !Waypoint.IsCoordinateValid(txtWptLatLong.Text))
+			CoordinateSharp.Coordinate? coordinate = GetCurrentCoordinate();
+			if (coordinate is null)
 			{
 				lblValidation.Text = "Invalid coordinate";
-				txtWptLatLong.Focus();
+				TbCoordinates.Focus();
 				return false;
 			}
 
@@ -188,9 +191,9 @@ namespace DTC.UI.Aircrafts.FA18
 		{
 			cboAirbases.SelectedIndex = -1;
 			txtWptName.Text = "WPT " + (_flightPlan.Waypoints.Count + 1).ToString();
-			txtWptLatLong.Text = "";
+			TbCoordinates.Text = "";
 			txtWptElevation.Text = "0";
-			txtWptLatLong.Focus();
+			TbCoordinates.Focus();
 		}
 
 		private void cboAirbases_SelectedIndexChanged(object sender, EventArgs e)
@@ -198,10 +201,11 @@ namespace DTC.UI.Aircrafts.FA18
 			if (cboAirbases.SelectedIndex > -1)
 			{
 				var item = (AirbaseComboBoxItem)cboAirbases.SelectedItem;
-				var c = Coordinate.FromString(item.Latitude, item.Longitude, CoordinateFormat.DegreesMinutesThousandths);
+				CoordinateSharp.Coordinate? coordinate = ToolsCoordinateSharp.FromString(item.Latitude + " " + item.Longitude);
+
 				var wpt = new Waypoint(0);
 				wpt.Name = item.Airbase;
-				wpt.SetCoordinate(c.ToDegreesMinutesTenThousandths());
+				wpt.SetCoordinate(coordinate);
 				wpt.Elevation = item.Elevation;
 				LoadWaypoint(wpt);
 			}
@@ -216,8 +220,7 @@ namespace DTC.UI.Aircrafts.FA18
 				{
 					this.ParentForm.Invoke(new MethodInvoker(delegate ()
 					{
-						var latlon = coord.ToDegreesMinutesTenThousandths();
-						txtWptLatLong.Text = latlon.Item1 + " " + latlon.Item2;
+						TbCoordinates.Text = Waypoint.ToStringCoordinate(coord.InternalCoordinateSharp);
 						txtWptElevation.Text = elevation;
 					}));
 				});
@@ -225,7 +228,40 @@ namespace DTC.UI.Aircrafts.FA18
 			else
 			{
 				DisposeWptCapture();
+				DisplayCurrentCoordinateDetail();
 			}
+		}
+
+		/// <summary>
+		/// /////////////////////////
+		/// </summary>
+		/// <param name="c"></param>
+		/// <returns></returns>
+
+
+		private CoordinateSharp.Coordinate? GetCurrentCoordinate()
+		{
+			return ToolsCoordinateSharp.FromString(TbCoordinates.Text);
+		}
+
+		private void DisplayCurrentCoordinateDetail()
+		{
+			CoordinateSharp.Coordinate? coordinate = GetCurrentCoordinate();
+			LbCoordinatesDetail.Text = $"{ToolsCoordinateSharp.ToStringDDM(coordinate)}{Environment.NewLine}{ToolsCoordinateSharp.ToStringDMS(coordinate)}{Environment.NewLine}{ToolsCoordinateSharp.ToStringMGRS(coordinate)}";
+		}
+
+		private void ValidateCurrentCoordinate()
+		{
+			CoordinateSharp.Coordinate? coordinate = GetCurrentCoordinate();
+			if (coordinate is not null)
+				TbCoordinates.Text = Waypoint.ToStringCoordinate(coordinate);
+
+			DisplayCurrentCoordinateDetail();
+		}
+
+		private void TbCoordinates_Validating(object sender, System.ComponentModel.CancelEventArgs e)
+		{
+			ValidateCurrentCoordinate();
 		}
 	}
 }

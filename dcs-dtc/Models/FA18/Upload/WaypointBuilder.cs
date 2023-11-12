@@ -4,144 +4,105 @@ using System.Text;
 
 namespace DTC.Models.FA18.Upload
 {
-    public class WaypointBuilder : BaseBuilder
-    {
-        private FA18Configuration _cfg;
+	public class WaypointBuilder : BaseBuilder
+	{
+		private FA18Configuration _cfg;
 
-        public WaypointBuilder(FA18Configuration cfg, IAircraftDeviceManager aircraft, StringBuilder sb) : base(aircraft, sb)
-        {
-            _cfg = cfg;
-        }
+		public WaypointBuilder(FA18Configuration cfg, IAircraftDeviceManager aircraft, StringBuilder sb) : base(aircraft, sb)
+		{
+			_cfg = cfg;
+		}
 
-        private void selectWp0(Device rmfd, int i)
-        {
-            if (i < 140) // It might not notice on the first pass, so we go around once more
-            {
-                AppendCommand(StartCondition("NotAtWp0"));
-                AppendCommand(rmfd.GetCommand("OSB-13"));
-                AppendCommand(EndCondition("NotAtWp0"));
-                selectWp0(rmfd, i + 1);
-            }
-        }
-        public override void Build()
-        {
-            var wpts = _cfg.Waypoints.Waypoints;
-            var wptStart = _cfg.Waypoints.SteerpointStart;
-            var wptEnd = wptStart + wpts.Count;
+		private void selectWp0(Device rmfd, int i)
+		{
+			if (i < 140) // It might not notice on the first pass, so we go around once more
+			{
+				AppendCommand(StartCondition("NotAtWp0"));
+				AppendCommand(rmfd.GetCommand("OSB-13"));
+				AppendCommand(EndCondition("NotAtWp0"));
+				selectWp0(rmfd, i + 1);
+			}
+		}
+		public override void Build()
+		{
+			var wpts = _cfg.Waypoints.Waypoints;
+			var wptStart = _cfg.Waypoints.SteerpointStart;
+			var wptEnd = wptStart + wpts.Count;
 
-            if (wpts.Count == 0)
-            {
-                return;
-            }
+			if (wpts.Count == 0)
+			{
+				return;
+			}
 
-            var wptDiff = wptEnd - wptStart;
+			var wptDiff = wptEnd - wptStart;
 
-            var ufc = _aircraft.GetDevice("UFC");
-            var rmfd = _aircraft.GetDevice("RMFD");
-            AppendCommand(rmfd.GetCommand("OSB-18")); // MENU
-            AppendCommand(rmfd.GetCommand("OSB-18")); // MENU
-            AppendCommand(rmfd.GetCommand("OSB-02")); // HSI
+			var ufc = _aircraft.GetDevice("UFC");
+			var rmfd = _aircraft.GetDevice("RMFD");
+			AppendCommand(rmfd.GetCommand("OSB-18")); // MENU
+			AppendCommand(rmfd.GetCommand("OSB-18")); // MENU
+			AppendCommand(rmfd.GetCommand("OSB-02")); // HSI
 
-            AppendCommand(rmfd.GetCommand("OSB-10")); // DATA
-            AppendCommand(rmfd.GetCommand("OSB-07")); // WYPT
-            AppendCommand(rmfd.GetCommand("OSB-05")); // UFC
+			AppendCommand(rmfd.GetCommand("OSB-10")); // DATA
+			AppendCommand(rmfd.GetCommand("OSB-07")); // WYPT
+			AppendCommand(rmfd.GetCommand("OSB-05")); // UFC
 
-            selectWp0(rmfd, 0);
-            for (var i = 0; i < wptStart; i++)
-            {
-                AppendCommand(rmfd.GetCommand("OSB-12"));
-            }
 
-            for (var i = 0; i < wptDiff; i++)
-            {
-                Waypoint wpt;
-                wpt = wpts[i];
+			CoordinateSharp.CoordinateFormatOptions cfo = new CoordinateSharp.CoordinateFormatOptions()
+			{
+				Format = CoordinateSharp.CoordinateFormatType.Degree_Decimal_Minutes,
+				Round = 4,
+				Display_Leading_Zeros = true,
+				Display_Trailing_Zeros = true,
+				Display_Degree_Symbol = false,
+				Display_Hyphens = false,
+				Display_Symbols = false
+			};
 
-                if (wpt.Blank)
-                {
-                    continue;
-                }
+			selectWp0(rmfd, 0);
+			for (var i = 0; i < wptStart; i++)
+			{
+				AppendCommand(rmfd.GetCommand("OSB-12"));
+			}
 
-                AppendCommand(ufc.GetCommand("Opt1"));
-                AppendCommand(Wait());
-                AppendCommand(BuildCoordinate(ufc, wpt.Latitude));
-                AppendCommand(ufc.GetCommand("ENT"));
-                AppendCommand(WaitLong());
+			for (var i = 0; i < wptDiff; i++)
+			{
+				Waypoint wpt;
+				wpt = wpts[i];
 
-                AppendCommand(BuildCoordinate(ufc, wpt.Longitude));
-                AppendCommand(ufc.GetCommand("ENT"));
-                AppendCommand(WaitLong());
+				CoordinateSharp.Coordinate? coordinate = wpt.GetCoordinate();
 
-                AppendCommand(ufc.GetCommand("Opt3"));
-                AppendCommand(ufc.GetCommand("Opt1"));
-                AppendCommand(BuildDigits(ufc, wpt.Elevation.ToString()));
-                AppendCommand(ufc.GetCommand("ENT"));
-                AppendCommand(Wait());
+				if (coordinate is null)
+				{
+					continue;
+				}
 
-                AppendCommand(rmfd.GetCommand("OSB-12")); // Next Waypoint
-            }
-            for (var i = 0; i < wptDiff; i++)
-            {
-                AppendCommand(rmfd.GetCommand("OSB-13")); // Prev Waypoint
-            }
+				AppendCommand(ufc.GetCommand("Opt1"));
+				AppendCommand(Wait());
+				AppendCommand(BuildCoordinate(ufc, coordinate.Latitude.ToString(cfo)));
+				AppendCommand(ufc.GetCommand("ENT"));
+				AppendCommand(WaitLong());
 
-            AppendCommand(rmfd.GetCommand("OSB-18"));
-            AppendCommand(rmfd.GetCommand("OSB-18"));
-            AppendCommand(rmfd.GetCommand("OSB-15"));
-        }
+				AppendCommand(BuildCoordinate(ufc, coordinate.Longitude.ToString(cfo)));
+				AppendCommand(ufc.GetCommand("ENT"));
+				AppendCommand(WaitLong());
 
-        private string BuildCoordinateOld(Device ufc, string coord)
-        {
-            var sb = new StringBuilder();
+				AppendCommand(ufc.GetCommand("Opt3"));
+				AppendCommand(ufc.GetCommand("Opt1"));
+				AppendCommand(BuildDigits(ufc, wpt.Elevation.ToString()));
+				AppendCommand(ufc.GetCommand("ENT"));
+				AppendCommand(Wait());
 
-            var latStr = RemoveSeparators(coord.Replace(" ", ""));
-            var i = 0;
-            var lon = false;
-            var longLon = false;
+				AppendCommand(rmfd.GetCommand("OSB-12")); // Next Waypoint
+			}
+			for (var i = 0; i < wptDiff; i++)
+			{
+				AppendCommand(rmfd.GetCommand("OSB-13")); // Prev Waypoint
+			}
 
-            foreach (var c in latStr.ToCharArray())
-            {
-                if (c == 'N')
-                {
-                    sb.Append(ufc.GetCommand("2"));
-                    i = 0;
-                }
-                else if (c == 'S')
-                {
-                    sb.Append(ufc.GetCommand("8"));
-                    i = 0;
-                }
-                else if (c == 'E')
-                {
-                    sb.Append(ufc.GetCommand("6"));
-                    i = 0;
-                    lon = true;
-                }
-                else if (c == 'W')
-                {
-                    sb.Append(ufc.GetCommand("4"));
-                    i = 0;
-                    lon = true;
-                }
-                else
-                {
-                    if (i <= 5 || (i <= 6 && longLon))
-                    {
-                        if (!(i == 0 && c == '0' && lon))
-                        {
-                            if (i == 0 && c == '1' && lon) longLon = true;
-
-                            sb.Append(ufc.GetCommand(c.ToString()));
-                            i++;
-                            lon = false;
-                        }
-
-                    }
-                }
-            }
-
-            return sb.ToString();
-        }
+			AppendCommand(rmfd.GetCommand("OSB-18"));
+			AppendCommand(rmfd.GetCommand("OSB-18"));
+			AppendCommand(rmfd.GetCommand("OSB-15"));
+		}
 
 		private string BuildCoordinate(Device ufc, string coord)
 		{
@@ -154,7 +115,7 @@ namespace DTC.Models.FA18.Upload
 			 *	Not PRECISE :
 			 *		N123456 > ENT
 			 *		E1234567 > ENT
-			 *		Warning, in not PRECISE, only 6 digits for longitude if first one is 0 : E012345 > ENT
+			 *		Warning, in not PRECISE, only 6 digits for longitude if first one is 0 : E123456 > ENT
 			 *		
 			 *	PRECISE : N1234 > ENT > 5678
 			 *	

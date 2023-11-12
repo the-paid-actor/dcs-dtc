@@ -45,6 +45,9 @@ namespace DTC.UI.Aircrafts.FA18
 			label1 = new Label();
 			label2 = new Label();
 			lblValidation = new Label();
+			TbCoordinates = new TextBox();
+			LbCoordinatesDetail = new Label();
+			LbCoordinatesFrame = new Label();
 			pnlTop.SuspendLayout();
 			SuspendLayout();
 			// 
@@ -117,7 +120,7 @@ namespace DTC.UI.Aircrafts.FA18
 			btnSave.FlatAppearance.BorderSize = 0;
 			btnSave.FlatStyle = FlatStyle.Flat;
 			btnSave.Font = new Font("Microsoft Sans Serif", 10F, FontStyle.Regular, GraphicsUnit.Point);
-			btnSave.Location = new Point(429, 197);
+			btnSave.Location = new Point(429, 242);
 			btnSave.Name = "btnSave";
 			btnSave.Size = new Size(120, 25);
 			btnSave.TabIndex = 16;
@@ -170,7 +173,7 @@ namespace DTC.UI.Aircrafts.FA18
 			txtWptElevation.BackColor = SystemColors.Window;
 			txtWptElevation.HidePromptOnLeave = false;
 			txtWptElevation.InsertKeyMode = InsertKeyMode.Default;
-			txtWptElevation.Location = new Point(152, 138);
+			txtWptElevation.Location = new Point(152, 190);
 			txtWptElevation.Mask = "";
 			txtWptElevation.Name = "txtWptElevation";
 			txtWptElevation.PromptChar = '_';
@@ -182,15 +185,16 @@ namespace DTC.UI.Aircrafts.FA18
 			// 
 			txtWptLatLong.AllowPromptAsInput = false;
 			txtWptLatLong.BackColor = SystemColors.Window;
-			txtWptLatLong.Format = Utilities.CoordinateFormat.DegreesMinutesTenThousandths;
+			txtWptLatLong.Format = Utilities.CoordinateFormat.DegreesMinutesHundredths;
 			txtWptLatLong.HidePromptOnLeave = false;
 			txtWptLatLong.InsertKeyMode = InsertKeyMode.Default;
-			txtWptLatLong.Location = new Point(152, 104);
+			txtWptLatLong.Location = new Point(138, 245);
 			txtWptLatLong.Name = "txtWptLatLong";
 			txtWptLatLong.PromptChar = '_';
 			txtWptLatLong.Size = new Size(270, 28);
 			txtWptLatLong.TabIndex = 12;
 			txtWptLatLong.ValidatingType = null;
+			txtWptLatLong.Visible = false;
 			// 
 			// label1
 			// 
@@ -201,13 +205,13 @@ namespace DTC.UI.Aircrafts.FA18
 			label1.Padding = new Padding(5, 0, 0, 0);
 			label1.Size = new Size(150, 25);
 			label1.TabIndex = 26;
-			label1.Text = "Lat/Long:";
+			label1.Text = "Coordinates:";
 			label1.TextAlign = ContentAlignment.MiddleLeft;
 			// 
 			// label2
 			// 
 			label2.Font = new Font("Microsoft Sans Serif", 10F, FontStyle.Regular, GraphicsUnit.Point);
-			label2.Location = new Point(1, 138);
+			label2.Location = new Point(1, 190);
 			label2.Margin = new Padding(0);
 			label2.Name = "label2";
 			label2.Padding = new Padding(5, 0, 0, 0);
@@ -220,7 +224,7 @@ namespace DTC.UI.Aircrafts.FA18
 			// 
 			lblValidation.Font = new Font("Microsoft Sans Serif", 10F, FontStyle.Regular, GraphicsUnit.Point);
 			lblValidation.ForeColor = Color.Red;
-			lblValidation.Location = new Point(1, 169);
+			lblValidation.Location = new Point(1, 216);
 			lblValidation.Margin = new Padding(0);
 			lblValidation.Name = "lblValidation";
 			lblValidation.Padding = new Padding(5, 0, 0, 0);
@@ -228,12 +232,50 @@ namespace DTC.UI.Aircrafts.FA18
 			lblValidation.TabIndex = 28;
 			lblValidation.TextAlign = ContentAlignment.MiddleLeft;
 			// 
+			// TbCoordinates
+			// 
+			TbCoordinates.BorderStyle = BorderStyle.None;
+			TbCoordinates.Font = new Font("Microsoft Sans Serif", 9.75F, FontStyle.Regular, GraphicsUnit.Point);
+			TbCoordinates.Location = new Point(157, 108);
+			TbCoordinates.Name = "TbCoordinates";
+			TbCoordinates.Size = new Size(265, 15);
+			TbCoordinates.TabIndex = 29;
+			TbCoordinates.Text = "sdfsfdsf";
+			TbCoordinates.Validating += TbCoordinates_Validating;
+			// 
+			// LbCoordinatesDetail
+			// 
+			LbCoordinatesDetail.Font = new Font("Microsoft Sans Serif", 10F, FontStyle.Regular, GraphicsUnit.Point);
+			LbCoordinatesDetail.ForeColor = Color.RoyalBlue;
+			LbCoordinatesDetail.Location = new Point(152, 131);
+			LbCoordinatesDetail.Margin = new Padding(0);
+			LbCoordinatesDetail.Name = "LbCoordinatesDetail";
+			LbCoordinatesDetail.Padding = new Padding(5, 0, 0, 0);
+			LbCoordinatesDetail.Size = new Size(270, 54);
+			LbCoordinatesDetail.TabIndex = 30;
+			LbCoordinatesDetail.TextAlign = ContentAlignment.MiddleLeft;
+			// 
+			// LbCoordinatesFrame
+			// 
+			LbCoordinatesFrame.BackColor = SystemColors.Window;
+			LbCoordinatesFrame.Font = new Font("Microsoft Sans Serif", 10F, FontStyle.Regular, GraphicsUnit.Point);
+			LbCoordinatesFrame.ForeColor = Color.RoyalBlue;
+			LbCoordinatesFrame.Location = new Point(152, 104);
+			LbCoordinatesFrame.Margin = new Padding(0);
+			LbCoordinatesFrame.Name = "LbCoordinatesFrame";
+			LbCoordinatesFrame.Padding = new Padding(5, 0, 0, 0);
+			LbCoordinatesFrame.Size = new Size(272, 25);
+			LbCoordinatesFrame.TabIndex = 31;
+			LbCoordinatesFrame.TextAlign = ContentAlignment.MiddleLeft;
+			// 
 			// WaypointEdit
 			// 
 			AutoScaleDimensions = new SizeF(96F, 96F);
 			AutoScaleMode = AutoScaleMode.Dpi;
 			BackColor = Color.PaleGoldenrod;
 			BorderStyle = BorderStyle.FixedSingle;
+			Controls.Add(LbCoordinatesDetail);
+			Controls.Add(TbCoordinates);
 			Controls.Add(lblValidation);
 			Controls.Add(label2);
 			Controls.Add(label1);
@@ -246,10 +288,12 @@ namespace DTC.UI.Aircrafts.FA18
 			Controls.Add(label3);
 			Controls.Add(label5);
 			Controls.Add(pnlTop);
+			Controls.Add(LbCoordinatesFrame);
 			Name = "WaypointEdit";
-			Size = new Size(558, 231);
+			Size = new Size(558, 276);
 			pnlTop.ResumeLayout(false);
 			ResumeLayout(false);
+			PerformLayout();
 		}
 
 		#endregion
@@ -268,5 +312,8 @@ namespace DTC.UI.Aircrafts.FA18
 		private Label label1;
 		private Label label2;
 		private Label lblValidation;
+		private TextBox TbCoordinates;
+		private Label LbCoordinatesDetail;
+		private Label LbCoordinatesFrame;
 	}
 }

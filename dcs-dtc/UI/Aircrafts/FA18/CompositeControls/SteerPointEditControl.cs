@@ -21,6 +21,11 @@ namespace DTC.UI.Aircrafts.FA18.CompositeControls
             {
                 domainUpDown1.Items.Add(String.Format("Waypoint {0}", i));
             }
+
+            txtCoord.WillOpenConverter += () =>
+            {
+                txtCoord.CoordinateConverterParent = this.Parent;
+            };
             
             ResetFields();
         }
@@ -30,7 +35,7 @@ namespace DTC.UI.Aircrafts.FA18.CompositeControls
             this._STPEdControls = STPEdControls;
             cbEnable.Checked = stp.Enabled;
             dtcDropDown1.SelectedIndex = stp.useCoordinate ? 0 : 1;
-            txtCoord.Text = stp.Lat + " " + stp.Lon;
+            txtCoord.Coordinate = Coordinate.FromString(stp.Lat, stp.Lon);
             txtAlt.Text = String.Format("{0:00000}", stp.Elev);
             domainUpDown1.SelectedIndex = stp.waypointNumber;
         }
@@ -43,9 +48,9 @@ namespace DTC.UI.Aircrafts.FA18.CompositeControls
             {
                 _stp.useCoordinate = true;
 
-                var match = PrePlannedCoordinate.coordRegex.Match(txtCoord.Text);
-                _stp.Lat = match.Groups[1].Value;
-                _stp.Lon = match.Groups[2].Value;
+                var c = txtCoord.Coordinate.ToHornetPreplannedFormat();
+                _stp.Lat = c.Lat;
+                _stp.Lon = c.Lon;
 
                 if (int.TryParse(txtAlt.Text, out int n))
                     _stp.Elev = n;
@@ -66,7 +71,7 @@ namespace DTC.UI.Aircrafts.FA18.CompositeControls
         public void ResetFields()
         {
             cbEnable.Checked = false;
-            txtCoord.Text = "";
+            txtCoord.Coordinate = null;
             txtAlt.Text = "";
             domainUpDown1.SelectedIndex = 0;
         }
@@ -87,7 +92,7 @@ namespace DTC.UI.Aircrafts.FA18.CompositeControls
 
         private bool ValidateLatLong(out string error)
         {
-            if (!txtCoord.MaskFull || !PrePlannedCoordinate.IsCoordinateValid(txtCoord.Text))
+            if (!txtCoord.Valid)
             {
                 error = "Invalid coordinate";
                 txtCoord.Focus();
@@ -163,8 +168,7 @@ namespace DTC.UI.Aircrafts.FA18.CompositeControls
                 {
                     this.Invoke(new MethodInvoker(delegate ()
                     {
-                        var latlon = coord.ToDegreesMinutesSecondsHundredths();
-                        txtCoord.Text = latlon.Item1 + " " + latlon.Item2;
+                        txtCoord.Coordinate = coord;
                     }));
                 });
             }

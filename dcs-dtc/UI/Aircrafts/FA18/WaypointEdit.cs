@@ -82,7 +82,7 @@ namespace DTC.UI.Aircrafts.FA18
         private void LoadWaypoint(Waypoint wpt)
         {
             txtWptName.Text = wpt.Name;
-            txtWptLatLong.Text = wpt.Latitude + " " + wpt.Longitude;
+            txtWptLatLong.Coordinate = Coordinate.FromString(wpt.Latitude, wpt.Longitude);
             txtWptElevation.Text = wpt.Elevation.ToString();
         }
 
@@ -90,9 +90,11 @@ namespace DTC.UI.Aircrafts.FA18
         {
             if (ValidateFields())
             {
+                var c = txtWptLatLong.Coordinate.ToHornetNonPreciseSteerpointFormat();
                 var wpt = new Waypoint(0);
                 wpt.Name = txtWptName.Text;
-                wpt.SetCoordinate(txtWptLatLong.Text);
+                wpt.Latitude = c.Lat;
+                wpt.Longitude = c.Lon;
                 wpt.Elevation = int.Parse(txtWptElevation.Text);
 
                 if (_waypoint == null)
@@ -150,7 +152,7 @@ namespace DTC.UI.Aircrafts.FA18
 
         private bool ValidateLatLong()
         {
-            if (!txtWptLatLong.MaskFull || !Waypoint.IsCoordinateValid(txtWptLatLong.Text))
+            if (!txtWptLatLong.Valid)
             {
                 lblValidation.Text = "Invalid coordinate";
                 txtWptLatLong.Focus();
@@ -198,10 +200,11 @@ namespace DTC.UI.Aircrafts.FA18
             if (cboAirbases.SelectedIndex > -1)
             {
                 var item = (AirbaseComboBoxItem)cboAirbases.SelectedItem;
-                var c = Coordinate.FromString(item.Latitude, item.Longitude, CoordinateFormat.DegreesMinutesThousandths);
+                var c = Coordinate.FromString(item.Latitude, item.Longitude).ToDegreesMinutesHundredths();
                 var wpt = new Waypoint(0);
                 wpt.Name = item.Airbase;
-                wpt.SetCoordinate(c.ToDegreesMinutesHundredths());
+                wpt.Latitude = c.Lat;
+                wpt.Longitude = c.Lon;
                 wpt.Elevation = item.Elevation;
                 LoadWaypoint(wpt);
             }
@@ -216,8 +219,7 @@ namespace DTC.UI.Aircrafts.FA18
                 {
                     this.ParentForm.Invoke(new MethodInvoker(delegate ()
                     {
-                        var latlon = coord.ToDegreesMinutesHundredths();
-                        txtWptLatLong.Text = latlon.Item1 + " " + latlon.Item2;
+                        txtWptLatLong.Coordinate = coord;
                         txtWptElevation.Text = elevation;
                     }));
                 });

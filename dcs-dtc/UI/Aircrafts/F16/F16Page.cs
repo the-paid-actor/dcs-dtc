@@ -44,9 +44,10 @@ namespace DTC.UI.Aircrafts.F16
 
             foreach (var d in data)
             {
-                var coord = Coordinate.FromString(d.latitude, d.longitude, CoordinateFormat.NativeDCSFormat);
+                var coord = Coordinate.FromDCS(d.latitude, d.longitude).ToDegreesMinutesThousandths();
                 var wpt = new Waypoint(0);
-                wpt.SetCoordinate(coord.ToDegreesMinutesThousandths());
+                wpt.Latitude = coord.Lat;
+                wpt.Longitude = coord.Lon;
                 wpt.Elevation = int.Parse(d.elevation);
                 newWptList.Add(wpt);
             }

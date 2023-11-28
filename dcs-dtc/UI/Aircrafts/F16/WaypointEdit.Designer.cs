@@ -75,7 +75,7 @@ namespace DTC.UI.Aircrafts.F16
             this.chkUseVRP = new DTC.UI.Base.Controls.DTCCheckBox();
             this.chkUseVIP = new DTC.UI.Base.Controls.DTCCheckBox();
             this.txtWptName = new DTC.UI.Base.Controls.DTCTextBox();
-            this.txtWptLatLong = new DTC.UI.Base.Controls.DTCCoordinateTextBox();
+            this.txtWptLatLong = new DTC.UI.Base.Controls.DTCCoordinateTextBox2();
             this.txtWptElevation = new DTC.UI.Base.Controls.DTCNumericTextBox();
             this.btnCancel = new DTC.UI.Base.Controls.DTCButton();
             this.btnSave = new DTC.UI.Base.Controls.DTCButton();
@@ -738,17 +738,12 @@ namespace DTC.UI.Aircrafts.F16
             // 
             // txtWptLatLong
             // 
-            this.txtWptLatLong.AllowPromptAsInput = false;
             this.txtWptLatLong.BackColor = System.Drawing.SystemColors.Window;
             this.txtWptLatLong.Format = DTC.Utilities.CoordinateFormat.DegreesMinutesThousandths;
-            this.txtWptLatLong.HidePromptOnLeave = false;
-            this.txtWptLatLong.InsertKeyMode = System.Windows.Forms.InsertKeyMode.Default;
             this.txtWptLatLong.Location = new System.Drawing.Point(163, 97);
             this.txtWptLatLong.Name = "txtWptLatLong";
-            this.txtWptLatLong.PromptChar = '_';
             this.txtWptLatLong.Size = new System.Drawing.Size(294, 25);
             this.txtWptLatLong.TabIndex = 12;
-            this.txtWptLatLong.ValidatingType = null;
             // 
             // txtWptElevation
             // 
@@ -960,7 +955,7 @@ namespace DTC.UI.Aircrafts.F16
 		}
 
 		#endregion
-		private DTC.UI.Base.Controls.DTCCoordinateTextBox txtWptLatLong;
+		private DTC.UI.Base.Controls.DTCCoordinateTextBox2 txtWptLatLong;
 		private System.Windows.Forms.Label label5;
 		private DTC.UI.Base.Controls.DTCTextBox txtWptName;
 		private DTCNumericTextBox txtWptElevation;

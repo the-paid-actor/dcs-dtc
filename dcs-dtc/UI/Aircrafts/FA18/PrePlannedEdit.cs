@@ -30,7 +30,7 @@ namespace DTC.UI.Aircrafts.FA18
             _prePlanned = coord;
             _station = station;
             _pos = position;
-            txtWptLatLong.Text = coord.Lat + coord.Lon;
+            txtWptLatLong.Coordinate = Coordinate.FromString(coord.Lat, coord.Lon);
             txtWptElevation.Text = coord.Elev.ToString();
         }
 
@@ -42,10 +42,9 @@ namespace DTC.UI.Aircrafts.FA18
                 {
                     _prePlanned.Elev = n;
                 }
-                var match = PrePlannedCoordinate.coordRegex.Match(txtWptLatLong.Text);
-
-                _prePlanned.Lat = match.Groups[1].Value;
-                _prePlanned.Lon = match.Groups[2].Value;
+                var c = txtWptLatLong.Coordinate.ToHornetPreplannedFormat();
+                _prePlanned.Lat = c.Lat;
+                _prePlanned.Lon = c.Lon;
                 _callback(_prePlanned, _station, _pos);
                 CloseDialog();
             }
@@ -86,7 +85,7 @@ namespace DTC.UI.Aircrafts.FA18
 
         private bool ValidateLatLong()
         {
-            if (!txtWptLatLong.MaskFull || !PrePlannedCoordinate.IsCoordinateValid(txtWptLatLong.Text))
+            if (!txtWptLatLong.Valid)
             {
                 lblValidation.Text = "Invalid coordinate";
                 txtWptLatLong.Focus();
@@ -124,8 +123,7 @@ namespace DTC.UI.Aircrafts.FA18
                 {
                     this.ParentForm.Invoke(new MethodInvoker(delegate ()
                     {
-                        var latlon = coord.ToDegreesMinutesSecondsHundredths();
-                        txtWptLatLong.Text = latlon.Item1 + " " + latlon.Item2;
+                        txtWptLatLong.Coordinate = coord;
                         txtWptElevation.Text = elevation;
                     }));
                 });

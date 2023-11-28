@@ -42,9 +42,10 @@ namespace DTC.UI.Aircrafts.FA18
 
             foreach (var d in data)
             {
-                var coord = Coordinate.FromString(d.latitude, d.longitude, CoordinateFormat.NativeDCSFormat);
+                var coord = Coordinate.FromDCS(d.latitude, d.longitude).ToDegreesMinutesHundredths();
                 var wpt = new Waypoint(0);
-                wpt.SetCoordinate(coord.ToDegreesMinutesHundredths());
+                wpt.Latitude = coord.Lat;
+                wpt.Longitude = coord.Lon;
                 wpt.Elevation = int.Parse(d.elevation);
                 newWptList.Add(wpt);
             }

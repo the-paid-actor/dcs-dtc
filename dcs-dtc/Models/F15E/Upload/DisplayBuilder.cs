@@ -213,6 +213,16 @@ namespace DTC.Models.F15E.Upload
                     AppendCommand(device.GetCommand("PB11"));
                 }
             }
+            else if (display == Display.SMART)
+            {
+                AppendCommand(device.GetCommand("PB11"));
+                AppendCommand(device.GetCommand("PB14"));
+                if (returnToRoot)
+                {
+                    AppendCommand(device.GetCommand("PB11"));
+                    AppendCommand(device.GetCommand("PB11"));
+                }
+            }
         }
     }
 }

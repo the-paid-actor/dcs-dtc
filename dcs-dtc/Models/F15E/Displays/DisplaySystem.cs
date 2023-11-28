@@ -14,7 +14,8 @@
         TEWS = 9,
         TPOD = 10,
         AGDLVRY = 11,
-        TF = 12
+        TF = 12,
+        SMART = 13
     }
 
     public enum DisplayMode

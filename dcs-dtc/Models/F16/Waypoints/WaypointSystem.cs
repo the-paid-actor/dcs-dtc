@@ -17,11 +17,6 @@ namespace DTC.Models.F16.Waypoints
         public WaypointSystem()
 		{
 			Waypoints = new List<Waypoint>();
-			SteerpointStart = 1;
-			SteerpointEnd = 20;
-			EnableUpload = true;
-			EnableUploadCoordsElevation = true;
-			EnableUploadTOS = true;
 		}
 
 		public Waypoint Add(Waypoint wpt)

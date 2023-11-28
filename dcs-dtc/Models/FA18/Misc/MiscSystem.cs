@@ -40,8 +40,6 @@ namespace DTC.Models.FA18.Misc
 
             TACANChannel = 1;
             TACANBand = TACANBands.X;
-
-            EnableUpload = true;
         }
 
         public string SetBullseyeWP(string txt)

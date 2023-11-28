@@ -8,7 +8,6 @@
 		public MFDSystem()
 		{
 			ResetToDefault();
-			EnableUpload = true;
 		}
 
 		private void ResetToDefault()

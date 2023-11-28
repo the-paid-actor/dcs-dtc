@@ -23,8 +23,6 @@ namespace DTC.Models.F16.CMS
 
 			ChaffBingo = 10;
 			FlareBingo = 10;
-
-			EnableUpload = true;
 		}
 
 		public void AfterLoadFromJson()

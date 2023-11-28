@@ -17,8 +17,6 @@ namespace DTC.Models.FA18.CMS
 			Programs[2] = new Program(3, 2, 2, (decimal)1.0, 5, false) ;
 			Programs[3] = new Program(4, 2, 2, (decimal)0.5, 10, false) ;
 			Programs[4] = new Program(5, 1, 1, (decimal)1.0, 2, false) ;
-
-			EnableUpload = true;
 		}
 
 		public Program[] getDefaults()

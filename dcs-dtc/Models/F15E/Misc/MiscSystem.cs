@@ -33,8 +33,6 @@ namespace DTC.Models.F15E.Misc
             TACANChannel = 1;
             TACANBand = TACANBands.X;
             ILSFrequency = 108.10M;
-
-            EnableUpload = true;
         }
 
         public string SetILSFrequency(string txt)

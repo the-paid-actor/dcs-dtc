@@ -15,8 +15,6 @@ namespace DTC.Models.FA18.PrePlanned
 
         public PrePlannedSystem()
         {
-            EnableUpload = false;
-
             Stations = new Dictionary<int, PrePlannedStation>();
             Stations.Add(2, new PrePlannedStation(2));
             Stations.Add(3, new PrePlannedStation(3));

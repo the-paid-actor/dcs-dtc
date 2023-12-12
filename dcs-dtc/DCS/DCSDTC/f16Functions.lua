@@ -28,6 +28,15 @@ function DTC_F16CM_CheckCondition_RightHdptNotOn()
 	return false
 end
 
+function DTC_F16CM_CheckCondition_RadioNotBoth()
+	local table = DTC_F16CM_GetDED();
+	local str = table["Receiver Mode"] or "";
+	if str == "MAIN" then
+		return true
+	end
+	return false
+end
+
 function DTC_F16CM_CheckCondition_HARM()
 	local table = DTC_F16CM_GetDED();
 	local str = table["Misc Item 0 Name"];

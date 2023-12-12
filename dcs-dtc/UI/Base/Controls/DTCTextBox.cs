@@ -1,7 +1,4 @@
-﻿using System;
-using System.Drawing;
-using System.Windows.Forms;
-
+﻿
 namespace DTC.UI.Base.Controls
 {
     public class DTCTextBox : UserControl
@@ -101,6 +98,19 @@ namespace DTC.UI.Base.Controls
         }
 
         private bool _firstClick = true;
+
+        protected override void OnEnabledChanged(EventArgs e)
+        {
+            if (this.Enabled)
+            {
+                this.BackColor = Color.White;
+            }
+            else
+            {
+                this.BackColor = SystemColors.Control;
+            }
+            base.OnEnabledChanged(e);
+        }
 
         private void TextBox_Click(object sender, EventArgs e)
         {

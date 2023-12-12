@@ -1,5 +1,4 @@
 ﻿using DTC.Utilities;
-using System;
 using System.Globalization;
 
 namespace DTC.UI.Base
@@ -23,7 +22,7 @@ namespace DTC.UI.Base
 
         private void DataReceiver_DataReceived(DataReceiver.Data d)
         {
-            var coord = Coordinate.FromString(d.latitude, d.longitude, CoordinateFormat.NativeDCSFormat);
+            var coord = Coordinate.FromDCS(d.latitude, d.longitude);
             var elevation = decimal.Truncate(decimal.Parse(d.elevation, NumberStyles.Any, CultureInfo.InvariantCulture) * new decimal(3.281)).ToString("0");
             _callback(coord, elevation);
         }

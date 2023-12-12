@@ -14,7 +14,6 @@ namespace DTC.Models.FA18.Waypoints
 		{
 			Waypoints = new List<Waypoint>();
 			SteerpointStart = 0;
-			EnableUpload = true;
 		}
 
 		public Waypoint Add(Waypoint wpt)

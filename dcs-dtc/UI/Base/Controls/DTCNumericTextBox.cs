@@ -12,7 +12,8 @@ namespace DTC.UI.Base.Controls
             None,
             Degree,
             Feet,
-            NauticalMile
+            NauticalMile,
+            Octal
         }
 
         public event TextBoxChangedCallback TextBoxChanged;
@@ -41,7 +42,19 @@ namespace DTC.UI.Base.Controls
             set
             {
                 var str = value?.ToString(CultureInfo.InvariantCulture);
-                if (!string.IsNullOrEmpty(str) && AllowFraction && !str.Contains(".")) str = str + ".0";
+
+                if (!string.IsNullOrEmpty(str))
+                {
+                    if (AllowFraction && !str.Contains("."))
+                    {
+                        str = str + ".0";
+                    }
+                    if (!AllowFraction && str.Contains("."))
+                    {
+                        str = str.Split('.')[0];
+                    }
+                }
+
                 suppressTextChanged = true;
                 textBox.Text = str;
                 suppressTextChanged = false;
@@ -61,7 +74,7 @@ namespace DTC.UI.Base.Controls
                 label.Visible = true;
                 textBox.Width = label.Left - 5;
 
-                if (unit == UnitEnum.None)
+                if (unit == UnitEnum.None || unit == UnitEnum.Octal)
                 {
                     label.Visible = false;
                     textBox.Width += label.Right - textBox.Right - 5;
@@ -113,6 +126,17 @@ namespace DTC.UI.Base.Controls
                 if (result < min || result > max)
                 {
                     return false;
+                }
+
+                if (unit == UnitEnum.Octal)
+                {
+                    foreach (var c in textBox.Text)
+                    {
+                        if (c < '0' || c > '7')
+                        {
+                            return false;
+                        }
+                    }
                 }
 
                 if (currentValue != result)

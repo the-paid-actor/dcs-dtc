@@ -83,6 +83,12 @@ namespace DTC.Models.F16.Waypoints
             Longitude = match.Groups[2].Value;
         }
 
+        public void SetCoordinate((string, string) latlon)
+        {
+            Latitude = latlon.Item1;
+            Longitude = latlon.Item2;
+        }
+
         public static bool IsCoordinateValid(string coord)
         {
             var match = Coordinate.DegreesMinutesThousandthsRegex.Match(coord);

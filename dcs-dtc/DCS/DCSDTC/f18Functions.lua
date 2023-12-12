@@ -16,6 +16,19 @@ function DTC_FA18C_GetIFEI()
 	return DTC_ParseDisplay(5)
 end
 
+function DTC_FA18C_GetUFC()
+	return DTC_ParseDisplay(6)
+end
+
+function DTC_FA18C_CheckCondition_NotAtWp0()
+	local table = DTC_FA18C_GetRightDDI();
+	local str = table["WYPT_Page_Number"]
+	if str == "0" then
+		return false
+	end 
+	return true
+end
+
 function DTC_FA18C_CheckCondition_NotAtWp0()
 	local table = DTC_FA18C_GetRightDDI();
 	local str = table["WYPT_Page_Number"]
@@ -31,6 +44,26 @@ function DTC_FA18C_CheckCondition_BingoIsZero()
 	if str == "0" then
 		return true
 	end 
+	return false
+end
+
+function DTC_FA18C_CheckCondition_InRadioChannel(radio, channel)
+	local table = DTC_FA18C_GetUFC();
+	local varName = "UFC_Comm"..radio.."Display"
+	local str = table[varName] or ""
+	local currChannel = str:gsub("%s+", ""):gsub("`", "1"):gsub("~", "2")
+	if currChannel == tostring(channel) then
+		return true
+	end
+	return false
+end
+
+function DTC_FA18C_CheckCondition_IsRadioGuardDisabled()
+	local table = DTC_FA18C_GetUFC();
+	local str = table["UFC_OptionCueing1"] or ""
+	if str ~= ":" then
+		return true
+	end
 	return false
 end
 
@@ -82,6 +115,24 @@ function DTC_FA18C_CheckCondition_IsPPNotSelected(number)
 	return false
 end
 
+function DTC_FA18C_CheckCondition_IsPreciseNotSelected()
+	local table = DTC_FA18C_GetRightDDI();
+	local str = table["PRECISE_1_box__id:26"] or "x"
+	if str == "x" then
+		return true
+	end
+	return false
+end
+
+function DTC_FA18C_CheckCondition_IsLatLongNotDecimal()
+	local table = DTC_FA18C_GetRightDDI();
+	local str = table["_1__id:17"] or ""
+	if str == "S" then
+		return true
+	end 
+	return false
+end
+
 function DTC_FA18C_CheckCondition_LmfdNotTac()
 	local table = DTC_FA18C_GetLeftDDI();
 	local str = table["TAC_id:23"] or ""
@@ -98,6 +149,15 @@ function DTC_FA18C_CheckCondition_RmfdNotSupt()
 		return false
 	end 
 	return true
+end
+
+function DTC_FA18C_CheckCondition_RmfdSupt()
+	local table = DTC_FA18C_GetRightDDI();
+	local str = table["SUPT_id:13"] or ""
+	if str == "SUPT" then
+		return true
+	end 
+	return false
 end
 
 function DTC_FA18C_CheckCondition_NotBullseye()
@@ -146,7 +206,30 @@ function DTC_FA18C_CheckCondition_DispenserOff()
 	return false
 end
 
+function DTC_FA18C_GetCurrentWaypoint()
+	local table = DTC_FA18C_GetRightDDI();
+	local str = table["WYPT_Page_Number"]
+	return tonumber(str);
+end
+
+function DTC_FA18C_ExecCmd_GoToWaypoint(desired, dev, cmdInc, cmdDec, delay, act)
+	while true do
+		local wpt = DTC_FA18C_GetCurrentWaypoint();
+		if wpt == desired then
+			break
+		end
+		if wpt > desired then
+			DTC_ExecCommand(dev, cmdDec, delay, act)
+		end
+		if wpt < desired then
+			DTC_ExecCommand(dev, cmdInc, delay, act)
+		end
+		coroutine.yield()
+	end
+end
+
 function DTC_FA18C_AfterNextFrame(params)
+	--DTC_DebugDisplay(DTC_FA18C_GetRightDDI())
 	local mainPanel = GetDevice(0);
 	local ipButton = mainPanel:get_argument_value(99);
 	local hudVideoSwitch = mainPanel:get_argument_value(144);

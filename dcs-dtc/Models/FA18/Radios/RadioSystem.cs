@@ -11,7 +11,6 @@ namespace DTC.Models.FA18.Radios
 		public RadioSystem()
 		{
 			ResetToDefaults();
-			EnableUpload = true;
 		}
 
 		public void ResetToDefaults()

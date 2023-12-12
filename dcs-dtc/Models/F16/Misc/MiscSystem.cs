@@ -49,8 +49,6 @@ namespace DTC.Models.F16.Misc
             TACANBand = TACANBands.X;
             ILSFrequency = 108.10M;
             ILSCourse = 0;
-
-            EnableUpload = true;
         }
 
         public string SetBullseyeWP(string txt)

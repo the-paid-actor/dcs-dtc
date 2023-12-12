@@ -30,7 +30,7 @@
         {
             this.dtcDropDown1 = new DTC.UI.Base.Controls.DTCDropDown();
             this.cbEnable = new DTC.UI.Base.Controls.DTCCheckBox();
-            this.txtCoord = new DTC.UI.Base.Controls.DTCCoordinateTextBox();
+            this.txtCoord = new DTC.UI.Base.Controls.DTCCoordinateTextBox2();
             this.domainUpDown1 = new System.Windows.Forms.DomainUpDown();
             this.txtAlt = new DTC.UI.Base.Controls.DTCTextBox();
             this.btnCapture = new DTC.UI.Base.Controls.DTCButton();
@@ -62,17 +62,12 @@
             // 
             // txtCoord
             // 
-            this.txtCoord.AllowPromptAsInput = true;
             this.txtCoord.BackColor = System.Drawing.SystemColors.Window;
-            this.txtCoord.HidePromptOnLeave = false;
-            this.txtCoord.InsertKeyMode = System.Windows.Forms.InsertKeyMode.Default;
             this.txtCoord.Location = new System.Drawing.Point(151, 3);
             this.txtCoord.Format = DTC.Utilities.CoordinateFormat.DegreesMinutesSecondsHundredths;
             this.txtCoord.Name = "txtCoord";
-            this.txtCoord.PromptChar = '_';
             this.txtCoord.Size = new System.Drawing.Size(224, 28);
             this.txtCoord.TabIndex = 3;
-            this.txtCoord.ValidatingType = null;
             // 
             // domainUpDown1
             // 
@@ -132,7 +127,7 @@
 
         private Base.Controls.DTCDropDown dtcDropDown1;
         private Base.Controls.DTCCheckBox cbEnable;
-        private Base.Controls.DTCCoordinateTextBox txtCoord;
+        private Base.Controls.DTCCoordinateTextBox2 txtCoord;
         private System.Windows.Forms.DomainUpDown domainUpDown1;
         private Base.Controls.DTCTextBox txtAlt;
         private Base.Controls.DTCButton btnCapture;

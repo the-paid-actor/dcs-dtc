@@ -136,7 +136,7 @@ namespace DTC.UI.Aircrafts.F16
             {
                 var item = (AirbaseComboBoxItem)cboAirbases.SelectedItem;
                 _waypoint.Name = item.Airbase;
-                _waypoint.SetCoordinate(item.Latitude + " " + item.Longitude);
+                _waypoint.SetCoordinate((item.Latitude, item.Longitude));
                 _waypoint.Elevation = item.Elevation;
                 LoadWaypoint();
             }
@@ -151,7 +151,7 @@ namespace DTC.UI.Aircrafts.F16
                 {
                     this.ParentForm.Invoke(new MethodInvoker(delegate ()
                     {
-                        txtWptLatLong.Text = coord.ToDegreesMinutesThousandths();
+                        txtWptLatLong.Coordinate = coord;
                         txtWptElevation.Value = decimal.Parse(elevation);
                     }));
                 });
@@ -252,7 +252,7 @@ namespace DTC.UI.Aircrafts.F16
         private void LoadWaypoint()
         {
             txtWptName.Text = _waypoint.Name;
-            txtWptLatLong.Text = _waypoint.Latitude + " " + _waypoint.Longitude;
+            txtWptLatLong.Coordinate = Coordinate.FromString(_waypoint.Latitude, _waypoint.Longitude);
             txtWptElevation.Value = _waypoint.Elevation;
             txtTimeOverSteerpoint.Text = _waypoint.TimeOverSteerpoint;
 
@@ -306,7 +306,7 @@ namespace DTC.UI.Aircrafts.F16
                 return false;
             }
 
-            if (!txtWptLatLong.MaskFull || !Waypoint.IsCoordinateValid(txtWptLatLong.Text))
+            if (!txtWptLatLong.Valid)
             {
                 lblValidation.Text = "Invalid coordinate";
                 txtWptLatLong.Focus();
@@ -320,8 +320,10 @@ namespace DTC.UI.Aircrafts.F16
                 return false;
             }
 
+            var c = txtWptLatLong.Coordinate.ToDegreesMinutesThousandths();
             _waypoint.Name = txtWptName.Text;
-            _waypoint.SetCoordinate(txtWptLatLong.Text);
+            _waypoint.Latitude = c.Lat;
+            _waypoint.Longitude = c.Lon;
             _waypoint.Elevation = (int)(txtWptElevation.Value ?? 0);
             _waypoint.TimeOverSteerpoint = txtTimeOverSteerpoint.Text;
 

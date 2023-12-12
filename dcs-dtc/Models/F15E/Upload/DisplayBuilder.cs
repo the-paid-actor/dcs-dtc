@@ -171,6 +171,10 @@ namespace DTC.Models.F15E.Upload
             {
                 AppendCommand(device.GetCommand("PB03"));
             }
+            else if (display == Display.TF)
+            {
+                AppendCommand(device.GetCommand("PB04"));
+            }
             else if (display == Display.TSD)
             {
                 AppendCommand(device.GetCommand("PB05"));
@@ -203,6 +207,16 @@ namespace DTC.Models.F15E.Upload
             {
                 AppendCommand(device.GetCommand("PB11"));
                 AppendCommand(device.GetCommand("PB02"));
+                if (returnToRoot)
+                {
+                    AppendCommand(device.GetCommand("PB11"));
+                    AppendCommand(device.GetCommand("PB11"));
+                }
+            }
+            else if (display == Display.SMART)
+            {
+                AppendCommand(device.GetCommand("PB11"));
+                AppendCommand(device.GetCommand("PB14"));
                 if (returnToRoot)
                 {
                     AppendCommand(device.GetCommand("PB11"));

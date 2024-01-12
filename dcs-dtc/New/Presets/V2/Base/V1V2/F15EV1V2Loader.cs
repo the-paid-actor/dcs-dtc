@@ -1,5 +1,8 @@
 ﻿using DTC.New.Presets.V2.Aircrafts.F15E.Systems;
 using DTC.New.Presets.V2.Base.Systems;
+using DTC.Utilities;
+using Newtonsoft.Json;
+using System.Dynamic;
 using F15EConfigurationV1 = DTC.New.Presets.V1.Aircrafts.F15E.F15EConfiguration;
 using F15EConfigurationV2 = DTC.New.Presets.V2.Aircrafts.F15E.F15EConfiguration;
 
@@ -7,25 +10,28 @@ namespace DTC.New.Presets.V2.Base.V1V2;
 
 internal class F15EV1V2Loader
 {
-    public static F15EConfigurationV2 GetV2(F15EConfigurationV1 v1)
+    public static F15EConfigurationV2 GetV2(string json)
     {
+        var v1 = JsonConvert.DeserializeObject<F15EConfigurationV1>(json);
         var v2 = new F15EConfigurationV2();
+
         CopyUpload(v1, v2);
         CopyWaypoints(v1, v2);
         CopyRadios(v1, v2);
         CopyDisplays(v1, v2);
         CopyMisc(v1, v2);
 
-        Cleanup(v1, v2);
+        Cleanup(v2, json);
 
         return v2;
     }
 
-    private static void Cleanup(F15EConfigurationV1 v1, F15EConfigurationV2 v2)
+    private static void Cleanup(F15EConfigurationV2 v2, string json)
     {
+        var originalCfg = JsonConvert.DeserializeObject<ExpandoObject>(json);
         var anyNull = false;
 
-        if (v1.Waypoints == null)
+        if (!Util.HasProperty(originalCfg, "Waypoints"))
         {
             v2.RouteA = null;
             v2.RouteB = null;
@@ -33,9 +39,9 @@ internal class F15EV1V2Loader
             anyNull = true;
         }
 
-        if (v1.Radios == null) { v2.Radios = null; anyNull = true; }
-        if (v1.Displays == null) { v2.Displays = null; anyNull = true; }
-        if (v1.Misc == null) { v2.Misc = null; anyNull = true; }
+        if (!Util.HasProperty(originalCfg, "Radios")) { v2.Radios = null; anyNull = true; }
+        if (!Util.HasProperty(originalCfg, "Displays")) { v2.Displays = null; anyNull = true; }
+        if (!Util.HasProperty(originalCfg, "Misc")) { v2.Misc = null; anyNull = true; }
 
         if (anyNull)
         {

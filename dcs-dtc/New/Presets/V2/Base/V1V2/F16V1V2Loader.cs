@@ -1,5 +1,8 @@
 ﻿using DTC.New.Presets.V2.Aircrafts.F16.Systems;
 using DTC.New.Presets.V2.Base.Systems;
+using DTC.Utilities;
+using Newtonsoft.Json;
+using System.Dynamic;
 using System.Globalization;
 using F16ConfigurationV1 = DTC.New.Presets.V1.Aircrafts.F16.F16Configuration;
 using F16ConfigurationV2 = DTC.New.Presets.V2.Aircrafts.F16.F16Configuration;
@@ -8,8 +11,9 @@ namespace DTC.New.Presets.V2.Base.V1V2;
 
 internal class F16V1V2Loader
 {
-    public static F16ConfigurationV2 GetV2(F16ConfigurationV1 v1)
+    public static F16ConfigurationV2 GetV2(string json)
     {
+        var v1 = JsonConvert.DeserializeObject<F16ConfigurationV1>(json);
         var v2 = new F16ConfigurationV2();
 
         CopyUpload(v1, v2);
@@ -21,22 +25,23 @@ internal class F16V1V2Loader
         CopyHTS(v1, v2);
         CopyMisc(v1, v2);
 
-        Cleanup(v1, v2);
+        Cleanup(v2, json);
 
         return v2;
     }
 
-    private static void Cleanup(F16ConfigurationV1 v1, F16ConfigurationV2 v2)
+    private static void Cleanup(F16ConfigurationV2 v2, string json)
     {
+        var originalCfg = JsonConvert.DeserializeObject<ExpandoObject>(json);
         var anyNull = false;
 
-        if (v1.Waypoints == null) { v2.Waypoints = null; anyNull = true; }
-        if (v1.Radios == null) { v2.Radios = null; anyNull = true; }
-        if (v1.CMS == null) { v2.CMS = null; anyNull = true; }
-        if (v1.MFD == null) { v2.MFD = null; anyNull = true; }
-        if (v1.HARM == null) { v2.HARM = null; anyNull = true; }
-        if (v1.HTS == null) { v2.HTS = null; anyNull = true; }
-        if (v1.Misc == null) { v2.Misc = null; anyNull = true; }
+        if (!Util.HasProperty(originalCfg, "Waypoints")) { v2.Waypoints = null; anyNull = true; }
+        if (!Util.HasProperty(originalCfg, "Radios")) { v2.Radios = null; anyNull = true; }
+        if (!Util.HasProperty(originalCfg, "CMS")) { v2.CMS = null; anyNull = true; }
+        if (!Util.HasProperty(originalCfg, "MFD")) { v2.MFD = null; anyNull = true; }
+        if (!Util.HasProperty(originalCfg, "HARM")) { v2.HARM = null; anyNull = true; }
+        if (!Util.HasProperty(originalCfg, "HTS")) { v2.HTS = null; anyNull = true; }
+        if (!Util.HasProperty(originalCfg, "Misc")) { v2.Misc = null; anyNull = true; }
 
         if (anyNull)
         {

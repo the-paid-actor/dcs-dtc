@@ -1,7 +1,21 @@
-﻿namespace DTC.Utilities
+﻿using System.Dynamic;
+
+namespace DTC.Utilities
 {
     public class Util
     {
+        public static bool HasProperty(dynamic obj, string name)
+        {
+            Type objType = obj.GetType();
+
+            if (objType == typeof(ExpandoObject))
+            {
+                return ((IDictionary<string, object>)obj).ContainsKey(name);
+            }
+
+            return objType.GetProperty(name) != null;
+        }
+
         public static string Base64Encode(string plainText)
         {
             var plainTextBytes = System.Text.Encoding.UTF8.GetBytes(plainText);

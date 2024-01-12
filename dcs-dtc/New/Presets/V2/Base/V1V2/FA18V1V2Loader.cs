@@ -1,6 +1,8 @@
 ﻿using DTC.New.Presets.V2.Aircrafts.FA18.Systems;
 using DTC.New.Presets.V2.Base.Systems;
 using DTC.Utilities;
+using Newtonsoft.Json;
+using System.Dynamic;
 using System.Globalization;
 using FA18ConfigurationV1 = DTC.New.Presets.V1.Aircrafts.FA18.FA18Configuration;
 using FA18ConfigurationV2 = DTC.New.Presets.V2.Aircrafts.FA18.FA18Configuration;
@@ -9,8 +11,9 @@ namespace DTC.New.Presets.V2.Base.V1V2;
 
 internal class FA18V1V2Loader
 {
-    public static FA18ConfigurationV2 GetV2(FA18ConfigurationV1 v1)
+    public static FA18ConfigurationV2 GetV2(string json)
     {
+        var v1 = JsonConvert.DeserializeObject<FA18ConfigurationV1>(json);
         var v2 = new FA18ConfigurationV2();
 
         CopyUpload(v1, v2);
@@ -21,20 +24,22 @@ internal class FA18V1V2Loader
         CopyCMS(v1, v2);
         CopyMisc(v1, v2);
 
-        Cleanup(v1, v2);
+        Cleanup(v2, json);
 
         return v2;
     }
 
-    private static void Cleanup(FA18ConfigurationV1 v1, FA18ConfigurationV2 v2)
+    private static void Cleanup(FA18ConfigurationV2 v2, string json)
     {
+        var originalCfg = JsonConvert.DeserializeObject<ExpandoObject>(json);
         var anyNull = false;
-        if (v1.Waypoints == null) { v2.Waypoints = null; anyNull = true; }
-        if (v1.Sequences == null) { v2.Sequences = null; anyNull = true; }
-        if (v1.PrePlanned == null) { v2.PrePlanned = null; anyNull = true; }
-        if (v1.Radios == null) { v2.Radios = null; anyNull = true; }
-        if (v1.CMS == null) { v2.CMS = null; anyNull = true; }
-        if (v1.Misc == null) { v2.Misc = null; anyNull = true; }
+
+        if (!Util.HasProperty(originalCfg, "Waypoints")) { v2.Waypoints = null; anyNull = true; }
+        if (!Util.HasProperty(originalCfg, "Sequences")) { v2.Sequences = null; anyNull = true; }
+        if (!Util.HasProperty(originalCfg, "PrePlanned")) { v2.PrePlanned = null; anyNull = true; }
+        if (!Util.HasProperty(originalCfg, "Radios")) { v2.Radios = null; anyNull = true; }
+        if (!Util.HasProperty(originalCfg, "CMS")) { v2.CMS = null; anyNull = true; }
+        if (!Util.HasProperty(originalCfg, "Misc")) { v2.Misc = null; anyNull = true; }
 
         if (anyNull)
         {

@@ -11,18 +11,15 @@ internal class ConfigV1V2
     {
         if (type == typeof(FA18Configuration))
         {
-            var cfg = JsonConvert.DeserializeObject<V1.Aircrafts.FA18.FA18Configuration>(s);
-            return FA18V1V2Loader.GetV2(cfg);
+            return FA18V1V2Loader.GetV2(s);
         }
         else if (type == typeof(F16Configuration))
         {
-            var cfg = JsonConvert.DeserializeObject<V1.Aircrafts.F16.F16Configuration>(s);
-            return F16V1V2Loader.GetV2(cfg);
+            return F16V1V2Loader.GetV2(s);
         }
         else if (type == typeof(F15EConfiguration))
         {
-            var cfg = JsonConvert.DeserializeObject<V1.Aircrafts.F15E.F15EConfiguration>(s);
-            return F15EV1V2Loader.GetV2(cfg);
+            return F15EV1V2Loader.GetV2(s);
         }
         else
         {

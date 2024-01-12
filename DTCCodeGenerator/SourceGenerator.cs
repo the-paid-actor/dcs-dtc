@@ -23,6 +23,7 @@ public class SourceGenerator : ISourceGenerator
             foreach (var configFile in context.AdditionalFiles.Where(file => file.Path.EndsWith(".json")))
             {
                 var assembly = "dcs-dtc\\dcs-dtc\\dcs-dtc";
+                //var assembly = "dcs-dtc\\dcs-dtc";
                 var ns = "DTC";
                 var content = configFile.GetText()?.ToString();
                 if (!string.IsNullOrEmpty(content))

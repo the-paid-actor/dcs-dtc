@@ -9,6 +9,8 @@ namespace DTC.Models.F15E
 {
     public class F15EConfiguration : IConfiguration
     {
+        public int Version { get; } = 1;
+
         public WaypointSystem Waypoints = new WaypointSystem();
         public RadioSystem Radios = new RadioSystem();
         public DisplaySystem Displays = new DisplaySystem();

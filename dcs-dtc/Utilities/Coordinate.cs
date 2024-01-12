@@ -112,6 +112,7 @@ namespace DTC.Utilities
                 var minD = new decimal(part.DecimalMinute);
                 var min = decimal.Truncate(minD).ToString().PadLeft(2, '0');
                 var minRem = decimal.Round(decimal.Remainder(minD, 1m), roundDigits, MidpointRounding.AwayFromZero).ToString(CultureInfo.InvariantCulture);
+                if (minRem.Length < 2) minRem = minRem.PadLeft(2, '0');
                 var minFrac = minRem.Substring(2).PadRight(roundDigits, '0');
                 var str = $"{part.Position} {deg}°{min}.{minFrac}’";
                 return str;
@@ -197,6 +198,21 @@ namespace DTC.Utilities
         public LatLon ToHornetNonPreciseSteerpointFormat()
         {
             return this.ToDegreesMinutesSeconds();
+        }
+
+        public LatLon ToHornetPreciseSteerpointFormat()
+        {
+            return this.ToDegreesMinutesThousandths();
+        }
+
+        public LatLon ToF15EFormat()
+        {
+            return this.ToDegreesMinutesThousandths();
+        }
+
+        public LatLon ToF16Format()
+        {
+            return this.ToDegreesMinutesThousandths();
         }
 
         internal string ToString(CoordinateFormat format)

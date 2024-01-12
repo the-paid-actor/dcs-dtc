@@ -32,7 +32,7 @@ namespace DTC.UI.Aircrafts.F16
         }
 
 
-        protected override void WaypointCaptureReceived(WaypointCaptureData[] data)
+        protected override void WaypointCaptureReceived(WaypointCaptureData data)
         {
             var cfg = ((F16Configuration)_preset.Configuration);
             var wpts = cfg.Waypoints;
@@ -42,7 +42,7 @@ namespace DTC.UI.Aircrafts.F16
 
             var newWptList = new List<Waypoint>();
 
-            foreach (var d in data)
+            foreach (var d in data.data)
             {
                 var coord = Coordinate.FromDCS(d.latitude, d.longitude).ToDegreesMinutesThousandths();
                 var wpt = new Waypoint(0);

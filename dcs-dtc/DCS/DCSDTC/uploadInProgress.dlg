@@ -1,0 +1,68 @@
+dialog = {
+    ["type"] = "Window",
+    ["params"] = {
+        ["bounds"] = {
+            [1] = {
+                ["x"] = 0,
+                ["y"] = 0,
+                ["w"] = 300,
+                ["h"] = 40
+            }
+        },
+        ["draggable"] = false,
+        ["enabled"] = true,
+        ["hasCursor"] = false,
+        ["lockFlow"] = false,
+        ["modal"] = false,
+        ["offscreen"] = false,
+        ["resizable"] = false,
+        ["zOrder"] = 111,
+        ["text"] = ""
+    },
+    ["skin"] = {
+        ["params"] = {
+            ["headerHeight"] = 0,
+            ["name"] = "windowSkin"
+        },
+        ["states"] = {
+            ["released"] = {
+                [1] = {
+                    ["bkg"] = {
+                        ["center_center"] = "0xccccccff"
+                    }
+                }
+            }
+        }
+    },
+    ["children"] = {
+
+        ["coordLabel"] = {
+            ["type"] = "Static",
+            ["params"] = {
+                ["bounds"] = {
+                    ["x"] = 15,
+                    ["y"] = 10,
+                    ["w"] = 300,
+                    ["h"] = 80
+                },
+                ["text"] = "DTC UPLOAD IN PROGRESS"
+            },
+            ["skin"] = {
+                ["params"] = {
+                    ["name"] = "staticSkin"
+                },
+                ["states"] = {
+                    ["released"] = {
+                        [1] = {
+                            ["text"] = {
+                                ["bkgColor"] = "0xffffff00",
+                                ["color"] = "0x000000FF",
+                                ["fontSize"] = 20,
+                            }
+                        }
+                    }
+                }
+            },
+        },
+    }
+}

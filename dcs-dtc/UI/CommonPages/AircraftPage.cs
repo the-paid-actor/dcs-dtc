@@ -22,16 +22,16 @@ namespace DTC.UI.CommonPages
 
             RefreshPages();
 
-            DataReceiver2.DataReceived += DataReceiver2_DataReceived; ;
+            DataReceiver2.DataReceived += DataReceiver2_DataReceived;
             DataReceiver2.Start();
         }
 
-        private void DataReceiver2_DataReceived(WaypointCaptureData[] obj)
+        private void DataReceiver2_DataReceived(WaypointCaptureData obj)
         {
-            this.Invoke(new Action<WaypointCaptureData[]>(WaypointCaptureReceived), new[] { obj });
+            this.Invoke(new Action<WaypointCaptureData>(WaypointCaptureReceived), new[] { obj });
         }
 
-        protected virtual void WaypointCaptureReceived(WaypointCaptureData[] data)
+        protected virtual void WaypointCaptureReceived(WaypointCaptureData data)
         {
         }
 

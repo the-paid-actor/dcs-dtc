@@ -16,24 +16,31 @@ public partial class PresetName : UserControl
 			e.SuppressKeyPress = true;
 			if (txtName.Text.Length > 0)
 			{
-				DialogResultCallback(DialogResult.OK);
+				CallCallback(DialogResult.OK);
 			}
 		}
 
 		if (e.KeyCode == Keys.Escape)
 		{
 			e.SuppressKeyPress = true;
-			DialogResultCallback(DialogResult.Cancel);
+			CallCallback(DialogResult.Cancel);
 		}
 	}
 
 	private void btnOK_Click(object sender, System.EventArgs e)
 	{
-		DialogResultCallback(DialogResult.OK);
+		CallCallback(DialogResult.OK);
 	}
 
 	private void btnCancel_Click(object sender, System.EventArgs e)
 	{
-		DialogResultCallback(DialogResult.Cancel);
+		CallCallback(DialogResult.Cancel);
 	}
+
+	private void CallCallback(DialogResult result)
+	{
+		txtName.Text = Util.MakeValidFileName(txtName.Text);
+		DialogResultCallback(result);
+
+    }
 }

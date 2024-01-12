@@ -1,148 +1,158 @@
-local tcpServer = nil
-local udpSpeaker = nil
-package.path  = package.path..";"..lfs.currentdir().."/LuaSocket/?.lua"
-package.cpath = package.cpath..";"..lfs.currentdir().."/LuaSocket/?.dll"
-package.path  = package.path..";"..lfs.currentdir().."/Scripts/?.lua"
-local socket = require("socket")
-local JSON = loadfile("Scripts\\JSON.lua")()
-
-DTC_logFile = io.open(lfs.writedir() .. [[Logs\DCSDTC.log]], "w")
-
-dofile(lfs.writedir()..'Scripts/DCSDTC/commonFunctions.lua')
-dofile(lfs.writedir()..'Scripts/DCSDTC/f16Functions.lua')
-dofile(lfs.writedir()..'Scripts/DCSDTC/f18Functions.lua')
-dofile(lfs.writedir()..'Scripts/DCSDTC/f15EFunctions.lua')
-
-local needDelay = false
-local keypressinprogress = false
-local data
-local delay = 0
-local delayNeeded = 0
-local delayStart = 0
-local code = ""
-local device = ""
-local nextIndex = 1
-
-local skipCondition
-local skip = false
-
-local tcpPort = 43001
-local udpPort = 43000
-
-local upstreamLuaExportStart = LuaExportStart
-local upstreamLuaExportAfterNextFrame = LuaExportAfterNextFrame
+local upstreamLuaExportStart           = LuaExportStart
+local upstreamLuaExportAfterNextFrame  = LuaExportAfterNextFrame
 local upstreamLuaExportBeforeNextFrame = LuaExportBeforeNextFrame
+
+package.path                           = package.path .. ";" .. lfs.currentdir() .. "/LuaSocket/?.lua"
+package.cpath                          = package.cpath .. ";" .. lfs.currentdir() .. "/LuaSocket/?.dll"
+package.path                           = package.path .. ";" .. lfs.currentdir() .. "/Scripts/?.lua"
+
+local socket                           = require("socket")
+local JSON                             = loadfile("Scripts\\JSON.lua")()
+
+DTC_logFile                            = io.open(lfs.writedir() .. [[Logs\DCSDTC.log]], "w")
+
+dofile(lfs.writedir() .. 'Scripts/DCSDTC/commonFunctions.lua')
+dofile(lfs.writedir() .. 'Scripts/DCSDTC/f16Functions.lua')
+dofile(lfs.writedir() .. 'Scripts/DCSDTC/f18Functions.lua')
+dofile(lfs.writedir() .. 'Scripts/DCSDTC/f15EFunctions.lua')
+
+local udpSpeaker = nil
+local tcpServer = nil
+local tcpPort = 43001
+local udpPortDTCApp = 43000
+local udpPortHook = 43001
+local processingData = false
+local currentCoroutine = nil
+
+function DTC_Net_SendData(data, port)
+    if udpSpeaker == nil then
+        udpSpeaker = socket.udp()
+        udpSpeaker:settimeout(0)
+    end
+
+    if pcall(function()
+            socket.try(udpSpeaker:sendto(data, "127.0.0.1", port))
+        end) then
+    else
+        DTC_DCSLogError("Unable to send data")
+    end
+end
+
+function DTC_Net_ReceiveData()
+    if tcpServer == nil then
+        local server, err = socket.bind("127.0.0.1", tcpPort, 1)
+        if server == nil then
+            DTC_DCSLogError("Error creating tcp socket - " .. tostring(err))
+            return
+        end
+
+        tcpServer = server
+        tcpServer:settimeout(0)
+        DTC_DCSLogInfo("Opened connection")
+    end
+
+    local client, err = tcpServer:accept()
+    if client == nil then
+        return
+    end
+
+    client:settimeout(10)
+    local data, err = client:receive('*a')
+
+    if err then
+        DTC_DCSLogError("Error at receiving: " .. err)
+        return
+    end
+
+    client:close()
+    return data
+end
+
+function DTC_ProcessActions()
+    local data = DTC_Net_ReceiveData()
+    if data ~= nil then
+        local func, error = loadstring(data)
+        if func == nil then
+            DTC_Log(data)
+            DTC_Log("Error loading function: " .. error)
+            return
+        end
+        currentCoroutine = coroutine.create(func)
+        DTC_Net_SendData("showuploadinprogress", udpPortHook)
+    end
+end
+
+function DTC_ProcessCoroutine()
+    if coroutine.status(currentCoroutine) == "dead" then
+        --clean the input queue in case upload was actioned by the user
+        DTC_Net_ReceiveData()
+        currentCoroutine = nil
+        DTC_Net_SendData("hideuploadinprogress", udpPortHook)
+        --DTC_Log("Coroutine finished")
+        return
+    end
+
+    local success, err = coroutine.resume(currentCoroutine)
+    --DTC_Log("Output: "..tostring(success))
+    if success ~= true then
+        DTC_Log("Error in coroutine: " .. err)
+        DTC_Net_SendData("hideuploadinprogress", udpPortHook)
+        currentCoroutine = nil
+    end
+end
+
+function DTC_Wait(miliseconds)
+    miliseconds = miliseconds or 200
+    local start = socket.gettime()
+    while true do
+        local current = socket.gettime()
+        if (current - start) > (miliseconds / 1000) then
+            break
+        end
+        coroutine.yield()
+    end
+end
+
+function DTC_ExecCommand(device, argument, delay, action, postDelay)
+    postDelay = postDelay or 0
+    GetDevice(device):performClickableAction(argument, action)
+    if delay > 0 then
+        DTC_Wait(delay)
+    end
+    if delay >= 0 then
+        GetDevice(device):performClickableAction(argument, 0)
+    end
+    --DTC_Log("Executed command "..device.." "..argument.." "..action.." "..delay .. " " ..postDelay)
+    coroutine.yield()
+
+    if postDelay > 0 then
+        DTC_Wait(postDelay)
+    end
+end
 
 function LuaExportStart()
     if upstreamLuaExportStart ~= nil then
         local successful, err = pcall(upstreamLuaExportStart)
         if not successful then
-            log.write("DCS-DTC", log.ERROR, "Error in upstream LuaExportStart function"..tostring(err))
+            DTC_DCSLogError("Error in upstream LuaExportStart function" .. tostring(err))
         end
     end
-    
-    udpSpeaker = socket.udp()
-    udpSpeaker:settimeout(0)
-    tcpServer = socket.tcp()
-    local successful, err = tcpServer:bind("127.0.0.1", tcpPort)
-    tcpServer:listen(1)
-    tcpServer:settimeout(0)
-    if not successful then
-        log.write("DCS-DTC", log.ERROR, "Error opening tcp socket - "..tostring(err))
-    else
-        log.write("DCS-DTC", log.INFO, "Opened connection")
-    end
-end
 
-local function checkCondition(condition, param1, param2)
-    local ac = DTC_GetPlayerAircraftType();
-    local funcName = 'DTC_'..ac..'_CheckCondition_'..condition;
-    local res = _G[funcName](param1, param2)
-    return res
+    DTC_DCSLogInfo("Initialized DTC")
 end
 
 function LuaExportBeforeNextFrame()
     if upstreamLuaExportBeforeNextFrame ~= nil then
         local successful, err = pcall(upstreamLuaExportBeforeNextFrame)
         if not successful then
-           log.write("DCS-DTC", log.ERROR, "Error in upstream LuaExportBeforeNextFrame function"..tostring(err))
+            DTC_DCSLogError("Error in upstream LuaExportBeforeNextFrame function" .. tostring(err))
         end
     end
 
-    if needDelay then
-        local currentTime = socket.gettime()
-        if ((currentTime - delayStart) > delayNeeded) then
-            needDelay = false
-            if device ~= "wait" then
-                GetDevice(device):performClickableAction(code, 0)
-            end
-        end
+    if currentCoroutine == nil then
+        DTC_ProcessActions()
     else
-        if keypressinprogress then
-            local keys = JSON:decode(data)
-            for i=nextIndex, #keys do
-                local keyObj = keys[i]
-                local startCondition = keyObj["start_condition"]
-                local endCondition = keyObj["end_condition"]
-                
-                if endCondition then
-                    if endCondition == skipCondition then
-                        skipCondition = nil
-                        skip = false
-                        nextIndex = i+1
-                    end
-                elseif skip then
-                    nextIndex = i+1	
-                elseif startCondition then
-                    skipCondition = startCondition
-                    local param1 = keyObj["param1"]
-                    local param2 = keyObj["param2"]
-                    skip = not checkCondition(startCondition, param1, param2)
-                    nextIndex = i+1
-                else
-
-                    device = keyObj["device"]
-                    code = keyObj["code"]
-                    delay = tonumber(keyObj["delay"])
-
-                    local activate = tonumber(keyObj["activate"])
-
-                    if delay > 0 then
-                        needDelay = true
-                        delayNeeded = delay / 1000
-                        delayStart = socket.gettime()
-                        if device ~= "wait" then
-                            GetDevice(device):performClickableAction(code, activate)
-                        end
-                        nextIndex = i+1
-                        break
-                    else
-                        GetDevice(device):performClickableAction(code, activate)
-                        if delay == 0 then
-                            GetDevice(device):performClickableAction(code, 0)
-                        end
-                    end
-                end
-            end
-            if not needDelay then
-                keypressinprogress = false
-                nextIndex = 1
-            end
-        else
-            local client, err = tcpServer:accept()
-
-            if client ~= nil then
-                client:settimeout(10)
-                data, err = client:receive()
-                if err then
-                    log.write("DCS-DTC", log.ERROR, "Error at receiving: "..err)  
-                end
-
-                if data then 
-                    keypressinprogress = true
-                end
-            end
-        end
+        DTC_ProcessCoroutine()
     end
 end
 
@@ -150,7 +160,7 @@ function LuaExportAfterNextFrame()
     if upstreamLuaExportAfterNextFrame ~= nil then
         local successful, err = pcall(upstreamLuaExportAfterNextFrame)
         if not successful then
-            log.write("DCS-DTC", log.ERROR, "Error in upstream LuaExportAfterNextFrame function"..tostring(err))
+            DTC_DCSLogError("Error in upstream LuaExportAfterNextFrame function" .. tostring(err))
         end
     end
 
@@ -167,8 +177,8 @@ function LuaExportAfterNextFrame()
     params["hideDTCCommand"] = "0";
     params["toggleDTCCommand"] = "0";
 
-    if model ==	"F16CM" then
-        DTC_F16CM_AfterNextFrame(params)
+    if model == "F16C" then
+        DTC_F16C_AfterNextFrame(params)
     end
 
     if model == "FA18C" then
@@ -179,21 +189,16 @@ function LuaExportAfterNextFrame()
         DTC_F15E_AfterNextFrame(params)
     end
 
-    local toSend = "{"..
-        "\"model\": ".."\""..model.."\""..
-        ", ".."\"latitude\": ".."\""..coords.latitude.."\""..
-        ", ".."\"longitude\": ".."\""..coords.longitude.."\""..
-        ", ".."\"elevation\": ".."\""..elevation.."\""..
-        ", ".."\"upload\": ".."\""..params["uploadCommand"].."\""..
-        ", ".."\"showDTC\": ".."\""..params["showDTCCommand"].."\""..
-        ", ".."\"hideDTC\": ".."\""..params["hideDTCCommand"].."\""..
-        ", ".."\"toggleDTC\": ".."\""..params["toggleDTCCommand"].."\""..
+    local toSend = "{" ..
+        "\"model\": " .. "\"" .. model .. "\"" ..
+        ", " .. "\"latitude\": " .. "\"" .. coords.latitude .. "\"" ..
+        ", " .. "\"longitude\": " .. "\"" .. coords.longitude .. "\"" ..
+        ", " .. "\"elevation\": " .. "\"" .. elevation .. "\"" ..
+        ", " .. "\"upload\": " .. "\"" .. params["uploadCommand"] .. "\"" ..
+        ", " .. "\"showDTC\": " .. "\"" .. params["showDTCCommand"] .. "\"" ..
+        ", " .. "\"hideDTC\": " .. "\"" .. params["hideDTCCommand"] .. "\"" ..
+        ", " .. "\"toggleDTC\": " .. "\"" .. params["toggleDTCCommand"] .. "\"" ..
         "}"
 
-    if pcall(function()
-        socket.try(udpSpeaker:sendto(toSend, "127.0.0.1", udpPort)) 
-    end) then
-    else
-        log.write("DCS-DTC", log.ERROR, "Unable to send data")
-    end
+    DTC_Net_SendData(toSend, udpPortDTCApp)
 end

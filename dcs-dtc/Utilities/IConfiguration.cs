@@ -5,4 +5,5 @@ public interface IConfiguration
 	string ToJson();
 	IConfiguration Clone();
 	void AfterLoadFromJson();
+	int Version { get; }
 }

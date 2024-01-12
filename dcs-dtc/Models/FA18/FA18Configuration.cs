@@ -14,6 +14,8 @@ namespace DTC.Models.FA18
 {
     public class FA18Configuration : IConfiguration
     {
+        public int Version { get; } = 1;
+
         public WaypointSystem Waypoints = new WaypointSystem();
         public SequenceSystem Sequences = new SequenceSystem();
         public PrePlannedSystem PrePlanned = new PrePlannedSystem();

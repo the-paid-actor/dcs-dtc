@@ -10,6 +10,8 @@ namespace DTC.Models.AH64
 {
     public class AH64Configuration : IConfiguration
     {
+        public int Version { get; } = 1;
+
         public WaypointSystem Waypoints = new WaypointSystem();
         public RadioSystem Radios = new RadioSystem();
         public string ToJson()

@@ -9,7 +9,7 @@ namespace DTC.Utilities
 
         static Guid SavedGamesFolderGuid = new Guid("4C5C32FF-BB9D-43b0-B5B4-2D72E54EAAA4");
 
-        private const string MAIN_LUA_FILE = "DCSDTC.lua";
+        public static string MAIN_LUA_FILE = "DCSDTC.lua";
 
         public static bool Check()
         {
@@ -178,7 +178,8 @@ namespace DTC.Utilities
 
             foreach (var localFile in Directory.GetFiles(localFolder))
             {
-                var remoteFile = Path.Combine(remoteFolder, Path.GetFileName(localFile));
+                var fileName = Path.GetFileName(localFile);
+                var remoteFile = Path.Combine(remoteFolder, fileName);
                 if (!File.Exists(remoteFile))
                 {
                     File.Copy(localFile, remoteFile);
@@ -187,9 +188,15 @@ namespace DTC.Utilities
 
                 var localFileContent = File.ReadAllText(localFile);
                 var remoteFileContent = File.ReadAllText(remoteFile);
+
+                if (fileName == "wptCapture.lua")
+                {
+                    localFileContent = localFileContent.Replace("Ctrl+Shift+d", Settings.CaptureDialogShortcut);
+                }
+
                 if (localFileContent != remoteFileContent)
                 {
-                    File.Copy(localFile, remoteFile, true);
+                    File.WriteAllText(remoteFile, localFileContent);
                     changed = true;
                 }
             }

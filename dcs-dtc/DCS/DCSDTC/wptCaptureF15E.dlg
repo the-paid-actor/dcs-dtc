@@ -1,0 +1,194 @@
+dialog = {
+    ["type"] = "Window",
+    ["params"] = {
+        ["bounds"] = {
+            [1] = {
+                ["x"] = 0,
+                ["y"] = 0,
+                ["w"] = 340,
+                ["h"] = 170
+            }
+        },
+        ["draggable"] = false,
+        ["enabled"] = true,
+        ["hasCursor"] = false,
+        ["lockFlow"] = false,
+        ["modal"] = false,
+        ["offscreen"] = false,
+        ["resizable"] = false,
+        ["zOrder"] = 111,
+        ["text"] = ""
+    },
+    ["skin"] = {
+        ["params"] = {
+            ["headerHeight"] = 0,
+            ["name"] = "windowSkin"
+        },
+        ["states"] = {
+            ["released"] = {
+                [1] = {
+                    ["bkg"] = {
+                        ["center_center"] = "0xffffff3f"
+                    }
+                }
+            }
+        }
+    },
+    ["children"] = {
+
+        ["buttonLCFTFront"] = {
+            ["type"] = "Button",
+            ["params"] = {
+                ["bounds"] = {
+                    ["x"] = 60,
+                    ["y"] = 10,
+                    ["w"] = 100,
+                    ["h"] = 30,
+                },
+                ["text"] = "L CFT Front",
+            },
+            ["skin"] = {
+                ["params"] = {
+                    ["name"] = "buttonSkinAwacs"
+                }
+            },
+        },
+        ["buttonRCFTFront"] = {
+            ["type"] = "Button",
+            ["params"] = {
+                ["bounds"] = {
+                    ["x"] = 180,
+                    ["y"] = 10,
+                    ["w"] = 100,
+                    ["h"] = 30,
+                },
+                ["text"] = "R CFT Front",
+            },
+            ["skin"] = {
+                ["params"] = {
+                    ["name"] = "buttonSkinAwacs"
+                }
+            },
+        },
+        ["buttonLWing"] = {
+            ["type"] = "Button",
+            ["params"] = {
+                ["bounds"] = {
+                    ["x"] = 10,
+                    ["y"] = 50,
+                    ["w"] = 100,
+                    ["h"] = 30,
+                },
+                ["text"] = "L Wing",
+            },
+            ["skin"] = {
+                ["params"] = {
+                    ["name"] = "buttonSkinAwacs"
+                }
+            },
+        },
+        ["buttonCenter"] = {
+            ["type"] = "Button",
+            ["params"] = {
+                ["bounds"] = {
+                    ["x"] = 120,
+                    ["y"] = 50,
+                    ["w"] = 100,
+                    ["h"] = 30,
+                },
+                ["text"] = "Centerline",
+            },
+            ["skin"] = {
+                ["params"] = {
+                    ["name"] = "buttonSkinAwacs"
+                }
+            },
+        },
+        ["buttonRWing"] = {
+            ["type"] = "Button",
+            ["params"] = {
+                ["bounds"] = {
+                    ["x"] = 230,
+                    ["y"] = 50,
+                    ["w"] = 100,
+                    ["h"] = 30,
+                },
+                ["text"] = "R Wing",
+            },
+            ["skin"] = {
+                ["params"] = {
+                    ["name"] = "buttonSkinAwacs"
+                }
+            },
+        },
+        ["buttonLCFTMiddle"] = {
+            ["type"] = "Button",
+            ["params"] = {
+                ["bounds"] = {
+                    ["x"] = 60,
+                    ["y"] = 90,
+                    ["w"] = 100,
+                    ["h"] = 30,
+                },
+                ["text"] = "L CFT Mid",
+            },
+            ["skin"] = {
+                ["params"] = {
+                    ["name"] = "buttonSkinAwacs"
+                }
+            },
+        },
+
+        ["buttonRCFTMiddle"] = {
+            ["type"] = "Button",
+            ["params"] = {
+                ["bounds"] = {
+                    ["x"] = 180,
+                    ["y"] = 90,
+                    ["w"] = 100,
+                    ["h"] = 30,
+                },
+                ["text"] = "R CFT Mid",
+            },
+            ["skin"] = {
+                ["params"] = {
+                    ["name"] = "buttonSkinAwacs"
+                }
+            },
+        },
+        ["buttonLCFTBack"] = {
+            ["type"] = "Button",
+            ["params"] = {
+                ["bounds"] = {
+                    ["x"] = 60,
+                    ["y"] = 130,
+                    ["w"] = 100,
+                    ["h"] = 30,
+                },
+                ["text"] = "L CFT Rear",
+            },
+            ["skin"] = {
+                ["params"] = {
+                    ["name"] = "buttonSkinAwacs"
+                }
+            },
+        },
+        ["buttonRCFTBack"] = {
+            ["type"] = "Button",
+            ["params"] = {
+                ["bounds"] = {
+                    ["x"] = 180,
+                    ["y"] = 130,
+                    ["w"] = 100,
+                    ["h"] = 30,
+                },
+                ["text"] = "R CFT Rear",
+            },
+            ["skin"] = {
+                ["params"] = {
+                    ["name"] = "buttonSkinAwacs"
+                }
+            },
+        }
+    }
+}

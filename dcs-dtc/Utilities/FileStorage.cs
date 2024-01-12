@@ -102,7 +102,7 @@ public class FileStorage
         WriteFile(GetSettingsFilePath(), json);
     }
 
-    private static string GetAircraftPresetsPath(IAircraft ac)
+    public static string GetAircraftPresetsPath(IAircraft ac)
     {
         return Path.Combine(GetStorageFolder(), "Presets", ac.GetAircraftModelName());
     }
@@ -147,13 +147,19 @@ public class FileStorage
         WriteFile(Path.Combine(path, preset.Name + ".json"), json);
     }
 
+    public static bool PresetExists(IAircraft ac, string name)
+    {
+        var path = GetAircraftPresetsPath(ac);
+        return File.Exists(Path.Combine(path, name + ".json"));
+    }
+
     public static void RenamePresetFile(IAircraft aircraft, IPreset preset, string oldName)
     {
         var path = GetAircraftPresetsPath(aircraft);
         if (Directory.Exists(path))
         {
             var file = Path.Combine(path, oldName + ".json");
-            File.Move(file, Path.Combine(path, preset.Name + ".json"));
+            File.Move(file, Path.Combine(path, preset.Name + ".json"), true);
         }
     }
 

@@ -5,8 +5,8 @@ dialog = {
             [1] = {
                 ["x"] = 0,
                 ["y"] = 0,
-                ["w"] = 430,
-                ["h"] = 300
+                ["w"] = 450,
+                ["h"] = 350
             }
         },
         ["draggable"] = false,
@@ -21,7 +21,7 @@ dialog = {
     },
     ["skin"] = {
         ["params"] = {
-			["headerHeight"] = 0,
+            ["headerHeight"] = 0,
             ["name"] = "windowSkin"
         },
         ["states"] = {
@@ -83,6 +83,7 @@ dialog = {
                     ["released"] = {
                         [1] = {
                             ["text"] = {
+                                ["bkgColor"] = "0xffffff80",
                                 ["color"] = "0x000000FF",
                                 ["fontSize"] = 14,
                             }
@@ -101,7 +102,61 @@ dialog = {
                     ["w"] = 90,
                     ["h"] = 30
                 },
-                ["text"] = "Add STPT",
+                ["text"] = "Add STP",
+            },
+            ["skin"] = {
+                ["params"] = {
+                    ["name"] = "buttonSkinAwacs"
+                }
+            },
+        },
+
+        ["addButtonA"] = {
+            ["type"] = "Button",
+            ["params"] = {
+                ["bounds"] = {
+                    ["x"] = 48,
+                    ["y"] = 20,
+                    ["w"] = 90,
+                    ["h"] = 30
+                },
+                ["text"] = "Add STP A",
+            },
+            ["skin"] = {
+                ["params"] = {
+                    ["name"] = "buttonSkinAwacs"
+                }
+            },
+        },
+
+        ["addButtonB"] = {
+            ["type"] = "Button",
+            ["params"] = {
+                ["bounds"] = {
+                    ["x"] = 48,
+                    ["y"] = 50,
+                    ["w"] = 90,
+                    ["h"] = 30
+                },
+                ["text"] = "Add STP B",
+            },
+            ["skin"] = {
+                ["params"] = {
+                    ["name"] = "buttonSkinAwacs"
+                }
+            },
+        },
+
+        ["addButtonC"] = {
+            ["type"] = "Button",
+            ["params"] = {
+                ["bounds"] = {
+                    ["x"] = 48,
+                    ["y"] = 80,
+                    ["w"] = 90,
+                    ["h"] = 30
+                },
+                ["text"] = "Add STP C",
             },
             ["skin"] = {
                 ["params"] = {
@@ -128,16 +183,88 @@ dialog = {
             },
         },
 
-        ["undoButton"] = {
+        ["addAsTgtButtonA"] = {
+            ["type"] = "Button",
+            ["params"] = {
+                ["bounds"] = {
+                    ["x"] = 138,
+                    ["y"] = 20,
+                    ["w"] = 90,
+                    ["h"] = 30
+                },
+                ["text"] = "Add TGT A",
+            },
+            ["skin"] = {
+                ["params"] = {
+                    ["name"] = "buttonSkinAwacs"
+                }
+            },
+        },
+
+        ["addAsTgtButtonB"] = {
+            ["type"] = "Button",
+            ["params"] = {
+                ["bounds"] = {
+                    ["x"] = 138,
+                    ["y"] = 50,
+                    ["w"] = 90,
+                    ["h"] = 30
+                },
+                ["text"] = "Add TGT B",
+            },
+            ["skin"] = {
+                ["params"] = {
+                    ["name"] = "buttonSkinAwacs"
+                }
+            },
+        },
+
+        ["addAsTgtButtonC"] = {
+            ["type"] = "Button",
+            ["params"] = {
+                ["bounds"] = {
+                    ["x"] = 138,
+                    ["y"] = 80,
+                    ["w"] = 90,
+                    ["h"] = 30
+                },
+                ["text"] = "Add TGT C",
+            },
+            ["skin"] = {
+                ["params"] = {
+                    ["name"] = "buttonSkinAwacs"
+                }
+            },
+        },
+
+        ["addPPButton"] = {
             ["type"] = "Button",
             ["params"] = {
                 ["bounds"] = {
                     ["x"] = 228,
                     ["y"] = 20,
-                    ["w"] = 60,
+                    ["w"] = 90,
                     ["h"] = 30
                 },
-                ["text"] = "Undo",
+                ["text"] = "Add PP",
+            },
+            ["skin"] = {
+                ["params"] = {
+                    ["name"] = "buttonSkinAwacs"
+                }
+            },
+        },
+
+        ["addSmartButton"] = {
+            ["type"] = "Button",
+            ["params"] = {
+                ["bounds"] = {
+                    ["x"] = 228,
+                    ["y"] = 20,
+                    ["w"] = 90,
+                    ["h"] = 30
+                },
+                ["text"] = "Add SMRT",
             },
             ["skin"] = {
                 ["params"] = {
@@ -150,7 +277,7 @@ dialog = {
             ["type"] = "Button",
             ["params"] = {
                 ["bounds"] = {
-                    ["x"] = 288,
+                    ["x"] = 318,
                     ["y"] = 20,
                     ["w"] = 63,
                     ["h"] = 30
@@ -169,9 +296,9 @@ dialog = {
             ["params"] = {
                 ["bounds"] = {
                     ["x"] = 50,
-                    ["y"] = 52,
-                    ["w"] = 380,
-                    ["h"] = 200
+                    ["y"] = 112,
+                    ["w"] = 400,
+                    ["h"] = 190
                 },
                 ["multiline"] = true,
                 ["readOnly"] = true,
@@ -203,7 +330,7 @@ dialog = {
             ["params"] = {
                 ["bounds"] = {
                     ["x"] = 48,
-                    ["y"] = 254,
+                    ["y"] = 304,
                     ["w"] = 114,
                     ["h"] = 30
                 },
@@ -221,11 +348,11 @@ dialog = {
             ["params"] = {
                 ["bounds"] = {
                     ["x"] = 162,
-                    ["y"] = 254,
+                    ["y"] = 304,
                     ["w"] = 162,
                     ["h"] = 30
                 },
-                ["visible"] = false,
+                ["visible"] = true,
                 ["text"] = "Send to DTC + Jet",
             },
             ["skin"] = {
@@ -234,5 +361,44 @@ dialog = {
                 }
             },
         },
+
+        ["resetAllSmart"] = {
+            ["type"] = "Button",
+            ["params"] = {
+                ["bounds"] = {
+                    ["x"] = 324,
+                    ["y"] = 304,
+                    ["w"] = 128,
+                    ["h"] = 30
+                },
+                ["visible"] = false,
+                ["text"] = "Reset all SMRT",
+            },
+            ["skin"] = {
+                ["params"] = {
+                    ["name"] = "buttonSkinAwacs"
+                }
+            },
+        },
+
+        ["resetAllPP"] = {
+            ["type"] = "Button",
+            ["params"] = {
+                ["bounds"] = {
+                    ["x"] = 324,
+                    ["y"] = 304,
+                    ["w"] = 128,
+                    ["h"] = 30
+                },
+                ["visible"] = false,
+                ["text"] = "Reset all PP",
+            },
+            ["skin"] = {
+                ["params"] = {
+                    ["name"] = "buttonSkinAwacs"
+                }
+            },
+        },
+
     }
 }

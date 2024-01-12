@@ -7,7 +7,7 @@
 		<Nullable>enable</Nullable>
 		<UseWindowsForms>true</UseWindowsForms>
 		<ImplicitUsings>enable</ImplicitUsings>
-		<Version>5.3.4</Version>
+		<Version>7.0.0</Version>
 		<Product>DTC for DCS</Product>
 		<Description>$(Product)</Description>
 		<ApplicationIcon>Resources\Iconleak-Atrous-Disk.ico</ApplicationIcon>
@@ -19,6 +19,8 @@
 		<Copyright>Copyright © 2023</Copyright>
 		<PackageProjectUrl>https://github.com/the-paid-actor/dcs-dtc</PackageProjectUrl>
 		<RepositoryUrl>$(PackageProjectUrl)</RepositoryUrl>
+		<RunAnalyzersDuringBuild>True</RunAnalyzersDuringBuild>
+		<AnalysisLevel>latest</AnalysisLevel>
 	</PropertyGroup>
 
 	<PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
@@ -35,7 +37,16 @@
 		<None Remove="dtc-idents.json" />
 		<None Remove="dtc-settings.json" />
 		<None Remove="dtc.ini" />
+		<None Remove="New\Uploader\Aircrafts\F15E\F15EUploader.json" />
+		<None Remove="New\Uploader\Aircrafts\F16\F16Uploader.json" />
+		<None Remove="New\Uploader\Aircrafts\FA18\FA18Uploader.json" />
 		<None Remove="Resources\Iconleak-Atrous-Disk.ico" />
+	</ItemGroup>
+
+	<ItemGroup>
+		<AdditionalFiles Include="New\Uploader\Aircrafts\F15E\F15EUploader.json" />
+		<AdditionalFiles Include="New\Uploader\Aircrafts\F16\F16Uploader.json" />
+		<AdditionalFiles Include="New\Uploader\Aircrafts\FA18\FA18Uploader.json" />
 	</ItemGroup>
 
 	<ItemGroup>
@@ -67,6 +78,47 @@
 	</ItemGroup>
 
 	<ItemGroup>
+		<ProjectReference Include="..\DTCCodeGenerator\DTCCodeGenerator.csproj" OutputItemType="Analyzer" ReferenceOutputAssembly="false" />
+	</ItemGroup>
+
+	<ItemGroup>
+		<Compile Update="New\UI\Aircrafts\F15E\Systems\SmartWeaponsPageEdit.cs">
+		  <SubType>UserControl</SubType>
+		</Compile>
+		<Compile Update="New\UI\Aircrafts\F15E\Systems\SmartWeaponsPage.cs">
+		  <SubType>UserControl</SubType>
+		</Compile>
+		<Compile Update="New\UI\Aircrafts\F15E\Systems\RadiosPage.cs">
+		  <SubType>UserControl</SubType>
+		</Compile>
+		<Compile Update="New\UI\Aircrafts\F16\Systems\HARMHTSPage.cs">
+			<SubType>UserControl</SubType>
+		</Compile>
+		<Compile Update="New\UI\Aircrafts\F16\Systems\DatalinkPage.cs">
+			<SubType>UserControl</SubType>
+		</Compile>
+		<Compile Update="New\UI\Aircrafts\FA18\Systems\FCRPage.cs">
+		  <SubType>UserControl</SubType>
+		</Compile>
+		<Compile Update="New\UI\Base\Pages\EmitterList.cs">
+			<SubType>UserControl</SubType>
+		</Compile>
+		<Compile Update="New\UI\Base\Systems\RadiosPageControl.cs">
+		  <SubType>UserControl</SubType>
+		</Compile>
+		<Compile Update="New\UI\Base\Systems\WaypointsPageControl.cs">
+			<SubType>UserControl</SubType>
+		</Compile>
+		<Compile Update="UI\Base\Controls\DTCTimeTextBox.cs">
+		  <SubType>UserControl</SubType>
+		</Compile>
+		<Compile Update="UI\Base\Controls\DTCCoordinateTextBox2.cs" />
+	</ItemGroup>
+
+	<ItemGroup>
+		<None Update="DCS\DCSDTC2.lua">
+			<CopyToOutputDirectory>Never</CopyToOutputDirectory>
+		</None>
 		<None Update="DCS\DCSDTC.lua">
 			<CopyToOutputDirectory>Always</CopyToOutputDirectory>
 		</None>
@@ -82,8 +134,32 @@
 		<None Update="DCS\DCSDTC\f18Functions.lua">
 			<CopyToOutputDirectory>Always</CopyToOutputDirectory>
 		</None>
-		<None Update="DCS\DCSDTC\waypointCapture.dlg">
+		<None Update="DCS\DCSDTC\hook.lua">
+		  <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+		</None>
+		<None Update="DCS\DCSDTC\uploadInProgress.dlg">
+		  <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+		</None>
+		<None Update="DCS\DCSDTC\uploadInProgress.lua">
+		  <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+		</None>
+		<None Update="DCS\DCSDTC\wptCaptureF15E.dlg">
+		  <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+		</None>
+		<None Update="DCS\DCSDTC\wptCaptureF15E.lua">
+		  <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+		</None>
+		<None Update="DCS\DCSDTC\wptCapturePP.dlg">
+		  <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+		</None>
+		<None Update="DCS\DCSDTC\wptCapturePP.lua">
+		  <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+		</None>
+		<None Update="DCS\DCSDTC\wptCapture.dlg">
 			<CopyToOutputDirectory>Always</CopyToOutputDirectory>
+		</None>
+		<None Update="DCS\DCSDTC\wptCapture.lua">
+		  <CopyToOutputDirectory>Always</CopyToOutputDirectory>
 		</None>
 		<None Update="DCS\Hooks\DCSDTCHook.lua">
 			<CopyToOutputDirectory>Always</CopyToOutputDirectory>

@@ -11,6 +11,8 @@ namespace DTC.Models.F16
 {
     public class F16Configuration : IConfiguration
     {
+        public int Version { get; } = 1;
+
         public WaypointSystem Waypoints = new WaypointSystem();
         public RadioSystem Radios = new RadioSystem();
         public CMSystem CMS = new CMSystem();

@@ -28,7 +28,7 @@ namespace DTC.UI.Aircrafts.F15E
             };
         }
 
-        protected override void WaypointCaptureReceived(WaypointCaptureData[] data)
+        protected override void WaypointCaptureReceived(WaypointCaptureData data)
         {
             var cfg = ((F15EConfiguration)_preset.Configuration);
             var wpts = cfg.Waypoints;
@@ -37,7 +37,7 @@ namespace DTC.UI.Aircrafts.F15E
 
             var newWptList = new List<Waypoint>();
 
-            foreach (var d in data)
+            foreach (var d in data.data)
             {
                 var coord = Coordinate.FromDCS(d.latitude, d.longitude).ToDegreesMinutesThousandths();
                 var wpt = new Waypoint(0);

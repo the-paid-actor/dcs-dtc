@@ -2,106 +2,109 @@
 
 namespace DTC.Utilities
 {
-	public static class Settings
-	{
-		private class SettingsData
-		{
-			public int TCPSendPort;
-			public int UDPReceivePort;
-			public int StrikeEagleCommandDelayMs;
-			public int HornetCommandDelayMs;
+    public static class Settings
+    {
+        private class SettingsData
+        {
+            public int TCPSendPort;
+            public int UDPReceivePort;
+            public int StrikeEagleCommandDelayMs;
+            public int HornetCommandDelayMs;
             public int ViperCommandDelayMs;
             public bool AlwaysOnTop;
             public bool SkipDCSInstallCheck;
             public string LuaInstallFolderStable;
-			public string LuaInstallStable;
-			public string LuaInstallFolderOpenBeta;
-			public string LuaInstallOpenBeta;
-		}
+            public string LuaInstallStable;
+            public string LuaInstallFolderOpenBeta;
+            public string LuaInstallOpenBeta;
+            public string CaptureDialogShortcut;
+            public int MainWindowX;
+            public int MainWindowY;
+        }
 
-		private static SettingsData currentSettings;
+        private static SettingsData currentSettings;
 
-		public static bool LuaInstallStable
-		{
-			get
-			{
-				LoadSettings();
+        public static bool LuaInstallStable
+        {
+            get
+            {
+                LoadSettings();
 
-				if (string.IsNullOrEmpty(currentSettings.LuaInstallStable))
-				{
-					return true;
-				}
+                if (string.IsNullOrEmpty(currentSettings.LuaInstallStable))
+                {
+                    return true;
+                }
 
-				return bool.Parse(currentSettings.LuaInstallStable);
-			}
-			set
-			{
-				currentSettings.LuaInstallStable = value.ToString();
-				SaveSettings();
-			}
-		}
+                return bool.Parse(currentSettings.LuaInstallStable);
+            }
+            set
+            {
+                currentSettings.LuaInstallStable = value.ToString();
+                SaveSettings();
+            }
+        }
 
-		public static bool LuaInstallOpenBeta
-		{
-			get
-			{
-				LoadSettings();
+        public static bool LuaInstallOpenBeta
+        {
+            get
+            {
+                LoadSettings();
 
-				if (string.IsNullOrEmpty(currentSettings.LuaInstallOpenBeta))
-				{
-					return true;
-				}
+                if (string.IsNullOrEmpty(currentSettings.LuaInstallOpenBeta))
+                {
+                    return true;
+                }
 
-				return bool.Parse(currentSettings.LuaInstallOpenBeta);
-			}
-			set
-			{
-				currentSettings.LuaInstallOpenBeta = value.ToString();
-				SaveSettings();
-			}
-		}
+                return bool.Parse(currentSettings.LuaInstallOpenBeta);
+            }
+            set
+            {
+                currentSettings.LuaInstallOpenBeta = value.ToString();
+                SaveSettings();
+            }
+        }
 
-		public static string LuaInstallFolderStable
-		{
-			get
-			{
-				LoadSettings();
-				return currentSettings.LuaInstallFolderStable;
-			}
-			set
-			{
-				currentSettings.LuaInstallFolderStable = value;
-				SaveSettings();
-			}
-		}
+        public static string LuaInstallFolderStable
+        {
+            get
+            {
+                LoadSettings();
+                return currentSettings.LuaInstallFolderStable;
+            }
+            set
+            {
+                currentSettings.LuaInstallFolderStable = value;
+                SaveSettings();
+            }
+        }
 
-		public static string LuaInstallFolderOpenBeta
-		{
-			get
-			{
-				LoadSettings();
-				return currentSettings.LuaInstallFolderOpenBeta;
-			}
-			set
-			{
-				currentSettings.LuaInstallFolderOpenBeta = value;
-				SaveSettings();
-			}
-		}
+        public static string LuaInstallFolderOpenBeta
+        {
+            get
+            {
+                LoadSettings();
+                return currentSettings.LuaInstallFolderOpenBeta;
+            }
+            set
+            {
+                currentSettings.LuaInstallFolderOpenBeta = value;
+                SaveSettings();
+            }
+        }
 
-		public static bool AlwaysOnTop
-		{
-			get
-			{
-				LoadSettings();
-				return currentSettings.AlwaysOnTop;
-			}
-			set
-			{
-				currentSettings.AlwaysOnTop = value;
-				SaveSettings();
-			}
-		}
+        public static bool AlwaysOnTop
+        {
+            get
+            {
+                LoadSettings();
+                return currentSettings.AlwaysOnTop;
+            }
+            set
+            {
+                currentSettings.AlwaysOnTop = value;
+                SaveSettings();
+            }
+        }
 
         public static bool SkipDCSInstallCheck
         {
@@ -118,32 +121,32 @@ namespace DTC.Utilities
         }
 
         public static int TCPSendPort
-		{
-			get
-			{
-				LoadSettings();
-				return currentSettings.TCPSendPort;
-			}
-			set
-			{
-				currentSettings.TCPSendPort = value;
-				SaveSettings();
-			}
-		}
+        {
+            get
+            {
+                LoadSettings();
+                return currentSettings.TCPSendPort;
+            }
+            set
+            {
+                currentSettings.TCPSendPort = value;
+                SaveSettings();
+            }
+        }
 
-		public static int UDPReceivePort
-		{
-			get
-			{
-				LoadSettings();
-				return currentSettings.UDPReceivePort;
-			}
-			set
-			{
-				currentSettings.UDPReceivePort = value;
-				SaveSettings();
-			}
-		}
+        public static int UDPReceivePort
+        {
+            get
+            {
+                LoadSettings();
+                return currentSettings.UDPReceivePort;
+            }
+            set
+            {
+                currentSettings.UDPReceivePort = value;
+                SaveSettings();
+            }
+        }
 
         public static int StrikeEagleCommandDelayMs
         {
@@ -187,55 +190,101 @@ namespace DTC.Utilities
             }
         }
 
+        public static string CaptureDialogShortcut
+        {
+            get
+            {
+                LoadSettings();
+                return currentSettings.CaptureDialogShortcut;
+            }
+            set
+            {
+                currentSettings.CaptureDialogShortcut = value;
+                SaveSettings();
+            }
+        }
+
+        public static int MainWindowX
+        {
+            get
+            {
+                LoadSettings();
+                return currentSettings.MainWindowX;
+            }
+            set
+            {
+                currentSettings.MainWindowX = value;
+                SaveSettings();
+            }
+        }
+
+        public static int MainWindowY
+        {
+            get
+            {
+                LoadSettings();
+                return currentSettings.MainWindowY;
+            }
+            set
+            {
+                currentSettings.MainWindowY = value;
+                SaveSettings();
+            }
+        }
+
         private static void SaveSettings()
-		{
-			var json = JsonConvert.SerializeObject(currentSettings);
-			FileStorage.PersistSettingsFile(json);
-		}
+        {
+            var json = JsonConvert.SerializeObject(currentSettings);
+            FileStorage.PersistSettingsFile(json);
+        }
 
-		private static void LoadSettings()
-		{
-			if (currentSettings != null) {
-				return;
-			}
-
-			var json = FileStorage.LoadSettingsFile();
-			SettingsData obj = null;
-			try
-			{
-				obj = JsonConvert.DeserializeObject<SettingsData>(json);
-			}
-			catch {}
-
-			if (obj == null)
-			{
-				obj = new SettingsData();
-			}
-
-			if (obj.TCPSendPort == 0)
-			{
-				obj.TCPSendPort = 43001;
-			}
-			if (obj.UDPReceivePort == 0)
-			{
-				obj.UDPReceivePort = 43000;
-			}
-            if (obj.StrikeEagleCommandDelayMs < 80)
-            {
-                obj.StrikeEagleCommandDelayMs = 80;
+        private static void LoadSettings()
+        {
+            if (currentSettings != null) {
+                return;
             }
-            if (obj.ViperCommandDelayMs == 0)
+
+            var json = FileStorage.LoadSettingsFile();
+            SettingsData obj = null;
+            try
             {
-                obj.ViperCommandDelayMs = 200;
+                obj = JsonConvert.DeserializeObject<SettingsData>(json);
             }
-            if (obj.HornetCommandDelayMs == 0)
+            catch {}
+
+            if (obj == null)
             {
-                obj.HornetCommandDelayMs = 200;
+                obj = new SettingsData();
+            }
+
+            if (obj.TCPSendPort == 0)
+            {
+                obj.TCPSendPort = 43001;
+            }
+            if (obj.UDPReceivePort == 0)
+            {
+                obj.UDPReceivePort = 43000;
+            }
+            if (obj.StrikeEagleCommandDelayMs < 70)
+            {
+                obj.StrikeEagleCommandDelayMs = 70;
+            }
+            if (obj.ViperCommandDelayMs < 220)
+            {
+                obj.ViperCommandDelayMs = 220;
+            }
+            if (obj.HornetCommandDelayMs < 220)
+            {
+                obj.HornetCommandDelayMs = 220;
+            }
+            if (obj.CaptureDialogShortcut == null)
+            {
+                obj.CaptureDialogShortcut = "Ctrl+Shift+d";
             }
 
             currentSettings = obj;
 
-			SaveSettings();
-		}
-	}
+            SaveSettings();
+        }
+    }
 }

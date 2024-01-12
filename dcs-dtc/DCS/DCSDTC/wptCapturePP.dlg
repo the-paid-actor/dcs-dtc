@@ -1,0 +1,583 @@
+dialog = {
+    ["type"] = "Window",
+    ["params"] = {
+        ["bounds"] = {
+            [1] = {
+                ["x"] = 0,
+                ["y"] = 0,
+                ["w"] = 425,
+                ["h"] = 170
+            }
+        },
+        ["draggable"] = false,
+        ["enabled"] = true,
+        ["hasCursor"] = false,
+        ["lockFlow"] = false,
+        ["modal"] = false,
+        ["offscreen"] = false,
+        ["resizable"] = false,
+        ["zOrder"] = 111,
+        ["text"] = ""
+    },
+    ["skin"] = {
+        ["params"] = {
+            ["headerHeight"] = 0,
+            ["name"] = "windowSkin"
+        },
+        ["states"] = {
+            ["released"] = {
+                [1] = {
+                    ["bkg"] = {
+                        ["center_center"] = "0xffffff3f"
+                    }
+                }
+            }
+        }
+    },
+    ["children"] = {
+        ["listBox"] = {
+            ["type"] = "ListBox",
+            ["params"] = {
+                ["bounds"] = {
+                    ["x"] = 0,
+                    ["y"] = 0,
+                    ["w"] = 200,
+                    ["h"] = 200,
+                },
+                ["enabled"] = true,
+                ["tabOrder"] = 0,
+                ["text"] = "listBox0",
+                ["tooltip"] = "",
+                ["visible"] = false,
+                ["zindex"] = 0
+            }
+        },
+
+        ["sta2Label"] = {
+            ["type"] = "Static",
+            ["params"] = {
+                ["bounds"] = {
+                    ["x"] = 10,
+                    ["y"] = 16,
+                    ["w"] = 80,
+                    ["h"] = 30
+                },
+                ["text"] = "Station 2",
+            },
+            ["skin"] = {
+                ["params"] = {
+                    ["name"] = "staticSkin"
+                },
+                ["states"] = {
+                    ["released"] = {
+                        [1] = {
+                            ["text"] = {
+                                ["color"] = "0x000000FF",
+                                ["fontSize"] = 14,
+                            }
+                        }
+                    }
+                }
+            },
+        },
+
+        ["buttonSta2PP1"] = {
+            ["type"] = "Button",
+            ["params"] = {
+                ["bounds"] = {
+                    ["x"] = 90,
+                    ["y"] = 10,
+                    ["w"] = 50,
+                    ["h"] = 30,
+                },
+                ["text"] = "PP1",
+            },
+            ["skin"] = {
+                ["params"] = {
+                    ["name"] = "buttonSkinAwacs"
+                }
+            },
+        },
+        ["buttonSta2PP2"] = {
+            ["type"] = "Button",
+            ["params"] = {
+                ["bounds"] = {
+                    ["x"] = 145,
+                    ["y"] = 10,
+                    ["w"] = 50,
+                    ["h"] = 30,
+                },
+                ["text"] = "PP2",
+            },
+            ["skin"] = {
+                ["params"] = {
+                    ["name"] = "buttonSkinAwacs"
+                }
+            },
+        },
+        ["buttonSta2PP3"] = {
+            ["type"] = "Button",
+            ["params"] = {
+                ["bounds"] = {
+                    ["x"] = 200,
+                    ["y"] = 10,
+                    ["w"] = 50,
+                    ["h"] = 30,
+                },
+                ["text"] = "PP3",
+            },
+            ["skin"] = {
+                ["params"] = {
+                    ["name"] = "buttonSkinAwacs"
+                }
+            },
+        },
+        ["buttonSta2PP4"] = {
+            ["type"] = "Button",
+            ["params"] = {
+                ["bounds"] = {
+                    ["x"] = 255,
+                    ["y"] = 10,
+                    ["w"] = 50,
+                    ["h"] = 30,
+                },
+                ["text"] = "PP4",
+            },
+            ["skin"] = {
+                ["params"] = {
+                    ["name"] = "buttonSkinAwacs"
+                }
+            },
+        },
+        ["buttonSta2PP5"] = {
+            ["type"] = "Button",
+            ["params"] = {
+                ["bounds"] = {
+                    ["x"] = 310,
+                    ["y"] = 10,
+                    ["w"] = 50,
+                    ["h"] = 30,
+                },
+                ["text"] = "PP5",
+            },
+            ["skin"] = {
+                ["params"] = {
+                    ["name"] = "buttonSkinAwacs"
+                }
+            },
+        },
+        ["buttonSta2PP6"] = {
+            ["type"] = "Button",
+            ["params"] = {
+                ["bounds"] = {
+                    ["x"] = 365,
+                    ["y"] = 10,
+                    ["w"] = 50,
+                    ["h"] = 30,
+                },
+                ["text"] = "PP6",
+            },
+            ["skin"] = {
+                ["params"] = {
+                    ["name"] = "buttonSkinAwacs"
+                }
+            },
+        },
+
+        
+        ["sta3Label"] = {
+            ["type"] = "Static",
+            ["params"] = {
+                ["bounds"] = {
+                    ["x"] = 10,
+                    ["y"] = 56,
+                    ["w"] = 80,
+                    ["h"] = 30
+                },
+                ["text"] = "Station 3",
+            },
+            ["skin"] = {
+                ["params"] = {
+                    ["name"] = "staticSkin"
+                },
+                ["states"] = {
+                    ["released"] = {
+                        [1] = {
+                            ["text"] = {
+                                ["color"] = "0x000000FF",
+                                ["fontSize"] = 14,
+                            }
+                        }
+                    }
+                }
+            },
+        },
+
+        ["buttonSta3PP1"] = {
+            ["type"] = "Button",
+            ["params"] = {
+                ["bounds"] = {
+                    ["x"] = 90,
+                    ["y"] = 50,
+                    ["w"] = 50,
+                    ["h"] = 30,
+                },
+                ["text"] = "PP1",
+            },
+            ["skin"] = {
+                ["params"] = {
+                    ["name"] = "buttonSkinAwacs"
+                }
+            },
+        },
+        ["buttonSta3PP2"] = {
+            ["type"] = "Button",
+            ["params"] = {
+                ["bounds"] = {
+                    ["x"] = 145,
+                    ["y"] = 50,
+                    ["w"] = 50,
+                    ["h"] = 30,
+                },
+                ["text"] = "PP2",
+            },
+            ["skin"] = {
+                ["params"] = {
+                    ["name"] = "buttonSkinAwacs"
+                }
+            },
+        },
+        ["buttonSta3PP3"] = {
+            ["type"] = "Button",
+            ["params"] = {
+                ["bounds"] = {
+                    ["x"] = 200,
+                    ["y"] = 50,
+                    ["w"] = 50,
+                    ["h"] = 30,
+                },
+                ["text"] = "PP3",
+            },
+            ["skin"] = {
+                ["params"] = {
+                    ["name"] = "buttonSkinAwacs"
+                }
+            },
+        },
+        ["buttonSta3PP4"] = {
+            ["type"] = "Button",
+            ["params"] = {
+                ["bounds"] = {
+                    ["x"] = 255,
+                    ["y"] = 50,
+                    ["w"] = 50,
+                    ["h"] = 30,
+                },
+                ["text"] = "PP4",
+            },
+            ["skin"] = {
+                ["params"] = {
+                    ["name"] = "buttonSkinAwacs"
+                }
+            },
+        },
+        ["buttonSta3PP5"] = {
+            ["type"] = "Button",
+            ["params"] = {
+                ["bounds"] = {
+                    ["x"] = 310,
+                    ["y"] = 50,
+                    ["w"] = 50,
+                    ["h"] = 30,
+                },
+                ["text"] = "PP5",
+            },
+            ["skin"] = {
+                ["params"] = {
+                    ["name"] = "buttonSkinAwacs"
+                }
+            },
+        },
+        ["buttonSta3PP6"] = {
+            ["type"] = "Button",
+            ["params"] = {
+                ["bounds"] = {
+                    ["x"] = 365,
+                    ["y"] = 50,
+                    ["w"] = 50,
+                    ["h"] = 30,
+                },
+                ["text"] = "PP6",
+            },
+            ["skin"] = {
+                ["params"] = {
+                    ["name"] = "buttonSkinAwacs"
+                }
+            },
+        },
+
+        
+        ["Sta7Label"] = {
+            ["type"] = "Static",
+            ["params"] = {
+                ["bounds"] = {
+                    ["x"] = 10,
+                    ["y"] = 96,
+                    ["w"] = 80,
+                    ["h"] = 30
+                },
+                ["text"] = "Station 7",
+            },
+            ["skin"] = {
+                ["params"] = {
+                    ["name"] = "staticSkin"
+                },
+                ["states"] = {
+                    ["released"] = {
+                        [1] = {
+                            ["text"] = {
+                                ["color"] = "0x000000FF",
+                                ["fontSize"] = 14,
+                            }
+                        }
+                    }
+                }
+            },
+        },
+
+        ["buttonSta7PP1"] = {
+            ["type"] = "Button",
+            ["params"] = {
+                ["bounds"] = {
+                    ["x"] = 90,
+                    ["y"] = 90,
+                    ["w"] = 50,
+                    ["h"] = 30,
+                },
+                ["text"] = "PP1",
+            },
+            ["skin"] = {
+                ["params"] = {
+                    ["name"] = "buttonSkinAwacs"
+                }
+            },
+        },
+        ["buttonSta7PP2"] = {
+            ["type"] = "Button",
+            ["params"] = {
+                ["bounds"] = {
+                    ["x"] = 145,
+                    ["y"] = 90,
+                    ["w"] = 50,
+                    ["h"] = 30,
+                },
+                ["text"] = "PP2",
+            },
+            ["skin"] = {
+                ["params"] = {
+                    ["name"] = "buttonSkinAwacs"
+                }
+            },
+        },
+        ["buttonSta7PP3"] = {
+            ["type"] = "Button",
+            ["params"] = {
+                ["bounds"] = {
+                    ["x"] = 200,
+                    ["y"] = 90,
+                    ["w"] = 50,
+                    ["h"] = 30,
+                },
+                ["text"] = "PP3",
+            },
+            ["skin"] = {
+                ["params"] = {
+                    ["name"] = "buttonSkinAwacs"
+                }
+            },
+        },
+        ["buttonSta7PP4"] = {
+            ["type"] = "Button",
+            ["params"] = {
+                ["bounds"] = {
+                    ["x"] = 255,
+                    ["y"] = 90,
+                    ["w"] = 50,
+                    ["h"] = 30,
+                },
+                ["text"] = "PP4",
+            },
+            ["skin"] = {
+                ["params"] = {
+                    ["name"] = "buttonSkinAwacs"
+                }
+            },
+        },
+        ["buttonSta7PP5"] = {
+            ["type"] = "Button",
+            ["params"] = {
+                ["bounds"] = {
+                    ["x"] = 310,
+                    ["y"] = 90,
+                    ["w"] = 50,
+                    ["h"] = 30,
+                },
+                ["text"] = "PP5",
+            },
+            ["skin"] = {
+                ["params"] = {
+                    ["name"] = "buttonSkinAwacs"
+                }
+            },
+        },
+        ["buttonSta7PP6"] = {
+            ["type"] = "Button",
+            ["params"] = {
+                ["bounds"] = {
+                    ["x"] = 365,
+                    ["y"] = 90,
+                    ["w"] = 50,
+                    ["h"] = 30,
+                },
+                ["text"] = "PP6",
+            },
+            ["skin"] = {
+                ["params"] = {
+                    ["name"] = "buttonSkinAwacs"
+                }
+            },
+        },
+
+        
+        ["Sta8Label"] = {
+            ["type"] = "Static",
+            ["params"] = {
+                ["bounds"] = {
+                    ["x"] = 10,
+                    ["y"] = 136,
+                    ["w"] = 80,
+                    ["h"] = 30
+                },
+                ["text"] = "Station 8",
+            },
+            ["skin"] = {
+                ["params"] = {
+                    ["name"] = "staticSkin"
+                },
+                ["states"] = {
+                    ["released"] = {
+                        [1] = {
+                            ["text"] = {
+                                ["color"] = "0x000000FF",
+                                ["fontSize"] = 14,
+                            }
+                        }
+                    }
+                }
+            },
+        },
+
+        ["buttonSta8PP1"] = {
+            ["type"] = "Button",
+            ["params"] = {
+                ["bounds"] = {
+                    ["x"] = 90,
+                    ["y"] = 130,
+                    ["w"] = 50,
+                    ["h"] = 30,
+                },
+                ["text"] = "PP1",
+            },
+            ["skin"] = {
+                ["params"] = {
+                    ["name"] = "buttonSkinAwacs"
+                }
+            },
+        },
+        ["buttonSta8PP2"] = {
+            ["type"] = "Button",
+            ["params"] = {
+                ["bounds"] = {
+                    ["x"] = 145,
+                    ["y"] = 130,
+                    ["w"] = 50,
+                    ["h"] = 30,
+                },
+                ["text"] = "PP2",
+            },
+            ["skin"] = {
+                ["params"] = {
+                    ["name"] = "buttonSkinAwacs"
+                }
+            },
+        },
+        ["buttonSta8PP3"] = {
+            ["type"] = "Button",
+            ["params"] = {
+                ["bounds"] = {
+                    ["x"] = 200,
+                    ["y"] = 130,
+                    ["w"] = 50,
+                    ["h"] = 30,
+                },
+                ["text"] = "PP3",
+            },
+            ["skin"] = {
+                ["params"] = {
+                    ["name"] = "buttonSkinAwacs"
+                }
+            },
+        },
+        ["buttonSta8PP4"] = {
+            ["type"] = "Button",
+            ["params"] = {
+                ["bounds"] = {
+                    ["x"] = 255,
+                    ["y"] = 130,
+                    ["w"] = 50,
+                    ["h"] = 30,
+                },
+                ["text"] = "PP4",
+            },
+            ["skin"] = {
+                ["params"] = {
+                    ["name"] = "buttonSkinAwacs"
+                }
+            },
+        },
+        ["buttonSta8PP5"] = {
+            ["type"] = "Button",
+            ["params"] = {
+                ["bounds"] = {
+                    ["x"] = 310,
+                    ["y"] = 130,
+                    ["w"] = 50,
+                    ["h"] = 30,
+                },
+                ["text"] = "PP5",
+            },
+            ["skin"] = {
+                ["params"] = {
+                    ["name"] = "buttonSkinAwacs"
+                }
+            },
+        },
+        ["buttonSta8PP6"] = {
+            ["type"] = "Button",
+            ["params"] = {
+                ["bounds"] = {
+                    ["x"] = 365,
+                    ["y"] = 130,
+                    ["w"] = 50,
+                    ["h"] = 30,
+                },
+                ["text"] = "PP6",
+            },
+            ["skin"] = {
+                ["params"] = {
+                    ["name"] = "buttonSkinAwacs"
+                }
+            },
+        },
+    }
+}

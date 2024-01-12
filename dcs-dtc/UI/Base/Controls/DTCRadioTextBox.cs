@@ -3,7 +3,7 @@ using System.Media;
 
 namespace DTC.UI.Base.Controls
 {
-    internal class DTCRadioTextBox : UserControl
+    public class DTCRadioTextBox : UserControl
     {
         public delegate void TextBoxChangedCallback(DTCRadioTextBox textBox);
 

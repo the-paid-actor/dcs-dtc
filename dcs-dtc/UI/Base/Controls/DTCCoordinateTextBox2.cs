@@ -17,6 +17,7 @@ public class DTCCoordinateTextBox2 : UserControl
 
     public event Action<Coordinate> CoordinateChanged;
     public event Action WillOpenConverter;
+    public event Action<int> ElevationPasted;
 
     public Control CoordinateConverterParent
     {
@@ -128,6 +129,11 @@ public class DTCCoordinateTextBox2 : UserControl
 
     private void TextBox_Validating(object? sender, CancelEventArgs e)
     {
+        ValidateCoords(e);
+    }
+
+    private void ValidateCoords(CancelEventArgs e)
+    {
         if (!this.textBox.MaskFull)
         {
             this.valid = false;
@@ -156,8 +162,8 @@ public class DTCCoordinateTextBox2 : UserControl
     private void TextBox_Pasting(object? sender, PastingEventArgs e)
     {
         var s = e.Value;
-        s = ProcessDCSDialogString(s);
-        Coordinate.TryFromString(s, out var c);
+        var (coordStr, elev) = ProcessDCSDialogString(s);
+        Coordinate.TryFromString(coordStr, out var c);
 
         if (c != null)
         {
@@ -167,10 +173,15 @@ public class DTCCoordinateTextBox2 : UserControl
         {
             SystemSounds.Beep.Play();
         }
+
+        if (elev > -1)
+        {
+            this.ElevationPasted?.Invoke(elev);
+        }
         e.Cancel = true;
     }
 
-    private string ProcessDCSDialogString(string s)
+    private (string, int) ProcessDCSDialogString(string s)
     {
         //check if it looks like the string below
 
@@ -190,7 +201,8 @@ public class DTCCoordinateTextBox2 : UserControl
         if (lines.Length == 6 && lines[0].StartsWith("Metric: "))
         {
             var coord = lines[4].Split(":", StringSplitOptions.RemoveEmptyEntries)[1];
-            return coord;
+            var elev = int.Parse(lines[5].Split("/")[1].Replace("feet", "").Trim());
+            return (coord, elev);
         }
 
         if (lines.Length == 1)
@@ -198,16 +210,24 @@ public class DTCCoordinateTextBox2 : UserControl
             if (s.StartsWith("Lat Long Standard") || s.StartsWith("Lat Long Precise") || s.StartsWith("Lat Long Decimal Minutes") || s.StartsWith("MGRS GRID"))
             {
                 var coord = lines[0].Split(":", StringSplitOptions.RemoveEmptyEntries)[1];
-                return coord;
+                return (coord, -1);
             }
         }
 
-        return s;
+        return (s, -1);
     }
 
     private void Label_Click(object? sender, EventArgs e)
     {
         if (this.Parent == null)
+        {
+            return;
+        }
+
+        var args = new CancelEventArgs();
+        ValidateCoords(args);
+
+        if (args.Cancel)
         {
             return;
         }

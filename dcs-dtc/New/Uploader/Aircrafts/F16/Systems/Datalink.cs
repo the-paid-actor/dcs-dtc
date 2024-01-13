@@ -46,7 +46,7 @@ public partial class F16Uploader
 
             Cmd(UFC.SEQ);
 
-            if (config.Datalink.EnableMembers == true)
+            if (config.Datalink.EnableMembers == true && config.Datalink.Members != null)
             {
                 Cmd(UFC.UP);
                 Cmd(Digits(UFC, config.Datalink.OwnshipIndex.ToString()));
@@ -56,9 +56,14 @@ public partial class F16Uploader
                 for (int i = 0; i < 8; i++)
                 {
                     var member = config.Datalink.Members[i];
-                    var tdoa = config.Datalink.TDOAMembers[i];
+                    var tdoa = false;
+                    
+                    if (config.Datalink.TDOAMembers != null)
+                    {
+                        tdoa = config.Datalink.TDOAMembers[i];
+                    }
 
-                    if (member > 0) continue;
+                    if (member < 0) continue;
 
                     Cmd(UFC.DOWN);
                     Cmd(Digits(UFC, member.ToString()));

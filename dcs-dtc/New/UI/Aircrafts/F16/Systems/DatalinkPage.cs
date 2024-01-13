@@ -15,6 +15,7 @@ namespace DTC.New.UI.Aircrafts.F16.Systems
             InitializeComponent();
 
             chkOwnCallsign.Checked = datalink.EnableOwnCallsign ?? false;
+            pnlOwnCallsign.Enabled = chkOwnCallsign.Checked;
             if (!string.IsNullOrEmpty(datalink.OwnCallsign) && datalink.OwnCallsign.Length == 4)
             {
                 cboCallsign1.SelectedItem = datalink.OwnCallsign[0].ToString();
@@ -25,6 +26,7 @@ namespace DTC.New.UI.Aircrafts.F16.Systems
             chkFlightLead.Checked = datalink.FlightLead ?? false;
 
             chkFlightMembers.Checked = datalink.EnableMembers ?? false;
+            pnlMembers.Enabled = chkFlightMembers.Checked;
             if (datalink.OwnshipIndex.HasValue)
             {
                 if (datalink.OwnshipIndex == 1) radOwn1.Checked = true;
@@ -71,6 +73,7 @@ namespace DTC.New.UI.Aircrafts.F16.Systems
             chkOwnCallsign.CheckedChanged += (s, e) =>
             {
                 datalink.EnableOwnCallsign = chkOwnCallsign.Checked;
+                pnlOwnCallsign.Enabled = chkOwnCallsign.Checked;
                 this.SavePreset();
             };
 
@@ -88,6 +91,7 @@ namespace DTC.New.UI.Aircrafts.F16.Systems
             chkFlightMembers.CheckedChanged += (s, e) =>
             {
                 datalink.EnableMembers = chkFlightMembers.Checked;
+                pnlMembers.Enabled = chkFlightMembers.Checked;
                 this.SavePreset();
             };
 

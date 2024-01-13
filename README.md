@@ -11,7 +11,13 @@ This is a mod for DCS that works as a DTC (Data Cartridge) for the F-16, F/A-18 
 
 **For real-time support, bug reporting and feature suggestions** use the Discord channel - https://discord.gg/saCACg99EZ
 
-# Features by aircraft
+# Features
+
+## General
+
+- Ability to import flight plans from Combatflite
+- Ability to convert coordinates between various formats (by clicking the ellipsis on the coordinate text fields)
+- The coordinate text fields also accept pasting data directly from DCS Alt+click window
 
 ## Viper
   - Waypoints with Time Over Steerpoint, Offset aimpoints and VIP / VRP settings

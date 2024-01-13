@@ -14,16 +14,14 @@ This is a mod for DCS that works as a DTC (Data Cartridge) for the F-16, F/A-18 
 # Features by aircraft
 
 ## Viper
-  - Waypoints
-    - Coordinates / elevation
-    - Time over steerpoint
-    - Offset aimpoints
-    - VIP / VRP settings
+  - Waypoints with Time Over Steerpoint, Offset aimpoints and VIP / VRP settings
   - Countermeasure programs and bingo settings
-  - Radios
+  - Radios (guard settings, frequencies and presets)
   - MFD page settings for all master modes (NAV, AA, AG, DGFT, MSL)
+  - FCR settings (mode, azimuth, bars, range) for NAV, AA and MSL master modes
   - HARM threat tables
   - HTS threat tables and class selection
+  - Datalink settings
   - Bingo fuel setting
   - Bullseye setting
   - Low altitude warning settings
@@ -32,24 +30,29 @@ This is a mod for DCS that works as a DTC (Data Cartridge) for the F-16, F/A-18 
 
 ## Hornet
 
-  - Waypoints
+  - Waypoints in PRECISE mode
   - Waypoint sequences
+  - Countermeasure programs and settings
+  - Radios (guard settings, frequencies and presets)
+  - FCR settings for AMRAAM, Sparrow and Sidewinder
   - JDAM/JSOW/SLAM pre-planned coordinates
   - SLAM-ER waypoints
-  - Countermeasure programs
-  - Radios
+  - HMD reject settings
   - Bingo fuel setting
   - Bullseye setting
   - Radar/Barometric altitude warning setting
   - AP BLIM setting
+  - TGP laser and LST codes
   - TACAN Channel/Band and ILS channel
   - HSI Map visibility
 
 ## Strike Eagle
 
-- Sequence Points and Target Points
+- Uploads from either Pilot or WSO stations
+- Sequence Points and Target Points for routes A, B and C
+- Radios (guard settings, frequencies and presets)
 - Display settings for the Pilot and WSO
-- Radio Settings and Presets
+- Smart Weapons coordinates
 - Bingo fuel setting
 - Radar altitude warning setting
 - TACAN Channel/Band and ILS frequency
@@ -97,37 +100,25 @@ The mod features usage of unused cockpit buttons in DCS to show/hide the app, an
 - pressing the "I/P" button on the UFC for more than 1 second will command the upload of the current preset (you must be on the Upload page of the preset for this to happen)
 - pressing the "EM" button on the UFC will toggle visibility of the DTC app
 
+# Capturing coordinates in DCS
+
+By pressing Ctrl+Shift+D within DCS, a window with a crosshair will popup. By going into the F10 map and positioning the crosshair over a point of interest, you can capture the coordinates of that point as steerpoints or target points. Pressing "Send to DTC" will send the coordinates to the app, and pressing "Send to DTC + Jet" will save the coordinates into the app but also uploads these same coordinates into the aircraft. Otherwise the dialog is self-explanatory.
+
+You can also capture coordinates this way directly into PP stations (Hornet) or Smart Weapons (Strike Eagle).
+
 # Limitations
 
 ## Hornet
 
-Some settings in the F/A-18 are depending on the initial status and are thus not idempotent.
-If the current status deviates from the default setting, it may not work at all or produce results different from what's intended.
-Affected by this are the following features:
-  - Countermeasure settings
-  - Bingo fuel setting
-  - Pre-Planned coordinates
-
-The setting of Pre-Planned coordinates relies on the settings for all stations being correct. If those settings are not correct, results may vary from everything working fine, the coordinates being set on the wrong station or any station not receving the set coordinates.
+The setting of Pre-Planned coordinates relies on the settings for all stations being correct. This may be improved in the future to not require setting the store type at all.
 
 ## Strike Eagle
 
 If you have displays already programmed in the jet, the app will skip uploading the new displays configuration. This will be improved in a future version.
 
-From either seat (pilot/WSO) it is not possible to change displays on the other seat, given that the displays are only rendered when you occupy the respective position. That is the reason for the exclusive choice in the Upload page between uploading Pilot or WSO displays.
-
-Furthermore, the other settings (Waypoints, Radios, Misc) are only tested to work from the pilot seat. Currently there is no way to detect which seat is occupied from the LUA API. If such means become available in the future, a more streamlined system can be developed.
-
-Therefore, the suggestion is for the pilot to upload everything except the WSO displays, and the WSO upload only its displays.
+From either seat (pilot/WSO) it is not possible to change displays on the other seat, given that the displays are only rendered when you occupy the respective position. Therefore when selecting the option on the Upload page to set "Pilot and WSO" displays, DTC will jump between the seats to perform the configuration.
 
 # Help
 
 There is a Discord channel to report bugs, send suggestions and chat with other users. You can join it here:
 https://discord.gg/saCACg99EZ
-
-# Credits
-
-See the contributors (https://github.com/the-paid-actor/dcs-dtc/graphs/contributors) page for the list of people who contributed to this project.
-
-This uses some code and inspiration from DCS The Way mod by Comrade Doge. Link to the repository:
-https://github.com/aronCiucu/DCSTheWay

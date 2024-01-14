@@ -1,1 +1,8 @@
-{}
+{
+  "profiles": {
+    "Profile 1": {
+      "commandName": "DebugRoslynComponent",
+      "targetProject": "..\\dcs-dtc\\DTC.csproj"
+    }
+  }
+}

@@ -22,8 +22,7 @@ public class SourceGenerator : ISourceGenerator
 
             foreach (var configFile in context.AdditionalFiles.Where(file => file.Path.EndsWith(".json")))
             {
-                var assembly = "dcs-dtc\\dcs-dtc\\dcs-dtc";
-                //var assembly = "dcs-dtc\\dcs-dtc";
+                var assembly = "dcs-dtc";
                 var ns = "DTC";
                 var content = configFile.GetText()?.ToString();
                 if (!string.IsNullOrEmpty(content))
@@ -203,12 +202,28 @@ class SourceFile
     {
         get
         {
-            var rootDir = this.path.Split(new string[] { this.assemblyName }, StringSplitOptions.RemoveEmptyEntries)[1];
-            var namespaceName = string.Empty;
-            foreach (var item in rootDir.Split(Path.DirectorySeparatorChar).Where(item => !string.IsNullOrWhiteSpace(item)))
+            var pathParts = this.path.Split(Path.DirectorySeparatorChar).Where(item => !string.IsNullOrWhiteSpace(item)).ToArray();
+            var startIndex = -1;
+            var endIndex = -1;
+            for (var i = 0; i < pathParts.Length; i++)
             {
-                if (item != Path.GetFileName(this.path))
-                    namespaceName += $".{item.Trim()}";
+                if (pathParts[i] == assemblyName && pathParts[i+1] != assemblyName)
+                {
+                    startIndex = i + 1;
+                }
+            }
+            for (var i = 0; i < pathParts.Length; i++)
+            {
+                if (pathParts[i] == Path.GetFileName(this.path))
+                {
+                    endIndex = i - 1;
+                }
+            }
+
+            var namespaceName = string.Empty;
+            for (var i = startIndex; i <= endIndex; i++)
+            {
+                namespaceName += $".{pathParts[i].Trim()}";
             }
 
             return $"{this.ns}{namespaceName}";

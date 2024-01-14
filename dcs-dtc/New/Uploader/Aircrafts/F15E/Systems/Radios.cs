@@ -26,19 +26,7 @@ public partial class F15EUploader : Base.Uploader
 
     private void BuildRadios(Device d, RadioSystem radios)
     {
-        Cmd(d.GetCommand("CLR"));
-        Cmd(d.GetCommand("CLR"));
-        Cmd(d.GetCommand("CLR"));
-        Cmd(d.GetCommand("CLR"));
-        Cmd(d.GetCommand("MENU"));
-
         BuildRadio(d, radios.Radio1, "PB05");
-
-        Cmd(d.GetCommand("CLR"));
-        Cmd(d.GetCommand("CLR"));
-        Cmd(d.GetCommand("CLR"));
-        Cmd(d.GetCommand("CLR"));
-        Cmd(d.GetCommand("MENU"));
 
         BuildRadio(d, radios.Radio2, "PB06");
 
@@ -51,15 +39,35 @@ public partial class F15EUploader : Base.Uploader
 
     private void BuildRadio(Device d, Radio radio, string pb)
     {
+        if (radio == null) return;
+
+        if (!radio.EnableGuard && 
+            (radio.Presets == null || radio.Presets.Count == 0) &&
+            radio.SelectedFrequency == null && 
+            radio.SelectedPreset == null &&
+            radio.Mode == 0)
+        {
+            return;
+        }
+
+        Cmd(d.GetCommand("CLR"));
+        Cmd(d.GetCommand("CLR"));
+        Cmd(d.GetCommand("CLR"));
+        Cmd(d.GetCommand("CLR"));
+        Cmd(d.GetCommand("MENU"));
+
         var isRadio1 = (pb == "PB05");
 
-        if (radio.Mode == RadioMode.Frequency)
+        if (radio.Mode != 0)
         {
-            If(IsRadioPresetOrFreqSelected(isRadio1 ? "1" : "2", "preset"), d.GetCommand(isRadio1 ? "GCML" : "GCMR"));
-        }
-        if (radio.Mode == RadioMode.Preset)
-        {
-            If(IsRadioPresetOrFreqSelected(isRadio1 ? "1" : "2", "freq"), d.GetCommand(isRadio1 ? "GCML" : "GCMR"));
+            if (radio.Mode == RadioMode.Frequency)
+            {
+                If(IsRadioPresetOrFreqSelected(isRadio1 ? "1" : "2", "preset"), d.GetCommand(isRadio1 ? "GCML" : "GCMR"));
+            }
+            else if (radio.Mode == RadioMode.Preset)
+            {
+                If(IsRadioPresetOrFreqSelected(isRadio1 ? "1" : "2", "freq"), d.GetCommand(isRadio1 ? "GCML" : "GCMR"));
+            }
         }
 
         if (radio.SelectedFrequency != null)
@@ -71,29 +79,35 @@ public partial class F15EUploader : Base.Uploader
 
         Cmd(d.GetCommand(pb));
 
-        BuildRadioPresets(d, radio);
-
-        if (radio.SelectedPreset == "G")
+        if (radio.Presets != null && radio.Presets.Count > 0)
         {
-            Cmd(Digits(d, isRadio1 ? "20" : "40"));
-            Cmd(d.GetCommand(isRadio1 ? "PRESL" : "PRESR"));
-            Cmd(d.GetCommand("CLR"));
-
-            Cmd(d.GetCommand(isRadio1 ? "PRESLCCW" : "PRESRCCW"));
+            BuildRadioPresets(d, radio);
         }
-        else if (radio.SelectedPreset == "GV")
+
+        if (radio.SelectedPreset != null)
         {
-            Cmd(Digits(d, "40"));
-            Cmd(d.GetCommand("PRESR"));
-            Cmd(d.GetCommand("CLR"));
-            Cmd(d.GetCommand("PRESRCCW"));
-            Cmd(d.GetCommand("PRESRCCW"));
-        }
-        else
-        {
-            Cmd(Digits(d, radio.SelectedPreset));
-            Cmd(d.GetCommand(isRadio1 ? "PRESL" : "PRESR"));
-            Cmd(d.GetCommand("CLR"));
+            if (radio.SelectedPreset == "G")
+            {
+                Cmd(Digits(d, isRadio1 ? "20" : "40"));
+                Cmd(d.GetCommand(isRadio1 ? "PRESL" : "PRESR"));
+                Cmd(d.GetCommand("CLR"));
+
+                Cmd(d.GetCommand(isRadio1 ? "PRESLCCW" : "PRESRCCW"));
+            }
+            else if (radio.SelectedPreset == "GV")
+            {
+                Cmd(Digits(d, "40"));
+                Cmd(d.GetCommand("PRESR"));
+                Cmd(d.GetCommand("CLR"));
+                Cmd(d.GetCommand("PRESRCCW"));
+                Cmd(d.GetCommand("PRESRCCW"));
+            }
+            else
+            {
+                Cmd(Digits(d, radio.SelectedPreset));
+                Cmd(d.GetCommand(isRadio1 ? "PRESL" : "PRESR"));
+                Cmd(d.GetCommand("CLR"));
+            }
         }
 
         if (radio.EnableGuard)
@@ -128,8 +142,6 @@ public partial class F15EUploader : Base.Uploader
 
     private void BuildRadioPresets(Device d, Radio radio)
     {
-        if (radio.Presets == null) return;
-
         foreach (var preset in radio.Presets)
         { 
             if (!string.IsNullOrEmpty(preset.Frequency))

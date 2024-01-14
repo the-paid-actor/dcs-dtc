@@ -21,6 +21,15 @@ public partial class FA18Uploader
     {
         if (radio == null) return;
 
+        if (!radio.EnableGuard &&
+            (radio.Presets == null || radio.Presets.Count == 0) &&
+            radio.SelectedFrequency == null &&
+            radio.SelectedPreset == null &&
+            radio.Mode == 0)
+        {
+            return;
+        }
+
         if (radio.EnableGuard)
         {
             Cmd(toggleRadioCmd);

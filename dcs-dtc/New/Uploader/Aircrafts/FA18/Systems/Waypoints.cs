@@ -205,7 +205,7 @@ public partial class FA18Uploader
                 }
             }
         }
-        else if (seq.Mode == SequenceMode.UseSpecific)
+        else if (seq.Mode == SequenceMode.UseSpecific && seq.Waypoints != null)
         {
             wpts.AddRange(seq.Waypoints);
         }

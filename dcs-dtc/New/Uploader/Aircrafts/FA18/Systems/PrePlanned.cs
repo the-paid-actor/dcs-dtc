@@ -1,5 +1,7 @@
 ﻿using DTC.New.Presets.V2.Aircrafts.FA18.Systems;
 using DTC.New.Uploader.Base;
+using DTC.Utilities;
+using System.Globalization;
 
 namespace DTC.New.Uploader.Aircrafts.FA18;
 
@@ -216,5 +218,40 @@ public partial class FA18Uploader
         }
 
         return result;
+    }
+
+
+    private Condition IsStationSelected(int station)
+    {
+        return new Condition($"StationSelected('{station}')");
+    }
+
+    private Condition IsTargetOfOpportunity()
+    {
+        return new Condition($"IsTargetOfOpportunity()");
+    }
+
+    private Condition IsInPPStation(int station)
+    {
+        return new Condition($"InPPStation('{station}')");
+    }
+
+    private Condition IsPPNotSelected(int pp)
+    {
+        return new Condition($"IsPPNotSelected('{pp}')");
+    }
+
+    private CustomCommand SelectStore(string store)
+    {
+        var device = LMFD.Id;
+        var b1 = LMFD.OSB06.Id;
+        var b2 = LMFD.OSB07.Id;
+        var b3 = LMFD.OSB08.Id;
+        var b4 = LMFD.OSB09.Id;
+        var b5 = LMFD.OSB10.Id;
+        var delay = (Settings.HornetCommandDelayMs * LMFD.OSB06.DelayFactor).ToString(CultureInfo.InvariantCulture);
+        var act = LMFD.OSB06.Activation;
+
+        return new CustomCommand($"SelectStore('{store}', {device}, {b1}, {b2}, {b3}, {b4}, {b5}, {delay}, {act})");
     }
 }

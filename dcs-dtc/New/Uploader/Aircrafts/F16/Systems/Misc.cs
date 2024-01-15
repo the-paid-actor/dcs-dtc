@@ -1,4 +1,5 @@
 ﻿using DTC.New.Presets.V2.Aircrafts.F16.Systems;
+using DTC.New.Uploader.Base;
 
 namespace DTC.New.Uploader.Aircrafts.F16;
 
@@ -80,7 +81,7 @@ public partial class F16Uploader
         Cmd(UFC.D8);
         Cmd(Wait());
 
-        If(IsBullseyeNotSelected(), UFC.D0);
+        If(BullseyeNotSelected(), UFC.D0);
         Cmd(UFC.DOWN);
 
         Cmd(Digits(UFC, IntegerString(config.Misc.BullseyeWP)));
@@ -97,15 +98,15 @@ public partial class F16Uploader
 
         if (config.Misc.TACANBand == TACANBands.X)
         {
-            If(IsTACANBandY(), UFC.D0, UFC.ENTR);
+            If(TACANBandY(), UFC.D0, UFC.ENTR);
         }
         else
         {
-            If(IsTACANBandX(), UFC.D0, UFC.ENTR);
+            If(TACANBandX(), UFC.D0, UFC.ENTR);
         }
 
-        If(IsTACANNotTR(), UFC.SEQ);
-        If(IsTACANNotTR(), UFC.SEQ);
+        If(TACANNotTR(), UFC.SEQ);
+        If(TACANNotTR(), UFC.SEQ);
         Cmd(UFC.RTN);
     }
 
@@ -122,5 +123,25 @@ public partial class F16Uploader
         Cmd(UFC.ENTR);
         Cmd(UFC.DOWN);
         Cmd(UFC.RTN);
+    }
+
+    private Condition BullseyeNotSelected()
+    {
+        return new Condition("BullseyeNotSelected()");
+    }
+
+    private Condition TACANBandX()
+    {
+        return new Condition("TACANBandX()");
+    }
+
+    private Condition TACANBandY()
+    {
+        return new Condition("TACANBandY()");
+    }
+
+    private Condition TACANNotTR()
+    {
+        return new Condition("TACANNotTR()");
     }
 }

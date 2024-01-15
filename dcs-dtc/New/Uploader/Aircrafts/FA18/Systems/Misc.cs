@@ -1,4 +1,7 @@
 ﻿using DTC.New.Presets.V2.Aircrafts.FA18.Systems;
+using DTC.New.Uploader.Base;
+using DTC.Utilities;
+using System.Globalization;
 
 namespace DTC.New.Uploader.Aircrafts.FA18;
 
@@ -128,5 +131,24 @@ public partial class FA18Uploader
                 }
             }
         }
+    }
+
+    private Condition FLIRAvailable()
+    {
+        return new Condition($"FLIRAvailable()");
+    }
+
+    private Condition FLIROn()
+    {
+        return new Condition($"FLIROn()");
+    }
+
+    private CustomCommand SetBingo(int bingo)
+    {
+        var inc = IFEI.UP;
+        var dec = IFEI.DOWN;
+        var delay = (Settings.HornetCommandDelayMs * inc.DelayFactor).ToString(CultureInfo.InvariantCulture);
+        var postDelay = (Settings.HornetCommandDelayMs * inc.PostDelayFactor).ToString(CultureInfo.InvariantCulture);
+        return new CustomCommand($"SetBingo({bingo}, {IFEI.Id}, {inc.Id}, {dec.Id}, {delay}, {inc.Activation}, {postDelay})");
     }
 }

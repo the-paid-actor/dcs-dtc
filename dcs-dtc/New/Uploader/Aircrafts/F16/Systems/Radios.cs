@@ -34,7 +34,7 @@ public partial class F16Uploader
 
         if (radio.EnableGuard)
         {
-            If(IsRadioNotBoth(), UFC.SEQ);
+            IfNot(RadioBoth(), UFC.SEQ);
         }
 
         if (radio.Mode == RadioMode.Preset && radio.SelectedPreset != null)
@@ -73,5 +73,10 @@ public partial class F16Uploader
         var a = parts[0];
         var b = parts[1];
         return a + b;
+    }
+
+    private Condition RadioBoth()
+    {
+        return new Condition("RadioBoth()");
     }
 }

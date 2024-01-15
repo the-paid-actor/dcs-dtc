@@ -1,6 +1,6 @@
 ﻿using DTC.New.Presets.V2.Aircrafts.F16.Systems;
+using DTC.New.Uploader.Base;
 using DTC.Utilities;
-using System.Globalization;
 
 namespace DTC.New.Uploader.Aircrafts.F16;
 
@@ -233,5 +233,35 @@ public partial class F16Uploader
     {
         time = time.Replace(":", "");
         Cmd(Digits(UFC, time));
+    }
+
+    private Condition IsVIPtoTGTNotSelected()
+    {
+        return new Condition("VIP_TO_TGT_NotSelected()");
+    }
+
+    private Condition IsVIPtoTGTNotHighlighted()
+    {
+        return new Condition("VIP_TO_TGT_NotHighlighted()");
+    }
+
+    private Condition IsVIPtoPUPNotHighlighted()
+    {
+        return new Condition("VIP_TO_PUP_NotHighlighted()");
+    }
+
+    private Condition IsTGTtoVRPNotSelected()
+    {
+        return new Condition("TGT_TO_VRP_NotSelected()");
+    }
+
+    private Condition IsTGTtoVRPNotHighlighted()
+    {
+        return new Condition("TGT_TO_VRP_NotHighlighted()");
+    }
+
+    private Condition IsTGTtoPUPNotHighlighted()
+    {
+        return new Condition("TGT_TO_PUP_NotHighlighted()");
     }
 }

@@ -1,5 +1,6 @@
 ﻿using DTC.Utilities;
 using DTC.New.Presets.V2.Aircrafts.FA18;
+using DTC.New.Uploader.Base;
 
 namespace DTC.New.Uploader.Aircrafts.FA18;
 
@@ -65,6 +66,16 @@ public partial class FA18Uploader : Base.Uploader
 
     private void SetLeftMFDTac()
     {
-        Loop(IsLeftMFDTac(), LMFD.OSB18);
+        Loop(LeftMFDTAC(), LMFD.OSB18);
+    }
+
+    private Condition RightMFDSUPT()
+    {
+        return new Condition($"RightMFDSUPT()");
+    }
+
+    private Condition LeftMFDTAC()
+    {
+        return new Condition($"LeftMFDTAC()");
     }
 }

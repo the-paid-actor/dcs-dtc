@@ -72,7 +72,7 @@ public partial class F16Uploader
         Cmd(UFC.LIST);
         Cmd(UFC.D0);
         Cmd(Wait());
-        If(IsHTSEnabled(), cmds.ToArray());
+        If(HTSEnabled(), cmds.ToArray());
         Cmd(UFC.RTN);
     }
 
@@ -107,7 +107,22 @@ public partial class F16Uploader
         Cmd(UFC.LIST);
         Cmd(UFC.D0);
         Cmd(Wait());
-        If(IsHARMEnabled(), cmds.ToArray());
+        If(HARMEnabled(), cmds.ToArray());
         Cmd(UFC.RTN);
+    }
+
+    private Condition HARMEnabled()
+    {
+        return new Condition("HARMEnabled()");
+    }
+
+    private Condition HTSEnabled()
+    {
+        return new Condition("HTSEnabled()");
+    }
+
+    private CustomCommand BuildHTSMFD(string data)
+    {
+        return new CustomCommand("BuildHTSMFD(" + data + ")");
     }
 }

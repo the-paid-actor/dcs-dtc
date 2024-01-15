@@ -1,5 +1,7 @@
 ﻿using DTC.New.Presets.V2.Aircrafts.FA18.Systems;
 using DTC.New.Uploader.Base;
+using DTC.Utilities;
+using System.Globalization;
 
 namespace DTC.New.Uploader.Aircrafts.FA18;
 
@@ -12,7 +14,7 @@ public partial class FA18Uploader
             return;
         }
 
-        Loop(IsRightMFDSupt(), RMFD.OSB18);
+        Loop(RightMFDSUPT(), RMFD.OSB18);
         StartIf(HMDOn());
         {
             Cmd(RMFD.OSB03);
@@ -57,9 +59,31 @@ public partial class FA18Uploader
 
             Cmd(RMFD.OSB19);
 
-            Loop(IsRightMFDSupt(), RMFD.OSB18);
+            Loop(RightMFDSUPT(), RMFD.OSB18);
             Cmd(RMFD.OSB15); //FCS
         }
         EndIf();
+    }
+
+    private Condition HMDOn()
+    {
+        return new Condition($"HMDOn()");
+    }
+
+    private Condition HMDMode(string mode)
+    {
+        return new Condition($"HMDMode('{mode}')");
+    }
+
+    private CustomCommand BoxHMDSetting(string setting, string expected, Command btn)
+    {
+        var device = RMFD.Id;
+        var down = RMFD.OSB04.Id;
+        var right = RMFD.OSB07.Id;
+        var delay = (Settings.HornetCommandDelayMs * RMFD.OSB04.DelayFactor).ToString(CultureInfo.InvariantCulture);
+        var post = (Settings.HornetCommandDelayMs * RMFD.OSB04.PostDelayFactor).ToString(CultureInfo.InvariantCulture);
+        var act = RMFD.OSB04.Activation;
+
+        return new CustomCommand($"BoxHMDSetting('{setting}', '{expected}', {device}, {down}, {right}, {delay}, {act}, {post}, {btn.Id})");
     }
 }

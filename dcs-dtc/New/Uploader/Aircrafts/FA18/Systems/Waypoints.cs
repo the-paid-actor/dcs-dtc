@@ -1,5 +1,7 @@
 ﻿using DTC.New.Presets.V2.Aircrafts.FA18.Systems;
 using DTC.New.Uploader.Base;
+using DTC.Utilities;
+using System.Globalization;
 using static DTC.Utilities.Extensions;
 
 namespace DTC.New.Uploader.Aircrafts.FA18;
@@ -56,7 +58,7 @@ public partial class FA18Uploader
             return;
         }
 
-        Loop(IsRightMFDSupt(), RMFD.OSB18);
+        Loop(RightMFDSUPT(), RMFD.OSB18);
         Cmd(RMFD.OSB02); //HSI
 
         if (hideMapHSI)
@@ -160,7 +162,7 @@ public partial class FA18Uploader
 
         Cmd(UFC.CLR);
 
-        Loop(IsRightMFDSupt(), RMFD.OSB18);
+        Loop(RightMFDSUPT(), RMFD.OSB18);
         Cmd(RMFD.OSB15); //FCS
     }
 
@@ -231,5 +233,52 @@ public partial class FA18Uploader
             cmds.Add(Wait());
             If(IsInSequence(i), cmds.ToArray());
         }
+    }
+
+
+    private Condition MapBoxed()
+    {
+        return new Condition($"MapBoxed()");
+    }
+
+    private Condition SequencesDeselected()
+    {
+        return new Condition($"SequencesDeselected()");
+    }
+
+    private Condition IsBankLimitOnNav()
+    {
+        return new Condition($"IsBankLimitOnNav()");
+    }
+
+    private Condition IsPreciseNotSelected()
+    {
+        return new Condition($"IsPreciseNotSelected()");
+    }
+
+    private Condition IsLatLongNotDecimal()
+    {
+        return new Condition($"IsLatLongNotDecimal()");
+    }
+
+    private Condition IsNotBullseye()
+    {
+        return new Condition($"NotBullseye()");
+    }
+
+    private Condition IsSequenceSelected(int sequence)
+    {
+        return new Condition($"SequenceSelected('{sequence}')");
+    }
+
+    private Condition IsInSequence(int wpt)
+    {
+        return new Condition($"InSequence('{wpt}')");
+    }
+
+    private CustomCommand GoToWaypoint(int sequence)
+    {
+        var delay = (Settings.HornetCommandDelayMs * 2).ToString(CultureInfo.InvariantCulture);
+        return new CustomCommand($"GoToWaypoint({sequence}, '{this.RMFD.Id}', '{this.RMFD.OSB12.Id}', '{this.RMFD.OSB13.Id}', {delay}, {this.RMFD.OSB12.Activation})");
     }
 }

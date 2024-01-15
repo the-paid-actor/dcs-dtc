@@ -169,12 +169,12 @@ public partial class F16Uploader
             Cmd(d.GetCommand("OSB01"));
             Cmd(d.GetCommand("OSB20"));
             Cmd(Wait());
-            Loop(IsInCRMMode(mfdSide, mode), d.GetCommand("OSB02"), Wait());
+            Loop(CRMMode(mfdSide, mode), d.GetCommand("OSB02"), Wait());
 
             if (mfd.FCRBars != null)
             {
                 Cmd(Wait());
-                Loop(IsFCRBars(mfdSide, mfd.FCRBars.Value), d.GetCommand("OSB17"), Wait());
+                Loop(FCRBars(mfdSide, mfd.FCRBars.Value), d.GetCommand("OSB17"), Wait());
             }
         }
         else if (mfd.FCRMode == FCRMode.GM || mfd.FCRMode == FCRMode.GMT || mfd.FCRMode == FCRMode.SEA)
@@ -188,7 +188,7 @@ public partial class F16Uploader
         if (mfd.FCRAzimuth != null)
         {
             Cmd(Wait());
-            Loop(IsFCRAz(mfdSide, mfd.FCRAzimuth.Value), d.GetCommand("OSB18"), Wait());
+            Loop(FCRAzimuth(mfdSide, mfd.FCRAzimuth.Value), d.GetCommand("OSB18"), Wait());
         }
 
         if (mfd.FCRRange != null)
@@ -196,7 +196,7 @@ public partial class F16Uploader
             if (mfd.FCRRange == -1)
             {
                 Cmd(Wait());
-                If(IsNotAuto(mfdSide), d.GetCommand("OSB02"));
+                IfNot(FCRRangeAuto(mfdSide), d.GetCommand("OSB02"));
             }
             else
             {
@@ -206,8 +206,33 @@ public partial class F16Uploader
                 }
 
                 Cmd(Wait());
-                Loop(IsFCRRange(mfdSide, mfd.FCRRange.Value), d.GetCommand("OSB20"), Wait());
+                Loop(FCRRange(mfdSide, mfd.FCRRange.Value), d.GetCommand("OSB20"), Wait());
             }
         }
+    }
+
+    private Condition CRMMode(string mfd, string mode)
+    {
+        return new Condition("CRMMode('" + mfd + "','" + mode + "')");
+    }
+
+    private Condition FCRBars(string mfd, int bars)
+    {
+        return new Condition("FCRBars('" + mfd + "','" + bars + "')");
+    }
+
+    private Condition FCRAzimuth(string mfd, int az)
+    {
+        return new Condition("FCRAzimuth('" + mfd + "','" + az + "')");
+    }
+
+    private Condition FCRRange(string mfd, int range)
+    {
+        return new Condition("FCRRange('" + mfd + "','" + range + "')");
+    }
+
+    private Condition FCRRangeAuto(string mfd)
+    {
+        return new Condition("FCRRangeAuto('" + mfd + "')");
     }
 }

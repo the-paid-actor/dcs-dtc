@@ -1,4 +1,7 @@
 ﻿using DTC.New.Presets.V2.Aircrafts.FA18.Systems;
+using DTC.New.Uploader.Base;
+using DTC.Utilities;
+using System.Globalization;
 
 namespace DTC.New.Uploader.Aircrafts.FA18;
 
@@ -17,10 +20,10 @@ public partial class FA18Uploader
 
         If(EWHudNotBoxed(), LMFD.OSB14);
 
-        StartIf(IsDispenserOn());
+        StartIf(DispenserOn());
         {
             Cmd(WaitUntilDispenserOn());
-            If(IsDispenserNotSelected(), LMFD.OSB08, Wait(1000));
+            If(DispenserNotSelected(), LMFD.OSB08, Wait(1000));
 
             Cmd(LMFD.OSB09); // ARM
 
@@ -61,5 +64,48 @@ public partial class FA18Uploader
             }
         }
         EndIf();
+    }
+
+    private Condition DispenserOn()
+    {
+        return new Condition($"DispenserOn()");
+    }
+
+    private CustomCommand WaitUntilDispenserOn()
+    {
+        return new CustomCommand($"WaitUntilDispenserOn()");
+    }
+
+    private Condition DispenserNotSelected()
+    {
+        return new Condition($"DispenserNotSelected()");
+    }
+
+    private Condition InDispenserMode(string mode)
+    {
+        return new Condition($"InDispenserMode('{mode}')");
+    }
+
+    private Condition EWHudNotBoxed()
+    {
+        return new Condition($"EWHudNotBoxed()");
+    }
+
+    private CustomCommand SelectDispenserProgram(int program)
+    {
+        var btn = LMFD.OSB20;
+        var delay = (Settings.HornetCommandDelayMs * btn.DelayFactor).ToString(CultureInfo.InvariantCulture);
+        var postDelay = (Settings.HornetCommandDelayMs * btn.PostDelayFactor).ToString(CultureInfo.InvariantCulture);
+        return new CustomCommand($"SelectDispenserProgram({program}, {LMFD.Id}, {btn.Id}, {delay}, {btn.Activation}, {postDelay})");
+    }
+
+    private CustomCommand SetDispenser(string type, Command selectBtn, decimal qty)
+    {
+        var qtyStr = qty.ToString(CultureInfo.InvariantCulture);
+        var inc = LMFD.OSB12;
+        var dec = LMFD.OSB13;
+        var delay = (Settings.HornetCommandDelayMs * inc.DelayFactor).ToString(CultureInfo.InvariantCulture);
+        var postDelay = (Settings.HornetCommandDelayMs * inc.PostDelayFactor).ToString(CultureInfo.InvariantCulture);
+        return new CustomCommand($"SetDispenser('{type}', {qtyStr}, {LMFD.Id}, {selectBtn.Id}, {inc.Id}, {dec.Id}, {delay}, {inc.Activation}, {postDelay})");
     }
 }

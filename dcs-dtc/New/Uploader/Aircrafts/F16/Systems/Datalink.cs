@@ -1,4 +1,5 @@
 ﻿using DTC.New.Presets.V2.Aircrafts.F16.Systems;
+using DTC.New.Uploader.Base;
 using DTC.Utilities;
 
 namespace DTC.New.Uploader.Aircrafts.F16;
@@ -108,5 +109,30 @@ public partial class F16Uploader
 
             Cmd(EnableXMIT(s));
         }
+    }
+
+    private Condition FirstCallSignLetter(string letter)
+    {
+        return new Condition("FirstCallSignLetter('" + letter + "')");
+    }
+
+    private Condition SecondCallSignLetter(string letter)
+    {
+        return new Condition("SecondCallSignLetter('" + letter + "')");
+    }
+
+    private Condition FlightLead(string status)
+    {
+        return new Condition("FlightLead('" + status + "')");
+    }
+
+    private Condition TDOA(string position, string status)
+    {
+        return new Condition("FlightLead('" + position + "','" + status + "')");
+    }
+
+    private CustomCommand EnableXMIT(string data)
+    {
+        return new CustomCommand("EnableXMIT(" + data + ")");
     }
 }

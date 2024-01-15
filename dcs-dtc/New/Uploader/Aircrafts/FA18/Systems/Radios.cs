@@ -33,7 +33,7 @@ public partial class FA18Uploader
         if (radio.EnableGuard)
         {
             Cmd(toggleRadioCmd);
-            If(IsRadioGuardDisabled(), UFC.OPT1);
+            If(RadioGuardDisabled(), UFC.OPT1);
         }
 
         if (radio.Presets != null && radio.Presets.Count > 0)
@@ -79,5 +79,15 @@ public partial class FA18Uploader
         var b = parts[1];
         if (b.Length < 3) b += "0";
         return a + b;
+    }
+
+    private Condition InRadioChannel(int radio, string channel)
+    {
+        return new Condition($"InRadioChannel({radio}, '{channel}')");
+    }
+
+    private Condition RadioGuardDisabled()
+    {
+        return new Condition($"RadioGuardDisabled()");
     }
 }

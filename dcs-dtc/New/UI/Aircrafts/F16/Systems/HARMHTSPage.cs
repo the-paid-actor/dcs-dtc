@@ -1,8 +1,8 @@
-﻿using DTC.Models.DCS;
-using DTC.New.Presets.V2.Aircrafts.F16.Systems;
+﻿using DTC.New.Presets.V2.Aircrafts.F16.Systems;
 using DTC.New.UI.Base.Pages;
 using DTC.New.UI.Base.Systems;
 using DTC.UI.Base.Controls;
+using DTC.Utilities;
 using System;
 
 namespace DTC.New.UI.Aircrafts.F16.Systems

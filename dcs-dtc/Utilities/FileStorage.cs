@@ -1,6 +1,4 @@
-﻿using DTC.Models.AH64.Waypoints;
-using DTC.Models.DCS;
-using Newtonsoft.Json;
+﻿using Newtonsoft.Json;
 
 namespace DTC.Utilities;
 
@@ -191,23 +189,6 @@ public class FileStorage
             {
                 var json = File.ReadAllText(path);
                 return JsonConvert.DeserializeObject<Theater[]>(json);
-            }
-        }
-        catch
-        {
-        }
-        return null;
-    }
-
-    public static PointType[] LoadIdents()
-    {
-        try
-        {
-            var path = GetIdentsFilePath();
-            if (File.Exists(path))
-            {
-                var json = File.ReadAllText(path);
-                return JsonConvert.DeserializeObject<PointType[]>(json);
             }
         }
         catch

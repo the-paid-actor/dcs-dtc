@@ -1,5 +1,4 @@
-﻿using DTC.Models.DCS;
-using DTC.New.Presets.V2.Base.Systems;
+﻿using DTC.New.Presets.V2.Base.Systems;
 using DTC.Utilities;
 
 namespace DTC.New.UI.Base.Systems;

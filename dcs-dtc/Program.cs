@@ -1,6 +1,4 @@
-﻿using DTC.Utilities;
-
-namespace DTC;
+﻿namespace DTC;
 
 static class Program
 {
@@ -13,19 +11,7 @@ static class Program
         Application.EnableVisualStyles();
         Application.SetCompatibleTextRenderingDefault(false);
 
-        var v7 = true;
-        Form form;
-
-        if (v7)
-        {
-            form = new DTC.New.UI.Base.MainForm();
-            DCSInstallCheck.MAIN_LUA_FILE = "DCSDTC.lua";
-        }
-        else
-        {
-            form = new DTC.UI.MainForm();
-            DCSInstallCheck.MAIN_LUA_FILE = "DCSDTC.lua";
-        }
+        var form = new New.UI.Base.MainForm();
 
         Application.Run(form);
     }

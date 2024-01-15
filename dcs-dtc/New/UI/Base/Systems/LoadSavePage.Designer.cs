@@ -117,6 +117,7 @@ namespace DTC.New.UI.Base.Systems
             // 
             // pnlLoadCheckboxes
             // 
+            pnlLoadCheckboxes.AutoScroll = true;
             pnlLoadCheckboxes.Location = new Point(25, 55);
             pnlLoadCheckboxes.Name = "pnlLoadCheckboxes";
             pnlLoadCheckboxes.Size = new Size(160, 220);
@@ -138,6 +139,7 @@ namespace DTC.New.UI.Base.Systems
             // 
             // pnlSaveCheckboxes
             // 
+            pnlSaveCheckboxes.AutoScroll = true;
             pnlSaveCheckboxes.Location = new Point(25, 55);
             pnlSaveCheckboxes.Name = "pnlSaveCheckboxes";
             pnlSaveCheckboxes.Size = new Size(160, 220);

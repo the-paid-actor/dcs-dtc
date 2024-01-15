@@ -44,7 +44,7 @@ namespace DTC.New.UI.Base.Systems
                 cbLoad.Tag = system;
                 cbLoad.Enabled = false;
                 cbLoad.Top = top;
-                cbLoad.Width = 150;
+                cbLoad.Width = 140;
                 pnlLoadCheckboxes.Controls.Add(cbLoad);
 
                 var cbSave = new DTCCheckBox();
@@ -52,7 +52,7 @@ namespace DTC.New.UI.Base.Systems
                 cbSave.Tag = system;
                 cbSave.Checked = false;
                 cbSave.Top = top;
-                cbSave.Width = 150;
+                cbSave.Width = 140;
                 pnlSaveCheckboxes.Controls.Add(cbSave);
 
                 top += cbSave.Height;

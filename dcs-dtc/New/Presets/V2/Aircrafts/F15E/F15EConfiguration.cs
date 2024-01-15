@@ -44,6 +44,23 @@ public class F15EConfiguration : Configuration
             if (Displays.WSO.RightMPD == null) Displays.WSO.RightMPD = new();
             if (Displays.WSO.RightMPCD == null) Displays.WSO.RightMPCD = new();
         }
+
+        if (Radios != null)
+        {
+            if (Radios.Radio1 != null) FixRadioPreset(Radios.Radio1);
+            if (Radios.Radio2 != null) FixRadioPreset(Radios.Radio2);
+        }
+    }
+
+    private void FixRadioPreset(Radio radio)
+    {
+        if (radio.Presets == null || radio.Presets.Count == 0) return;
+        if (!radio.Presets.Any(p => p.Number == 0)) return;
+
+        foreach (var preset in radio.Presets)
+        {
+            preset.Number++;
+        }
     }
 
     protected override Type GetConfigurationType()

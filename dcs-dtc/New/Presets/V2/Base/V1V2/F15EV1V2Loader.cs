@@ -126,7 +126,7 @@ internal class F15EV1V2Loader
         {
             var freq = radioV1.Frequencies[i];
             if (string.IsNullOrEmpty(freq)) continue;
-            radioV2.AddPreset(new RadioPreset(i) { Frequency = freq });
+            radioV2.AddPreset(new RadioPreset(i+1) { Frequency = freq });
         }
 
         radioV2.SelectedFrequency = radioV1.SelectedFrequency;

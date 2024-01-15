@@ -51,7 +51,12 @@ public abstract partial class Uploader
         IfElse(condition, ifs, null);
     }
 
-    protected void IfElse(Condition condition, ICommand[]? ifs, ICommand[]? elses = null)
+    protected void IfNot(Condition condition, params ICommand[]? ifs)
+    {
+        IfElse(condition, ifs, null, true);
+    }
+
+    protected void IfElse(Condition condition, ICommand[]? ifs, ICommand[]? elses = null, bool invertIf = false)
     {
         var ifsStr = new string[] { };
         if (ifs != null) ifsStr = ifs.Select(FormatCommand).ToArray();
@@ -59,11 +64,13 @@ public abstract partial class Uploader
         var elsesStr = new string[] { };
         if (elses != null) elsesStr = elses.Select(FormatCommand).ToArray();
 
+        var ifnot = invertIf ? "not " : "";
+
         this.sb.AppendLine(@$"
-            if {FormatCondition(condition)} then
-                {String.Join('\n', ifsStr)}
+            if {ifnot}{FormatCondition(condition)} then
+                {string.Join('\n', ifsStr)}
             else
-                {String.Join('\n', elsesStr)}
+                {string.Join('\n', elsesStr)}
             end
         ");
     }

@@ -12,32 +12,32 @@ public partial class F15EUploader : Base.Uploader
             return;
         }
 
-        StartIf(IsInFrontCockpit());
+        StartIf(InFrontCockpit());
         {
             BuildRadios(UFC_PILOT, config.Radios);
         }
         EndIf();
-        StartIf(IsInRearCockpit());
+        StartIf(InRearCockpit());
         {
             BuildRadios(UFC_WSO, config.Radios);
         }
         EndIf();
     }
 
-    private void BuildRadios(Device d, RadioSystem radios)
+    private void BuildRadios(Device ufc, RadioSystem radios)
     {
-        BuildRadio(d, radios.Radio1, "PB05");
+        BuildRadio(ufc, radios.Radio1, "PB05", "1");
 
-        BuildRadio(d, radios.Radio2, "PB06");
+        BuildRadio(ufc, radios.Radio2, "PB06", "2");
 
-        Cmd(d.GetCommand("CLR"));
-        Cmd(d.GetCommand("CLR"));
-        Cmd(d.GetCommand("CLR"));
-        Cmd(d.GetCommand("CLR"));
-        Cmd(d.GetCommand("MENU"));
+        Cmd(ufc.GetCommand("CLR"));
+        Cmd(ufc.GetCommand("CLR"));
+        Cmd(ufc.GetCommand("CLR"));
+        Cmd(ufc.GetCommand("CLR"));
+        Cmd(ufc.GetCommand("MENU"));
     }
 
-    private void BuildRadio(Device d, Radio radio, string pb)
+    private void BuildRadio(Device ufc, Radio radio, string pb, string radioId)
     {
         if (radio == null) return;
 
@@ -50,77 +50,82 @@ public partial class F15EUploader : Base.Uploader
             return;
         }
 
-        Cmd(d.GetCommand("CLR"));
-        Cmd(d.GetCommand("CLR"));
-        Cmd(d.GetCommand("CLR"));
-        Cmd(d.GetCommand("CLR"));
-        Cmd(d.GetCommand("MENU"));
+        Cmd(ufc.GetCommand("CLR"));
+        Cmd(ufc.GetCommand("CLR"));
+        Cmd(ufc.GetCommand("CLR"));
+        Cmd(ufc.GetCommand("CLR"));
+        Cmd(ufc.GetCommand("MENU"));
 
-        var isRadio1 = (pb == "PB05");
+        var isRadio1 = radioId == "1";
+        var guardChannelBtn = ufc.GetCommand(isRadio1 ? "GCML" : "GCMR");
 
         if (radio.Mode != 0)
         {
             if (radio.Mode == RadioMode.Frequency)
             {
-                If(IsRadioPresetOrFreqSelected(isRadio1 ? "1" : "2", "preset"), d.GetCommand(isRadio1 ? "GCML" : "GCMR"));
+                If(IsRadioPresetOrFreqSelected(ufc, radioId, "preset"), guardChannelBtn);
             }
             else if (radio.Mode == RadioMode.Preset)
             {
-                If(IsRadioPresetOrFreqSelected(isRadio1 ? "1" : "2", "freq"), d.GetCommand(isRadio1 ? "GCML" : "GCMR"));
+                If(IsRadioPresetOrFreqSelected(ufc, radioId, "freq"), guardChannelBtn);
             }
         }
 
         if (radio.SelectedFrequency != null)
         {
-            InputFrequency(d, radio.SelectedFrequency);
-            Cmd(d.GetCommand(pb));
-            Cmd(d.GetCommand("CLR"));
+            InputFrequency(ufc, radio.SelectedFrequency);
+            Cmd(ufc.GetCommand(pb));
+            Cmd(ufc.GetCommand("CLR"));
         }
 
-        Cmd(d.GetCommand(pb));
+        Cmd(ufc.GetCommand(pb));
+        if (!isRadio1)
+        {
+            IfNot(AMSelected(ufc), ufc.GetCommand("PB09"));
+        }
 
         if (radio.Presets != null && radio.Presets.Count > 0)
         {
-            BuildRadioPresets(d, radio);
+            BuildRadioPresets(ufc, radio);
         }
 
         if (radio.SelectedPreset != null)
         {
             if (radio.SelectedPreset == "G")
             {
-                Cmd(Digits(d, isRadio1 ? "20" : "40"));
-                Cmd(d.GetCommand(isRadio1 ? "PRESL" : "PRESR"));
-                Cmd(d.GetCommand("CLR"));
+                Cmd(Digits(ufc, isRadio1 ? "20" : "40"));
+                Cmd(ufc.GetCommand(isRadio1 ? "PRESL" : "PRESR"));
+                Cmd(ufc.GetCommand("CLR"));
 
-                Cmd(d.GetCommand(isRadio1 ? "PRESLCCW" : "PRESRCCW"));
+                Cmd(ufc.GetCommand(isRadio1 ? "PRESLCCW" : "PRESRCCW"));
             }
             else if (radio.SelectedPreset == "GV")
             {
-                Cmd(Digits(d, "40"));
-                Cmd(d.GetCommand("PRESR"));
-                Cmd(d.GetCommand("CLR"));
-                Cmd(d.GetCommand("PRESRCCW"));
-                Cmd(d.GetCommand("PRESRCCW"));
+                Cmd(Digits(ufc, "40"));
+                Cmd(ufc.GetCommand("PRESR"));
+                Cmd(ufc.GetCommand("CLR"));
+                Cmd(ufc.GetCommand("PRESRCCW"));
+                Cmd(ufc.GetCommand("PRESRCCW"));
             }
             else
             {
-                Cmd(Digits(d, radio.SelectedPreset));
-                Cmd(d.GetCommand(isRadio1 ? "PRESL" : "PRESR"));
-                Cmd(d.GetCommand("CLR"));
+                Cmd(Digits(ufc, radio.SelectedPreset));
+                Cmd(ufc.GetCommand(isRadio1 ? "PRESL" : "PRESR"));
+                Cmd(ufc.GetCommand("CLR"));
             }
         }
 
         if (radio.EnableGuard)
         {
-            If(IsRadioGuardEnabledDisabled(isRadio1 ? "1" : "2", "disabled"), d.GetCommand("SHF"), d.GetCommand(isRadio1 ? "GCML" : "GCMR"));
+            If(IsRadioGuardEnabledDisabled(ufc, radioId, "disabled"), ufc.GetCommand("SHF"), guardChannelBtn);
         }
         else
         {
-            If(IsRadioGuardEnabledDisabled(isRadio1 ? "1" : "2", "enabled"), d.GetCommand("SHF"), d.GetCommand(isRadio1 ? "GCML" : "GCMR"));
+            If(IsRadioGuardEnabledDisabled(ufc, radioId, "enabled"), ufc.GetCommand("SHF"), guardChannelBtn);
         }
     }
 
-    private void InputFrequency(Device d, string freq)
+    private void InputFrequency(Device ufc, string freq)
     {
         if (freq.Length == 6)
         {
@@ -129,29 +134,44 @@ public partial class F15EUploader : Base.Uploader
                 freq = freq.Replace("000", "001");
             }
             var parts = freq.Split('.');
-            Cmd(Digits(d, parts[0]));
-            Cmd(d.GetCommand("DOT"));
-            Cmd(Digits(d, parts[1]));
+            Cmd(Digits(ufc, parts[0]));
+            Cmd(ufc.GetCommand("DOT"));
+            Cmd(Digits(ufc, parts[1]));
         }
         else
         {
             freq = freq.Replace(".", "");
-            Cmd(Digits(d, freq));
+            Cmd(Digits(ufc, freq));
         }
     }
 
-    private void BuildRadioPresets(Device d, Radio radio)
+    private void BuildRadioPresets(Device ufc, Radio radio)
     {
         foreach (var preset in radio.Presets)
         { 
             if (!string.IsNullOrEmpty(preset.Frequency))
             {
-                Cmd(Digits(d, preset.Number.ToString()));
-                Cmd(d.GetCommand("PB01"));
+                Cmd(Digits(ufc, preset.Number.ToString()));
+                Cmd(ufc.GetCommand("PB01"));
 
-                InputFrequency(d, preset.Frequency);
-                Cmd(d.GetCommand("PB10"));
+                InputFrequency(ufc, preset.Frequency);
+                Cmd(ufc.GetCommand("PB10"));
             }
         }
+    }
+
+    private Condition AMSelected(Device ufc)
+    {
+        return new Condition($"AMSelected('{ufc.Name}')");
+    }
+
+    private Condition IsRadioPresetOrFreqSelected(Device ufc, string radio, string mode)
+    {
+        return new Condition($"IsRadioPresetOrFreqSelected('{ufc.Name}','{radio}','{mode}')");
+    }
+
+    private Condition IsRadioGuardEnabledDisabled(Device ufc, string radio, string mode)
+    {
+        return new Condition($"IsRadioGuardEnabledDisabled('{ufc.Name}','{radio}','{mode}')");
     }
 }

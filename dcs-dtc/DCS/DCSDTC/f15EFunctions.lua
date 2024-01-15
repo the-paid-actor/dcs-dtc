@@ -1,6 +1,6 @@
 dofile(lfs.writedir()..'Scripts/DCSDTC/commonFunctions.lua')
 
---Displays
+-- Displays
 -- 0 - NF FOV
 -- 1 - HUD
 -- 2 - Blank
@@ -15,6 +15,8 @@ dofile(lfs.writedir()..'Scripts/DCSDTC/commonFunctions.lua')
 -- 12 - RLMPD
 -- 14 - RRMPD
 -- 16 - RRMPCD
+
+-- # Utility Functions #
 
 function DTC_F15E_GetFrontLeftMPD()
     return DTC_ParseDisplay(3)
@@ -47,10 +49,10 @@ end
 function DTC_F15E_GetUFC(ufc)
     ufc = ufc or "UFC_PILOT"
     if ufc == "UFC_PILOT" then
-		return DTC_F15E_GetUFCFront()
+        return DTC_F15E_GetUFCFront()
     else
         return DTC_F15E_GetUFCRear()
-	end
+    end
 end
 
 function DTC_F15E_GetUFCFront()
@@ -81,38 +83,28 @@ function DTC_F15E_GetDisplay(disp)
     return table
 end
 
-function DTC_F15E_ExecCmd_GoToFrontCockpit()
-    LoSetCommand(7)
-    if DTC_F15E_CheckCondition_IsInFrontCockpit() == false then
-        LoSetCommand(1602)
+-- # Shared #
+
+function DTC_F15E_CheckCondition_DisplayInMainMenu(display)
+    local table = DTC_F15E_GetDisplay(display);
+    local pb06 = table["PB06"] or "";
+    local pb11 = table["PB11"] or "";
+    if pb06 == "PROG" and pb11 == "M2" then
+        return true
     end
+    return false
 end
 
-function DTC_F15E_ExecCmd_GoToRearCockpit()
-    LoSetCommand(7)
-    if DTC_F15E_CheckCondition_IsInRearCockpit() == false then
-        LoSetCommand(1602)
+function DTC_F15E_CheckCondition_ProgBoxed(display)
+    local table = DTC_F15E_GetDisplay(display);
+    local pb06 = table["PRG_PB06_T"] or "";
+    if pb06 == "PROG" then
+        return true
     end
+    return false
 end
 
-function DTC_F15E_CheckCondition_GoToFrontCockpit()
-    DTC_F15E_ExecCmd_GoToFrontCockpit()
-    return true
-end
-
-function DTC_F15E_CheckCondition_GoToRearCockpit()
-    DTC_F15E_ExecCmd_GoToRearCockpit()
-    return true
-end
-
-function DTC_F15E_CheckCondition_IsOutsideCockpit()
-    local isInFront = DTC_F15E_CheckCondition_IsInFrontCockpit()
-    local isInRear = DTC_F15E_CheckCondition_IsInRearCockpit()
-    local result = (isInFront == false and isInRear == false)
-    return result
-end
-
-function DTC_F15E_CheckCondition_IsInFrontCockpit()
+function DTC_F15E_CheckCondition_InFrontCockpit()
     local table = DTC_F15E_GetFrontLeftMPD()
     if next(table) == nil then
         return false
@@ -120,7 +112,7 @@ function DTC_F15E_CheckCondition_IsInFrontCockpit()
     return true
 end
 
-function DTC_F15E_CheckCondition_IsInRearCockpit()
+function DTC_F15E_CheckCondition_InRearCockpit()
     local table = DTC_F15E_GetRearLeftMPD()
     if next(table) == nil then
         return false
@@ -131,85 +123,80 @@ end
 local DTC_F15E_CockpitFrontRearState
 
 function DTC_F15E_ExecCmd_SaveCockpitFrontRearState()
-    if DTC_F15E_CheckCondition_IsInRearCockpit() then
-		DTC_F15E_CockpitFrontRearState = "REAR"
-	else
+    if DTC_F15E_CheckCondition_InRearCockpit() then
+        DTC_F15E_CockpitFrontRearState = "REAR"
+    else
         DTC_F15E_CockpitFrontRearState = "FRONT"
     end
 end
 
 function DTC_F15E_ExecCmd_RestoreCockpitFrontRearState()
     if DTC_F15E_CockpitFrontRearState == "FRONT" then
-		DTC_F15E_ExecCmd_GoToFrontCockpit()
-	elseif DTC_F15E_CockpitFrontRearState == "REAR" then
+        DTC_F15E_ExecCmd_GoToFrontCockpit()
+    elseif DTC_F15E_CockpitFrontRearState == "REAR" then
         DTC_F15E_ExecCmd_GoToRearCockpit()
-	end
+    end
     DTC_F15E_CockpitFrontRearState = nil
 end
 
+-- # Displays #
 
---[[
-function DTC_ClickCockpit(device, cmd)
-    device:performClickableAction(cmd, 1)
-    device:performClickableAction(cmd, 0)
+function DTC_F15E_CheckCondition_NoDisplaysProgrammed(disp)
+    local table = DTC_F15E_GetDisplay(disp);
+    local str = table["PRG_Label_1"] or table["PRG_Label_2"] or table["PRG_Label_3"] or ""
+    if str == "" then
+        return true
+    end
+    return false
 end
 
-function DTC_F15E_GetDisplayDevice(disp)
-    if disp == "FLMPD" then
-        return 34;
-    elseif disp == "FRMPD" then
-        return 36;
-    elseif disp	== "FMPCD" then
-        return 35;
+function DTC_F15E_ExecCmd_GoToFrontCockpit()
+    LoSetCommand(7)
+    if DTC_F15E_CheckCondition_InFrontCockpit() == false then
+        LoSetCommand(1602)
     end
 end
 
-function DTC_F15E_CheckCondition_HasProgrammedDisplays(disp)
-    local table = DTC_F15E_GetDisplay(disp);
-    local p1 = table["PRG_Label_1"] or ""
-    local p2 = table["PRG_Label_2"] or ""
-    local p3 = table["PRG_Label_3"] or ""
+function DTC_F15E_ExecCmd_GoToRearCockpit()
+    LoSetCommand(7)
+    if DTC_F15E_CheckCondition_InRearCockpit() == false then
+        LoSetCommand(1602)
+    end
+end
 
-    if p1 ~= "" then DTC_F15E_ClearProgrammedDisplay(disp, p1) end
-    if p2 ~= "" then DTC_F15E_ClearProgrammedDisplay(disp, p2) end
-    if p3 ~= "" then DTC_F15E_ClearProgrammedDisplay(disp, p3) end
+-- # Misc #
 
+function DTC_F15E_CheckCondition_IsTACANBand(ufc, band)
+    local table = DTC_F15E_GetUFC(ufc);
+    local str = table["UFC_SC_01"] or "";
+    if str ~= "" and str.sub(str, -1) == band then
+        return true
+    end
+    return false
+end
+
+function DTC_F15E_CheckCondition_IsTACANOff(ufc)
+    local table = DTC_F15E_GetUFC(ufc);
+    local str = table["UFC_SC_12"] or ""
+    if str == "TCN ON " then
+        return false
+    end
     return true
 end
 
-function DTC_F15E_ClearProgrammedDisplay(disp, page)
-    local d = GetDevice(DTC_F15E_GetDisplayDevice(disp))
-    if page == "ADI" then
-        DTC_ClickCockpit(d, 3061)
-    elseif page == "ARMT" then
-        DTC_ClickCockpit(d, 3062)
-    elseif page == "HSI" then
-        DTC_ClickCockpit(d, 3063)
-    elseif page == "TSD" then
-        DTC_ClickCockpit(d, 3065)
-    elseif page == "TPOD" then
-        DTC_ClickCockpit(d, 3072)
-    elseif page == "TEWS" then
-        DTC_ClickCockpit(d, 3073)
-    elseif page == "A/G RDR" then
-        DTC_ClickCockpit(d, 3074)
-    elseif page == "A/A RDR" then
-        DTC_ClickCockpit(d, 3075)
-    elseif page == "HUD" then
-        DTC_ClickCockpit(d, 3077)
-    elseif page == "ENG" then
-        DTC_ClickCockpit(d, 3078)
-    elseif page == "A/G DLVRY" then
-        DTC_ClickCockpit(d, 3071)
-        DTC_ClickCockpit(d, 3062)
-        DTC_ClickCockpit(d, 3071)
-        DTC_ClickCockpit(d, 3071)
-    end
-end
---]]
+-- # Radios #
 
-function DTC_F15E_CheckCondition_IsRadioPresetOrFreqSelected(radio, mode)
-    local table = DTC_F15E_GetUFC();
+function DTC_F15E_CheckCondition_AMSelected(ufc)
+    local table = DTC_F15E_GetUFC(ufc);
+    local str = table["UFC_SC_11"] or "";
+    if str == "MAN-AM*" then
+        return true
+    end
+    return false
+end
+
+function DTC_F15E_CheckCondition_IsRadioPresetOrFreqSelected(ufc, radio, mode)
+    local table = DTC_F15E_GetUFC(ufc);
     local radio1Preset = table["UFC_SC_06"] or "x";
     local radio2Preset = table["UFC_SC_07"] or "x";
     local radio1Freq = table["UFC_SC_05"] or "x";
@@ -232,8 +219,8 @@ function DTC_F15E_CheckCondition_IsRadioPresetOrFreqSelected(radio, mode)
     return false
 end
 
-function DTC_F15E_CheckCondition_IsRadioGuardEnabledDisabled(radio, mode)
-    local table = DTC_F15E_GetUFC();
+function DTC_F15E_CheckCondition_IsRadioGuardEnabledDisabled(ufc, radio, mode)
+    local table = DTC_F15E_GetUFC(ufc);
     local radio1Freq = table["UFC_SC_05"] or "x";
     local radio2Freq = table["UFC_SC_08"] or "x";
     radio2Freq = radio2Freq:gsub("*", ""):gsub("%s+", "")
@@ -255,80 +242,10 @@ function DTC_F15E_CheckCondition_IsRadioGuardEnabledDisabled(radio, mode)
     return false
 end
 
-function DTC_F15E_CheckCondition_IsTACANBand(band, ufc)
-    local table = DTC_F15E_GetUFC(ufc);
-    local str = table["UFC_SC_01"] or "";
-    if str ~= "" and str.sub(str, -1) == band then
-        return true
-    end
-    return false
-end
+-- # SmartWeapons #
 
-function DTC_F15E_CheckCondition_IsTACANOff(ufc)
-    local table = DTC_F15E_GetUFC(ufc);
-    local str = table["UFC_SC_12"] or ""
-    if str == "TCN ON " then
-        return false
-    end
-    return true
-end
-
-function DTC_F15E_CheckCondition_IsStrDifferent(expected)
-    local table = DTC_F15E_GetUFC();
-    local str = table["UFC_SC_01"] or "";
-    if str ~= expected then
-        return true
-    end
-    return false
-end
-
-function DTC_F15E_CheckCondition_IsStrDifferent2(device, expected)
-    local table = DTC_F15E_GetUFC(device);
-    local str = table["UFC_SC_01"] or "";
-    if str ~= expected then
-        return true
-    end
-    return false
-end
-
-function DTC_F15E_CheckCondition_NoDisplaysProgrammed(disp)
-    local table = DTC_F15E_GetDisplay(disp);
-    local str = table["PRG_Label_1"] or table["PRG_Label_2"] or table["PRG_Label_3"] or ""
-    if str == "" then
-        return true
-    end
-    return false
-end
-
-function DTC_F15E_CheckCondition_IsProgBoxed(disp)
-    local table = DTC_F15E_GetDisplay(disp);
-    local pb06 = table["PRG_PB06_T"] or "";
-    if pb06 == "PROG" then
-        return true
-    end
-    return false
-end
-
-function DTC_F15E_CheckCondition_DisplayNotInMainMenu(disp)
-    local table = DTC_F15E_GetDisplay(disp);
-    local pb06 = table["PB06"] or "";
-    local pb11 = table["PB11"] or "";
-    if pb06 == "PROG" and pb11 == "M2" then
-        return false
-    end
-    return true
-end
-
-function DTC_F15E_ExecCmd_TestUFC(device, string)
-    local table = DTC_F15E_GetUFC(device)
-    local str = table["UFC_CC_04"] or ""
-    if str ~= string then
-        DTC_Log("error " .. str)
-    end
-end
-
-function DTC_F15E_CheckCondition_SmartStationSelected(disp, station)
-    local table = DTC_F15E_GetDisplay(disp);
+function DTC_F15E_CheckCondition_SmartStationSelected(display, station)
+    local table = DTC_F15E_GetDisplay(display);
     local str = table["SWPNS_Page_Title_2"] or ""
     if str == station then
         return true
@@ -336,9 +253,26 @@ function DTC_F15E_CheckCondition_SmartStationSelected(disp, station)
     return false
 end
 
+-- # Waypoints #
+
+function DTC_F15E_CheckCondition_UFCScratchPadDifferent(ufc, expected)
+    local table = DTC_F15E_GetUFC(ufc);
+    local str = table["UFC_SC_01"] or "";
+    if str ~= expected then
+        return true
+    end
+    return false
+end
+
+--function DTC_F15E_ExecCmd_TestUFC(device, string)
+--    local table = DTC_F15E_GetUFC(device)
+--    local str = table["UFC_CC_04"] or ""
+--    if str ~= string then
+--        DTC_Log("error " .. str)
+--    end
+--end
+
 function DTC_F15E_AfterNextFrame(params)
-    --DTC_DebugDisplay(DTC_F15E_GetFrontRightMPD())
-    --DTC_DebugDisplay(DTC_GetDisplay(16))
     local mainPanel = GetDevice(0);
     local ipButtonFront = mainPanel:get_argument_value(297);
     local ipButtonRear = mainPanel:get_argument_value(1322);

@@ -19,25 +19,12 @@ public partial class F15EUploader : Base.Uploader
 
         Cmd(Wait(1000));
 
-        IfElse(IsInFrontCockpit(), null, new[] { GoToRearCockpit() });
+        IfElse(InFrontCockpit(), null, new[] { GoToRearCockpit() });
 
-        StartIf(IsInFrontCockpit());
+        StartIf(InFrontCockpit());
         {
             Cmd(GoToFrontCockpit());
-            if (config.Displays.Pilot.LeftMPD.FirstDisplay != Display.None)
-            {
-                BuildDisplay(FLMPD, config.Displays.Pilot.LeftMPD);
-            }
-
-            if (config.Displays.Pilot.RightMPD.FirstDisplay != Display.None)
-            {
-                BuildDisplay(FRMPD, config.Displays.Pilot.RightMPD);
-            }
-
-            if (config.Displays.Pilot.MPCD.FirstDisplay != Display.None)
-            {
-                BuildDisplay(FMPCD, config.Displays.Pilot.MPCD);
-            }
+            ConfigureFrontDisplays();
         }
         EndIf();
 
@@ -48,78 +35,99 @@ public partial class F15EUploader : Base.Uploader
 
         Cmd(Wait(1000));
 
-        StartIf(IsInRearCockpit());
+        StartIf(InRearCockpit());
         {
             Cmd(GoToRearCockpit());
-            if (config.Displays.WSO.LeftMPCD.FirstDisplay != Display.None)
-            {
-                BuildDisplay(RLMPCD, config.Displays.WSO.LeftMPCD);
-            }
-
-            if (config.Displays.WSO.LeftMPD.FirstDisplay != Display.None)
-            {
-                BuildDisplay(RLMPD, config.Displays.WSO.LeftMPD);
-            }
-
-            if (config.Displays.WSO.RightMPD.FirstDisplay != Display.None)
-            {
-                BuildDisplay(RRMPD, config.Displays.WSO.RightMPD);
-            }
-
-            if (config.Displays.WSO.RightMPCD.FirstDisplay != Display.None)
-            {
-                BuildDisplay(RRMPCD, config.Displays.WSO.RightMPCD);
-            }
+            ConfigureRearDisplays();
         }
         EndIf();
     }
 
-    private void BuildDisplay(Device device, DisplayConfig display)
+    private void ConfigureFrontDisplays()
     {
-        If(DisplayNotInMainMenu(device.Name), device.GetCommand("PB11"), Wait());
-        If(DisplayNotInMainMenu(device.Name), device.GetCommand("PB11"), Wait());
-        If(IsProgBoxed(device.Name), device.GetCommand("PB06"), Wait());
-
-        StartIf(NoDisplaysProgrammed(device.Name));
+        if (config.Displays.Pilot.LeftMPD.FirstDisplay != Display.None)
         {
-            Cmd(device.GetCommand("PB06"));
+            BuildDisplay(FLMPD, config.Displays.Pilot.LeftMPD);
+        }
 
-            SelectDisplay(device, display.FirstDisplay);
+        if (config.Displays.Pilot.RightMPD.FirstDisplay != Display.None)
+        {
+            BuildDisplay(FRMPD, config.Displays.Pilot.RightMPD);
+        }
 
-            if (display.SecondDisplay != Display.None)
+        if (config.Displays.Pilot.MPCD.FirstDisplay != Display.None)
+        {
+            BuildDisplay(FMPCD, config.Displays.Pilot.MPCD);
+        }
+    }
+
+    private void ConfigureRearDisplays()
+    {
+        if (config.Displays.WSO.LeftMPCD.FirstDisplay != Display.None)
+        {
+            BuildDisplay(RLMPCD, config.Displays.WSO.LeftMPCD);
+        }
+
+        if (config.Displays.WSO.LeftMPD.FirstDisplay != Display.None)
+        {
+            BuildDisplay(RLMPD, config.Displays.WSO.LeftMPD);
+        }
+
+        if (config.Displays.WSO.RightMPD.FirstDisplay != Display.None)
+        {
+            BuildDisplay(RRMPD, config.Displays.WSO.RightMPD);
+        }
+
+        if (config.Displays.WSO.RightMPCD.FirstDisplay != Display.None)
+        {
+            BuildDisplay(RRMPCD, config.Displays.WSO.RightMPCD);
+        }
+    }
+
+    private void BuildDisplay(Device display, DisplayConfig config)
+    {
+        NavigateToMainMenu(display);
+
+        StartIf(NoDisplaysProgrammed(display));
+        {
+            Cmd(display.GetCommand("PB06"));
+
+            SelectDisplay(display, config.FirstDisplay);
+
+            if (config.SecondDisplay != Display.None)
             {
-                SelectDisplay(device, display.SecondDisplay);
+                SelectDisplay(display, config.SecondDisplay);
             }
 
-            if (display.ThirdDisplay != Display.None)
+            if (config.ThirdDisplay != Display.None)
             {
-                SelectDisplay(device, display.ThirdDisplay);
+                SelectDisplay(display, config.ThirdDisplay);
             }
 
-            if (display.FirstDisplayMode != DisplayMode.None)
+            if (config.FirstDisplayMode != DisplayMode.None)
             {
-                NavigateToDisplayMode(device, display.FirstDisplayMode);
-                SelectDisplay(device, display.FirstDisplay);
-                ExitDisplayMode(device, display.FirstDisplayMode);
+                NavigateToDisplayMode(display, config.FirstDisplayMode);
+                SelectDisplay(display, config.FirstDisplay);
+                ExitDisplayMode(display, config.FirstDisplayMode);
             }
 
-            if (display.SecondDisplayMode != DisplayMode.None)
+            if (config.SecondDisplayMode != DisplayMode.None)
             {
-                NavigateToDisplayMode(device, display.SecondDisplayMode);
-                SelectDisplay(device, display.SecondDisplay);
-                ExitDisplayMode(device, display.SecondDisplayMode);
+                NavigateToDisplayMode(display, config.SecondDisplayMode);
+                SelectDisplay(display, config.SecondDisplay);
+                ExitDisplayMode(display, config.SecondDisplayMode);
             }
 
-            if (display.ThirdDisplayMode != DisplayMode.None)
+            if (config.ThirdDisplayMode != DisplayMode.None)
             {
-                NavigateToDisplayMode(device, display.ThirdDisplayMode);
-                SelectDisplay(device, display.ThirdDisplay);
-                ExitDisplayMode(device, display.ThirdDisplayMode);
+                NavigateToDisplayMode(display, config.ThirdDisplayMode);
+                SelectDisplay(display, config.ThirdDisplay);
+                ExitDisplayMode(display, config.ThirdDisplayMode);
             }
 
-            Cmd(device.GetCommand("PB06"));
+            Cmd(display.GetCommand("PB06"));
 
-            SelectDisplay(device, display.FirstDisplay, false);
+            SelectDisplay(display, config.FirstDisplay, false);
         }
         EndIf();
     }
@@ -220,5 +228,20 @@ public partial class F15EUploader : Base.Uploader
                 Cmd(device.GetCommand("PB11"));
             }
         }
+    }
+
+    private Condition NoDisplaysProgrammed(Device display)
+    {
+        return new Condition($"NoDisplaysProgrammed('{display.Name}')");
+    }
+
+    private CustomCommand GoToFrontCockpit()
+    {
+        return new CustomCommand("GoToFrontCockpit()");
+    }
+
+    private CustomCommand GoToRearCockpit()
+    {
+        return new CustomCommand("GoToRearCockpit()");
     }
 }

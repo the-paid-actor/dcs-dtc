@@ -19,12 +19,12 @@ public partial class F15EUploader : Base.Uploader
 
         if (config.Misc.CARAALOWToBeUpdated)
         {
-            StartIf(IsInFrontCockpit());
+            StartIf(InFrontCockpit());
             {
                 BuildCARA(UFC_PILOT);
             }
             EndIf();
-            StartIf(IsInRearCockpit());
+            StartIf(InRearCockpit());
             {
                 BuildCARA(UFC_WSO);
             }
@@ -33,12 +33,12 @@ public partial class F15EUploader : Base.Uploader
 
         if (config.Misc.TACANToBeUpdated)
         {
-            StartIf(IsInFrontCockpit());
+            StartIf(InFrontCockpit());
             {
                 BuildTACAN(UFC_PILOT);
             }
             EndIf();
-            StartIf(IsInRearCockpit());
+            StartIf(InRearCockpit());
             {
                 BuildTACAN(UFC_WSO);
             }
@@ -47,12 +47,12 @@ public partial class F15EUploader : Base.Uploader
 
         if (config.Misc.ILSToBeUpdated)
         {
-            StartIf(IsInFrontCockpit());
+            StartIf(InFrontCockpit());
             {
                 BuildILS(UFC_PILOT);
             }
             EndIf();
-            StartIf(IsInRearCockpit());
+            StartIf(InRearCockpit());
             {
                 BuildILS(UFC_WSO);
             }
@@ -96,14 +96,14 @@ public partial class F15EUploader : Base.Uploader
 
         if (config.Misc.TACANBand == TACANBands.X)
         {
-            If(IsTACANBand(ufc.Name, "Y"), ufc.GetCommand("PB01"));
+            If(IsTACANBand(ufc, "Y"), ufc.GetCommand("PB01"));
         }
         else
         {
-            If(IsTACANBand(ufc.Name, "X"), ufc.GetCommand("PB01"));
+            If(IsTACANBand(ufc, "X"), ufc.GetCommand("PB01"));
         }
 
-        If(IsTACANOff(ufc.Name), ufc.GetCommand("PB10"));
+        If(IsTACANOff(ufc), ufc.GetCommand("PB10"));
         Cmd(ufc.GetCommand("MENU"));
     }
 
@@ -120,6 +120,16 @@ public partial class F15EUploader : Base.Uploader
         Cmd(ufc.GetCommand("PB03"));
 
         Cmd(ufc.GetCommand("MENU"));
+    }
+
+    private Condition IsTACANBand(Device ufc, string band)
+    {
+        return new Condition($"IsTACANBand('{ufc.Name}', '{band}')");
+    }
+
+    private Condition IsTACANOff(Device ufc)
+    {
+        return new Condition($"IsTACANOff('{ufc.Name}')");
     }
 }
 

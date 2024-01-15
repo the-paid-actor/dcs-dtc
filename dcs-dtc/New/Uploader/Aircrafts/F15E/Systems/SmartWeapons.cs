@@ -16,27 +16,25 @@ public partial class F15EUploader : Base.Uploader
             return;
         }
 
-        StartIf(IsInFrontCockpit());
+        StartIf(InFrontCockpit());
         {
             BuildSmartWeapons(FRMPD, UFC_PILOT);
         }
         EndIf();
-        StartIf(IsInRearCockpit());
+        StartIf(InRearCockpit());
         {
             BuildSmartWeapons(RRMPCD, UFC_WSO);
         }
         EndIf();
     }
 
-    private void BuildSmartWeapons(Device devDisp, Device devUFC)
+    private void BuildSmartWeapons(Device display, Device devUFC)
     {
-        If(DisplayNotInMainMenu(devDisp.Name), devDisp.GetCommand("PB11"), Wait());
-        If(DisplayNotInMainMenu(devDisp.Name), devDisp.GetCommand("PB11"), Wait());
-        If(IsProgBoxed(devDisp.Name), devDisp.GetCommand("PB06"), Wait());
+        NavigateToMainMenu(display);
 
-        Cmd(devDisp.GetCommand("PB11"));
-        Cmd(devDisp.GetCommand("PB14"));
-        Cmd(devDisp.GetCommand("PB14")); //EDIT MSN
+        Cmd(display.GetCommand("PB11"));
+        Cmd(display.GetCommand("PB14"));
+        Cmd(display.GetCommand("PB14")); //EDIT MSN
 
         foreach (var stationKey in StationNames.Ordered)
         {
@@ -67,39 +65,44 @@ public partial class F15EUploader : Base.Uploader
             }
             planeStation = "STA-WPN: " + planeStation;
 
-            Loop(SmartStationSelected(devDisp.Name, planeStation), devDisp.GetCommand("PB02"), Wait(250));
-            StartIf(SmartStationSelected(devDisp.Name, planeStation));
+            Loop(SmartStationSelected(display, planeStation), display.GetCommand("PB02"), Wait(250));
+            StartIf(SmartStationSelected(display, planeStation));
             {
-                Cmd(devDisp.GetCommand("PB05"));
-                Cmd(devDisp.GetCommand("PB05"));
-                Cmd(devDisp.GetCommand("PB05"));
-                Cmd(devDisp.GetCommand("PB05"));
-                Cmd(devDisp.GetCommand("PB05"));
-                Cmd(devDisp.GetCommand("PB05"));
+                Cmd(display.GetCommand("PB05"));
+                Cmd(display.GetCommand("PB05"));
+                Cmd(display.GetCommand("PB05"));
+                Cmd(display.GetCommand("PB05"));
+                Cmd(display.GetCommand("PB05"));
+                Cmd(display.GetCommand("PB05"));
 
                 Coordinate(devUFC, coord.Latitude);
-                Cmd(devDisp.GetCommand("PB08"));
-                Cmd(devDisp.GetCommand("PB05"));
-                
+                Cmd(display.GetCommand("PB08"));
+                Cmd(display.GetCommand("PB05"));
+
                 Coordinate(devUFC, coord.Longitude);
-                Cmd(devDisp.GetCommand("PB08"));
-                Cmd(devDisp.GetCommand("PB05"));
-                
+                Cmd(display.GetCommand("PB08"));
+                Cmd(display.GetCommand("PB05"));
+
                 Cmd(Digits(devUFC, coord.Elevation.ToString()));
-                Cmd(devDisp.GetCommand("PB08"));
+                Cmd(display.GetCommand("PB08"));
 
-                Cmd(devDisp.GetCommand("PB05"));
-                Cmd(devDisp.GetCommand("PB05"));
-                Cmd(devDisp.GetCommand("PB05"));
-                Cmd(devDisp.GetCommand("PB05"));
-                Cmd(devDisp.GetCommand("PB05"));
-                Cmd(devDisp.GetCommand("PB05"));
+                Cmd(display.GetCommand("PB05"));
+                Cmd(display.GetCommand("PB05"));
+                Cmd(display.GetCommand("PB05"));
+                Cmd(display.GetCommand("PB05"));
+                Cmd(display.GetCommand("PB05"));
+                Cmd(display.GetCommand("PB05"));
 
-                Cmd(devDisp.GetCommand("PB10"));
+                Cmd(display.GetCommand("PB10"));
                 Cmd(Wait(2000));
             }
             EndIf();
         }
-        Cmd(devDisp.GetCommand("PB14"));
+        Cmd(display.GetCommand("PB14"));
+    }
+
+    private Condition SmartStationSelected(Device display, string station)
+    {
+        return new Condition($"SmartStationSelected('{display.Name}','{station}')");
     }
 }

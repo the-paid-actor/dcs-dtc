@@ -28,24 +28,11 @@ public partial class F15EUploader : Base.Uploader
         Send();
     }
 
-    private void Test()
+    private void NavigateToMainMenu(Device display)
     {
-        for (int i = 0; i < 100; i++)
-        {
-            Cmd(UFC_PILOT.D1);
-            Cmd(UFC_PILOT.D2);
-            Cmd(UFC_PILOT.D3);
-            Cmd(UFC_PILOT.D4);
-            Cmd(UFC_PILOT.D5);
-            Cmd(UFC_PILOT.D6);
-            Cmd(UFC_PILOT.D7);
-            Cmd(UFC_PILOT.D8);
-            Cmd(UFC_PILOT.D9);
-            Cmd(UFC_PILOT.D0);
-            Cmd(TestUFC(UFC_PILOT.Name, "1234567890"));
-            Cmd(UFC_PILOT.CLR);
-            Cmd(UFC_PILOT.CLR);
-        }
+        IfNot(DisplayInMainMenu(display), display.GetCommand("PB11"), Wait());
+        IfNot(DisplayInMainMenu(display), display.GetCommand("PB11"), Wait());
+        If(ProgBoxed(display), display.GetCommand("PB06"), Wait());
     }
 
     private void Coordinate(Device device, string coord)
@@ -81,4 +68,59 @@ public partial class F15EUploader : Base.Uploader
             }
         }
     }
+
+    private Condition DisplayInMainMenu(Device display)
+    {
+        return new Condition($"DisplayInMainMenu('{display.Name}')");
+    }
+
+    private Condition ProgBoxed(Device display)
+    {
+        return new Condition($"ProgBoxed('{display.Name}')");
+    }
+
+    private Condition InFrontCockpit()
+    {
+        return new Condition("InFrontCockpit()");
+    }
+
+    private Condition InRearCockpit()
+    {
+        return new Condition("InRearCockpit()");
+    }
+
+    private CustomCommand SaveCockpitFrontRearState()
+    {
+        return new CustomCommand("SaveCockpitFrontRearState()");
+    }
+
+    private CustomCommand RestoreCockpitFrontRearState()
+    {
+        return new CustomCommand("RestoreCockpitFrontRearState()");
+    }
+
+    // Test function to check UFC and buttons responsiveness
+    //private void Test()
+    //{
+    //    for (int i = 0; i < 100; i++)
+    //    {
+    //        Cmd(UFC_PILOT.D1);
+    //        Cmd(UFC_PILOT.D2);
+    //        Cmd(UFC_PILOT.D3);
+    //        Cmd(UFC_PILOT.D4);
+    //        Cmd(UFC_PILOT.D5);
+    //        Cmd(UFC_PILOT.D6);
+    //        Cmd(UFC_PILOT.D7);
+    //        Cmd(UFC_PILOT.D8);
+    //        Cmd(UFC_PILOT.D9);
+    //        Cmd(UFC_PILOT.D0);
+    //        Cmd(TestUFC(UFC_PILOT.Name, "1234567890"));
+    //        Cmd(UFC_PILOT.CLR);
+    //        Cmd(UFC_PILOT.CLR);
+    //    }
+    //}
+    //private CustomCommand TestUFC(string device, string str)
+    //{
+    //    return new CustomCommand($"TestUFC('{device}', '{str}')");
+    //}
 }

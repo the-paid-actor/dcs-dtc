@@ -42,6 +42,34 @@ function DTC_F16C_GetPage(page, mfd, data)
     end
 end
 
+function DTC_F16C_ExecCmd_SelectMFDPage(page, data)
+    local leftMFDPage = DTC_F16C_GetPage(page, DTC_F16C_GetLeftMFD(), data)
+    local rightMFDPage = DTC_F16C_GetPage(page, DTC_F16C_GetRightMFD(), data)
+
+    if leftMFDPage == false and rightMFDPage == false then
+        return
+    end
+
+    local deviceID = 0
+    local mfd = ""
+
+    if leftMFDPage ~= false then
+        deviceID = data.leftMFDDeviceID
+        mfd = "left"
+        if leftMFDPage ~= true then
+            DTC_ExecCommand(deviceID, leftMFDPage, data.delay, data.activation)
+        end
+    elseif rightMFDPage ~= false then
+        deviceID = data.rightMFDDeviceID
+        mfd = "right"
+        if rightMFDPage ~= true then
+            DTC_ExecCommand(deviceID, rightMFDPage, data.delay, data.activation)
+        end
+    end
+
+    return mfd, deviceID
+end
+
 -- # Shared #
 
 function DTC_F16C_CheckCondition_NAVMode()
@@ -92,35 +120,15 @@ function DTC_F16C_CheckCondition_TDOA(position, status)
 end
 
 function DTC_F16C_ExecCmd_EnableXMIT(data)
-    local leftMFDPage = DTC_F16C_GetPage("HSD", DTC_F16C_GetLeftMFD(), data)
-    local rightMFDPage = DTC_F16C_GetPage("HSD", DTC_F16C_GetRightMFD(), data)
-
-    if leftMFDPage == false and rightMFDPage == false then
-        return
-    end
-
-    local deviceID = 0
-    local mfd = ""
-
-    if leftMFDPage ~= false then
-        deviceID = data.leftMFDDeviceID
-        mfd = "left"
-        if leftMFDPage ~= true then
-            DTC_ExecCommand(deviceID, leftMFDPage, data.delay, data.activation)
-        end
-    elseif rightMFDPage ~= false then
-        deviceID = data.rightMFDDeviceID
-        mfd = "right"
-        if rightMFDPage ~= true then
-            DTC_ExecCommand(deviceID, rightMFDPage, data.delay, data.activation)
-        end
-    end
+    local mfd, deviceID = DTC_F16C_ExecCmd_SelectMFDPage("HSD", data)
 
     local table = {}
     if mfd == "left" then
         table = DTC_LinesToList(list_indication(4))
-    else
+    elseif mfd == "right" then
         table = DTC_LinesToList(list_indication(5))
+    else
+        return
     end
 
     local i = 1
@@ -175,6 +183,29 @@ function DTC_F16C_CheckCondition_HTSEnabled()
         return true
     end
     return false
+end
+
+function DTC_F16C_ExecCmd_SelectHARM(data)
+    local mfd, deviceID = DTC_F16C_ExecCmd_SelectMFDPage("SMS", data)
+    local strSearch = "AG88";
+
+    for i = 1, 5, 1 do
+        local table = {}
+        if mfd == "left" then
+            table = DTC_F16C_GetLeftMFD()
+        elseif mfd == "right" then
+            table = DTC_F16C_GetRightMFD()
+        else
+            return
+        end
+
+        local str = table["Table. Root. Unic ID: _id:1321.2.Table. Root. Unic ID: _id:1321. Text.1"];
+        if str == nil or str:sub(-#strSearch) == strSearch then
+            return
+        end
+
+        DTC_ExecCommand(deviceID, data.weaponStep, data.delay, data.activation)
+    end
 end
 
 function DTC_F16C_CheckCondition_HTSAllNotSelected(mfd)

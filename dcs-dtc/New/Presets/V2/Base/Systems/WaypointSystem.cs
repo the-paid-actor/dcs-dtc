@@ -320,16 +320,57 @@ public abstract class WaypointSystem<T> where T : class, IWaypoint, new()
         return new Block { Start = start, End = end, StartSeq = startSeq, EndSeq = endSeq };
     }
 
-    public string ExportWptsToJson()
+    public string ExportWptsToJson(int[] indexes)
     {
-        return JsonConvert.SerializeObject(this.Waypoints);
+        var wpts = new List<T>();
+        foreach (var i in indexes)
+        {
+            wpts.Add(this.Waypoints[i]);
+        }
+        var clip = new WaypointsOnClipboard<T>();
+        clip.WaypointsOnClipboardList.AddRange(wpts);
+        return JsonConvert.SerializeObject(clip);
     }
 
-    public void ImportWptsFromJson(string json)
+    public string ExportWptsToJson()
     {
-        var wpts = JsonConvert.DeserializeObject<List<T>>(json);
-        this.Waypoints.Clear();
-        this.Waypoints.AddRange(wpts);
+        var clip = new WaypointsOnClipboard<T>();
+        clip.WaypointsOnClipboardList.AddRange(this.Waypoints);
+        return JsonConvert.SerializeObject(clip);
+    }
+
+    public WaypointsOnClipboard<T> LoadWptsFromJson(string json)
+    {
+        WaypointsOnClipboard<T> wpts = null;
+        try
+        {
+            wpts = JsonConvert.DeserializeObject<WaypointsOnClipboard<T>>(json);
+        }
+        catch
+        {
+        }
+
+        if (wpts == null || wpts.WaypointsOnClipboardList == null || wpts.WaypointsOnClipboardList.Count == 0) return null;
+        return wpts;
+    }
+
+    public void ImportWptsFromJson(string json, bool replace = true)
+    {
+        var wpts = LoadWptsFromJson(json);
+        if (wpts == null) return;
+        if (replace)
+        {
+            this.Waypoints.Clear();
+        }
+        else
+        {
+            var seq = GetNextSequence();
+            foreach (var wpt in wpts.WaypointsOnClipboardList)
+            {
+                wpt.Sequence = seq++;
+            }
+        }
+        this.Waypoints.AddRange(wpts.WaypointsOnClipboardList);
     }
 
     public void FixWaypointsStartingAt0()

@@ -196,4 +196,22 @@ public partial class WaypointsPage<T> : WaypointsPageControl where T : class, IW
         this.SavePreset();
         this.RefreshList();
     }
+
+    protected override void CopyWaypoints(int[] ints)
+    {
+        var json = this.waypoints.ExportWptsToJson(ints);
+        Clipboard.SetText(json);
+    }
+
+    protected override void PasteWaypoints()
+    {
+        this.waypoints.ImportWptsFromJson(Clipboard.GetText(), false);
+        this.SavePreset();
+        this.RefreshList();
+    }
+
+    protected override bool IsClipboardWaypointsValid()
+    {
+        return this.waypoints.LoadWptsFromJson(Clipboard.GetText()) != null;
+    }
 }

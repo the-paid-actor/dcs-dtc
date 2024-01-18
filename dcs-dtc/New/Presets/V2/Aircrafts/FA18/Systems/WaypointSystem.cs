@@ -1,12 +1,6 @@
 ﻿using DTC.New.Presets.V2.Base.Systems;
-using DTC.Utilities;
-using Microsoft.VisualBasic.ApplicationServices;
 
 namespace DTC.New.Presets.V2.Aircrafts.FA18.Systems;
-
-public class WaypointSystem : WaypointSystem<Waypoint>
-{
-}
 
 public class Waypoint : IWaypoint
 {
@@ -25,5 +19,13 @@ public class Waypoint : IWaypoint
         {
             return Target ? "TGT" : "";
         }
+    }
+}
+
+public class WaypointSystem : WaypointSystem<Waypoint>
+{
+    protected override int GetFirstSequence()
+    {
+        return 0;
     }
 }

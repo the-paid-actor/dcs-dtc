@@ -69,7 +69,7 @@ namespace DTC.New.UI.Base.Systems
             // 
             label1.Enabled = false;
             label1.Font = new Font("Microsoft Sans Serif", 10F, FontStyle.Bold, GraphicsUnit.Point);
-            label1.Location = new Point(0, 0);
+            label1.Location = new Point(1, 0);
             label1.Margin = new Padding(0);
             label1.Name = "label1";
             label1.Padding = new Padding(5, 0, 0, 0);
@@ -82,7 +82,7 @@ namespace DTC.New.UI.Base.Systems
             // 
             label2.Enabled = false;
             label2.Font = new Font("Microsoft Sans Serif", 10F, FontStyle.Bold, GraphicsUnit.Point);
-            label2.Location = new Point(0, 0);
+            label2.Location = new Point(1, 0);
             label2.Margin = new Padding(0);
             label2.Name = "label2";
             label2.Padding = new Padding(5, 0, 0, 0);
@@ -131,7 +131,7 @@ namespace DTC.New.UI.Base.Systems
             panel1.Controls.Add(radNavRange);
             panel1.Controls.Add(radNavEndOfList);
             panel1.Controls.Add(txtNavRangeFrom);
-            panel1.Location = new Point(3, 3);
+            panel1.Location = new Point(5, 10);
             panel1.Name = "panel1";
             panel1.Size = new Size(397, 133);
             panel1.TabIndex = 34;
@@ -175,7 +175,7 @@ namespace DTC.New.UI.Base.Systems
             panel2.Controls.Add(radTgtAppend);
             panel2.Controls.Add(radTgtRange);
             panel2.Controls.Add(txtTgtRangeFrom);
-            panel2.Location = new Point(3, 142);
+            panel2.Location = new Point(5, 149);
             panel2.Name = "panel2";
             panel2.Size = new Size(433, 104);
             panel2.TabIndex = 34;

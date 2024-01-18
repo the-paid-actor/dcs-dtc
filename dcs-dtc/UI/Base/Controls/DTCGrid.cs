@@ -1,55 +1,34 @@
-﻿
-using System.Collections.ObjectModel;
+﻿namespace DTC.UI.Base.Controls;
 
-namespace DTC.UI.Base.Controls;
-
-public partial class DTCDataGrid2 : UserControl
+public class DTCGridShowContextMenuArgs : EventArgs
 {
-    private DTCDataGrid grid = new DTCDataGrid();
+    public Point Location { get; set; }
+    public int RowIndex { get; set; }
+    public DataGridViewHitTestType HitTestType { get; set; }
+}
 
-    public class Column
-    {
-        private int width;
-        private string name;
+public class DTCGrid : UserControl
+{
+    private DTCGridColumn[] columns;
 
-        public string Name 
-        {
-            get { return this.name; }
-            set
-            {
-                this.name = value;
-                if (string.IsNullOrEmpty(this.DataBindName))
-                {
-                    this.DataBindName = value;
-                }
-            }
-        }
+    private DTCGridReorder grid = new();
+    private BindingSource dataSource = new BindingSource();
+    private bool suppressSelectionChangeEvents;
 
-        public string DataBindName { get; set; }
-
-        public DataGridViewAutoSizeColumnMode AutoSizeMode { get; set; } = DataGridViewAutoSizeColumnMode.Fill;
-
-        public DataGridViewContentAlignment Alignment { get; set; }
-
-        public int Width 
-        {
-            get { return this.width; }
-            set
-            {
-                this.width = value;
-                this.AutoSizeMode = DataGridViewAutoSizeColumnMode.None;
-            }
-        }
-    }
-
-    private bool loaded = false;
+    public event Action<DTCGridReorderArgs> Reorder;
+    public event Action<DTCGridShowContextMenuArgs> ShowContextMenu;
     public event EventHandler SelectionChanged;
-    public ObservableCollection<Column> Columns { get; } = new ObservableCollection<Column>(); 
 
     public bool Multiselect
     {
         get { return grid.MultiSelect; }
         set { grid.MultiSelect = value; }
+    }
+
+    public bool EnableReorder
+    {
+        get { return this.grid.EnableReorder; }
+        set { this.grid.EnableReorder = value; }
     }
 
     public bool ColumnHeadersVisible
@@ -58,11 +37,10 @@ public partial class DTCDataGrid2 : UserControl
         set { grid.ColumnHeadersVisible = value; }
     }
 
-    public DTCDataGrid2()
+    public DTCGrid()
     {
-        InitializeComponent();
         this.Controls.Add(grid);
-        this.Columns.CollectionChanged += (sender, args) => { UpdateColumns(); };
+        grid.EnableReorder = false;
 
         var headerStyle = new DataGridViewCellStyle();
         headerStyle.Alignment = DataGridViewContentAlignment.MiddleLeft;
@@ -105,12 +83,30 @@ public partial class DTCDataGrid2 : UserControl
         grid.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
         grid.ShowCellToolTips = false;
         grid.StandardTab = true;
-        grid.SelectionChanged += Grid_SelectionChanged;
+        grid.SelectionChanged += GridSelectionChanged;
+
+        this.grid.Reorder += (a) => Reorder?.Invoke(a);
+        this.grid.MouseClick += GridMouseClick;
+        this.grid.DoubleClick += GridDoubleClick;
     }
 
-    private void Grid_SelectionChanged(object? sender, EventArgs e)
+    private void GridDoubleClick(object? sender, EventArgs e)
     {
-        if (loaded)
+        OnDoubleClick(e);
+    }
+
+    private void GridMouseClick(object? sender, MouseEventArgs e)
+    {
+        var ht = grid.HitTest(e.X, e.Y);
+        if (ht.Type != DataGridViewHitTestType.Cell) return;
+        if (e.Button != MouseButtons.Right) return;
+
+        ShowContextMenu?.Invoke(new DTCGridShowContextMenuArgs { Location = e.Location, RowIndex = ht.RowIndex, HitTestType = ht.Type});
+    }
+
+    private void GridSelectionChanged(object? sender, EventArgs e)
+    {
+        if (!suppressSelectionChangeEvents)
         {
             SelectionChanged?.Invoke(sender, e);
         }
@@ -124,10 +120,51 @@ public partial class DTCDataGrid2 : UserControl
         }
     }
 
+    public void RefreshList(object dataSource)
+    {
+        suppressSelectionChangeEvents = true;
+
+        this.dataSource.DataSource = dataSource;
+        grid.DataSource = this.dataSource;
+        this.dataSource.ResetBindings(false);
+
+        grid.ClearSelection();
+        suppressSelectionChangeEvents = false;
+        SelectionChanged?.Invoke(grid, EventArgs.Empty);
+    }
+
+    public void ClearSelection()
+    {
+        grid.ClearSelection();
+    }
+
+    public void SetColumns(params DTCGridColumn[] columns)
+    {
+        this.columns = columns;
+        this.UpdateColumns();
+    }
+
+    public void SelectAllRows()
+    {
+        this.grid.SelectAll();
+    }
+
+    public void Select(params int[] rowIndex)
+    {
+        suppressSelectionChangeEvents = true;
+        this.grid.ClearSelection();
+        for (var i = 0; i < rowIndex.Length; i++)
+        {
+            this.grid.Rows[rowIndex[i]].Selected = true;
+        }
+        suppressSelectionChangeEvents = false;
+        SelectionChanged?.Invoke(grid, EventArgs.Empty);
+    }
+
     private void UpdateColumns()
     {
         grid.Columns.Clear();
-        foreach (var column in Columns)
+        foreach (var column in this.columns)
         {
             var col = new DataGridViewTextBoxColumn();
             col.DefaultCellStyle.Alignment = column.Alignment;
@@ -139,14 +176,5 @@ public partial class DTCDataGrid2 : UserControl
             col.Width = column.Width;
             grid.Columns.Add(col);
         }
-    }
-
-    internal void RefreshList(object dataSource)
-    {
-        loaded = false;
-        grid.RefreshList(dataSource);
-        grid.ClearSelection();
-        loaded = true;
-        SelectionChanged?.Invoke(grid, EventArgs.Empty);
     }
 }

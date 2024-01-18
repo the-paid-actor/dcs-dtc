@@ -12,16 +12,18 @@ public partial class ImportDialog : UserControl
 
         this.Dock = DockStyle.Fill;
 
-        this.gridRoutes.Columns.Add(new DTCDataGrid2.Column { Name = "Name" });
-        this.gridRoutes.Columns.Add(new DTCDataGrid2.Column { Name = "Aircraft" });
+        this.gridRoutes.SetColumns(
+            new DTCGridColumn { Name = "Name" },
+            new DTCGridColumn { Name = "Aircraft" });
         this.gridRoutes.Multiselect = false;
         this.gridRoutes.ColumnHeadersVisible = false;
         this.gridRoutes.SelectionChanged += GridRoutes_SelectionChanged;
 
-        this.gridWaypoints.Columns.Add(new DTCDataGrid2.Column { Name = "Seq", DataBindName = "Sequence", Width = 50 });
-        this.gridWaypoints.Columns.Add(new DTCDataGrid2.Column { Name = "Name", Width = 200 });
-        this.gridWaypoints.Columns.Add(new DTCDataGrid2.Column { Name = "Coordinate", DataBindName = "CoordinateString" });
-        this.gridWaypoints.Columns.Add(new DTCDataGrid2.Column { Name = "Elevation", Width = 75 });
+        this.gridWaypoints.SetColumns(
+            new DTCGridColumn { Name = "Seq", DataBindName = "Sequence", Width = 50 },
+            new DTCGridColumn { Name = "Name", Width = 200 },
+            new DTCGridColumn { Name = "Coordinate", DataBindName = "CoordinateString" },
+            new DTCGridColumn { Name = "Elevation", Width = 75 });
         this.gridWaypoints.Multiselect = true;
 
         this.radInsert.Checked = true;
@@ -35,6 +37,7 @@ public partial class ImportDialog : UserControl
         if (this.gridRoutes.SelectedRows.Count > 0)
         {
             this.gridWaypoints.RefreshList(((ImportRoute)this.gridRoutes.SelectedRows[0].DataBoundItem).Waypoints);
+            this.gridWaypoints.SelectAllRows();
         }
     }
 

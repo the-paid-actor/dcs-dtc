@@ -95,7 +95,10 @@ namespace DTC.New.UI.Aircrafts.F16.Systems
 
                 this.selectedPageDropDown.Visible = this.selectedPageDropDown.Items.Count != 0;
 
-                this.selectedPageDropDown.SelectedItem = mfd.SelectedPage;
+                if (this.selectedPageDropDown.SelectedItem == null || (int)this.selectedPageDropDown.SelectedItem != mfd.SelectedPage)
+                {
+                    this.selectedPageDropDown.SelectedItem = mfd.SelectedPage;
+                }
 
                 if (this.selectedPageDropDown.Visible && !this.selectedPageDropDown.Items.Contains(this.mfd.SelectedPage))
                 {

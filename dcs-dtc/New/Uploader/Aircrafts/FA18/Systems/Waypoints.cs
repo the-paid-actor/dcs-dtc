@@ -2,7 +2,6 @@
 using DTC.New.Uploader.Base;
 using DTC.Utilities;
 using System.Globalization;
-using static DTC.Utilities.Extensions;
 
 namespace DTC.New.Uploader.Aircrafts.FA18;
 

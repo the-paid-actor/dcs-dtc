@@ -31,26 +31,16 @@ namespace DTC.New.UI.Base.Systems
         private void InitializeComponent()
         {
             components = new System.ComponentModel.Container();
-            DataGridViewCellStyle dataGridViewCellStyle1 = new DataGridViewCellStyle();
-            DataGridViewCellStyle dataGridViewCellStyle3 = new DataGridViewCellStyle();
-            DataGridViewCellStyle dataGridViewCellStyle2 = new DataGridViewCellStyle();
             panel1 = new Panel();
             btnImport = new DTCDropDownButton();
             btnDelete = new DTCButton();
             btnAdd = new DTCButton();
-            dgWaypoints = new DTCDataGrid();
-            colSequence = new DataGridViewTextBoxColumn();
-            colName = new DataGridViewTextBoxColumn();
-            colLatitude = new DataGridViewTextBoxColumn();
-            colLongitude = new DataGridViewTextBoxColumn();
-            colElevation = new DataGridViewTextBoxColumn();
-            colExtra = new DataGridViewTextBoxColumn();
+            dgWaypoints = new DTCGrid();
             contextMenu = new ContextMenuStrip(components);
             shiftUpMenu = new ToolStripMenuItem();
             shiftDownMenu = new ToolStripMenuItem();
             pnlContents = new Panel();
             panel1.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)dgWaypoints).BeginInit();
             contextMenu.SuspendLayout();
             pnlContents.SuspendLayout();
             SuspendLayout();
@@ -114,117 +104,36 @@ namespace DTC.New.UI.Base.Systems
             // 
             // dgWaypoints
             // 
-            dgWaypoints.AllowDrop = true;
-            dgWaypoints.AllowUserToAddRows = false;
-            dgWaypoints.AllowUserToDeleteRows = false;
-            dgWaypoints.AllowUserToResizeColumns = false;
-            dgWaypoints.AllowUserToResizeRows = false;
-            dgWaypoints.BackgroundColor = Color.Beige;
-            dgWaypoints.BorderStyle = BorderStyle.None;
-            dgWaypoints.CellBorderStyle = DataGridViewCellBorderStyle.SingleHorizontal;
-            dgWaypoints.ColumnHeadersBorderStyle = DataGridViewHeaderBorderStyle.None;
-            dataGridViewCellStyle1.Alignment = DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle1.BackColor = Color.DarkKhaki;
-            dataGridViewCellStyle1.Font = new Font("Microsoft Sans Serif", 10F, FontStyle.Regular, GraphicsUnit.Point);
-            dataGridViewCellStyle1.ForeColor = Color.Black;
-            dataGridViewCellStyle1.SelectionBackColor = Color.DarkKhaki;
-            dataGridViewCellStyle1.SelectionForeColor = Color.Black;
-            dataGridViewCellStyle1.WrapMode = DataGridViewTriState.False;
-            dgWaypoints.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle1;
-            dgWaypoints.ColumnHeadersHeight = 30;
-            dgWaypoints.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.DisableResizing;
-            dgWaypoints.Columns.AddRange(new DataGridViewColumn[] { colSequence, colName, colLatitude, colLongitude, colElevation, colExtra });
-            dataGridViewCellStyle3.Alignment = DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle3.BackColor = Color.Beige;
-            dataGridViewCellStyle3.Font = new Font("Microsoft Sans Serif", 10F, FontStyle.Regular, GraphicsUnit.Point);
-            dataGridViewCellStyle3.ForeColor = SystemColors.ControlText;
-            dataGridViewCellStyle3.SelectionBackColor = Color.Olive;
-            dataGridViewCellStyle3.SelectionForeColor = SystemColors.HighlightText;
-            dataGridViewCellStyle3.WrapMode = DataGridViewTriState.False;
-            dgWaypoints.DefaultCellStyle = dataGridViewCellStyle3;
+            dgWaypoints.ColumnHeadersVisible = true;
             dgWaypoints.Dock = DockStyle.Fill;
-            dgWaypoints.EnableHeadersVisualStyles = false;
+            dgWaypoints.EnableReorder = true;
             dgWaypoints.Location = new Point(0, 35);
+            dgWaypoints.Multiselect = true;
             dgWaypoints.Name = "dgWaypoints";
-            dgWaypoints.ReadOnly = true;
-            dgWaypoints.RowHeadersBorderStyle = DataGridViewHeaderBorderStyle.None;
-            dgWaypoints.RowHeadersVisible = false;
-            dgWaypoints.ScrollBars = ScrollBars.Vertical;
-            dgWaypoints.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
-            dgWaypoints.ShowCellToolTips = false;
             dgWaypoints.Size = new Size(689, 448);
-            dgWaypoints.StandardTab = true;
             dgWaypoints.TabIndex = 100;
+            dgWaypoints.Reorder += DataGridReorder;
             dgWaypoints.SelectionChanged += DataGridSelectionChanged;
+            dgWaypoints.ShowContextMenu += DataGridShowContextMenu;
             dgWaypoints.DoubleClick += DataGridDoubleClick;
-            dgWaypoints.MouseClick += dgWaypoints_MouseClick;
-            // 
-            // colSequence
-            // 
-            colSequence.DataPropertyName = "Sequence";
-            colSequence.HeaderText = "Seq";
-            colSequence.Name = "colSequence";
-            colSequence.ReadOnly = true;
-            colSequence.Width = 50;
-            // 
-            // colName
-            // 
-            colName.AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;
-            colName.DataPropertyName = "Name";
-            colName.HeaderText = "Name";
-            colName.Name = "colName";
-            colName.ReadOnly = true;
-            // 
-            // colLatitude
-            // 
-            colLatitude.DataPropertyName = "Latitude";
-            colLatitude.HeaderText = "Latitude";
-            colLatitude.Name = "colLatitude";
-            colLatitude.ReadOnly = true;
-            colLatitude.Width = 110;
-            // 
-            // colLongitude
-            // 
-            colLongitude.DataPropertyName = "Longitude";
-            colLongitude.HeaderText = "Longitude";
-            colLongitude.Name = "colLongitude";
-            colLongitude.ReadOnly = true;
-            colLongitude.Width = 110;
-            // 
-            // colElevation
-            // 
-            colElevation.DataPropertyName = "Elevation";
-            dataGridViewCellStyle2.Alignment = DataGridViewContentAlignment.MiddleRight;
-            colElevation.DefaultCellStyle = dataGridViewCellStyle2;
-            colElevation.HeaderText = "Elev";
-            colElevation.Name = "colElevation";
-            colElevation.ReadOnly = true;
-            colElevation.Width = 55;
-            // 
-            // colExtra
-            // 
-            colExtra.DataPropertyName = "ExtraDescription";
-            colExtra.HeaderText = "";
-            colExtra.Name = "colExtra";
-            colExtra.ReadOnly = true;
             // 
             // contextMenu
             // 
             contextMenu.Items.AddRange(new ToolStripItem[] { shiftUpMenu, shiftDownMenu });
             contextMenu.Name = "contextMenu";
-            contextMenu.Size = new Size(181, 70);
+            contextMenu.Size = new Size(186, 70);
             // 
             // shiftUpMenu
             // 
             shiftUpMenu.Name = "shiftUpMenu";
-            shiftUpMenu.Size = new Size(180, 22);
-            shiftUpMenu.Text = "Shift up";
+            shiftUpMenu.Size = new Size(185, 22);
+            shiftUpMenu.Text = "Decrement sequence";
             // 
             // shiftDownMenu
             // 
             shiftDownMenu.Name = "shiftDownMenu";
-            shiftDownMenu.Size = new Size(180, 22);
-            shiftDownMenu.Text = "Shift down";
+            shiftDownMenu.Size = new Size(185, 22);
+            shiftDownMenu.Text = "Increment sequence";
             // 
             // pnlContents
             // 
@@ -245,7 +154,6 @@ namespace DTC.New.UI.Base.Systems
             Name = "WaypointsPageControl";
             Size = new Size(689, 483);
             panel1.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)dgWaypoints).EndInit();
             contextMenu.ResumeLayout(false);
             pnlContents.ResumeLayout(false);
             ResumeLayout(false);
@@ -255,15 +163,9 @@ namespace DTC.New.UI.Base.Systems
         private Panel panel1;
         private DTCButton btnDelete;
         private DTCButton btnAdd;
-        protected DTCDataGrid dgWaypoints;
+        protected DTCGrid dgWaypoints;
         protected Panel pnlContents;
         private DTCDropDownButton btnImport;
-        private DataGridViewTextBoxColumn colSequence;
-        private DataGridViewTextBoxColumn colName;
-        private DataGridViewTextBoxColumn colLatitude;
-        private DataGridViewTextBoxColumn colLongitude;
-        private DataGridViewTextBoxColumn colElevation;
-        private DataGridViewTextBoxColumn colExtra;
         private ContextMenuStrip contextMenu;
         private ToolStripMenuItem shiftUpMenu;
         private ToolStripMenuItem shiftDownMenu;

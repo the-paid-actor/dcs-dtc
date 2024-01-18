@@ -54,7 +54,6 @@ namespace DTC.New.UI.Aircrafts.F16.Systems
             chkMFDs.TabIndex = 9;
             chkMFDs.Text = "MFDs";
             chkMFDs.UseVisualStyleBackColor = true;
-            chkMFDs.CheckedChanged += chkMFDs_CheckedChanged;
             // 
             // chkRadios
             // 
@@ -68,7 +67,6 @@ namespace DTC.New.UI.Aircrafts.F16.Systems
             chkRadios.TabIndex = 7;
             chkRadios.Text = "Radios";
             chkRadios.UseVisualStyleBackColor = true;
-            chkRadios.CheckedChanged += chkRadios_CheckedChanged;
             // 
             // chkCMS
             // 
@@ -82,7 +80,6 @@ namespace DTC.New.UI.Aircrafts.F16.Systems
             chkCMS.TabIndex = 6;
             chkCMS.Text = "CMS";
             chkCMS.UseVisualStyleBackColor = true;
-            chkCMS.CheckedChanged += chkCMS_CheckedChanged;
             // 
             // chkWaypoints
             // 
@@ -96,7 +93,6 @@ namespace DTC.New.UI.Aircrafts.F16.Systems
             chkWaypoints.TabIndex = 0;
             chkWaypoints.Text = "Waypoints";
             chkWaypoints.UseVisualStyleBackColor = true;
-            chkWaypoints.CheckedChanged += chkWaypoints_CheckedChanged;
             // 
             // toolTip1
             // 
@@ -118,7 +114,6 @@ namespace DTC.New.UI.Aircrafts.F16.Systems
             chkMisc.TabIndex = 8;
             chkMisc.Text = "Misc";
             chkMisc.UseVisualStyleBackColor = true;
-            chkMisc.CheckedChanged += chkMisc_CheckedChanged;
             // 
             // chkHARMHTS
             // 
@@ -132,7 +127,6 @@ namespace DTC.New.UI.Aircrafts.F16.Systems
             chkHARMHTS.TabIndex = 10;
             chkHARMHTS.Text = "HARM / HTS";
             chkHARMHTS.UseVisualStyleBackColor = true;
-            chkHARMHTS.CheckedChanged += chkHARM_CheckedChanged;
             // 
             // chkDatalink
             // 
@@ -146,7 +140,6 @@ namespace DTC.New.UI.Aircrafts.F16.Systems
             chkDatalink.TabIndex = 32;
             chkDatalink.Text = "Datalink";
             chkDatalink.UseVisualStyleBackColor = true;
-            chkDatalink.CheckedChanged += chkDatalink_CheckedChanged;
             // 
             // UploadPage
             // 

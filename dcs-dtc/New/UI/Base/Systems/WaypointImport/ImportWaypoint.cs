@@ -14,6 +14,13 @@ public class ImportWaypoint
     public int Sequence { get; set; }
     public string Name { get; set; }
     public Coordinate Coordinate { get; set; }
+    public string CoordinateString
+    {
+        get
+        {
+            return Coordinate.ToString(CoordinateFormat.DegreesMinutesThousandths);
+        }
+    }
     public int Elevation { get; set; }
     public string TimeOverSteerpoint { get; set; }
 }

@@ -1,6 +1,6 @@
 ﻿using DTC.New.Presets.V2.Aircrafts.F16.Systems;
 using DTC.New.Uploader.Base;
-using DTC.Utilities;
+using DTC.Utilities.Extensions;
 
 namespace DTC.New.Uploader.Aircrafts.F16;
 

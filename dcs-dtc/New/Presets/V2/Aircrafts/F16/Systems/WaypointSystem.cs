@@ -45,30 +45,12 @@ public class Waypoint : IWaypoint
             return str;
         }
     }
-
-    [Newtonsoft.Json.JsonIgnore]
-    public bool IsCoordinateBlank
-    {
-        get
-        {
-            var tmp = Latitude.Replace("N", "").Replace("S", "").Replace(".", "");
-            if (int.TryParse(tmp, out int latInt))
-            {
-                if (latInt == 0)
-                {
-                    return true;
-                }
-            }
-            return false;
-        }
-    }
-
-    public void AutoName()
-    {
-        Name = "WPT " + Sequence.ToString("00");
-    }
 }
 
 public class WaypointSystem : WaypointSystem<Waypoint>
 {
+    protected override int GetFirstSequence()
+    {
+        return 1;
+    }
 }

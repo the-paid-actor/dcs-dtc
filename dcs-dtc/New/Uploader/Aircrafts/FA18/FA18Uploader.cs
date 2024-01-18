@@ -1,6 +1,7 @@
 ﻿using DTC.Utilities;
 using DTC.New.Presets.V2.Aircrafts.FA18;
 using DTC.New.Uploader.Base;
+using DTC.Utilities.Extensions;
 
 namespace DTC.New.Uploader.Aircrafts.FA18;
 

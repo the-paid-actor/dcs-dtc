@@ -28,8 +28,8 @@
         /// </summary>
         private void InitializeComponent()
         {
-            gridRoutes = new DTC.UI.Base.Controls.DTCDataGrid2();
-            gridWaypoints = new DTC.UI.Base.Controls.DTCDataGrid2();
+            gridRoutes = new DTC.UI.Base.Controls.DTCGrid();
+            gridWaypoints = new DTC.UI.Base.Controls.DTCGrid();
             label1 = new Label();
             label2 = new Label();
             label3 = new Label();
@@ -246,8 +246,8 @@
 
         #endregion
 
-        private DTC.UI.Base.Controls.DTCDataGrid2 gridRoutes;
-        private DTC.UI.Base.Controls.DTCDataGrid2 gridWaypoints;
+        private DTC.UI.Base.Controls.DTCGrid gridRoutes;
+        private DTC.UI.Base.Controls.DTCGrid gridWaypoints;
         private Label label1;
         private Label label2;
         private Label label3;

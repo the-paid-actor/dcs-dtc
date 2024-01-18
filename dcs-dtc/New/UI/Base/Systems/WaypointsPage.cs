@@ -2,6 +2,7 @@
 using DTC.Utilities;
 using DTC.New.UI.Base.Systems.WaypointImport;
 using DTC.New.Presets.V2.Base.Systems;
+using DTC.UI.Base.Controls;
 
 namespace DTC.New.UI.Base.Systems;
 
@@ -143,21 +144,15 @@ public partial class WaypointsPage<T> : WaypointsPageControl where T : class, IW
 
     private void ProcessImport(List<T> wpts, bool append, bool replace, bool insert, int insertAt, bool overwrite, bool shift)
     {
-        if (append)
+        if (append || replace)
         {
+            if (replace)
+            {
+                this.waypoints.Waypoints.Clear();
+            }
+
             var seq = this.waypoints.GetNextSequence();
 
-            foreach (var wpt in wpts)
-            {
-                wpt.Sequence = seq++;
-                this.waypoints.Add(wpt);
-            }
-        }
-        else if (replace)
-        {
-            var seq = 1;
-
-            this.waypoints.Waypoints.Clear();
             foreach (var wpt in wpts)
             {
                 wpt.Sequence = seq++;
@@ -191,6 +186,13 @@ public partial class WaypointsPage<T> : WaypointsPageControl where T : class, IW
             }
         }
 
+        this.SavePreset();
+        this.RefreshList();
+    }
+
+    protected override void DataGridReorder(DTCGridReorderArgs args)
+    {
+        this.waypoints.Reorder(args.From, args.Between1, args.Between2);
         this.SavePreset();
         this.RefreshList();
     }

@@ -49,7 +49,7 @@ public class Waypoint : IWaypoint
 
 public class WaypointSystem : WaypointSystem<Waypoint>
 {
-    protected override int GetFirstSequence()
+    public override int GetFirstAllowedSequence()
     {
         return 1;
     }

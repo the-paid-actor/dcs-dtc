@@ -11,7 +11,7 @@ namespace DTC.New.UI.Base.Systems
             this.InitializeComponent();
         }
 
-        public RadiosPageControl(AircraftPage parent, RadioSystem radioSystem) : base(parent)
+        public RadiosPageControl(AircraftPage parent, RadioSystem radioSystem, string systemName) : base(parent, systemName)
         {
             InitializeComponent();
 

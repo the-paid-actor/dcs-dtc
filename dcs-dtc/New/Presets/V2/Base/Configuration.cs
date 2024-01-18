@@ -14,6 +14,8 @@ public abstract class Configuration : IConfiguration
 {
     public int Version { get; } = 2;
 
+    public abstract string GetAircraftName();
+
     public static Configuration FromJson(string s, Type type)
     {
         return ConfigLoader.FromJson(s, type);
@@ -73,26 +75,32 @@ public abstract class Configuration : IConfiguration
     {
     }
 
+    private List<ConfigurationSystem> systems;
+
     public List<ConfigurationSystem> GetSystems()
     {
-        var props = new List<ConfigurationSystem>();
-
-        var properties = from property in GetType().GetProperties()
-                         where Attribute.IsDefined(property, typeof(SystemAttribute))
-                         orderby ((SystemAttribute)property.GetCustomAttributes(typeof(SystemAttribute), false).Single()).Order
-                         select property;
-
-        foreach (var prop in properties)
+        if (this.systems == null)
         {
-            var attrs = prop.GetCustomAttributes(typeof(SystemAttribute), false);
-            if (attrs.Length > 0)
+            var props = new List<ConfigurationSystem>();
+
+            var properties = from property in GetType().GetProperties()
+                             where Attribute.IsDefined(property, typeof(SystemAttribute))
+                             orderby ((SystemAttribute)property.GetCustomAttributes(typeof(SystemAttribute), false).Single()).Order
+                             select property;
+
+            foreach (var prop in properties)
             {
-                var attr = (SystemAttribute)attrs[0];
-                props.Add(new ConfigurationSystem() { PropertyName = prop.Name, SystemName = attr.Name, IgnoreForLoadSave = attr.IgnoreForLoadSave });
+                var attrs = prop.GetCustomAttributes(typeof(SystemAttribute), false);
+                if (attrs.Length > 0)
+                {
+                    var attr = (SystemAttribute)attrs[0];
+                    props.Add(new ConfigurationSystem() { PropertyName = prop.Name, SystemName = attr.Name, IgnoreForLoadSave = attr.IgnoreForLoadSave });
+                }
             }
+            this.systems = props;
         }
 
-        return props;
+        return this.systems;
     }
 
     public bool IsSystemNull(ConfigurationSystem system)
@@ -106,13 +114,12 @@ public abstract class Configuration : IConfiguration
         return true;
     }
 
-    public void CopySystemFrom(ConfigurationSystem system, Configuration configToLoad)
+    public void ClearAllSystems()
     {
-        var prop = GetType().GetProperty(system.PropertyName);
-        var value = prop.GetValue(configToLoad);
-        if (value != null)
+        var systems = GetSystems();
+        foreach (var system in systems)
         {
-            prop.SetValue(this, value);
+            ClearSystem(system);
         }
     }
 
@@ -125,5 +132,67 @@ public abstract class Configuration : IConfiguration
     IConfiguration IConfiguration.Clone()
     {
         return Clone();
+    }
+
+    public void CopyToClipboard(List<ConfigurationSystem> systemsToSave)
+    {
+        Configuration clone = CloneAndClearSystems(systemsToSave);
+        Clipboard.SetText(clone.ToCompressedString());
+    }
+
+    public void CopyToFile(List<ConfigurationSystem> systemsToSave, string fileName)
+    {
+        Configuration clone = CloneAndClearSystems(systemsToSave);
+        FileStorage.Save(clone, fileName);
+    }
+
+    private Configuration CloneAndClearSystems(List<ConfigurationSystem> systemsToSave)
+    {
+        var clone = this.Clone();
+        foreach (var system in this.systems)
+        {
+            if (!systemsToSave.Contains(system))
+            {
+                clone.ClearSystem(system);
+            }
+        }
+
+        return clone;
+    }
+
+    public void CopySystemsFrom(List<ConfigurationSystem> systemsToLoad, Configuration configToLoad)
+    {
+        foreach (var system in systemsToLoad)
+        {
+            CopySystemFrom(system, configToLoad);
+        }
+    }
+
+    private void CopySystemFrom(ConfigurationSystem system, Configuration configToLoad)
+    {
+        var prop = GetType().GetProperty(system.PropertyName);
+        var value = prop.GetValue(configToLoad);
+        if (value != null)
+        {
+            prop.SetValue(this, value);
+        }
+    }
+
+    internal Configuration LoadFromClipboard(Type type)
+    {
+        var txt = Clipboard.GetText();
+        return FromCompressedString(txt, type);
+    }
+
+    internal bool HasSystems(List<ConfigurationSystem> systems)
+    {
+        foreach (var system in systems)
+        {
+            if (IsSystemNull(system))
+            {
+                return false;
+            }
+        }
+        return true;
     }
 }

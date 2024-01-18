@@ -13,9 +13,9 @@ namespace DTC.New.UI.Aircrafts.F15E.Systems
 
         private DisplaySystem displaySystem;
 
-        public DisplaysPage(F15EPage parent, DisplaySystem displaySystem) : base(parent)
+        public DisplaysPage(F15EPage parent) : base(parent, nameof(parent.Configuration.Displays))
         {
-            this.displaySystem = displaySystem;
+            this.displaySystem = parent.Configuration.Displays;
             InitializeComponent();
 
             var left = 5;

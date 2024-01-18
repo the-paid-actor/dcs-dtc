@@ -5,6 +5,8 @@ namespace DTC.New.Presets.V2.Aircrafts.FA18;
 
 public class FA18Configuration : Configuration
 {
+    public string Aircraft = "FA18C";
+
     [System("Upload Settings")]
     public UploadSystem Upload { get; set; } = new UploadSystem();
 
@@ -37,6 +39,11 @@ public class FA18Configuration : Configuration
 
     public override void AfterLoadFromJson()
     {
+    }
+
+    public override string GetAircraftName()
+    {
+        return this.Aircraft;
     }
 
     protected override Type GetConfigurationType()

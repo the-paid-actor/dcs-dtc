@@ -7,11 +7,11 @@ namespace DTC.New.UI.Aircrafts.F15E.Systems
     {
         private UploadSystem upload;
 
-        public UploadPage(F15EPage parent, UploadSystem upload) : base(parent)
+        public UploadPage(F15EPage parent) : base(parent, nameof(parent.Configuration.Upload))
         {
             InitializeComponent();
 
-            this.upload = upload;
+            this.upload = parent.Configuration.Upload;
 
             chkRouteA.Checked = this.upload.RouteA;
             chkRouteB.Checked = this.upload.RouteB;

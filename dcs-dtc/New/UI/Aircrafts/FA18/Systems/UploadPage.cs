@@ -7,11 +7,11 @@ namespace DTC.New.UI.Aircrafts.FA18.Systems
     {
         private readonly UploadSystem _cfg;
 
-        public UploadPage(FA18Page parent, UploadSystem cfg) : base(parent)
+        public UploadPage(FA18Page parent) : base(parent, nameof(parent.Configuration.Upload))
         {
             InitializeComponent();
 
-            _cfg = cfg;
+            _cfg = parent.Configuration.Upload;
 
             chkWaypoints.Checked = _cfg.Waypoints;
             cbSequences.Checked = _cfg.Sequences;

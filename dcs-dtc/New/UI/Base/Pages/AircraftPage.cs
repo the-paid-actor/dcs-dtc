@@ -116,39 +116,40 @@ public partial class AircraftPage : Page
             }
 
             page.Visible = false;
-            var btn = new DTCButton();
-            btn.Height = 30;
-            btn.Text = page.GetPageTitle();
-            btn.Dock = DockStyle.Top;
-            btn.TextAlign = ContentAlignment.MiddleLeft;
-            btn.Font = new Font("Microsoft Sans Serif", 10);
-            btn.TabIndex = tabIndex--;
-            btn.TabStop = true;
-            btn.BringToFront();
-            btn.Click += (object sender, EventArgs e) =>
+
+            var pageBtn = new AircraftSystemButton(page);
+            pageBtn.Dock = DockStyle.Top;
+            pageBtn.TabIndex = tabIndex--;
+            pageBtn.BringToFront();
+            pageBtn.Click += (object sender, EventArgs e) =>
             {
                 SetPage(page);
                 foreach (var ctl in pnlLeft.Controls)
                 {
-                    if (!(ctl is DTCButton)) continue;
-
-                    var b = ((DTCButton)ctl);
-                    b.BackColor = Color.DarkKhaki;
-                    b.Font = new Font("Microsoft Sans Serif", 10);
+                    if (!(ctl is AircraftSystemButton)) continue;
+                    ((AircraftSystemButton)ctl).ResetAppearance();
                 }
-                btn.BackColor = btn.FlatAppearance.MouseOverBackColor;
-                btn.Font = new Font("Microsoft Sans Serif", 10, FontStyle.Bold);
             };
 
             page.Dock = DockStyle.Fill;
             page.Visible = false;
             pnlMain.Controls.Add(page);
-            pnlLeft.Controls.Add(btn);
+            pnlLeft.Controls.Add(pageBtn);
         }
     }
 
     public virtual void UploadToJet()
     {
         throw new NotImplementedException();
+    }
+
+    internal virtual bool AllowCopyFromClipboard(Configuration cfg, List<ConfigurationSystem> systems)
+    {
+        return false;
+    }
+
+    internal virtual Configuration ConvertConfigFromClipboard(Configuration cfg, List<ConfigurationSystem> systems)
+    {
+        return cfg;
     }
 }

@@ -8,9 +8,9 @@ namespace DTC.New.UI.Aircrafts.F16.Systems
     {
         private DatalinkSystem datalink;
 
-        public DatalinkPage(F16Page parent, DatalinkSystem datalink) : base(parent)
+        public DatalinkPage(F16Page parent) : base(parent, nameof(parent.Configuration.Datalink))
         {
-            this.datalink = datalink;
+            this.datalink = parent.Configuration.Datalink;
 
             InitializeComponent();
 

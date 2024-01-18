@@ -12,9 +12,11 @@ namespace DTC.New.UI.Aircrafts.FA18.Systems
             return "HMD";
         }
 
-        public HMDPage(FA18Page parent, HMDSystem hmd) : base(parent)
+        public HMDPage(FA18Page parent) : base(parent, nameof(parent.Configuration.HMD))
         {
             InitializeComponent();
+
+            this.hmd = parent.Configuration.HMD;
 
             foreach (var item in Enum.GetValues(typeof(HMDRejectMode)))
             {
@@ -27,7 +29,6 @@ namespace DTC.New.UI.Aircrafts.FA18.Systems
                 this.SavePreset();
             };
 
-            this.hmd = hmd;
             PopulateRejectSettings();
         }
 

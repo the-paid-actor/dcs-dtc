@@ -6,13 +6,13 @@ namespace DTC.New.UI.Aircrafts.F16.Systems
 {
     public partial class CMSPage : AircraftSystemPage
     {
-        private CMSSystem _cms;
+        private CMSSystem cms;
 
         private int _lastTabIndex = 0;
 
-        public CMSPage(F16Page parent, CMSSystem cms) : base(parent)
+        public CMSPage(F16Page parent) : base(parent, nameof(parent.Configuration.CMS))
         {
-            _cms = cms;
+            cms = parent.Configuration.CMS;
             InitializeComponent();
 
             var margin = 15;
@@ -70,9 +70,9 @@ namespace DTC.New.UI.Aircrafts.F16.Systems
 
             top += rowHeight + padding;
 
-            for (var i = 0; i < _cms.Programs.Length; i++)
+            for (var i = 0; i < cms.Programs.Length; i++)
             {
-                var program = _cms.Programs[i];
+                var program = cms.Programs[i];
 
                 left = margin;
                 this.Controls.Add(DTCCheckBox.Make(left, top + ((rowHeight + padding) / 2), chkWidth, rowHeight, program.ToBeUpdated, (chk) =>

@@ -19,6 +19,7 @@ public class WaypointEdit<T> : WaypointEditControl where T : class, IWaypoint, n
         this.customPanel = customPanel;
         this.waypoints = waypoints;
         this.txtElevation.MaximumValue = maxWptElevation;
+        this.txtSequence.MinimumValue = waypoints.GetFirstAllowedSequence();
 
         if (customPanel != null)
         {

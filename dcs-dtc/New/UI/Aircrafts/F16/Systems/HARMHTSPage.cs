@@ -421,12 +421,12 @@ namespace DTC.New.UI.Aircrafts.F16.Systems
         private HTSControl htsControl;
         private Control emitterList;
 
-        public HARMHTSPage(F16Page parent, HARMSystem harm, HTSSystem hts) : base(parent)
+        public HARMHTSPage(F16Page parent) : base(parent, nameof(parent.Configuration.HARM), nameof(parent.Configuration.HTS))
         {
             InitializeComponent();
 
-            this.harmControl = new HARMControl(this, harm);
-            this.htsControl = new HTSControl(this, hts);
+            this.harmControl = new HARMControl(this, parent.Configuration.HARM);
+            this.htsControl = new HTSControl(this, parent.Configuration.HTS);
         }
 
         public override void Shown()

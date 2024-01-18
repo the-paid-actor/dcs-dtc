@@ -9,10 +9,10 @@ namespace DTC.New.UI.Aircrafts.F15E.Systems
         private readonly SmartWeaponsSystem swsystem;
         private SmartWeaponsPageEdit dialog;
 
-        public SmartWeaponsPage(F15EPage parent, SmartWeaponsSystem swsystem) : base(parent)
+        public SmartWeaponsPage(F15EPage parent) : base(parent, nameof(parent.Configuration.SmartWeapons))
         {
             InitializeComponent();
-            this.swsystem = swsystem;
+            this.swsystem = parent.Configuration.SmartWeapons;
 
             btnLeftWing.Click += (s, e) => Edit(StationNames.LWING);
             btnCenter.Click += (s, e) => Edit(StationNames.CENTERLINE);

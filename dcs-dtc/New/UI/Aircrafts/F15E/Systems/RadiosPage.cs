@@ -1,12 +1,11 @@
 ﻿using DTC.New.UI.Base.Systems;
 using DTC.UI.Base.Controls;
-using DTC.New.Presets.V2.Base.Systems;
 
 namespace DTC.New.UI.Aircrafts.F15E.Systems
 {
     internal class RadiosPage : RadiosPageControl
     {
-        public RadiosPage(F15EPage parent, RadioSystem radioSystem) : base(parent, radioSystem)
+        public RadiosPage(F15EPage parent) : base(parent, parent.Configuration.Radios, nameof(parent.Configuration.Radios))
         {
         }
 

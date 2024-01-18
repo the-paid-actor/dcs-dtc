@@ -13,11 +13,11 @@ namespace DTC.New.UI.Aircrafts.F15E.Systems
             return "Misc";
         }
 
-        public MiscPage(F15EPage parent, MiscSystem misc) : base(parent)
+        public MiscPage(F15EPage parent) : base(parent, nameof(parent.Configuration.Misc))
         {
             InitializeComponent();
 
-            this.misc = misc;
+            this.misc = parent.Configuration.Misc;
 
             var padding = 10;
             var rowHeight = 25;

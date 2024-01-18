@@ -12,7 +12,7 @@ public partial class WaypointsPageControl : AircraftSystemPage
         this.InitializeComponent();
     }
 
-    public WaypointsPageControl(AircraftPage parent) : base(parent)
+    public WaypointsPageControl(AircraftPage parent, string systemName) : base(parent, systemName)
     {
         this.InitializeComponent();
 

@@ -1,4 +1,5 @@
 ﻿using DTC.Utilities.Extensions;
+using Newtonsoft.Json;
 
 namespace DTC.New.Presets.V2.Base.Systems;
 
@@ -28,7 +29,7 @@ public abstract class WaypointSystem<T> where T : class, IWaypoint, new()
         };
     }
 
-    protected abstract int GetFirstSequence();
+    public abstract int GetFirstAllowedSequence();
 
     public void Add(T wpt)
     {
@@ -63,7 +64,7 @@ public abstract class WaypointSystem<T> where T : class, IWaypoint, new()
 
     public int GetNextSequence()
     {
-        var seq = GetFirstSequence() - 1;
+        var seq = GetFirstAllowedSequence() - 1;
         foreach (var wpt in Waypoints)
         {
             if (wpt.Sequence > seq)
@@ -77,7 +78,7 @@ public abstract class WaypointSystem<T> where T : class, IWaypoint, new()
 
     internal int GetNextSequenceOfFirstGap()
     {
-        var seq = GetFirstSequence() - 1;
+        var seq = GetFirstAllowedSequence() - 1;
         for (int i = 0; i < Waypoints.Count; i++)
         {
             var wpt = Waypoints[i];
@@ -317,5 +318,31 @@ public abstract class WaypointSystem<T> where T : class, IWaypoint, new()
         var endSeq = this.Waypoints[end].Sequence;
 
         return new Block { Start = start, End = end, StartSeq = startSeq, EndSeq = endSeq };
+    }
+
+    public string ExportWptsToJson()
+    {
+        return JsonConvert.SerializeObject(this.Waypoints);
+    }
+
+    public void ImportWptsFromJson(string json)
+    {
+        var wpts = JsonConvert.DeserializeObject<List<T>>(json);
+        this.Waypoints.Clear();
+        this.Waypoints.AddRange(wpts);
+    }
+
+    public void FixWaypointsStartingAt0()
+    {
+        if (Waypoints != null)
+        {
+            if (IsSequenceInUse(0))
+            {
+                foreach (var wp in Waypoints)
+                {
+                    wp.Sequence++;
+                }
+            }
+        }
     }
 }

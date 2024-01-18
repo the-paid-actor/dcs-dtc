@@ -46,9 +46,30 @@ internal class ConfigLoader
         }
         else
         {
+            if (dynCfg.Aircraft != null)
+            {
+                type = GetTypeFromAircraft((string)dynCfg.Aircraft);
+            }
             cfg = (Configuration)JsonConvert.DeserializeObject(s, type);
         }
         cfg.AfterLoadFromJson();
         return cfg;
+    }
+
+    private static Type GetTypeFromAircraft(string aircraft)
+    {
+        if (aircraft == "F16C")
+        {
+            return typeof(Aircrafts.F16.F16Configuration);
+        }
+        if (aircraft == "F15E")
+        {
+            return typeof(Aircrafts.F15E.F15EConfiguration);
+        }
+        if (aircraft == "FA18C")
+        {
+            return typeof(Aircrafts.FA18.FA18Configuration);
+        }
+        throw new NotImplementedException();
     }
 }

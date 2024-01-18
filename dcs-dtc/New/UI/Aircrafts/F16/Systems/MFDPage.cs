@@ -274,9 +274,9 @@ namespace DTC.New.UI.Aircrafts.F16.Systems
 
         private List<Row> rows = new();
 
-        public MFDPage(F16Page parent, MFDSystem mfdSystem) : base(parent)
+        public MFDPage(F16Page parent) : base(parent, nameof(parent.Configuration.MFD))
         {
-            _mfdSystem = mfdSystem;
+            _mfdSystem = parent.Configuration.MFD;
             InitializeComponent();
 
             var margin = 15;

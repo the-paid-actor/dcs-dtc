@@ -13,9 +13,9 @@ namespace DTC.New.UI.Aircrafts.F16.Systems
             return "Misc";
         }
 
-        public MiscPage(F16Page parent, MiscSystem misc) : base(parent)
+        public MiscPage(F16Page parent) : base(parent, nameof(parent.Configuration.Misc))
         {
-            _misc = misc;
+            _misc = parent.Configuration.Misc;
             InitializeComponent();
 
             var margin = 15;

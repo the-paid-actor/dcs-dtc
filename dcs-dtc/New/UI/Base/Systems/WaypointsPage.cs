@@ -13,7 +13,7 @@ public partial class WaypointsPage<T> : WaypointsPageControl where T : class, IW
     private readonly string title;
     private WaypointEdit<T>? editDialog;
 
-    public WaypointsPage(AircraftPage parent, WaypointSystem<T> waypoints, IWaypointEditCustomPanel? customPanel, string title = "Waypoints") : base(parent)
+    public WaypointsPage(AircraftPage parent, WaypointSystem<T> waypoints, IWaypointEditCustomPanel? customPanel, string systemName, string title = "Waypoints") : base(parent, systemName)
     {
         this.waypoints = waypoints;
         this.customPanel = customPanel;

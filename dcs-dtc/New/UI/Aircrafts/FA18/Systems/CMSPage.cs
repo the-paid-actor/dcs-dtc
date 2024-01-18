@@ -6,13 +6,13 @@ namespace DTC.New.UI.Aircrafts.FA18.Systems
 {
     public partial class CMSPage : AircraftSystemPage
     {
-        private CMSystem _cms;
+        private CMSystem cms;
 
         private int _lastTabIndex = 0;
 
-        public CMSPage(FA18Page parent, CMSystem cms) : base(parent)
+        public CMSPage(FA18Page parent) : base(parent, nameof(parent.Configuration.CMS))
         {
-            _cms = cms;
+            cms = parent.Configuration.CMS;
             InitializeComponent();
 
             foreach (var name in Enum.GetNames(typeof(CMSMode)))
@@ -20,7 +20,7 @@ namespace DTC.New.UI.Aircrafts.FA18.Systems
                 cboMode.Items.Add(name);
             }
 
-            for (var i = 0; i < _cms.Programs.Length; i++)
+            for (var i = 0; i < cms.Programs.Length; i++)
             {
                 cboProgram.Items.Add((i + 1).ToString());
             }
@@ -86,9 +86,9 @@ namespace DTC.New.UI.Aircrafts.FA18.Systems
 
             top += rowHeight + padding;
 
-            for (var i = 0; i < _cms.Programs.Length; i++)
+            for (var i = 0; i < cms.Programs.Length; i++)
             {
-                var program = _cms.Programs[i];
+                var program = cms.Programs[i];
 
                 left = 0;
                 panel1.Controls.Add(DTCCheckBox.Make(left, top, chkWidth, rowHeight, program.ToBeUpdated, (chk) =>

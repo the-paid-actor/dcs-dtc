@@ -6,7 +6,7 @@ namespace DTC.New.UI.Aircrafts.FA18.Systems
 {
     internal class RadiosPage : RadiosPageControl
     {
-        public RadiosPage(FA18Page parent, RadioSystem radioSystem) : base(parent, radioSystem)
+        public RadiosPage(FA18Page parent) : base(parent, parent.Configuration.Radios, nameof(parent.Configuration.Radios))
         {
         }
 

@@ -27,6 +27,11 @@ namespace DTC.New.UI.Base.Systems
             optClipboard.Checked = true;
         }
 
+        internal override bool IsCopyPasteEnabled()
+        {
+            return false;
+        }
+
         public override string GetPageTitle()
         {
             return "Load / Save";
@@ -95,8 +100,7 @@ namespace DTC.New.UI.Base.Systems
 
             if (optClipboard.Checked)
             {
-                var txt = Clipboard.GetText();
-                configToLoad = Configuration.FromCompressedString(txt, configurationType);
+                configToLoad = parent.Configuration.LoadFromClipboard(configurationType);
             }
             else
             {
@@ -109,6 +113,11 @@ namespace DTC.New.UI.Base.Systems
             }
 
             if (configToLoad == null)
+            {
+                return;
+            }
+
+            if (configToLoad.GetAircraftName() != this.parent.Aircraft.GetAircraftModelName())
             {
                 return;
             }
@@ -145,10 +154,9 @@ namespace DTC.New.UI.Base.Systems
 
         private void btnLoadApply_Click(object sender, EventArgs e)
         {
-            if (configToLoad is null)
-            {
-                return;
-            }
+            if (configToLoad is null) return;
+
+            var systemsToLoad = new List<ConfigurationSystem>();
 
             foreach (var ctl in pnlLoadCheckboxes.Controls)
             {
@@ -157,41 +165,46 @@ namespace DTC.New.UI.Base.Systems
                     var cb = (DTCCheckBox)ctl;
                     if (cb.Checked)
                     {
-                        var system = (ConfigurationSystem)cb.Tag;
-                        mainConfig.CopySystemFrom(system, configToLoad);
+                        systemsToLoad.Add((ConfigurationSystem)cb.Tag);
                     }
                 }
             }
+
+            if (systemsToLoad.Count == 0) return;
+
+            mainConfig.CopySystemsFrom(systemsToLoad, configToLoad);
 
             parent.RefreshPages();
         }
 
         private void btnSave_Click(object sender, EventArgs e)
         {
-            var clone = mainConfig.Clone();
+            var systemsToSave = new List<ConfigurationSystem>();
 
             foreach (var ctl in pnlSaveCheckboxes.Controls)
             {
                 if (ctl is DTCCheckBox)
                 {
                     var cb = (DTCCheckBox)ctl;
-                    if (!cb.Checked)
+                    if (cb.Checked)
                     {
                         var system = (ConfigurationSystem)cb.Tag;
-                        clone.ClearSystem(system);
+                        systemsToSave.Add(system);
                     }
                 }
             }
 
+            if (systemsToSave.Count == 0) return;
+
             if (optClipboard.Checked)
             {
-                Clipboard.SetText(clone.ToCompressedString());
+                mainConfig.CopyToClipboard(systemsToSave);
             }
             else
             {
                 if (saveFileDlg.ShowDialog() == DialogResult.OK)
                 {
-                    FileStorage.Save(clone, saveFileDlg.FileName);
+                    mainConfig.CopyToFile(systemsToSave, saveFileDlg.FileName);
                 }
             }
         }

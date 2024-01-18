@@ -11,10 +11,10 @@ namespace DTC.New.UI.Aircrafts.FA18.Systems
         private PrePlannedOverview _overview;
         private SteerPointEdit _stpEdit;
 
-        public PrePlannedPage(FA18Page parent, PrePlannedSystem pps) : base(parent)
+        public PrePlannedPage(FA18Page parent) : base(parent, nameof(parent.Configuration.PrePlanned))
         {
             InitializeComponent();
-            prePlanned = pps;
+            prePlanned = parent.Configuration.PrePlanned;
             _edit = new PrePlannedEdit(callback);
             _edit.Visible = false;
             _stpEdit = new SteerPointEdit(callback2);

@@ -7,11 +7,11 @@ namespace DTC.New.UI.Aircrafts.F16.Systems
     {
         private readonly UploadSystem _cfg;
 
-        public UploadPage(F16Page parent, UploadSystem upload) : base(parent)
+        public UploadPage(F16Page parent) : base(parent, nameof(parent.Configuration.Upload))
         {
             InitializeComponent();
 
-            _cfg = upload;
+            _cfg = parent.Configuration.Upload;
 
             chkWaypoints.Checked = _cfg.Waypoints;
             chkCMS.Checked = _cfg.CMS;

@@ -11,9 +11,11 @@ namespace DTC.New.UI.Aircrafts.FA18.Systems
             return "FCR";
         }
 
-        public FCRPage(FA18Page parent, FCRSystem fcr) : base(parent)
+        public FCRPage(FA18Page parent) : base(parent, nameof(parent.Configuration.FCR))
         {
             InitializeComponent();
+
+            var fcr = parent.Configuration.FCR;
 
             foreach (var item in Enum.GetValues(typeof(FCRDeclutterMode)))
             {

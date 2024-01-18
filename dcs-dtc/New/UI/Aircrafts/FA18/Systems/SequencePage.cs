@@ -7,11 +7,11 @@ public partial class SequencePage : AircraftSystemPage
 {
     private SequenceSystem system;
 
-    public SequencePage(FA18Page parent, SequenceSystem system) : base(parent)
+    public SequencePage(FA18Page parent) : base(parent, nameof(parent.Configuration.Sequences))
     {
         InitializeComponent();
 
-        this.system = system;
+        this.system = parent.Configuration.Sequences;
 
         this.chkSeq1.Checked = system.EnableUpload1;
         this.chkSeq2.Checked = system.EnableUpload2;

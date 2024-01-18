@@ -6,6 +6,8 @@ namespace DTC.New.Presets.V2.Aircrafts.F15E;
 
 public class F15EConfiguration : Configuration
 {
+    public string Aircraft = "F15E";
+
     [System("Upload Settings")]
     public UploadSystem Upload { get; set; } = new();
 
@@ -66,5 +68,10 @@ public class F15EConfiguration : Configuration
     protected override Type GetConfigurationType()
     {
         return typeof(F15EConfiguration);
+    }
+
+    public override string GetAircraftName()
+    {
+        return this.Aircraft;
     }
 }

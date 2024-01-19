@@ -171,9 +171,9 @@ public abstract class WaypointSystem<T> where T : class, IWaypoint, new()
             }
 
             newSeq -= 1;
-            if (newSeq < 1)
+            if (newSeq < GetFirstAllowedSequence())
             {
-                newSeq = 1;
+                newSeq = GetFirstAllowedSequence();
             }
             wpt.Sequence = newSeq;
         }

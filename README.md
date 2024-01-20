@@ -89,7 +89,7 @@ local DCSDTClfs=require('lfs'); dofile(DCSDTClfs.writedir()..'Scripts/DCSDTC.lua
 
 # In-cockpit Controls
 
-The mod features usage of unused cockpit buttons in DCS to show/hide the app, and to upload the preset. **Keep in mind** that the commands to show the app only works if the app is already running and DCS not in exclusive full screen or VR mode.
+The mod features usage of unused cockpit buttons in DCS to show/hide the app, and to upload the preset. **Keep in mind** that the commands to show the app only works if the app is already running and DCS is not in exclusive full screen or VR mode. It will put the app in front of DCS, so you can interact with it, otherwise you have to Alt+tab to it.
 
 ## Viper
 

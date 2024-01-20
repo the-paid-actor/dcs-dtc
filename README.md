@@ -73,7 +73,7 @@ https://dotnet.microsoft.com/en-us/download/dotnet/7.0
 
 - Grab the latest installer from the Releases tab on Github (the file with msi extension).
 - Run the installer. It will create a shortcut on the Start Menu once it finishes.
-- Run the application. It will setup itself into DCS automatically.
+- Run the application from the Windows Start Menu. It will setup itself into DCS automatically.
 
 ## Manual setup in DCS
 
@@ -89,7 +89,7 @@ local DCSDTClfs=require('lfs'); dofile(DCSDTClfs.writedir()..'Scripts/DCSDTC.lua
 
 # In-cockpit Controls
 
-The mod features usage of unused cockpit buttons in DCS to show/hide the app, and to upload the preset.
+The mod features usage of unused cockpit buttons in DCS to show/hide the app, and to upload the preset. **Keep in mind** that the commands to show the app only works if the app is already running and DCS not in exclusive full screen or VR mode.
 
 ## Viper
 

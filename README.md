@@ -104,7 +104,7 @@ The mod features usage of unused cockpit buttons in DCS to show/hide the app, an
 ## Strike Eagle
 
 - pressing the "I/P" button on the UFC for more than 1 second will command the upload of the current preset (you must be on the Upload page of the preset for this to happen)
-- pressing the "EM" button on the UFC will toggle visibility of the DTC app
+- pressing the "EMIS LMT" button on the UFC will toggle visibility of the DTC app
 
 # Capturing coordinates in DCS
 

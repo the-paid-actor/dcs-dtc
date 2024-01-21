@@ -2,7 +2,7 @@
 
 https://github.com/the-paid-actor/dcs-dtc
 
-This is a mod for DCS that works as a DTC (Data Cartridge) for the F-16, F/A-18 and F-15E.
+This is a Windows application that mimics the functions of a DTC (Data Cartridge) for the F-16, F/A-18 and F-15E.
 
 - **Create and recall presets** for each mission / server you fly, or however you want to organize your settings. These are saved in the DCS-DTC folder under Documents.
 - **Upload** the settings from a preset to the aircraft.
@@ -125,6 +125,10 @@ The setting of Pre-Planned coordinates relies on the settings for all stations b
 If you have displays already programmed in the jet, the app will skip uploading the new displays configuration. This will be improved in a future version.
 
 From either seat (pilot/WSO) it is not possible to change displays on the other seat, given that the displays are only rendered when you occupy the respective position. Therefore when selecting the option on the Upload page to set "Pilot and WSO" displays, DTC will jump between the seats to perform the configuration.
+
+## VR
+
+As a windows app, the application will not show up in VR. Because it is a windows app. What you can do is prepare the presets beforehand, outside of VR, then use the in-cockpit controls to upload the preset, and use the coordinate capture dialog in DCS to capture additional waypoints and targets while in VR.
 
 # Help
 

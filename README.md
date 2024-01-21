@@ -112,6 +112,8 @@ By pressing Ctrl+Shift+D within DCS, a window with a crosshair will popup. By go
 
 You can also capture coordinates this way directly into PP stations (Hornet) or Smart Weapons (Strike Eagle).
 
+The shortcut can be changed by editing the dtc-settings.json file located in the Documents\DCS-DTC folder. After editing it, restart the DTC app and after the prompt, restart DCS as well. The shortcut has to be a valid keyboard combination not in use by the aircraft in DCS.
+
 # Limitations
 
 ## Hornet

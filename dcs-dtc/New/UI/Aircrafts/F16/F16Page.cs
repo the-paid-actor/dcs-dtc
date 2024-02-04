@@ -6,7 +6,6 @@ using DTC.New.UI.Base.Pages;
 using DTC.New.UI.Base.Systems;
 using DTC.New.Uploader.Aircrafts.F16;
 using DTC.Utilities;
-using static System.Windows.Forms.VisualStyles.VisualStyleElement.TextBox;
 
 namespace DTC.New.UI.Aircrafts.F16;
 

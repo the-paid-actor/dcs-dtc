@@ -185,6 +185,13 @@ namespace DTC.Utilities
             return $"{parts[0]} {parts[1]} {parts[2].Substring(0,3)} {parts[3].Substring(0,3)}";
         }
 
+        public string ToMGRSEightDigits()
+        {
+            var mgrs = this.ToMGRSTenDigits();
+            var parts = mgrs.Split(' ');
+            return $"{parts[0]} {parts[1]} {parts[2].Substring(0, 4)} {parts[3].Substring(0, 4)}";
+        }
+
         public string ToMGRSTenDigits()
         {
             return this.c.MGRS.ToString();

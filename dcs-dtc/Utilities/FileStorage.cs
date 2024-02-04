@@ -59,12 +59,6 @@ public class FileStorage
         return Path.Combine(path, "dtc-airbases.json");
     }
 
-    private static string GetIdentsFilePath()
-    {
-        var path = GetCurrentFolder();
-        return Path.Combine(path, "dtc-idents.json");
-    }
-
     private static string GetEmittersFilePath()
     {
         var path = GetCurrentFolder();

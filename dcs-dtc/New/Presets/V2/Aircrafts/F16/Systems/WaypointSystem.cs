@@ -53,4 +53,9 @@ public class WaypointSystem : WaypointSystem<Waypoint>
     {
         return 1;
     }
+
+    public override int GetLastAllowedSequence()
+    {
+        return 699;
+    }
 }

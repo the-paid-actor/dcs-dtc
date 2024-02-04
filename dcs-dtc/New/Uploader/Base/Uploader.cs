@@ -82,6 +82,13 @@ public abstract partial class Uploader
         ");
     }
 
+    protected void Else()
+    {
+        this.sb.AppendLine(@"
+            else
+        ");
+    }
+
     protected void EndIf()
     {
         this.sb.AppendLine(@$"

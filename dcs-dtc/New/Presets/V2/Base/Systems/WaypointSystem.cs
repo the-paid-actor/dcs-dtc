@@ -19,7 +19,7 @@ public abstract class WaypointSystem<T> where T : class, IWaypoint, new()
 {
     public List<T> Waypoints { get; set; } = new();
 
-    public T NewWaypoint()
+    public virtual T NewWaypoint()
     {
         var seq = GetNextSequence();
         return new T()
@@ -30,6 +30,8 @@ public abstract class WaypointSystem<T> where T : class, IWaypoint, new()
     }
 
     public abstract int GetFirstAllowedSequence();
+
+    public abstract int GetLastAllowedSequence();
 
     public void Add(T wpt)
     {

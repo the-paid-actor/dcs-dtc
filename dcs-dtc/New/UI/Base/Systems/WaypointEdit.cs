@@ -20,10 +20,13 @@ public class WaypointEdit<T> : WaypointEditControl where T : class, IWaypoint, n
         this.waypoints = waypoints;
         this.txtElevation.MaximumValue = maxWptElevation;
         this.txtSequence.MinimumValue = waypoints.GetFirstAllowedSequence();
+        this.txtSequence.MaximumValue = waypoints.GetLastAllowedSequence();
 
         if (customPanel != null)
         {
-            this.pnlCustomControls.Controls.Add(customPanel.GetControl());
+            var ctl = customPanel.GetControl();
+            ctl.Dock = DockStyle.Fill;
+            this.pnlCustomControls.Controls.Add(ctl);
         }
 
         this.waypoint = this.ShowDialog(wpt);

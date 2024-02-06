@@ -59,6 +59,7 @@ public class DTCCoordinateTextBox2 : UserControl
             this.coordinate = value;
             this.valid = value != null;
             this.UpdateText();
+            this.CoordinateChanged?.Invoke(this.coordinate);
         }
     }
 
@@ -124,7 +125,7 @@ public class DTCCoordinateTextBox2 : UserControl
 
     private void UpdateText()
     {
-        this.textBox.Text = this.coordinate?.ToString(this.format) ?? "";
+        this.textBox.Text = this.Coordinate?.ToString(this.format) ?? "";
     }
 
     private void TextBox_Validating(object? sender, CancelEventArgs e)
@@ -137,7 +138,7 @@ public class DTCCoordinateTextBox2 : UserControl
         if (!this.textBox.MaskFull)
         {
             this.valid = false;
-            this.coordinate = null;
+            this.Coordinate = null;
             return;
         }
 
@@ -153,7 +154,7 @@ public class DTCCoordinateTextBox2 : UserControl
             else
             {
                 this.valid = true;
-                this.coordinate = c;
+                this.Coordinate = c;
                 OnValidated(EventArgs.Empty);
             }
         }

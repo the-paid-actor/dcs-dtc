@@ -1,5 +1,6 @@
 ﻿using DTC.New.Presets.V2.Aircrafts.F15E.Systems;
 using DTC.New.Uploader.Base;
+using DTC.Utilities;
 
 namespace DTC.New.Uploader.Aircrafts.F15E;
 
@@ -15,6 +16,20 @@ public partial class F15EUploader : Base.Uploader
         if (config.Misc.BingoToBeUpdated)
         {
             BuildBingo();
+        }
+
+        if (config.Misc.BullseyeToBeUpdated)
+        {
+            StartIf(InFrontCockpit());
+            {
+                BuildBullseye(UFC_PILOT);
+            }
+            EndIf();
+            StartIf(InRearCockpit());
+            {
+                BuildBullseye(UFC_WSO);
+            }
+            EndIf();
         }
 
         if (config.Misc.CARAALOWToBeUpdated)
@@ -58,6 +73,35 @@ public partial class F15EUploader : Base.Uploader
             }
             EndIf();
         }
+    }
+
+    private void BuildBullseye(Device ufc)
+    {
+        var c = Coordinate.FromString(config.Misc.BullseyeCoord);
+        if (c == null)
+        {
+            return;
+        }
+        var coord = c.ToF15EFormat();
+
+        Cmd(ufc.GetCommand("CLR"));
+        Cmd(ufc.GetCommand("CLR"));
+        Cmd(ufc.GetCommand("MENU"));
+        Cmd(ufc.GetCommand("PB10"));
+        Cmd(ufc.GetCommand("SHF"));
+        Cmd(ufc.GetCommand("D3"));
+        Cmd(ufc.GetCommand("SHF"));
+        Cmd(ufc.GetCommand("D6"));
+        Cmd(ufc.GetCommand("D1"));
+        Cmd(ufc.GetCommand("PB01"));
+
+        InputCoordinate(ufc, coord.Lat);
+        Cmd(ufc.GetCommand("PB02"));
+
+        InputCoordinate(ufc, coord.Lon);
+        Cmd(ufc.GetCommand("PB03"));
+
+        Cmd(ufc.GetCommand("MENU"));
     }
 
     private void BuildBingo()

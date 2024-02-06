@@ -139,10 +139,10 @@ public partial class F15EUploader : Base.Uploader
                 Cmd(ufc.GetCommand("PB01"));
             }
 
-            Coordinate(ufc, wpt.Latitude);
+            InputCoordinate(ufc, wpt.Latitude);
             Cmd(ufc.GetCommand("PB02"));
 
-            Coordinate(ufc, wpt.Longitude);
+            InputCoordinate(ufc, wpt.Longitude);
             Cmd(ufc.GetCommand("PB03"));
 
             Cmd(Digits(ufc, wpt.Elevation.ToString()));

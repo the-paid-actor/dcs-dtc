@@ -35,7 +35,7 @@ public partial class F15EUploader : Base.Uploader
         If(ProgBoxed(display), display.GetCommand("PB06"), Wait());
     }
 
-    private void Coordinate(Device device, string coord)
+    private void InputCoordinate(Device device, string coord)
     {
         var str = coord.Replace("°", "").Replace("’", "").Replace("”", "").Replace(" ", "").Replace(".", "");
         System.Diagnostics.Debug.WriteLine(str);

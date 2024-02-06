@@ -15,6 +15,8 @@ public class MiscSystem
 
     public int Bingo { get; set; }
     public bool BingoToBeUpdated { get; set; }
+    public bool BullseyeToBeUpdated { get; set; }
+    public string BullseyeCoord { get; set; }
     public int CARAALOW { get; set; }
     public bool CARAALOWToBeUpdated { get; set; }
 

@@ -75,11 +75,11 @@ public partial class F15EUploader : Base.Uploader
                 Cmd(display.GetCommand("PB05"));
                 Cmd(display.GetCommand("PB05"));
 
-                Coordinate(devUFC, coord.Latitude);
+                InputCoordinate(devUFC, coord.Latitude);
                 Cmd(display.GetCommand("PB08"));
                 Cmd(display.GetCommand("PB05"));
 
-                Coordinate(devUFC, coord.Longitude);
+                InputCoordinate(devUFC, coord.Longitude);
                 Cmd(display.GetCommand("PB08"));
                 Cmd(display.GetCommand("PB05"));
 

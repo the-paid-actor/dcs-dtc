@@ -1,6 +1,7 @@
 ﻿using DTC.New.Presets.V2.Aircrafts.F15E.Systems;
 using DTC.New.UI.Base.Systems;
 using DTC.UI.Base.Controls;
+using DTC.Utilities;
 
 namespace DTC.New.UI.Aircrafts.F15E.Systems
 {
@@ -44,6 +45,40 @@ namespace DTC.New.UI.Aircrafts.F15E.Systems
                     txt.Text = this.misc.SetBingo(txt.Text);
                     this.SavePreset();
                 }));
+            }
+
+            //Bullseye
+            {
+                left = padding;
+                top += padding + rowHeight;
+                this.Controls.Add(DTCCheckBox.Make(left, top, chkWidth, rowHeight, this.misc.BullseyeToBeUpdated, (chk) =>
+                {
+                    this.misc.BullseyeToBeUpdated = chk.Checked;
+                    this.SavePreset();
+                }));
+
+                left += padding + chkWidth;
+                this.Controls.Add(DTCLabel.Make("Bullseye", left, top, colWidth, rowHeight));
+
+                left += padding + colWidth;
+                var txtBullseye = new DTCCoordinateTextBox2();
+                txtBullseye.Format = CoordinateFormat.DegreesMinutesThousandths;
+                txtBullseye.Location = new Point(left, top);
+                txtBullseye.Size = new Size(200, 25);
+                txtBullseye.Coordinate = Coordinate.FromString(this.misc.BullseyeCoord);
+                txtBullseye.CoordinateChanged += (c) =>
+                {
+                    if (c != null)
+                    {
+                        this.misc.BullseyeCoord = c.ToF15EFormat().ToString();
+                    }
+                    else
+                    {
+                        this.misc.BullseyeCoord = null;
+                    }
+                    this.SavePreset();
+                };
+                this.Controls.Add(txtBullseye);
             }
 
             //LAW

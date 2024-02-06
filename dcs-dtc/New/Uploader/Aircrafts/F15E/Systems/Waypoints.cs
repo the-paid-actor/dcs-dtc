@@ -44,6 +44,55 @@ public partial class F15EUploader : Base.Uploader
         {
             BuildWaypoints(ufc, config.RouteC.Waypoints, "C");
         }
+
+        InputFirstWP(ufc, hasRouteA, hasRouteB, hasRouteC);
+    }
+
+    private void InputFirstWP(Device ufc, bool hasRouteA, bool hasRouteB, bool hasRouteC)
+    {
+        Waypoint wpt;
+        string route;
+
+        if (hasRouteA)
+        {
+            wpt = config.RouteA.Waypoints[0];
+            route = "A";
+        }
+        else if (hasRouteB)
+        {
+            wpt = config.RouteB.Waypoints[0];
+            route = "B";
+        }
+        else if (hasRouteC)
+        {
+            wpt = config.RouteC.Waypoints[0];
+            route = "C";
+        }
+        else
+        {
+            return;
+        }
+
+        Cmd(ufc.GetCommand("MENU"));
+        Cmd(Digits(ufc, wpt.Sequence.ToString()));
+        if (wpt.Target)
+        {
+            Cmd(ufc.GetCommand("DOT"));
+        }
+        Cmd(ufc.GetCommand("SHF"));
+        if (route == "A")
+        {
+            Cmd(ufc.GetCommand("D1"));
+        }
+        else if (route == "B")
+        {
+            Cmd(ufc.GetCommand("D3"));
+        }
+        else if (route == "C")
+        {
+            Cmd(ufc.GetCommand("D9"));
+        }
+        Cmd(ufc.GetCommand("PB10"));
     }
 
     private void BuildWaypoints(Device ufc, List<Waypoint> waypoints, string route)
@@ -151,12 +200,6 @@ public partial class F15EUploader : Base.Uploader
             Cmd(Digits(ufc, wpt.MEA.ToString()));
             Cmd(ufc.GetCommand("PB08"));
         }
-
-        Cmd(ufc.GetCommand("MENU"));
-        Cmd(ufc.GetCommand("D1"));
-        Cmd(ufc.GetCommand("SHF"));
-        Cmd(ufc.GetCommand("D1"));
-        Cmd(ufc.GetCommand("PB10"));
     }
 
     private Condition UFCScratchPadDifferent(Device ufc, string str)

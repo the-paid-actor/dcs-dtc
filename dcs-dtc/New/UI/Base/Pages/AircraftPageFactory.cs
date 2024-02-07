@@ -1,7 +1,9 @@
-﻿using DTC.New.Presets.V2.Aircrafts.F15E;
+﻿using DTC.New.Presets.V2.Aircrafts.AH64D;
+using DTC.New.Presets.V2.Aircrafts.F15E;
 using DTC.New.Presets.V2.Aircrafts.F16;
 using DTC.New.Presets.V2.Aircrafts.FA18;
 using DTC.New.Presets.V2.Base;
+using DTC.New.UI.Aircrafts.AH64D;
 using DTC.New.UI.Aircrafts.F15E;
 using DTC.New.UI.Aircrafts.F16;
 using DTC.New.UI.Aircrafts.FA18;
@@ -23,6 +25,10 @@ namespace DTC.New.UI.Base.Pages
             else if (aircraft is F15EAircraft)
             {
                 return new F15EPage(aircraft, preset);
+            }
+            else if (aircraft is AH64DAircraft)
+            {
+                return new AH64DPage(aircraft, preset);
             }
 
             throw new NotImplementedException();

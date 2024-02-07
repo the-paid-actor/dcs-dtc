@@ -23,6 +23,9 @@ namespace DTC.Utilities
         public int ppNumber;
         public bool smart;
         public string smartStation;
+        public string pointType;
+        public string identifier;
+        public string free;
     }
 
     public class DataReceiver2

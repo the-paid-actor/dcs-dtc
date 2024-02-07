@@ -11,6 +11,7 @@ namespace DTC.Utilities
             public int StrikeEagleCommandDelayMs;
             public int HornetCommandDelayMs;
             public int ViperCommandDelayMs;
+            public int ApacheCommandDelayMs;
             public bool AlwaysOnTop;
             public bool SkipDCSInstallCheck;
             public string LuaInstallFolderStable;
@@ -176,6 +177,20 @@ namespace DTC.Utilities
             }
         }
 
+        public static int ApacheCommandDelayMs
+        {
+            get
+            {
+                LoadSettings();
+                return currentSettings.ApacheCommandDelayMs;
+            }
+            set
+            {
+                currentSettings.ApacheCommandDelayMs = value;
+                SaveSettings();
+            }
+        }
+
         public static int HornetCommandDelayMs
         {
             get
@@ -272,6 +287,10 @@ namespace DTC.Utilities
             if (obj.ViperCommandDelayMs < 220)
             {
                 obj.ViperCommandDelayMs = 220;
+            }
+            if (obj.ApacheCommandDelayMs < 100)
+            {
+                obj.ApacheCommandDelayMs = 100;
             }
             if (obj.HornetCommandDelayMs < 220)
             {

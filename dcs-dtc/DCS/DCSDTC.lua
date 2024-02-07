@@ -15,6 +15,7 @@ dofile(lfs.writedir() .. 'Scripts/DCSDTC/commonFunctions.lua')
 dofile(lfs.writedir() .. 'Scripts/DCSDTC/f16Functions.lua')
 dofile(lfs.writedir() .. 'Scripts/DCSDTC/f18Functions.lua')
 dofile(lfs.writedir() .. 'Scripts/DCSDTC/f15EFunctions.lua')
+dofile(lfs.writedir() .. 'Scripts/DCSDTC/ah64DFunctions.lua')
 
 local udpSpeaker = nil
 local tcpServer = nil
@@ -176,6 +177,9 @@ function LuaExportAfterNextFrame()
     params["showDTCCommand"] = "0";
     params["hideDTCCommand"] = "0";
     params["toggleDTCCommand"] = "0";
+    params["toggleDTCCommand"] = "0";
+    params["pilot"] = "0";
+    params["cpg"] = "0";
 
     if model == "F16C" then
         DTC_F16C_AfterNextFrame(params)
@@ -189,12 +193,18 @@ function LuaExportAfterNextFrame()
         DTC_F15E_AfterNextFrame(params)
     end
 
+    if model == "AH64D" then
+        DTC_AH64D_AfterNextFrame(params)
+    end
+
     local toSend = "{" ..
         "\"model\": " .. "\"" .. model .. "\"" ..
         ", " .. "\"latitude\": " .. "\"" .. coords.latitude .. "\"" ..
         ", " .. "\"longitude\": " .. "\"" .. coords.longitude .. "\"" ..
         ", " .. "\"elevation\": " .. "\"" .. elevation .. "\"" ..
         ", " .. "\"upload\": " .. "\"" .. params["uploadCommand"] .. "\"" ..
+        ", " .. "\"pilot\": " .. "\"" .. params["pilot"] .. "\"" ..
+        ", " .. "\"cpg\": " .. "\"" .. params["cpg"] .. "\"" ..
         ", " .. "\"showDTC\": " .. "\"" .. params["showDTCCommand"] .. "\"" ..
         ", " .. "\"hideDTC\": " .. "\"" .. params["hideDTCCommand"] .. "\"" ..
         ", " .. "\"toggleDTC\": " .. "\"" .. params["toggleDTCCommand"] .. "\"" ..

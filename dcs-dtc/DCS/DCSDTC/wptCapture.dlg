@@ -237,6 +237,24 @@ dialog = {
             },
         },
 
+        ["addButtonApache"] = {
+            ["type"] = "Button",
+            ["params"] = {
+                ["bounds"] = {
+                    ["x"] = 228,
+                    ["y"] = 20,
+                    ["w"] = 90,
+                    ["h"] = 30
+                },
+                ["text"] = "Add Custom",
+            },
+            ["skin"] = {
+                ["params"] = {
+                    ["name"] = "buttonSkinAwacs"
+                }
+            },
+        },
+
         ["addPPButton"] = {
             ["type"] = "Button",
             ["params"] = {

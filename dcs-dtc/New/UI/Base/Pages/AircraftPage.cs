@@ -56,13 +56,18 @@ public partial class AircraftPage : Page
 
     private void SetPage(AircraftSystemPage page)
     {
+        HideAllPages();
+        page.Visible = true;
+        page.Shown();
+        page.Focus();
+    }
+
+    private void HideAllPages()
+    {
         foreach (AircraftSystemPage ctl in pnlMain.Controls)
         {
             ctl.Visible = false;
         }
-        page.Visible = true;
-        page.Shown();
-        page.Focus();
     }
 
     public void ToggleEnabled()
@@ -138,7 +143,14 @@ public partial class AircraftPage : Page
         }
     }
 
-    public virtual void UploadToJet()
+    protected void ShowControlAsPage(Control control)
+    {
+        HideAllPages();
+        control.Dock = DockStyle.Fill;
+        pnlMain.Controls.Add(control);
+    }
+
+    public virtual void UploadToJet(bool pilot, bool cpg)
     {
         throw new NotImplementedException();
     }

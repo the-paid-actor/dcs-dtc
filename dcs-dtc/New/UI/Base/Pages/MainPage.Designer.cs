@@ -81,7 +81,6 @@ partial class MainPage
         btnAH64.Text = "AH-64D Apache Longbow";
         btnAH64.TextAlign = ContentAlignment.TopLeft;
         btnAH64.UseVisualStyleBackColor = true;
-        btnAH64.Visible = false;
         btnAH64.Click += btnAH64_Click;
         // 
         // btnF15E

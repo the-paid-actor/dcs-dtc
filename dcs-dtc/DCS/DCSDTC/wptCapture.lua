@@ -38,7 +38,8 @@ function DTCWptCapture:init(eventCallback)
     self.dialog.resetAllSmart:addMouseUpCallback(function() eventCallback:resetAllSmart() end)
     self.dialog.resetAllPP:addMouseUpCallback(function() eventCallback:resetAllPP() end)
 
-    --self.dialog.sendToJetButton:addMouseUpCallback(function() eventCallback:testButton() end)
+    self.dialog.addButtonApache:addMouseUpCallback(function() eventCallback:addButtonApache() end)
+
     --self.dialog:addHotKeyCallback("Ctrl+Shift+s", function() self.reloadPending = true end)
 
     self:hide()
@@ -55,14 +56,17 @@ function DTCWptCapture:show(eventCallback)
     self.dialog:setSize(self.width, self.height)
     self.visible = true
 
+    local isViper = eventCallback:getAircraftType() == "F16C"
     local isHornet = eventCallback:getAircraftType() == "FA18C"
     local isMudhen = eventCallback:getAircraftType() == "F15E"
+    local isApache = eventCallback:getAircraftType() == "AH64D"
+
+    self.dialog.addButton:setVisible(isViper or isHornet or isApache)
+    self.dialog.addAsTgtButton:setVisible(isViper or isHornet or isApache)
 
     self.dialog.addPPButton:setVisible(isHornet)
     self.dialog.resetAllPP:setVisible(isHornet)
 
-    self.dialog.addButton:setVisible(not isMudhen)
-    self.dialog.addAsTgtButton:setVisible(not isMudhen)   
     self.dialog.addButtonA:setVisible(isMudhen)
     self.dialog.addButtonB:setVisible(isMudhen)
     self.dialog.addButtonC:setVisible(isMudhen)
@@ -72,7 +76,10 @@ function DTCWptCapture:show(eventCallback)
     self.dialog.addSmartButton:setVisible(isMudhen)
     self.dialog.resetAllSmart:setVisible(isMudhen)
 
-    if not isHornet and not isMudhen then
+    self.dialog.addButtonApache:setVisible(isApache)
+    self.dialog.sendToJetButton:setVisible(not isApache)
+
+    if isViper then
         self.dialog.clearButton:setPosition(228, 20)
     else
         self.dialog.clearButton:setPosition(318, 20)

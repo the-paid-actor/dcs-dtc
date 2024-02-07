@@ -56,7 +56,7 @@ public class F16Page : AircraftPage
         };
     }
 
-    public override void UploadToJet()
+    public override void UploadToJet(bool pilot, bool cpg)
     {
         this.UploadToJet(this.Configuration);
     }

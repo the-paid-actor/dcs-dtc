@@ -1,4 +1,5 @@
 ﻿
+using DTC.New.Presets.V2.Aircrafts.AH64D;
 using DTC.New.Presets.V2.Aircrafts.F15E;
 using DTC.New.Presets.V2.Aircrafts.F16;
 using DTC.New.Presets.V2.Aircrafts.FA18;
@@ -26,7 +27,7 @@ public partial class MainPage : Page
 
     private void btnAH64_Click(object sender, System.EventArgs e)
     {
-        //MainForm.AddPage(new PresetsPage(PresetsStore.GetAircraft(AircraftModel.AH64D)));
+        MainForm.AddPage(new PresetsPage(new AH64DAircraft()));
     }
 
     private void btnWptDatabase_Click(object sender, System.EventArgs e)

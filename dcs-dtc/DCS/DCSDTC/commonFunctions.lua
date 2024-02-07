@@ -49,54 +49,6 @@ function DTC_FlattenTable(table)
     return flattened
 end
 
-function DTC_GetDisplay2(id)
-    local SEP = "-----------------------------------------"
-    local s = list_indication(id)
-    local err = false
-    if not s then
-        return {}
-    end
-    local cur_table = {}
-    local tables = { cur_table }
-    local strlist = DTC_LinesToList(s)
-    if #strlist == 0 then
-        return {}
-    end
-    local i = 1
-    repeat
-        if strlist[i] == SEP then
-            i = i + 1
-            local name = strlist[i]
-            i = i + 1
-            local value = {}
-            cur_table[name] = value
-            while i <= #strlist and strlist[i] ~= SEP and strlist[i] ~= "}" and strlist[i] ~= "children are {" do
-                value[#value + 1] = strlist[i]
-                i = i + 1
-            end
-            if strlist[i] == "children are {" then
-                new_table = {}
-                tables[#tables + 1] = new_table
-                value[#value + 1] = new_table
-                cur_table = new_table
-                i = i + 1
-            end
-        elseif strlist[i] == "}" then
-            tables[#tables] = nil
-            cur_table = tables[#tables]
-            i = i + 1
-        else
-            err = true
-            DTC_DCSLogError("Unexpected output: " .. strlist[i])
-            i = i + 1
-        end
-    until i > #strlist
-    if err then
-        DTC_DCSLogError(s)
-    end
-    return DTC_FlattenTable(cur_table)
-end
-
 function DTC_TrimString(str)
     return str:gsub("^%s*(.-)%s*$", "%1")
 end
@@ -167,6 +119,7 @@ function DTC_GetPlayerAircraftType()
         if model == "F-16C_50" then return "F16C" end
         if model == "FA-18C_hornet" then return "FA18C" end
         if model == "F-15ESE" then return "F15E" end
+        if model == "AH-64D_BLK_II" then return "AH64D" end
         return model;
     end
     return "Unknown"

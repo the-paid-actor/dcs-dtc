@@ -211,7 +211,7 @@ public partial class MainForm : Form
         var page = _pages.Peek();
         if (page is AircraftPage)
         {
-            ((AircraftPage)page).UploadToJet();
+            ((AircraftPage)page).UploadToJet(false, false);
         }
     }
 }

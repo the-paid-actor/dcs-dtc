@@ -17,9 +17,10 @@ end
 local DTCCaptureDialog = dofile(lfs.writedir() .. 'Scripts/DCSDTC/wptCapture.lua')
 local DTCCapturePP = dofile(lfs.writedir() .. 'Scripts/DCSDTC/wptCapturePP.lua')
 local DTCCaptureF15E = DTCLoadFile('Scripts/DCSDTC/wptCaptureF15E.lua')
+local DTCCaptureAH64D = DTCLoadFile('Scripts/DCSDTC/wptCaptureAH64D.lua')
 local DTCUploadInProgressDlg = DTCLoadFile('Scripts/DCSDTC/uploadInProgress.lua')
 
-log.write("DCS-DTC", log.INFO, tostring(DTCCaptureF15E))
+local buttonSkin = DTCLoadFile('Scripts/DCSDTC/buttonSkin.lua')
 
 local DTCHook =
 {
@@ -39,6 +40,7 @@ local DTCHook =
     captureDialog = nil,
     capturePPDialog = nil,
     captureF15EDialog = nil,
+    captureAH64DDialog = nil,
     uploadInProgressDialog = nil,
 
     currentAircraft = null
@@ -53,10 +55,10 @@ function DTCHook:log(str)
     self.logFile:flush();
 end
 
-function DTCHook:addCoord(tgt, route)
+function DTCHook:addCoord(tgt, extra)
     if self.currentCoord ~= nil then
         self.currentCoord.target = tgt
-        self.currentCoord.route = route
+        self.currentCoord.extra = extra
         self.currentCoord.sequence = self.coordListCount + 1
         self.coordListCount = self.coordListCount + 1
         table.insert(self.coordList, self.currentCoord)
@@ -111,6 +113,10 @@ function DTCHook:addSmartCoord(station)
     end
 end
 
+function DTCHook:addApacheCoord(pointType, identifier, free)
+    self:addCoord(false, {pointType = pointType, identifier = identifier, free = free})
+end
+
 function DTCHook:resetAllSmart()
     local str = '{"resetAllSmart":"true"}'
     self:sendData(str)
@@ -132,10 +138,15 @@ function DTCHook:clearCoords()
 end
 
 function DTCHook:updateCoordListBox()
+    if self:isApache() then
+        self:updateCoordListBoxApache()
+        return
+    end
+
     local text = ""
     for k,v in pairs(self.coordList) do
         local route = ""
-        if v.route then route = v.route end
+        if v.extra and v.extra.route then route = v.extra.route end
         local type = "STP " .. route
         local sequence = ""
         if v.sequence then sequence = string.format("%02d", v.sequence) .. "  " end
@@ -143,6 +154,36 @@ function DTCHook:updateCoordListBox()
         if v.pp then type = "STA" .. v.ppStation .. " PP" .. v.ppNumber end
         if v.smart then type = v.smartStation .. "   " end
         text = text .. type .. " " .. sequence .. v.string .. "\n"
+    end
+    self.captureDialog:setCoordListBox(text)
+end
+
+function DTCHook:updateCoordListBoxApache()
+    local text = ""
+    for k,v in pairs(self.coordList) do
+        local type = "WP"
+        if v.extra and v.extra.pointType then
+            type = v.extra.pointType
+        elseif v.target then
+            type = "TG"
+        end
+
+        local identifier = "WP"
+        if v.extra and v.extra.identifier then
+            identifier = v.extra.identifier
+        elseif v.target then
+            identifier = "TG"
+        end
+
+        local free = "   "
+        if v.extra and v.extra.free then
+            free = v.extra.free
+        end
+
+        local sequence = ""
+        if v.sequence then sequence = string.format("%02d", v.sequence) .. "  " end
+
+        text = text .. type .. " " .. identifier .. " " .. free .. " " .. sequence .. v.string .. "\n"
     end
     self.captureDialog:setCoordListBox(text)
 end
@@ -222,9 +263,24 @@ function DTCHook:sendToDTC(upload)
             ',"elevation":"'..v.elevation..'"'..
             ',"target":"'..tostring(v.target)..'"'
 
-        if v.route then
+        if v.extra and v.extra.route then
             json = json..
-                ',"route":"'..v.route..'"'
+                ',"route":"'..v.extra.route..'"'
+        end
+
+        if v.extra and v.extra.pointType then
+            json = json..
+                ',"pointType":"'..v.extra.pointType..'"'
+        end
+
+        if v.extra and v.extra.identifier then
+            json = json..
+                ',"identifier":"'..v.extra.identifier..'"'
+        end
+
+        if v.extra and v.extra.free then
+            json = json..
+                ',"free":"'..v.extra.free..'"'
         end
 
         if v.pp then
@@ -247,9 +303,17 @@ function DTCHook:sendToDTC(upload)
     self:sendData(str)
 end
 
+function DTCHook:isApache()
+    return self:getAircraftType() == "AH64D"
+end
+
 -- ######
 -- DIALOG
 -- ######
+
+function DTCHook:getButtonSkin()
+    return buttonSkin
+end
 
 function DTCHook:createCaptureDialog()
     self.captureDialog = DTCCaptureDialog
@@ -260,6 +324,9 @@ function DTCHook:createCaptureDialog()
 
     self.captureF15EDialog = DTCCaptureF15E
     self.captureF15EDialog:init(self)
+
+    self.captureAH64DDialog = DTCCaptureAH64D
+    self.captureAH64DDialog:init(self)
 
     self.uploadInProgressDialog = DTCUploadInProgressDlg
     self.uploadInProgressDialog:init(self)
@@ -285,6 +352,7 @@ function DTCHook:hide()
     if not self.captureDialog.visible then
         self.capturePPDialog:hide()
         self.captureF15EDialog:hide()
+        self.captureAH64DDialog:hide()
     end
 end
 
@@ -333,11 +401,19 @@ function DTCHook:addSmartCoordButton(station)
 end
 
 function DTCHook:addButtonF15E(route)
-    self:addCoord(false, route)
+    self:addCoord(false, {route = route})
 end
 
 function DTCHook:addTGTButtonF15E(route)
-    self:addCoord(true, route)
+    self:addCoord(true, {route = route})
+end
+
+function DTCHook:addButtonApache()
+    if self.captureAH64DDialog.visible then
+        self.captureAH64DDialog:hide()
+    else
+        self.captureAH64DDialog:show()
+    end
 end
 
 function DTCHook:getAircraftType()
@@ -347,6 +423,7 @@ function DTCHook:getAircraftType()
         if acName == "F-16C_50" then return "F16C" end
         if acName == "FA-18C_hornet" then return "FA18C" end
         if acName == "F-15ESE" then return "F15E" end
+        if acName == "AH-64D_BLK_II" then return "AH64D" end
     end
     return ""
 end
@@ -373,6 +450,7 @@ function DTCHook:showUploadInProgress()
     self.captureDialog:hide()
     self.capturePPDialog:hide()
     self.captureF15EDialog:hide()
+    self.captureAH64DDialog:hide()
     self.uploadInProgressDialog:show()
 end
 
@@ -400,6 +478,7 @@ function DTCHook:onSimulationStop()
     self.captureDialog:hide()
     self.capturePPDialog:hide()
     self.captureF15EDialog:hide()
+    self.captureAH64DDialog:hide()
     self.uploadInProgressDialog:hide()
     self.inMission = false;
 end
@@ -423,6 +502,10 @@ function DTCHook:dispose()
     if self.captureF15EDialog then
         self.captureF15EDialog:destroy()
         self.captureF15EDialog = nil
+    end
+    if self.captureAH64DDialog then
+        self.captureAH64DDialog:destroy()
+        self.captureAH64DDialog = nil
     end
     if self.uploadInProgressDialog then
         self.uploadInProgressDialog:destroy()

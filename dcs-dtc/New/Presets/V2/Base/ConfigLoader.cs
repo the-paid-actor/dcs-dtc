@@ -70,6 +70,10 @@ internal class ConfigLoader
         {
             return typeof(Aircrafts.FA18.FA18Configuration);
         }
+        if (aircraft == "AH64D")
+        {
+            return typeof(Aircrafts.AH64D.AH64DConfiguration);
+        }
         throw new NotImplementedException();
     }
 }

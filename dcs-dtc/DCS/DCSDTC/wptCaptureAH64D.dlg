@@ -1,0 +1,262 @@
+dialog = {
+    ["type"] = "Window",
+    ["params"] = {
+        ["bounds"] = {
+            [1] = {
+                ["x"] = 0,
+                ["y"] = 0,
+                ["w"] = 360,
+                ["h"] = 140
+            }
+        },
+        ["draggable"] = false,
+        ["enabled"] = true,
+        ["hasCursor"] = false,
+        ["lockFlow"] = false,
+        ["modal"] = false,
+        ["offscreen"] = false,
+        ["resizable"] = false,
+        ["zOrder"] = 111,
+        ["text"] = ""
+    },
+    ["skin"] = {
+        ["params"] = {
+            ["headerHeight"] = 0,
+            ["name"] = "windowSkin_MERightbot"
+        },
+        ["states"] = {
+            ["released"] = {
+                [1] = {
+                    ["bkg"] = {
+                        ["center_center"] = "0x2d3e50ff"
+                    }
+                }
+            }
+        }
+    },
+    ["children"] = {
+
+        ["lblType"] = {
+            ["type"] = "Static",
+            ["params"] = {
+                ["bounds"] = {
+                    ["x"] = 10,
+                    ["y"] = 13,
+                    ["w"] = 80,
+                    ["h"] = 25
+                },
+                ["enabled"] = true,
+                ["visible"] = true,
+                ["text"] = "Point Type:",
+            },
+            ["skin"] = {
+                ["params"] = {
+                    ["name"] = "staticSkin",
+                },
+                ["states"] = {
+                    ["released"] = {
+                        [1] = {
+                            ["text"] = {
+                                ["color"] = "0xc8c8c8ff",
+                                ["font"] = "DejaVuLGCSansCondensed.ttf",
+                                ["fontSize"] = 13,
+                            },
+                        },
+                    },
+                },
+            }
+        },
+
+        ["cboPointType"] = {
+            ["params"] = {
+                ["bounds"] = {
+                    ["x"] = 90,
+                    ["y"] = 10,
+                    ["w"] = 260,
+                    ["h"] = 25
+                },
+                ["enabled"] = true,
+                ["tabOrder"] = 0,
+                ["text"] = "Item1",
+                ["tooltip"] = "",
+                ["visible"] = true,
+                ["zindex"] = 0,
+            },
+            ["skin"] = {
+                ["params"] = {
+                    ["name"] = "comboListSkin_options",
+                },
+            },
+            ["type"] = "ComboList",
+        },
+
+        ["lblIdentifier"] = {
+            ["type"] = "Static",
+            ["params"] = {
+                ["bounds"] = {
+                    ["x"] = 10,
+                    ["y"] = 43,
+                    ["w"] = 80,
+                    ["h"] = 25
+                },
+                ["enabled"] = true,
+                ["visible"] = true,
+                ["text"] = "Identifier:",
+            },
+            ["skin"] = {
+                ["params"] = {
+                    ["name"] = "staticSkin",
+                },
+                ["states"] = {
+                    ["released"] = {
+                        [1] = {
+                            ["text"] = {
+                                ["color"] = "0xc8c8c8ff",
+                                ["font"] = "DejaVuLGCSansCondensed.ttf",
+                                ["fontSize"] = 13,
+                            },
+                        },
+                    },
+                },
+            }
+        },
+
+        ["cboIdentifier"] = {
+            ["params"] = {
+                ["bounds"] = {
+                    ["x"] = 90,
+                    ["y"] = 40,
+                    ["w"] = 260,
+                    ["h"] = 25
+                },
+                ["enabled"] = true,
+                ["tabOrder"] = 0,
+                ["text"] = "Item1",
+                ["tooltip"] = "",
+                ["visible"] = true,
+                ["zindex"] = 0,
+            },
+            ["skin"] = {
+                ["params"] = {
+                    ["name"] = "comboListSkin_options",
+                },
+            },
+            ["type"] = "ComboList",
+        },
+
+        ["lblFree"] = {
+            ["type"] = "Static",
+            ["params"] = {
+                ["bounds"] = {
+                    ["x"] = 10,
+                    ["y"] = 73,
+                    ["w"] = 80,
+                    ["h"] = 25
+                },
+                ["enabled"] = true,
+                ["visible"] = true,
+                ["text"] = "Free:",
+            },
+            ["skin"] = {
+                ["params"] = {
+                    ["name"] = "staticSkin",
+                },
+                ["states"] = {
+                    ["released"] = {
+                        [1] = {
+                            ["text"] = {
+                                ["color"] = "0xc8c8c8ff",
+                                ["font"] = "DejaVuLGCSansCondensed.ttf",
+                                ["fontSize"] = 13,
+                            },
+                        },
+                    },
+                },
+            }
+        },
+
+        ["txtFree"] = {
+            ["type"] = "EditBox",
+            ["params"] = {
+                ["bounds"] = {
+                    ["x"] = 90,
+                    ["y"] = 70,
+                    ["w"] = 50,
+                    ["h"] = 25
+                },
+            },
+            ["skin"] = {
+                ["params"] = {
+                    ["name"] = "editBoxNew"
+                },
+                ["states"] = {
+                    ["released"] = {
+                        [1] = {
+                            ["bkg"] = {
+                                ["center_bottom"] = "0x00000059",
+                                ["center_center"] = "0x3d536bff",
+                                ["center_top"] = "0x00000059",
+                                ["insets"] = {
+                                    ["bottom"] = 1,
+                                    ["left"] = 1,
+                                    ["right"] = 1,
+                                    ["top"] = 1,
+                                },
+                                ["left_bottom"] = "0x00000059",
+                                ["left_center"] = "0x00000059",
+                                ["left_top"] = "0x00000059",
+                                ["right_bottom"] = "0x00000059",
+                                ["right_center"] = "0x00000059",
+                                ["right_top"] = "0x00000059",
+                            },
+                            ["text"] = {
+                                ["blur"] = 0,
+                                ["color"] = "0xffffffff",
+                                ["font"] = "DejaVuLGCSansCondensed.ttf",
+                                ["fontSize"] = 13,
+                                ["horzAlign"] = {
+                                    ["type"] = "middle",
+                                },
+                                ["lineHeight"] = 0,
+                                ["shadowOffset"] = {
+                                    ["horz"] = 0,
+                                    ["vert"] = 0,
+                                },
+                                ["vertAlign"] = {
+                                    ["type"] = "middle",
+                                },
+                            },
+                        },
+                    },
+                },
+            },
+        },
+
+        ["btnOK"] = {
+            ["type"] = "Button",
+            ["params"] = {
+                ["bounds"] = {
+                    ["x"] = 150,
+                    ["y"] = 100,
+                    ["w"] = 100,
+                    ["h"] = 30,
+                },
+                ["text"] = "OK",
+            }
+        },
+
+        ["btnClose"] = {
+            ["type"] = "Button",
+            ["params"] = {
+                ["bounds"] = {
+                    ["x"] = 250,
+                    ["y"] = 100,
+                    ["w"] = 100,
+                    ["h"] = 30,
+                },
+                ["text"] = "Close",
+            }
+        }
+
+    }
+}

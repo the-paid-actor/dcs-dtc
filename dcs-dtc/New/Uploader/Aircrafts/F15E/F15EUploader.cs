@@ -19,9 +19,9 @@ public partial class F15EUploader : Base.Uploader
 
         this.BuildWaypoints();
         this.BuildSmartWeapons();
-        this.BuildDisplays();
         this.BuildRadios();
         this.BuildMisc();
+        this.BuildDisplays();
 
         Cmd(RestoreCockpitFrontRearState());
 

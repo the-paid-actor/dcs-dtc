@@ -73,6 +73,31 @@ public partial class F15EUploader : Base.Uploader
             }
             EndIf();
         }
+
+        if (config.Misc.LaserSettingsToBeUpdated)
+        {
+            StartIf(InFrontCockpit());
+            {
+                BuildTGPCode(UFC_PILOT, FLMPD);
+            }
+            EndIf();
+            StartIf(InRearCockpit());
+            {
+                BuildTGPCode(UFC_WSO, RLMPD);
+            }
+            EndIf();
+        }
+    }
+
+    private void BuildTGPCode(Device ufc, Device display)
+    {
+        NavigateToMainMenu(display);
+        Cmd(display.GetCommand("PB12"));
+        Cmd(ufc.GetCommand("CLR"));
+        Cmd(ufc.GetCommand("CLR"));
+        Cmd(ufc.GetCommand("MENU"));
+        Cmd(Digits(ufc, config.Misc.TGPCode.ToString()));
+        Cmd(display.GetCommand("PB19"));
     }
 
     private void BuildBullseye(Device ufc)

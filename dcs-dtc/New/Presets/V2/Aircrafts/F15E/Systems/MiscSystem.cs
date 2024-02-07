@@ -25,6 +25,8 @@ public class MiscSystem
     public bool TACANToBeUpdated { get; set; }
     public decimal ILSFrequency { get; set; }
     public bool ILSToBeUpdated { get; set; }
+    public bool LaserSettingsToBeUpdated { get; set; }
+    public int TGPCode { get; set; }
 
     public MiscSystem()
     {
@@ -33,8 +35,30 @@ public class MiscSystem
         TACANChannel = 1;
         TACANBand = TACANBands.X;
         ILSFrequency = 108.10M;
+        TGPCode = 1688;
     }
 
+    public string SetTGPCode(string txt)
+    {
+        if (int.TryParse(txt, out int val))
+        {
+            if
+            (
+                txt.Length == 4 &&
+                (txt.Substring(0, 1) == "1" || txt.Substring(0, 1) == "2") &&
+                int.Parse(txt.Substring(1, 1)) >= 1 &&
+                int.Parse(txt.Substring(1, 1)) <= 8 &&
+                int.Parse(txt.Substring(2, 1)) >= 1 &&
+                int.Parse(txt.Substring(2, 1)) <= 8 &&
+                int.Parse(txt.Substring(3, 1)) >= 1 &&
+                int.Parse(txt.Substring(3, 1)) <= 8
+            )
+            {
+                TGPCode = val;
+            }
+        }
+        return TGPCode.ToString();
+    }
 
     public string SetILSFrequency(string txt)
     {

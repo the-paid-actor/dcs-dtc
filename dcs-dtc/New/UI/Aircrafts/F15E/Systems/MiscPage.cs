@@ -102,6 +102,27 @@ namespace DTC.New.UI.Aircrafts.F15E.Systems
                 }));
             }
 
+            //Laser settings
+            {
+                left = padding;
+                top += padding + rowHeight;
+                this.Controls.Add(DTCCheckBox.Make(left, top, chkWidth, rowHeight, this.misc.LaserSettingsToBeUpdated, (chk) =>
+                {
+                    this.misc.LaserSettingsToBeUpdated = chk.Checked;
+                    this.SavePreset();
+                }));
+
+                left += padding + chkWidth;
+                this.Controls.Add(DTCLabel.Make("TGP Code", left, top, colWidth, rowHeight));
+
+                left += padding + colWidth;
+                this.Controls.AddRange(MakeTGPCodeControls(left, top, rowHeight, this.misc.TGPCode.ToString(), (txt) =>
+                {
+                    this.misc.SetTGPCode(txt);
+                    this.SavePreset();
+                }));
+            }
+
             //TACAN
             {
                 left = padding;

@@ -9,6 +9,38 @@ public partial class AH64DUploader
 {
     private void BuildWaypoints(bool pilot)
     {
+        Device display = pilot ? MFD_PLT_RIGHT : MFD_CPG_RIGHT;
+        Device keyboard = pilot ? KU_PILOT : KU_CPG;
+
+        if (config.Upload.DeleteWaypoints || config.Upload.DeleteControlMeasures || config.Upload.DeleteTargets)
+        {
+            if (config.Upload.DeleteWaypoints && config.Upload.DeleteControlMeasures && config.Upload.DeleteTargets)
+            {
+                DeletePoints(display);
+            }
+            else
+            {
+                Cmd(display.GetCommand("TSD"));
+                Cmd(display.GetCommand("T5"));
+                Cmd(StoreCurrentCoords(display));
+
+                if (config.Upload.DeleteWaypoints)
+                {
+                    DeletePoints(display, keyboard, "W", config.Waypoints.GetFirstAllowedSequence(), config.Waypoints.GetLastAllowedSequence());
+                }
+                if (config.Upload.DeleteControlMeasures)
+                {
+                    DeletePoints(display, keyboard, "C", config.ControlMeasures.GetFirstAllowedSequence(), config.ControlMeasures.GetLastAllowedSequence());
+                }
+                if (config.Upload.DeleteTargets)
+                {
+                    DeletePoints(display, keyboard, "T", config.Targets.GetFirstAllowedSequence(), config.Targets.GetLastAllowedSequence());
+                }
+            }
+        }
+
+        Cmd(display.GetCommand("TSD"));
+
         if (!config.Upload.Waypoints &&
             !config.Upload.ControlMeasures &&
             !config.Upload.Targets)
@@ -16,24 +48,35 @@ public partial class AH64DUploader
             return;
         }
 
-        Device display = pilot ? MFD_PLT_RIGHT : MFD_CPG_RIGHT;
-        Device keyboard = pilot ? KU_PILOT : KU_CPG;
-
-        Cmd(display.GetCommand("TSD"));
         Cmd(display.GetCommand("T5"));
         Cmd(StoreCurrentCoords(display));
 
-        if (config.Upload.Waypoints && config.Waypoints != null && config.Waypoints.Waypoints != null)
+        if (config.Upload.Waypoints && config.Waypoints != null && config.Waypoints.HasWaypoints())
         {
             UploadPoints(config.Waypoints, "W", display, keyboard, true);
         }
-        if (config.Upload.ControlMeasures && config.ControlMeasures != null && config.ControlMeasures.Waypoints != null)
+        if (config.Upload.ControlMeasures && config.ControlMeasures != null && config.ControlMeasures.HasWaypoints())
         {
             UploadPoints(config.ControlMeasures, "C", display, keyboard, false);
         }
-        if (config.Upload.Targets && config.Targets != null && config.Targets.Waypoints != null)
+        if (config.Upload.Targets && config.Targets != null && config.Targets.HasWaypoints())
         {
             UploadPoints(config.Targets, "T", display, keyboard, false);
+        }
+    }
+
+    private void DeletePoints(Device display, Device keyboard, string genericPointType, int first, int last)
+    {
+        Cmd(display.GetCommand("TSD"));
+        Cmd(display.GetCommand("B6"));
+
+        for (var i = first; i <= last; i++)
+        {
+            StartIf(SequenceInUse(genericPointType, i));
+            {
+                DeletePoint(display, keyboard, genericPointType, i);
+            }
+            EndIf();
         }
     }
 

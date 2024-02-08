@@ -17,6 +17,13 @@ public partial class UploadPage : AircraftSystemPage
             this.SavePreset();
         };
 
+        chkClearWaypoints.Checked = upload.DeleteWaypoints;
+        chkClearWaypoints.CheckedChanged += (s, e) =>
+        {
+            upload.DeleteWaypoints = chkClearWaypoints.Checked;
+            this.SavePreset();
+        };
+
         chkControlMeasures.Checked = upload.ControlMeasures;
         chkControlMeasures.CheckedChanged += (s, e) =>
         {
@@ -24,10 +31,24 @@ public partial class UploadPage : AircraftSystemPage
             this.SavePreset();
         };
 
+        chkClearControlMeasures.Checked = upload.DeleteControlMeasures;
+        chkClearControlMeasures.CheckedChanged += (s, e) =>
+        {
+            upload.DeleteControlMeasures = chkClearControlMeasures.Checked;
+            this.SavePreset();
+        };
+
         chkTargets.Checked = upload.Targets;
         chkTargets.CheckedChanged += (s, e) =>
         {
             upload.Targets = chkTargets.Checked;
+            this.SavePreset();
+        };
+
+        chkClearTargets.Checked = upload.DeleteTargets;
+        chkClearTargets.CheckedChanged += (s, e) =>
+        {
+            upload.DeleteTargets = chkClearTargets.Checked;
             this.SavePreset();
         };
 

@@ -29,6 +29,11 @@ public abstract class WaypointSystem<T> where T : class, IWaypoint, new()
         };
     }
 
+    public bool HasWaypoints()
+    {
+        return Waypoints != null && Waypoints.Count > 0;
+    }
+
     public abstract int GetFirstAllowedSequence();
 
     public abstract int GetLastAllowedSequence();

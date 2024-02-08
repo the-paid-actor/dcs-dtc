@@ -38,6 +38,9 @@ namespace DTC.New.UI.Aircrafts.AH64D.Systems
             chkTargets = new CheckBox();
             chkRoutes = new CheckBox();
             chkTSD = new CheckBox();
+            chkClearWaypoints = new CheckBox();
+            chkClearControlMeasures = new CheckBox();
+            chkClearTargets = new CheckBox();
             SuspendLayout();
             // 
             // chkWaypoints
@@ -48,7 +51,7 @@ namespace DTC.New.UI.Aircrafts.AH64D.Systems
             chkWaypoints.Location = new Point(15, 15);
             chkWaypoints.Margin = new Padding(4);
             chkWaypoints.Name = "chkWaypoints";
-            chkWaypoints.Size = new Size(102, 25);
+            chkWaypoints.Size = new Size(154, 25);
             chkWaypoints.TabIndex = 0;
             chkWaypoints.Text = "Waypoints";
             chkWaypoints.UseVisualStyleBackColor = true;
@@ -113,6 +116,45 @@ namespace DTC.New.UI.Aircrafts.AH64D.Systems
             chkTSD.Text = "TSD";
             chkTSD.UseVisualStyleBackColor = true;
             // 
+            // chkClearWaypoints
+            // 
+            chkClearWaypoints.Checked = true;
+            chkClearWaypoints.CheckState = CheckState.Checked;
+            chkClearWaypoints.Font = new Font("Microsoft Sans Serif", 10F, FontStyle.Regular, GraphicsUnit.Point);
+            chkClearWaypoints.Location = new Point(177, 15);
+            chkClearWaypoints.Margin = new Padding(4);
+            chkClearWaypoints.Name = "chkClearWaypoints";
+            chkClearWaypoints.Size = new Size(154, 25);
+            chkClearWaypoints.TabIndex = 0;
+            chkClearWaypoints.Text = "Delete all";
+            chkClearWaypoints.UseVisualStyleBackColor = true;
+            // 
+            // chkClearControlMeasures
+            // 
+            chkClearControlMeasures.Checked = true;
+            chkClearControlMeasures.CheckState = CheckState.Checked;
+            chkClearControlMeasures.Font = new Font("Microsoft Sans Serif", 10F, FontStyle.Regular, GraphicsUnit.Point);
+            chkClearControlMeasures.Location = new Point(177, 48);
+            chkClearControlMeasures.Margin = new Padding(4);
+            chkClearControlMeasures.Name = "chkClearControlMeasures";
+            chkClearControlMeasures.Size = new Size(154, 25);
+            chkClearControlMeasures.TabIndex = 0;
+            chkClearControlMeasures.Text = "Delete all";
+            chkClearControlMeasures.UseVisualStyleBackColor = true;
+            // 
+            // chkClearTargets
+            // 
+            chkClearTargets.Checked = true;
+            chkClearTargets.CheckState = CheckState.Checked;
+            chkClearTargets.Font = new Font("Microsoft Sans Serif", 10F, FontStyle.Regular, GraphicsUnit.Point);
+            chkClearTargets.Location = new Point(177, 81);
+            chkClearTargets.Margin = new Padding(4);
+            chkClearTargets.Name = "chkClearTargets";
+            chkClearTargets.Size = new Size(154, 25);
+            chkClearTargets.TabIndex = 0;
+            chkClearTargets.Text = "Delete all";
+            chkClearTargets.UseVisualStyleBackColor = true;
+            // 
             // UploadPage
             // 
             AutoScaleDimensions = new SizeF(96F, 96F);
@@ -120,8 +162,11 @@ namespace DTC.New.UI.Aircrafts.AH64D.Systems
             BackColor = Color.PaleGoldenrod;
             Controls.Add(chkTSD);
             Controls.Add(chkRoutes);
+            Controls.Add(chkClearTargets);
             Controls.Add(chkTargets);
+            Controls.Add(chkClearControlMeasures);
             Controls.Add(chkControlMeasures);
+            Controls.Add(chkClearWaypoints);
             Controls.Add(chkWaypoints);
             Font = new Font("Microsoft Sans Serif", 12F, FontStyle.Regular, GraphicsUnit.Point);
             Margin = new Padding(4);
@@ -137,5 +182,8 @@ namespace DTC.New.UI.Aircrafts.AH64D.Systems
         private CheckBox chkTargets;
         private CheckBox chkRoutes;
         private CheckBox chkTSD;
+        private CheckBox chkClearWaypoints;
+        private CheckBox chkClearControlMeasures;
+        private CheckBox chkClearTargets;
     }
 }

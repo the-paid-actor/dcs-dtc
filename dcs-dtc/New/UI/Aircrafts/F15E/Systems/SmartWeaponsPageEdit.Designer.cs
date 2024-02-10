@@ -37,6 +37,8 @@ namespace DTC.New.UI.Aircrafts.F15E.Systems
             txtWptElevation = new DTC.UI.Base.Controls.DTCNumericTextBox();
             dtcButton1 = new DTC.UI.Base.Controls.DTCButton();
             btnClear = new DTC.UI.Base.Controls.DTCButton();
+            txtNotes = new DTC.UI.Base.Controls.DTCTextBox();
+            label3 = new Label();
             SuspendLayout();
             // 
             // label1
@@ -68,7 +70,7 @@ namespace DTC.New.UI.Aircrafts.F15E.Systems
             lblValidation.Anchor = AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right;
             lblValidation.Font = new Font("Microsoft Sans Serif", 10F, FontStyle.Regular, GraphicsUnit.Point);
             lblValidation.ForeColor = Color.Red;
-            lblValidation.Location = new Point(5, 148);
+            lblValidation.Location = new Point(5, 157);
             lblValidation.Margin = new Padding(0);
             lblValidation.Name = "lblValidation";
             lblValidation.Padding = new Padding(5, 0, 0, 0);
@@ -146,13 +148,41 @@ namespace DTC.New.UI.Aircrafts.F15E.Systems
             btnClear.UseVisualStyleBackColor = false;
             btnClear.Click += btnClear_Click;
             // 
+            // txtNotes
+            // 
+            txtNotes.AllowPromptAsInput = true;
+            txtNotes.BackColor = SystemColors.Window;
+            txtNotes.HidePromptOnLeave = false;
+            txtNotes.InsertKeyMode = InsertKeyMode.Default;
+            txtNotes.Location = new Point(151, 98);
+            txtNotes.Mask = "";
+            txtNotes.Name = "txtNotes";
+            txtNotes.PromptChar = '_';
+            txtNotes.Size = new Size(402, 28);
+            txtNotes.TabIndex = 29;
+            txtNotes.ValidatingType = null;
+            // 
+            // label3
+            // 
+            label3.Font = new Font("Microsoft Sans Serif", 10F, FontStyle.Regular, GraphicsUnit.Point);
+            label3.Location = new Point(1, 98);
+            label3.Margin = new Padding(0);
+            label3.Name = "label3";
+            label3.Padding = new Padding(5, 0, 0, 0);
+            label3.Size = new Size(150, 25);
+            label3.TabIndex = 27;
+            label3.Text = "Notes:";
+            label3.TextAlign = ContentAlignment.MiddleLeft;
+            // 
             // SmartWeaponsPageEdit
             // 
             AutoScaleDimensions = new SizeF(96F, 96F);
             AutoScaleMode = AutoScaleMode.Dpi;
             BackColor = Color.PaleGoldenrod;
             BorderStyle = BorderStyle.FixedSingle;
+            Controls.Add(txtNotes);
             Controls.Add(lblValidation);
+            Controls.Add(label3);
             Controls.Add(label2);
             Controls.Add(label1);
             Controls.Add(btnClear);
@@ -161,7 +191,7 @@ namespace DTC.New.UI.Aircrafts.F15E.Systems
             Controls.Add(txtWptLatLong);
             Controls.Add(txtWptElevation);
             Name = "SmartWeaponsPageEdit";
-            Size = new Size(560, 178);
+            Size = new Size(560, 187);
             ResumeLayout(false);
         }
 
@@ -174,5 +204,7 @@ namespace DTC.New.UI.Aircrafts.F15E.Systems
         private Label lblValidation;
         private DTC.UI.Base.Controls.DTCButton dtcButton1;
         private DTC.UI.Base.Controls.DTCButton btnClear;
+        private DTC.UI.Base.Controls.DTCTextBox txtNotes;
+        private Label label3;
     }
 }

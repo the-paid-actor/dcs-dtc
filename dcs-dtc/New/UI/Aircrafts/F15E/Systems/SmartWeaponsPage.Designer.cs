@@ -29,6 +29,7 @@ namespace DTC.New.UI.Aircrafts.F15E.Systems
         /// </summary>
         private void InitializeComponent()
         {
+            components = new System.ComponentModel.Container();
             btnLeftWing = new DTC.UI.Base.Controls.DTCButton();
             btnCenter = new DTC.UI.Base.Controls.DTCButton();
             btnRightWing = new DTC.UI.Base.Controls.DTCButton();
@@ -39,6 +40,7 @@ namespace DTC.New.UI.Aircrafts.F15E.Systems
             btnRCFTM = new DTC.UI.Base.Controls.DTCButton();
             btnRCFTR = new DTC.UI.Base.Controls.DTCButton();
             btnResetAll = new DTC.UI.Base.Controls.DTCButton();
+            toolTip = new ToolTip(components);
             SuspendLayout();
             // 
             // btnLeftWing
@@ -193,6 +195,15 @@ namespace DTC.New.UI.Aircrafts.F15E.Systems
             btnResetAll.UseVisualStyleBackColor = false;
             btnResetAll.Click += btnResetAll_Click;
             // 
+            // toolTip
+            // 
+            toolTip.AutoPopDelay = 0;
+            toolTip.InitialDelay = 0;
+            toolTip.IsBalloon = true;
+            toolTip.ReshowDelay = 0;
+            toolTip.UseAnimation = false;
+            toolTip.UseFading = false;
+            // 
             // SmartWeaponsPage
             // 
             AutoScaleDimensions = new SizeF(96F, 96F);
@@ -225,5 +236,6 @@ namespace DTC.New.UI.Aircrafts.F15E.Systems
         private DTC.UI.Base.Controls.DTCButton btnRCFTM;
         private DTC.UI.Base.Controls.DTCButton btnRCFTR;
         private DTC.UI.Base.Controls.DTCButton btnResetAll;
+        private ToolTip toolTip;
     }
 }

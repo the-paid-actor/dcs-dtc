@@ -16,6 +16,12 @@ public class SmartWeaponsSystem
         }
     }
 
+    public SmartWeaponsStation? Get(string stationName)
+    {
+        Stations.TryGetValue(stationName, out var sta);
+        return sta;
+    }
+
     internal void ResetAll()
     {
         foreach (var str in StationNames.Ordered)
@@ -47,6 +53,15 @@ public class SmartWeaponsStation
 {
     public string Name { get; set; }
     public SmartWeaponSetting[] Settings { get; set; }
+
+    public SmartWeaponSetting GetFirst()
+    {
+        if (Settings != null)
+        {
+            return Settings[0];
+        }
+        return null;
+    }
 }
 
 public class SmartWeaponSetting
@@ -54,4 +69,6 @@ public class SmartWeaponSetting
     public string Latitude { get; set; }
     public string Longitude { get; set; }
     public int Elevation { get; set; }
+
+    public string Notes { get; set; }
 }

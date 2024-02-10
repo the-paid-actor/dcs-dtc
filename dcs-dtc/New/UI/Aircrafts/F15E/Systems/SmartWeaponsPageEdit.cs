@@ -28,6 +28,7 @@ namespace DTC.New.UI.Aircrafts.F15E.Systems
             var c = Coordinate.FromString(coord.Latitude, coord.Longitude);
             txtWptLatLong.Coordinate = c;
             txtWptElevation.Text = coord.Elevation.ToString();
+            txtNotes.Text = coord.Notes;
         }
 
         private void btnSave_Click(object sender, EventArgs e)
@@ -42,6 +43,7 @@ namespace DTC.New.UI.Aircrafts.F15E.Systems
 
                 coord.Latitude = c.Lat;
                 coord.Longitude = c.Lon;
+                coord.Notes = txtNotes.Text;
                 _callback(station, coord);
                 CloseDialog();
             }

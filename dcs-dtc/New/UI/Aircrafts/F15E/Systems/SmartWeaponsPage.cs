@@ -63,18 +63,18 @@ namespace DTC.New.UI.Aircrafts.F15E.Systems
             MarkButton(btnRCFTR, StationNames.RCFTREAR);
         }
 
-        private void MarkButton(DTCButton button, string stationKey)
+        private void MarkButton(DTCButton button, string stationName)
         {
-            if (swsystem.Stations.ContainsKey(stationKey))
+            button.Font = new Font(button.Font, FontStyle.Regular);
+            toolTip.SetToolTip(button, "");
+            var sta = swsystem.Get(stationName);
+            if (sta != null)
             {
-                var s = swsystem.Stations[stationKey];
-                if (s.Settings != null && s.Settings.Length > 0)
+                var wpn = sta.GetFirst();
+                if (wpn != null)
                 {
                     button.Font = new Font(button.Font, FontStyle.Bold);
-                }
-                else
-                {
-                    button.Font = new Font(button.Font, FontStyle.Regular);
+                    toolTip.SetToolTip(button, $"{wpn.Latitude}\n{wpn.Longitude}\n{wpn.Elevation} ft\n{wpn.Notes}");
                 }
             }
         }

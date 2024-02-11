@@ -82,6 +82,10 @@ https://dotnet.microsoft.com/en-us/download/dotnet/7.0
 - Run the installer. It will create a shortcut on the Start Menu once it finishes.
 - Run the application from the Windows Start Menu. It will setup itself into DCS automatically.
 
+If the application does not start, check if you have Controlled Folder Access enabled in Windows Defender. If so, you will have to add the application to the list of allowed apps, since it creates its storage under the Documents folder. https://support.microsoft.com/en-us/windows/allow-an-app-to-access-controlled-folders-b5b6627a-b008-2ca2-7931-7e51e912b034
+
+If the application still does not start, check the Windows Event Viewer for errors related to the application. https://www.windowscentral.com/how-use-event-viewer-windows-10
+
 ## Manual setup in DCS
 
 If for some reason you need to manually setup the application in DCS, follow these steps:

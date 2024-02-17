@@ -106,6 +106,8 @@ public class PrePlannedCoordinate
     public string Lon { get; set; }
     public int Elev { get; set; }
     public bool Enabled { get; set; }
+    public string Notes { get; set; }
+
 
     public bool IsEqual(PrePlannedCoordinate other)
     {

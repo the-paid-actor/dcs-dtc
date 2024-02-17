@@ -37,6 +37,8 @@ namespace DTC.New.UI.Aircrafts.FA18.Systems.Controls
             txtWptElevation = new DTC.UI.Base.Controls.DTCNumericTextBox();
             dtcButton1 = new DTC.UI.Base.Controls.DTCButton();
             btnClear = new DTC.UI.Base.Controls.DTCButton();
+            txtNotes = new DTC.UI.Base.Controls.DTCTextBox();
+            label3 = new Label();
             SuspendLayout();
             // 
             // label1
@@ -146,12 +148,40 @@ namespace DTC.New.UI.Aircrafts.FA18.Systems.Controls
             btnClear.UseVisualStyleBackColor = false;
             btnClear.Click += btnClear_Click;
             // 
+            // txtNotes
+            // 
+            txtNotes.AllowPromptAsInput = true;
+            txtNotes.BackColor = SystemColors.Window;
+            txtNotes.HidePromptOnLeave = false;
+            txtNotes.InsertKeyMode = InsertKeyMode.Default;
+            txtNotes.Location = new Point(151, 98);
+            txtNotes.Mask = "";
+            txtNotes.Name = "txtNotes";
+            txtNotes.PromptChar = '_';
+            txtNotes.Size = new Size(402, 28);
+            txtNotes.TabIndex = 31;
+            txtNotes.ValidatingType = null;
+            // 
+            // label3
+            // 
+            label3.Font = new Font("Microsoft Sans Serif", 10F, FontStyle.Regular, GraphicsUnit.Point);
+            label3.Location = new Point(1, 98);
+            label3.Margin = new Padding(0);
+            label3.Name = "label3";
+            label3.Padding = new Padding(5, 0, 0, 0);
+            label3.Size = new Size(150, 25);
+            label3.TabIndex = 30;
+            label3.Text = "Notes:";
+            label3.TextAlign = ContentAlignment.MiddleLeft;
+            // 
             // PrePlannedEdit
             // 
             AutoScaleDimensions = new SizeF(96F, 96F);
             AutoScaleMode = AutoScaleMode.Dpi;
             BackColor = Color.PaleGoldenrod;
             BorderStyle = BorderStyle.FixedSingle;
+            Controls.Add(txtNotes);
+            Controls.Add(label3);
             Controls.Add(lblValidation);
             Controls.Add(label2);
             Controls.Add(label1);
@@ -174,5 +204,7 @@ namespace DTC.New.UI.Aircrafts.FA18.Systems.Controls
         private Label lblValidation;
         private DTC.UI.Base.Controls.DTCButton dtcButton1;
         private DTC.UI.Base.Controls.DTCButton btnClear;
+        private DTC.UI.Base.Controls.DTCTextBox txtNotes;
+        private Label label3;
     }
 }

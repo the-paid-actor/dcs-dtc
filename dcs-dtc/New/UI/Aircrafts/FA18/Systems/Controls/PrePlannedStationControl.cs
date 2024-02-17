@@ -67,8 +67,11 @@ namespace DTC.New.UI.Aircrafts.FA18.Systems.Controls
                 var pp = station.PP[i];
                 checkBoxPP[i].Checked = pp.Enabled;
                 buttonPP[i].Font = new Font(buttonPP[i].Font, FontStyle.Regular);
+                toolTip.SetToolTip(buttonPP[i], "");
+
                 if (pp.CanBeEnabled())
                 {
+                    toolTip.SetToolTip(buttonPP[i], $"{pp.Lat}\n{pp.Lon}\n{pp.Elev} ft\n{pp.Notes}");
                     buttonPP[i].Font = new Font(buttonPP[i].Font, FontStyle.Bold);
                 }
             }

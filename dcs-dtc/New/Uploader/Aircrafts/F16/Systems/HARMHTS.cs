@@ -1,7 +1,6 @@
 ﻿
 using DTC.New.Uploader.Base;
 using DTC.Utilities;
-using static DTC.Utilities.DataReceiver;
 
 namespace DTC.New.Uploader.Aircrafts.F16;
 

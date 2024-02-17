@@ -31,6 +31,7 @@ namespace DTC.New.UI.Aircrafts.FA18.Systems.Controls
         /// </summary>
         private void InitializeComponent()
         {
+            components = new System.ComponentModel.Container();
             btnSTP = new DTCButton();
             cbPP5 = new CheckBox();
             cbPP4 = new CheckBox();
@@ -46,6 +47,7 @@ namespace DTC.New.UI.Aircrafts.FA18.Systems.Controls
             label1 = new Label();
             staPP6 = new DTCButton();
             cbPP6 = new CheckBox();
+            toolTip = new ToolTip(components);
             SuspendLayout();
             // 
             // btnSTP
@@ -223,6 +225,15 @@ namespace DTC.New.UI.Aircrafts.FA18.Systems.Controls
             cbPP6.UseVisualStyleBackColor = true;
             cbPP6.CheckedChanged += cbn_CheckedChanged;
             // 
+            // toolTip
+            // 
+            toolTip.AutoPopDelay = 0;
+            toolTip.InitialDelay = 0;
+            toolTip.IsBalloon = true;
+            toolTip.ReshowDelay = 0;
+            toolTip.UseAnimation = false;
+            toolTip.UseFading = false;
+            // 
             // PrePlannedStationControl
             // 
             AutoScaleDimensions = new SizeF(96F, 96F);
@@ -266,5 +277,6 @@ namespace DTC.New.UI.Aircrafts.FA18.Systems.Controls
         private Label label1;
         private DTCButton staPP6;
         private CheckBox cbPP6;
+        private ToolTip toolTip;
     }
 }

@@ -30,6 +30,7 @@ namespace DTC.New.UI.Aircrafts.FA18.Systems.Controls
             var c = Coordinate.FromString(coord.Lat, coord.Lon);
             txtWptLatLong.Coordinate = c;
             txtWptElevation.Text = coord.Elev.ToString();
+            txtNotes.Text = coord.Notes;
         }
 
         private void btnSave_Click(object sender, EventArgs e)
@@ -44,6 +45,7 @@ namespace DTC.New.UI.Aircrafts.FA18.Systems.Controls
 
                 ppCoordinate.Lat = c.Lat;
                 ppCoordinate.Lon = c.Lon;
+                ppCoordinate.Notes = txtNotes.Text;
                 _callback(ppCoordinate, station, ppNumber);
                 CloseDialog();
             }

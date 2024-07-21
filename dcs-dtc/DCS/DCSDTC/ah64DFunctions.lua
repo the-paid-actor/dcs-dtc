@@ -18,11 +18,11 @@ function DTC_AH64D_GetDisplay(display)
 end
 
 function DTC_AH64D_GetCPGRightMPD()
-    return DTC_ParseDisplay(12)
+    return DTC_ParseDisplay(13)
 end
 
 function DTC_AH64D_GetPilotRightMPD()
-    return DTC_ParseDisplay(8)
+    return DTC_ParseDisplay(9)
 end
 
 function DTC_AH64D_CleanFree(str, id)

@@ -96,6 +96,10 @@ public partial class WaypointsPageControl : AircraftSystemPage
     {
         throw new NotImplementedException();
     }
+    protected virtual void DeleteAllButtonClick(object sender, EventArgs e)
+    {
+        throw new NotImplementedException();
+    }
 
     protected virtual void DataGridDoubleClick(object sender, EventArgs e)
     {

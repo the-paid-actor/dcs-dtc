@@ -32,6 +32,11 @@ public partial class WaypointsPage<T> : WaypointsPageControl where T : class, IW
         this.DeleteSelection();
     }
 
+    protected override void DeleteAllButtonClick(object sender, EventArgs e)
+    {
+        this.DeleteAll();
+    }
+
     protected override void DataGridDoubleClick(object sender, EventArgs e)
     {
         if (this.dgWaypoints.SelectedRows.Count > 0)
@@ -118,6 +123,20 @@ public partial class WaypointsPage<T> : WaypointsPageControl where T : class, IW
         {
             this.waypoints.Remove(wpt);
         }
+
+        this.SavePreset();
+        this.RefreshList();
+        this.dgWaypoints.Focus();
+    }
+
+    private void DeleteAll()
+    {
+        if (!DTCMessageBox.ShowQuestion("Are you sure you want to delete all waypoint(s)?"))
+        {
+            return;
+        }
+
+        this.waypoints.Waypoints.Clear();
 
         this.SavePreset();
         this.RefreshList();

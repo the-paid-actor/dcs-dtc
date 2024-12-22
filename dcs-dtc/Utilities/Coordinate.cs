@@ -110,8 +110,9 @@ namespace DTC.Utilities
             {
                 var deg = part.Degrees.ToString().PadLeft(leadingDegZeros, '0');
                 var minD = new decimal(part.DecimalMinute);
-                var min = decimal.Truncate(minD).ToString().PadLeft(2, '0');
-                var minRem = decimal.Round(decimal.Remainder(minD, 1m), roundDigits, MidpointRounding.AwayFromZero).ToString(CultureInfo.InvariantCulture);
+                var minAndFrac = decimal.Round(minD, 3);
+                var min = decimal.Truncate(minAndFrac).ToString().PadLeft(2, '0');
+                var minRem = decimal.Remainder(minAndFrac, 1m).ToString(CultureInfo.InvariantCulture);
                 if (minRem.Length < 2) minRem = minRem.PadLeft(2, '0');
                 var minFrac = minRem.Substring(2).PadRight(roundDigits, '0');
                 var str = $"{part.Position} {deg}°{min}.{minFrac}’";
@@ -243,6 +244,12 @@ namespace DTC.Utilities
                 default:
                     throw new NotImplementedException();
             }
+        }
+
+        public int Distance(Coordinate other)
+        {
+            var d = new Distance(this.c, other.c);
+            return (int)d.NauticalMiles;
         }
     }
 }

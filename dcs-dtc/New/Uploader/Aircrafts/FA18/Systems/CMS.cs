@@ -18,7 +18,14 @@ public partial class FA18Uploader
         SetLeftMFDTac();
         Cmd(LMFD.OSB17); // EW
 
-        If(EWHudNotBoxed(), LMFD.OSB14);
+        if (config.CMS.EnableHUD)
+        {
+            If(EWHudNotBoxed(), LMFD.OSB14);
+        }
+        else
+        {
+            IfNot(EWHudNotBoxed(), LMFD.OSB14);
+        }
 
         StartIf(DispenserOn());
         {

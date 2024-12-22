@@ -31,6 +31,26 @@ public class Waypoint : IWaypoint
             return string.Join(", ", str.Where(s => !string.IsNullOrEmpty(s)));
         }
     }
+
+    public string GetDCSPointType()
+    {
+        if (this.PointType == Systems.PointType.Waypoint.Code)
+            return "W";
+        if (this.PointType == Systems.PointType.Hazard.Code)
+            return "H";
+        if (this.PointType == Systems.PointType.GeneralControlMeasure.Code)
+            return "C";
+        if (this.PointType == Systems.PointType.FriendlyControlMeasure.Code)
+            return "C";
+        if (this.PointType == Systems.PointType.EnemyControlMeasure.Code)
+            return "C";
+        if (this.PointType == Systems.PointType.Target.Code)
+            return "T";
+        if (this.PointType == Systems.PointType.Threat.Code)
+            return "T";
+
+        throw new NotImplementedException();
+    }
 }
 
 public class WaypointSystem : WaypointSystem<Waypoint>

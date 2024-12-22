@@ -62,6 +62,27 @@ public partial class AH64DUploader
 
             Cmd(display.GetCommand("L4"));
 
+            if (route.Code == RouteCode.Alpha || route.Code == RouteCode.India)
+            {
+                Cmd(display.GetCommand("T1"));
+            }
+            if (route.Code == RouteCode.Bravo || route.Code == RouteCode.Lima)
+            {
+                Cmd(display.GetCommand("T2"));
+            }
+            if (route.Code == RouteCode.Delta || route.Code == RouteCode.Oscar)
+            {
+                Cmd(display.GetCommand("T3"));
+            }
+            if (route.Code == RouteCode.Echo || route.Code == RouteCode.Romeo)
+            {
+                Cmd(display.GetCommand("T4"));
+            }
+            if (route.Code == RouteCode.Hotel || route.Code == RouteCode.Tango)
+            {
+                Cmd(display.GetCommand("T5"));
+            }
+
             Cmd(display.GetCommand("B6"));
 
             Cmd(display.GetCommand("L2"));
@@ -70,7 +91,7 @@ public partial class AH64DUploader
             {
                 Cmd(display.GetCommand("R1"));
                 Cmd(display.GetCommand("L1"));
-                Cmd(Keyboard(keyboard, GetPointType(wpt.PointType) + wpt.Sequence.ToString().PadLeft(2, '0')));
+                Cmd(Keyboard(keyboard, wpt.GetDCSPointType() + wpt.Sequence.ToString().PadLeft(2, '0')));
                 Cmd(keyboard.GetCommand("ENTER"));
                 Cmd(ClickEnd(display));
             }

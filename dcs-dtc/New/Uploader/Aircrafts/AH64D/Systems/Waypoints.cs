@@ -136,7 +136,7 @@ public partial class AH64DUploader
     {
         var coord = Coordinate.FromString(wpt.Latitude, wpt.Longitude);
         var mgrs = coord.ToMGRSEightDigits().Replace(" ", "");
-        var type = GetPointType(wpt.PointType);
+        var type = wpt.GetDCSPointType();
 
         StartIf(SequenceInUse(type, wpt.Sequence));
         {
@@ -209,25 +209,7 @@ public partial class AH64DUploader
         Cmd(keyboard.GetCommand("ENTER"));
     }
 
-    private string GetPointType(string pointType)
-    {
-        if (pointType == PointType.Waypoint.Code)
-            return "W";
-        if (pointType == PointType.Hazard.Code)
-            return "H";
-        if (pointType == PointType.GeneralControlMeasure.Code)
-            return "C";
-        if (pointType == PointType.FriendlyControlMeasure.Code)
-            return "C";
-        if (pointType == PointType.EnemyControlMeasure.Code)
-            return "C";
-        if (pointType == PointType.Target.Code)
-            return "T";
-        if (pointType == PointType.Threat.Code)
-            return "T";
 
-        throw new NotImplementedException();
-    }
 
     private void DeletePoints(Device display)
     {

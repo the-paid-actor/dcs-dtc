@@ -18,11 +18,11 @@ function DTC_AH64D_GetDisplay(display)
 end
 
 function DTC_AH64D_GetCPGRightMPD()
-    return DTC_ParseDisplay(12)
+    return DTC_ParseDisplay(13)
 end
 
 function DTC_AH64D_GetPilotRightMPD()
-    return DTC_ParseDisplay(8)
+    return DTC_ParseDisplay(9)
 end
 
 function DTC_AH64D_CleanFree(str, id)
@@ -232,10 +232,10 @@ end
 
 function DTC_AH64D_ExecCmd_ClickEnd(display, data)
     local tbl = DTC_AH64D_GetDisplay(display)
-    local r5 = tbl["PB11_45"] or ""
-    local r4 = tbl["PB10_43"] or ""
-    local r3 = tbl["PB9_41"] or ""
-    local r2 = tbl["PB8_39"] or ""
+    local r5 = tbl["PB11_47"] or ""
+    local r4 = tbl["PB10_45"] or ""
+    local r3 = tbl["PB9_43"] or ""
+    local r2 = tbl["PB8_41"] or ""
 
     local button = 0
     if r5 == "END" then

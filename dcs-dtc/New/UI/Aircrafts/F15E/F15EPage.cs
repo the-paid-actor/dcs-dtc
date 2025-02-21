@@ -6,6 +6,7 @@ using DTC.New.UI.Base.Pages;
 using DTC.New.UI.Base.Systems;
 using DTC.New.Uploader.Aircrafts.F15E;
 using DTC.Utilities;
+using DTC.Utilities.Network;
 
 namespace DTC.New.UI.Aircrafts.F15E;
 
@@ -152,5 +153,15 @@ public class F15EPage : AircraftPage
         }
 
         return cfgResult;
+    }
+
+    public override string GetKneeboardInfoText()
+    {
+        return F15EKneeboard.GetKneeboardText(this.Configuration);
+    }
+
+    public override void ShowKneeboard()
+    {
+        base.ShowKneeboard();
     }
 }

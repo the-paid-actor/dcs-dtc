@@ -167,41 +167,79 @@ namespace DTC.Utilities
 
         private static bool CopyDCSDTCFolder(string folderToCopy, string scriptsFolder)
         {
-            var changed = false;
-            var localFolder = Path.Combine(FileStorage.GetCurrentFolder(), "DCS", folderToCopy);
-            var remoteFolder = Path.Combine(scriptsFolder, folderToCopy);
+            var localFolderPath = Path.Combine(FileStorage.GetCurrentFolder(), "DCS", folderToCopy);
+            var remoteFolderPath = Path.Combine(scriptsFolder, folderToCopy);
+            return CompareAndCopyFolder(localFolderPath, remoteFolderPath);
+        }
 
-            if (!Directory.Exists(remoteFolder))
+        private static bool CompareAndCopyFolder(string localFolderPath, string remoteFolderPath)
+        {
+            var changed = false;
+
+            if (!Directory.Exists(remoteFolderPath))
             {
-                Directory.CreateDirectory(remoteFolder);
+                Directory.CreateDirectory(remoteFolderPath);
             }
 
-            foreach (var localFile in Directory.GetFiles(localFolder))
+            foreach (var localFilePath in Directory.GetFiles(localFolderPath))
             {
-                var fileName = Path.GetFileName(localFile);
-                var remoteFile = Path.Combine(remoteFolder, fileName);
-                if (!File.Exists(remoteFile))
+                if (CompareAndCopyFile(localFilePath, remoteFolderPath))
                 {
-                    File.Copy(localFile, remoteFile);
                     changed = true;
                 }
+            }
 
-                var localFileContent = File.ReadAllText(localFile);
-                var remoteFileContent = File.ReadAllText(remoteFile);
-
-                if (fileName == "wptCapture.lua")
+            foreach (var localSubFolderPath in Directory.GetDirectories(localFolderPath))
+            {
+                var folderName = Path.GetFileName(localSubFolderPath);
+                var remoteSubFolderPath = Path.Combine(remoteFolderPath, folderName);
+                if (CompareAndCopyFolder(localSubFolderPath, remoteSubFolderPath))
                 {
-                    localFileContent = localFileContent.Replace("Ctrl+Shift+d", Settings.CaptureDialogShortcut);
-                }
-
-                if (localFileContent != remoteFileContent)
-                {
-                    File.WriteAllText(remoteFile, localFileContent);
                     changed = true;
                 }
             }
 
             return changed;
+        }
+
+        private static bool CompareAndCopyFile(string localFilePath, string remoteFolderPath)
+        {
+            var fileName = Path.GetFileName(localFilePath);
+            var remoteFilePath = Path.Combine(remoteFolderPath, fileName);
+
+            var localFileContent = File.ReadAllText(localFilePath);
+            localFileContent = CheckSpecialFileContents(fileName, localFileContent);
+
+            if (!File.Exists(remoteFilePath))
+            {
+                File.WriteAllText(remoteFilePath, localFileContent);
+                return true;
+            }
+
+            var remoteFileContent = File.ReadAllText(remoteFilePath);
+
+            if (localFileContent != remoteFileContent)
+            {
+                File.WriteAllText(remoteFilePath, localFileContent);
+                return true;
+            }
+
+            return false;
+        }
+
+        private static string CheckSpecialFileContents(string fileName, string localFileContent)
+        {
+            if (fileName == "wptCapture.lua")
+            {
+                localFileContent = localFileContent.Replace("Ctrl+Shift+d", Settings.CaptureDialogShortcut);
+            }
+
+            if (fileName == "kneeboard.lua")
+            {
+                localFileContent = localFileContent.Replace("Ctrl+Shift+k", Settings.KneeboardDialogShortcut);
+            }
+
+            return localFileContent;
         }
 
         private static bool AskUserToInstall(string path)

@@ -42,6 +42,7 @@ namespace DTC.New.UI.Aircrafts.F15E.Systems
             chkSmartWeapons = new CheckBox();
             chkRouteB = new CheckBox();
             chkRouteC = new CheckBox();
+            chkKneeboard = new CheckBox();
             SuspendLayout();
             // 
             // chkRouteA
@@ -49,7 +50,7 @@ namespace DTC.New.UI.Aircrafts.F15E.Systems
             chkRouteA.Checked = true;
             chkRouteA.CheckState = CheckState.Checked;
             chkRouteA.Font = new Font("Microsoft Sans Serif", 10F, FontStyle.Regular, GraphicsUnit.Point);
-            chkRouteA.Location = new Point(16, 18);
+            chkRouteA.Location = new Point(15, 15);
             chkRouteA.Margin = new Padding(4);
             chkRouteA.Name = "chkRouteA";
             chkRouteA.Size = new Size(102, 25);
@@ -70,11 +71,11 @@ namespace DTC.New.UI.Aircrafts.F15E.Systems
             chkDisplays.Checked = true;
             chkDisplays.CheckState = CheckState.Checked;
             chkDisplays.Font = new Font("Microsoft Sans Serif", 10F, FontStyle.Regular, GraphicsUnit.Point);
-            chkDisplays.Location = new Point(16, 183);
+            chkDisplays.Location = new Point(15, 180);
             chkDisplays.Margin = new Padding(4);
             chkDisplays.Name = "chkDisplays";
             chkDisplays.Size = new Size(234, 25);
-            chkDisplays.TabIndex = 3;
+            chkDisplays.TabIndex = 5;
             chkDisplays.Text = "Displays";
             chkDisplays.UseVisualStyleBackColor = true;
             chkDisplays.CheckedChanged += chkDisplays_CheckedChanged;
@@ -84,11 +85,11 @@ namespace DTC.New.UI.Aircrafts.F15E.Systems
             chkMisc.Checked = true;
             chkMisc.CheckState = CheckState.Checked;
             chkMisc.Font = new Font("Microsoft Sans Serif", 10F, FontStyle.Regular, GraphicsUnit.Point);
-            chkMisc.Location = new Point(16, 270);
+            chkMisc.Location = new Point(15, 267);
             chkMisc.Margin = new Padding(4);
             chkMisc.Name = "chkMisc";
             chkMisc.Size = new Size(234, 25);
-            chkMisc.TabIndex = 6;
+            chkMisc.TabIndex = 8;
             chkMisc.Text = "Misc";
             chkMisc.UseVisualStyleBackColor = true;
             chkMisc.CheckedChanged += chkMisc_CheckedChanged;
@@ -97,10 +98,10 @@ namespace DTC.New.UI.Aircrafts.F15E.Systems
             // 
             radDisplaysAuto.AutoSize = true;
             radDisplaysAuto.Font = new Font("Microsoft Sans Serif", 10F, FontStyle.Regular, GraphicsUnit.Point);
-            radDisplaysAuto.Location = new Point(39, 215);
+            radDisplaysAuto.Location = new Point(38, 212);
             radDisplaysAuto.Name = "radDisplaysAuto";
             radDisplaysAuto.Size = new Size(97, 21);
-            radDisplaysAuto.TabIndex = 4;
+            radDisplaysAuto.TabIndex = 6;
             radDisplaysAuto.TabStop = true;
             radDisplaysAuto.Text = "Auto-select";
             radDisplaysAuto.UseVisualStyleBackColor = true;
@@ -110,10 +111,10 @@ namespace DTC.New.UI.Aircrafts.F15E.Systems
             // 
             radDisplaysPilotAndWSO.AutoSize = true;
             radDisplaysPilotAndWSO.Font = new Font("Microsoft Sans Serif", 10F, FontStyle.Regular, GraphicsUnit.Point);
-            radDisplaysPilotAndWSO.Location = new Point(39, 242);
+            radDisplaysPilotAndWSO.Location = new Point(38, 239);
             radDisplaysPilotAndWSO.Name = "radDisplaysPilotAndWSO";
             radDisplaysPilotAndWSO.Size = new Size(118, 21);
-            radDisplaysPilotAndWSO.TabIndex = 5;
+            radDisplaysPilotAndWSO.TabIndex = 7;
             radDisplaysPilotAndWSO.TabStop = true;
             radDisplaysPilotAndWSO.Text = "Pilot and WSO";
             radDisplaysPilotAndWSO.UseVisualStyleBackColor = true;
@@ -124,11 +125,11 @@ namespace DTC.New.UI.Aircrafts.F15E.Systems
             chkRadios.Checked = true;
             chkRadios.CheckState = CheckState.Checked;
             chkRadios.Font = new Font("Microsoft Sans Serif", 10F, FontStyle.Regular, GraphicsUnit.Point);
-            chkRadios.Location = new Point(16, 117);
+            chkRadios.Location = new Point(15, 114);
             chkRadios.Margin = new Padding(4);
             chkRadios.Name = "chkRadios";
             chkRadios.Size = new Size(234, 25);
-            chkRadios.TabIndex = 1;
+            chkRadios.TabIndex = 3;
             chkRadios.Text = "Radios";
             chkRadios.UseVisualStyleBackColor = true;
             chkRadios.CheckedChanged += chkRadios_CheckedChanged;
@@ -138,11 +139,11 @@ namespace DTC.New.UI.Aircrafts.F15E.Systems
             chkSmartWeapons.Checked = true;
             chkSmartWeapons.CheckState = CheckState.Checked;
             chkSmartWeapons.Font = new Font("Microsoft Sans Serif", 10F, FontStyle.Regular, GraphicsUnit.Point);
-            chkSmartWeapons.Location = new Point(16, 150);
+            chkSmartWeapons.Location = new Point(15, 147);
             chkSmartWeapons.Margin = new Padding(4);
             chkSmartWeapons.Name = "chkSmartWeapons";
             chkSmartWeapons.Size = new Size(234, 25);
-            chkSmartWeapons.TabIndex = 2;
+            chkSmartWeapons.TabIndex = 4;
             chkSmartWeapons.Text = "Smart Weapons";
             chkSmartWeapons.UseVisualStyleBackColor = true;
             // 
@@ -151,11 +152,11 @@ namespace DTC.New.UI.Aircrafts.F15E.Systems
             chkRouteB.Checked = true;
             chkRouteB.CheckState = CheckState.Checked;
             chkRouteB.Font = new Font("Microsoft Sans Serif", 10F, FontStyle.Regular, GraphicsUnit.Point);
-            chkRouteB.Location = new Point(16, 51);
+            chkRouteB.Location = new Point(15, 48);
             chkRouteB.Margin = new Padding(4);
             chkRouteB.Name = "chkRouteB";
             chkRouteB.Size = new Size(102, 25);
-            chkRouteB.TabIndex = 0;
+            chkRouteB.TabIndex = 1;
             chkRouteB.Text = "Route B";
             chkRouteB.UseVisualStyleBackColor = true;
             // 
@@ -164,13 +165,27 @@ namespace DTC.New.UI.Aircrafts.F15E.Systems
             chkRouteC.Checked = true;
             chkRouteC.CheckState = CheckState.Checked;
             chkRouteC.Font = new Font("Microsoft Sans Serif", 10F, FontStyle.Regular, GraphicsUnit.Point);
-            chkRouteC.Location = new Point(16, 84);
+            chkRouteC.Location = new Point(15, 81);
             chkRouteC.Margin = new Padding(4);
             chkRouteC.Name = "chkRouteC";
             chkRouteC.Size = new Size(102, 25);
-            chkRouteC.TabIndex = 0;
+            chkRouteC.TabIndex = 2;
             chkRouteC.Text = "Route C";
             chkRouteC.UseVisualStyleBackColor = true;
+            // 
+            // chkKneeboard
+            // 
+            chkKneeboard.Checked = true;
+            chkKneeboard.CheckState = CheckState.Checked;
+            chkKneeboard.Font = new Font("Microsoft Sans Serif", 10F, FontStyle.Regular, GraphicsUnit.Point);
+            chkKneeboard.Location = new Point(15, 300);
+            chkKneeboard.Margin = new Padding(4);
+            chkKneeboard.Name = "chkKneeboard";
+            chkKneeboard.Size = new Size(234, 25);
+            chkKneeboard.TabIndex = 9;
+            chkKneeboard.Text = "Kneeboard";
+            chkKneeboard.UseVisualStyleBackColor = true;
+            chkKneeboard.CheckedChanged += chkMisc_CheckedChanged;
             // 
             // UploadPage
             // 
@@ -181,6 +196,7 @@ namespace DTC.New.UI.Aircrafts.F15E.Systems
             Controls.Add(radDisplaysAuto);
             Controls.Add(chkRadios);
             Controls.Add(chkSmartWeapons);
+            Controls.Add(chkKneeboard);
             Controls.Add(chkMisc);
             Controls.Add(chkDisplays);
             Controls.Add(chkRouteC);
@@ -205,5 +221,6 @@ namespace DTC.New.UI.Aircrafts.F15E.Systems
         private CheckBox chkSmartWeapons;
         private CheckBox chkRouteB;
         private CheckBox chkRouteC;
+        private CheckBox chkKneeboard;
     }
 }

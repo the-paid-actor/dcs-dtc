@@ -6,6 +6,7 @@ using DTC.New.UI.Base.Pages;
 using DTC.New.UI.Base.Systems;
 using DTC.New.Uploader.Aircrafts.F16;
 using DTC.Utilities;
+using DTC.Utilities.Network;
 
 namespace DTC.New.UI.Aircrafts.F16;
 
@@ -21,7 +22,7 @@ public class F16Page : AircraftPage
 
     public F16Configuration Configuration
     {
-        get { return (F16Configuration)preset.Configuration;}
+        get { return (F16Configuration)preset.Configuration; }
     }
 
     protected override AircraftSystemPage[] GetPages(IConfiguration configuration)
@@ -67,6 +68,9 @@ public class F16Page : AircraftPage
     {
         var upload = new F16Uploader((F16Aircraft)this.aircraft, cfg);
         upload.Execute();
+
+        KneeboardSender.SendInfo(preset.Name, this.GetKneeboardInfoText());
+        KneeboardSender.SendNotes(this.GetKneeboardNotesText());
     }
 
     protected override void WaypointCaptureReceived(WaypointCaptureData data)
@@ -146,5 +150,10 @@ public class F16Page : AircraftPage
         }
 
         return cfgResult;
+    }
+
+    public override string GetKneeboardInfoText()
+    {
+        return F16Kneeboard.GetKneeboardText(this.Configuration);
     }
 }

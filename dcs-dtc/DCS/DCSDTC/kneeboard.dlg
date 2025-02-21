@@ -1,0 +1,258 @@
+dialog = {
+    ["type"] = "Window",
+    ["params"] = {
+        ["bounds"] = {
+            [1] = {
+                ["x"] = 0,
+                ["y"] = 0,
+                ["w"] = 660,
+                ["h"] = 1000
+            }
+        },
+        ["draggable"] = true,
+        ["enabled"] = true,
+        ["hasCursor"] = false,
+        ["lockFlow"] = false,
+        ["modal"] = false,
+        ["offscreen"] = false,
+        ["resizable"] = false,
+        ["zOrder"] = 111,
+        ["text"] = "DTC Kneeboard"
+    },
+    ["skin"] = {
+        ["params"] = {
+            ["headerHeight"] = 20,
+            ["name"] = "windowSkin"
+        },
+        ["skins"] = {
+            ["header"] = {
+                ["skinData"] = {
+                    ["params"] = {
+                        ["hasCloseButton"] = false,
+                        ["insets"] = {
+                            ["bottom"] = 2,
+                            ["left"] = 2,
+                            ["right"] = 2,
+                            ["top"] = 2
+                        }
+                    },
+                    ["states"] = {
+                        ["released"] = {
+                            [1] = {
+                                ["bkg"] = {
+                                    ["center_center"] = "0x00000066"
+                                },
+                                ["text"] = {
+                                    ["color"] = "0xffffffaa"
+                                }
+                            },
+                            [2] = {
+                                ["bkg"] = {
+                                    ["center_center"] = "0x00000066"
+                                },
+                                ["text"] = {
+                                    ["color"] = "0xffffffaa"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        ["states"] = {
+            ["released"] = {
+                [1] = {
+                    ["bkg"] = {
+                        ["center_center"] = "0xcccccc00"
+                    }
+                }
+            }
+        }
+    },
+    ["children"] = {
+
+        ["btnInfo"] = {
+            ["type"] = "Button",
+            ["params"] = {
+                ["bounds"] = {
+                    ["x"] = 0,
+                    ["y"] = 0,
+                    ["w"] = 80,
+                    ["h"] = 30
+                },
+                ["text"] = "Info",
+            },
+            ["skin"] = {
+                ["params"] = {
+                    ["name"] = "buttonSkinAwacs"
+                }
+            },
+        },
+
+        ["btnNotes"] = {
+            ["type"] = "Button",
+            ["params"] = {
+                ["bounds"] = {
+                    ["x"] = 80,
+                    ["y"] = 0,
+                    ["w"] = 80,
+                    ["h"] = 30
+                },
+                ["text"] = "Notes",
+            },
+            ["skin"] = {
+                ["params"] = {
+                    ["name"] = "buttonSkinAwacs"
+                }
+            },
+        },
+
+        ["lblPresetName"] = {
+            ["type"] = "Static",
+            ["params"] = {
+                ["bounds"] = {
+                    ["x"] = 170,
+                    ["y"] = 0,
+                    ["w"] = 450,
+                    ["h"] = 30
+                },
+            },
+            ["skin"] = {
+                ["params"] = {
+                    ["name"] = "staticSkin",
+                },
+                ["states"] = {
+                    ["released"] = {
+                        [1] = {
+                            ["text"] = {
+                                ["color"] = "0xffffffff",
+                                ["font"] = "DejaVuLGCSansCondensed.ttf",
+                                ["fontSize"] = 14,
+                                ["horzAlign"] = {
+                                    ["type"] = "right",
+                                },
+                                ["vertAlign"] = {
+                                    ["offset"] = 0,
+                                    ["type"] = "middle",
+                                },
+                            },
+                        },
+                    },
+                },
+            }
+        },
+
+        ["btnClose"] = {
+            ["type"] = "Button",
+            ["params"] = {
+                ["bounds"] = {
+                    ["x"] = 630,
+                    ["y"] = 0,
+                    ["w"] = 30,
+                    ["h"] = 30
+                },
+                ["text"] = "X",
+            },
+            ["skin"] = {
+                ["params"] = {
+                    ["name"] = "buttonSkinAwacs"
+                }
+            },
+        },
+
+        ["lblTitleBackground"] = {
+            ["type"] = "Panel",
+            ["params"] = {
+                ["zindex"] = -1,
+                ["bounds"] = {
+                    ["x"] = 0,
+                    ["y"] = 0,
+                    ["w"] = 660,
+                    ["h"] = 30
+                },
+            },
+            ["skin"] = {
+                ["params"] = {
+                    ["name"] = "panelSkin",
+                },
+                ["states"] = {
+                    ["released"] = {
+                        [1] = {
+                            ["bkg"] = {
+                                ["center_center"] = "0x000000ff",
+                            },
+                        },
+                    },
+                },
+            }
+        },
+
+        ["textbox"] = {
+            ["type"] = "EditBox",
+            ["params"] = {
+                ["bounds"] = {
+                    ["x"] = 0,
+                    ["y"] = 30,
+                    ["w"] = 660,
+                    ["h"] = 920
+                },
+                ["multiline"] = true,
+            }
+        },
+
+        ["btnLight"] = {
+            ["type"] = "Button",
+            ["params"] = {
+                ["bounds"] = {
+                    ["x"] = 480,
+                    ["y"] = 950,
+                    ["w"] = 60,
+                    ["h"] = 30
+                },
+                ["text"] = "Light",
+            },
+            ["skin"] = {
+                ["params"] = {
+                    ["name"] = "buttonSkinAwacs"
+                }
+            },
+        },
+
+        ["btnDark"] = {
+            ["type"] = "Button",
+            ["params"] = {
+                ["bounds"] = {
+                    ["x"] = 540,
+                    ["y"] = 950,
+                    ["w"] = 60,
+                    ["h"] = 30
+                },
+                ["text"] = "Dark",
+            },
+            ["skin"] = {
+                ["params"] = {
+                    ["name"] = "buttonSkinAwacs"
+                }
+            },
+        },
+
+        ["btnAuto"] = {
+            ["type"] = "Button",
+            ["params"] = {
+                ["bounds"] = {
+                    ["x"] = 600,
+                    ["y"] = 950,
+                    ["w"] = 60,
+                    ["h"] = 30
+                },
+                ["text"] = "Auto",
+            },
+            ["skin"] = {
+                ["params"] = {
+                    ["name"] = "buttonSkinAwacs"
+                }
+            },
+        },
+
+    }
+}

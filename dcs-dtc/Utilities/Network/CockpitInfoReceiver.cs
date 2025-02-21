@@ -1,8 +1,8 @@
 ﻿using Newtonsoft.Json;
 
-namespace DTC.Utilities;
+namespace DTC.Utilities.Network;
 
-public class DataReceiver
+public class CockpitInfoReceiver
 {
     public class Data
     {
@@ -19,11 +19,12 @@ public class DataReceiver
         public string toggleDTC;
     }
 
+    private static UDPSocket socket = new UDPSocket();
     public static event Action<Data> DataReceived;
 
     public static void Start()
     {
-        UDPSocket.StartReceiving("127.0.0.1", Settings.UDPReceivePort, (string s) =>
+        socket.StartReceiving("127.0.0.1", Settings.UDPReceivePort, (string s) =>
         {
             var d = JsonConvert.DeserializeObject<Data>(s);
             DataReceived?.Invoke(d);
@@ -32,6 +33,6 @@ public class DataReceiver
 
     public static void Stop()
     {
-        UDPSocket.Stop();
+        socket.Stop();
     }
 }

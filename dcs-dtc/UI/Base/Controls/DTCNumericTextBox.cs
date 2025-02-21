@@ -18,7 +18,7 @@ namespace DTC.UI.Base.Controls
 
         public event TextBoxChangedCallback TextBoxChanged;
 
-        private TextBox textBox;
+        private System.Windows.Forms.TextBox textBox;
         private DTCLabel label;
         private UnitEnum unit;
         private decimal? currentValue;
@@ -228,7 +228,7 @@ namespace DTC.UI.Base.Controls
 
         private void InitializeComponent()
         {
-            this.textBox = new TextBox();
+            this.textBox = new System.Windows.Forms.TextBox();
             this.label = new DTCLabel();
             this.SuspendLayout();
 

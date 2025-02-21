@@ -19,8 +19,7 @@ local DTCCapturePP = dofile(lfs.writedir() .. 'Scripts/DCSDTC/wptCapturePP.lua')
 local DTCCaptureF15E = DTCLoadFile('Scripts/DCSDTC/wptCaptureF15E.lua')
 local DTCCaptureAH64D = DTCLoadFile('Scripts/DCSDTC/wptCaptureAH64D.lua')
 local DTCUploadInProgressDlg = DTCLoadFile('Scripts/DCSDTC/uploadInProgress.lua')
-
-local buttonSkin = DTCLoadFile('Scripts/DCSDTC/buttonSkin.lua')
+local DTCKneeboard = DTCLoadFile('Scripts/DCSDTC/kneeboard.lua')
 
 local DTCHook =
 {
@@ -42,6 +41,7 @@ local DTCHook =
     captureF15EDialog = nil,
     captureAH64DDialog = nil,
     uploadInProgressDialog = nil,
+    kneeboardDialog = nil,
 
     currentAircraft = null
 }
@@ -222,6 +222,10 @@ function DTCHook:formatCoord(lat, lon, el)
     }
 end
 
+function DTCHook:updateKneeboardNotes(presetName, data)
+    self:sendData("preset_name:"..presetName.."|kneeboard_notes:" .. data)
+end
+
 function DTCHook:sendData(data)
     if self.udpSocketSend == nil then
         self.udpSocketSend = socket.udp()
@@ -247,10 +251,23 @@ function DTCHook:receiveData()
     if err2 ~= nil and err2 ~= "timeout" then
         self:log("Error 2: " .. err)
     end
-    if data == "showuploadinprogress" then
-        self:showUploadInProgress()
-    elseif data == "hideuploadinprogress" then
-        self:hideUploadInProgress()
+    if data ~= nil then
+        if data == "showuploadinprogress" then
+            self:showUploadInProgress()
+        elseif data == "hideuploadinprogress" then
+            self:hideUploadInProgress()
+        else
+            local kbpresetname = "preset_name:"
+            local kbinfoprefix = "kneeboard_info:"
+            local kbnotesprefix = "kneeboard_notes:"
+            if string.sub(data, 1, string.len(kbpresetname)) == kbpresetname then
+                self.kneeboardDialog:setPresetName(string.sub(data, string.len(kbpresetname)+1))
+            elseif string.sub(data, 1, string.len(kbinfoprefix)) == kbinfoprefix then
+                self.kneeboardDialog:setInfoText(string.sub(data, string.len(kbinfoprefix)+1))
+            elseif string.sub(data, 1, string.len(kbnotesprefix)) == kbnotesprefix then
+                self.kneeboardDialog:setNotesText(string.sub(data, string.len(kbnotesprefix)+1))
+            end
+        end
     end
 end
 
@@ -311,11 +328,11 @@ end
 -- DIALOG
 -- ######
 
-function DTCHook:getButtonSkin()
-    return buttonSkin
+function DTCHook:getSkin(skin)
+    return DTCLoadFile('Scripts/DCSDTC/Skins/'..skin..'.lua')
 end
 
-function DTCHook:createCaptureDialog()
+function DTCHook:createDialogs()
     self.captureDialog = DTCCaptureDialog
     self.captureDialog:init(self)
 
@@ -328,16 +345,46 @@ function DTCHook:createCaptureDialog()
     self.captureAH64DDialog = DTCCaptureAH64D
     self.captureAH64DDialog:init(self)
 
+    self.kneeboardDialog = DTCKneeboard
+    self.kneeboardDialog:init(self)
+
     self.uploadInProgressDialog = DTCUploadInProgressDlg
     self.uploadInProgressDialog:init(self)
 end
 
-function DTCHook:showHide()
+function DTCHook:destroyDialogs()
+    if self.captureDialog then
+        self.captureDialog:destroy()
+        self.captureDialog = nil
+    end
+    if self.capturePPDialog then
+        self.capturePPDialog:destroy()
+        self.capturePPDialog = nil
+    end
+    if self.captureF15EDialog then
+        self.captureF15EDialog:destroy()
+        self.captureF15EDialog = nil
+    end
+    if self.captureAH64DDialog then
+        self.captureAH64DDialog:destroy()
+        self.captureAH64DDialog = nil
+    end
+    if self.kneeboardDialog then
+        self.kneeboardDialog:destroy()
+        self.kneeboardDialog = nil
+    end
+    if self.uploadInProgressDialog then
+        self.uploadInProgressDialog:destroy()
+        self.uploadInProgressDialog = nil
+    end
+end
+
+function DTCHook:showHideCapture()
     if self.uploadInProgressDialog.visible then
         return
     end
     if self.captureDialog.visible then
-        self:hide()
+        self:hideCapture()
     else
         if self.inMission == false then
             return
@@ -346,7 +393,7 @@ function DTCHook:showHide()
     end
 end
 
-function DTCHook:hide()
+function DTCHook:hideCapture()
     self.captureDialog:hide()
 
     if not self.captureDialog.visible then
@@ -354,6 +401,14 @@ function DTCHook:hide()
         self.captureF15EDialog:hide()
         self.captureAH64DDialog:hide()
     end
+end
+
+function DTCHook:showKneeboard()
+    self.kneeboardDialog:show()
+end
+
+function DTCHook:hideKneeboard()
+    self.kneeboardDialog:hide()
 end
 
 function DTCHook:addButton()
@@ -437,7 +492,10 @@ function DTCHook:checkAircraftTypeChanged()
     if self.currentAircraft ~= acType then
         self.currentAircraft = acType
         if self.captureDialog ~= nil then
-            self:hide()
+            self:hideCapture()
+        end
+        if self.kneeboardDialog ~= nil then
+            self:hideKneeboard()
         end
     end
 end
@@ -459,7 +517,7 @@ function DTCHook:hideUploadInProgress()
 end
 
 function DTCHook:onMissionLoadEnd()
-    self:createCaptureDialog()
+    self:createDialogs()
     self.inMission = true;
 end
 
@@ -480,6 +538,7 @@ function DTCHook:onSimulationStop()
     self.captureF15EDialog:hide()
     self.captureAH64DDialog:hide()
     self.uploadInProgressDialog:hide()
+    self.kneeboardDialog:hide()
     self.inMission = false;
 end
 
@@ -491,26 +550,8 @@ function DTCHook:needReload()
 end
 
 function DTCHook:dispose()
-    if self.captureDialog then
-        self.captureDialog:destroy()
-        self.captureDialog = nil
-    end
-    if self.capturePPDialog then
-        self.capturePPDialog:destroy()
-        self.capturePPDialog = nil
-    end
-    if self.captureF15EDialog then
-        self.captureF15EDialog:destroy()
-        self.captureF15EDialog = nil
-    end
-    if self.captureAH64DDialog then
-        self.captureAH64DDialog:destroy()
-        self.captureAH64DDialog = nil
-    end
-    if self.uploadInProgressDialog then
-        self.uploadInProgressDialog:destroy()
-        self.uploadInProgressDialog = nil
-    end
+    self:destroyDialogs()
+
     if self.udpSocketSend then
         self.udpSocketSend:close()
         self.udpSocketSend = nil

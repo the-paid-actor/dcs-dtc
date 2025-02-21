@@ -10,4 +10,5 @@ public class UploadSystem
     public bool HMD { get; set; }
     public bool FCR { get; set; }
     public bool Misc { get; set; }
+    public bool Kneeboard { get; set; }
 }

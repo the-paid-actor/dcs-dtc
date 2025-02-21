@@ -40,6 +40,7 @@ namespace DTC.New.UI.Aircrafts.F16.Systems
             chkMisc = new CheckBox();
             chkHARMHTS = new CheckBox();
             chkDatalink = new CheckBox();
+            chkKneeboard = new CheckBox();
             SuspendLayout();
             // 
             // chkMFDs
@@ -51,7 +52,7 @@ namespace DTC.New.UI.Aircrafts.F16.Systems
             chkMFDs.Margin = new Padding(4);
             chkMFDs.Name = "chkMFDs";
             chkMFDs.Size = new Size(323, 25);
-            chkMFDs.TabIndex = 9;
+            chkMFDs.TabIndex = 3;
             chkMFDs.Text = "MFDs";
             chkMFDs.UseVisualStyleBackColor = true;
             // 
@@ -64,7 +65,7 @@ namespace DTC.New.UI.Aircrafts.F16.Systems
             chkRadios.Margin = new Padding(4);
             chkRadios.Name = "chkRadios";
             chkRadios.Size = new Size(78, 25);
-            chkRadios.TabIndex = 7;
+            chkRadios.TabIndex = 2;
             chkRadios.Text = "Radios";
             chkRadios.UseVisualStyleBackColor = true;
             // 
@@ -77,7 +78,7 @@ namespace DTC.New.UI.Aircrafts.F16.Systems
             chkCMS.Margin = new Padding(4);
             chkCMS.Name = "chkCMS";
             chkCMS.Size = new Size(63, 25);
-            chkCMS.TabIndex = 6;
+            chkCMS.TabIndex = 1;
             chkCMS.Text = "CMS";
             chkCMS.UseVisualStyleBackColor = true;
             // 
@@ -111,7 +112,7 @@ namespace DTC.New.UI.Aircrafts.F16.Systems
             chkMisc.Margin = new Padding(4);
             chkMisc.Name = "chkMisc";
             chkMisc.Size = new Size(167, 25);
-            chkMisc.TabIndex = 8;
+            chkMisc.TabIndex = 6;
             chkMisc.Text = "Misc";
             chkMisc.UseVisualStyleBackColor = true;
             // 
@@ -124,7 +125,7 @@ namespace DTC.New.UI.Aircrafts.F16.Systems
             chkHARMHTS.Margin = new Padding(4);
             chkHARMHTS.Name = "chkHARMHTS";
             chkHARMHTS.Size = new Size(323, 25);
-            chkHARMHTS.TabIndex = 10;
+            chkHARMHTS.TabIndex = 4;
             chkHARMHTS.Text = "HARM / HTS";
             chkHARMHTS.UseVisualStyleBackColor = true;
             // 
@@ -137,9 +138,22 @@ namespace DTC.New.UI.Aircrafts.F16.Systems
             chkDatalink.Margin = new Padding(4);
             chkDatalink.Name = "chkDatalink";
             chkDatalink.Size = new Size(323, 25);
-            chkDatalink.TabIndex = 32;
+            chkDatalink.TabIndex = 5;
             chkDatalink.Text = "Datalink";
             chkDatalink.UseVisualStyleBackColor = true;
+            // 
+            // chkKneeboard
+            // 
+            chkKneeboard.Checked = true;
+            chkKneeboard.CheckState = CheckState.Checked;
+            chkKneeboard.Font = new Font("Microsoft Sans Serif", 10F, FontStyle.Regular, GraphicsUnit.Point);
+            chkKneeboard.Location = new Point(15, 246);
+            chkKneeboard.Margin = new Padding(4);
+            chkKneeboard.Name = "chkKneeboard";
+            chkKneeboard.Size = new Size(167, 25);
+            chkKneeboard.TabIndex = 7;
+            chkKneeboard.Text = "Kneeboard";
+            chkKneeboard.UseVisualStyleBackColor = true;
             // 
             // UploadPage
             // 
@@ -148,6 +162,7 @@ namespace DTC.New.UI.Aircrafts.F16.Systems
             BackColor = Color.PaleGoldenrod;
             Controls.Add(chkDatalink);
             Controls.Add(chkHARMHTS);
+            Controls.Add(chkKneeboard);
             Controls.Add(chkMisc);
             Controls.Add(chkMFDs);
             Controls.Add(chkRadios);
@@ -170,5 +185,6 @@ namespace DTC.New.UI.Aircrafts.F16.Systems
         private CheckBox chkMisc;
         private CheckBox chkHARMHTS;
         private CheckBox chkDatalink;
+        private CheckBox chkKneeboard;
     }
 }

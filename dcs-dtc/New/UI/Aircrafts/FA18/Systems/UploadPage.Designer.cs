@@ -39,6 +39,7 @@ namespace DTC.New.UI.Aircrafts.FA18.Systems
             cbCMS = new CheckBox();
             chkHMD = new CheckBox();
             chkFCR = new CheckBox();
+            chkKneeboard = new CheckBox();
             SuspendLayout();
             // 
             // chkRadios
@@ -50,7 +51,7 @@ namespace DTC.New.UI.Aircrafts.FA18.Systems
             chkRadios.Margin = new Padding(4);
             chkRadios.Name = "chkRadios";
             chkRadios.Size = new Size(78, 25);
-            chkRadios.TabIndex = 5;
+            chkRadios.TabIndex = 3;
             chkRadios.Text = "Radios";
             chkRadios.UseVisualStyleBackColor = true;
             chkRadios.CheckedChanged += chkRadios_CheckedChanged;
@@ -86,7 +87,7 @@ namespace DTC.New.UI.Aircrafts.FA18.Systems
             chkMisc.Margin = new Padding(4);
             chkMisc.Name = "chkMisc";
             chkMisc.Size = new Size(167, 25);
-            chkMisc.TabIndex = 9;
+            chkMisc.TabIndex = 7;
             chkMisc.Text = "Misc";
             chkMisc.UseVisualStyleBackColor = true;
             chkMisc.CheckedChanged += chkMisc_CheckedChanged;
@@ -100,7 +101,7 @@ namespace DTC.New.UI.Aircrafts.FA18.Systems
             cbSequences.Margin = new Padding(4);
             cbSequences.Name = "cbSequences";
             cbSequences.Size = new Size(102, 25);
-            cbSequences.TabIndex = 3;
+            cbSequences.TabIndex = 1;
             cbSequences.Text = "Sequences";
             cbSequences.UseVisualStyleBackColor = true;
             cbSequences.CheckedChanged += cbSequences_CheckedChanged;
@@ -114,7 +115,7 @@ namespace DTC.New.UI.Aircrafts.FA18.Systems
             cbPrePlanned.Margin = new Padding(4);
             cbPrePlanned.Name = "cbPrePlanned";
             cbPrePlanned.Size = new Size(201, 25);
-            cbPrePlanned.TabIndex = 7;
+            cbPrePlanned.TabIndex = 5;
             cbPrePlanned.Text = "Pre Planned Coordinates";
             cbPrePlanned.UseVisualStyleBackColor = true;
             cbPrePlanned.CheckedChanged += cbPrePlanned_CheckedChanged;
@@ -128,7 +129,7 @@ namespace DTC.New.UI.Aircrafts.FA18.Systems
             cbCMS.Margin = new Padding(4);
             cbCMS.Name = "cbCMS";
             cbCMS.Size = new Size(201, 25);
-            cbCMS.TabIndex = 4;
+            cbCMS.TabIndex = 2;
             cbCMS.Text = "Countermeasure Programs";
             cbCMS.UseVisualStyleBackColor = true;
             cbCMS.CheckedChanged += cbCMS_CheckedChanged;
@@ -142,7 +143,7 @@ namespace DTC.New.UI.Aircrafts.FA18.Systems
             chkHMD.Margin = new Padding(4);
             chkHMD.Name = "chkHMD";
             chkHMD.Size = new Size(167, 25);
-            chkHMD.TabIndex = 8;
+            chkHMD.TabIndex = 6;
             chkHMD.Text = "HMD";
             chkHMD.UseVisualStyleBackColor = true;
             // 
@@ -155,9 +156,23 @@ namespace DTC.New.UI.Aircrafts.FA18.Systems
             chkFCR.Margin = new Padding(4);
             chkFCR.Name = "chkFCR";
             chkFCR.Size = new Size(167, 25);
-            chkFCR.TabIndex = 6;
+            chkFCR.TabIndex = 4;
             chkFCR.Text = "FCR";
             chkFCR.UseVisualStyleBackColor = true;
+            // 
+            // chkKneeboard
+            // 
+            chkKneeboard.Checked = true;
+            chkKneeboard.CheckState = CheckState.Checked;
+            chkKneeboard.Font = new Font("Microsoft Sans Serif", 10F, FontStyle.Regular, GraphicsUnit.Point);
+            chkKneeboard.Location = new Point(15, 279);
+            chkKneeboard.Margin = new Padding(4);
+            chkKneeboard.Name = "chkKneeboard";
+            chkKneeboard.Size = new Size(167, 25);
+            chkKneeboard.TabIndex = 8;
+            chkKneeboard.Text = "Kneeboard";
+            chkKneeboard.UseVisualStyleBackColor = true;
+            chkKneeboard.CheckedChanged += chkMisc_CheckedChanged;
             // 
             // UploadPage
             // 
@@ -169,6 +184,7 @@ namespace DTC.New.UI.Aircrafts.FA18.Systems
             Controls.Add(cbSequences);
             Controls.Add(chkFCR);
             Controls.Add(chkHMD);
+            Controls.Add(chkKneeboard);
             Controls.Add(chkMisc);
             Controls.Add(chkRadios);
             Controls.Add(chkWaypoints);
@@ -190,5 +206,6 @@ namespace DTC.New.UI.Aircrafts.FA18.Systems
         private CheckBox cbCMS;
         private CheckBox chkHMD;
         private CheckBox chkFCR;
+        private CheckBox chkKneeboard;
     }
 }

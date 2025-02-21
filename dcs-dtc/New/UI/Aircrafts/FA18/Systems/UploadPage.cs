@@ -1,36 +1,44 @@
 ﻿using DTC.New.Presets.V2.Aircrafts.FA18.Systems;
 using DTC.New.UI.Base.Systems;
+using DTC.New.Uploader.Base;
 
 namespace DTC.New.UI.Aircrafts.FA18.Systems
 {
     public partial class UploadPage : AircraftSystemPage
     {
-        private readonly UploadSystem _cfg;
+        private readonly UploadSystem upload;
 
         public UploadPage(FA18Page parent) : base(parent, nameof(parent.Configuration.Upload))
         {
             InitializeComponent();
 
-            _cfg = parent.Configuration.Upload;
+            upload = parent.Configuration.Upload;
 
-            chkWaypoints.Checked = _cfg.Waypoints;
-            cbSequences.Checked = _cfg.Sequences;
-            cbPrePlanned.Checked = _cfg.PrePlanned;
-            cbCMS.Checked = _cfg.CMS;
-            chkRadios.Checked = _cfg.Radios;
-            chkHMD.Checked = _cfg.HMD;
-            chkMisc.Checked = _cfg.Misc;
-            chkFCR.Checked = _cfg.FCR;
+            chkWaypoints.Checked = upload.Waypoints;
+            cbSequences.Checked = upload.Sequences;
+            cbPrePlanned.Checked = upload.PrePlanned;
+            cbCMS.Checked = upload.CMS;
+            chkRadios.Checked = upload.Radios;
+            chkHMD.Checked = upload.HMD;
+            chkMisc.Checked = upload.Misc;
+            chkFCR.Checked = upload.FCR;
 
             chkHMD.CheckedChanged += (s, e) =>
             {
-                _cfg.HMD = chkHMD.Checked;
+                upload.HMD = chkHMD.Checked;
                 this.SavePreset();
             };
 
             chkFCR.CheckedChanged += (s, e) =>
             {
-                _cfg.FCR = chkFCR.Checked;
+                upload.FCR = chkFCR.Checked;
+                this.SavePreset();
+            };
+
+            chkKneeboard.Checked = upload.Kneeboard;
+            chkKneeboard.CheckedChanged += (s, e) =>
+            {
+                upload.Kneeboard = chkKneeboard.Checked;
                 this.SavePreset();
             };
         }
@@ -42,37 +50,37 @@ namespace DTC.New.UI.Aircrafts.FA18.Systems
 
         private void chkWaypoints_CheckedChanged(object sender, EventArgs e)
         {
-            _cfg.Waypoints = chkWaypoints.Checked;
+            upload.Waypoints = chkWaypoints.Checked;
             this.SavePreset();
         }
 
         private void cbSequences_CheckedChanged(object sender, EventArgs e)
         {
-            _cfg.Sequences = cbSequences.Checked;
+            upload.Sequences = cbSequences.Checked;
             this.SavePreset();
         }
 
         private void cbPrePlanned_CheckedChanged(object sender, EventArgs e)
         {
-            _cfg.PrePlanned = cbPrePlanned.Checked;
+            upload.PrePlanned = cbPrePlanned.Checked;
             this.SavePreset();
         }
 
         private void chkRadios_CheckedChanged(object sender, EventArgs e)
         {
-            _cfg.Radios = chkRadios.Checked;
+            upload.Radios = chkRadios.Checked;
             this.SavePreset();
         }
 
         private void chkMisc_CheckedChanged(object sender, EventArgs e)
         {
-            _cfg.Misc = chkMisc.Checked;
+            upload.Misc = chkMisc.Checked;
             this.SavePreset();
         }
 
         private void cbCMS_CheckedChanged(object sender, EventArgs e)
         {
-            _cfg.CMS = cbCMS.Checked;
+            upload.CMS = cbCMS.Checked;
             this.SavePreset();
         }
     }

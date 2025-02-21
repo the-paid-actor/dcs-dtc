@@ -2,6 +2,7 @@
 using DTC.UI.Base;
 using DTC.UI.Base.Controls;
 using DTC.New.UI.Base.Pages;
+using DTC.Utilities.Network;
 
 namespace DTC.New.UI.Base;
 
@@ -25,8 +26,8 @@ public partial class MainForm : Form
         ResetToPage(_mainPage);
         SetTopMost(Settings.AlwaysOnTop);
 
-        DataReceiver.DataReceived += DataReceiver_DataReceived;
-        DataReceiver.Start();
+        CockpitInfoReceiver.DataReceived += DataReceiver_DataReceived;
+        CockpitInfoReceiver.Start();
 
         var position = new Point(Settings.MainWindowX, Settings.MainWindowY);
         if (!IsVisibleOnAnyScreen(new Rectangle(position, this.Size)))
@@ -62,7 +63,7 @@ public partial class MainForm : Form
         get { return true; }
     }
 
-    private void DataReceiver_DataReceived(DataReceiver.Data d)
+    private void DataReceiver_DataReceived(CockpitInfoReceiver.Data d)
     {
         if (d.toggleDTC == "1" && !toggleDTCPressed)
         {
@@ -141,7 +142,7 @@ public partial class MainForm : Form
         page.BringToFront();
         page.Focus();
 
-        btnUpload.Visible = page is AircraftPage;
+        btnKneeboard.Visible = btnUpload.Visible = page is AircraftPage;
     }
 
     private void ResetToPage(Page page)
@@ -230,6 +231,15 @@ public partial class MainForm : Form
         if (page is AircraftPage)
         {
             ((AircraftPage)page).UploadToJet(false, false);
+        }
+    }
+
+    private void btnKneeboard_Click(object sender, EventArgs e)
+    {
+        var page = _pages.Peek();
+        if (page is AircraftPage)
+        {
+            ((AircraftPage)page).ShowKneeboard();
         }
     }
 }

@@ -6,6 +6,7 @@ using DTC.New.UI.Base.Pages;
 using DTC.New.UI.Base.Systems;
 using DTC.New.Uploader.Aircrafts.AH64D;
 using DTC.Utilities;
+using DTC.Utilities.Network;
 
 namespace DTC.New.UI.Aircrafts.AH64D;
 
@@ -180,5 +181,10 @@ public class AH64DPage : AircraftPage
         }
 
         return cfgResult;
+    }
+
+    public override string GetKneeboardInfoText()
+    {
+        return AH64DKneeboard.GetKneeboardText(this.Configuration);
     }
 }

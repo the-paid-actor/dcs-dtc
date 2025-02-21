@@ -14,6 +14,8 @@ public abstract class Configuration : IConfiguration
 {
     public int Version { get; } = 2;
 
+    public string KneeboardNotes { get; set; }
+
     public abstract string GetAircraftName();
 
     public static Configuration FromJson(string s, Type type)

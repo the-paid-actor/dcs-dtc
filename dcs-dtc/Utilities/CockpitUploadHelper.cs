@@ -1,4 +1,6 @@
 ﻿
+using DTC.Utilities.Network;
+
 namespace DTC.Utilities;
 
 internal class CockpitUploadHelper : IDisposable
@@ -12,15 +14,15 @@ internal class CockpitUploadHelper : IDisposable
     public CockpitUploadHelper(Action<bool, bool> callback)
     {
         this.callback = callback;
-        DataReceiver.DataReceived += this.DataReceiver_DataReceived;
+        CockpitInfoReceiver.DataReceived += this.DataReceiver_DataReceived;
     }
 
     public void Dispose()
     {
-        DataReceiver.DataReceived -= this.DataReceiver_DataReceived;
+        CockpitInfoReceiver.DataReceived -= this.DataReceiver_DataReceived;
     }
 
-    private void DataReceiver_DataReceived(DataReceiver.Data d)
+    private void DataReceiver_DataReceived(CockpitInfoReceiver.Data d)
     {
         if (!pressed && d.upload == "1" && uploadPressedTimestamp == 0)
         {

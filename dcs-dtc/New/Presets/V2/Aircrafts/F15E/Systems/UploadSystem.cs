@@ -17,4 +17,5 @@ public class UploadSystem
     public bool Displays { get; set; }
     public bool SmartWeapons { get; set; }
     public bool Misc { get; set; }
+    public bool Kneeboard { get; set; }
 }

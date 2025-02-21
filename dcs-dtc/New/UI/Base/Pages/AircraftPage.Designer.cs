@@ -17,7 +17,7 @@ partial class AircraftPage
         {
             components.Dispose();
         }
-        DTC.Utilities.DataReceiver2.DataReceived -= DataReceiver2_DataReceived;
+        DTC.Utilities.Network.WaypointCaptureReceiver.DataReceived -= DataReceiver2_DataReceived;
         uploadHelper.Dispose();
         base.Dispose(disposing);
     }

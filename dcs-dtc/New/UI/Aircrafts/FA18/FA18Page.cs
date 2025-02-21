@@ -5,7 +5,10 @@ using DTC.New.UI.Aircrafts.FA18.Systems;
 using DTC.New.UI.Base.Pages;
 using DTC.New.UI.Base.Systems;
 using DTC.New.Uploader.Aircrafts.FA18;
+using DTC.New.Uploader.Base;
 using DTC.Utilities;
+using DTC.Utilities.Network;
+using static System.Windows.Forms.VisualStyles.VisualStyleElement.TextBox;
 
 namespace DTC.New.UI.Aircrafts.FA18;
 
@@ -27,6 +30,13 @@ public class FA18Page : AircraftPage
     protected override AircraftSystemPage[] GetPages(IConfiguration configuration)
     {
         var cfg = Configuration;
+        if (cfg.Upload == null) cfg.Upload = new();
+        if (cfg.WaypointsCapture == null) cfg.WaypointsCapture = new();
+        if (cfg.CMS == null) cfg.CMS = new();
+        if (cfg.FCR == null) cfg.FCR = new();
+        if (cfg.PrePlanned == null) cfg.PrePlanned = new();
+        if (cfg.HMD == null) cfg.HMD = new();
+        if (cfg.Misc == null) cfg.Misc = new();
 
         return new AircraftSystemPage[]
         {
@@ -140,5 +150,10 @@ public class FA18Page : AircraftPage
         }
 
         return cfgResult;
+    }
+
+    public override string GetKneeboardInfoText()
+    {
+        return FA18Kneeboard.GetKneeboardText(this.Configuration);
     }
 }

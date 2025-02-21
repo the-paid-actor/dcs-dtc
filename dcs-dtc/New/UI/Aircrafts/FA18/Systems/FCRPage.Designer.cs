@@ -87,6 +87,7 @@
             chkEnableRWR.TabIndex = 1;
             chkEnableRWR.Text = "Enable RWR";
             chkEnableRWR.UseVisualStyleBackColor = true;
+            chkEnableRWR.Visible = false;
             // 
             // chkEnableBRA
             // 

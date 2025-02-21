@@ -44,6 +44,13 @@ namespace DTC.New.UI.Aircrafts.F15E.Systems
                 upload.SmartWeapons = chkSmartWeapons.Checked;
                 this.SavePreset();
             };
+
+            chkKneeboard.Checked = upload.Kneeboard;
+            chkKneeboard.CheckedChanged += (s, e) =>
+            {
+                upload.Kneeboard = chkKneeboard.Checked;
+                this.SavePreset();
+            };
         }
 
         public override string GetPageTitle()

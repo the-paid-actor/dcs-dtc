@@ -19,8 +19,8 @@ partial class MainForm
         {
             components.Dispose();
         }
-        DTC.Utilities.DataReceiver.DataReceived -= DataReceiver_DataReceived;
-        DTC.Utilities.DataReceiver.Stop();
+        DTC.Utilities.Network.CockpitInfoReceiver.DataReceived -= DataReceiver_DataReceived;
+        DTC.Utilities.Network.CockpitInfoReceiver.Stop();
         base.Dispose(disposing);
     }
 
@@ -32,10 +32,12 @@ partial class MainForm
     /// </summary>
     private void InitializeComponent()
     {
+        components = new System.ComponentModel.Container();
         System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(MainForm));
         pnlBackground = new Panel();
         lblVersion = new Label();
         pnlContent = new Panel();
+        btnKneeboard = new PictureBox();
         btnUpload = new LinkLabel();
         pnlPages = new Panel();
         panel1 = new Panel();
@@ -46,8 +48,10 @@ partial class MainForm
         lblPin = new Label();
         label1 = new Label();
         lblClose = new Label();
+        tooltip = new ToolTip(components);
         pnlBackground.SuspendLayout();
         pnlContent.SuspendLayout();
+        ((System.ComponentModel.ISupportInitialize)btnKneeboard).BeginInit();
         pnlTop.SuspendLayout();
         SuspendLayout();
         // 
@@ -77,6 +81,7 @@ partial class MainForm
         // pnlContent
         // 
         pnlContent.BackColor = Color.Black;
+        pnlContent.Controls.Add(btnKneeboard);
         pnlContent.Controls.Add(btnUpload);
         pnlContent.Controls.Add(pnlPages);
         pnlContent.Controls.Add(panel1);
@@ -87,6 +92,20 @@ partial class MainForm
         pnlContent.Name = "pnlContent";
         pnlContent.Size = new Size(770, 450);
         pnlContent.TabIndex = 0;
+        // 
+        // btnKneeboard
+        // 
+        btnKneeboard.BackColor = Color.DarkGoldenrod;
+        btnKneeboard.BackgroundImage = Properties.Resources.clipboard;
+        btnKneeboard.BackgroundImageLayout = ImageLayout.Center;
+        btnKneeboard.Cursor = Cursors.Hand;
+        btnKneeboard.Location = new Point(654, 34);
+        btnKneeboard.Name = "btnKneeboard";
+        btnKneeboard.Size = new Size(25, 25);
+        btnKneeboard.TabIndex = 2;
+        btnKneeboard.TabStop = false;
+        tooltip.SetToolTip(btnKneeboard, "Kneeboard");
+        btnKneeboard.Click += btnKneeboard_Click;
         // 
         // btnUpload
         // 
@@ -230,6 +249,7 @@ partial class MainForm
         pnlBackground.ResumeLayout(false);
         pnlContent.ResumeLayout(false);
         pnlContent.PerformLayout();
+        ((System.ComponentModel.ISupportInitialize)btnKneeboard).EndInit();
         pnlTop.ResumeLayout(false);
         ResumeLayout(false);
     }
@@ -249,4 +269,6 @@ partial class MainForm
     private Panel panel1;
     private Panel panel2;
     private LinkLabel btnUpload;
+    private ToolTip tooltip;
+    private PictureBox btnKneeboard;
 }

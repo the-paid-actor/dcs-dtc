@@ -41,6 +41,7 @@ namespace DTC.New.UI.Aircrafts.AH64D.Systems
             chkClearWaypoints = new CheckBox();
             chkClearControlMeasures = new CheckBox();
             chkClearTargets = new CheckBox();
+            chkKneeboard = new CheckBox();
             SuspendLayout();
             // 
             // chkWaypoints
@@ -73,7 +74,7 @@ namespace DTC.New.UI.Aircrafts.AH64D.Systems
             chkControlMeasures.Margin = new Padding(4);
             chkControlMeasures.Name = "chkControlMeasures";
             chkControlMeasures.Size = new Size(154, 25);
-            chkControlMeasures.TabIndex = 0;
+            chkControlMeasures.TabIndex = 2;
             chkControlMeasures.Text = "Control Measures";
             chkControlMeasures.UseVisualStyleBackColor = true;
             // 
@@ -86,7 +87,7 @@ namespace DTC.New.UI.Aircrafts.AH64D.Systems
             chkTargets.Margin = new Padding(4);
             chkTargets.Name = "chkTargets";
             chkTargets.Size = new Size(154, 25);
-            chkTargets.TabIndex = 0;
+            chkTargets.TabIndex = 4;
             chkTargets.Text = "Targets";
             chkTargets.UseVisualStyleBackColor = true;
             // 
@@ -99,7 +100,7 @@ namespace DTC.New.UI.Aircrafts.AH64D.Systems
             chkRoutes.Margin = new Padding(4);
             chkRoutes.Name = "chkRoutes";
             chkRoutes.Size = new Size(154, 25);
-            chkRoutes.TabIndex = 0;
+            chkRoutes.TabIndex = 6;
             chkRoutes.Text = "Routes";
             chkRoutes.UseVisualStyleBackColor = true;
             // 
@@ -112,7 +113,7 @@ namespace DTC.New.UI.Aircrafts.AH64D.Systems
             chkTSD.Margin = new Padding(4);
             chkTSD.Name = "chkTSD";
             chkTSD.Size = new Size(154, 25);
-            chkTSD.TabIndex = 0;
+            chkTSD.TabIndex = 7;
             chkTSD.Text = "TSD";
             chkTSD.UseVisualStyleBackColor = true;
             // 
@@ -125,7 +126,7 @@ namespace DTC.New.UI.Aircrafts.AH64D.Systems
             chkClearWaypoints.Margin = new Padding(4);
             chkClearWaypoints.Name = "chkClearWaypoints";
             chkClearWaypoints.Size = new Size(154, 25);
-            chkClearWaypoints.TabIndex = 0;
+            chkClearWaypoints.TabIndex = 1;
             chkClearWaypoints.Text = "Delete all";
             chkClearWaypoints.UseVisualStyleBackColor = true;
             // 
@@ -138,7 +139,7 @@ namespace DTC.New.UI.Aircrafts.AH64D.Systems
             chkClearControlMeasures.Margin = new Padding(4);
             chkClearControlMeasures.Name = "chkClearControlMeasures";
             chkClearControlMeasures.Size = new Size(154, 25);
-            chkClearControlMeasures.TabIndex = 0;
+            chkClearControlMeasures.TabIndex = 3;
             chkClearControlMeasures.Text = "Delete all";
             chkClearControlMeasures.UseVisualStyleBackColor = true;
             // 
@@ -151,15 +152,29 @@ namespace DTC.New.UI.Aircrafts.AH64D.Systems
             chkClearTargets.Margin = new Padding(4);
             chkClearTargets.Name = "chkClearTargets";
             chkClearTargets.Size = new Size(154, 25);
-            chkClearTargets.TabIndex = 0;
+            chkClearTargets.TabIndex = 5;
             chkClearTargets.Text = "Delete all";
             chkClearTargets.UseVisualStyleBackColor = true;
+            // 
+            // chkKneeboard
+            // 
+            chkKneeboard.Checked = true;
+            chkKneeboard.CheckState = CheckState.Checked;
+            chkKneeboard.Font = new Font("Microsoft Sans Serif", 10F, FontStyle.Regular, GraphicsUnit.Point);
+            chkKneeboard.Location = new Point(15, 180);
+            chkKneeboard.Margin = new Padding(4);
+            chkKneeboard.Name = "chkKneeboard";
+            chkKneeboard.Size = new Size(154, 25);
+            chkKneeboard.TabIndex = 8;
+            chkKneeboard.Text = "Kneeboard";
+            chkKneeboard.UseVisualStyleBackColor = true;
             // 
             // UploadPage
             // 
             AutoScaleDimensions = new SizeF(96F, 96F);
             AutoScaleMode = AutoScaleMode.Dpi;
             BackColor = Color.PaleGoldenrod;
+            Controls.Add(chkKneeboard);
             Controls.Add(chkTSD);
             Controls.Add(chkRoutes);
             Controls.Add(chkClearTargets);
@@ -185,5 +200,6 @@ namespace DTC.New.UI.Aircrafts.AH64D.Systems
         private CheckBox chkClearWaypoints;
         private CheckBox chkClearControlMeasures;
         private CheckBox chkClearTargets;
+        private CheckBox chkKneeboard;
     }
 }

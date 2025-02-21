@@ -10,4 +10,5 @@ public class UploadSystem
     public bool DeleteWaypoints { get; set; }
     public bool DeleteControlMeasures { get; set; }
     public bool DeleteTargets { get; set; }
+    public bool Kneeboard { get; set; }
 }

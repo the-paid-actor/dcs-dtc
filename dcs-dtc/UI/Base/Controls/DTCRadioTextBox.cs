@@ -5,8 +5,6 @@ namespace DTC.UI.Base.Controls
 {
     public class DTCRadioTextBox : UserControl
     {
-        public delegate void TextBoxChangedCallback(DTCRadioTextBox textBox);
-
         public class FrequencyBand
         {
             public decimal Min { get; set; }
@@ -14,7 +12,7 @@ namespace DTC.UI.Base.Controls
             public string Name { get; set; }
         }
 
-        private TextBox textBox;
+        private System.Windows.Forms.TextBox textBox;
         private DTCLabel label;
         private int integerDigits = 0;
         private int fractionDigits = 0;
@@ -281,7 +279,7 @@ namespace DTC.UI.Base.Controls
             225.000 - 399.975
             */
 
-            this.textBox = new TextBox();
+            this.textBox = new System.Windows.Forms.TextBox();
             this.label = new DTCLabel();
             this.SuspendLayout();
 

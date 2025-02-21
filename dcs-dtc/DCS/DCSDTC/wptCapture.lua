@@ -19,7 +19,7 @@ function DTCWptCapture:init(eventCallback)
     self.dialog:setVisible(true)
     self.dialog:setBounds(math.floor(x), math.floor(y), self.width, self.height)
 
-    self.dialog:addHotKeyCallback("Ctrl+Shift+d", function() eventCallback:showHide() end)
+    self.dialog:addHotKeyCallback("Ctrl+Shift+d", function() eventCallback:showHideCapture() end)
     self.dialog.addButton:addMouseUpCallback(function() eventCallback:addButton() end)
     self.dialog.addButtonA:addMouseUpCallback(function() eventCallback:addButtonF15E('A') end)
     self.dialog.addButtonB:addMouseUpCallback(function() eventCallback:addButtonF15E('B') end)
@@ -40,7 +40,7 @@ function DTCWptCapture:init(eventCallback)
 
     self.dialog.addButtonApache:addMouseUpCallback(function() eventCallback:addButtonApache() end)
 
-    --self.dialog:addHotKeyCallback("Ctrl+Shift+s", function() self.reloadPending = true end)
+    self.dialog:addHotKeyCallback("Ctrl+Shift+s", function() self.reloadPending = true end)
 
     self:hide()
 end

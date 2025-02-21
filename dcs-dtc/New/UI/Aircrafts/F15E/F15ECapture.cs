@@ -2,6 +2,7 @@
 using DTC.New.Presets.V2.Aircrafts.F15E.Systems;
 using DTC.New.Presets.V2.Base.Systems;
 using DTC.Utilities;
+using DTC.Utilities.Network;
 
 namespace DTC.New.UI.Aircrafts.F15E;
 

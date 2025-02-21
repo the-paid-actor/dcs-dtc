@@ -65,6 +65,13 @@ public partial class UploadPage : AircraftSystemPage
             upload.TSD = chkTSD.Checked;
             this.SavePreset();
         };
+
+        chkKneeboard.Checked = upload.Kneeboard;
+        chkKneeboard.CheckedChanged += (s, e) =>
+        {
+            upload.Kneeboard = chkKneeboard.Checked;
+            this.SavePreset();
+        };
     }
 
     public override string GetPageTitle()

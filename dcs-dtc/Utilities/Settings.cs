@@ -19,6 +19,7 @@ namespace DTC.Utilities
             public string LuaInstallFolderOpenBeta;
             public string LuaInstallOpenBeta;
             public string CaptureDialogShortcut;
+            public string KneeboardDialogShortcut;
             public int MainWindowX;
             public int MainWindowY;
         }
@@ -219,6 +220,20 @@ namespace DTC.Utilities
             }
         }
 
+        public static string KneeboardDialogShortcut
+        {
+            get
+            {
+                LoadSettings();
+                return currentSettings.KneeboardDialogShortcut;
+            }
+            set
+            {
+                currentSettings.KneeboardDialogShortcut = value;
+                SaveSettings();
+            }
+        }
+
         public static int MainWindowX
         {
             get
@@ -299,6 +314,10 @@ namespace DTC.Utilities
             if (obj.CaptureDialogShortcut == null)
             {
                 obj.CaptureDialogShortcut = "Ctrl+Shift+d";
+            }
+            if (obj.KneeboardDialogShortcut == null)
+            {
+                obj.KneeboardDialogShortcut = "Ctrl+Shift+k";
             }
 
             currentSettings = obj;

@@ -1,5 +1,5 @@
 ﻿using DTC.New.Presets.V2.Base;
-using DTC.Utilities;
+using DTC.Utilities.Network;
 using System.Globalization;
 using System.Text;
 
@@ -169,7 +169,7 @@ public abstract partial class Uploader
     {
         var cmds = this.sb.ToString();
         if (string.IsNullOrEmpty(cmds)) return;
-        DataSender.SendNew(cmds);
+        PresetDataSender.Send(cmds);
     }
 
     protected string RemoveSeparators(string s)

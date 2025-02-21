@@ -2,6 +2,7 @@
 using DTC.UI.Base.Controls;
 using DTC.New.UI.Base.Systems;
 using DTC.New.Presets.V2.Base;
+using DTC.Utilities.Network;
 
 namespace DTC.New.UI.Base.Pages;
 
@@ -34,10 +35,49 @@ public partial class AircraftPage : Page
 
         RefreshPages();
 
-        DataReceiver2.DataReceived += DataReceiver2_DataReceived;
-        DataReceiver2.Start();
+        WaypointCaptureReceiver.DataReceived += DataReceiver2_DataReceived;
+        WaypointCaptureReceiver.KneeboardNotesReceived += KneeboardNotesReceived;
+        WaypointCaptureReceiver.Start();
 
         uploadHelper = new CockpitUploadHelper(UploadToJet);
+    }
+
+    protected virtual void KneeboardNotesReceived(string presetName, string notes)
+    {
+        System.Diagnostics.Debug.WriteLine(notes);
+        if (this.preset.Name == presetName)
+        {
+            this.Configuration.KneeboardNotes = notes;
+            this.SavePreset();
+            var p = (KneeboardPage)GetPageOfType<KneeboardPage>();
+            if (p != null)
+            {
+                p.Invoke(p.UpdateFields);
+            }
+        }
+    }
+
+    public virtual void ShowKneeboard()
+    {
+        var p = (KneeboardPage)GetPageOfType<KneeboardPage>();
+        if (p == null)
+        {
+            p = new KneeboardPage(this);
+            p.Dock = DockStyle.Fill;
+            pnlMain.Controls.Add(p);
+        }
+        SetPage(p);
+        p.UpdateFields();
+    }
+
+    public virtual string GetKneeboardInfoText()
+    {
+        return "";
+    }
+
+    protected virtual string GetKneeboardNotesText()
+    {
+        return this.Configuration.KneeboardNotes;
     }
 
     private void DataReceiver2_DataReceived(WaypointCaptureData obj)

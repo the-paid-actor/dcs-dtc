@@ -192,7 +192,8 @@ local DTCWptCaptureAH64D = {
     width = 360,
     height = 140,
     dialog = nil,
-    visible = false
+    visible = false,
+    buttonSkin = nil,
 }
 
 function DTCWptCaptureAH64D:init(eventCallback)
@@ -200,12 +201,14 @@ function DTCWptCaptureAH64D:init(eventCallback)
     local x = (screenWidth / 2) - 19
     local y = (screenHeight / 2) - 19
 
+    self.buttonSkin = eventCallback:getSkin("buttonSkin");
+
     self.dialog = DialogLoader.spawnDialogFromFile(lfs.writedir() .. "Scripts\\DCSDTC\\wptCaptureAH64D.dlg")
 
     self.dialog:setVisible(true)
     self.dialog:setBounds(math.floor(x) - self.width - 20, math.floor(y), self.width, self.height)
 
-    self.dialog.btnOK:setSkin(eventCallback:getButtonSkin())
+    self.dialog.btnOK:setSkin(self.buttonSkin)
     self.dialog.btnOK:addMouseUpCallback(function() 
         local pointType = self.dialog.cboPointType:getSelectedItem()
         local identifier = self.dialog.cboIdentifier:getSelectedItem()
@@ -218,7 +221,7 @@ function DTCWptCaptureAH64D:init(eventCallback)
         eventCallback:addApacheCoord(pointType.pointType.Code, identifier.identifier.Code, free)
     end)
 
-    self.dialog.btnClose:setSkin(eventCallback:getButtonSkin())
+    self.dialog.btnClose:setSkin(self.buttonSkin)
     self.dialog.btnClose:addMouseUpCallback(function() eventCallback:addButtonApache() end)
 
     for _, pointType in ipairs(pointTypes) do

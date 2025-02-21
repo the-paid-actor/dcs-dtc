@@ -28,14 +28,16 @@ public class F16Page : AircraftPage
     {
         var cfg = Configuration;
 
-        if (cfg.Waypoints == null)
-        {
-            cfg.Waypoints = new WaypointSystem();
-        }
-        if (cfg.Datalink == null)
-        {
-            cfg.Datalink = new DatalinkSystem();
-        }
+        if (cfg.Upload == null) cfg.Upload = new();
+        if (cfg.WaypointsCapture == null) cfg.WaypointsCapture = new();
+        if (cfg.Waypoints == null) cfg.Waypoints = new();
+        if (cfg.CMS == null) cfg.CMS = new();
+        if (cfg.Radios == null) cfg.Radios = new();
+        if (cfg.MFD == null) cfg.MFD = new();
+        if (cfg.HARM == null) cfg.HARM = new();
+        if (cfg.HTS == null) cfg.HTS = new();
+        if (cfg.Datalink == null) cfg.Datalink = new();
+        if (cfg.Misc == null) cfg.Misc = new();
 
         return new AircraftSystemPage[]
         {

@@ -178,10 +178,7 @@ internal class F16V1V2Loader
         for (var i = 0; i < radioV1.Channels.Length; i++)
         {
             var channel = radioV1.Channels[i];
-            if (channel.ToBeUpdated)
-            {
-                radioV2.AddPreset(new RadioPreset(channel.Channel) { Frequency = channel.Frequency.ToString("#.00", CultureInfo.InvariantCulture) });
-            }
+            radioV2.AddPreset(new RadioPreset(channel.Channel) { Frequency = channel.Frequency.ToString("#.00", CultureInfo.InvariantCulture) });
         }
 
         if (radioV1.SelectedChannel != null)

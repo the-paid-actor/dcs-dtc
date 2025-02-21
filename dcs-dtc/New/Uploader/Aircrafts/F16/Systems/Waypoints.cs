@@ -151,7 +151,7 @@ public partial class F16Uploader
         Waypoint? wpt = null;
         foreach (var w in wpts)
         {
-            if (w.UseVIP)
+            if (w.UseVRP)
             {
                 wpt = w;
             }

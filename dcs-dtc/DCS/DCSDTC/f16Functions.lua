@@ -199,7 +199,7 @@ function DTC_F16C_ExecCmd_SelectHARM(data)
             return
         end
 
-        local str = table["Table. Root. Unic ID: _id:1321.2.Table. Root. Unic ID: _id:1321. Text.1"];
+        local str = table["Table. Root. Unic ID: _id:119.2.Table. Root. Unic ID: _id:119. Text.1"];
         if str == nil or str:sub(-#strSearch) == strSearch then
             return
         end
@@ -217,7 +217,7 @@ function DTC_F16C_CheckCondition_HTSAllNotSelected(mfd)
         mfdTable = DTC_F16C_GetRightMFD();
     end
 
-    local str = mfdTable["ROOT_PAGE.2.HAD_THRT_PAGE.2.ALL Table. Root. Unic ID: _id:178.2.ALL Table. Root. Unic ID: _id:178. Text.1"];
+    local str = mfdTable["ROOT_PAGE.2.HAD_THRT_PAGE.2.ALL Table. Root. Unic ID: _id:12.2.ALL Table. Root. Unic ID: _id:12. Text.1"];
     if str == "ALL" then
         return true
     end

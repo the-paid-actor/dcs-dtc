@@ -131,6 +131,89 @@
         ]
     },
     {
+        "Name": "Kola",
+        "Airbases": [
+            {
+                "Name": "Banak",
+                "Latitude": "N 70°03.465’",
+                "Longitude": "E 024°58.516’",
+                "Elevation": 17
+            },
+            {
+                "Name": "Bas100",
+                "Latitude": "N 67°04.556’",
+                "Longitude": "E 026°33.627’",
+                "Elevation": 735
+            },
+            {
+                "Name": "Bodo",
+                "Latitude": "N 67°16.018’",
+                "Longitude": "E 014°20.128’",
+                "Elevation": 25
+            },
+            {
+                "Name": "Jokkmokk",
+                "Latitude": "N 66°30.210’",
+                "Longitude": "E 020°08.097’",
+                "Elevation": 891
+            },
+            {
+                "Name": "Kalixfors",
+                "Latitude": "N 67°46.191’",
+                "Longitude": "E 020°14.976’",
+                "Elevation": 1552
+            },
+            {
+                "Name": "Kemi Tornio",
+                "Latitude": "N 65°47.526’",
+                "Longitude": "E 024°35.180’",
+                "Elevation": 46
+            },			
+            {
+                "Name": "Kiruna",
+                "Latitude": "N 67°49.818’",
+                "Longitude": "E 020°21.139’",
+                "Elevation": 1434
+            },
+            {
+                "Name": "Monchegorsk",
+                "Latitude": "N 67°58.804’",
+                "Longitude": "E 033°00.332’",
+                "Elevation": 547
+            },
+            {
+                "Name": "Murmansk Intl",
+                "Latitude": "N 68°47.446’",
+                "Longitude": "E 032°44.123’",
+                "Elevation": 249
+            },
+            {
+                "Name": "Olenya",
+                "Latitude": "N 68°09.938’",
+                "Longitude": "E 033°28.694’",
+                "Elevation": 721
+            },
+            {
+                "Name": "Rovaniemi",
+                "Latitude": "N 66°34.473’",
+                "Longitude": "E 025°50.997’",
+                "Elevation": 612
+            },
+            {
+                "Name": "Severomorsk-1",
+                "Latitude": "N 69°02.462’",
+                "Longitude": "E 033°24.290’",
+                "Elevation": 261
+            },
+            {
+                "Name": "Severomorsk-3",
+                "Latitude": "N 68°51.406’",
+                "Longitude": "E 033°42.956’",
+                "Elevation": 567
+            }			
+        ]
+    },
+    {
         "Name": "Marianas",
         "Airbases": [
             {

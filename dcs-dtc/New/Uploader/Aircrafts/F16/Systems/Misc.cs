@@ -116,7 +116,7 @@ public partial class F16Uploader
         Cmd(UFC.DOWN);
         Cmd(UFC.DOWN);
 
-        Cmd(Digits(UFC, DecimalString(config.Misc.ILSFrequency)));
+        Cmd(Digits(UFC, DecimalString(config.Misc.ILSFrequency, 2)));
         Cmd(UFC.ENTR);
 
         Cmd(Digits(UFC, IntegerString(config.Misc.ILSCourse)));

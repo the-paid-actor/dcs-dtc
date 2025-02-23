@@ -150,9 +150,14 @@ public abstract partial class Uploader
         return ((int)v).ToString(CultureInfo.InvariantCulture);
     }
 
-    protected string DecimalString(decimal v)
+    protected string DecimalString(decimal v, int digits = 1)
     {
-        return v.ToString("###.0", CultureInfo.InvariantCulture).Replace(".", "");
+        var s = "###.0";
+        if (digits == 2)
+        {
+            s += "0";
+        }
+        return v.ToString(s, CultureInfo.InvariantCulture).Replace(".", "");
     }
 
     private string FormatCondition(Condition condition)

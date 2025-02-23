@@ -69,8 +69,11 @@ public class F16Page : AircraftPage
         var upload = new F16Uploader((F16Aircraft)this.aircraft, cfg);
         upload.Execute();
 
-        KneeboardSender.SendInfo(preset.Name, this.GetKneeboardInfoText());
-        KneeboardSender.SendNotes(this.GetKneeboardNotesText());
+        if (cfg.Upload.Kneeboard)
+        {
+            KneeboardSender.SendInfo(preset.Name, this.GetKneeboardInfoText());
+            KneeboardSender.SendNotes(this.GetKneeboardNotesText());
+        }
     }
 
     protected override void WaypointCaptureReceived(WaypointCaptureData data)

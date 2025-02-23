@@ -54,6 +54,12 @@ public class F15EPage : AircraftPage
     {
         var upload = new F15EUploader((F15EAircraft)this.aircraft, cfg);
         upload.Execute();
+
+        if (cfg.Upload.Kneeboard)
+        {
+            KneeboardSender.SendInfo(preset.Name, this.GetKneeboardInfoText());
+            KneeboardSender.SendNotes(this.GetKneeboardNotesText());
+        }
     }
 
     protected override void WaypointCaptureReceived(WaypointCaptureData data)

@@ -95,6 +95,12 @@ public class AH64DPage : AircraftPage
     {
         var upload = new AH64DUploader((AH64DAircraft)this.aircraft, cfg);
         upload.Execute(pilot);
+
+        if (cfg.Upload.Kneeboard)
+        {
+            KneeboardSender.SendInfo(preset.Name, this.GetKneeboardInfoText());
+            KneeboardSender.SendNotes(this.GetKneeboardNotesText());
+        }
     }
 
     protected override void WaypointCaptureReceived(WaypointCaptureData data)

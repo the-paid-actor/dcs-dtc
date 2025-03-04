@@ -43,7 +43,7 @@ public partial class F16Uploader
             Cmd(UFC.ENTR);
             Cmd(radioCmd);
         }
-        else if (radio.Mode == RadioMode.Frequency && radio.SelectedFrequency != null)
+        else if (radio.Mode == RadioMode.Frequency && !string.IsNullOrEmpty(radio.SelectedFrequency))
         {
             Cmd(Digits(UFC, GetDigitsFromFrequency(radio.SelectedFrequency)));
             Cmd(UFC.ENTR);

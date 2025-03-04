@@ -59,7 +59,7 @@ public partial class FA18Uploader
             Cmd(Wait());
             Cmd(Wait());
         }
-        else if (radio.Mode == RadioMode.Frequency && radio.SelectedFrequency != null)
+        else if (radio.Mode == RadioMode.Frequency && !string.IsNullOrEmpty(radio.SelectedFrequency))
         {
             Cmd(toggleRadioCmd);
             Loop(30, InRadioChannel(radioId, "M"), radioIncCmd);

@@ -71,7 +71,7 @@ public partial class F15EUploader : Base.Uploader
             }
         }
 
-        if (radio.SelectedFrequency != null)
+        if (!string.IsNullOrEmpty(radio.SelectedFrequency))
         {
             InputFrequency(ufc, radio.SelectedFrequency);
             Cmd(ufc.GetCommand(pb));

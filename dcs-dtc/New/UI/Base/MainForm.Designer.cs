@@ -21,6 +21,7 @@ partial class MainForm
         }
         DTC.Utilities.Network.CockpitInfoReceiver.DataReceived -= DataReceiver_DataReceived;
         DTC.Utilities.Network.CockpitInfoReceiver.Stop();
+        presetNamedPipeImport.Stop();
         base.Dispose(disposing);
     }
 

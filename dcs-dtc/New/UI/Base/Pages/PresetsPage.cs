@@ -98,6 +98,7 @@ public partial class PresetsPage : Page
                     if (IsPresetNotInUse(newName))
                     {
                         var newPreset = _aircraft.CreatePreset(newName);
+                        _aircraft.PersistPreset(newPreset);
                         ShowPreset(newPreset);
                     }
                 }

@@ -18,6 +18,8 @@ public partial class MainForm : Form
 
     private bool showHideDTCState = false;
 
+    private PresetNamedPipeImport presetNamedPipeImport;
+
     public MainForm()
     {
         InitializeComponent();
@@ -28,6 +30,9 @@ public partial class MainForm : Form
 
         CockpitInfoReceiver.DataReceived += DataReceiver_DataReceived;
         CockpitInfoReceiver.Start();
+
+        presetNamedPipeImport = new();
+        presetNamedPipeImport.Start();
 
         var position = new Point(Settings.MainWindowX, Settings.MainWindowY);
         if (!IsVisibleOnAnyScreen(new Rectangle(position, this.Size)))

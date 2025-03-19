@@ -35,7 +35,7 @@ public partial class EmitterList : UserControl
     private readonly Cancel cancelCallback;
     private SortableBindingList<GridItem> items = new SortableBindingList<GridItem>();
 
-    public EmitterList(int[] selected, int maxAllowed, bool showHTSColumn, OK okCallback, Cancel cancelCallback, bool showSearch)
+    public EmitterList(int[] selected, int maxAllowed, bool showHTSColumn, OK okCallback, Cancel cancelCallback, bool showSearch, bool showOnlyHTSTables)
     {
         InitializeComponent();
         this.txtSearch.Enter += txtSearch_Enter;
@@ -46,6 +46,11 @@ public partial class EmitterList : UserControl
 
         foreach (var emitter in Emitters.EmittersList)
         {
+            if (showOnlyHTSTables && emitter.HTSTable == 0)
+            {
+                continue;
+            }
+
             var isSelected = false;
             foreach (var sel in selected)
             {

@@ -194,8 +194,25 @@ public class FileStorage
     public static Emitter[] LoadEmitters()
     {
         var path = GetEmittersFilePath();
+        var customPath = Path.Combine(GetStorageFolder(), "dtc-emitters.json");
         var json = File.ReadAllText(path);
-        return JsonConvert.DeserializeObject<Emitter[]>(json);
+        string customJson = null;
+        if (File.Exists(customPath))
+        {
+            customJson = File.ReadAllText(customPath);
+        }
+        var arr = JsonConvert.DeserializeObject<Emitter[]>(json);
+        if (customJson != null)
+        {
+            var customArr = JsonConvert.DeserializeObject<Emitter[]>(customJson);
+            if (customArr != null)
+            {
+                var list = arr.ToList();
+                list.AddRange(customArr);
+                arr = list.ToArray();
+            }
+        }
+        return arr;
     }
 
     public static void Save(IConfiguration cfg, string path)

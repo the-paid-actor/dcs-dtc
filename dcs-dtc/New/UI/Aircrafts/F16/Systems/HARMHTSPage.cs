@@ -121,7 +121,7 @@ namespace DTC.New.UI.Aircrafts.F16.Systems
                 this.parent.Shown();
 
                 var table = (int)((DTCButton)sender).Tag;
-                this.emitterList = new EmitterList(_harm.Tables[table].Emitters, 5, false, EmitterListOk, EmitterListCancel, true);
+                this.emitterList = new EmitterList(_harm.Tables[table].Emitters, 5, false, EmitterListOk, EmitterListCancel, true, false);
                 this.emitterList.Tag = table;
 
                 this.parent.ShowEmitterList(this.emitterList);
@@ -279,7 +279,7 @@ namespace DTC.New.UI.Aircrafts.F16.Systems
                     }
                 }
 
-                this.emitterList = new EmitterList(emitterList.ToArray(), 8, true, HTSClassesOk, HTSClassesCancel, false);
+                this.emitterList = new EmitterList(emitterList.ToArray(), 8, true, HTSClassesOk, HTSClassesCancel, false, true);
                 this.parent.ShowEmitterList(this.emitterList);
             }
 
@@ -315,7 +315,7 @@ namespace DTC.New.UI.Aircrafts.F16.Systems
 
             private void BtnManualEmittersEdit_Click(object sender, System.EventArgs e)
             {
-                this.emitterList = new EmitterList(_hts.ManualEmitters, 8, false, ManualEmitterListOk, ManualEmitterListCancel, true);
+                this.emitterList = new EmitterList(_hts.ManualEmitters, 8, false, ManualEmitterListOk, ManualEmitterListCancel, true, false);
                 this.parent.ShowEmitterList(this.emitterList);
             }
 

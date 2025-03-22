@@ -49,10 +49,24 @@ public partial class PresetsPage : Page
         }
     }
 
-    private void ShowPreset(Preset preset)
+    public void ShowPreset(Preset preset)
     {
         var acPage = AircraftPageFactory.Make(_aircraft, preset);
         MainForm.AddPage(acPage);
+    }
+
+    public bool ShowPreset(string name)
+    {
+        foreach (var p in _aircraft.Presets)
+        {
+            if (p.Name == name)
+            {
+                ShowPreset((Preset)p);
+                return true;
+            }
+        }
+
+        return false;
     }
 
     private void RefreshButtons()

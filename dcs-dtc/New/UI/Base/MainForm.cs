@@ -19,6 +19,7 @@ public partial class MainForm : Form
     private bool showHideDTCState = false;
 
     private PresetNamedPipeImport presetNamedPipeImport;
+    private CommandLineProcessor commandLineProcessor;
 
     public MainForm()
     {
@@ -33,6 +34,8 @@ public partial class MainForm : Form
 
         presetNamedPipeImport = new();
         presetNamedPipeImport.Start();
+
+        commandLineProcessor = new(this);
 
         var position = new Point(Settings.MainWindowX, Settings.MainWindowY);
         if (!IsVisibleOnAnyScreen(new Rectangle(position, this.Size)))
@@ -136,6 +139,8 @@ public partial class MainForm : Form
         {
             Application.Exit();
         }
+
+        commandLineProcessor.ProcessCommandLineArgs();
     }
 
     private void SetPage(Page page)
@@ -232,11 +237,7 @@ public partial class MainForm : Form
 
     private void btnUpload_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
     {
-        var page = _pages.Peek();
-        if (page is AircraftPage)
-        {
-            ((AircraftPage)page).UploadToJet(false, false);
-        }
+        ExecuteUpload(false, false);
     }
 
     private void btnKneeboard_Click(object sender, EventArgs e)
@@ -245,6 +246,20 @@ public partial class MainForm : Form
         if (page is AircraftPage)
         {
             ((AircraftPage)page).ShowKneeboard();
+        }
+    }
+
+    internal PresetsPage NavigateTo(string ac)
+    {
+        return _mainPage.NavigateTo(ac);
+    }
+
+    internal void ExecuteUpload(bool pilot, bool cpg)
+    {
+        var page = _pages.Peek();
+        if (page is AircraftPage)
+        {
+            ((AircraftPage)page).UploadToJet(pilot, cpg);
         }
     }
 }

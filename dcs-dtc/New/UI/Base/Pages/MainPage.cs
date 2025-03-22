@@ -16,19 +16,26 @@ public partial class MainPage : Page
 
     public override string PageTitle => "Home";
 
+    public PresetsPage NavigateTo(string aircraft)
+    {
+        var p = new PresetsPage(AircraftRepository.GetAircraft(aircraft));
+        MainForm.AddPage(p);
+        return p;
+    }
+
     private void btnF16_Click(object sender, System.EventArgs e)
     {
-        MainForm.AddPage(new PresetsPage(AircraftRepository.GetAircraft("F16C")));
+        NavigateTo("F16C");
     }
 
     private void btnF18_Click(object sender, System.EventArgs e)
     {
-        MainForm.AddPage(new PresetsPage(AircraftRepository.GetAircraft("FA18C")));
+        NavigateTo("FA18C");
     }
 
     private void btnAH64_Click(object sender, System.EventArgs e)
     {
-        MainForm.AddPage(new PresetsPage(AircraftRepository.GetAircraft("AH64D")));
+        NavigateTo("AH64D");
     }
 
     private void btnWptDatabase_Click(object sender, System.EventArgs e)
@@ -38,6 +45,6 @@ public partial class MainPage : Page
 
     private void btnF15E_Click(object sender, System.EventArgs e)
     {
-        MainForm.AddPage(new PresetsPage(AircraftRepository.GetAircraft("F15E")));
+        NavigateTo("F15E");
     }
 }

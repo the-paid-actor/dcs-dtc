@@ -18,6 +18,8 @@ This is a Windows application that mimics the functions of a DTC (Data Cartridge
 - Ability to import flight plans from Combatflite
 - Ability to convert coordinates between various formats (by clicking the ellipsis on the coordinate text fields)
 - The coordinate text fields also accept pasting data directly from DCS Alt+click window
+- Custom in-game kneeboard with synced notes
+- Command-line options for loading a preset and uploading a preset
 
 ## Viper
   - Waypoints with Time Over Steerpoint, Offset aimpoints and VIP / VRP settings
@@ -33,6 +35,7 @@ This is a Windows application that mimics the functions of a DTC (Data Cartridge
   - Low altitude warning settings
   - TGP laser and LST codes and auto-lasing timer
   - TACAN channel and ILS frequency
+  - Custom HARM emitter IDs
 
 ## Hornet
 
@@ -98,6 +101,17 @@ If for some reason you need to manually setup the application in DCS, follow the
 local DCSDTClfs=require('lfs'); dofile(DCSDTClfs.writedir()..'Scripts/DCSDTC.lua')
 ```
 
+## Uninstalling
+
+Uninstalling the program via Windows only uninstall the program files, but not the files in DCS. Therefore to fully remove DTC you must delete the following as well:
+
+- Saved Games\DCS\Scripts\DCSDTC folder
+- Saved Games\DCS\Scripts\DCSDTC.lua file
+- Saved Games\DCS\Scripts\Hooks\DCSDTCHook.lua file
+- In Saved Games\DCS\Scripts\Export.lua, remove the line that references DTC
+
+Uninstalling also does not remove the Documents\DCS-DTC folder where your presets are saved.
+
 # In-cockpit Controls
 
 The mod features usage of unused cockpit buttons in DCS to show/hide the app, and to upload the preset. **Keep in mind** that the commands to show the app only works if the app is already running and DCS is not in exclusive full screen or VR mode. It will put the app in front of DCS, so you can interact with it, otherwise you have to Alt+tab to it.
@@ -129,11 +143,71 @@ You can also capture coordinates this way directly into PP stations (Hornet) or 
 
 The shortcut can be changed by editing the dtc-settings.json file located in the Documents\DCS-DTC folder. After editing it, restart the DTC app and after the prompt, restart DCS as well. The shortcut has to be a valid keyboard combination not in use by the aircraft in DCS.
 
+# In-game Kneeboard
+
+There is a custom in-game kneeboard which is accessible by pressing Ctrl+Shift+K. Once you upload a preset, it shows a summary of the preset in textual form - a list of waypoints and their names, preset radio frequencies and their labels, etc.
+
+It also has a Notes field which auto-syncs back to the preset and vice-versa. In the DTC app, the Kneeboard preview and the Notes field are acessible by clicking the clipboard icon on the top right of a loaded preset.
+
+The shortcut can be changed by editing the dtc-settings.json file located in the Documents\DCS-DTC folder. After editing it, restart the DTC app and after the prompt, restart DCS as well. The shortcut has to be a valid keyboard combination not in use by the aircraft in DCS.
+
+# Command-line options
+
+There are a few command-line options available which provide a limited automation capability to DTC. These options are:
+
+<table>
+  <tr>
+    <td width=150>--load "&ltpath&gt"</td>
+    <td>Loads a preset from the specified path. The path is relative to the Documents\DCS-DTC path. For example, to load a preset for the F-16 you would supply --load "F16C\mypreset.json". Include double quotes to avoid problems with spaces in the file name.</td>
+  </tr>
+  <tr>
+    <td width=150>--upload</td>
+    <td>Executes an upload of the loaded preset to the jet. Only used after --load. If the preset is from the Apache, an additional option must be supplied immediately following it: either --pilot or --cpg, to indicate for which station the upload must be executed for. </td>
+  </tr>
+  <tr>
+    <td width=150>--exit</td>
+    <td>Exits the DTC app after executing the command.</td>
+  </tr>
+</table>
+
+For example, to upload an Apache preset for the pilot and exit DTC afterwards:
+
+--load "AH64D\preset.json" --upload --pilot --exit
+
+# Custom HARM emitter IDs
+
+In order to use custom HARM emitter IDs (from a DCS mod, for example), you can create a dtc-emitter.json file in the Documents\DCS-DTC folder and add custom emitters there. The format is identical to the default dtc-emitter.json file present in the DTC install, except there is no HTSTable attribute as the built-in HTS tables are hardcoded in DCS.
+
+Custom emitters will appear when defining a manual HTS table or for the HARM WPN page tables, in addition to the default ones.
+
+For example, this defines a custom emitter:
+
+```
+[
+  {
+    "Country": "Russia",
+    "HARMCode": 500,
+    "F16RWR": "PT",
+    "Type": "STR",
+    "Name": "Pantsir S1",
+    "NATO": "SA-22 Greyhound"
+  },
+  {
+    "Country": "Russia",
+    "HARMCode": 501,
+    "F16RWR": "PT",
+    "Type": "STR",
+    "Name": "Pantsir S2",
+    "NATO": "SA-22 Greyhound"
+  }
+]
+```
+
 # Limitations
 
 ## Hornet
 
-The setting of Pre-Planned coordinates relies on the settings for all stations being correct. This may be improved in the future to not require setting the store type at all.
+The setting of Pre-Planned coordinates relies on the settings for ALL stations being correct in DTC (i.e. matching the munitions in the actual in-game jet). This may be improved in the future to not require setting the store type at all.
 
 ## Strike Eagle
 

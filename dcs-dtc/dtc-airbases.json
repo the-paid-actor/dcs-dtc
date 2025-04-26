@@ -1446,5 +1446,1222 @@
         "Elevation": 650
       }
     ]
+  },
+  {
+    "Name": "CW Germany",
+    "Airbases": [
+      {
+        "Name": "Wittstock",
+        "Latitude": "N 53°12.141’",
+        "Longitude": "E 12°31.378’",
+        "Elevation": "224"
+      },
+      {
+        "Name": "Altes Lager",
+        "Latitude": "N 51°59.729’",
+        "Longitude": "E 12°59.025’",
+        "Elevation": "312"
+      },
+      {
+        "Name": "Barth",
+        "Latitude": "N 54°20.291’",
+        "Longitude": "E 12°42.581’",
+        "Elevation": "21"
+      },
+      {
+        "Name": "Zerbst",
+        "Latitude": "N 51°59.977’",
+        "Longitude": "E 12°08.655’",
+        "Elevation": "250"
+      },
+      {
+        "Name": "Bremen",
+        "Latitude": "N 53°02.816’",
+        "Longitude": "E  8°47.296’",
+        "Elevation": "41"
+      },
+      {
+        "Name": "Briest",
+        "Latitude": "N 52°26.258’",
+        "Longitude": "E 12°27.235’",
+        "Elevation": "115"
+      },
+      {
+        "Name": "Buckeburg",
+        "Latitude": "N 52°16.714’",
+        "Longitude": "E  9°04.996’",
+        "Elevation": "193"
+      },
+      {
+        "Name": "Celle",
+        "Latitude": "N 52°35.484’",
+        "Longitude": "E 10°01.459’",
+        "Elevation": "126"
+      },
+      {
+        "Name": "Cochstedt",
+        "Latitude": "N 51°51.354’",
+        "Longitude": "E 11°25.076’",
+        "Elevation": "569"
+      },
+      {
+        "Name": "Damgarten",
+        "Latitude": "N 54°15.840’",
+        "Longitude": "E 12°26.653’",
+        "Elevation": "26"
+      },
+      {
+        "Name": "Fassberg",
+        "Latitude": "N 52°55.165’",
+        "Longitude": "E 10°11.089’",
+        "Elevation": "254"
+      },
+      {
+        "Name": "Finow",
+        "Latitude": "N 52°49.628’",
+        "Longitude": "E 13°41.642’",
+        "Elevation": "111"
+      },
+      {
+        "Name": "Garz",
+        "Latitude": "N 53°52.710’",
+        "Longitude": "E 14°09.212’",
+        "Elevation": "66"
+      },
+      {
+        "Name": "Gatow",
+        "Latitude": "N 52°28.520’",
+        "Longitude": "E 13°08.285’",
+        "Elevation": "136"
+      },
+      {
+        "Name": "Templin",
+        "Latitude": "N 53°01.919’",
+        "Longitude": "E 13°32.554’",
+        "Elevation": "242"
+      },
+      {
+        "Name": "Gutersloh",
+        "Latitude": "N 51°55.368’",
+        "Longitude": "E  8°18.243’",
+        "Elevation": "213"
+      },
+      {
+        "Name": "Hamburg",
+        "Latitude": "N 53°37.610’",
+        "Longitude": "E  9°58.879’",
+        "Elevation": "73"
+      },
+      {
+        "Name": "Hamburg Finkenwerder",
+        "Latitude": "N 53°32.048’",
+        "Longitude": "E  9°49.973’",
+        "Elevation": "10"
+      },
+      {
+        "Name": "Hannover",
+        "Latitude": "N 52°27.268’",
+        "Longitude": "E  9°41.625’",
+        "Elevation": "168"
+      },
+      {
+        "Name": "Laage",
+        "Latitude": "N 53°55.083’",
+        "Longitude": "E 12°16.764’",
+        "Elevation": "115"
+      },
+      {
+        "Name": "Larz",
+        "Latitude": "N 53°18.382’",
+        "Longitude": "E 12°45.152’",
+        "Elevation": "209"
+      },
+      {
+        "Name": "Mahlwinkel",
+        "Latitude": "N 52°23.296’",
+        "Longitude": "E 11°49.586’",
+        "Elevation": "156"
+      },
+      {
+        "Name": "Neubrandenburg",
+        "Latitude": "N 53°36.133’",
+        "Longitude": "E 13°18.366’",
+        "Elevation": "177"
+      },
+      {
+        "Name": "Neuruppin",
+        "Latitude": "N 52°56.463’",
+        "Longitude": "E 12°47.214’",
+        "Elevation": "148"
+      },
+      {
+        "Name": "Peenemunde",
+        "Latitude": "N 54°09.521’",
+        "Longitude": "E 13°46.416’",
+        "Elevation": "23"
+      },
+      {
+        "Name": "Schonefeld",
+        "Latitude": "N 52°23.053’",
+        "Longitude": "E 13°32.061’",
+        "Elevation": "142"
+      },
+      {
+        "Name": "Stendal",
+        "Latitude": "N 52°37.744’",
+        "Longitude": "E 11°49.191’",
+        "Elevation": "122"
+      },
+      {
+        "Name": "Tegel",
+        "Latitude": "N 52°33.505’",
+        "Longitude": "E 13°17.573’",
+        "Elevation": "116"
+      },
+      {
+        "Name": "Tempelhof",
+        "Latitude": "N 52°28.500’",
+        "Longitude": "E 13°24.219’",
+        "Elevation": "154"
+      },
+      {
+        "Name": "Tutow",
+        "Latitude": "N 53°55.307’",
+        "Longitude": "E 13°13.143’",
+        "Elevation": "7"
+      },
+      {
+        "Name": "Werneuchen",
+        "Latitude": "N 52°37.908’",
+        "Longitude": "E 13°46.127’",
+        "Elevation": "259"
+      },
+      {
+        "Name": "Wunstorf",
+        "Latitude": "N 52°27.439’",
+        "Longitude": "E  9°25.626’",
+        "Elevation": "161"
+      },
+      {
+        "Name": "H FRG 01",
+        "Latitude": "N 52°15.963’",
+        "Longitude": "E 10°36.938’",
+        "Elevation": "277"
+      },
+      {
+        "Name": "H FRG 02",
+        "Latitude": "N 53°52.716’",
+        "Longitude": "E 10°38.547’",
+        "Elevation": "10"
+      },
+      {
+        "Name": "H FRG 03",
+        "Latitude": "N 53°38.652’",
+        "Longitude": "E 10°08.407’",
+        "Elevation": "121"
+      },
+      {
+        "Name": "H FRG 04",
+        "Latitude": "N 53°26.533’",
+        "Longitude": "E 10°31.074’",
+        "Elevation": "96"
+      },
+      {
+        "Name": "H FRG 05",
+        "Latitude": "N 53°09.557’",
+        "Longitude": "E 10°56.898’",
+        "Elevation": "213"
+      },
+      {
+        "Name": "H FRG 06",
+        "Latitude": "N 53°04.363’",
+        "Longitude": "E  8°54.476’",
+        "Elevation": "13"
+      },
+      {
+        "Name": "H FRG 07",
+        "Latitude": "N 53°06.928’",
+        "Longitude": "E 11°11.040’",
+        "Elevation": "33"
+      },
+      {
+        "Name": "H FRG 08",
+        "Latitude": "N 52°36.360’",
+        "Longitude": "E 10°37.830’",
+        "Elevation": "190"
+      },
+      {
+        "Name": "H FRG 09",
+        "Latitude": "N 52°31.092’",
+        "Longitude": "E 10°50.658’",
+        "Elevation": "230"
+      },
+      {
+        "Name": "H FRG 10",
+        "Latitude": "N 52°23.170’",
+        "Longitude": "E  9°46.261’",
+        "Elevation": "215"
+      },
+      {
+        "Name": "H FRG 12",
+        "Latitude": "N 53°40.544’",
+        "Longitude": "E 10°48.041’",
+        "Elevation": "151"
+      },
+      {
+        "Name": "H FRG 13",
+        "Latitude": "N 52°01.884’",
+        "Longitude": "E  8°34.983’",
+        "Elevation": "293"
+      },
+      {
+        "Name": "H FRG 14",
+        "Latitude": "N 52°27.883’",
+        "Longitude": "E 13°13.384’",
+        "Elevation": "197"
+      },
+      {
+        "Name": "H GDR 01",
+        "Latitude": "N 53°26.286’",
+        "Longitude": "E 11°08.688’",
+        "Elevation": "176"
+      },
+      {
+        "Name": "H GDR 02",
+        "Latitude": "N 52°37.125’",
+        "Longitude": "E 12°21.363’",
+        "Elevation": "75"
+      },
+      {
+        "Name": "H GDR 03",
+        "Latitude": "N 53°06.728’",
+        "Longitude": "E 13°31.591’",
+        "Elevation": "236"
+      },
+      {
+        "Name": "H GDR 04",
+        "Latitude": "N 53°31.447’",
+        "Longitude": "E 13°19.217’",
+        "Elevation": "230"
+      },
+      {
+        "Name": "H GDR 05",
+        "Latitude": "N 53°38.311’",
+        "Longitude": "E 13°53.827’",
+        "Elevation": "54"
+      },
+      {
+        "Name": "H GDR 06",
+        "Latitude": "N 52°24.868’",
+        "Longitude": "E 12°32.069’",
+        "Elevation": "120"
+      },
+      {
+        "Name": "H GDR 07",
+        "Latitude": "N 52°59.071’",
+        "Longitude": "E 11°42.184’",
+        "Elevation": "66"
+      },
+      {
+        "Name": "H GDR 08",
+        "Latitude": "N 52°42.433’",
+        "Longitude": "E 13°32.597’",
+        "Elevation": "246"
+      },
+      {
+        "Name": "H GDR 09",
+        "Latitude": "N 53°52.035’",
+        "Longitude": "E 13°06.933’",
+        "Elevation": "82"
+      },
+      {
+        "Name": "H GDR 10",
+        "Latitude": "N 52°30.273’",
+        "Longitude": "E 13°31.481’",
+        "Elevation": "127"
+      },
+      {
+        "Name": "H GDR 11",
+        "Latitude": "N 52°23.121’",
+        "Longitude": "E 13°36.677’",
+        "Elevation": "144"
+      },
+      {
+        "Name": "H FRG 15",
+        "Latitude": "N 52°36.207’",
+        "Longitude": "E 13°18.893’",
+        "Elevation": "161"
+      },
+      {
+        "Name": "Gross Mohrdorf",
+        "Latitude": "N 54°22.991’",
+        "Longitude": "E 12°54.737’",
+        "Elevation": "10"
+      },
+      {
+        "Name": "Lubeck",
+        "Latitude": "N 53°48.292’",
+        "Longitude": "E 10°43.012’",
+        "Elevation": "70"
+      },
+      {
+        "Name": "Kothen",
+        "Latitude": "N 51°43.282’",
+        "Longitude": "E 11°57.692’",
+        "Elevation": "284"
+      },
+      {
+        "Name": "Dessau",
+        "Latitude": "N 51°49.903’",
+        "Longitude": "E 12°11.585’",
+        "Elevation": "195"
+      },
+      {
+        "Name": "Parchim",
+        "Latitude": "N 53°25.671’",
+        "Longitude": "E 11°47.195’",
+        "Elevation": "171"
+      },
+      {
+        "Name": "H GDR 12",
+        "Latitude": "N 52°29.090’",
+        "Longitude": "E 11°35.782’",
+        "Elevation": "290"
+      },
+      {
+        "Name": "Uetersen",
+        "Latitude": "N 53°38.790’",
+        "Longitude": "E  9°42.242’",
+        "Elevation": "23"
+      },
+      {
+        "Name": "Luneburg",
+        "Latitude": "N 53°14.912’",
+        "Longitude": "E 10°27.571’",
+        "Elevation": "148"
+      },
+      {
+        "Name": "Northeim",
+        "Latitude": "N 52°59.059’",
+        "Longitude": "E 11°14.226’",
+        "Elevation": "49"
+      },
+      {
+        "Name": "H GDR 13",
+        "Latitude": "N 53°36.550’",
+        "Longitude": "E 12°12.369’",
+        "Elevation": "236"
+      },
+      {
+        "Name": "H GDR 14",
+        "Latitude": "N 53°02.641’",
+        "Longitude": "E 13°22.919’",
+        "Elevation": "184"
+      },
+      {
+        "Name": "H GDR 15",
+        "Latitude": "N 52°11.170’",
+        "Longitude": "E 12°10.745’",
+        "Elevation": "303"
+      },
+      {
+        "Name": "H GDR 16",
+        "Latitude": "N 52°13.270’",
+        "Longitude": "E 11°46.864’",
+        "Elevation": "246"
+      },
+      {
+        "Name": "H GDR 17",
+        "Latitude": "N 53°54.003’",
+        "Longitude": "E 11°23.234’",
+        "Elevation": "74"
+      },
+      {
+        "Name": "H FRG 16",
+        "Latitude": "N 52°06.618’",
+        "Longitude": "E  9°26.678’",
+        "Elevation": "344"
+      },
+      {
+        "Name": "H FRG 17",
+        "Latitude": "N 53°09.060’",
+        "Longitude": "E  9°28.876’",
+        "Elevation": "85"
+      },
+      {
+        "Name": "H FRG 18",
+        "Latitude": "N 54°09.038’",
+        "Longitude": "E 10°33.142’",
+        "Elevation": "172"
+      },
+      {
+        "Name": "H FRG 19",
+        "Latitude": "N 53°27.873’",
+        "Longitude": "E  9°54.490’",
+        "Elevation": "10"
+      },
+      {
+        "Name": "H FRG 11",
+        "Latitude": "N 52°48.322’",
+        "Longitude": "E 10°03.062’",
+        "Elevation": "230"
+      },
+      {
+        "Name": "Sperenberg",
+        "Latitude": "N 52°08.214’",
+        "Longitude": "E 13°18.357’",
+        "Elevation": "184"
+      },
+      {
+        "Name": "Uelzen",
+        "Latitude": "N 52°59.017’",
+        "Longitude": "E 10°27.868’",
+        "Elevation": "251"
+      },
+      {
+        "Name": "Dedelow",
+        "Latitude": "N 53°21.331’",
+        "Longitude": "E 13°47.104’",
+        "Elevation": "176"
+      },
+      {
+        "Name": "Kammermark",
+        "Latitude": "N 53°11.757’",
+        "Longitude": "E 12°09.901’",
+        "Elevation": "287"
+      },
+      {
+        "Name": "Weser Wumme",
+        "Latitude": "N 53°03.365’",
+        "Longitude": "E  9°12.498’",
+        "Elevation": "82"
+      },
+      {
+        "Name": "Braunschweig",
+        "Latitude": "N 52°19.144’",
+        "Longitude": "E 10°33.235’",
+        "Elevation": "273"
+      },
+      {
+        "Name": "Wismar",
+        "Latitude": "N 53°54.866’",
+        "Longitude": "E 11°30.146’",
+        "Elevation": "32"
+      },
+      {
+        "Name": "Waren Vielist",
+        "Latitude": "N 53°33.955’",
+        "Longitude": "E 12°39.230’",
+        "Elevation": "262"
+      },
+      {
+        "Name": "Bienenfarm",
+        "Latitude": "N 52°39.556’",
+        "Longitude": "E 12°44.888’",
+        "Elevation": "98"
+      },
+      {
+        "Name": "Pinnow",
+        "Latitude": "N 53°36.992’",
+        "Longitude": "E 11°33.788’",
+        "Elevation": "149"
+      },
+      {
+        "Name": "Gardelegen",
+        "Latitude": "N 52°31.771’",
+        "Longitude": "E 11°21.008’",
+        "Elevation": "183"
+      },
+      {
+        "Name": "Glindbruchkippe ",
+        "Latitude": "N 52°19.429’",
+        "Longitude": "E 10°10.827’",
+        "Elevation": "159"
+      },
+      {
+        "Name": "Ummern",
+        "Latitude": "N 52°37.227’",
+        "Longitude": "E 10°24.660’",
+        "Elevation": "219"
+      },
+      {
+        "Name": "Hildesheim",
+        "Latitude": "N 52°10.787’",
+        "Longitude": "E  9°56.747’",
+        "Elevation": "322"
+      },
+      {
+        "Name": "Verden-Scharnhorst",
+        "Latitude": "N 52°57.945’",
+        "Longitude": "E  9°16.837’",
+        "Elevation": "134"
+      },
+      {
+        "Name": "Rinteln",
+        "Latitude": "N 52°10.481’",
+        "Longitude": "E  9°03.174’",
+        "Elevation": "174"
+      },
+      {
+        "Name": "Holzdorf",
+        "Latitude": "N 51°46.067’",
+        "Longitude": "E 13°10.182’",
+        "Elevation": "245"
+      },
+      {
+        "Name": "H Med GDR 01",
+        "Latitude": "N 54°05.598’",
+        "Longitude": "E 12°05.322’",
+        "Elevation": "79"
+      },
+      {
+        "Name": "H Med GDR 02",
+        "Latitude": "N 54°18.142’",
+        "Longitude": "E 13°04.322’",
+        "Elevation": "52"
+      },
+      {
+        "Name": "H Med GDR 03",
+        "Latitude": "N 54°05.452’",
+        "Longitude": "E 13°22.566’",
+        "Elevation": "10"
+      },
+      {
+        "Name": "H GDR 33",
+        "Latitude": "N 50°51.551’",
+        "Longitude": "E 10°44.587’",
+        "Elevation": "1230"
+      },
+      {
+        "Name": "Airracing Koblenz",
+        "Latitude": "N 50°17.522’",
+        "Longitude": "E  7°49.822’",
+        "Elevation": "1056"
+      },
+      {
+        "Name": "H GDR 34",
+        "Latitude": "N 53°04.350’",
+        "Longitude": "E 12°37.781’",
+        "Elevation": "249"
+      },
+      {
+        "Name": "H Med GDR 08",
+        "Latitude": "N 52°16.258’",
+        "Longitude": "E 11°52.691’",
+        "Elevation": "148"
+      },
+      {
+        "Name": "H Med GDR 09",
+        "Latitude": "N 52°09.745’",
+        "Longitude": "E 11°37.982’",
+        "Elevation": "149"
+      },
+      {
+        "Name": "H Med GDR 10",
+        "Latitude": "N 51°57.586’",
+        "Longitude": "E 12°06.055’",
+        "Elevation": "230"
+      },
+      {
+        "Name": "H Med FRG 01",
+        "Latitude": "N 53°50.878’",
+        "Longitude": "E 10°41.301’",
+        "Elevation": "10"
+      },
+      {
+        "Name": "H Med FRG 02",
+        "Latitude": "N 53°33.678’",
+        "Longitude": "E 10°01.475’",
+        "Elevation": "46"
+      },
+      {
+        "Name": "H Med FRG 04",
+        "Latitude": "N 53°15.140’",
+        "Longitude": "E 10°23.890’",
+        "Elevation": "90"
+      },
+      {
+        "Name": "H Med FRG 06",
+        "Latitude": "N 52°17.783’",
+        "Longitude": "E  8°53.469’",
+        "Elevation": "189"
+      },
+      {
+        "Name": "H Med FRG 11",
+        "Latitude": "N 51°43.819’",
+        "Longitude": "E  8°46.693’",
+        "Elevation": "394"
+      },
+      {
+        "Name": "Hasselfelde",
+        "Latitude": "N 51°42.323’",
+        "Longitude": "E 10°52.721’",
+        "Elevation": "1619"
+      },
+      {
+        "Name": "Grosse Wiese",
+        "Latitude": "N 52°08.212’",
+        "Longitude": "E 10°34.246’",
+        "Elevation": "278"
+      },
+      {
+        "Name": "H GDR 18",
+        "Latitude": "N 51°50.888’",
+        "Longitude": "E 10°45.996’",
+        "Elevation": "757"
+      },
+      {
+        "Name": "H FRG 20",
+        "Latitude": "N 51°42.798’",
+        "Longitude": "E 10°35.347’",
+        "Elevation": "1979"
+      },
+      {
+        "Name": "H Med FRG 12",
+        "Latitude": "N 51°49.032’",
+        "Longitude": "E 10°20.169’",
+        "Elevation": "1870"
+      },
+      {
+        "Name": "H GDR 19",
+        "Latitude": "N 51°50.752’",
+        "Longitude": "E 11°17.627’",
+        "Elevation": "436"
+      },
+      {
+        "Name": "H GDR 30",
+        "Latitude": "N 54°30.628’",
+        "Longitude": "E 13°37.093’",
+        "Elevation": "180"
+      },
+      {
+        "Name": "H Med GDR 11",
+        "Latitude": "N 51°46.255’",
+        "Longitude": "E 10°47.429’",
+        "Elevation": "1575"
+      },
+      {
+        "Name": "H FRG 21",
+        "Latitude": "N 52°20.145’",
+        "Longitude": "E 10°38.365’",
+        "Elevation": "367"
+      },
+      {
+        "Name": "H FRG 50",
+        "Latitude": "N 52°49.905’",
+        "Longitude": "E  9°46.518’",
+        "Elevation": "266"
+      },
+      {
+        "Name": "H FRG 23",
+        "Latitude": "N 52°56.877’",
+        "Longitude": "E 10°06.930’",
+        "Elevation": "249"
+      },
+      {
+        "Name": "H FRG 39",
+        "Latitude": "N 50°34.635’",
+        "Longitude": "E  9°41.734’",
+        "Elevation": "1059"
+      },
+      {
+        "Name": "H GDR 21",
+        "Latitude": "N 54°16.860’",
+        "Longitude": "E 12°31.118’",
+        "Elevation": "49"
+      },
+      {
+        "Name": "H GDR 22",
+        "Latitude": "N 52°04.233’",
+        "Longitude": "E 13°05.348’",
+        "Elevation": "179"
+      },
+      {
+        "Name": "Fritzlar",
+        "Latitude": "N 51°06.876’",
+        "Longitude": "E  9°17.150’",
+        "Elevation": "552"
+      },
+      {
+        "Name": "Hahn",
+        "Latitude": "N 49°56.907’",
+        "Longitude": "E  7°15.834’",
+        "Elevation": "1621"
+      },
+      {
+        "Name": "Sembach",
+        "Latitude": "N 49°30.369’",
+        "Longitude": "E  7°51.804’",
+        "Elevation": "1022"
+      },
+      {
+        "Name": "Allstedt",
+        "Latitude": "N 51°22.835’",
+        "Longitude": "E 11°26.788’",
+        "Elevation": "932"
+      },
+      {
+        "Name": "Zweibrucken",
+        "Latitude": "N 49°12.573’",
+        "Longitude": "E  7°24.052’",
+        "Elevation": "1109"
+      },
+      {
+        "Name": "Giebelstadt",
+        "Latitude": "N 49°38.880’",
+        "Longitude": "E  9°57.934’",
+        "Elevation": "953"
+      },
+      {
+        "Name": "Schweinfurt",
+        "Latitude": "N 50°02.931’",
+        "Longitude": "E 10°10.180’",
+        "Elevation": "753"
+      },
+      {
+        "Name": "Haina",
+        "Latitude": "N 50°59.499’",
+        "Longitude": "E 10°28.774’",
+        "Elevation": "1018"
+      },
+      {
+        "Name": "Spangdahlem",
+        "Latitude": "N 49°58.594’",
+        "Longitude": "E  6°41.929’",
+        "Elevation": "984"
+      },
+      {
+        "Name": "Frankfurt",
+        "Latitude": "N 50°02.452’",
+        "Longitude": "E  8°34.149’",
+        "Elevation": "328"
+      },
+      {
+        "Name": "Bindersleben",
+        "Latitude": "N 50°58.768’",
+        "Longitude": "E 10°57.739’",
+        "Elevation": "1014"
+      },
+      {
+        "Name": "Ramstein",
+        "Latitude": "N 49°26.213’",
+        "Longitude": "E  7°36.004’",
+        "Elevation": "805"
+      },
+      {
+        "Name": "Fulda",
+        "Latitude": "N 50°32.394’",
+        "Longitude": "E  9°38.580’",
+        "Elevation": "937"
+      },
+      {
+        "Name": "Obermehler Schlotheim",
+        "Latitude": "N 51°16.064’",
+        "Longitude": "E 10°38.088’",
+        "Elevation": "889"
+      },
+      {
+        "Name": "Mendig",
+        "Latitude": "N 50°21.960’",
+        "Longitude": "E  7°18.937’",
+        "Elevation": "601"
+      },
+      {
+        "Name": "Merseburg",
+        "Latitude": "N 51°21.838’",
+        "Longitude": "E 11°57.000’",
+        "Elevation": "340"
+      },
+      {
+        "Name": "Wiesbaden",
+        "Latitude": "N 50°02.989’",
+        "Longitude": "E  8°19.534’",
+        "Elevation": "453"
+      },
+      {
+        "Name": "Leipzig Halle",
+        "Latitude": "N 51°24.901’",
+        "Longitude": "E 12°13.629’",
+        "Elevation": "421"
+      },
+      {
+        "Name": "H Med GDR 12",
+        "Latitude": "N 50°59.274’",
+        "Longitude": "E 10°18.982’",
+        "Elevation": "755"
+      },
+      {
+        "Name": "H Med GDR 13",
+        "Latitude": "N 51°17.355’",
+        "Longitude": "E 10°44.602’",
+        "Elevation": "748"
+      },
+      {
+        "Name": "H Med GDR 14",
+        "Latitude": "N 50°48.544’",
+        "Longitude": "E 10°13.123’",
+        "Elevation": "843"
+      },
+      {
+        "Name": "H Med GDR 16",
+        "Latitude": "N 50°53.165’",
+        "Longitude": "E 11°37.040’",
+        "Elevation": "614"
+      },
+      {
+        "Name": "H GDR 24",
+        "Latitude": "N 52°09.997’",
+        "Longitude": "E 13°29.049’",
+        "Elevation": "179"
+      },
+      {
+        "Name": "H Med FRG 13",
+        "Latitude": "N 49°27.163’",
+        "Longitude": "E  7°46.025’",
+        "Elevation": "916"
+      },
+      {
+        "Name": "H Med FRG 14",
+        "Latitude": "N 50°58.480’",
+        "Longitude": "E  9°48.282’",
+        "Elevation": "787"
+      },
+      {
+        "Name": "H Med FRG 15",
+        "Latitude": "N 51°15.421’",
+        "Longitude": "E  9°22.784’",
+        "Elevation": "791"
+      },
+      {
+        "Name": "H Med FRG 16",
+        "Latitude": "N 51°33.173’",
+        "Longitude": "E  8°19.924’",
+        "Elevation": "732"
+      },
+      {
+        "Name": "H Med FRG 17",
+        "Latitude": "N 51°23.952’",
+        "Longitude": "E  9°39.585’",
+        "Elevation": "758"
+      },
+      {
+        "Name": "H FRG 25",
+        "Latitude": "N 50°43.444’",
+        "Longitude": "E  9°55.913’",
+        "Elevation": "1332"
+      },
+      {
+        "Name": "H Radar GDR 01",
+        "Latitude": "N 51°47.987’",
+        "Longitude": "E 10°36.750’",
+        "Elevation": "3744"
+      },
+      {
+        "Name": "H Radar GDR 02",
+        "Latitude": "N 50°34.306’",
+        "Longitude": "E 10°05.114’",
+        "Elevation": "2605"
+      },
+      {
+        "Name": "H Radar GDR 03",
+        "Latitude": "N 51°06.470’",
+        "Longitude": "E 10°11.621’",
+        "Elevation": "1591"
+      },
+      {
+        "Name": "H Radar GDR 04",
+        "Latitude": "N 51°37.442’",
+        "Longitude": "E 10°43.454’",
+        "Elevation": "1929"
+      },
+      {
+        "Name": "H Radar GDR 05",
+        "Latitude": "N 52°00.382’",
+        "Longitude": "E 10°43.409’",
+        "Elevation": "895"
+      },
+      {
+        "Name": "H Radar GDR 06",
+        "Latitude": "N 52°19.523’",
+        "Longitude": "E 11°27.335’",
+        "Elevation": "427"
+      },
+      {
+        "Name": "H Radar GDR 07",
+        "Latitude": "N 53°16.810’",
+        "Longitude": "E 11°04.867’",
+        "Elevation": "88"
+      },
+      {
+        "Name": "Bitburg",
+        "Latitude": "N 49°56.679’",
+        "Longitude": "E  6°33.850’",
+        "Elevation": "1211"
+      },
+      {
+        "Name": "Airracing Lubeck",
+        "Latitude": "N 53°42.699’",
+        "Longitude": "E 10°45.994’",
+        "Elevation": "28"
+      },
+      {
+        "Name": "H FRG 27",
+        "Latitude": "N 51°19.405’",
+        "Longitude": "E  9°28.625’",
+        "Elevation": "579"
+      },
+      {
+        "Name": "Airracing Frankfurt",
+        "Latitude": "N 50°00.492’",
+        "Longitude": "E  8°05.921’",
+        "Elevation": "278"
+      },
+      {
+        "Name": "H Med FRG 21",
+        "Latitude": "N 49°14.766’",
+        "Longitude": "E  7°21.913’",
+        "Elevation": "746"
+      },
+      {
+        "Name": "H FRG 30",
+        "Latitude": "N 50°01.176’",
+        "Longitude": "E  7°20.941’",
+        "Elevation": "1601"
+      },
+      {
+        "Name": "H FRG 31",
+        "Latitude": "N 49°55.203’",
+        "Longitude": "E  7°17.582’",
+        "Elevation": "1400"
+      },
+      {
+        "Name": "H FRG 32",
+        "Latitude": "N 49°28.482’",
+        "Longitude": "E  7°52.890’",
+        "Elevation": "1022"
+      },
+      {
+        "Name": "H FRG 34",
+        "Latitude": "N 50°24.989’",
+        "Longitude": "E  7°26.505’",
+        "Elevation": "265"
+      },
+      {
+        "Name": "H FRG 51",
+        "Latitude": "N 49°36.808’",
+        "Longitude": "E  7°22.865’",
+        "Elevation": "1444"
+      },
+      {
+        "Name": "H FRG 38",
+        "Latitude": "N 50°31.078’",
+        "Longitude": "E  9°08.084’",
+        "Elevation": "1408"
+      },
+      {
+        "Name": "H FRG 48",
+        "Latitude": "N 49°55.322’",
+        "Longitude": "E  6°40.628’",
+        "Elevation": "1161"
+      },
+      {
+        "Name": "H FRG 49",
+        "Latitude": "N 50°04.163’",
+        "Longitude": "E  8°33.954’",
+        "Elevation": "347"
+      },
+      {
+        "Name": "H Med FRG 24",
+        "Latitude": "N 51°33.250’",
+        "Longitude": "E  8°34.103’",
+        "Elevation": "810"
+      },
+      {
+        "Name": "H Radar FRG 02",
+        "Latitude": "N 50°13.997’",
+        "Longitude": "E  8°27.472’",
+        "Elevation": "2820"
+      },
+      {
+        "Name": "H Med FRG 26",
+        "Latitude": "N 49°55.650’",
+        "Longitude": "E  6°50.387’",
+        "Elevation": "512"
+      },
+      {
+        "Name": "H GDR 25",
+        "Latitude": "N 51°08.321’",
+        "Longitude": "E 11°46.340’",
+        "Elevation": "705"
+      },
+      {
+        "Name": "H GDR 26",
+        "Latitude": "N 51°29.635’",
+        "Longitude": "E 11°54.447’",
+        "Elevation": "347"
+      },
+      {
+        "Name": "H GDR 31",
+        "Latitude": "N 54°22.135’",
+        "Longitude": "E 13°05.140’",
+        "Elevation": "16"
+      },
+      {
+        "Name": "H GDR 32",
+        "Latitude": "N 54°20.842’",
+        "Longitude": "E 13°27.329’",
+        "Elevation": "148"
+      },
+      {
+        "Name": "H Med FRG 27",
+        "Latitude": "N 50°04.640’",
+        "Longitude": "E  8°12.977’",
+        "Elevation": "550"
+      },
+      {
+        "Name": "Pferdsfeld",
+        "Latitude": "N 49°51.307’",
+        "Longitude": "E  7°36.282’",
+        "Elevation": "1312"
+      },
+      {
+        "Name": "H Med FRG 29",
+        "Latitude": "N 49°24.149’",
+        "Longitude": "E  7°33.518’",
+        "Elevation": "1158"
+      },
+      {
+        "Name": "H FRG 40",
+        "Latitude": "N 50°22.444’",
+        "Longitude": "E  7°35.037’",
+        "Elevation": "279"
+      },
+      {
+        "Name": "Buchel",
+        "Latitude": "N 50°10.445’",
+        "Longitude": "E  7°03.830’",
+        "Elevation": "1509"
+      },
+      {
+        "Name": "Leipzig Mockau",
+        "Latitude": "N 51°23.626’",
+        "Longitude": "E 12°24.482’",
+        "Elevation": "415"
+      },
+      {
+        "Name": "H FRG 43",
+        "Latitude": "N 49°45.608’",
+        "Longitude": "E  9°29.465’",
+        "Elevation": "1046"
+      },
+      {
+        "Name": "H FRG 44",
+        "Latitude": "N 49°56.644’",
+        "Longitude": "E  8°54.971’",
+        "Elevation": "421"
+      },
+      {
+        "Name": "H FRG 45",
+        "Latitude": "N 49°44.677’",
+        "Longitude": "E  9°04.299’",
+        "Elevation": "1290"
+      },
+      {
+        "Name": "H FRG 46",
+        "Latitude": "N 50°03.054’",
+        "Longitude": "E  9°49.428’",
+        "Elevation": "1050"
+      },
+      {
+        "Name": "H FRG 47",
+        "Latitude": "N 49°34.565’",
+        "Longitude": "E  9°20.992’",
+        "Elevation": "1403"
+      },
+      {
+        "Name": "Bad Durkheim",
+        "Latitude": "N 49°28.360’",
+        "Longitude": "E  8°11.696’",
+        "Elevation": "348"
+      },
+      {
+        "Name": "Gelnhausen",
+        "Latitude": "N 50°11.779’",
+        "Longitude": "E  9°10.019’",
+        "Elevation": "417"
+      },
+      {
+        "Name": "Herrenteich",
+        "Latitude": "N 49°20.610’",
+        "Longitude": "E  8°29.391’",
+        "Elevation": "305"
+      },
+      {
+        "Name": "Hockenheim",
+        "Latitude": "N 49°19.514’",
+        "Longitude": "E  8°31.650’",
+        "Elevation": "323"
+      },
+      {
+        "Name": "Langenselbold",
+        "Latitude": "N 50°10.477’",
+        "Longitude": "E  9°03.797’",
+        "Elevation": "391"
+      },
+      {
+        "Name": "Walldorf",
+        "Latitude": "N 49°18.222’",
+        "Longitude": "E  8°39.686’",
+        "Elevation": "363"
+      },
+      {
+        "Name": "Ober-Morlen",
+        "Latitude": "N 50°21.746’",
+        "Longitude": "E  8°42.732’",
+        "Elevation": "715"
+      },
+      {
+        "Name": "Pottschutthohe",
+        "Latitude": "N 49°15.868’",
+        "Longitude": "E  7°29.325’",
+        "Elevation": "1099"
+      },
+      {
+        "Name": "Worms",
+        "Latitude": "N 49°36.390’",
+        "Longitude": "E  8°21.924’",
+        "Elevation": "275"
+      },
+      {
+        "Name": "H Radar GDR 09",
+        "Latitude": "N 52°29.639’",
+        "Longitude": "E 14°05.317’",
+        "Elevation": "285"
+      },
+      {
+        "Name": "H Radar GDR 08",
+        "Latitude": "N 52°47.513’",
+        "Longitude": "E 10°48.680’",
+        "Elevation": "387"
+      },
+      {
+        "Name": "H FRG 41",
+        "Latitude": "N 49°47.596’",
+        "Longitude": "E  9°59.098’",
+        "Elevation": "790"
+      },
+      {
+        "Name": "H FRG 42",
+        "Latitude": "N 49°49.691’",
+        "Longitude": "E  9°53.243’",
+        "Elevation": "745"
+      },
+      {
+        "Name": "Adelsheim",
+        "Latitude": "N 49°22.001’",
+        "Longitude": "E  9°24.781’",
+        "Elevation": "977"
+      }
+    ]
   }
 ]

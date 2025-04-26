@@ -21,6 +21,7 @@
 		<RepositoryUrl>$(PackageProjectUrl)</RepositoryUrl>
 		<RunAnalyzersDuringBuild>True</RunAnalyzersDuringBuild>
 		<AnalysisLevel>latest</AnalysisLevel>
+		<ForceDesignerDpiUnaware>true</ForceDesignerDpiUnaware>
 	</PropertyGroup>
 
 	<PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">

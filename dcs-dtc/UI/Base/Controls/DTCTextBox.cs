@@ -169,5 +169,11 @@ namespace DTC.UI.Base.Controls
             this.PerformLayout();
 
         }
+
+        public new event EventHandler? TextChanged
+        {
+            add { textBox.TextChanged += value; }
+            remove { textBox.TextChanged -= value; }
+        }
     }
 }

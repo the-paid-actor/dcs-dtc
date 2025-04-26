@@ -178,17 +178,30 @@ public class FileStorage
     {
         try
         {
+            Theater[] list = null;
             var path = GetAirbasesFilePath();
             if (File.Exists(path))
             {
                 var json = File.ReadAllText(path);
-                return JsonConvert.DeserializeObject<Theater[]>(json);
+                list = JsonConvert.DeserializeObject<Theater[]>(json);
+                list = SortAirbases(list);
             }
+            return list;
         }
         catch
         {
         }
         return null;
+    }
+
+    private static Theater[] SortAirbases(Theater[] list)
+    {
+        foreach (var theater in list)
+        {
+            Array.Sort(theater.Airbases, (a, b) => a.Name.CompareTo(b.Name));
+        }
+        Array.Sort(list, (a, b) => a.Name.CompareTo(b.Name));
+        return list;
     }
 
     public static Emitter[] LoadEmitters()

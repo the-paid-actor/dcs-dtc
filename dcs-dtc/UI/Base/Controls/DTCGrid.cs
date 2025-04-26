@@ -95,6 +95,11 @@ public class DTCGrid : UserControl
         OnDoubleClick(e);
     }
 
+    public void SetFontSize(float size)
+    {
+        grid.DefaultCellStyle.Font = new Font("Microsoft Sans Serif", size, FontStyle.Regular, GraphicsUnit.Point);
+    }
+
     private void GridMouseClick(object? sender, MouseEventArgs e)
     {
         var ht = grid.HitTest(e.X, e.Y);

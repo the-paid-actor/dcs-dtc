@@ -23,5 +23,9 @@ namespace DTC.New.UI.Base.Systems
         protected virtual void ElevationPasted(int elev)
         {
         }
+
+        protected virtual void AirbaseSearchClicked(object sender, EventArgs e)
+        {
+        }
     }
 }

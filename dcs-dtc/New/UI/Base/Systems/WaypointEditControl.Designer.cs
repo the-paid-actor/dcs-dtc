@@ -30,7 +30,6 @@ namespace DTC.New.UI.Base.Systems
         /// </summary>
         private void InitializeComponent()
         {
-            label5 = new Label();
             label3 = new Label();
             pnlTop = new Panel();
             btnCancel = new DTCButton();
@@ -38,7 +37,6 @@ namespace DTC.New.UI.Base.Systems
             label1 = new Label();
             label2 = new Label();
             lblValidation = new Label();
-            cboAirbases = new DTCDropDown();
             txtName = new DTCTextBox();
             txtCoordinate = new DTCCoordinateTextBox2();
             txtElevation = new DTCNumericTextBox();
@@ -48,25 +46,14 @@ namespace DTC.New.UI.Base.Systems
             label6 = new Label();
             txtTimeOverSteerpoint = new DTCTimeTextBox();
             chkTarget = new DTCCheckBox();
+            btnSearchAirbases = new DTCButton();
             pnlTop.SuspendLayout();
             SuspendLayout();
-            // 
-            // label5
-            // 
-            label5.Font = new Font("Microsoft Sans Serif", 10F, FontStyle.Regular, GraphicsUnit.Point);
-            label5.Location = new Point(1, 36);
-            label5.Margin = new Padding(0);
-            label5.Name = "label5";
-            label5.Padding = new Padding(5, 0, 0, 0);
-            label5.Size = new Size(150, 25);
-            label5.TabIndex = 14;
-            label5.Text = "Airbases:";
-            label5.TextAlign = ContentAlignment.MiddleLeft;
             // 
             // label3
             // 
             label3.Font = new Font("Microsoft Sans Serif", 10F, FontStyle.Regular, GraphicsUnit.Point);
-            label3.Location = new Point(1, 66);
+            label3.Location = new Point(1, 40);
             label3.Margin = new Padding(0);
             label3.Name = "label3";
             label3.Padding = new Padding(5, 0, 0, 0);
@@ -117,7 +104,7 @@ namespace DTC.New.UI.Base.Systems
             // label1
             // 
             label1.Font = new Font("Microsoft Sans Serif", 10F, FontStyle.Regular, GraphicsUnit.Point);
-            label1.Location = new Point(1, 97);
+            label1.Location = new Point(1, 71);
             label1.Margin = new Padding(0);
             label1.Name = "label1";
             label1.Padding = new Padding(5, 0, 0, 0);
@@ -129,7 +116,7 @@ namespace DTC.New.UI.Base.Systems
             // label2
             // 
             label2.Font = new Font("Microsoft Sans Serif", 10F, FontStyle.Regular, GraphicsUnit.Point);
-            label2.Location = new Point(1, 128);
+            label2.Location = new Point(1, 102);
             label2.Margin = new Padding(0);
             label2.Name = "label2";
             label2.Padding = new Padding(5, 0, 0, 0);
@@ -152,29 +139,17 @@ namespace DTC.New.UI.Base.Systems
             lblValidation.TabIndex = 28;
             lblValidation.TextAlign = ContentAlignment.MiddleLeft;
             // 
-            // cboAirbases
-            // 
-            cboAirbases.DropDownStyle = ComboBoxStyle.DropDownList;
-            cboAirbases.FlatStyle = FlatStyle.Flat;
-            cboAirbases.Font = new Font("Microsoft Sans Serif", 10F, FontStyle.Regular, GraphicsUnit.Point);
-            cboAirbases.FormattingEnabled = true;
-            cboAirbases.Location = new Point(163, 36);
-            cboAirbases.Name = "cboAirbases";
-            cboAirbases.Size = new Size(420, 24);
-            cboAirbases.TabIndex = 0;
-            cboAirbases.SelectedIndexChanged += AirbasesListSelectedIndexChanged;
-            // 
             // txtName
             // 
             txtName.AllowPromptAsInput = true;
             txtName.BackColor = SystemColors.Window;
             txtName.HidePromptOnLeave = false;
             txtName.InsertKeyMode = InsertKeyMode.Default;
-            txtName.Location = new Point(163, 66);
+            txtName.Location = new Point(163, 40);
             txtName.Mask = "";
             txtName.Name = "txtName";
             txtName.PromptChar = '_';
-            txtName.Size = new Size(288, 25);
+            txtName.Size = new Size(244, 25);
             txtName.TabIndex = 1;
             txtName.ValidatingType = null;
             // 
@@ -185,7 +160,7 @@ namespace DTC.New.UI.Base.Systems
             txtCoordinate.Coordinate = null;
             txtCoordinate.CoordinateConverterParent = null;
             txtCoordinate.Format = Utilities.CoordinateFormat.DegreesMinutesThousandths;
-            txtCoordinate.Location = new Point(163, 97);
+            txtCoordinate.Location = new Point(163, 71);
             txtCoordinate.Name = "txtCoordinate";
             txtCoordinate.Size = new Size(288, 25);
             txtCoordinate.TabIndex = 3;
@@ -195,7 +170,7 @@ namespace DTC.New.UI.Base.Systems
             // 
             txtElevation.AllowFraction = false;
             txtElevation.BackColor = SystemColors.Window;
-            txtElevation.Location = new Point(163, 128);
+            txtElevation.Location = new Point(163, 102);
             txtElevation.MaximumValue = new decimal(new int[] { 25000, 0, 0, 0 });
             txtElevation.MinimumValue = new decimal(new int[] { 0, 0, 0, 0 });
             txtElevation.Name = "txtElevation";
@@ -207,15 +182,15 @@ namespace DTC.New.UI.Base.Systems
             // pnlCustomControls
             // 
             pnlCustomControls.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right;
-            pnlCustomControls.Location = new Point(0, 161);
+            pnlCustomControls.Location = new Point(0, 133);
             pnlCustomControls.Name = "pnlCustomControls";
-            pnlCustomControls.Size = new Size(588, 474);
+            pnlCustomControls.Size = new Size(588, 502);
             pnlCustomControls.TabIndex = 7;
             // 
             // label4
             // 
             label4.Font = new Font("Microsoft Sans Serif", 10F, FontStyle.Regular, GraphicsUnit.Point);
-            label4.Location = new Point(454, 66);
+            label4.Location = new Point(454, 40);
             label4.Margin = new Padding(0);
             label4.Name = "label4";
             label4.Padding = new Padding(5, 0, 0, 0);
@@ -228,7 +203,7 @@ namespace DTC.New.UI.Base.Systems
             // 
             txtSequence.AllowFraction = false;
             txtSequence.BackColor = SystemColors.Window;
-            txtSequence.Location = new Point(538, 66);
+            txtSequence.Location = new Point(538, 40);
             txtSequence.MaximumValue = new decimal(new int[] { 999, 0, 0, 0 });
             txtSequence.MinimumValue = new decimal(new int[] { 0, 0, 0, 0 });
             txtSequence.Name = "txtSequence";
@@ -240,7 +215,7 @@ namespace DTC.New.UI.Base.Systems
             // label6
             // 
             label6.Font = new Font("Microsoft Sans Serif", 10F, FontStyle.Regular, GraphicsUnit.Point);
-            label6.Location = new Point(297, 128);
+            label6.Location = new Point(297, 102);
             label6.Margin = new Padding(0);
             label6.Name = "label6";
             label6.Padding = new Padding(5, 0, 0, 0);
@@ -252,7 +227,7 @@ namespace DTC.New.UI.Base.Systems
             // txtTimeOverSteerpoint
             // 
             txtTimeOverSteerpoint.BackColor = SystemColors.Window;
-            txtTimeOverSteerpoint.Location = new Point(457, 128);
+            txtTimeOverSteerpoint.Location = new Point(457, 102);
             txtTimeOverSteerpoint.Name = "txtTimeOverSteerpoint";
             txtTimeOverSteerpoint.Size = new Size(126, 25);
             txtTimeOverSteerpoint.TabIndex = 6;
@@ -260,23 +235,37 @@ namespace DTC.New.UI.Base.Systems
             // chkTarget
             // 
             chkTarget.Font = new Font("Microsoft Sans Serif", 10F, FontStyle.Regular, GraphicsUnit.Point);
-            chkTarget.Location = new Point(457, 98);
+            chkTarget.Location = new Point(457, 72);
             chkTarget.Name = "chkTarget";
             chkTarget.Size = new Size(120, 25);
             chkTarget.TabIndex = 4;
             chkTarget.Text = "Is Target";
             chkTarget.UseVisualStyleBackColor = true;
             // 
+            // btnSearchAirbases
+            // 
+            btnSearchAirbases.BackColor = Color.DarkKhaki;
+            btnSearchAirbases.FlatAppearance.BorderSize = 0;
+            btnSearchAirbases.FlatStyle = FlatStyle.Flat;
+            btnSearchAirbases.Font = new Font("Microsoft Sans Serif", 10F, FontStyle.Bold, GraphicsUnit.Point);
+            btnSearchAirbases.Location = new Point(413, 40);
+            btnSearchAirbases.Name = "btnSearchAirbases";
+            btnSearchAirbases.Size = new Size(38, 25);
+            btnSearchAirbases.TabIndex = 9;
+            btnSearchAirbases.Text = "...";
+            btnSearchAirbases.UseVisualStyleBackColor = false;
+            btnSearchAirbases.Click += AirbaseSearchClicked;
+            // 
             // WaypointEditControl
             // 
             AutoScaleDimensions = new SizeF(96F, 96F);
             AutoScaleMode = AutoScaleMode.Dpi;
             BackColor = Color.PaleGoldenrod;
+            Controls.Add(btnSearchAirbases);
             Controls.Add(chkTarget);
             Controls.Add(label6);
             Controls.Add(txtTimeOverSteerpoint);
             Controls.Add(pnlCustomControls);
-            Controls.Add(cboAirbases);
             Controls.Add(lblValidation);
             Controls.Add(label2);
             Controls.Add(label1);
@@ -286,7 +275,6 @@ namespace DTC.New.UI.Base.Systems
             Controls.Add(txtElevation);
             Controls.Add(label4);
             Controls.Add(label3);
-            Controls.Add(label5);
             Controls.Add(pnlTop);
             Name = "WaypointEditControl";
             Size = new Size(588, 668);
@@ -295,7 +283,6 @@ namespace DTC.New.UI.Base.Systems
         }
 
         #endregion
-        private Label label5;
         private Panel pnlTop;
         private Label label3;
         private DTCButton btnSave;
@@ -303,7 +290,6 @@ namespace DTC.New.UI.Base.Systems
         private Label label2;
         private DTCButton btnCancel;
         private Label label4;
-        protected DTCDropDown cboAirbases;
         protected DTCCoordinateTextBox2 txtCoordinate;
         protected DTCTextBox txtName;
         protected DTCNumericTextBox txtElevation;
@@ -313,5 +299,6 @@ namespace DTC.New.UI.Base.Systems
         private Label label6;
         protected DTCTimeTextBox txtTimeOverSteerpoint;
         protected DTCCheckBox chkTarget;
+        private DTCButton btnSearchAirbases;
     }
 }

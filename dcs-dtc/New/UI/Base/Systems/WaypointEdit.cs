@@ -7,6 +7,7 @@ public class WaypointEdit<T> : WaypointEditControl where T : class, IWaypoint, n
 {
     private readonly Action refreshListCallback;
     private readonly IWaypointEditCustomPanel? customPanel;
+    private AirbaseSearch abSearch = null;
 
     private readonly WaypointSystem<T> waypoints;
     private T waypoint;
@@ -14,7 +15,6 @@ public class WaypointEdit<T> : WaypointEditControl where T : class, IWaypoint, n
 
     public WaypointEdit(Action callback, WaypointSystem<T> waypoints, T? wpt, IWaypointEditCustomPanel? customPanel, int maxWptElevation)
     {
-        this.cboAirbases.Items.AddRange(Theater.GetAirbaseListItems());
         this.refreshListCallback = callback;
         this.customPanel = customPanel;
         this.waypoints = waypoints;
@@ -34,15 +34,26 @@ public class WaypointEdit<T> : WaypointEditControl where T : class, IWaypoint, n
 
     #region UI Events
 
-    protected override void AirbasesListSelectedIndexChanged(object sender, EventArgs e)
+    protected override void AirbaseSearchClicked(object sender, EventArgs e)
     {
-        if (this.cboAirbases.SelectedIndex > -1)
+        if (abSearch == null)
         {
-            var item = (AirbaseListItem)this.cboAirbases.SelectedItem;
-            this.txtName.Text = item.Airbase;
-            this.txtCoordinate.Coordinate = Coordinate.FromString(item.Latitude, item.Longitude);
-            this.txtElevation.Value = item.Elevation;
+            abSearch = new AirbaseSearch();
+            abSearch.AirbaseSelected += (item) =>
+            {
+                this.txtName.Text = item.Name;
+                this.txtCoordinate.Coordinate = Coordinate.FromString(item.Latitude, item.Longitude);
+                this.txtElevation.Value = item.Elevation;
+            };
+            abSearch.Location = new Point(0, 0);
+            abSearch.Size = this.Size;
+            abSearch.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right;
+            this.Controls.Add(abSearch);
+            abSearch.BringToFront();
+            abSearch.Visible = false;
         }
+
+        abSearch.ShowSearch();
     }
 
     protected override void SaveButtonClick(object sender, EventArgs e)
@@ -72,7 +83,6 @@ public class WaypointEdit<T> : WaypointEditControl where T : class, IWaypoint, n
 
     private T ShowDialog(T? wpt = null)
     {
-        this.cboAirbases.SelectedIndex = -1;
         this.lblValidation.Text = "";
 
         if (wpt == null)

@@ -158,3 +158,15 @@ function DTC_DebugDisplay(display)
     local tbl = DTC_SerializeDisplay(display);
     DTC_Log(tbl);
 end
+
+function DTC_DebugDisplay2(display, log)
+    local tbl = DTC_SerializeDisplay(display);
+    DTC_Log2(tbl, log);
+end
+
+function DTC_Log2(str, log)
+    local f = io.open(lfs.writedir() .. [[Logs\DTC_]] .. log .. ".log", "w")
+    f:write(str .. "\n");
+    f:flush();
+    f:close();
+end

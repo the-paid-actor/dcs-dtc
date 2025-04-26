@@ -35,6 +35,7 @@ namespace DTC.New.UI.Aircrafts.FA18.Systems
             label1 = new Label();
             label2 = new Label();
             chkHUD = new DTC.UI.Base.Controls.DTCCheckBox();
+            label3 = new Label();
             SuspendLayout();
             // 
             // cboMode
@@ -43,9 +44,10 @@ namespace DTC.New.UI.Aircrafts.FA18.Systems
             cboMode.FlatStyle = FlatStyle.Flat;
             cboMode.Font = new Font("Microsoft Sans Serif", 10F, FontStyle.Regular, GraphicsUnit.Point);
             cboMode.FormattingEnabled = true;
-            cboMode.Location = new Point(155, 15);
+            cboMode.Location = new Point(194, 53);
+            cboMode.Margin = new Padding(4);
             cboMode.Name = "cboMode";
-            cboMode.Size = new Size(121, 24);
+            cboMode.Size = new Size(150, 28);
             cboMode.TabIndex = 0;
             // 
             // cboProgram
@@ -54,25 +56,28 @@ namespace DTC.New.UI.Aircrafts.FA18.Systems
             cboProgram.FlatStyle = FlatStyle.Flat;
             cboProgram.Font = new Font("Microsoft Sans Serif", 10F, FontStyle.Regular, GraphicsUnit.Point);
             cboProgram.FormattingEnabled = true;
-            cboProgram.Location = new Point(155, 46);
+            cboProgram.Location = new Point(194, 134);
+            cboProgram.Margin = new Padding(4);
             cboProgram.Name = "cboProgram";
-            cboProgram.Size = new Size(121, 24);
+            cboProgram.Size = new Size(150, 28);
             cboProgram.TabIndex = 0;
             // 
             // panel1
             // 
             panel1.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right;
-            panel1.Location = new Point(15, 114);
+            panel1.Location = new Point(19, 181);
+            panel1.Margin = new Padding(4);
             panel1.Name = "panel1";
-            panel1.Size = new Size(658, 401);
+            panel1.Size = new Size(822, 462);
             panel1.TabIndex = 2;
             // 
             // label1
             // 
             label1.Font = new Font("Microsoft Sans Serif", 10F, FontStyle.Regular, GraphicsUnit.Point);
-            label1.Location = new Point(15, 15);
+            label1.Location = new Point(19, 53);
+            label1.Margin = new Padding(4, 0, 4, 0);
             label1.Name = "label1";
-            label1.Size = new Size(100, 25);
+            label1.Size = new Size(125, 31);
             label1.TabIndex = 3;
             label1.Text = "Mode:";
             label1.TextAlign = ContentAlignment.MiddleLeft;
@@ -80,9 +85,10 @@ namespace DTC.New.UI.Aircrafts.FA18.Systems
             // label2
             // 
             label2.Font = new Font("Microsoft Sans Serif", 10F, FontStyle.Regular, GraphicsUnit.Point);
-            label2.Location = new Point(15, 45);
+            label2.Location = new Point(19, 132);
+            label2.Margin = new Padding(4, 0, 4, 0);
             label2.Name = "label2";
-            label2.Size = new Size(134, 25);
+            label2.Size = new Size(168, 31);
             label2.TabIndex = 3;
             label2.Text = "Selected Program:";
             label2.TextAlign = ContentAlignment.MiddleLeft;
@@ -90,26 +96,40 @@ namespace DTC.New.UI.Aircrafts.FA18.Systems
             // chkHUD
             // 
             chkHUD.Font = new Font("Microsoft Sans Serif", 10F, FontStyle.Regular, GraphicsUnit.Point);
-            chkHUD.Location = new Point(15, 77);
+            chkHUD.Location = new Point(19, 18);
+            chkHUD.Margin = new Padding(4);
             chkHUD.Name = "chkHUD";
-            chkHUD.Size = new Size(162, 24);
+            chkHUD.Size = new Size(202, 30);
             chkHUD.TabIndex = 4;
             chkHUD.Text = "Enable EW on HUD";
             chkHUD.UseVisualStyleBackColor = true;
             // 
+            // label3
+            // 
+            label3.Font = new Font("Microsoft Sans Serif", 10F, FontStyle.Regular, GraphicsUnit.Point);
+            label3.Location = new Point(19, 91);
+            label3.Margin = new Padding(4, 0, 4, 0);
+            label3.Name = "label3";
+            label3.Size = new Size(429, 31);
+            label3.TabIndex = 5;
+            label3.Text = "Settings below will only apply if Mode = Manual";
+            label3.TextAlign = ContentAlignment.MiddleLeft;
+            // 
             // CMSPage
             // 
-            AutoScaleDimensions = new SizeF(96F, 96F);
+            AutoScaleDimensions = new SizeF(120F, 120F);
             AutoScaleMode = AutoScaleMode.Dpi;
             BackColor = Color.PaleGoldenrod;
+            Controls.Add(label3);
             Controls.Add(chkHUD);
             Controls.Add(label2);
             Controls.Add(label1);
             Controls.Add(panel1);
             Controls.Add(cboProgram);
             Controls.Add(cboMode);
+            Margin = new Padding(4);
             Name = "CMSPage";
-            Size = new Size(698, 548);
+            Size = new Size(872, 685);
             ResumeLayout(false);
         }
 
@@ -121,5 +141,6 @@ namespace DTC.New.UI.Aircrafts.FA18.Systems
         private Label label1;
         private Label label2;
         private DTC.UI.Base.Controls.DTCCheckBox chkHUD;
+        private Label label3;
     }
 }

@@ -19,7 +19,7 @@ public partial class F16Uploader
             Cmd(UFC.ENTR);
             Cmd(UFC.SEQ);
 
-            if (config.Datalink.EnableOwnCallsign == true)
+            if (config.Datalink.EnableOwnCallsign == true && string.IsNullOrEmpty(config.Datalink.OwnCallsign) == false)
             {
                 Cmd(UFC.DOWN);
                 Cmd(UFC.DOWN);

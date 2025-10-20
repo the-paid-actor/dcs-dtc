@@ -12,7 +12,7 @@ local Theme_Auto = 3
 
 local DTCKneeboard = {
     width = 660,
-    height = 1000,
+    height = 800,
     dialog = nil,
     visible = false,
 

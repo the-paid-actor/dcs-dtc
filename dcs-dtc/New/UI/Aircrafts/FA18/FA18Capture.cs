@@ -75,6 +75,7 @@ internal class FA18Capture
                 else if (cfg.WaypointsCapture.NavPointsMode == SteerpointCaptureMode.AddToEndOfFirstGap)
                 {
                     wpt.Sequence = wptSystem.GetNextSequenceOfFirstGap();
+                    if (wpt.Sequence == 0) wpt.Sequence = 1;
                 }
                 else if (cfg.WaypointsCapture.NavPointsMode == SteerpointCaptureMode.AddToRange)
                 {

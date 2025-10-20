@@ -55,6 +55,11 @@ public partial class F16Uploader
         Cmd(UFC.RTN);
     }
 
+    private Condition SniperPodLoaded()
+    {
+        return new Condition("SniperPodLoaded()");
+    }
+
     private void BuildLaserSettings()
     {
         Cmd(UFC.LIST);
@@ -68,6 +73,8 @@ public partial class F16Uploader
         Cmd(Digits(UFC, IntegerString(config.Misc.LSTCode)));
         Cmd(UFC.ENTR);
         Cmd(UFC.DOWN);
+
+        If(SniperPodLoaded(), new[] {UFC.DOWN, UFC.DOWN});
 
         Cmd(Digits(UFC, IntegerString(config.Misc.LaserStartTime)));
         Cmd(UFC.ENTR);

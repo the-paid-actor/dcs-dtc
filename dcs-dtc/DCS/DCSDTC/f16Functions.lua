@@ -504,6 +504,15 @@ function DTC_F16C_CheckCondition_TGT_TO_PUP_NotHighlighted()
     return false
 end
 
+function DTC_F16C_CheckCondition_SniperPodLoaded()
+    local table = DTC_F16C_GetDED();
+    local str1 = table["ATP LASER MODE AA"] or "";
+    if (str1 == "") then
+        return false
+    end
+    return true
+end
+
 function DTC_F16C_AfterNextFrame(params)
     local mainPanel = GetDevice(0);
     local wxButton = mainPanel:get_argument_value(187);

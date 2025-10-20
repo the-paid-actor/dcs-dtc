@@ -22,17 +22,17 @@ namespace DTC.New.UI.Aircrafts.F16.Systems
         {
             if (radio == 1)
             { 
-                textBox.AllowedRanges.Add(new DTCRadioTextBox.FrequencyBand { Min = 225.00M, Max = 399.97M, Name = "UHF" });
+                textBox.AllowedRanges.Add(new DTCRadioTextBox.FrequencyBand { Min = 225.000M, Max = 399.975M, Name = "UHF" });
                 textBox.IntegerDigits = 3;
-                textBox.FractionDigits = 2;
+                textBox.FractionDigits = 3;
                 textBox.F16Radio = true;
             }
             else
             { 
-                textBox.AllowedRanges.Add(new DTCRadioTextBox.FrequencyBand { Min = 30.00M, Max = 87.97M, Name = "FM" });
-                textBox.AllowedRanges.Add(new DTCRadioTextBox.FrequencyBand { Min = 108.00M, Max = 151.97M, Name = "VHF" });
+                textBox.AllowedRanges.Add(new DTCRadioTextBox.FrequencyBand { Min = 30.000M, Max = 87.975M, Name = "FM" });
+                textBox.AllowedRanges.Add(new DTCRadioTextBox.FrequencyBand { Min = 108.000M, Max = 151.975M, Name = "VHF" });
                 textBox.IntegerDigits = 3;
-                textBox.FractionDigits = 2;
+                textBox.FractionDigits = 3;
                 textBox.F16Radio = true;
             }
         }

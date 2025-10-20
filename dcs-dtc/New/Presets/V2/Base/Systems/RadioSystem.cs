@@ -1,9 +1,37 @@
-﻿namespace DTC.New.Presets.V2.Base.Systems;
+﻿
+namespace DTC.New.Presets.V2.Base.Systems;
 
 public class RadioSystem
 {
     public Radio Radio1 { get; set; } = new();
     public Radio Radio2 { get; set; } = new();
+
+    internal void AfterLoadFromJson()
+    {
+        Radio1.SelectedFrequency = FixFrequency(Radio1.SelectedFrequency);
+        Radio2.SelectedFrequency = FixFrequency(Radio2.SelectedFrequency);
+
+        foreach (var preset in Radio1.Presets ?? Enumerable.Empty<RadioPreset>())
+        {
+            preset.Frequency = FixFrequency(preset.Frequency);
+        }
+        foreach (var preset in Radio2.Presets ?? Enumerable.Empty<RadioPreset>())
+        {
+            preset.Frequency = FixFrequency(preset.Frequency);
+        }
+    }
+
+    private string FixFrequency(string s)
+    {
+        if (string.IsNullOrEmpty(s)) return s;
+
+        var p = s.Split(".");
+        if (p.Length == 2 && p[1].Length == 2)
+        {
+            s += "0";
+        }
+        return s;
+    }
 }
 
 public enum RadioMode

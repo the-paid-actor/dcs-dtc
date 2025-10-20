@@ -47,6 +47,10 @@ public class F16Configuration : Configuration
         {
             MFD.AfterLoadFromJson();
         }
+        if (Radios != null)
+        {
+            Radios.AfterLoadFromJson();
+        }
         FixWaypointCoordinateFormat();
     }
 

@@ -414,11 +414,11 @@ end
 
 function DTC_FA18C_ExecCmd_UnSelectStore(device, b1, b2, b3, b4, b5, delay, act)
     local table = DTC_GetDisplay(2)
-    local button1Selected = table["_1__id:136.2.BP_6_Break_X_Root.1"]
-    local button2Selected = table["_1__id:139.2.BP_7_Break_X_Root.1"]
-    local button3Selected = table["_1__id:142.2.BP_8_Break_X_Root.1"]
-    local button4Selected = table["_1__id:145.2.BP_9_Break_X_Root.1"]
-    local button5Selected = table["_1__id:148.2.BP_10_Break_X_Root.1"]
+    local button1Selected = table["_1__id:137.2.BP_6_Break_X_Root.1"]
+    local button2Selected = table["_1__id:140.2.BP_7_Break_X_Root.1"]
+    local button3Selected = table["_1__id:143.2.BP_8_Break_X_Root.1"]
+    local button4Selected = table["_1__id:146.2.BP_9_Break_X_Root.1"]
+    local button5Selected = table["_1__id:149.2.BP_10_Break_X_Root.1"]
 
     if button1Selected == "" then
         DTC_ExecCommand(device, b1, delay, act)
@@ -440,11 +440,11 @@ function DTC_FA18C_ExecCmd_SelectStore(store, device, b1, b2, b3, b4, b5, delay,
     DTC_Wait()
 
     local table = DTC_GetDisplay(2)
-    local sta2 = table["_1__id:136.1"] or "";
-    local sta3 = table["_1__id:139.1"] or "";
-    local sta5 = table["_1__id:142.1"] or "";
-    local sta7 = table["_1__id:145.1"] or "";
-    local sta8 = table["_1__id:148.1"] or "";
+    local sta2 = table["_1__id:137.1"] or "";
+    local sta3 = table["_1__id:140.1"] or "";
+    local sta5 = table["_1__id:143.1"] or "";
+    local sta7 = table["_1__id:146.1"] or "";
+    local sta8 = table["_1__id:149.1"] or "";
 
     if sta2 == store then
         DTC_ExecCommand(device, b1, delay, act)

@@ -7,6 +7,12 @@
       "PostDelayFactor": 0,
       "Activation": 1
     },
+    "CDU_BTN_CLR": {
+      "Id": 1285,
+      "DelayFactor": 1,
+      "PostDelayFactor": 0,
+      "Activation": 1
+    },
     "CDU_LSK_L3": {
       "Id": 1228,
       "DelayFactor": 1,

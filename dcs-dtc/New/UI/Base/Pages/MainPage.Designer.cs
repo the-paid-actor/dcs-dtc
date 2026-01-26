@@ -145,7 +145,7 @@ partial class MainPage
         btnA10.Padding = new Padding(5);
         btnA10.Size = new Size(226, 150);
         btnA10.TabIndex = 7;
-        btnA10.Text = "A-10C Warthog";
+        btnA10.Text = "A-10C II Tank Killer";
         btnA10.TextAlign = ContentAlignment.TopLeft;
         btnA10.UseVisualStyleBackColor = true;
         btnA10.Click += btnA10_Click;
@@ -164,7 +164,7 @@ partial class MainPage
         Controls.Add(btnA10);
         Controls.Add(btnWptDatabase);
         Name = "MainPage";
-        Size = new Size(702, 383);
+        Size = new Size(685, 366);
         ResumeLayout(false);
     }
 

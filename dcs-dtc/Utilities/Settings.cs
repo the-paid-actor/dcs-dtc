@@ -345,9 +345,9 @@ namespace DTC.Utilities
             {
                 obj.C130CommandDelayMs = 150;
             }
-            if (obj.A10CommandDelayMs < 200)
+            if (obj.A10CommandDelayMs < 150)
             {
-                obj.A10CommandDelayMs = 200;
+                obj.A10CommandDelayMs = 150;
             }
             if (obj.CaptureDialogShortcut == null)
             {

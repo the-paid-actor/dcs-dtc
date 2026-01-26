@@ -65,58 +65,6 @@ public partial class C130Uploader
         }
 
         }
-
-    private ICommand[] Keyboard(Device d, string text)
-    {
-        var list = new List<ICommand>();
-        var type = d.GetType();
-        var props = type.GetProperties();
-
-        foreach (var c in text)
-        {
-            var name = c.ToString();
-
-            if (char.IsDigit(c))
-            {
-                name = "D" + c.ToString();
-            }
-
-            var prop = props.First(p => p.Name == name);
-            list.Add((ICommand)prop.GetValue(d, null));
-        }
-        return list.ToArray();
-    }
-
-    private CustomCommand QueuePointToDelete(string type, int sequence)
-    {
-        return new CustomCommand($"QueuePointToDelete('{type}', {sequence})");
-    }
-
-    private Condition IsPointQueuedToDelete(string type, int sequence)
-    {
-        return new Condition($"IsPointQueuedToDelete('{type}', {sequence})");
-    }
-
-    private Condition SequenceInUse(string type, int sequence)
-    {
-        return new Condition($"SequenceInUse('{type}', {sequence})");
-    }
-
-    private Condition IsPointEqual(string type, int sequence, string ident, string free, string coord, int alt)
-    {
-        return new Condition($"IsPointEqual('{type}', {sequence}, '{ident}', '{free}', '{coord}', {alt})");
-    }
-
-    private Condition CannotDeletePoint(Device mfd)
-    {
-        return new Condition($"CannotDeletePoint('{mfd.Name}')");
-    }
-
-    private Condition RouteEmpty(Device mfd)
-    {
-        return new Condition($"RouteEmpty('{mfd.Name}')");
-    }
-
     
     
 }

@@ -120,6 +120,7 @@ function DTC_GetPlayerAircraftType()
         if model == "FA-18C_hornet" then return "FA18C" end
         if model == "F-15ESE" then return "F15E" end
         if model == "AH-64D_BLK_II" then return "AH64D" end
+        if model == "C-130J-30" then return "C130" end
         return model;
     end
     return "Unknown"

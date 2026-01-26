@@ -1,0 +1,19 @@
+{
+  "NU": {
+    "Id": 22,
+    "BTN1": {
+      "Id": 3002,
+      "DelayFactor": 0,
+      "PostDelayFactor": 0,
+      "Activation": 1
+    },
+    "RIGHT_HDPT": {
+      "Id": 3003,
+      "DelayFactor": 0,
+      "PostDelayFactor": 0,
+      "Activation": 1
+    }
+  }
+
+  
+}

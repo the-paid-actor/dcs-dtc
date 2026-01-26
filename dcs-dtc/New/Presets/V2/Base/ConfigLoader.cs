@@ -74,6 +74,12 @@ internal class ConfigLoader
         {
             return typeof(Aircrafts.AH64D.AH64DConfiguration);
         }
+
+        if (aircraft == "C130")
+        {
+            return typeof(Aircrafts.C130.C130Configuration);
+        }
+
         throw new NotImplementedException();
     }
 }

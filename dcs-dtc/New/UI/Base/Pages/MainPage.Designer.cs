@@ -33,6 +33,7 @@ partial class MainPage
         btnAH64 = new Button();
         btnF15E = new Button();
         btnWptDatabase = new Button();
+        btnC130 = new Button();
         SuspendLayout();
         // 
         // btnF16
@@ -99,6 +100,22 @@ partial class MainPage
         btnF15E.UseVisualStyleBackColor = true;
         btnF15E.Click += btnF15E_Click;
         // 
+        // btnC130
+        // 
+        btnC130.FlatStyle = FlatStyle.Flat;
+        btnC130.Font = new Font("Microsoft Sans Serif", 11F, FontStyle.Bold, GraphicsUnit.Point);
+        btnC130.ForeColor = Color.Black;
+        btnC130.Image = Properties.Resources.Waypoints;
+        btnC130.Location = new Point(272, 189);
+        btnC130.Name = "btnC130";
+        btnC130.Padding = new Padding(5);
+        btnC130.Size = new Size(226, 150);
+        btnC130.TabIndex = 6;
+        btnC130.Text = "C-130 Hercules";
+        btnC130.TextAlign = ContentAlignment.TopLeft;
+        btnC130.UseVisualStyleBackColor = true;
+        btnC130.Click += btnC130_Click;
+        // 
         // btnWptDatabase
         // 
         btnWptDatabase.FlatStyle = FlatStyle.Flat;
@@ -126,6 +143,7 @@ partial class MainPage
         Controls.Add(btnF18);
         Controls.Add(btnAH64);
         Controls.Add(btnF15E);
+        Controls.Add(btnC130);
         Controls.Add(btnWptDatabase);
         Name = "MainPage";
         Size = new Size(770, 434);
@@ -139,4 +157,5 @@ partial class MainPage
     private System.Windows.Forms.Button btnF15E;
     private System.Windows.Forms.Button btnWptDatabase;
     private System.Windows.Forms.Button btnAH64;
+    private System.Windows.Forms.Button btnC130;
 }

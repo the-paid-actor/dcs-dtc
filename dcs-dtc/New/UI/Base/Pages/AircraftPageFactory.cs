@@ -2,11 +2,13 @@
 using DTC.New.Presets.V2.Aircrafts.F15E;
 using DTC.New.Presets.V2.Aircrafts.F16;
 using DTC.New.Presets.V2.Aircrafts.FA18;
+using DTC.New.Presets.V2.Aircrafts.C130;
 using DTC.New.Presets.V2.Base;
 using DTC.New.UI.Aircrafts.AH64D;
 using DTC.New.UI.Aircrafts.F15E;
 using DTC.New.UI.Aircrafts.F16;
 using DTC.New.UI.Aircrafts.FA18;
+using DTC.New.UI.Aircrafts.C130;
 
 namespace DTC.New.UI.Base.Pages
 {
@@ -29,6 +31,10 @@ namespace DTC.New.UI.Base.Pages
             else if (aircraft is AH64DAircraft)
             {
                 return new AH64DPage(aircraft, preset);
+            }
+            else if (aircraft is C130Aircraft)
+            {
+                return new C130Page(aircraft, preset);
             }
 
             throw new NotImplementedException();

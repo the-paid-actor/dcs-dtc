@@ -47,4 +47,9 @@ public partial class MainPage : Page
     {
         NavigateTo("F15E");
     }
+
+    private void btnC130_Click(object sender, System.EventArgs e)
+    {
+        NavigateTo("C130");
+    }
 }

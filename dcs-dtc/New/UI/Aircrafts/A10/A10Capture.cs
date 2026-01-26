@@ -2,6 +2,8 @@
 using DTC.New.Presets.V2.Aircrafts.A10.Systems;
 using DTC.Utilities;
 using DTC.Utilities.Network;
+using System.Collections.Generic;
+
 
 namespace DTC.New.UI.Aircrafts.A10;
 
@@ -18,6 +20,8 @@ internal class A10Capture
 
     public void CaptureReceived(WaypointCaptureData data)
     {
+        var configBefore = (A10Configuration)cfg.Clone();
+
         foreach (var d in data.data)
         {
             var coord = Coordinate.FromDCS(d.latitude, d.longitude).ToF15EFormat();
@@ -42,5 +46,24 @@ internal class A10Capture
         cfg.Waypoints.ReorderBySequence();
         page.SavePreset();
         page.GetWaypointsPage().RefreshList();
+
+        if (data.upload)
+        {
+            UploadCapture(configBefore, cfg);
+        }
+    }
+    private void UploadCapture(A10Configuration cfgBefore, A10Configuration cfgAfter)
+    {
+        var cfgUpload = (A10Configuration)cfgAfter.Clone();
+        cfgUpload.Upload = new UploadSystem();
+
+       // RemoveIdenticalSteerpoints(cfgBefore, cfgAfter, cfgUpload);
+
+        if (cfgUpload.Waypoints.Waypoints.Count > 0)
+        {
+            cfgUpload.Upload.Waypoints = true;
+        }
+
+        page.UploadToJet(cfgUpload, true);
     }
 }

@@ -70,7 +70,7 @@ public partial class C130Uploader
     {
 
 
-       // Cmd();
+        Cmd(NU.BTN1);
 
         //Cmd(display.GetCommand("TSD"));
 

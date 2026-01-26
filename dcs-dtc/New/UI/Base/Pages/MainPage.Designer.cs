@@ -122,13 +122,13 @@ partial class MainPage
         btnC130.FlatStyle = FlatStyle.Flat;
         btnC130.Font = new Font("Microsoft Sans Serif", 11F, FontStyle.Bold, GraphicsUnit.Point);
         btnC130.ForeColor = Color.Black;
-        //btnC130.Image = "";
+        btnC130.Image = Properties.Resources.C130J;
         btnC130.Location = new Point(272, 189);
         btnC130.Name = "btnC130";
         btnC130.Padding = new Padding(5);
         btnC130.Size = new Size(226, 150);
         btnC130.TabIndex = 6;
-        btnC130.Text = "C-130J";
+        btnC130.Text = "C-130J Hercules";
         btnC130.TextAlign = ContentAlignment.TopLeft;
         btnC130.UseVisualStyleBackColor = true;
         btnC130.Click += btnC130_Click;
@@ -146,7 +146,7 @@ partial class MainPage
         Controls.Add(btnC130);
         Controls.Add(btnWptDatabase);
         Name = "MainPage";
-        Size = new Size(753, 434);
+        Size = new Size(719, 400);
         ResumeLayout(false);
     }
 

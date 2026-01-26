@@ -22,7 +22,7 @@ namespace DTC.Properties {
     [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Resources.Tools.StronglyTypedResourceBuilder", "17.0.0.0")]
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
     [global::System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
-    internal class Resources {
+    public class Resources {
         
         private static global::System.Resources.ResourceManager resourceMan;
         
@@ -36,7 +36,7 @@ namespace DTC.Properties {
         ///   Returns the cached ResourceManager instance used by this class.
         /// </summary>
         [global::System.ComponentModel.EditorBrowsableAttribute(global::System.ComponentModel.EditorBrowsableState.Advanced)]
-        internal static global::System.Resources.ResourceManager ResourceManager {
+        public static global::System.Resources.ResourceManager ResourceManager {
             get {
                 if (object.ReferenceEquals(resourceMan, null)) {
                     global::System.Resources.ResourceManager temp = new global::System.Resources.ResourceManager("DTC.Properties.Resources", typeof(Resources).Assembly);
@@ -51,7 +51,7 @@ namespace DTC.Properties {
         ///   resource lookups using this strongly typed resource class.
         /// </summary>
         [global::System.ComponentModel.EditorBrowsableAttribute(global::System.ComponentModel.EditorBrowsableState.Advanced)]
-        internal static global::System.Globalization.CultureInfo Culture {
+        public static global::System.Globalization.CultureInfo Culture {
             get {
                 return resourceCulture;
             }
@@ -63,7 +63,7 @@ namespace DTC.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
-        internal static System.Drawing.Bitmap _2560px_Brown_dominant__highland__ERDL_camouflage_pattern_swatch_svg {
+        public static System.Drawing.Bitmap _2560px_Brown_dominant__highland__ERDL_camouflage_pattern_swatch_svg {
             get {
                 object obj = ResourceManager.GetObject("2560px-Brown-dominant__highland__ERDL_camouflage_pattern_swatch.svg", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
@@ -73,7 +73,7 @@ namespace DTC.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
-        internal static System.Drawing.Bitmap AH64 {
+        public static System.Drawing.Bitmap AH64 {
             get {
                 object obj = ResourceManager.GetObject("AH64", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
@@ -83,7 +83,27 @@ namespace DTC.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
-        internal static System.Drawing.Bitmap F15E {
+        public static System.Drawing.Bitmap C130J {
+            get {
+                object obj = ResourceManager.GetObject("C130J", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        public static System.Drawing.Bitmap clipboard {
+            get {
+                object obj = ResourceManager.GetObject("clipboard", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        public static System.Drawing.Bitmap F15E {
             get {
                 object obj = ResourceManager.GetObject("F15E", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
@@ -93,7 +113,7 @@ namespace DTC.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
-        internal static System.Drawing.Bitmap F16 {
+        public static System.Drawing.Bitmap F16 {
             get {
                 object obj = ResourceManager.GetObject("F16", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
@@ -103,7 +123,7 @@ namespace DTC.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
-        internal static System.Drawing.Bitmap FA18 {
+        public static System.Drawing.Bitmap FA18 {
             get {
                 object obj = ResourceManager.GetObject("FA18", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
@@ -113,29 +133,27 @@ namespace DTC.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
-        internal static System.Drawing.Bitmap pin {
+        public static System.Drawing.Bitmap pin {
             get {
                 object obj = ResourceManager.GetObject("pin", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
-
+        
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
-        internal static System.Drawing.Bitmap redpin
-        {
-            get
-            {
+        public static System.Drawing.Bitmap redpin {
+            get {
                 object obj = ResourceManager.GetObject("redpin", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
-
+        
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
-        internal static System.Drawing.Bitmap tablet {
+        public static System.Drawing.Bitmap tablet {
             get {
                 object obj = ResourceManager.GetObject("tablet", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
@@ -145,7 +163,7 @@ namespace DTC.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
-        internal static System.Drawing.Bitmap target_121330 {
+        public static System.Drawing.Bitmap target_121330 {
             get {
                 object obj = ResourceManager.GetObject("target_121330", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
@@ -155,21 +173,9 @@ namespace DTC.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
-        internal static System.Drawing.Bitmap Waypoints {
+        public static System.Drawing.Bitmap Waypoints {
             get {
                 object obj = ResourceManager.GetObject("Waypoints", resourceCulture);
-                return ((System.Drawing.Bitmap)(obj));
-            }
-        }
-
-        /// <summary>
-        ///   Looks up a localized resource of type System.Drawing.Bitmap.
-        /// </summary>
-        internal static System.Drawing.Bitmap clipboard
-        {
-            get
-            {
-                object obj = ResourceManager.GetObject("clipboard", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }

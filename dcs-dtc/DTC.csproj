@@ -103,6 +103,9 @@
 		<Compile Update="New\UI\Aircrafts\AH64D\Systems\WaypointEditPanel.cs">
 			<SubType>UserControl</SubType>
 		</Compile>
+		<Compile Update="New\UI\Aircrafts\C130\Systems\UploadPage.cs">
+		  <SubType>UserControl</SubType>
+		</Compile>
 		<Compile Update="New\UI\Aircrafts\F15E\Systems\SmartWeaponsPageEdit.cs">
 			<SubType>UserControl</SubType>
 		</Compile>

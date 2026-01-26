@@ -1,6 +1,7 @@
 using DTC.New.Presets.V2.Aircrafts.C130;
 using DTC.New.Presets.V2.Aircrafts.C130.Systems;
 using DTC.New.Presets.V2.Base;
+using DTC.New.UI.Aircrafts.C130.Systems;
 using DTC.New.UI.Base.Pages;
 using DTC.New.UI.Base.Systems;
 using DTC.New.Uploader.Aircrafts.C130;
@@ -30,6 +31,8 @@ public class C130Page : AircraftPage
         return new AircraftSystemPage[]
         {
             new LoadSavePage(this),
+            new AircraftSystemPage.Divider(),
+            new UploadPage(this),
             new AircraftSystemPage.Divider(),
             new WaypointsPage<Waypoint>(this, Configuration.Waypoints, null, nameof(Configuration.Waypoints), "Waypoints")
         };

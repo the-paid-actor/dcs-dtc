@@ -52,4 +52,9 @@ public partial class MainPage : Page
     {
         NavigateTo("C130");
     }
+
+    private void btnA10_Click(object sender, System.EventArgs e)
+    {
+        NavigateTo("A10");
+    }
 }

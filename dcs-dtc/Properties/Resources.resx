@@ -121,35 +121,8 @@
   <data name="Waypoints" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\Waypoints.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="target_121330" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\target_121330.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="redpin" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\redpin.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
   <data name="clipboard" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\clipboard.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="F15E" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\F15E.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="FA18" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\FA18.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="tablet" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\tablet.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="pin" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\pin.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="AH64" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\AH64.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="F16" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\F16.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="2560px-Brown-dominant__highland__ERDL_camouflage_pattern_swatch.svg" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\2560px-Brown-dominant__highland__ERDL_camouflage_pattern_swatch.svg.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <assembly alias="System.Drawing" name="System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" />
   <data name="C130J" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
@@ -301,5 +274,35 @@
         5yOV4UKKiJlQ3qDeB8QhQoXsZMj3PlAUNSOVoUKMSyMe7aAvwKUE6XhQooEOIBQPSElIFrCFCheBBc0t
         bSEDmVr0hQooGJZKAbaQjqbneFCiRiVvaE6LJFtIUKGxH//Z
 </value>
+  </data>
+  <data name="redpin" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\redpin.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="F15E" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\F15E.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="FA18" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\FA18.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="AH64" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\AH64.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="tablet" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\tablet.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="pin" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\pin.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="target_121330" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\target_121330.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="F16" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\F16.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="2560px-Brown-dominant__highland__ERDL_camouflage_pattern_swatch.svg" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\2560px-Brown-dominant__highland__ERDL_camouflage_pattern_swatch.svg.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="A10" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\A10.jpg;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
 </root>

@@ -44,6 +44,7 @@
 		<None Remove="New\Uploader\Aircrafts\F16\F16Uploader.json" />
 		<None Remove="New\Uploader\Aircrafts\FA18\FA18Uploader.json" />
 		<None Remove="New\Uploader\Aircrafts\C130\C130Uploader.json" />
+		<None Remove="New\Uploader\Aircrafts\A10\A10Uploader.json" />
 		<None Remove="Resources\Iconleak-Atrous-Disk.ico" />
 	</ItemGroup>
 
@@ -53,6 +54,7 @@
 		<AdditionalFiles Include="New\Uploader\Aircrafts\F16\F16Uploader.json" />
 		<AdditionalFiles Include="New\Uploader\Aircrafts\FA18\FA18Uploader.json" />
 		<AdditionalFiles Include="New\Uploader\Aircrafts\C130\C130Uploader.json" />
+		<AdditionalFiles Include="New\Uploader\Aircrafts\A10\A10Uploader.json" />
 	</ItemGroup>
 
 	<ItemGroup>
@@ -105,6 +107,9 @@
 		</Compile>
 		<Compile Update="New\UI\Aircrafts\C130\Systems\UploadPage.cs">
 		  <SubType>UserControl</SubType>
+		</Compile>
+		<Compile Update="New\UI\Aircrafts\A10\Systems\UploadPage.cs">
+			<SubType>UserControl</SubType>
 		</Compile>
 		<Compile Update="New\UI\Aircrafts\F15E\Systems\SmartWeaponsPageEdit.cs">
 			<SubType>UserControl</SubType>
@@ -182,6 +187,9 @@
 			<CopyToOutputDirectory>Always</CopyToOutputDirectory>
 		</None>
 		<None Update="DCS\DCSDTC\C130Functions.lua">
+			<CopyToOutputDirectory>Always</CopyToOutputDirectory>
+		</None>
+		<None Update="DCS\DCSDTC\A10Functions.lua">
 			<CopyToOutputDirectory>Always</CopyToOutputDirectory>
 		</None>
 		<None Update="DCS\DCSDTC\hook.lua">

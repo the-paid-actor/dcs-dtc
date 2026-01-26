@@ -34,6 +34,7 @@ partial class MainPage
         btnF15E = new Button();
         btnWptDatabase = new Button();
         btnC130 = new Button();
+        btnA10 = new Button();
         SuspendLayout();
         // 
         // btnF16
@@ -133,6 +134,22 @@ partial class MainPage
         btnC130.UseVisualStyleBackColor = true;
         btnC130.Click += btnC130_Click;
         // 
+        // btnA10
+        // 
+        btnA10.FlatStyle = FlatStyle.Flat;
+        btnA10.Font = new Font("Microsoft Sans Serif", 11F, FontStyle.Bold, GraphicsUnit.Point);
+        btnA10.ForeColor = Color.Black;
+        btnA10.Image = Properties.Resources.A10;
+        btnA10.Location = new Point(521, 189);
+        btnA10.Name = "btnA10";
+        btnA10.Padding = new Padding(5);
+        btnA10.Size = new Size(226, 150);
+        btnA10.TabIndex = 7;
+        btnA10.Text = "A-10C Warthog";
+        btnA10.TextAlign = ContentAlignment.TopLeft;
+        btnA10.UseVisualStyleBackColor = true;
+        btnA10.Click += btnA10_Click;
+        // 
         // MainPage
         // 
         AutoScaleDimensions = new SizeF(96F, 96F);
@@ -144,9 +161,10 @@ partial class MainPage
         Controls.Add(btnAH64);
         Controls.Add(btnF15E);
         Controls.Add(btnC130);
+        Controls.Add(btnA10);
         Controls.Add(btnWptDatabase);
         Name = "MainPage";
-        Size = new Size(719, 400);
+        Size = new Size(702, 383);
         ResumeLayout(false);
     }
 
@@ -158,4 +176,5 @@ partial class MainPage
     private System.Windows.Forms.Button btnWptDatabase;
     private System.Windows.Forms.Button btnAH64;
     private System.Windows.Forms.Button btnC130;
+    private System.Windows.Forms.Button btnA10;
 }

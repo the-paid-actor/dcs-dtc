@@ -73,6 +73,16 @@ namespace DTC.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
+        public static System.Drawing.Bitmap A10 {
+            get {
+                object obj = ResourceManager.GetObject("A10", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
         public static System.Drawing.Bitmap AH64 {
             get {
                 object obj = ResourceManager.GetObject("AH64", resourceCulture);

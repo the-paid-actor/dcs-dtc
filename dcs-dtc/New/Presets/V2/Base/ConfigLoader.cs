@@ -80,6 +80,11 @@ internal class ConfigLoader
             return typeof(Aircrafts.C130.C130Configuration);
         }
 
+        if (aircraft == "A10")
+        {
+            return typeof(Aircrafts.A10.A10Configuration);
+        }
+
         throw new NotImplementedException();
     }
 }

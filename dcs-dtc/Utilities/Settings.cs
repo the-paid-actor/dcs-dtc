@@ -11,6 +11,7 @@ namespace DTC.Utilities
             public int StrikeEagleCommandDelayMs;
             public int HornetCommandDelayMs;
             public int C130CommandDelayMs;
+            public int A10CommandDelayMs;
             public int ViperCommandDelayMs;
             public int ApacheCommandDelayMs;
             public bool AlwaysOnTop;
@@ -221,6 +222,20 @@ namespace DTC.Utilities
             }
         }
 
+        public static int A10CommandDelayMs
+        {
+            get
+            {
+                LoadSettings();
+                return currentSettings.A10CommandDelayMs;
+            }
+            set
+            {
+                currentSettings.A10CommandDelayMs = value;
+                SaveSettings();
+            }
+        }
+
         public static string CaptureDialogShortcut
         {
             get
@@ -329,6 +344,10 @@ namespace DTC.Utilities
             if (obj.C130CommandDelayMs < 150)
             {
                 obj.C130CommandDelayMs = 150;
+            }
+            if (obj.A10CommandDelayMs < 200)
+            {
+                obj.A10CommandDelayMs = 200;
             }
             if (obj.CaptureDialogShortcut == null)
             {

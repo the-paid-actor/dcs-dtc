@@ -2,6 +2,8 @@
 using DTC.New.Presets.V2.Base.Systems;
 using DTC.New.Uploader.Base;
 using DTC.Utilities;
+using System.Collections.Generic;
+using static System.Net.Mime.MediaTypeNames;
 
 namespace DTC.New.Uploader.Aircrafts.C130;
 
@@ -51,7 +53,7 @@ public partial class C130Uploader
         Cmd(display.GetCommand("T5"));
         Cmd(StoreCurrentCoords(display));
        */
-        if (config.Upload.Waypoints && config.Waypoints != null && config.Waypoints.HasWaypoints())
+        if (/*config.Upload.Waypoints && */config.Waypoints != null && config.Waypoints.HasWaypoints())
         {
             UploadPoints(config.Waypoints/*, "W", display, keyboard*/, true);
         }
@@ -70,62 +72,116 @@ public partial class C130Uploader
     {
 
 
-        Cmd(NU.BTN1);
+        Cmd(CNI.CLR);
+        Cmd(CNI.CLR);
+        Cmd(CNI.Index);
+        Cmd(CNI.NextPage);
+        Cmd(CNI.LSK_R2);
+        foreach (var wpt in config.Waypoints.Waypoints)
+        {
 
-        //Cmd(display.GetCommand("TSD"));
+            foreach (var c in wpt.Name.ToUpper())
+            {
+                if (c == ' ')
+                {
+                    continue;
+                }
+                Cmd(CNI.GetCommand("Btn" + c));
+            }
+            Cmd(CNI.LSK_L1);
 
-        /* Cmd(display.GetCommand("TSD"));
-         Cmd(display.GetCommand("B6"));
 
-         var startSeq = wptList.GetFirstAllowedSequence();
-         var endSeq = wptList.GetLastAllowedSequence();
-         var lastSeq = wptList.LastSequence();
+            var coord = Coordinate.FromString(wpt.Latitude, wpt.Longitude);
+            var mgrs = coord.ToMGRSEightDigits().Replace(" ", "");
 
-         var pointsToDelete = new List<int>();
+            foreach (var c in mgrs)
+            {
+                if (c == ' ')
+                {
+                    continue;
+                }
+                Cmd(CNI.GetCommand("Btn" + c));
+            }
 
-         for (var i = startSeq; i <= endSeq; i++)
-         {
-             var wpt = wptList.GetBySequence(i);
-             if (wpt == null)
+            Cmd(CNI.LSK_L2);
+
+            foreach (var c in wpt.Elevation.ToString())
+            {
+                if (c == ' ')
+                {
+                    continue;
+                }
+                Cmd(CNI.GetCommand("Btn" + c));
+            }
+
+            
+
+            Cmd(CNI.LSK_L3);
+            Cmd(CNI.LSK_R6);
+
+            //   N 27°15.079'   E 56°36.051'
+
+            //N 27°13.118'   E 56°22.735'
+        }
+        var a = 1;
+
+
+            // Cmd(CNI.BTN1);
+            // Cmd(CNI.BTN1);
+
+            //Cmd(display.GetCommand("TSD"));
+
+            /* Cmd(display.GetCommand("TSD"));
+             Cmd(display.GetCommand("B6"));
+
+
+             var lastSeq = wptList.LastSequence();
+
+             var pointsToDelete = new List<int>();
+
+             for (var i = startSeq; i <= endSeq; i++)
              {
-                 pointsToDelete.Add(i);
-                 StartIf(SequenceInUse(genericPointType, i));
+                 var wpt = wptList.GetBySequence(i);
+                 if (wpt == null)
                  {
-                     if (fullSync)
+                     pointsToDelete.Add(i);
+                     StartIf(SequenceInUse(genericPointType, i));
                      {
-                         Cmd(QueuePointToDelete(genericPointType, i));
+                         if (fullSync)
+                         {
+                             Cmd(QueuePointToDelete(genericPointType, i));
+                         }
                      }
+                     Else();
+                     {
+                         if (i <= lastSeq)
+                         {
+                             AddPoint(genericPointType, display, keyboard, "", "", -1, "");
+                             Cmd(QueuePointToDelete(genericPointType, i));
+                         }
+                     }
+                     EndIf();
                  }
-                 Else();
+                 else
                  {
-                     if (i <= lastSeq)
-                     {
-                         AddPoint(genericPointType, display, keyboard, "", "", -1, "");
-                         Cmd(QueuePointToDelete(genericPointType, i));
-                     }
+                     AddWaypoint(display, keyboard, wpt);
+                 }
+             }
+
+             foreach (var i in pointsToDelete)
+             {
+                 StartIf(IsPointQueuedToDelete(genericPointType, i));
+                 {
+                     DeletePoint(display, keyboard, genericPointType, i);
                  }
                  EndIf();
              }
-             else
-             {
-                 AddWaypoint(display, keyboard, wpt);
-             }
-         }
 
-         foreach (var i in pointsToDelete)
-         {
-             StartIf(IsPointQueuedToDelete(genericPointType, i));
-             {
-                 DeletePoint(display, keyboard, genericPointType, i);
-             }
-             EndIf();
-         }
-
-         Cmd(display.GetCommand("B6"));
-        */
+             Cmd(display.GetCommand("B6"));
+            */
 
 
-    }
+        }
 
     private void AddWaypoint(Device display, Device keyboard, Waypoint? wpt)
     {

@@ -62,7 +62,7 @@ function DTCWptCapture:show(eventCallback)
     local isApache = eventCallback:getAircraftType() == "AH64D"
     local isC130 = eventCallback:getAircraftType() == "C130"
 
-    self.dialog.addButton:setVisible(isViper or isHornet or isApache)
+    self.dialog.addButton:setVisible(isViper or isHornet or isApache or isC130)
     self.dialog.addAsTgtButton:setVisible(isViper or isHornet or isApache)
 
     self.dialog.addPPButton:setVisible(isHornet)

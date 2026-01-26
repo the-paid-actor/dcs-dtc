@@ -2,7 +2,7 @@
 
 https://github.com/the-paid-actor/dcs-dtc
 
-This is a Windows application that mimics the functions of a DTC (Data Cartridge) for the F-16, F/A-18, F-15E and Apache.
+This is a Windows application that mimics the functions of a DTC (Data Cartridge) for the F-16, F/A-18, F-15E, Apache, A10C II, C130J.
 
 - **Create and recall presets** for each mission / server you fly, or however you want to organize your settings. These are saved in the DCS-DTC folder under Documents.
 - **Upload** the settings from a preset to the aircraft.
@@ -72,6 +72,15 @@ This is a Windows application that mimics the functions of a DTC (Data Cartridge
 - Control Measures
 - Targets and Threats
 - TSD settings
+
+## A10C II Tank Killer
+
+- Waypoints
+
+## C130J Hercules
+
+- Waypoints
+
 
 # Requirements
 

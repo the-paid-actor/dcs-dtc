@@ -161,6 +161,9 @@
 		<None Update="DCS\DCSDTC\f18Functions.lua">
 			<CopyToOutputDirectory>Always</CopyToOutputDirectory>
 		</None>
+		<None Update="DCS\DCSDTC\C130Functions.lua">
+			<CopyToOutputDirectory>Always</CopyToOutputDirectory>
+		</None>
 		<None Update="DCS\DCSDTC\hook.lua">
 			<CopyToOutputDirectory>Always</CopyToOutputDirectory>
 		</None>

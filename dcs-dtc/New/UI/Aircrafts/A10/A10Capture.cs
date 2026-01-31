@@ -53,7 +53,7 @@ internal class A10Capture
         }
     }
     private void UploadCapture(A10Configuration cfgBefore, A10Configuration cfgAfter)
-    {
+    {  
         var cfgUpload = (A10Configuration)cfgAfter.Clone();
         cfgUpload.Upload = new UploadSystem();
 

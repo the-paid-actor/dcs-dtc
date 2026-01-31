@@ -119,7 +119,10 @@ end
 function DTC_ExecCommand(device, argument, delay, action, postDelay)
     postDelay = postDelay or 0
 
-     if device == -2 then 
+
+     if device == -3 then 
+        DumpAllIndicationsToFile(0, 6000, "all_indications")
+     elseif device == -2 then 
          LoSetCommand(argument,  action)
          DTC_Log("Executed command LoSetCommand("..argument..",  "..action..")")
          if delay > 0 then

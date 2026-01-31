@@ -752,11 +752,11 @@
             "IsDependency" = "11:FALSE"
             "IsolateTo" = "8:"
             "ProjectOutputGroupRegister" = "3:1"
-              "OutputConfiguration" = "8:Release"
-            "OutputGroupCanonicalName" = "8:Primary"
+            "OutputConfiguration" = "8:"
+            "OutputGroupCanonicalName" = "8:PublishItems"
             "OutputProjectGuid" = "8:{3A7C24C7-CF79-41DA-87E0-9DB8087F8886}"
             "ShowKeyOutput" = "11:TRUE"
-             "PublishProfilePath" = "8:"
+            "PublishProfilePath" = "8:Properties\\PublishProfiles\\FolderProfile.pubxml"
                 "ExcludeFilters"
                 {
                 }

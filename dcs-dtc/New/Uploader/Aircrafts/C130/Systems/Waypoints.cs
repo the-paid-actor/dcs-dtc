@@ -37,7 +37,7 @@ public partial class C130Uploader
 
     private void UploadPoints(WaypointSystem<Waypoint> wptList, bool fullSync)
     {
-
+       
         Cmd(CNI.CLR);
         Cmd(CNI.CLR);
         Cmd(CNI.Index);

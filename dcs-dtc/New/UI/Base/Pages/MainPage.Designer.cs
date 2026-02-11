@@ -35,18 +35,20 @@ partial class MainPage
         btnWptDatabase = new Button();
         btnC130 = new Button();
         btnA10 = new Button();
+        btnCH47F = new Button();
         SuspendLayout();
         // 
         // btnF16
         // 
+        btnF16.BackgroundImage = Properties.Resources.F16;
+        btnF16.BackgroundImageLayout = ImageLayout.Zoom;
         btnF16.FlatStyle = FlatStyle.Flat;
         btnF16.Font = new Font("Microsoft Sans Serif", 11F, FontStyle.Bold, GraphicsUnit.Point);
         btnF16.ForeColor = Color.Black;
-        btnF16.Image = Properties.Resources.F16;
         btnF16.Location = new Point(23, 14);
         btnF16.Name = "btnF16";
         btnF16.Padding = new Padding(5);
-        btnF16.Size = new Size(226, 150);
+        btnF16.Size = new Size(175, 112);
         btnF16.TabIndex = 3;
         btnF16.Text = "F-16CM Viper";
         btnF16.TextAlign = ContentAlignment.TopLeft;
@@ -55,14 +57,15 @@ partial class MainPage
         // 
         // btnF18
         // 
+        btnF18.BackgroundImage = Properties.Resources.FA18;
+        btnF18.BackgroundImageLayout = ImageLayout.Zoom;
         btnF18.FlatStyle = FlatStyle.Flat;
         btnF18.Font = new Font("Microsoft Sans Serif", 11F, FontStyle.Bold, GraphicsUnit.Point);
         btnF18.ForeColor = Color.Black;
-        btnF18.Image = Properties.Resources.FA18;
-        btnF18.Location = new Point(272, 14);
+        btnF18.Location = new Point(204, 14);
         btnF18.Name = "btnF18";
         btnF18.Padding = new Padding(5);
-        btnF18.Size = new Size(226, 150);
+        btnF18.Size = new Size(175, 112);
         btnF18.TabIndex = 3;
         btnF18.Text = "F/A-18C Hornet";
         btnF18.TextAlign = ContentAlignment.TopLeft;
@@ -71,14 +74,15 @@ partial class MainPage
         // 
         // btnAH64
         // 
+        btnAH64.BackgroundImage = Properties.Resources.AH64;
+        btnAH64.BackgroundImageLayout = ImageLayout.Zoom;
         btnAH64.FlatStyle = FlatStyle.Flat;
         btnAH64.Font = new Font("Microsoft Sans Serif", 11F, FontStyle.Bold, GraphicsUnit.Point);
         btnAH64.ForeColor = Color.Black;
-        btnAH64.Image = Properties.Resources.AH64;
-        btnAH64.Location = new Point(23, 189);
+        btnAH64.Location = new Point(566, 14);
         btnAH64.Name = "btnAH64";
         btnAH64.Padding = new Padding(5);
-        btnAH64.Size = new Size(226, 150);
+        btnAH64.Size = new Size(175, 112);
         btnAH64.TabIndex = 5;
         btnAH64.Text = "AH-64D Apache Longbow";
         btnAH64.TextAlign = ContentAlignment.TopLeft;
@@ -87,14 +91,15 @@ partial class MainPage
         // 
         // btnF15E
         // 
+        btnF15E.BackgroundImage = Properties.Resources.F15E;
+        btnF15E.BackgroundImageLayout = ImageLayout.Zoom;
         btnF15E.FlatStyle = FlatStyle.Flat;
         btnF15E.Font = new Font("Microsoft Sans Serif", 11F, FontStyle.Bold, GraphicsUnit.Point);
         btnF15E.ForeColor = Color.Black;
-        btnF15E.Image = Properties.Resources.F15E;
-        btnF15E.Location = new Point(521, 14);
+        btnF15E.Location = new Point(385, 14);
         btnF15E.Name = "btnF15E";
         btnF15E.Padding = new Padding(5);
-        btnF15E.Size = new Size(226, 150);
+        btnF15E.Size = new Size(175, 112);
         btnF15E.TabIndex = 5;
         btnF15E.Text = "F-15E Strike Eagle";
         btnF15E.TextAlign = ContentAlignment.TopLeft;
@@ -120,14 +125,15 @@ partial class MainPage
         // 
         // btnC130
         // 
+        btnC130.BackgroundImage = Properties.Resources.C130J;
+        btnC130.BackgroundImageLayout = ImageLayout.Stretch;
         btnC130.FlatStyle = FlatStyle.Flat;
         btnC130.Font = new Font("Microsoft Sans Serif", 11F, FontStyle.Bold, GraphicsUnit.Point);
         btnC130.ForeColor = Color.Black;
-        btnC130.Image = Properties.Resources.C130J;
-        btnC130.Location = new Point(272, 189);
+        btnC130.Location = new Point(23, 132);
         btnC130.Name = "btnC130";
         btnC130.Padding = new Padding(5);
-        btnC130.Size = new Size(226, 150);
+        btnC130.Size = new Size(175, 112);
         btnC130.TabIndex = 6;
         btnC130.Text = "C-130J Hercules";
         btnC130.TextAlign = ContentAlignment.TopLeft;
@@ -136,19 +142,37 @@ partial class MainPage
         // 
         // btnA10
         // 
+        btnA10.BackgroundImage = Properties.Resources.A10;
+        btnA10.BackgroundImageLayout = ImageLayout.Stretch;
         btnA10.FlatStyle = FlatStyle.Flat;
         btnA10.Font = new Font("Microsoft Sans Serif", 11F, FontStyle.Bold, GraphicsUnit.Point);
         btnA10.ForeColor = Color.Black;
-        btnA10.Image = Properties.Resources.A10;
-        btnA10.Location = new Point(521, 189);
+        btnA10.Location = new Point(204, 132);
         btnA10.Name = "btnA10";
         btnA10.Padding = new Padding(5);
-        btnA10.Size = new Size(226, 150);
+        btnA10.Size = new Size(175, 112);
         btnA10.TabIndex = 7;
         btnA10.Text = "A-10C II Tank Killer";
         btnA10.TextAlign = ContentAlignment.TopLeft;
         btnA10.UseVisualStyleBackColor = true;
         btnA10.Click += btnA10_Click;
+        // 
+        // btnCH47F
+        // 
+        btnCH47F.BackgroundImage = Properties.Resources.CH_47F_2;
+        btnCH47F.BackgroundImageLayout = ImageLayout.Stretch;
+        btnCH47F.FlatStyle = FlatStyle.Flat;
+        btnCH47F.Font = new Font("Microsoft Sans Serif", 11F, FontStyle.Bold, GraphicsUnit.Point);
+        btnCH47F.ForeColor = Color.Black;
+        btnCH47F.Location = new Point(385, 132);
+        btnCH47F.Name = "btnCH47F";
+        btnCH47F.Padding = new Padding(5);
+        btnCH47F.Size = new Size(175, 112);
+        btnCH47F.TabIndex = 8;
+        btnCH47F.Text = "CH-47F Chinook";
+        btnCH47F.TextAlign = ContentAlignment.TopLeft;
+        btnCH47F.UseVisualStyleBackColor = true;
+        btnCH47F.Click += btnCH47F_Click;
         // 
         // MainPage
         // 
@@ -162,9 +186,10 @@ partial class MainPage
         Controls.Add(btnF15E);
         Controls.Add(btnC130);
         Controls.Add(btnA10);
+        Controls.Add(btnCH47F);
         Controls.Add(btnWptDatabase);
         Name = "MainPage";
-        Size = new Size(685, 366);
+        Size = new Size(812, 403);
         ResumeLayout(false);
     }
 
@@ -177,4 +202,5 @@ partial class MainPage
     private System.Windows.Forms.Button btnAH64;
     private System.Windows.Forms.Button btnC130;
     private System.Windows.Forms.Button btnA10;
+    private System.Windows.Forms.Button btnCH47F;
 }

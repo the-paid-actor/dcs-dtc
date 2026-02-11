@@ -85,6 +85,11 @@ internal class ConfigLoader
             return typeof(Aircrafts.A10.A10Configuration);
         }
 
+        if (aircraft == "CH47F")
+        {
+            return typeof(Aircrafts.CH47F.CH47FConfiguration);
+        }
+
         throw new NotImplementedException();
     }
 }

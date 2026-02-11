@@ -57,4 +57,8 @@ public partial class MainPage : Page
     {
         NavigateTo("A10");
     }
+    private void btnCH47F_Click(object sender, System.EventArgs e)
+    {
+        NavigateTo("CH47F");
+    }
 }

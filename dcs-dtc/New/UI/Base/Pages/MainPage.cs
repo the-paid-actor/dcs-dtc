@@ -61,4 +61,10 @@ public partial class MainPage : Page
     {
         NavigateTo("CH47F");
     }
+
+
+    private void btnAV8B_Click(object sender, System.EventArgs e)
+    {
+        NavigateTo("AV8BNA");
+    }
 }

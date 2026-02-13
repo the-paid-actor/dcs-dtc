@@ -36,6 +36,7 @@ partial class MainPage
         btnC130 = new Button();
         btnA10 = new Button();
         btnCH47F = new Button();
+        btnAV8B = new Button();
         SuspendLayout();
         // 
         // btnF16
@@ -174,6 +175,23 @@ partial class MainPage
         btnCH47F.UseVisualStyleBackColor = true;
         btnCH47F.Click += btnCH47F_Click;
         // 
+        // btnAV8B
+        // 
+        btnAV8B.BackgroundImage = Properties.Resources.FA18;
+        btnAV8B.BackgroundImageLayout = ImageLayout.Zoom;
+        btnAV8B.FlatStyle = FlatStyle.Flat;
+        btnAV8B.Font = new Font("Microsoft Sans Serif", 11F, FontStyle.Bold, GraphicsUnit.Point);
+        btnAV8B.ForeColor = Color.Black;
+        btnAV8B.Location = new Point(566, 132);
+        btnAV8B.Name = "btnAV8B";
+        btnAV8B.Padding = new Padding(5);
+        btnAV8B.Size = new Size(175, 112);
+        btnAV8B.TabIndex = 9;
+        btnAV8B.Text = "AV-8B N/A Harrier";
+        btnAV8B.TextAlign = ContentAlignment.TopLeft;
+        btnAV8B.UseVisualStyleBackColor = true;
+        btnAV8B.Click += btnAV8B_Click;
+        // 
         // MainPage
         // 
         AutoScaleDimensions = new SizeF(96F, 96F);
@@ -187,6 +205,7 @@ partial class MainPage
         Controls.Add(btnC130);
         Controls.Add(btnA10);
         Controls.Add(btnCH47F);
+        Controls.Add(btnAV8B);
         Controls.Add(btnWptDatabase);
         Name = "MainPage";
         Size = new Size(812, 403);
@@ -203,4 +222,5 @@ partial class MainPage
     private System.Windows.Forms.Button btnC130;
     private System.Windows.Forms.Button btnA10;
     private System.Windows.Forms.Button btnCH47F;
+    private System.Windows.Forms.Button btnAV8B;
 }

@@ -5,6 +5,7 @@ using DTC.New.Presets.V2.Aircrafts.FA18;
 using DTC.New.Presets.V2.Aircrafts.C130;
 using DTC.New.Presets.V2.Aircrafts.A10;
 using DTC.New.Presets.V2.Aircrafts.CH47F;
+using DTC.New.Presets.V2.Aircrafts.AV8B;
 using DTC.New.Presets.V2.Base;
 using DTC.New.UI.Aircrafts.AH64D;
 using DTC.New.UI.Aircrafts.F15E;
@@ -13,6 +14,7 @@ using DTC.New.UI.Aircrafts.FA18;
 using DTC.New.UI.Aircrafts.C130;
 using DTC.New.UI.Aircrafts.A10;
 using DTC.New.UI.Aircrafts.CH47F;
+using DTC.New.UI.Aircrafts.AV8B;
 
 namespace DTC.New.UI.Base.Pages
 {
@@ -47,6 +49,10 @@ namespace DTC.New.UI.Base.Pages
             else if (aircraft is CH47FAircraft)
             {
                 return new CH47FPage(aircraft, preset);
+            }
+            else if (aircraft is AV8BAircraft)
+            {
+                return new AV8BPage(aircraft, preset);
             }
 
             throw new NotImplementedException();

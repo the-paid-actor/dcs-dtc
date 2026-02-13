@@ -5,6 +5,7 @@ using DTC.New.Presets.V2.Aircrafts.FA18;
 using DTC.New.Presets.V2.Aircrafts.C130;
 using DTC.New.Presets.V2.Aircrafts.A10;
 using DTC.New.Presets.V2.Aircrafts.CH47F;
+using DTC.New.Presets.V2.Aircrafts.AV8B;
 
 
 namespace DTC.New.Presets.V2.Base
@@ -40,6 +41,9 @@ namespace DTC.New.Presets.V2.Base
                 aircrafts.Add(ac.GetAircraftModelName(), ac);
 
                 ac = new CH47FAircraft();
+                aircrafts.Add(ac.GetAircraftModelName(), ac);
+
+                ac = new AV8BAircraft();
                 aircrafts.Add(ac.GetAircraftModelName(), ac);
             }
 

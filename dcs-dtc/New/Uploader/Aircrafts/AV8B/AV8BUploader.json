@@ -1,0 +1,290 @@
+﻿{
+  "MPCD": {
+    "Id": 26,
+    "L1": {
+      "Id": 3200,
+      "DelayFactor": 1,
+      "PostDelayFactor": 0,
+      "Activation": 1
+    },
+    "L2": {
+      "Id": 3201,
+      "DelayFactor": 1,
+      "PostDelayFactor": 0,
+      "Activation": 1
+    },
+    "L3": {
+      "Id": 3202,
+      "DelayFactor": 1,
+      "PostDelayFactor": 0,
+      "Activation": 1
+    },
+
+    "L4": {
+      "Id": 3203,
+      "DelayFactor": 1,
+      "PostDelayFactor": 0,
+      "Activation": 1
+    },
+    "L5": {
+      "Id": 3204,
+      "DelayFactor": 1,
+      "PostDelayFactor": 0,
+      "Activation": 1
+    },
+
+    "L6": {
+      "Id": 3205,
+      "DelayFactor": 1,
+      "PostDelayFactor": 0,
+      "Activation": 1
+    },
+    "L7": {
+      "Id": 3206,
+      "DelayFactor": 1,
+      "PostDelayFactor": 0,
+      "Activation": 1
+    },
+    "L8": {
+      "Id": 3207,
+      "DelayFactor": 1,
+      "PostDelayFactor": 0,
+      "Activation": 1
+    },
+    "L9": {
+      "Id": 3208,
+      "DelayFactor": 1,
+      "PostDelayFactor": 0,
+      "Activation": 1
+    },
+    "L10": {
+      "Id": 3209,
+      "DelayFactor": 1,
+      "PostDelayFactor": 0,
+      "Activation": 1
+    },
+    "L11": {
+      "Id": 3210,
+      "DelayFactor": 1,
+      "PostDelayFactor": 0,
+      "Activation": 1
+    },
+    "L12": {
+      "Id": 3211,
+      "DelayFactor": 1,
+      "PostDelayFactor": 0,
+      "Activation": 1
+    },
+    "L13": {
+      "Id": 3212,
+      "DelayFactor": 1,
+      "PostDelayFactor": 0,
+      "Activation": 1
+    },
+    "L14": {
+      "Id": 3213,
+      "DelayFactor": 1,
+      "PostDelayFactor": 0,
+      "Activation": 1
+    },
+    "L15": {
+      "Id": 3214,
+      "DelayFactor": 1,
+      "PostDelayFactor": 0,
+      "Activation": 1
+    },
+    "L16": {
+      "Id": 3215,
+      "DelayFactor": 1,
+      "PostDelayFactor": 0,
+      "Activation": 1
+    },
+    "L17": {
+      "Id": 3216,
+      "DelayFactor": 1,
+      "PostDelayFactor": 0,
+      "Activation": 1
+    },
+    "L18": {
+      "Id": 3217,
+      "DelayFactor": 1,
+      "PostDelayFactor": 0,
+      "Activation": 1
+    },
+    "L19": {
+      "Id": 3218,
+      "DelayFactor": 1,
+      "PostDelayFactor": 0,
+      "Activation": 1
+    },
+    "L20": {
+      "Id": 3219,
+      "DelayFactor": 1,
+      "PostDelayFactor": 0,
+      "Activation": 1
+    },
+
+
+
+    "R18": {
+      "Id": 3241,
+      "DelayFactor": 1,
+      "PostDelayFactor": 0,
+      "Activation": 1
+    }
+  },
+
+  "UFC_PILOT": {
+    "Id": 56,
+    "PB01": {
+      "Id": 3001,
+      "DelayFactor": 4,
+      "PostDelayFactor": 1,
+      "Activation": 1
+    }
+  },
+  "UFC": {
+    "Id": 23,
+    "BTN0": {
+      "Id": 3315,
+      "DelayFactor": 1,
+      "PostDelayFactor": 0,
+      "Activation": 1
+    },
+    "BTN1": {
+      "Id": 3302,
+      "DelayFactor": 1,
+      "PostDelayFactor": 0,
+      "Activation": 1
+    },
+    "BTN2": {
+      "Id": 3303,
+      "DelayFactor": 1,
+      "PostDelayFactor": 0,
+      "Activation": 1
+    },
+    "BTNN": {
+      "Id": 3303,
+      "DelayFactor": 1,
+      "PostDelayFactor": 0,
+      "Activation": 1
+    },
+    "BTN3": {
+      "Id": 3304,
+      "DelayFactor": 1,
+      "PostDelayFactor": 0,
+      "Activation": 1
+    },
+    "BTN4": {
+      "Id": 3306,
+      "DelayFactor": 1,
+      "PostDelayFactor": 0,
+      "Activation": 1
+    },
+    "BTNW": {
+      "Id": 3306,
+      "DelayFactor": 1,
+      "PostDelayFactor": 0,
+      "Activation": 1
+    },
+    "BTN5": {
+      "Id": 3307,
+      "DelayFactor": 1,
+      "PostDelayFactor": 0,
+      "Activation": 1
+    },
+    "BTN6": {
+      "Id": 3308,
+      "DelayFactor": 1,
+      "PostDelayFactor": 0,
+      "Activation": 1
+    },
+    "BTNE": {
+      "Id": 3308,
+      "DelayFactor": 1,
+      "PostDelayFactor": 0,
+      "Activation": 1
+    },
+    "BTN7": {
+      "Id": 3310,
+      "DelayFactor": 1,
+      "PostDelayFactor": 0,
+      "Activation": 1
+    },
+    "BTN8": {
+      "Id": 3311,
+      "DelayFactor": 1,
+      "PostDelayFactor": 0,
+      "Activation": 1
+    },
+    "BTNS": {
+      "Id": 3311,
+      "DelayFactor": 1,
+      "PostDelayFactor": 0,
+      "Activation": 1
+    },
+    "BTN9": {
+      "Id": 3312,
+      "DelayFactor": 1,
+      "PostDelayFactor": 0,
+      "Activation": 1
+    },
+    "BTNPoint": {
+      "Id": 3316,
+      "DelayFactor": 1,
+      "PostDelayFactor": 0,
+      "Activation": 1
+    },
+    "BTNMinus": {
+      "Id": 3313,
+      "DelayFactor": 1,
+      "PostDelayFactor": 0,
+      "Activation": 1
+    },
+    "ENTER": {
+      "Id": 3314,
+      "DelayFactor": 1,
+      "PostDelayFactor": 0,
+      "Activation": 1
+    },
+    "CLEAR": {
+      "Id": 3305,
+      "DelayFactor": 1,
+      "PostDelayFactor": 0,
+      "Activation": 1
+    }
+  },
+  "ODU": {
+    "Id": 24,
+    "OPT1": {
+      "Id": 3250,
+      "DelayFactor": 1,
+      "PostDelayFactor": 0,
+      "Activation": 1
+    },
+    "OPT2": {
+      "Id": 3251,
+      "DelayFactor": 1,
+      "PostDelayFactor": 0,
+      "Activation": 1
+    },
+    "OPT3": {
+      "Id": 3252,
+      "DelayFactor": 1,
+      "PostDelayFactor": 0,
+      "Activation": 1
+    },
+    "OPT4": {
+      "Id": 3248,
+      "DelayFactor": 1,
+      "PostDelayFactor": 0,
+      "Activation": 1
+    },
+    "OPT5": {
+      "Id": 3249,
+      "DelayFactor": 1,
+      "PostDelayFactor": 0,
+      "Activation": 1
+    }
+  }
+}

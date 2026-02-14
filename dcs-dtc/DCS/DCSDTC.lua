@@ -16,6 +16,10 @@ dofile(lfs.writedir() .. 'Scripts/DCSDTC/f16Functions.lua')
 dofile(lfs.writedir() .. 'Scripts/DCSDTC/f18Functions.lua')
 dofile(lfs.writedir() .. 'Scripts/DCSDTC/f15EFunctions.lua')
 dofile(lfs.writedir() .. 'Scripts/DCSDTC/ah64DFunctions.lua')
+dofile(lfs.writedir() .. 'Scripts/DCSDTC/C130Functions.lua')
+dofile(lfs.writedir() .. 'Scripts/DCSDTC/A10Functions.lua')
+dofile(lfs.writedir() .. 'Scripts/DCSDTC/CH47FFunctions.lua')
+dofile(lfs.writedir() .. 'Scripts/DCSDTC/AV8BFunctions.lua')
 
 local udpSpeaker = nil
 local tcpServer = nil
@@ -116,13 +120,31 @@ end
 
 function DTC_ExecCommand(device, argument, delay, action, postDelay)
     postDelay = postDelay or 0
-    GetDevice(device):performClickableAction(argument, action)
-    if delay > 0 then
-        DTC_Wait(delay)
-    end
-    if delay >= 0 then
-        GetDevice(device):performClickableAction(argument, 0)
-    end
+
+
+     
+     if device == -2 then 
+         LoSetCommand(argument,  action)
+         DTC_Log("Executed command LoSetCommand("..argument..",  "..action..")")
+         if delay > 0 then
+            DTC_Wait(delay)
+         end
+         if delay >= 0 then
+           LoSetCommand(argument,  action)
+         end
+
+     elseif device ==-1 then
+         LoSetCommand(argument,  nil)
+     else 
+         GetDevice(device):performClickableAction(argument, action)
+
+         if delay > 0 then
+            DTC_Wait(delay)
+         end
+         if delay >= 0 then
+           GetDevice(device):performClickableAction(argument, 0)
+         end
+     end
     --DTC_Log("Executed command "..device.." "..argument.." "..action.." "..delay .. " " ..postDelay)
     coroutine.yield()
 
@@ -195,6 +217,22 @@ function LuaExportAfterNextFrame()
 
     if model == "AH64D" then
         DTC_AH64D_AfterNextFrame(params)
+    end
+
+    if model == "C130" then
+        DTC_C130_AfterNextFrame(params)
+    end
+
+    if model == "A10" then
+        DTC_A10_AfterNextFrame(params)
+    end
+
+    if model == "CH47F" then
+        DTC_CH47F_AfterNextFrame(params)
+    end
+
+    if model == "AV8B" then
+        DTC_AV8B_AfterNextFrame(params)
     end
 
     local toSend = "{" ..

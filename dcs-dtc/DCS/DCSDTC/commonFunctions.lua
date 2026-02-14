@@ -1,4 +1,4 @@
-function DTC_Log(str)
+﻿function DTC_Log(str)
     DTC_logFile:write(str .. "\n");
     DTC_logFile:flush();
 end
@@ -120,6 +120,10 @@ function DTC_GetPlayerAircraftType()
         if model == "FA-18C_hornet" then return "FA18C" end
         if model == "F-15ESE" then return "F15E" end
         if model == "AH-64D_BLK_II" then return "AH64D" end
+        if model == "C-130J-30" then return "C130" end
+        if model == "A-10C_2" then return "A10" end
+        if model == "CH-47Fbl1" then return "CH47F" end
+        if model == "AV8BNA" then return "AV8B" end
         return model;
     end
     return "Unknown"
@@ -164,9 +168,42 @@ function DTC_DebugDisplay2(display, log)
     DTC_Log2(tbl, log);
 end
 
+function DumpAllIndicationsToFile(startId, endId, logName)
+    startId = startId or 1
+    endId   = endId   or 6000
+    logName = logName or "indication_dump"
+
+    local path = lfs.writedir() .. [[Logs\DTC_]] .. logName .. ".log"
+    local f = io.open(path, "w")
+    if not f then return end
+
+    for id = startId, endId do
+        local ok, txt = pcall(list_indication, id)  -- svarbu: pcall, nes ne visi ID galioja
+        if ok and type(txt) == "string" and #txt > 0 then
+            f:write(("Indicator ID: %d\n"):format(id))
+            f:write(txt)
+            if txt:sub(-1) ~= "\n" then f:write("\n") end
+            f:write("\n-------------------------\n\n")
+        end
+    end
+
+    f:flush()
+    f:close()
+end
+
+
+
 function DTC_Log2(str, log)
+    if type(str) ~= "string" then
+        str=type(str)
+    end
     local f = io.open(lfs.writedir() .. [[Logs\DTC_]] .. log .. ".log", "w")
     f:write(str .. "\n");
     f:flush();
     f:close();
+end
+
+function DTC_trim(s)
+    if type(s) ~= "string" then return "" end
+    return (s:gsub("^%s+", ""):gsub("%s+$", ""))
 end

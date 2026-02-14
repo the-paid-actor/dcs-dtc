@@ -148,7 +148,7 @@ public partial class AircraftPage : Page
         pnlMain.Controls.Clear();
         pnlLeft.Controls.Clear();
 
-        var tabIndex = lst.Count-1;
+        var tabIndex = lst.Count - 1;
 
         foreach (var page in lst)
         {
@@ -203,5 +203,10 @@ public partial class AircraftPage : Page
     internal virtual Configuration ConvertConfigFromClipboard(Configuration cfg, List<ConfigurationSystem> systems)
     {
         return cfg;
+    }
+
+    private void pnlMain_Paint(object sender, PaintEventArgs e)
+    {
+
     }
 }

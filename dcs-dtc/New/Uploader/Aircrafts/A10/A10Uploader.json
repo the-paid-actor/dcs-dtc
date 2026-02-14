@@ -1,0 +1,290 @@
+{
+  "SYS": {
+    "Id": -2,
+    "BTN_WP": {
+      "Id": 1238,
+      "DelayFactor": 1,
+      "PostDelayFactor": 0,
+      "Activation": 1
+    },
+    "CDU_BTN_CLR": {
+      "Id": 1285,
+      "DelayFactor": 1,
+      "PostDelayFactor": 0,
+      "Activation": 1
+    },
+    "CDU_LSK_L3": {
+      "Id": 1228,
+      "DelayFactor": 1,
+      "PostDelayFactor": 0,
+      "Activation": 1
+    },
+    "CDU_LSK_L5": {
+      "Id": 1229,
+      "DelayFactor": 1,
+      "PostDelayFactor": 0,
+      "Activation": 1
+    },
+    "CDU_LSK_L7": {
+      "Id": 1230,
+      "DelayFactor": 1,
+      "PostDelayFactor": 0,
+      "Activation": 1
+    },
+    "CDU_LSK_L9": {
+      "Id": 1231,
+      "DelayFactor": 1,
+      "PostDelayFactor": 0,
+      "Activation": 1
+    },
+    "CDU_LSK_R3": {
+      "Id": 1232,
+      "DelayFactor": 1,
+      "PostDelayFactor": 0,
+      "Activation": 1
+    },
+    "CDU_LSK_R5": {
+      "Id": 1233,
+      "DelayFactor": 1,
+      "PostDelayFactor": 0,
+      "Activation": 1
+    },
+    "CDU_LSK_R7": {
+      "Id": 1234,
+      "DelayFactor": 1,
+      "PostDelayFactor": 0,
+      "Activation": 1
+    },
+    "CDU_LSK_R9": {
+      "Id": 1235,
+      "DelayFactor": 1,
+      "PostDelayFactor": 0,
+      "Activation": 1
+    },
+
+    "CDU_BTN_0": {
+      "Id": 1251,
+      "DelayFactor": 1,
+      "PostDelayFactor": 0,
+      "Activation": 1
+    },
+    "CDU_BTN_1": {
+      "Id": 1242,
+      "DelayFactor": 1,
+      "PostDelayFactor": 0,
+      "Activation": 1
+    },
+    "CDU_BTN_2": {
+      "Id": 1243,
+      "DelayFactor": 1,
+      "PostDelayFactor": 0,
+      "Activation": 1
+    },
+    "CDU_BTN_3": {
+      "Id": 1244,
+      "DelayFactor": 1,
+      "PostDelayFactor": 0,
+      "Activation": 1
+    },
+    "CDU_BTN_4": {
+      "Id": 1245,
+      "DelayFactor": 1,
+      "PostDelayFactor": 0,
+      "Activation": 1
+    },
+    "CDU_BTN_5": {
+      "Id": 1246,
+      "DelayFactor": 1,
+      "PostDelayFactor": 0,
+      "Activation": 1
+    },
+    "CDU_BTN_6": {
+      "Id": 1247,
+      "DelayFactor": 1,
+      "PostDelayFactor": 0,
+      "Activation": 1
+    },
+    "CDU_BTN_7": {
+      "Id": 1248,
+      "DelayFactor": 1,
+      "PostDelayFactor": 0,
+      "Activation": 1
+    },
+    "CDU_BTN_8": {
+      "Id": 1249,
+      "DelayFactor": 1,
+      "PostDelayFactor": 0,
+      "Activation": 1
+    },
+    "CDU_BTN_9": {
+      "Id": 1250,
+      "DelayFactor": 1,
+      "PostDelayFactor": 0,
+      "Activation": 1
+    },
+    "CDU_BTN_A": {
+      "Id": 1254,
+      "DelayFactor": 1,
+      "PostDelayFactor": 0,
+      "Activation": 1
+    },
+    "CDU_BTN_B": {
+      "Id": 1255,
+      "DelayFactor": 1,
+      "PostDelayFactor": 0,
+      "Activation": 1
+    },
+    "CDU_BTN_C": {
+      "Id": 1256,
+      "DelayFactor": 1,
+      "PostDelayFactor": 0,
+      "Activation": 1
+    },
+    "CDU_BTN_D": {
+      "Id": 1257,
+      "DelayFactor": 1,
+      "PostDelayFactor": 0,
+      "Activation": 1
+    },
+    "CDU_BTN_E": {
+      "Id": 1258,
+      "DelayFactor": 1,
+      "PostDelayFactor": 0,
+      "Activation": 1
+    },
+    "CDU_BTN_F": {
+      "Id": 1259,
+      "DelayFactor": 1,
+      "PostDelayFactor": 0,
+      "Activation": 1
+    },
+    "CDU_BTN_G": {
+      "Id": 1260,
+      "DelayFactor": 1,
+      "PostDelayFactor": 0,
+      "Activation": 1
+    },
+    "CDU_BTN_H": {
+      "Id": 1261,
+      "DelayFactor": 1,
+      "PostDelayFactor": 0,
+      "Activation": 1
+    },
+    "CDU_BTN_I": {
+      "Id": 1262,
+      "DelayFactor": 1,
+      "PostDelayFactor": 0,
+      "Activation": 1
+    },
+    "CDU_BTN_J": {
+      "Id": 1263,
+      "DelayFactor": 1,
+      "PostDelayFactor": 0,
+      "Activation": 1
+    },
+    "CDU_BTN_K": {
+      "Id": 1264,
+      "DelayFactor": 1,
+      "PostDelayFactor": 0,
+      "Activation": 1
+    },
+    "CDU_BTN_L": {
+      "Id": 1265,
+      "DelayFactor": 1,
+      "PostDelayFactor": 0,
+      "Activation": 1
+    },
+    "CDU_BTN_M": {
+      "Id": 1266,
+      "DelayFactor": 1,
+      "PostDelayFactor": 0,
+      "Activation": 1
+    },
+
+    "CDU_BTN_N": {
+      "Id": 1267,
+      "DelayFactor": 1,
+      "PostDelayFactor": 0,
+      "Activation": 1
+    },
+    "CDU_BTN_O": {
+      "Id": 1268,
+      "DelayFactor": 1,
+      "PostDelayFactor": 0,
+      "Activation": 1
+    },
+    "CDU_BTN_P": {
+      "Id": 1269,
+      "DelayFactor": 1,
+      "PostDelayFactor": 0,
+      "Activation": 1
+    },
+    "CDU_BTN_Q": {
+      "Id": 1270,
+      "DelayFactor": 1,
+      "PostDelayFactor": 0,
+      "Activation": 1
+    },
+    "CDU_BTN_R": {
+      "Id": 1271,
+      "DelayFactor": 1,
+      "PostDelayFactor": 0,
+      "Activation": 1
+    },
+    "CDU_BTN_S": {
+      "Id": 1272,
+      "DelayFactor": 1,
+      "PostDelayFactor": 0,
+      "Activation": 1
+    },
+    "CDU_BTN_T": {
+      "Id": 1273,
+      "DelayFactor": 1,
+      "PostDelayFactor": 0,
+      "Activation": 1
+    },
+    "CDU_BTN_U": {
+      "Id": 1274,
+      "DelayFactor": 1,
+      "PostDelayFactor": 0,
+      "Activation": 1
+    },
+    "CDU_BTN_V": {
+      "Id": 1275,
+      "DelayFactor": 1,
+      "PostDelayFactor": 0,
+      "Activation": 1
+    },
+    "CDU_BTN_W": {
+      "Id": 1276,
+      "DelayFactor": 1,
+      "PostDelayFactor": 0,
+      "Activation": 1
+    },
+    "CDU_BTN_X": {
+      "Id": 1277,
+      "DelayFactor": 1,
+      "PostDelayFactor": 0,
+      "Activation": 1
+    },
+    "CDU_BTN_Y": {
+      "Id": 1278,
+      "DelayFactor": 1,
+      "PostDelayFactor": 0,
+      "Activation": 1
+    },
+    "CDU_BTN_Z": {
+      "Id": 1279,
+      "DelayFactor": 1,
+      "PostDelayFactor": 0,
+      "Activation": 1
+    }
+  }
+
+
+  }
+
+
+
+
+

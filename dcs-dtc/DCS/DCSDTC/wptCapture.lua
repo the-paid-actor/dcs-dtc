@@ -60,8 +60,13 @@ function DTCWptCapture:show(eventCallback)
     local isHornet = eventCallback:getAircraftType() == "FA18C"
     local isMudhen = eventCallback:getAircraftType() == "F15E"
     local isApache = eventCallback:getAircraftType() == "AH64D"
+    local isC130 = eventCallback:getAircraftType() == "C130"
+    local isA10 = eventCallback:getAircraftType() == "A10"
+    local isCH47F = eventCallback:getAircraftType() == "CH47F"
+    local isAV8B = eventCallback:getAircraftType() == "AV8B"
+    local inPlane = (isViper or isHornet or isMudhen or isApache or isC130 or isA10 or isCH47F or isAV8B)
 
-    self.dialog.addButton:setVisible(isViper or isHornet or isApache)
+    self.dialog.addButton:setVisible(isMudhen == false)
     self.dialog.addAsTgtButton:setVisible(isViper or isHornet or isApache)
 
     self.dialog.addPPButton:setVisible(isHornet)
@@ -77,7 +82,7 @@ function DTCWptCapture:show(eventCallback)
     self.dialog.resetAllSmart:setVisible(isMudhen)
 
     self.dialog.addButtonApache:setVisible(isApache)
-    self.dialog.sendToJetButton:setVisible(not isApache)
+    self.dialog.sendToJetButton:setVisible(inPlane and isApache == false)
 
     if isViper then
         self.dialog.clearButton:setPosition(228, 20)

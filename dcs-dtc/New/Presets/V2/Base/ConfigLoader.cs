@@ -74,6 +74,30 @@ internal class ConfigLoader
         {
             return typeof(Aircrafts.AH64D.AH64DConfiguration);
         }
+
+        if (aircraft == "C130")
+        {
+            return typeof(Aircrafts.C130.C130Configuration);
+        }
+
+        if (aircraft == "A10")
+        {
+            return typeof(Aircrafts.A10.A10Configuration);
+        }
+
+        if (aircraft == "CH47F")
+        {
+            return typeof(Aircrafts.CH47F.CH47FConfiguration);
+        }
+
+        if (aircraft == "AV8B")
+        {
+            return typeof(Aircrafts.AV8B.AV8BConfiguration);
+        }
+
+        
+
+
         throw new NotImplementedException();
     }
 }

@@ -47,4 +47,24 @@ public partial class MainPage : Page
     {
         NavigateTo("F15E");
     }
+
+    private void btnC130_Click(object sender, System.EventArgs e)
+    {
+        NavigateTo("C130");
+    }
+
+    private void btnA10_Click(object sender, System.EventArgs e)
+    {
+        NavigateTo("A10");
+    }
+    private void btnCH47F_Click(object sender, System.EventArgs e)
+    {
+        NavigateTo("CH47F");
+    }
+
+
+    private void btnAV8B_Click(object sender, System.EventArgs e)
+    {
+        NavigateTo("AV8B");
+    }
 }

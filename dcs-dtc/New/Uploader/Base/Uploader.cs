@@ -167,6 +167,7 @@ public abstract partial class Uploader
 
     private string FormatCommand(ICommand cmd)
     {
+        
         return cmd.ToString(this.aircraftModel, this.baseDelay);
     }
 

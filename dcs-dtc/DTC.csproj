@@ -7,7 +7,7 @@
 		<Nullable>enable</Nullable>
 		<UseWindowsForms>true</UseWindowsForms>
 		<ImplicitUsings>enable</ImplicitUsings>
-		<Version>8.2.1</Version>
+		<Version>9.0.0</Version>
 		<Product>DTC for DCS</Product>
 		<Description>$(Product)</Description>
 		<ApplicationIcon>Resources\Iconleak-Atrous-Disk.ico</ApplicationIcon>

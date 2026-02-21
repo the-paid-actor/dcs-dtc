@@ -1,5 +1,6 @@
 ﻿using DTC.New.Presets.V2.Aircrafts.AV8B.Systems;
 using DTC.New.Presets.V2.Base;
+using DTC.New.Presets.V2.Base.Systems;
 
 namespace DTC.New.Presets.V2.Aircrafts.AV8B;
 
@@ -26,6 +27,3 @@ public class AV8BConfiguration : Configuration
         return Aircraft;
     }
 }
-
-
-

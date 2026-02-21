@@ -121,30 +121,27 @@ end
 function DTC_ExecCommand(device, argument, delay, action, postDelay)
     postDelay = postDelay or 0
 
-
-     
-     if device == -2 then 
-         LoSetCommand(argument,  action)
-         DTC_Log("Executed command LoSetCommand("..argument..",  "..action..")")
-         if delay > 0 then
+    if device == -2 then 
+        LoSetCommand(argument, action)
+        --DTC_Log("Executed command LoSetCommand("..argument..",  "..action..")")
+        if delay > 0 then
             DTC_Wait(delay)
-         end
-         if delay >= 0 then
-           LoSetCommand(argument,  action)
-         end
-
-     elseif device ==-1 then
-         LoSetCommand(argument,  nil)
-     else 
-         GetDevice(device):performClickableAction(argument, action)
-
-         if delay > 0 then
+        end
+        if delay >= 0 then
+            LoSetCommand(argument, action)
+        end
+    elseif device ==-1 then
+        LoSetCommand(argument, nil)
+    else 
+        GetDevice(device):performClickableAction(argument, action)
+        if delay > 0 then
             DTC_Wait(delay)
-         end
-         if delay >= 0 then
-           GetDevice(device):performClickableAction(argument, 0)
-         end
-     end
+        end
+        if delay >= 0 then
+            GetDevice(device):performClickableAction(argument, 0)
+        end
+    end
+
     --DTC_Log("Executed command "..device.." "..argument.." "..action.." "..delay .. " " ..postDelay)
     coroutine.yield()
 

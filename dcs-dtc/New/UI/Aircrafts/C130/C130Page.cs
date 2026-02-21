@@ -7,13 +7,11 @@ using DTC.New.UI.Base.Systems;
 using DTC.New.Uploader.Aircrafts.C130;
 using DTC.Utilities;
 using DTC.Utilities.Network;
-using System.Text.RegularExpressions;
 
 namespace DTC.New.UI.Aircrafts.C130;
 
 public class C130Page : AircraftPage
 {
-
     private readonly C130Capture capture;
 
     public C130Page(Aircraft aircraft, Preset preset) : base(aircraft, preset)

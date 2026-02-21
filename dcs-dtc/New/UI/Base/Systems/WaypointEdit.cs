@@ -99,9 +99,6 @@ public class WaypointEdit<T> : WaypointEditControl where T : class, IWaypoint, n
         this.LoadWaypoint();
         this.txtName.Focus();
 
-
-        //if (this.is)
-
         return this.waypoint;
     }
 

@@ -7,13 +7,11 @@ using DTC.New.UI.Base.Systems;
 using DTC.New.Uploader.Aircrafts.CH47F;
 using DTC.Utilities;
 using DTC.Utilities.Network;
-using System.Text.RegularExpressions;
 
 namespace DTC.New.UI.Aircrafts.CH47F;
 
 public class CH47FPage : AircraftPage
 {
-
     private readonly CH47FCapture capture;
 
     public CH47FPage(Aircraft aircraft, Preset preset) : base(aircraft, preset)

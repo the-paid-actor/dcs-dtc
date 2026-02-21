@@ -15,8 +15,6 @@ public partial class CH47FUploader : Base.Uploader
     public void Execute(bool pilot)
     {
         BuildWaypoints(pilot);
-        //BuildRoutes(pilot);
-        //BuildTSD(pilot);
         Send();
     }
 }

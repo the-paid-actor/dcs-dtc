@@ -1,12 +1,12 @@
 ﻿using DTC.New.Presets.V2.Aircrafts.F15E;
 using DTC.New.Presets.V2.Aircrafts.F15E.Systems;
-using DTC.New.Presets.V2.Base.Systems;
+using DTC.New.UI.Base;
 using DTC.Utilities;
 using DTC.Utilities.Network;
 
 namespace DTC.New.UI.Aircrafts.F15E;
 
-internal class F15ECapture
+internal class F15ECapture : WaypointCapture<Waypoint, WaypointSystem>
 {
     private F15EPage page;
     private F15EConfiguration cfg;
@@ -93,40 +93,7 @@ internal class F15ECapture
             else if (d.route == "C") wptSystem = cfg.RouteC;
             else continue;
 
-            if (!wpt.Target)
-            {
-                if (cfg.WaypointsCapture.NavPointsMode == SteerpointCaptureMode.AddToEndOfList)
-                {
-                    wpt.Sequence = wptSystem.GetNextSequence();
-                }
-                else if (cfg.WaypointsCapture.NavPointsMode == SteerpointCaptureMode.AddToEndOfFirstGap)
-                {
-                    wpt.Sequence = wptSystem.GetNextSequenceOfFirstGap();
-                }
-                else if (cfg.WaypointsCapture.NavPointsMode == SteerpointCaptureMode.AddToRange)
-                {
-                    wpt.Sequence = wptSystem.GetNextSequenceFromSequence(cfg.WaypointsCapture.NavPointsRangeFrom);
-                }
-                wpt.Name = "STPT " + wpt.Sequence;
-                wptSystem.Add(wpt);
-            }
-            else
-            {
-                if (cfg.WaypointsCapture.TgtPointsMode == SteerpointCaptureMode.AddToEndOfList)
-                {
-                    wpt.Sequence = wptSystem.GetNextSequence();
-                }
-                else if (cfg.WaypointsCapture.TgtPointsMode == SteerpointCaptureMode.AddToEndOfFirstGap)
-                {
-                    wpt.Sequence = wptSystem.GetNextSequenceOfFirstGap();
-                }
-                else if (cfg.WaypointsCapture.TgtPointsMode == SteerpointCaptureMode.AddToRange)
-                {
-                    wpt.Sequence = wptSystem.GetNextSequenceFromSequence(cfg.WaypointsCapture.TgtPointsRangeFrom);
-                }
-                wpt.Name = "TGT " + wpt.Sequence;
-                wptSystem.Add(wpt);
-            }
+            CommonAddWaypoint(wpt, cfg.WaypointsCapture, wptSystem);
         }
 
         cfg.RouteA.ReorderBySequence();

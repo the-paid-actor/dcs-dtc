@@ -15,7 +15,15 @@ public interface IWaypoint
     public string ExtraDescription { get; }
 }
 
-public abstract class WaypointSystem<T> where T : class, IWaypoint, new()
+public interface IWaypointSystem<T> where T : IWaypoint
+{
+    public void Add(T wpt);
+    public int GetNextSequence();
+    public int GetNextSequenceOfFirstGap();
+    public int GetNextSequenceFromSequence(int navPointsRangeFrom);
+}
+
+public abstract class WaypointSystem<T> : IWaypointSystem<T> where T : class, IWaypoint, new()
 {
     public List<T> Waypoints { get; set; } = new();
 
@@ -83,7 +91,7 @@ public abstract class WaypointSystem<T> where T : class, IWaypoint, new()
         return seq + 1;
     }
 
-    internal int GetNextSequenceOfFirstGap()
+    public int GetNextSequenceOfFirstGap()
     {
         var seq = GetFirstAllowedSequence() - 1;
         for (int i = 0; i < Waypoints.Count; i++)
@@ -102,7 +110,7 @@ public abstract class WaypointSystem<T> where T : class, IWaypoint, new()
         return seq + 1;
     }
 
-    internal int GetNextSequenceFromSequence(int navPointsRangeFrom)
+    public int GetNextSequenceFromSequence(int navPointsRangeFrom)
     {
         var seq = navPointsRangeFrom;
         foreach (var wpt in Waypoints)

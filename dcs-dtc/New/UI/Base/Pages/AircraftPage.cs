@@ -204,9 +204,4 @@ public partial class AircraftPage : Page
     {
         return cfg;
     }
-
-    private void pnlMain_Paint(object sender, PaintEventArgs e)
-    {
-
-    }
 }

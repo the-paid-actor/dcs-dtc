@@ -43,7 +43,6 @@ partial class AircraftPage
         pnlMain.Name = "pnlMain";
         pnlMain.Size = new Size(563, 684);
         pnlMain.TabIndex = 6;
-        pnlMain.Paint += pnlMain_Paint;
         // 
         // pnlLeft
         // 

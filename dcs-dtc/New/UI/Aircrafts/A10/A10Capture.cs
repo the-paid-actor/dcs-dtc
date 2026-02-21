@@ -1,13 +1,12 @@
 ﻿using DTC.New.Presets.V2.Aircrafts.A10;
 using DTC.New.Presets.V2.Aircrafts.A10.Systems;
+using DTC.New.UI.Base;
 using DTC.Utilities;
 using DTC.Utilities.Network;
-using System.Collections.Generic;
-
 
 namespace DTC.New.UI.Aircrafts.A10;
 
-internal class A10Capture
+internal class A10Capture : WaypointCapture<Waypoint, WaypointSystem>
 {
     private readonly A10Page page;
     private readonly A10Configuration cfg;
@@ -22,6 +21,16 @@ internal class A10Capture
     {
         var configBefore = (A10Configuration)cfg.Clone();
 
+        CaptureSteerpoints(data, cfg);
+
+        if (data.upload)
+        {
+            UploadCapture(configBefore, cfg);
+        }
+    }
+
+    private void CaptureSteerpoints(WaypointCaptureData data, A10Configuration cfg)
+    {
         foreach (var d in data.data)
         {
             var coord = Coordinate.FromDCS(d.latitude, d.longitude).ToF15EFormat();
@@ -33,31 +42,21 @@ internal class A10Capture
                 Target = d.target
             };
 
-            wpt.Sequence = cfg.Waypoints.GetNextSequence();
-            if (wpt.Sequence == 0)
-            {
-                wpt.Sequence = cfg.Waypoints.GetFirstAllowedSequence();
-            }
-
-            wpt.Name = wpt.Target ? $"TGT {wpt.Sequence}" : $"STPT {wpt.Sequence}";
-            cfg.Waypoints.Add(wpt);
+            CommonAddWaypoint(wpt, cfg.WaypointsCapture, cfg.Waypoints);
         }
 
         cfg.Waypoints.ReorderBySequence();
+
         page.SavePreset();
         page.GetWaypointsPage().RefreshList();
-
-        if (data.upload)
-        {
-            UploadCapture(configBefore, cfg);
-        }
     }
+
     private void UploadCapture(A10Configuration cfgBefore, A10Configuration cfgAfter)
     {  
         var cfgUpload = (A10Configuration)cfgAfter.Clone();
         cfgUpload.Upload = new UploadSystem();
 
-       // RemoveIdenticalSteerpoints(cfgBefore, cfgAfter, cfgUpload);
+        RemoveIdenticalSteerpoints(cfgBefore, cfgAfter, cfgUpload);
 
         if (cfgUpload.Waypoints.Waypoints.Count > 0)
         {
@@ -65,5 +64,27 @@ internal class A10Capture
         }
 
         page.UploadToJet(cfgUpload, true);
+    }
+
+    private static void RemoveIdenticalSteerpoints(A10Configuration cfgBefore, A10Configuration cfgAfter, A10Configuration cfgUpload)
+    {
+        var wptsToRemove = new List<Waypoint>();
+
+        foreach (var wptAfter in cfgAfter.Waypoints.Waypoints)
+        {
+            var wptBefore = cfgBefore.Waypoints.GetBySequence(wptAfter.Sequence);
+            if (wptBefore != null)
+            {
+                if (cfgAfter.Waypoints.IsEqual(wptBefore, wptAfter))
+                {
+                    wptsToRemove.Add(wptBefore);
+                }
+            }
+        }
+
+        foreach (var wpt in wptsToRemove)
+        {
+            cfgUpload.Waypoints.Waypoints.Remove(cfgUpload.Waypoints.GetBySequence(wpt.Sequence));
+        }
     }
 }

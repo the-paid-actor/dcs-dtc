@@ -1,12 +1,12 @@
 ﻿using DTC.New.Presets.V2.Aircrafts.C130;
 using DTC.New.Presets.V2.Aircrafts.C130.Systems;
+using DTC.New.UI.Base;
 using DTC.Utilities;
 using DTC.Utilities.Network;
-using System.Collections.Generic;
 
 namespace DTC.New.UI.Aircrafts.C130;
 
-internal class C130Capture
+internal class C130Capture : WaypointCapture<Waypoint, WaypointSystem>
 {
     private readonly C130Page page;
     private readonly C130Configuration cfg;
@@ -19,9 +19,18 @@ internal class C130Capture
 
     public void CaptureReceived(WaypointCaptureData data)
     {
-
         var configBefore = (C130Configuration)cfg.Clone();
 
+        CaptureSteerpoints(data, cfg);
+
+        if (data.upload)
+        {
+            UploadCapture(configBefore, cfg);
+        }
+    }
+
+    private void CaptureSteerpoints(WaypointCaptureData data, C130Configuration cfg)
+    {
         foreach (var d in data.data)
         {
             var coord = Coordinate.FromDCS(d.latitude, d.longitude).ToF15EFormat();
@@ -33,33 +42,21 @@ internal class C130Capture
                 Target = d.target
             };
 
-            wpt.Sequence = cfg.Waypoints.GetNextSequence();
-            if (wpt.Sequence == 0)
-            {
-                wpt.Sequence = cfg.Waypoints.GetFirstAllowedSequence();
-            }
-
-            wpt.Name = wpt.Target ? $"TGT {wpt.Sequence}" : $"STPT {wpt.Sequence}";
-            cfg.Waypoints.Add(wpt);
+            CommonAddWaypoint(wpt, cfg.WaypointsCapture, cfg.Waypoints);
         }
 
         cfg.Waypoints.ReorderBySequence();
+
         page.SavePreset();
         page.GetWaypointsPage().RefreshList();
-
-        if (data.upload)
-        {
-            UploadCapture(configBefore, cfg);
-        }
-
-
     }
+
     private void UploadCapture(C130Configuration cfgBefore, C130Configuration cfgAfter)
     {
         var cfgUpload = (C130Configuration)cfgAfter.Clone();
         cfgUpload.Upload = new UploadSystem();
 
-        //RemoveIdenticalSteerpoints(cfgBefore, cfgAfter, cfgUpload);
+        RemoveIdenticalSteerpoints(cfgBefore, cfgAfter, cfgUpload);
 
         if (cfgUpload.Waypoints.Waypoints.Count > 0)
         {
@@ -69,7 +66,7 @@ internal class C130Capture
         page.UploadToJet(cfgUpload, true);
     }
 
-   /* private static void RemoveIdenticalSteerpoints(C130Configuration cfgBefore, C130Configuration cfgAfter, C130Configuration cfgUpload)
+    private static void RemoveIdenticalSteerpoints(C130Configuration cfgBefore, C130Configuration cfgAfter, C130Configuration cfgUpload)
     {
         var wptsToRemove = new List<Waypoint>();
 
@@ -90,5 +87,4 @@ internal class C130Capture
             cfgUpload.Waypoints.Waypoints.Remove(cfgUpload.Waypoints.GetBySequence(wpt.Sequence));
         }
     }
-   */
 }

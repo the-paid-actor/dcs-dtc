@@ -93,16 +93,6 @@ namespace DTC.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
-        public static System.Drawing.Bitmap C130J {
-            get {
-                object obj = ResourceManager.GetObject("C130J", resourceCulture);
-                return ((System.Drawing.Bitmap)(obj));
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized resource of type System.Drawing.Bitmap.
-        /// </summary>
         public static System.Drawing.Bitmap CH_47F {
             get {
                 object obj = ResourceManager.GetObject("CH-47F", resourceCulture);
@@ -216,6 +206,16 @@ namespace DTC.Properties {
         public static System.Drawing.Bitmap Waypoints {
             get {
                 object obj = ResourceManager.GetObject("Waypoints", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+
+                /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        public static System.Drawing.Bitmap C130J {
+            get {
+                object obj = ResourceManager.GetObject("C130J", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }

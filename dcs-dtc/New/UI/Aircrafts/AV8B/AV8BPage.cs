@@ -7,13 +7,11 @@ using DTC.New.UI.Base.Systems;
 using DTC.New.Uploader.Aircrafts.AV8B;
 using DTC.Utilities;
 using DTC.Utilities.Network;
-using System.Text.RegularExpressions;
 
 namespace DTC.New.UI.Aircrafts.AV8B;
 
 public class AV8BPage : AircraftPage
 {
-
     private readonly AV8BCapture capture;
 
     public AV8BPage(Aircraft aircraft, Preset preset) : base(aircraft, preset)
@@ -28,21 +26,15 @@ public class AV8BPage : AircraftPage
 
     protected override AircraftSystemPage[] GetPages(IConfiguration configuration)
     {
-
         var cfg = Configuration;
 
         if (cfg.Upload == null) cfg.Upload = new();
         if (cfg.WaypointsCapture == null) cfg.WaypointsCapture = new();
         if (cfg.Waypoints == null) cfg.Waypoints = new();
-        
 
         return new AircraftSystemPage[]
         {
-
-
-       
-
-        new LoadSavePage(this),
+            new LoadSavePage(this),
             new AircraftSystemPage.Divider(),
             new UploadPage(this),
             new WaypointCapturePage(this, cfg.WaypointsCapture),
@@ -53,7 +45,6 @@ public class AV8BPage : AircraftPage
 
     public override void UploadToJet(bool pilot, bool cpg)
     {
-        // TODO: implement AV-8B uploader integration
         this.UploadToJet(this.Configuration, pilot);
     }
 

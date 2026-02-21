@@ -1,9 +1,5 @@
 ﻿using DTC.New.Presets.V2.Aircrafts.A10.Systems;
 using DTC.New.Presets.V2.Base.Systems;
-using DTC.New.Uploader.Base;
-using DTC.Utilities;
-using System.Collections.Generic;
-using static System.Net.Mime.MediaTypeNames;
 
 namespace DTC.New.Uploader.Aircrafts.A10;
 
@@ -11,19 +7,10 @@ public partial class A10Uploader
 {
     private void BuildWaypoints(bool pilot)
     {
-
-        
-
-
         if (config.Upload.Waypoints && config.Waypoints != null && config.Waypoints.HasWaypoints())
         {
-            UploadPoints(config.Waypoints/*, "W", display, keyboard*/, true);
+            UploadPoints(config.Waypoints, true);
         }
-        /*if (config.Upload.ControlMeasures && config.ControlMeasures != null && config.ControlMeasures.HasWaypoints())
-        {
-            UploadPoints(config.ControlMeasures, "C", display, keyboard, false);
-        }
-       */
     }
 
     private void strToCmd(string str)
@@ -43,13 +30,9 @@ public partial class A10Uploader
         Cmd(SYS.CDU_BTN_CLR);
         Cmd(SYS.BTN_WP);
         Cmd(SYS.CDU_LSK_L3);
-        
 
-        
         foreach (var wpt in config.Waypoints.Waypoints)
         {
-           
-
             strToCmd(wpt.Name);
             Cmd(SYS.CDU_LSK_R7);
 
@@ -62,9 +45,5 @@ public partial class A10Uploader
             strToCmd(wpt.Elevation.ToString());
             Cmd(SYS.CDU_LSK_L5);
         }
-
     }
-
-
-
 }

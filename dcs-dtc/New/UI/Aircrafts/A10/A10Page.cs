@@ -7,13 +7,11 @@ using DTC.New.UI.Base.Systems;
 using DTC.New.Uploader.Aircrafts.A10;
 using DTC.Utilities;
 using DTC.Utilities.Network;
-using System.Text.RegularExpressions;
 
 namespace DTC.New.UI.Aircrafts.A10;
 
 public class A10Page : AircraftPage
 {
-
     private readonly A10Capture capture;
 
     public A10Page(Aircraft aircraft, Preset preset) : base(aircraft, preset)
@@ -28,11 +26,14 @@ public class A10Page : AircraftPage
 
     protected override AircraftSystemPage[] GetPages(IConfiguration configuration)
     {
+        var cfg = Configuration;
+
         return new AircraftSystemPage[]
         {
             new LoadSavePage(this),
             new AircraftSystemPage.Divider(),
             new UploadPage(this),
+            new WaypointCapturePage(this, cfg.WaypointsCapture),
             new AircraftSystemPage.Divider(),
             new WaypointsPage<Waypoint>(this, Configuration.Waypoints, null, nameof(Configuration.Waypoints), "Waypoints")
         };

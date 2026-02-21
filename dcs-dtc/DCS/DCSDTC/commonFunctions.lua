@@ -191,8 +191,6 @@ function DumpAllIndicationsToFile(startId, endId, logName)
     f:close()
 end
 
-
-
 function DTC_Log2(str, log)
     if type(str) ~= "string" then
         str=type(str)

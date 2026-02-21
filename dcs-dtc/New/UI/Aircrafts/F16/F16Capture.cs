@@ -1,12 +1,12 @@
 ﻿using DTC.New.Presets.V2.Aircrafts.F16;
 using DTC.New.Presets.V2.Aircrafts.F16.Systems;
-using DTC.New.Presets.V2.Base.Systems;
+using DTC.New.UI.Base;
 using DTC.Utilities;
 using DTC.Utilities.Network;
 
 namespace DTC.New.UI.Aircrafts.F16;
 
-internal class F16Capture
+internal class F16Capture : WaypointCapture<Waypoint, WaypointSystem>
 {
     private readonly F16Page page;
     private readonly F16Configuration cfg;
@@ -35,48 +35,15 @@ internal class F16Capture
         {
             if (d.smart) continue;
             var coord = Coordinate.FromDCS(d.latitude, d.longitude).ToF15EFormat();
-            var wpt = new Waypoint();
-            wpt.Latitude = coord.Lat;
-            wpt.Longitude = coord.Lon;
-            wpt.Elevation = int.Parse(d.elevation);
-            wpt.Target = d.target;
-
-            WaypointSystem wptSystem = cfg.Waypoints;
-
-            if (!wpt.Target)
+            var wpt = new Waypoint
             {
-                if (cfg.WaypointsCapture.NavPointsMode == SteerpointCaptureMode.AddToEndOfList)
-                {
-                    wpt.Sequence = wptSystem.GetNextSequence();
-                }
-                else if (cfg.WaypointsCapture.NavPointsMode == SteerpointCaptureMode.AddToEndOfFirstGap)
-                {
-                    wpt.Sequence = wptSystem.GetNextSequenceOfFirstGap();
-                }
-                else if (cfg.WaypointsCapture.NavPointsMode == SteerpointCaptureMode.AddToRange)
-                {
-                    wpt.Sequence = wptSystem.GetNextSequenceFromSequence(cfg.WaypointsCapture.NavPointsRangeFrom);
-                }
-                wpt.Name = "STPT " + wpt.Sequence;
-                wptSystem.Add(wpt);
-            }
-            else
-            {
-                if (cfg.WaypointsCapture.TgtPointsMode == SteerpointCaptureMode.AddToEndOfList)
-                {
-                    wpt.Sequence = wptSystem.GetNextSequence();
-                }
-                else if (cfg.WaypointsCapture.TgtPointsMode == SteerpointCaptureMode.AddToEndOfFirstGap)
-                {
-                    wpt.Sequence = wptSystem.GetNextSequenceOfFirstGap();
-                }
-                else if (cfg.WaypointsCapture.TgtPointsMode == SteerpointCaptureMode.AddToRange)
-                {
-                    wpt.Sequence = wptSystem.GetNextSequenceFromSequence(cfg.WaypointsCapture.TgtPointsRangeFrom);
-                }
-                wpt.Name = "TGT " + wpt.Sequence;
-                wptSystem.Add(wpt);
-            }
+                Latitude = coord.Lat,
+                Longitude = coord.Lon,
+                Elevation = int.Parse(d.elevation),
+                Target = d.target
+            };
+
+            CommonAddWaypoint(wpt, cfg.WaypointsCapture, cfg.Waypoints);
         }
 
         cfg.Waypoints.ReorderBySequence();

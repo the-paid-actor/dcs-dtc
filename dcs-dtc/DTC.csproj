@@ -59,7 +59,6 @@
 		<AdditionalFiles Include="New\Uploader\Aircrafts\A10\A10Uploader.json" />
 		<AdditionalFiles Include="New\Uploader\Aircrafts\CH47F\CH47FUploader.json" />
 		<AdditionalFiles Include="New\Uploader\Aircrafts\AV8B\AV8BUploader.json" />
-		
 	</ItemGroup>
 
 	<ItemGroup>
@@ -92,103 +91,11 @@
 	</ItemGroup>
 
 	<ItemGroup>
-		<Compile Update="New\UI\Aircrafts\AH64D\AH64DPage.cs">
-			<SubType>UserControl</SubType>
-		</Compile>
-		<Compile Update="New\UI\Aircrafts\AH64D\Systems\RoutePage.cs">
-			<SubType>UserControl</SubType>
-		</Compile>
-		<Compile Update="New\UI\Aircrafts\AH64D\Systems\RouteControl.cs">
-			<SubType>UserControl</SubType>
-		</Compile>
-		<Compile Update="New\UI\Aircrafts\AH64D\Systems\TSDPage.cs">
-			<SubType>UserControl</SubType>
-		</Compile>
-		<Compile Update="New\UI\Aircrafts\AH64D\Systems\UploadPage.cs">
-			<SubType>UserControl</SubType>
-		</Compile>
-		<Compile Update="New\UI\Aircrafts\AH64D\Systems\WaypointEditPanel.cs">
-			<SubType>UserControl</SubType>
-		</Compile>
-		<Compile Update="New\UI\Aircrafts\AV8B\AV8BCapture.Designer.cs">
-		  <DesignTime>True</DesignTime>
-		  <AutoGen>True</AutoGen>
-		  <DependentUpon>AV8BCapture.resx</DependentUpon>
-		</Compile>
-		<Compile Update="New\UI\Aircrafts\F16\Systems\WaypointEditPanel.cs">
-			<SubType>UserControl</SubType>
-		</Compile>
-		
-		<Compile Update="New\UI\Aircrafts\C130\Systems\UploadPage.cs">
-		  <SubType>UserControl</SubType>
-		</Compile>
-		<Compile Update="New\UI\Aircrafts\A10\Systems\UploadPage.cs">
-			<SubType>UserControl</SubType>
-		</Compile>
-		<Compile Update="New\UI\Aircrafts\CH47F\CH47FPage.Designer.cs">
-		  <DesignTime>True</DesignTime>
-		  <AutoGen>True</AutoGen>
-		  <DependentUpon>CH47FPage.resx</DependentUpon>
-		</Compile>
-		<Compile Update="New\UI\Aircrafts\CH47F\Systems\UploadPage.cs">
-			<SubType>UserControl</SubType>
-		</Compile>
-		<Compile Update="New\UI\Aircrafts\F15E\Systems\SmartWeaponsPageEdit.cs">
-			<SubType>UserControl</SubType>
-		</Compile>
-		<Compile Update="New\UI\Aircrafts\F15E\Systems\SmartWeaponsPage.cs">
-			<SubType>UserControl</SubType>
-		</Compile>
-		<Compile Update="New\UI\Aircrafts\F15E\Systems\RadiosPage.cs">
-			<SubType>UserControl</SubType>
-		</Compile>
-		<Compile Update="New\UI\Aircrafts\F16\Systems\HARMHTSPage.cs">
-			<SubType>UserControl</SubType>
-		</Compile>
-		<Compile Update="New\UI\Aircrafts\F16\Systems\DatalinkPage.cs">
-			<SubType>UserControl</SubType>
-		</Compile>
-		<Compile Update="New\UI\Aircrafts\FA18\Systems\FCRPage.cs">
-			<SubType>UserControl</SubType>
-		</Compile>
-		<Compile Update="New\UI\Base\Pages\EmitterList.cs">
-			<SubType>UserControl</SubType>
-		</Compile>
-		<Compile Update="New\UI\Base\Systems\RadiosPageControl.cs">
-			<SubType>UserControl</SubType>
-		</Compile>
-		<Compile Update="New\UI\Base\Systems\WaypointsPageControl.cs">
-			<SubType>UserControl</SubType>
-		</Compile>
 		<Compile Update="Properties\Resources.Designer.cs">
 		  <DesignTime>True</DesignTime>
 		  <AutoGen>True</AutoGen>
 		  <DependentUpon>Resources.resx</DependentUpon>
 		</Compile>
-		<Compile Update="Properties\Settings.Designer.cs">
-		  <DesignTimeSharedInput>True</DesignTimeSharedInput>
-		  <AutoGen>True</AutoGen>
-		  <DependentUpon>Settings.settings</DependentUpon>
-		</Compile>
-		<Compile Update="UI\Base\Controls\DTCTimeTextBox.cs">
-			<SubType>UserControl</SubType>
-		</Compile>
-		<Compile Update="UI\Base\Controls\DTCCoordinateTextBox2.cs" />
-	</ItemGroup>
-
-	<ItemGroup>
-	  <EmbeddedResource Update="New\UI\Aircrafts\AV8B\AV8BCapture.resx">
-	    <Generator>ResXFileCodeGenerator</Generator>
-	    <LastGenOutput>AV8BCapture.Designer.cs</LastGenOutput>
-	  </EmbeddedResource>
-	  <EmbeddedResource Update="New\UI\Aircrafts\CH47F\CH47FPage.resx">
-	    <Generator>ResXFileCodeGenerator</Generator>
-	    <LastGenOutput>CH47FPage.Designer.cs</LastGenOutput>
-	  </EmbeddedResource>
-	  <EmbeddedResource Update="Properties\Resources.resx">
-	    <Generator>PublicResXFileCodeGenerator</Generator>
-	    <LastGenOutput>Resources.Designer.cs</LastGenOutput>
-	  </EmbeddedResource>
 	</ItemGroup>
 
 	<ItemGroup>
@@ -281,10 +188,6 @@
 		</None>
 		<None Update="DCS\Hooks\DCSDTCHook.lua">
 			<CopyToOutputDirectory>Always</CopyToOutputDirectory>
-		</None>
-		<None Update="Properties\Settings.settings">
-		  <Generator>SettingsSingleFileGenerator</Generator>
-		  <LastGenOutput>Settings.Designer.cs</LastGenOutput>
 		</None>
 	</ItemGroup>
 

@@ -152,6 +152,26 @@ The mod features usage of unused cockpit buttons in DCS to show/hide the app, an
 
 - pressing the "Defog" button on either station for more than 1 second will command the upload of the current preset.
 
+## A10C
+
+- pressing the "CMSP RTN Key" button for more than 1 second will command the upload of the current preset.
+
+## CH47F
+
+- pressing the "Pilot CDU, key MFD DATA" button for more than 1 second will command the upload of the current preset.
+
+## C130J
+
+- pressing the "Pilot CNI-MU Unused Key" button for more than 1 second will command the upload of the current preset.
+
+## AV8B
+
+- pressing the "UFC I/P Button" button for more than 1 second will command the upload of the current preset.
+
+
+
+
+
 # Capturing coordinates in DCS
 
 By pressing Ctrl+Shift+D within DCS, a window with a crosshair will popup. By going into the F10 map and positioning the crosshair over a point of interest, you can capture the coordinates of that point as steerpoints or target points. Pressing "Send to DTC" will send the coordinates to the app, and pressing "Send to DTC + Jet" will save the coordinates into the app but also uploads these same coordinates into the aircraft. Otherwise the dialog is self-explanatory.

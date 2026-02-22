@@ -202,6 +202,8 @@ function DTC_Log2(str, log)
 end
 
 function DTC_trim(s)
-    if type(s) ~= "string" then return "" end
+     if type(s) ~= "string" then return "" end
+     s = s:gsub("^\239\187\191", "")
+     s = s:gsub("[%z\1-\31\127]", "")
     return (s:gsub("^%s+", ""):gsub("%s+$", ""))
 end

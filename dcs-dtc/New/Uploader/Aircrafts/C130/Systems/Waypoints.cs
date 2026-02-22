@@ -14,6 +14,15 @@ public partial class C130Uploader
         }
     }
 
+    private void BuildRadios(bool pilot)
+    {
+        if (config.Upload.Waypoints && config.Waypoints != null && config.Waypoints.HasWaypoints())
+        {
+            UploadPoints(config.Waypoints, true);
+        }
+    }
+
+
     private void strToCmd(string str)
     {
         foreach (var c in str.ToUpper())
@@ -22,7 +31,14 @@ public partial class C130Uploader
             {
                 continue;
             }
-            Cmd(CNI.GetCommand("Btn" + c));
+            if (c == '.')
+            {
+                Cmd(CNI.GetCommand("BtnPoint" ));
+            }
+            else
+            {
+                Cmd(CNI.GetCommand("Btn" + c));
+            }
         }
     }
 

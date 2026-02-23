@@ -80,6 +80,8 @@ This is a Windows application that mimics the functions of a DTC (Data Cartridge
 ## C130J Hercules
 
 - Waypoints
+- Radios (frequencies and presets for U1, V1)
+
 
 ## CH-47F Chinook
 

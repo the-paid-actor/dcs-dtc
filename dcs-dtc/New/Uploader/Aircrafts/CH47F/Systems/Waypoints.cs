@@ -15,11 +15,18 @@ public partial class CH47FUploader
 
     private void strToCmd(string str)
     {
-        foreach (var c in str.ToUpper())
+        foreach (var cc in str.ToUpper())
         {
-            if (c == ' ')
+            var c = cc.ToString();
+            if (c == " ")
             {
                 continue;
+            }
+            if (c == ".")
+            {
+                c = "Point";
+
+
             }
             Cmd(CDU.GetCommand("Btn" + c));
         }

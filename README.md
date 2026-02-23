@@ -86,6 +86,7 @@ This is a Windows application that mimics the functions of a DTC (Data Cartridge
 ## CH-47F Chinook
 
 - Waypoints
+- Radios
 
 ## AV-8B Harrier
 

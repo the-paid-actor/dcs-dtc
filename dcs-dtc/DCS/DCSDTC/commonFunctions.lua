@@ -1,4 +1,4 @@
-﻿function DTC_Log(str)
+function DTC_Log(str)
     DTC_logFile:write(str .. "\n");
     DTC_logFile:flush();
 end

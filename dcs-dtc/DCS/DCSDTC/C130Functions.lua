@@ -1,4 +1,4 @@
-﻿dofile(lfs.writedir()..'Scripts/DCSDTC/commonFunctions.lua')
+dofile(lfs.writedir()..'Scripts/DCSDTC/commonFunctions.lua')
 
 function DTC_C130_GetCNI()
     return DTC_ParseDisplay(8)

@@ -23,19 +23,16 @@ namespace DTC.New.UI.Aircrafts.CH47F.Systems
             if (radio == 1)
             {
                 txt.AllowedRanges.Add(new DTCRadioTextBox.FrequencyBand { Min = 225.000M, Max = 399.975M, Name = "UHF" });
-                txt.IntegerDigits = 3;
-                txt.FractionDigits = 2;
-                txt.FractionInterval = 0.05M;
             }
             else
             {
                 txt.AllowedRanges.Add(new DTCRadioTextBox.FrequencyBand { Min = 108.000M, Max = 173.975M, Name = "VHF" });
-                txt.IntegerDigits = 3;
-                txt.FractionDigits = 3;
-                txt.FractionInterval = 0.025M;
             }
+            txt.IntegerDigits = 3;
+            txt.FractionDigits = 3;
+            txt.FractionInterval = 0.025M;
 
-           
+
         }
 
         protected override string GetRadioName(int radio)

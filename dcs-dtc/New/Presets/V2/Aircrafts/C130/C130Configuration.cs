@@ -29,17 +29,4 @@ public class C130Configuration : Configuration
     {
         return Aircraft;
     }
-    public override void AfterLoadFromJson()
-    {
-        if (Radios != null)
-        {
-        //    Radios.AfterLoadFromJson();
-        }
-        // C130 radios use 2 decimal digits (e.g. 251.00).
-        // The shared radio migration helper appends a trailing 0 for legacy 2-digit values,
-        // which is only valid for aircraft that use 3 decimal digits.
-        // Running it here would turn 251.00 into 2510.00 after reload.
-
-    }
-
 }

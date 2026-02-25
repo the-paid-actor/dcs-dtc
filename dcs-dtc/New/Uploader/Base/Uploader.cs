@@ -25,7 +25,7 @@ public abstract partial class Uploader
 
     private StringBuilder sb = new();
     private string aircraftModel;
-    private readonly decimal baseDelay;
+    private decimal baseDelay; //Nerijus, 02/25/2026 I removed "readonly" for CmdWithDelay
 
     public Uploader(Aircraft aircraft, decimal baseDelay)
     {
@@ -36,6 +36,16 @@ public abstract partial class Uploader
     protected void Cmd(ICommand cmd)
     {
         this.sb.AppendLine(FormatCommand(cmd));
+    }
+
+    protected void CmdWithDelay(ICommand cmd, decimal delay)
+    {
+        //Nerijus, 02/25/2026 Sometimes the same button needs to be held down for a different amount of time...
+
+        var old = this.baseDelay;
+        this.baseDelay = delay;
+        this.sb.AppendLine(FormatCommand(cmd));
+        this.baseDelay = old;
     }
 
     protected void Cmd(params ICommand[] cmds)

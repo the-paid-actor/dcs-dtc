@@ -1,4 +1,19 @@
 {
+  "ARC186": {
+    "Id": 51,
+    "MODE_PRESET": {
+      "Id": 3004,
+      "DelayFactor": -1,
+      "PostDelayFactor": 0,
+      "Activation": 0.3
+    },
+    "MODE_MANUAL": {
+      "Id": 3004,
+      "DelayFactor": -1,
+      "PostDelayFactor": 0,
+      "Activation": 0.2
+    }
+  },
   "CDU": {
     "Id": 37,
     "IDX": {

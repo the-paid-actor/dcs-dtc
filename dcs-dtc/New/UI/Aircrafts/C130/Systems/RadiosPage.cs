@@ -6,7 +6,6 @@ namespace DTC.New.UI.Aircrafts.C130.Systems
 {
     internal class RadiosPage : RadiosPageControl
     {
-
         public RadiosPage(C130Page parent) : base(parent, parent.Configuration.Radios, nameof(parent.Configuration.Radios))
         {
         }
@@ -31,8 +30,8 @@ namespace DTC.New.UI.Aircrafts.C130.Systems
             }
 
             txt.IntegerDigits = 3;
-            txt.FractionDigits = 2;
-            txt.FractionInterval = 0.05M;
+            txt.FractionDigits = 3;
+            txt.FractionInterval = 0.025M;
         }
 
         protected override string GetRadioName(int radio)

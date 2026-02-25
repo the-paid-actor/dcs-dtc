@@ -108,7 +108,10 @@
 		<None Update="DCS\DCSDTC\Skins\buttonSkin.lua">
 			<CopyToOutputDirectory>Always</CopyToOutputDirectory>
 		</None>
-		<None Update="DCS\DCSDTC\commonFunctions1.lua">
+		<None Update="DCS\DCSDTC\C130Functions.lua">
+			<CopyToOutputDirectory>Always</CopyToOutputDirectory>
+		</None>
+		<None Update="DCS\DCSDTC\ah64DFunctions.lua">
 			<CopyToOutputDirectory>Always</CopyToOutputDirectory>
 		</None>
 		<None Update="DCS\DCSDTC\ah64DFunctions.lua">

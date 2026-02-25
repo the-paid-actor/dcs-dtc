@@ -38,9 +38,11 @@ public class CH47FPage : AircraftPage
             new LoadSavePage(this),
             new AircraftSystemPage.Divider(),
             new UploadPage(this),
+            new WaypointCapturePage(this, cfg.WaypointsCapture),
             new AircraftSystemPage.Divider(),
             new WaypointsPage<Waypoint>(this, cfg.Waypoints, null, nameof(cfg.Waypoints), "Waypoints"),
             new RadiosPage(this)
+
         };
     }
 

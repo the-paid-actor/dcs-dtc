@@ -1,6 +1,6 @@
 dofile(lfs.writedir()..'Scripts/DCSDTC/commonFunctions.lua')
 
-function DTC_C130_GetCNI()
+local function DTC_C130_GetCNI()
     return DTC_ParseDisplay(8)
 end
 
@@ -26,15 +26,13 @@ local function FindIndicatorByLineSuffix(deviceid, txttofind)
 end
 
 
-function DTC_C130_ExecCmd_SetCNIOage1()
+function DTC_C130_ExecCmd_SetCNIPage1()
     local table = DTC_C130_GetCNI();
 
     local str1 = FindIndicatorByLineSuffix(8,"/10")
-           
-    -- DTC_Log("str1=["..DTC_trim(str1).."]")
      
     local sk=string.sub(DTC_trim(str1),1, -4);
-    DTC_Log("sk=["..sk.."]")
+
     local curPsl= tonumber(sk)
 
     for id = 2, curPsl do
@@ -43,10 +41,6 @@ function DTC_C130_ExecCmd_SetCNIOage1()
 
     return true
 end
-
-
-
-
 
 function DTC_C130_AfterNextFrame(params)
     local mainPanel = GetDevice(0);

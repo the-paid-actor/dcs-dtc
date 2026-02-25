@@ -33,7 +33,7 @@ public partial class C130Uploader
             Cmd(CNI.LSK_L3);
         }
 
-        Cmd(new CustomCommand($"SetCNIOage1()"));
+        Cmd(new CustomCommand($"SetCNIPage1()"));
 
         if (radio.Mode == RadioMode.Frequency && !string.IsNullOrEmpty(radio.SelectedFrequency))
         {
@@ -55,7 +55,7 @@ public partial class C130Uploader
                     Cmd(CNI.NextPage);
                     inPage++;
                 }
-                if (preset.Name.Length > 0)
+                if (preset.Name != null && preset.Name.Length > 0)
                 {
                     var name = preset.Name;
                     if (name.Length > 5)

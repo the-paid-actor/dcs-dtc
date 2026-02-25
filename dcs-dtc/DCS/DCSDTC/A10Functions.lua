@@ -17,6 +17,6 @@ end
 
 function DTC_A10_AfterNextFrame(params)
     local mainPanel = GetDevice(0);
-    local rtnBtn = mainPanel:get_argument_value(357);
+    local rtnBtn = mainPanel:get_argument_value(533);
     if rtnBtn == 1 then params["uploadCommand"] = "1" end
 end

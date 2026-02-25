@@ -108,9 +108,6 @@
 		<None Update="DCS\DCSDTC\Skins\buttonSkin.lua">
 			<CopyToOutputDirectory>Always</CopyToOutputDirectory>
 		</None>
-		<None Update="DCS\DCSDTC\C130Functions.lua">
-			<CopyToOutputDirectory>Always</CopyToOutputDirectory>
-		</None>
 		<None Update="DCS\DCSDTC\ah64DFunctions.lua">
 			<CopyToOutputDirectory>Always</CopyToOutputDirectory>
 		</None>
@@ -126,7 +123,7 @@
 		<None Update="DCS\DCSDTC\f18Functions.lua">
 			<CopyToOutputDirectory>Always</CopyToOutputDirectory>
 		</None>
-		<None Update="DCS\DCSDTC\C130Functions1.lua">
+		<None Update="DCS\DCSDTC\C130Functions.lua">
 			<CopyToOutputDirectory>Always</CopyToOutputDirectory>
 		</None>
 		<None Update="DCS\DCSDTC\CH47FFunctions.lua">

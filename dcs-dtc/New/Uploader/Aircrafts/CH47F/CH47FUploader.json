@@ -19,7 +19,7 @@
     "IDX": {
       "Id": 3164,
       "DelayFactor": 1,
-      "PostDelayFactor": 0,
+      "PostDelayFactor": 0.5,
       "Activation": 1
     },
 

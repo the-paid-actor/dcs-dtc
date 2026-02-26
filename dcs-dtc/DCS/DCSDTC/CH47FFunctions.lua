@@ -73,6 +73,7 @@ local function DTC_CH47F_parseFreq(a)
 end
 
 function DTC_CH47F_ExecCmd_SetV3(reikiama)
+    DTC_ExecCommand(51, 3009, -1, 0.1, 500) --If there was a preset before, the CDU shows incorrect information — you need to move it for it to refresh
     local table = DTC_CH47F_GetCDU();
 
     local str1 = table["V3_freq"] or ""

@@ -12,7 +12,7 @@ public partial class CH47FUploader
     {
         if (!config.Upload.Radios || config.Radios == null) return;
 
-         BuildRadio(config.Radios.Radio1, 1);
+        BuildRadio(config.Radios.Radio1, 1);
         BuildRadio(config.Radios.Radio2, 2);
     }
 
@@ -20,8 +20,8 @@ public partial class CH47FUploader
     {
         if (radio == null) return;
 
-          Cmd(CDU.CLR);
-          Cmd(CDU.MSN);
+        Cmd(CDU.CLR);
+        Cmd(CDU.MSN);
 
         if (type == 1 && radio.Mode == RadioMode.Frequency && !string.IsNullOrEmpty(radio.SelectedFrequency))
         {
@@ -104,21 +104,23 @@ public partial class CH47FUploader
             var presetNo = int.Parse(radio.SelectedPreset);
             var pageNo = Math.Ceiling((decimal)presetNo / 5);
 
+            for (var i = 1; i <= 2; i++) { //DCS bug, it doesn’t set on the first attempt
+                while (inPage < pageNo)
+                {
+                    Cmd(CDU.DOWN);
+                    inPage++;
+                }
 
-            while (inPage < pageNo)
-            {
-                Cmd(CDU.DOWN);
-                inPage++;
-            }
+                while (inPage > pageNo)
+                {
+                    Cmd(CDU.UP);
+                    inPage--;
+                }
 
-            while (inPage > pageNo)
-            {
-                Cmd(CDU.UP);
-                inPage--;
-            }
-
-            var btn = presetNo - (int)Math.Round((pageNo - 1) * 5, 0);
-            CmdWithDelay(CDU.GetCommand("LSK_L" + btn.ToString()), 1600);
+                var btn = presetNo - (int)Math.Round((pageNo - 1) * 5, 0);
+                Cmd(CDU.GetCommand("LSK_L" + btn.ToString()));
+                inPage = 1;
+            }            
         }
 
     }

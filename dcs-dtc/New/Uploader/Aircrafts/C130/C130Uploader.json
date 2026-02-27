@@ -195,7 +195,7 @@
       "Activation": 1
     },
     "BtnR": {
-      "Id": 3057,
+      "Id": 3059,
       "DelayFactor": 1,
       "PostDelayFactor": 0,
       "Activation": 1
@@ -304,6 +304,24 @@
     },
     "Btn0": {
       "Id": 3030,
+      "DelayFactor": 1,
+      "PostDelayFactor": 0,
+      "Activation": 1
+    },
+    "BtnSlash": {
+      "Id": 3068,
+      "DelayFactor": 1,
+      "PostDelayFactor": 0,
+      "Activation": 1
+    },
+    "BtnPoint": {
+      "Id": 3040,
+      "DelayFactor": 1,
+      "PostDelayFactor": 0,
+      "Activation": 1
+    },
+    "CommTune": {
+      "Id": 3013,
       "DelayFactor": 1,
       "PostDelayFactor": 0,
       "Activation": 1

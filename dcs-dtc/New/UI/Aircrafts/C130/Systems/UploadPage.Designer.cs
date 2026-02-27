@@ -33,6 +33,7 @@ namespace DTC.New.UI.Aircrafts.C130.Systems
         {
             components = new System.ComponentModel.Container();
             chkWaypoints = new CheckBox();
+            chkRadios = new CheckBox();
             toolTip1 = new ToolTip(components);
             SuspendLayout();
             // 
@@ -49,6 +50,19 @@ namespace DTC.New.UI.Aircrafts.C130.Systems
             chkWaypoints.Text = "Waypoints";
             chkWaypoints.UseVisualStyleBackColor = true;
             // 
+            // chkRadios
+            // 
+            chkRadios.Checked = true;
+            chkRadios.CheckState = CheckState.Checked;
+            chkRadios.Font = new Font("Microsoft Sans Serif", 10F, FontStyle.Regular, GraphicsUnit.Point);
+            chkRadios.Location = new Point(15, 48);
+            chkRadios.Margin = new Padding(4);
+            chkRadios.Name = "chkRadios";
+            chkRadios.Size = new Size(154, 25);
+            chkRadios.TabIndex = 1;
+            chkRadios.Text = "Radios";
+            chkRadios.UseVisualStyleBackColor = true;
+            // 
             // toolTip1
             // 
             toolTip1.AutomaticDelay = 100;
@@ -62,6 +76,7 @@ namespace DTC.New.UI.Aircrafts.C130.Systems
             AutoScaleDimensions = new SizeF(96F, 96F);
             AutoScaleMode = AutoScaleMode.Dpi;
             BackColor = Color.PaleGoldenrod;
+            Controls.Add(chkRadios);
             Controls.Add(chkWaypoints);
             Font = new Font("Microsoft Sans Serif", 12F, FontStyle.Regular, GraphicsUnit.Point);
             Margin = new Padding(4);
@@ -72,6 +87,7 @@ namespace DTC.New.UI.Aircrafts.C130.Systems
 
         #endregion
         private CheckBox chkWaypoints;
+        private CheckBox chkRadios;
         private ToolTip toolTip1;
     }
 }

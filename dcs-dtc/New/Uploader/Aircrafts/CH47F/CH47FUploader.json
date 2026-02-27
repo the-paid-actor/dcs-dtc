@@ -1,8 +1,30 @@
 {
+  "ARC186": {
+    "Id": 51,
+    "MODE_PRESET": {
+      "Id": 3004,
+      "DelayFactor": -1,
+      "PostDelayFactor": 0,
+      "Activation": 0.3
+    },
+    "MODE_MANUAL": {
+      "Id": 3004,
+      "DelayFactor": -1,
+      "PostDelayFactor": 0,
+      "Activation": 0.2
+    }
+  },
   "CDU": {
     "Id": 37,
     "IDX": {
       "Id": 3164,
+      "DelayFactor": 1,
+      "PostDelayFactor": 0.5,
+      "Activation": 1
+    },
+
+    "MSN": {
+      "Id": 3170,
       "DelayFactor": 1,
       "PostDelayFactor": 0,
       "Activation": 1
@@ -10,11 +32,59 @@
 
     "CLR": {
       "Id": 3108,
-      "DelayFactor": 1,
+      "DelayFactor": 6,
       "PostDelayFactor": 0,
       "Activation": 1
     },
 
+    "DOWN": {
+      "Id": 3107,
+      "DelayFactor": 1,
+      "PostDelayFactor": 0,
+      "Activation": 1
+    },
+    "UP": {
+      "Id": 3106,
+      "DelayFactor": 1,
+      "PostDelayFactor": 0,
+      "Activation": 1
+    },
+    "LSK_R1": {
+      "Id": 3156,
+      "DelayFactor": 1,
+      "PostDelayFactor": 0,
+      "Activation": 1
+    },
+    "LSK_R2": {
+      "Id": 3157,
+      "DelayFactor": 1,
+      "PostDelayFactor": 0,
+      "Activation": 1
+    },
+    "LSK_R3": {
+      "Id": 3158,
+      "DelayFactor": 1,
+      "PostDelayFactor": 0,
+      "Activation": 1
+    },
+    "LSK_R4": {
+      "Id": 3159,
+      "DelayFactor": 1,
+      "PostDelayFactor": 0,
+      "Activation": 1
+    },
+    "LSK_R5": {
+      "Id": 3160,
+      "DelayFactor": 1,
+      "PostDelayFactor": 0,
+      "Activation": 1
+    },
+    "LSK_R6": {
+      "Id": 3161,
+      "DelayFactor": 1,
+      "PostDelayFactor": 0,
+      "Activation": 1
+    },
 
     "LSK_L1": {
       "Id": 3150,
@@ -35,13 +105,13 @@
       "Activation": 1
     },
     "LSK_L4": {
-      "Id": 3154,
+      "Id": 3153,
       "DelayFactor": 1,
       "PostDelayFactor": 0,
       "Activation": 1
     },
     "LSK_L5": {
-      "Id": 3155,
+      "Id": 3154,
       "DelayFactor": 1,
       "PostDelayFactor": 0,
       "Activation": 1

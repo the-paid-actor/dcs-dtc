@@ -22,7 +22,14 @@ public partial class C130Uploader
             {
                 continue;
             }
-            Cmd(CNI.GetCommand("Btn" + c));
+            if (c == '.')
+            {
+                Cmd(CNI.GetCommand("BtnPoint" ));
+            }
+            else
+            {
+                Cmd(CNI.GetCommand("Btn" + c));
+            }
         }
     }
 

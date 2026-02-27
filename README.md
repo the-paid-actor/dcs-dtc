@@ -80,10 +80,13 @@ This is a Windows application that mimics the functions of a DTC (Data Cartridge
 ## C130J Hercules
 
 - Waypoints
+- Radios (frequencies and presets for U1, V1)
+
 
 ## CH-47F Chinook
 
 - Waypoints
+- Radios
 
 ## AV-8B Harrier
 
@@ -151,6 +154,26 @@ The mod features usage of unused cockpit buttons in DCS to show/hide the app, an
 ## Apache
 
 - pressing the "Defog" button on either station for more than 1 second will command the upload of the current preset.
+
+## A10C
+
+- pressing the "CMSP RTN Key" button for more than 1 second will command the upload of the current preset.
+
+## CH47F
+
+- pressing the "Pilot CDU, key MFD DATA" button for more than 1 second will command the upload of the current preset.
+
+## C130J
+
+- pressing the "Pilot CNI-MU Unused Key" button for more than 1 second will command the upload of the current preset.
+
+## AV8B
+
+- pressing the "UFC I/P Button" button for more than 1 second will command the upload of the current preset.
+
+
+
+
 
 # Capturing coordinates in DCS
 

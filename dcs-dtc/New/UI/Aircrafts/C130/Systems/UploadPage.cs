@@ -11,9 +11,15 @@ public partial class UploadPage : AircraftSystemPage
         var upload = parent.Configuration.Upload;
 
         chkWaypoints.Checked = upload.Waypoints;
+        chkRadios.Checked = upload.Radios;
         chkWaypoints.CheckedChanged += (s, e) =>
         {
             upload.Waypoints = chkWaypoints.Checked;
+            this.SavePreset();
+        };
+        chkRadios.CheckedChanged += (s, e) =>
+        {
+            upload.Radios = chkRadios.Checked;
             this.SavePreset();
         };
     }

@@ -15,6 +15,7 @@ public partial class C130Uploader : Base.Uploader
     public void Execute(bool pilot)
     {
         BuildWaypoints(pilot);
+        BuildRadios();
         Send();
     }
 }

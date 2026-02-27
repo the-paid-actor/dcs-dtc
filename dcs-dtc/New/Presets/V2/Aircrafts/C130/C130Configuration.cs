@@ -14,6 +14,9 @@ public class C130Configuration : Configuration
     [System("Waypoints")]
     public WaypointSystem Waypoints { get; set; } = new();
 
+    [System("Radios")]
+     public RadioSystem Radios { get; set; } = new();
+
     [System("Capture Settings")]
     public WaypointCaptureSystem WaypointsCapture { get; set; } = new();
 

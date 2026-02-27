@@ -1,5 +1,6 @@
 ﻿using DTC.New.Presets.V2.Aircrafts.A10.Systems;
 using DTC.New.Presets.V2.Base.Systems;
+using DTC.New.Uploader.Base;
 
 namespace DTC.New.Uploader.Aircrafts.A10;
 
@@ -30,6 +31,8 @@ public partial class A10Uploader
         Cmd(SYS.CDU_BTN_CLR);
         Cmd(SYS.BTN_WP);
         Cmd(SYS.CDU_LSK_L3);
+
+        Cmd(new CustomCommand($"SetInputFormat()"));
 
         foreach (var wpt in config.Waypoints.Waypoints)
         {

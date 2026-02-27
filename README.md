@@ -157,7 +157,7 @@ The mod features usage of unused cockpit buttons in DCS to show/hide the app, an
 
 ## A10C
 
-- pressing the "CMSP RTN Key" button for more than 1 second will command the upload of the current preset.
+- pressing the "IFF" button in the UFC panel for more than 1 second will command the upload of the current preset.
 
 ## CH47F
 

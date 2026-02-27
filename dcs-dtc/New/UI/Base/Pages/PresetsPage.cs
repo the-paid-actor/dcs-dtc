@@ -19,6 +19,13 @@ public partial class PresetsPage : Page
     {
         InitializeComponent();
         _aircraft = aircraft;
+        _aircraft.PresetsChanged += OnPresetsChanged;
+        dgPresets.RefreshList(_aircraft.Presets);
+        RefreshButtons();
+    }
+
+    private void OnPresetsChanged(object sender, EventArgs e)
+    {
         dgPresets.RefreshList(_aircraft.Presets);
         RefreshButtons();
     }
@@ -181,5 +188,14 @@ public partial class PresetsPage : Page
                 dgPresets.RefreshList(_aircraft.Presets);
             }
         }
+    }
+
+    protected override void OnHandleDestroyed(EventArgs e)
+    {
+        if (_aircraft != null)
+        {
+            _aircraft.PresetsChanged -= OnPresetsChanged;
+        }
+        base.OnHandleDestroyed(e);
     }
 }

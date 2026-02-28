@@ -29,6 +29,12 @@ public class AH64DConfiguration : Configuration
     [System("TSD")]
     public TSDSystem TSD { get; set; } = new();
 
+    [System("Laser Codes")]
+    public LaserCodesSystem LaserCodes { get; set; } = new();
+
+    [System("Radios")]
+    public RadioSystem Radios { get; set; } = new();
+
     public override void AfterLoadFromJson()
     {
     }

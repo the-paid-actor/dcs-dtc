@@ -4,27 +4,27 @@ local function DTC_CH47F_GetCDU()
     return DTC_ParseDisplay(1)
 end
 
-local function DTC_CH47F_TURN(esama, norima, min, max)
+local function DTC_CH47F_TURN(curPosition, NeedPosition, min, max)
 
     local size = max - min + 1
 
-    -- paverciam i indeksus nuo 0
-    local current = esama - min
-    local target = norima - min
+    -- starting from 0
+    local current = curPosition - min
+    local target = NeedPosition - min
 
-    -- skirtumas sukant i desine
+    -- diff when rotating to the right
     local right =(target - current) % size
 
-    -- skirtumas sukant i kaire
+    -- diff when rotating to the left
     local left = right - size
 
-    -- pasirenkam trumpesni kelia
+    -- let’s choose the shorter path
     if math.abs(right) <= math.abs(left) then
         return right
-        -- teigiamas = i desine
+        -- positive = to the right
     else
         return left
-        -- neigiamas = i kaire
+        -- negative = to the left
     end
 end
 
@@ -38,26 +38,18 @@ local function DTC_CH47F_parseFreq(a)
 
     local sk1, sk2
 
-    -- 2. tikrinam b ilgi
     if #b == 3 then
         sk1 = string.sub(b, 1, 2)
-        -- pirmi du simboliai
         sk2 = string.sub(b, 3, 3)
-        -- trecias simbolis
     elseif #b == 2 then
         sk1 = string.sub(b, 1, 1)
-        -- pirmas simbolis
         sk2 = string.sub(b, 2, 2)
-        -- antras simbolis
     else
         return nil
-        -- jei neatitinka salygu
     end
 
-    -- 3. sk3 = pirmas c simbolis
     local sk3 = string.sub(c, 1, 1)
 
-    -- 4. sk4 = antras ir trecias c simboliai
     local sk4 = string.sub(c, 2, 3)
     if sk4 == "25" then
         sk4 = "1"
@@ -73,7 +65,8 @@ local function DTC_CH47F_parseFreq(a)
 end
 
 function DTC_CH47F_ExecCmd_SetV3(reikiama)
-    DTC_ExecCommand(51, 3009, -1, 0.1, 500) --If there was a preset before, the CDU shows incorrect information — you need to move it for it to refresh
+    DTC_ExecCommand(51, 3009, -1, 0.1, 500)
+    -- If there was a preset before, the CDU shows incorrect information — you need to move it for it to refresh
     local table = DTC_CH47F_GetCDU();
 
     local str1 = table["V3_freq"] or ""

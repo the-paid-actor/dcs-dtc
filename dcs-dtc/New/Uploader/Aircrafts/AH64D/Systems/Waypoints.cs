@@ -120,7 +120,7 @@ public partial class AH64DUploader
             }
         }
 
-        foreach (var i in  pointsToDelete)
+        foreach (var i in pointsToDelete)
         {
             StartIf(IsPointQueuedToDelete(genericPointType, i));
             {
@@ -168,7 +168,7 @@ public partial class AH64DUploader
     private void AddPoint(string type, Device display, Device keyboard, string identifier, string free, int elev, string mgrs)
     {
         Cmd(display.GetCommand("L2"));
-        
+
         if (type == "W")
             Cmd(display.GetCommand("L3"));
         if (type == "H")
@@ -230,7 +230,11 @@ public partial class AH64DUploader
         {
             var name = c.ToString();
 
-            if (char.IsDigit(c))
+            if (c == '.')
+            {
+                name = "DOT";
+            }
+            else if (char.IsDigit(c))
             {
                 name = "D" + c.ToString();
             }

@@ -3,7 +3,7 @@
     "Id": 25,
     "CLR": {
       "Id": 3029,
-      "DelayFactor": 1,
+      "DelayFactor": 6,
       "PostDelayFactor": 0,
       "Activation": 1
     },

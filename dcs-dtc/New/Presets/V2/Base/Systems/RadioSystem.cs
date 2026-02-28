@@ -1,4 +1,6 @@
 ﻿
+using DTC.Utilities;
+
 namespace DTC.New.Presets.V2.Base.Systems;
 
 public class RadioSystem
@@ -74,5 +76,17 @@ public class RadioPreset
     public RadioPreset(int number)
     {
         Number = number;
+    }
+
+    public static string GetFreqType(string frq)
+    {
+        if (!double.TryParse(frq, out var fr))
+            return string.Empty;
+
+        if (fr < 100) return "FM";
+        if (fr < 200) return "VHF";
+        if (fr <= 399.975) return "UHF";
+
+        return string.Empty;
     }
 }

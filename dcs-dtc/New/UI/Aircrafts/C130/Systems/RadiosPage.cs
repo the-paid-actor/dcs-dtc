@@ -12,7 +12,7 @@ namespace DTC.New.UI.Aircrafts.C130.Systems
 
         protected override void ConfigurePresetList(DTCDropDown cbo, int radio)
         {
-            for (var i = 1; i <= 20; i++)
+            for (var i = 1; i <= GetRadioPresetNumber(0); i++)
             {
                 cbo.Items.Add(i.ToString());
             }

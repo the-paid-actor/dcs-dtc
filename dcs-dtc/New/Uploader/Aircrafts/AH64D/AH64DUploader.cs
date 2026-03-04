@@ -17,6 +17,9 @@ public partial class AH64DUploader : Base.Uploader
         BuildWaypoints(pilot);
         BuildRoutes(pilot);
         BuildTSD(pilot);
+        BuildLaserCodes(pilot);
+        BuildRadios(pilot);
+
         Send();
     }
 }

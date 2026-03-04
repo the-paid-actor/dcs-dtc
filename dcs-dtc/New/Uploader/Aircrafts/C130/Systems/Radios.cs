@@ -20,8 +20,6 @@ public partial class C130Uploader
         if (radio == null) return;
 
         Cmd(CNI.CLR);
-        Cmd(CNI.CLR);
-        Cmd(CNI.CLR);
 
         Cmd(CNI.CommTune);
         if (type == 1)

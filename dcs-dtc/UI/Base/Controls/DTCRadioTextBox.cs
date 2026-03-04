@@ -16,6 +16,7 @@ namespace DTC.UI.Base.Controls
         private DTCLabel label;
         private int integerDigits = 0;
         private int fractionDigits = 0;
+        private bool showLabel = true;
 
         public override string Text
         {
@@ -82,8 +83,12 @@ namespace DTC.UI.Base.Controls
             }
         }
 
-        public DTCRadioTextBox()
+        public DTCRadioTextBox() : this(true)
         {
+        }
+        public DTCRadioTextBox(bool showLabel)
+        {
+            this.showLabel = showLabel;
             InitializeComponent();
         }
 
@@ -282,13 +287,19 @@ namespace DTC.UI.Base.Controls
             this.textBox = new System.Windows.Forms.TextBox();
             this.label = new DTCLabel();
             this.SuspendLayout();
-
-            this.textBox.Anchor = AnchorStyles.Top | AnchorStyles.Left | AnchorStyles.Right;
+            if (this.showLabel)
+            {
+                this.textBox.Anchor = AnchorStyles.Top | AnchorStyles.Left | AnchorStyles.Right;
+            }
+            else
+            {
+                this.textBox.Anchor = AnchorStyles.Top | AnchorStyles.Left;
+            }
             this.textBox.BorderStyle = BorderStyle.None;
             this.textBox.Font = new Font("Microsoft Sans Serif", 10F, FontStyle.Regular, GraphicsUnit.Point, ((byte)(0)));
             this.textBox.Location = new Point(4, 4);
             this.textBox.Name = "textBox";
-            this.textBox.Size = new Size(105, 19);
+            this.textBox.Size = new Size(this.showLabel?105:50, 19);
             this.textBox.TabIndex = 0;
             this.textBox.TabStop = true;
             this.textBox.TextAlign = HorizontalAlignment.Right;
@@ -307,6 +318,8 @@ namespace DTC.UI.Base.Controls
             this.label.Size = new Size(40, 19);
             this.label.TextAlign = ContentAlignment.MiddleLeft;
             this.label.Font = new Font("Microsoft Sans Serif", 10F, FontStyle.Regular, GraphicsUnit.Point, ((byte)(0)));
+            this.label.Visible = this.showLabel;
+
             this.label.Click += (sender, args) =>
             {
                 textBox.Focus();
@@ -316,7 +329,7 @@ namespace DTC.UI.Base.Controls
             this.Controls.Add(this.textBox);
             this.Controls.Add(this.label);
             this.Name = "DTCNumericTextBox";
-            this.Size = new System.Drawing.Size(150, 28);
+            this.Size = new System.Drawing.Size(this.showLabel?150:60, 28);
             this.ResumeLayout(false);
             this.PerformLayout();
         }

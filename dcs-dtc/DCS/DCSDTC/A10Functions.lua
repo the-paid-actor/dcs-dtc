@@ -5,6 +5,21 @@ function DTC_A10_GetCDU()
     return DTC_ParseDisplay(2)
 end
 
+
+function DTC_A10_ExecCmd_SetReqWptQty(need)
+    local table = DTC_A10_GetCDU()
+    local str1 = table["NEW_WAYPT_NUM"] or ""
+
+    local curr = str1:gsub("%?", "")
+    
+    for a = tonumber(curr), need do
+        DTC_ExecCommand(-2, 1234, 150, 1, 100)
+    end
+
+    return true
+end 
+
+
 function DTC_A10_ExecCmd_SetInputFormat()
     local table = DTC_A10_GetCDU();
     local str1 = table["WAYPTCoordFormat1"] or ""

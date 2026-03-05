@@ -10,6 +10,14 @@ public partial class UploadPage : AircraftSystemPage
 
         var upload = parent.Configuration.Upload;
 
+
+        chkRadios.Checked = upload.Radios;
+        chkRadios.CheckedChanged += (s, e) =>
+        {
+            upload.Radios = chkRadios.Checked;
+            this.SavePreset();
+        };
+
         chkWaypoints.Checked = upload.Waypoints;
         chkWaypoints.CheckedChanged += (s, e) =>
         {
@@ -70,6 +78,13 @@ public partial class UploadPage : AircraftSystemPage
         chkKneeboard.CheckedChanged += (s, e) =>
         {
             upload.Kneeboard = chkKneeboard.Checked;
+            this.SavePreset();
+        };
+
+        chkLaserCodes.Checked = upload.LaserCodes;
+        chkLaserCodes.CheckedChanged += (s, e) =>
+        {
+            upload.LaserCodes = chkLaserCodes.Checked;
             this.SavePreset();
         };
     }

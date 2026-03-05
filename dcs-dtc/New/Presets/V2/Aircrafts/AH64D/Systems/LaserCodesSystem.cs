@@ -77,7 +77,7 @@ public class LaserCodesSystem
     public string R { get; set; } = "";
 
 
-    public static readonly char[] Letters = new[] { 'A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J', 'K', 'L', 'M', 'N', 'P', 'Q', 'R' };
+    public static readonly char[] Letters = new[] { 'A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'J', 'K', 'L', 'M', 'N', 'P', 'Q', 'R' };
 
     public string SetCode(char letter, string code)
     {

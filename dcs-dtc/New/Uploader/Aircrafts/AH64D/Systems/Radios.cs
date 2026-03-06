@@ -187,6 +187,8 @@ public partial class AH64DUploader
         //======= MODE PRESET
         //==============================
 
+        Cmd(display.GetCommand("COM"));
+        var lastPr = "0";
         for (int i = 1; i <= 5; i++) //-HF2 
         {
             if (modes[i] == null || modes[i].SelectedMode != RadioMode.Preset)
@@ -200,7 +202,11 @@ public partial class AH64DUploader
                 continue;
             }
 
-            Cmd(display.GetCommand(btn));
+            if (btn != lastPr)
+            {
+                Cmd(display.GetCommand(btn));
+            }
+            lastPr = btn;
 
 
             if (i == 1) //UHF

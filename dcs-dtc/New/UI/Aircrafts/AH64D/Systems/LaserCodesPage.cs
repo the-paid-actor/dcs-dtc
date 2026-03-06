@@ -21,8 +21,8 @@ public class LaserCodesPage : AircraftSystemPage
         {
             var letter = LaserCodesSystem.Letters[i];
 
-            var left = i < 9 ? leftA : leftB;
-            if (i == 9)
+            var left = i < 8 ? leftA : leftB;
+            if (i == 8)
             {
                 y = 15;
             }

@@ -72,6 +72,8 @@ This is a Windows application that mimics the functions of a DTC (Data Cartridge
 - Control Measures
 - Targets and Threats
 - TSD settings
+- Radios
+- Laser Codes
 
 ## A10C II Tank Killer
 

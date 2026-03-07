@@ -71,7 +71,7 @@ public partial class AH64DUploader
         var first = true;
         for (int i = 1; i <= 5; i++) //-HF2 
         {
-            if (modes[i] == null || modes[i].SelectedMode != RadioMode.Frequency)
+            if (modes[i] == null || modes[i].SelectedMode != RadioMode.Frequency || modes[i].SelectedFrequency == null || modes[i].SelectedFrequency == "")
             {
                 continue;
             }
@@ -116,7 +116,7 @@ public partial class AH64DUploader
         //==============================
         Radio6Preset[] radios = new Radio6Preset[11];
 
-        if (radio1 != null && radio1.Presets.Count > 0)
+        if (radio1 != null && radio1.Presets !=null && radio1.Presets.Count > 0)
         {
             foreach (var preset in radio1.Presets)
             {

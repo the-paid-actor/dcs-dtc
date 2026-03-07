@@ -1,4 +1,4 @@
-dofile(lfs.writedir()..'Scripts/DCSDTC/commonFunctions.lua')
+dofile(lfs.writedir() .. 'Scripts/DCSDTC/commonFunctions.lua')
 
 
 function DTC_A10_GetCDU()
@@ -11,9 +11,11 @@ function DTC_A10_ExecCmd_SetReqWptQty(need)
     local str1 = table["NEW_WAYPT_NUM"] or ""
 
     local curr = str1:gsub("%?", "")
-    
-    for a = tonumber(curr), need do
-        DTC_ExecCommand(-2, 1234, 150, 1, 100)
+
+    if tonumber(curr) > 0 then
+        for a = tonumber(curr), need do
+            DTC_ExecCommand(-2, 1234, 150, 1, 100)
+        end
     end
 
     return true
@@ -25,7 +27,7 @@ function DTC_A10_ExecCmd_SetInputFormat()
     local str1 = table["WAYPTCoordFormat1"] or ""
     if DTC_trim(str1) == "UTM" then
         DTC_ExecCommand(-2, 1235, 150, 1, 100)
-    end 
+    end
     return true
 end
 

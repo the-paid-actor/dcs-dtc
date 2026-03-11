@@ -257,19 +257,19 @@ public partial class Radio6Control : UserControl
         textBox.FractionInterval = radioConfiguration.FractionInterval;
 
 
-        if (radioConfiguration.isUHF())
+        if (radioConfiguration.IsUHF())
         {
             textBox.AllowedRanges.Add(new DTCRadioTextBox.FrequencyBand { Min = 225.000M, Max = 399.975M, Name = "UHF" });
         }
-        else if (radioConfiguration.isVHF())
+        else if (radioConfiguration.IsVHF())
         {
             textBox.AllowedRanges.Add(new DTCRadioTextBox.FrequencyBand { Min = 118.000M, Max = 151.975M, Name = "VHF" });
         }
-        else if (radioConfiguration.isFM())
+        else if (radioConfiguration.IsFM())
         {
             textBox.AllowedRanges.Add(new DTCRadioTextBox.FrequencyBand { Min = 30.000M, Max = 87.975M, Name = "FM" });
         }
-        else if (radioConfiguration.isHF())
+        else if (radioConfiguration.IsHF())
         {
             textBox.AllowedRanges.Add(new DTCRadioTextBox.FrequencyBand { Min = 3.000M, Max = 29.999M, Name = "HM" });
         }

@@ -15,6 +15,7 @@ public partial class A10Uploader : Base.Uploader
     public void Execute(bool pilot)
     {
         BuildWaypoints(pilot);
+        BuildRadios();
         Send();
     }
 }

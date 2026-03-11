@@ -1,4 +1,7 @@
 ﻿
+using System.Globalization;
+using static System.Net.Mime.MediaTypeNames;
+
 namespace DTC.New.Presets.V2.Base.Systems;
 
 public class RadioSystem
@@ -74,5 +77,16 @@ public class RadioPreset
     public RadioPreset(int number)
     {
         Number = number;
+    }
+    public bool IsUHF()
+    {
+
+        if (!decimal.TryParse(Frequency, NumberStyles.Number, CultureInfo.InvariantCulture, out decimal f))
+        {
+            return false;
+        }
+
+
+        return (f >= 225.000M);
     }
 }

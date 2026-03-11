@@ -15,7 +15,7 @@ public class CH47FConfiguration : Configuration
     public WaypointSystem Waypoints { get; set; } = new();
 
     [System("Radios")]
-    public Base.Systems.RadioSystem Radios { get; set; } = new();
+    public RadioSystem Radios { get; set; } = new();
 
     [System("Capture Settings")]
     public WaypointCaptureSystem WaypointsCapture { get; set; } = new();

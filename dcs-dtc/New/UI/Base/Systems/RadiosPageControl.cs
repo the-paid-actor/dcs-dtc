@@ -24,6 +24,9 @@ namespace DTC.New.UI.Base.Systems
             radio1.Initialize(radioSystem.Radio1, GetRadioName(1), IsRadioGuardAvailable(1), GetRadioPresetNumber(1));
             radio2.Initialize(radioSystem.Radio2, GetRadioName(2), IsRadioGuardAvailable(2), GetRadioPresetNumber(2));
 
+            radio1.Visible = IsRadioVisible(1);
+            radio2.Visible = IsRadioVisible(2);
+
             radio1.PresetChanged += this.SavePreset;
             radio2.PresetChanged += this.SavePreset;
         }
@@ -31,6 +34,11 @@ namespace DTC.New.UI.Base.Systems
         protected virtual void ConfigurePresetList(DTCDropDown cbo, int radio)
         {
             throw new NotImplementedException();
+        }
+
+        protected virtual bool IsRadioVisible(int radio)
+        {
+            return true;
         }
 
         protected virtual void ConfigureFreqTextBox(DTCRadioTextBox txt, int radio)

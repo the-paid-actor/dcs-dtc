@@ -27,6 +27,10 @@ public class A10Page : AircraftPage
     protected override AircraftSystemPage[] GetPages(IConfiguration configuration)
     {
         var cfg = Configuration;
+        if (cfg.Upload == null) cfg.Upload = new();
+        if (cfg.WaypointsCapture == null) cfg.WaypointsCapture = new();
+        if (cfg.Waypoints == null) cfg.Waypoints = new();
+        if (cfg.Radios == null) cfg.Radios = new();
 
         return new AircraftSystemPage[]
         {
@@ -35,7 +39,8 @@ public class A10Page : AircraftPage
             new UploadPage(this),
             new WaypointCapturePage(this, cfg.WaypointsCapture),
             new AircraftSystemPage.Divider(),
-            new WaypointsPage<Waypoint>(this, Configuration.Waypoints, null, nameof(Configuration.Waypoints), "Waypoints")
+            new WaypointsPage<Waypoint>(this, cfg.Waypoints, null, nameof(cfg.Waypoints), "Waypoints"),
+            new RadiosPage(this)
         };
     }
 

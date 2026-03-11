@@ -66,7 +66,7 @@ end
 
 function DTC_CH47F_ExecCmd_SetV3(needed)
     DTC_ExecCommand(51, 3009, -1, 0.1, 500)    -- If there was a preset before, the CDU shows incorrect information — you need to move it for it to refresh
-    local table = DTC_CH47F_GetCDU();
+    local table = DTC_CH47F_GetCDU()
 
     local str1 = table["V3_freq"] or ""
 
@@ -115,7 +115,7 @@ function DTC_CH47F_ExecCmd_SetV3(needed)
 end
 
 function DTC_CH47F_AfterNextFrame(params)
-    local mainPanel = GetDevice(0);
-    local mfdDataBtn = mainPanel:get_argument_value(423);
+    local mainPanel = GetDevice(0)
+    local mfdDataBtn = mainPanel:get_argument_value(423)
     if mfdDataBtn == 1 then params["uploadCommand"] = "1" end
 end

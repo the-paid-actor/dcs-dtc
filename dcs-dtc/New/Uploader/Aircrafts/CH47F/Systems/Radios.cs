@@ -36,6 +36,8 @@ public partial class CH47FUploader
             }
         }
 
+        Cmd(CDU.CLR);
+
         if (type == 2 && radio.Mode == RadioMode.Frequency)
         {
             Cmd(ARC186.MODE_MANUAL);

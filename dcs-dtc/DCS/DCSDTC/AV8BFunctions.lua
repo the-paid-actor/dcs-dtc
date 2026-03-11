@@ -5,7 +5,7 @@ function DTC_AV8B_GetLeftmMFD()
 end
 
 local function DTC_AV8B_SetLeftMfd1()
-    local table = DTC_AV8B_GetLeftmMFD();
+    local table = DTC_AV8B_GetLeftmMFD()
     local str1 = table["EHSD_PB02_OL"] or ""  -- jei D , tai prasinis langas su DATA
     if DTC_trim(str1) == "D" then
         return true
@@ -24,14 +24,14 @@ end
 function DTC_AV8B_ExecCmd_SetLeftMfd()
     for id = 1, 5 do
         if DTC_AV8B_SetLeftMfd1() == true then
-            return true;
+            return true
         end
     end
     return false
 end
 
 function DTC_AV8B_AfterNextFrame(params)
-   local mainPanel = GetDevice(0);
-   local ipBtn = mainPanel:get_argument_value(297);
+   local mainPanel = GetDevice(0)
+   local ipBtn = mainPanel:get_argument_value(297)
    if ipBtn == 1 then params["uploadCommand"] = "1" end
 end

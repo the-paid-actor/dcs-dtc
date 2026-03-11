@@ -78,11 +78,12 @@ This is a Windows application that mimics the functions of a DTC (Data Cartridge
 ## A10C II Tank Killer
 
 - Waypoints
+- Radios
 
 ## C130J Hercules
 
 - Waypoints
-- Radios (frequencies and presets for U1, V1)
+- Radios
 
 
 ## CH-47F Chinook

@@ -1,6 +1,201 @@
 {
+  "ARC210": {
+    "Id": "55",
+    "MAN": {
+      "Id": 3044,
+      "DelayFactor": -1,
+      "PostDelayFactor": 2,
+      "Activation": 0.3
+    },
+    "PRESET": {
+      "Id": 3044,
+      "DelayFactor": -1,
+      "PostDelayFactor": 2,
+      "Activation": 0.2
+    }
+  },
+
+  "UFC": {
+    "Id": "8",
+    "Btn1": {
+      "Id": 3001,
+      "DelayFactor": 0,
+      "PostDelayFactor": 0.2,
+      "Activation": 1
+    },
+    "Btn2": {
+      "Id": 3002,
+      "DelayFactor": 0,
+      "PostDelayFactor": 0.2,
+      "Activation": 1
+    },
+    "Btn3": {
+      "Id": 3003,
+      "DelayFactor": 0,
+      "PostDelayFactor": 0.2,
+      "Activation": 1
+    },
+    "Btn4": {
+      "Id": 3004,
+      "DelayFactor": 0,
+      "PostDelayFactor": 0.2,
+      "Activation": 1
+    },
+    "Btn5": {
+      "Id": 3005,
+      "DelayFactor": 0,
+      "PostDelayFactor": 0.2,
+      "Activation": 1
+    },
+    "Btn6": {
+      "Id": 3006,
+      "DelayFactor": 0,
+      "PostDelayFactor": 0.2,
+      "Activation": 1
+    },
+    "Btn7": {
+      "Id": 3007,
+      "DelayFactor": 0,
+      "PostDelayFactor": 0.2,
+      "Activation": 1
+    },
+    "Btn8": {
+      "Id": 3008,
+      "DelayFactor": 0,
+      "PostDelayFactor": 0.2,
+      "Activation": 1
+    },
+    "Btn9": {
+      "Id": 3009,
+      "DelayFactor": 0,
+      "PostDelayFactor": 0.2,
+      "Activation": 1
+    },
+    "Btn0": {
+      "Id": 3010,
+      "DelayFactor": 0,
+      "PostDelayFactor": 0.2,
+      "Activation": 1
+    },
+    "SPACE": {
+      "Id": 3011,
+      "DelayFactor": 0,
+      "PostDelayFactor": 0.5,
+      "Activation": 1
+    },
+    "HACK": {
+      "Id": 3012,
+      "DelayFactor": 0,
+      "PostDelayFactor": 0.5,
+      "Activation": 1
+    },
+    "FUNC": {
+      "Id": 3013,
+      "DelayFactor": 0,
+      "PostDelayFactor": 0.5,
+      "Activation": 1
+    },
+    "LTR": {
+      "Id": 3014,
+      "DelayFactor": 0,
+      "PostDelayFactor": 0.5,
+      "Activation": 1
+    },
+    "CLR": {
+      "Id": 3015,
+      "DelayFactor": 4,
+      "PostDelayFactor": 0.5,
+      "Activation": 1
+    },
+    "ENT": {
+      "Id": 3016,
+      "DelayFactor": 0,
+      "PostDelayFactor": 0.5,
+      "Activation": 1
+    },
+    "MK": {
+      "Id": 3017,
+      "DelayFactor": 0,
+      "PostDelayFactor": 0.5,
+      "Activation": 1
+    },
+    "ALT_ALRT": {
+      "Id": 3010,
+      "DelayFactor": 0,
+      "PostDelayFactor": 0.5,
+      "Activation": 1
+    }
+  },
   "SYS": {
     "Id": -2,
+
+    "LEFT_MFCD_T1": {
+      "Id": 642,
+      "DelayFactor": 0,
+      "PostDelayFactor": 0.5,
+      "Activation": 1
+    },
+
+    "LEFT_MFCD_T2": {
+      "Id": 643,
+      "DelayFactor": 0,
+      "PostDelayFactor": 0.5,
+      "Activation": 1
+    },
+    "LEFT_MFCD_T3": {
+      "Id": 644,
+      "DelayFactor": 0,
+      "PostDelayFactor": 0.5,
+      "Activation": 1
+    },
+    "LEFT_MFCD_T4": {
+      "Id": 645,
+      "DelayFactor": 0,
+      "PostDelayFactor": 0.5,
+      "Activation": 1
+    },
+    "LEFT_MFCD_T5": {
+      "Id": 646,
+      "DelayFactor": 0,
+      "PostDelayFactor": 0.5,
+      "Activation": 1
+    },
+    "LEFT_MFCD_B3": {
+      "Id": 654,
+      "DelayFactor": 0,
+      "PostDelayFactor": 0.5,
+      "Activation": 1
+    },
+    "LEFT_MFCD_L1": {
+      "Id": 661,
+      "DelayFactor": 0,
+      "PostDelayFactor": 0.5,
+      "Activation": 1
+    },
+    "LEFT_MFCD_L2": {
+      "Id": 660,
+      "DelayFactor": 0,
+      "PostDelayFactor": 0.5,
+      "Activation": 1
+    },
+    "LEFT_MFCD_L3": {
+      "Id": 659,
+      "DelayFactor": 0,
+      "PostDelayFactor": 0.5,
+      "Activation": 1
+    },
+    "LEFT_MFCD_L4": {
+      "Id": 658,
+      "DelayFactor": 0,
+      "PostDelayFactor": 0.5,
+      "Activation": 1
+    },
+    "LEFT_MFCD_L5": {
+      "Id": 657,
+      "DelayFactor": 0,
+      "PostDelayFactor": 0.5,
+      "Activation": 1
+    },
     "BTN_WP": {
       "Id": 1238,
       "DelayFactor": 1,
@@ -282,9 +477,4 @@
   }
 
 
-  }
-
-
-
-
-
+}

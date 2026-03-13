@@ -31,8 +31,9 @@ public partial class C130Uploader
             Cmd(CNI.LSK_L3);
         }
 
+        Cmd(Wait(200));
         Cmd(new CustomCommand($"SetCNIPage1()"));
-
+      
         if (radio.Mode == RadioMode.Frequency && !string.IsNullOrEmpty(radio.SelectedFrequency))
         {
             strToCmd(radio.SelectedFrequency.ToString());

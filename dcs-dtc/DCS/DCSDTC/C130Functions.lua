@@ -31,9 +31,13 @@ function DTC_C130_ExecCmd_SetCNIPage1()
 
     local str1 = FindIndicatorByLineSuffix(8,"/10")
      
-    local sk=string.sub(DTC_trim(str1),1, -4);
+    local sk=string.sub(DTC_trim(str1),1, -4)
 
     local curPsl= tonumber(sk)
+
+    if curPsl == 1 then
+      return true
+    end 
 
     for id = 2, curPsl do
         DTC_ExecCommand(25, 3027, 150, 1, 100)
@@ -43,7 +47,7 @@ function DTC_C130_ExecCmd_SetCNIPage1()
 end
 
 function DTC_C130_AfterNextFrame(params)
-    local mainPanel = GetDevice(0);
-    local unusedBtn = mainPanel:get_argument_value(1166);
+    local mainPanel = GetDevice(0)
+    local unusedBtn = mainPanel:get_argument_value(1166)
     if unusedBtn == 1 then params["uploadCommand"] = "1" end
 end

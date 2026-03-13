@@ -149,19 +149,19 @@ public class Radio6Conf
     public int FractionDigits { get; set; } = 3;
     public Decimal FractionInterval { get; set; } = 0.005M;
 
-    public bool isUHF()
+    public bool IsUHF()
     {
         return Type == RadioType.UHF;
     }
-    public bool isVHF()
+    public bool IsVHF()
     {
         return Type == RadioType.VHF;
     }
-    public bool isFM()
+    public bool IsFM()
     {
         return Type == RadioType.FM;
     }
-    public bool isHF()
+    public bool IsHF()
     {
         return Type == RadioType.HF;
     }

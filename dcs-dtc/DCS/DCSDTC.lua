@@ -128,7 +128,7 @@ function DTC_ExecCommand(device, argument, delay, action, postDelay)
             DTC_Wait(delay)
         end
         if delay >= 0 then
-            LoSetCommand(argument, action)
+            LoSetCommand(argument, 0)
         end
     elseif device ==-1 then
         LoSetCommand(argument, nil)

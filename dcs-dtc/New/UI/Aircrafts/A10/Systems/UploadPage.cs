@@ -16,6 +16,13 @@ public partial class UploadPage : AircraftSystemPage
             upload.Waypoints = chkWaypoints.Checked;
             this.SavePreset();
         };
+
+        chkRadios.Checked = upload.Radios;
+        chkRadios.CheckedChanged += (s, e) =>
+        {
+            upload.Radios = chkRadios.Checked;
+            this.SavePreset();
+        };
     }
 
     public override string GetPageTitle()

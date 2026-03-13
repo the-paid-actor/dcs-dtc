@@ -17,6 +17,9 @@ public class A10Configuration : Configuration
     [System("Capture Settings")]
     public WaypointCaptureSystem WaypointsCapture { get; set; } = new();
 
+    [System("Radios")]
+    public RadioSystem Radios { get; set; } = new();
+
     protected override Type GetConfigurationType()
     {
         return typeof(A10Configuration);

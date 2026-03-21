@@ -41,10 +41,16 @@ public partial class CH47FUploader
         
         foreach (var wpt in config.Waypoints.Waypoints)
         {
+
+
+            strToCmd(wpt.Sequence.ToString());
+            Cmd(CDU.LSK_L1);
+
             var x = wpt.Latitude.Replace(".", "").Replace("'", "").Replace("\"", "").Replace("°", "").Replace(" ", "").Replace("’", "");
             var y = wpt.Longitude.Replace(".", "").Replace("'", "").Replace("\"", "").Replace("°", "").Replace(" ", "").Replace("’", "");
-            
-            strToCmd(x.Substring(0,5)+y.Substring(0, 6));
+
+            var cmd = x.Substring(0, 5) + "." + x.Substring(x.Length - 3, 3) +y.Substring(0, 6)+ "." + y.Substring(y.Length - 3, 3);
+            strToCmd(cmd);
             Cmd(CDU.LSK_L1);
 
             strToCmd(wpt.Elevation.ToString());

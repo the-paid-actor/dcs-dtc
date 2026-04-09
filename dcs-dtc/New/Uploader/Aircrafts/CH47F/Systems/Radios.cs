@@ -82,15 +82,9 @@ public partial class CH47FUploader
                     Cmd(CDU.DOWN);
                     inPage++;
                 }
-                if (preset.Name != null && preset.Name.Length > 0)
+                if (!string.IsNullOrEmpty(preset.Name))
                 {
-                    var name = preset.Name;
-                    if (name.Length > 6)
-                    {
-                        name = name.Substring(0, 6);
-                    }
-
-                    strToCmd(name);
+                    strToCmd(preset.Name, 8);
                     Cmd(CDU.GetCommand("LSK_L" + btn.ToString()));
                 }
 
@@ -122,7 +116,7 @@ public partial class CH47FUploader
                 var btn = presetNo - (int)Math.Round((pageNo - 1) * 5, 0);
                 Cmd(CDU.GetCommand("LSK_L" + btn.ToString()));
                 inPage = 1;
-            }            
+            }
         }
 
     }

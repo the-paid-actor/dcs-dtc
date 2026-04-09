@@ -13,6 +13,10 @@ public partial class A10Uploader
             UploadPoints(config.Waypoints, true);
         }
     }
+    private void strToCmd(string str, int max)
+    {
+        strToCmd(str.Substring(0, Math.Min(max, str.Length)));
+    }
 
     private void strToCmd(string str)
     {
@@ -54,9 +58,9 @@ public partial class A10Uploader
             strToCmd(wpt.Sequence.ToString());
             Cmd(SYS.CDU_LSK_L3);
 
-            if (wpt.Name != null && wpt.Name != "")
+            if (!string.IsNullOrEmpty(wpt.Name))
             {
-                strToCmd(wpt.Name);
+                strToCmd(wpt.Name, 12);
                 Cmd(SYS.CDU_LSK_R3);
             }
 

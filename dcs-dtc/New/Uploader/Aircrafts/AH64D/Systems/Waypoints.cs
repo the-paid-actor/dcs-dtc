@@ -220,6 +220,14 @@ public partial class AH64DUploader
         Cmd(display.GetCommand("B6"));
     }
 
+    private ICommand[] Keyboard(Device d, string text, int min, int max)
+    {
+        if (text.Length < min)
+        {
+            text = text.PadRight(min);
+        }
+        return Keyboard(d, text.Substring(0, Math.Min(max, text.Length)));
+    }
     private ICommand[] Keyboard(Device d, string text)
     {
         var list = new List<ICommand>();
@@ -233,6 +241,10 @@ public partial class AH64DUploader
             if (c == '.')
             {
                 name = "DOT";
+            }
+            else if (c == ' ')
+            {
+                name = "SPC";
             }
             else if (char.IsDigit(c))
             {

@@ -13,6 +13,11 @@ public partial class CH47FUploader
         }
     }
 
+    private void strToCmd(string str, int max)
+    {
+        strToCmd(str.Substring(0, Math.Min(max, str.Length)));
+    }
+
     private void strToCmd(string str)
     {
         foreach (var cc in str.ToUpper())
@@ -25,8 +30,6 @@ public partial class CH47FUploader
             if (c == ".")
             {
                 c = "Point";
-
-
             }
             Cmd(CDU.GetCommand("Btn" + c));
         }
@@ -38,7 +41,7 @@ public partial class CH47FUploader
         Cmd(CDU.IDX);
         Cmd(CDU.LSK_L6);
         Cmd(CDU.LSK_L6);
-        
+
         foreach (var wpt in config.Waypoints.Waypoints)
         {
 
@@ -49,7 +52,7 @@ public partial class CH47FUploader
             var x = wpt.Latitude.Replace(".", "").Replace("'", "").Replace("\"", "").Replace("°", "").Replace(" ", "").Replace("’", "");
             var y = wpt.Longitude.Replace(".", "").Replace("'", "").Replace("\"", "").Replace("°", "").Replace(" ", "").Replace("’", "");
 
-            var cmd = x.Substring(0, 5) + "." + x.Substring(x.Length - 3, 3) +y.Substring(0, 6)+ "." + y.Substring(y.Length - 3, 3);
+            var cmd = x.Substring(0, 5) + "." + x.Substring(x.Length - 3, 3) + y.Substring(0, 6) + "." + y.Substring(y.Length - 3, 3);
             strToCmd(cmd);
             Cmd(CDU.LSK_L1);
 

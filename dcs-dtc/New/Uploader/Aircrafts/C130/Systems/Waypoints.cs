@@ -14,6 +14,11 @@ public partial class C130Uploader
         }
     }
 
+    private void strToCmd(string str,int max)
+    {
+        strToCmd(str.Substring(0, Math.Min(max, str.Length)));
+    }
+
     private void strToCmd(string str)
     {
         foreach (var c in str.ToUpper())
@@ -43,7 +48,12 @@ public partial class C130Uploader
 
         foreach (var wpt in config.Waypoints.Waypoints)
         {
-            strToCmd(wpt.Name);
+            var nm = wpt.Name.Replace(" ", "");
+            if (nm.Length > 6)
+            {
+                nm = nm.Substring(0, 6);
+            }
+            strToCmd(nm);
             Cmd(CNI.LSK_L1);
 
             var coord = Coordinate.FromString(wpt.Latitude, wpt.Longitude);

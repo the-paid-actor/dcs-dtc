@@ -44,6 +44,11 @@ public partial class A10Uploader
         BuildRadio(config.Radios.Radio1, 1);
     }
 
+    private void UFCstrToCmd(string str, int max)
+    {
+        UFCstrToCmd(str.Substring(0, Math.Min(max, str.Length)));
+    }
+
     private void UFCstrToCmd(string value)
     {
         if (string.IsNullOrWhiteSpace(value))
@@ -154,7 +159,7 @@ public partial class A10Uploader
                 if (!string.IsNullOrWhiteSpace(preset.Name))
                 {
                     Cmd(UFC.CLR);
-                    UFCstrToCmd(preset.Name);
+                    UFCstrToCmd(preset.Name, 12);
                     Cmd(SYS.LEFT_MFCD_L5);
                 }
 

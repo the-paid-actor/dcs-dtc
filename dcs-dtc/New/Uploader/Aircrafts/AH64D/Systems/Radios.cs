@@ -58,7 +58,7 @@ public partial class AH64DUploader
         Cmd(display.GetCommand("COM"));
 
         Radio6SelectedMode[] modes = new Radio6SelectedMode[6];
-        if (radio1 != null && radio1.SelectedModes.Count > 0)
+        if (radio1 != null && radio1.SelectedModes != null && radio1.SelectedModes.Count > 0)
         {
             foreach (var mode in radio1.SelectedModes)
             {
@@ -71,7 +71,7 @@ public partial class AH64DUploader
         var first = true;
         for (int i = 1; i <= 5; i++) //-HF2 
         {
-            if (modes[i] == null || modes[i].SelectedMode != RadioMode.Frequency || modes[i].SelectedFrequency == null || modes[i].SelectedFrequency == "")
+            if (modes[i] == null || modes[i].SelectedMode == null || modes[i].SelectedMode != RadioMode.Frequency || modes[i].SelectedFrequency == null || modes[i].SelectedFrequency == "")
             {
                 continue;
             }
@@ -116,7 +116,7 @@ public partial class AH64DUploader
         //==============================
         Radio6Preset[] radios = new Radio6Preset[11];
 
-        if (radio1 != null && radio1.Presets !=null && radio1.Presets.Count > 0)
+        if (radio1 != null && radio1.Presets != null && radio1.Presets.Count > 0)
         {
             foreach (var preset in radio1.Presets)
             {
@@ -144,7 +144,7 @@ public partial class AH64DUploader
                 continue;
             }
 
-            if (preset.Name != null & preset.Name != "")
+            if (!string.IsNullOrEmpty(preset.Name))
             {
                 var name = preset.Name.ToUpper().Trim();
                 var name1 = name;
@@ -152,8 +152,8 @@ public partial class AH64DUploader
 
                 if (name.Length >= 4 && name[3] == ' ')
                 {
-                    name2 = name.Substring(0, 3);     // pirmi 3 simboliai
-                    name1 = name.Substring(4);        // nuo 5 simbolio iki galo
+                    name2 = name.Substring(0, 3);
+                    name1 = name.Substring(4);
                 }
 
                 Cmd(display.GetCommand("T2"));
@@ -161,7 +161,7 @@ public partial class AH64DUploader
                 {
                     Cmd(display.GetCommand("L1"));
                     Cmd(keyboard.GetCommand("CLR"));
-                    Cmd(Keyboard(keyboard, $"{name1}"));
+                    Cmd(Keyboard(keyboard, $"{name1}", 3, 8));
                     Cmd(keyboard.GetCommand("ENTER"));
                 }
 
@@ -169,7 +169,7 @@ public partial class AH64DUploader
                 {
                     Cmd(display.GetCommand("L2"));
                     Cmd(keyboard.GetCommand("CLR"));
-                    Cmd(Keyboard(keyboard, $"{name2}"));
+                    Cmd(Keyboard(keyboard, $"{name2}", 3, 3));
                     Cmd(keyboard.GetCommand("ENTER"));
                 }
             }

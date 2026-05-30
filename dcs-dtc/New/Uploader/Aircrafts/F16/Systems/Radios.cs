@@ -72,6 +72,9 @@ public partial class F16Uploader
         var parts = frequency.Split('.');
         var a = parts[0];
         var b = parts[1];
+
+        if (a.Length == 2) b = b.Substring(0, 2);
+
         return a + b;
     }
 

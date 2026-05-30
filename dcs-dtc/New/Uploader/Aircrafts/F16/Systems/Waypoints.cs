@@ -232,6 +232,7 @@ public partial class F16Uploader
     private void Time(string time)
     {
         time = time.Replace(":", "");
+        if (time[0] == '0') time = time.Substring(1);
         Cmd(Digits(UFC, time));
     }
 

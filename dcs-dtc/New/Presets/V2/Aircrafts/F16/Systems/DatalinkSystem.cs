@@ -21,7 +21,7 @@ namespace DTC.New.Presets.V2.Aircrafts.F16.Systems
 
         public bool? EnableMembers { get; set; }
         public int? OwnshipIndex { get; set; }
-        public int[]? Members { get; set; }
+        public string[]? Members { get; set; }
         public bool[]? TDOAMembers { get; set; }
 
         public DatalinkMode? DatalinkMode { get; set; }

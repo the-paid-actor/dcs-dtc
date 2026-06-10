@@ -83,14 +83,14 @@ namespace DTC.New.UI.Aircrafts.F16.Systems
 
             if (datalink.Members != null)
             {
-                txtSTN1.Value = datalink.Members[0] < 0 ? null : datalink.Members[0];
-                txtSTN2.Value = datalink.Members[1] < 0 ? null : datalink.Members[1];
-                txtSTN3.Value = datalink.Members[2] < 0 ? null : datalink.Members[2];
-                txtSTN4.Value = datalink.Members[3] < 0 ? null : datalink.Members[3];
-                txtSTN5.Value = datalink.Members[4] < 0 ? null : datalink.Members[4];
-                txtSTN6.Value = datalink.Members[5] < 0 ? null : datalink.Members[5];
-                txtSTN7.Value = datalink.Members[6] < 0 ? null : datalink.Members[6];
-                txtSTN8.Value = datalink.Members[7] < 0 ? null : datalink.Members[7];
+                txtSTN1.Text = datalink.Members[0] == "-1" ? null : datalink.Members[0];
+                txtSTN2.Text = datalink.Members[1] == "-1" ? null : datalink.Members[1];
+                txtSTN3.Text = datalink.Members[2] == "-1" ? null : datalink.Members[2];
+                txtSTN4.Text = datalink.Members[3] == "-1" ? null : datalink.Members[3];
+                txtSTN5.Text = datalink.Members[4] == "-1" ? null : datalink.Members[4];
+                txtSTN6.Text = datalink.Members[5] == "-1" ? null : datalink.Members[5];
+                txtSTN7.Text = datalink.Members[6] == "-1" ? null : datalink.Members[6];
+                txtSTN8.Text = datalink.Members[7] == "-1" ? null : datalink.Members[7];
             }
 
             if (datalink.TDOAMembers != null)
@@ -188,9 +188,9 @@ namespace DTC.New.UI.Aircrafts.F16.Systems
         {
             if (datalink.Members == null)
             {
-                datalink.Members = new int[8];
+                datalink.Members = new string[8];
             }
-            datalink.Members[v - 1] = (int)(txt.Value ?? -1);
+            datalink.Members[v - 1] = txt.Text ?? "-1";
             this.SavePreset();
         }
 

@@ -29,7 +29,7 @@ namespace DTC.New.UI.Aircrafts.F16.Systems
             }
             else
             { 
-                textBox.AllowedRanges.Add(new DTCRadioTextBox.FrequencyBand { Min = 30.000M, Max = 87.975M, Name = "FM" });
+                textBox.AllowedRanges.Add(new DTCRadioTextBox.FrequencyBand { Min = 30.00M, Max = 87.97M, Name = "FM" });
                 textBox.AllowedRanges.Add(new DTCRadioTextBox.FrequencyBand { Min = 108.000M, Max = 151.975M, Name = "VHF" });
                 textBox.IntegerDigits = 3;
                 textBox.FractionDigits = 3;

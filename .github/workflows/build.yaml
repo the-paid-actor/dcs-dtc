@@ -1,83 +1,83 @@
 name: Build
 
-on:  
-  push:
-    branches: [ "main" ]
-  pull_request:
-    branches: [ "main" ]
+on:
+    push:
+        branches: ["main"]
+    pull_request:
+        branches: ["main"]
 
-jobs:  
-  build:    
-    runs-on: windows-latest
-    
-    env:
-      DOTNET_INSTALL_DIR: '.\.dotnet'
-    
-    steps:      
-      - uses: actions/checkout@v3
+jobs:
+    build:
+        runs-on: windows-latest
 
-      - name: Cache dotnet
-        id: cache-dotnet
-        uses: actions/cache@v3
-        with:
-          path: ${{ env.DOTNET_INSTALL_DIR }}
-          key: ${{ runner.os }}-dotnet-7
-          restore-keys: ${{ runner.os }}-dotnet-7
-      
-      - name: Setup MSBuild
-        uses: microsoft/setup-msbuild@v1.3.1
+        env:
+            DOTNET_INSTALL_DIR: '.\.dotnet'
 
-      - name: Setup VS Dev Environment
-        uses: seanmiddleditch/gha-setup-vsdevenv@v4
+        steps:
+            - uses: actions/checkout@v3
 
-      - name: Setup NuGet
-        uses: NuGet/setup-nuget@v1.0.5
-        
-      - name: Navigate to Workspace
-        run: cd $GITHUB_WORKSPACE
+            - name: Cache dotnet
+              id: cache-dotnet
+              uses: actions/cache@v3
+              with:
+                  path: ${{ env.DOTNET_INSTALL_DIR }}
+                  key: ${{ runner.os }}-dotnet-7
+                  restore-keys: ${{ runner.os }}-dotnet-8
 
-      - name: Restore Packages
-        run: dotnet restore dcs-dtc/DTC.csproj
+            - name: Setup MSBuild
+              uses: microsoft/setup-msbuild@v1.3.1
 
-      - name: Disable Out of Process Building
-        run: .\DisableOutOfProcBuild.exe
-        working-directory: C:\Program Files\Microsoft Visual Studio\2022\Enterprise\Common7\IDE\CommonExtensions\Microsoft\VSI\DisableOutOfProcBuild
+            - name: Setup VS Dev Environment
+              uses: seanmiddleditch/gha-setup-vsdevenv@v4
 
-      - name: Build Solution
-        run: |
-          dotnet publish -c Release -p:PublishProfile=FolderProfile dcs-dtc\DTC.csproj -o build_output 
+            - name: Setup NuGet
+              uses: NuGet/setup-nuget@v1.0.5
 
-      - name: Zip the publish folder
-        run: Compress-Archive -Path build_output/* -DestinationPath dcs_dtc_476th.zip
+            - name: Navigate to Workspace
+              run: cd $GITHUB_WORKSPACE
 
-      - uses: actions/upload-artifact@v4
-        with:
-          name: dcs_dtc_476th
-          path: dcs_dtc_476th.zip
-          overwrite: true
-          
-      - name: Upload binaries to release
-        uses: svenstaro/upload-release-action@v2
-        with:
-          repo_token: ${{ secrets.GITHUB_TOKEN }}
-          file: dcs_dtc_476th.zip
-          asset_name: dcs_dtc_476th.zip
-          tag: ${{ github.ref }}
-          overwrite: true          
+            - name: Restore Packages
+              run: dotnet restore dcs-dtc/DTC.csproj
 
-      - name: Build the Installer
-        run: DevEnv installer/installer.vdproj /build Release
+            - name: Disable Out of Process Building
+              run: .\DisableOutOfProcBuild.exe
+              working-directory: C:\Program Files\Microsoft Visual Studio\2022\Enterprise\Common7\IDE\CommonExtensions\Microsoft\VSI\DisableOutOfProcBuild
 
-      - uses: actions/upload-artifact@v4
-        with:
-          name: build-result
-          path: installer/Release/dtc-setup.msi
+            - name: Build Solution
+              run: |
+                  dotnet publish -c Release -p:PublishProfile=FolderProfile dcs-dtc\DTC.csproj -o build_output
 
-      - name: Upload binaries to release
-        uses: svenstaro/upload-release-action@v2
-        with:
-          repo_token: ${{ secrets.GITHUB_TOKEN }}
-          file: installer/Release/dtc-setup.msi
-          asset_name: dtc-setup-${{ github.ref_name }}.msi
-          tag: ${{ github.ref }}
-          overwrite: true
+            - name: Zip the publish folder
+              run: Compress-Archive -Path build_output/* -DestinationPath dcs_dtc_476th.zip
+
+            - uses: actions/upload-artifact@v4
+              with:
+                  name: dcs_dtc_476th
+                  path: dcs_dtc_476th.zip
+                  overwrite: true
+
+            - name: Upload binaries to release
+              uses: svenstaro/upload-release-action@v2
+              with:
+                  repo_token: ${{ secrets.GITHUB_TOKEN }}
+                  file: dcs_dtc_476th.zip
+                  asset_name: dcs_dtc_476th.zip
+                  tag: ${{ github.ref }}
+                  overwrite: true
+
+            - name: Build the Installer
+              run: DevEnv installer/installer.vdproj /build Release
+
+            - uses: actions/upload-artifact@v4
+              with:
+                  name: build-result
+                  path: installer/Release/dtc-setup.msi
+
+            - name: Upload binaries to release
+              uses: svenstaro/upload-release-action@v2
+              with:
+                  repo_token: ${{ secrets.GITHUB_TOKEN }}
+                  file: installer/Release/dtc-setup.msi
+                  asset_name: dtc-setup-${{ github.ref_name }}.msi
+                  tag: ${{ github.ref }}
+                  overwrite: true

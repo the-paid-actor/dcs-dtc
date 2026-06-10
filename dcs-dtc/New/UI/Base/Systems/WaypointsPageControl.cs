@@ -2,8 +2,8 @@ using DTC.Models.v476;
 using DTC.New.Presets.V2.Aircrafts.F15E;
 using DTC.New.Presets.V2.Aircrafts.F15E.Systems;
 using DTC.New.Presets.V2.Aircrafts.F16;
-using DTC.New.Presets.V2.Aircrafts.F16.Systems;
 using DTC.New.Presets.V2.Aircrafts.FA18;
+using DTC.New.Presets.V2.Base;
 using DTC.New.UI.Aircrafts.F16;
 using DTC.New.UI.Aircrafts.F16.Systems;
 using DTC.New.UI.Base.Pages;
@@ -11,6 +11,7 @@ using DTC.New.UI.Base.Systems.WaypointImport;
 using DTC.New.UI.Base.Systems.WaypointImport.Types;
 using DTC.UI.Base.Controls;
 using DTC.Utilities.Extensions;
+using Waypoint = DTC.New.Presets.V2.Aircrafts.F16.Systems.Waypoint;
 
 namespace DTC.New.UI.Base.Systems;
 
@@ -30,7 +31,7 @@ public partial class WaypointsPageControl : AircraftSystemPage
 
         foreach (var waypoint in parser.parseForF16(clipboardContent))
         {
-            Presets.V2.Aircrafts.F16.Systems.Waypoint w = new()
+            Waypoint w = new()
             {
                 Elevation = waypoint.Elevation,
                 Latitude = waypoint.Latitude,
@@ -39,7 +40,6 @@ public partial class WaypointsPageControl : AircraftSystemPage
                 Sequence = waypoint.Sequence
             };
             f16Config.Waypoints.Add(w);
-
         }
 
         if (parser.PilotPosition != -1)
@@ -50,23 +50,27 @@ public partial class WaypointsPageControl : AircraftSystemPage
             else
                 f16Config.Datalink.FlightLead = false;
         }
+
         if (!string.IsNullOrEmpty(parser.FlightCallsign))
         {
-            f16Config.Datalink.OwnCallsign = parser.FlightCallsign[0].ToString().ToUpper() + 
-                parser.FlightCallsign[parser.FlightCallsign.Length - 3].ToString().ToUpper() + 
-                parser.FlightCallsign[parser.FlightCallsign.Length - 1].ToString() + 
-                parser.PilotPosition.ToString();
+            f16Config.Datalink.OwnCallsign = parser.FlightCallsign[0].ToString().ToUpper() +
+                                             parser.FlightCallsign[parser.FlightCallsign.Length - 3].ToString()
+                                                 .ToUpper() +
+                                             parser.FlightCallsign[parser.FlightCallsign.Length - 1].ToString() +
+                                             parser.PilotPosition.ToString();
         }
+
         f16Config.Datalink.EnableMembers = true;
-        f16Config.Datalink.Members = new int[8];
+        f16Config.Datalink.Members = new string[8];
         f16Config.Datalink.OwnshipIndex = parser.PilotPosition;
-        for (int i = 0; i < parser.FlightTNs.Length;i++)
+        for (int i = 0; i < parser.FlightTNs.Length; i++)
         {
-            if(!string.IsNullOrEmpty(parser.FlightTNs[i]))
+            if (!string.IsNullOrEmpty(parser.FlightTNs[i]))
             {
-                f16Config.Datalink.Members[i] = int.Parse(parser.FlightTNs[i]);
+                f16Config.Datalink.Members[i] = parser.FlightTNs[i];
             }
-        }    
+        }
+
         this.dgWaypoints.RefreshList(f16Config.Waypoints.Waypoints);
         F16Page pag = this.parent as F16Page;
         DatalinkPage dlp = (DatalinkPage)pag.GetPageOfTitle("Datalink");
@@ -92,10 +96,11 @@ public partial class WaypointsPageControl : AircraftSystemPage
             };
             f18Config.Waypoints.Add(w);
         }
+
         this.dgWaypoints.RefreshList(f18Config.Waypoints.Waypoints);
     }
 
-    private DTC.New.Presets.V2.Aircrafts.F15E.Systems.WaypointSystem whichEagleRoute(F15EConfiguration f15config)
+    private WaypointSystem whichEagleRoute(F15EConfiguration f15config)
     {
         switch (systemName)
         {
@@ -109,7 +114,7 @@ public partial class WaypointsPageControl : AircraftSystemPage
                 throw new ArgumentException("Should never get there, F15 has 3 routes.");
         }
     }
-    
+
     private void importEagle(string clipboardContent, F15EConfiguration f15config)
     {
         WaypointSystemParser parser = new WaypointSystemParser();
@@ -127,10 +132,10 @@ public partial class WaypointsPageControl : AircraftSystemPage
             };
             route.Waypoints.Add(w);
         }
+
         this.dgWaypoints.RefreshList(route.Waypoints);
-        
     }
-    
+
     public WaypointsPageControl(AircraftPage parent, string systemName) : base(parent, systemName)
     {
         this.InitializeComponent();
@@ -143,12 +148,16 @@ public partial class WaypointsPageControl : AircraftSystemPage
             new DTCGridColumn { Name = "Name" },
             new DTCGridColumn { Name = "Latitude", Width = 100 },
             new DTCGridColumn { Name = "Longitude", Width = 110 },
-            new DTCGridColumn { Name = "Elev", DataBindName = "Elevation", Width = 55, Alignment = DataGridViewContentAlignment.MiddleRight },
+            new DTCGridColumn
+            {
+                Name = "Elev", DataBindName = "Elevation", Width = 55,
+                Alignment = DataGridViewContentAlignment.MiddleRight
+            },
             new DTCGridColumn { Name = "", DataBindName = "ExtraDescription", Width = 100 });
 
         this.btnImport.Items.Add(new DTCDropDownButton.MenuItem("From 476th MDC", () =>
         {
-            DTC.New.Presets.V2.Base.Configuration baseConfig = this.parent.Configuration;
+            Configuration baseConfig = this.parent.Configuration;
             var clipboardContent = Clipboard.GetText();
 
             switch (baseConfig)
@@ -179,6 +188,7 @@ public partial class WaypointsPageControl : AircraftSystemPage
                     {
                         this.ProcessCfImport(dialog);
                     }
+
                     this.Controls.Remove(dialog);
                     this.pnlContents.Enabled = true;
                 });
@@ -199,6 +209,7 @@ public partial class WaypointsPageControl : AircraftSystemPage
                     {
                         this.ProcessCfImport(dialog);
                     }
+
                     this.Controls.Remove(dialog);
                     this.pnlContents.Enabled = true;
                 });
@@ -225,7 +236,7 @@ public partial class WaypointsPageControl : AircraftSystemPage
     {
         throw new NotImplementedException();
     }
-    
+
     protected virtual void AddButtonClick(object sender, EventArgs e)
     {
         throw new NotImplementedException();
@@ -298,11 +309,13 @@ public partial class WaypointsPageControl : AircraftSystemPage
             {
                 pasteMenu.Visible = true;
             }
+
             if (!IsRowSelected(args.RowIndex))
             {
                 dgWaypoints.ClearSelection();
                 dgWaypoints.Select(args.RowIndex);
             }
+
             contextMenu.Show(dgWaypoints, args.Location);
         }
         else if (args.HitTestType == DataGridViewHitTestType.None)
@@ -321,6 +334,7 @@ public partial class WaypointsPageControl : AircraftSystemPage
     {
         throw new NotImplementedException();
     }
+
     protected virtual void ClearButtonClick(object sender, EventArgs e)
     {
         throw new NotImplementedException();

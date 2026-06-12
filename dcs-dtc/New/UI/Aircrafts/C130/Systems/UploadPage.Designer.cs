@@ -33,6 +33,7 @@ namespace DTC.New.UI.Aircrafts.C130.Systems
         {
             components = new System.ComponentModel.Container();
             chkWaypoints = new CheckBox();
+            chkRoute = new CheckBox();
             chkRadios = new CheckBox();
             toolTip1 = new ToolTip(components);
             SuspendLayout();
@@ -50,16 +51,29 @@ namespace DTC.New.UI.Aircrafts.C130.Systems
             chkWaypoints.Text = "Waypoints";
             chkWaypoints.UseVisualStyleBackColor = true;
             // 
+            // chkRoute
+            // 
+            chkRoute.Checked = true;
+            chkRoute.CheckState = CheckState.Checked;
+            chkRoute.Font = new Font("Microsoft Sans Serif", 10F, FontStyle.Regular, GraphicsUnit.Point);
+            chkRoute.Location = new Point(15, 48);
+            chkRoute.Margin = new Padding(4);
+            chkRoute.Name = "chkRoute";
+            chkRoute.Size = new Size(154, 25);
+            chkRoute.TabIndex = 1;
+            chkRoute.Text = "Route";
+            chkRoute.UseVisualStyleBackColor = true;
+            // 
             // chkRadios
             // 
             chkRadios.Checked = true;
             chkRadios.CheckState = CheckState.Checked;
             chkRadios.Font = new Font("Microsoft Sans Serif", 10F, FontStyle.Regular, GraphicsUnit.Point);
-            chkRadios.Location = new Point(15, 48);
+            chkRadios.Location = new Point(15, 81);
             chkRadios.Margin = new Padding(4);
             chkRadios.Name = "chkRadios";
             chkRadios.Size = new Size(154, 25);
-            chkRadios.TabIndex = 1;
+            chkRadios.TabIndex = 2;
             chkRadios.Text = "Radios";
             chkRadios.UseVisualStyleBackColor = true;
             // 
@@ -77,6 +91,7 @@ namespace DTC.New.UI.Aircrafts.C130.Systems
             AutoScaleMode = AutoScaleMode.Dpi;
             BackColor = Color.PaleGoldenrod;
             Controls.Add(chkRadios);
+            Controls.Add(chkRoute);
             Controls.Add(chkWaypoints);
             Font = new Font("Microsoft Sans Serif", 12F, FontStyle.Regular, GraphicsUnit.Point);
             Margin = new Padding(4);
@@ -87,6 +102,7 @@ namespace DTC.New.UI.Aircrafts.C130.Systems
 
         #endregion
         private CheckBox chkWaypoints;
+        private CheckBox chkRoute;
         private CheckBox chkRadios;
         private ToolTip toolTip1;
     }

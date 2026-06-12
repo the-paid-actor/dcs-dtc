@@ -31,6 +31,7 @@ public class C130Page : AircraftPage
 
         if (cfg.Upload == null) cfg.Upload = new();
         if (cfg.Waypoints == null) cfg.Waypoints = new();
+        if (cfg.Route == null) cfg.Route = new();
         if (cfg.Radios == null) cfg.Radios = new();
         if (cfg.WaypointsCapture == null) cfg.WaypointsCapture = new();
 
@@ -42,6 +43,7 @@ public class C130Page : AircraftPage
             new WaypointCapturePage(this, cfg.WaypointsCapture),
             new AircraftSystemPage.Divider(),
             new WaypointsPage<Waypoint>(this, cfg.Waypoints, null, nameof(cfg.Waypoints), "Waypoints"),
+            new RoutePage(this),
             new RadiosPage(this)
         };
     }

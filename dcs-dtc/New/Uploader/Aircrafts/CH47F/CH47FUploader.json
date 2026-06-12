@@ -23,6 +23,13 @@
       "Activation": 1
     },
 
+    "FPLN": {
+      "Id": 3171,
+      "DelayFactor": 1,
+      "PostDelayFactor": 0,
+      "Activation": 1
+    },
+
     "MSN": {
       "Id": 3170,
       "DelayFactor": 1,

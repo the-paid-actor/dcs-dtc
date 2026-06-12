@@ -14,6 +14,9 @@ public class CH47FConfiguration : Configuration
     [System("Waypoints")]
     public WaypointSystem Waypoints { get; set; } = new();
 
+    [System("Route")]
+    public RouteSystem Route { get; set; } = new();
+
     [System("Radios")]
     public RadioSystem Radios { get; set; } = new();
 

@@ -61,6 +61,7 @@ internal class C130Capture : WaypointCapture<Waypoint, WaypointSystem>
         if (cfgUpload.Waypoints.Waypoints.Count > 0)
         {
             cfgUpload.Upload.Waypoints = true;
+            cfgUpload.Upload.Route = cfgAfter.Upload.Route;
         }
 
         page.UploadToJet(cfgUpload, true);

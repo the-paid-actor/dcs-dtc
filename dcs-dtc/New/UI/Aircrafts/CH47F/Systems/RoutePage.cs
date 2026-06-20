@@ -95,6 +95,7 @@ internal class RoutePage : AircraftSystemPage
         radSpecific.CheckedChanged += (_, _) => SaveRoute();
         numFrom.ValueChanged += (_, _) => SaveRoute();
         numTo.ValueChanged += (_, _) => SaveRoute();
+        txtSpecific.TextChanged += (_, _) => SaveRoute();
         txtSpecific.LostFocus += (_, _) => SaveRoute();
 
         LoadRoute();
@@ -123,10 +124,13 @@ internal class RoutePage : AircraftSystemPage
             numTo.Value = route.Waypoints.Count > 1 ? route.Waypoints[1] : route.Waypoints[0];
         }
 
-        txtSpecific.Text = "";
-        if (route.Mode == RouteMode.UseSpecific && route.Waypoints != null && route.Waypoints.Count > 0)
+        if (!txtSpecific.Focused)
         {
-            txtSpecific.Text = string.Join(",", route.Waypoints);
+            txtSpecific.Text = "";
+            if (route.Mode == RouteMode.UseSpecific && route.Waypoints != null && route.Waypoints.Count > 0)
+            {
+                txtSpecific.Text = string.Join(",", route.Waypoints);
+            }
         }
 
         loading = false;

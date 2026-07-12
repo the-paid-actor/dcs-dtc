@@ -26,6 +26,17 @@ public partial class A10Uploader
             {
                 continue;
             }
+            if (c == '.')
+            {
+                Cmd(SYS.CDU_BTN_DOT);
+                continue;
+            }
+            if (c == '/')
+            {
+                Cmd(SYS.CDU_BTN_DIV);
+                continue;
+            }
+
             Cmd(SYS.GetCommand("CDU_BTN_" + c));
         }
     }

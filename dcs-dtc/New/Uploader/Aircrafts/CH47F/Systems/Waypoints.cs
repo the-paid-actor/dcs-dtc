@@ -31,7 +31,14 @@ public partial class CH47FUploader
             {
                 c = "Point";
             }
-            Cmd(CDU.GetCommand("Btn" + c));
+            try
+            {
+              Cmd(CDU.GetCommand("Btn" + c));
+            }
+            catch
+            {
+                continue;
+            }
         }
     }
 

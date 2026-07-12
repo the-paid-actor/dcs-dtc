@@ -33,8 +33,15 @@ public partial class C130Uploader
             }
             else
             {
-                Cmd(CNI.GetCommand("Btn" + c));
-            }
+                try
+                {
+                    Cmd(CNI.GetCommand("Btn" + c));
+                }
+                catch
+                {
+                    continue;
+                }
+        }
         }
     }
 

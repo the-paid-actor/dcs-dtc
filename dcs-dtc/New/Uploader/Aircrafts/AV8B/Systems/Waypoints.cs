@@ -23,7 +23,14 @@ public partial class AV8BUploader
             {
                 continue;
             }
-            Cmd(UFC.GetCommand("BTN" + c));
+            try
+            {
+                Cmd(UFC.GetCommand("BTN" + c));
+            }
+            catch
+            {
+                continue;
+            }
         }
     }
 

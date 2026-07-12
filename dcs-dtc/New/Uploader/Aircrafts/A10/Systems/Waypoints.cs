@@ -22,22 +22,31 @@ public partial class A10Uploader
     {
         foreach (var c in str.ToUpper())
         {
-            if (c == ' ')
-            {
-                continue;
-            }
-            if (c == '.')
+
+            if (c == '.' || c == ',')
+
             {
                 Cmd(SYS.CDU_BTN_DOT);
-                continue;
             }
-            if (c == '/')
+            else if (c == '/')
             {
                 Cmd(SYS.CDU_BTN_DIV);
-                continue;
             }
-
-            Cmd(SYS.GetCommand("CDU_BTN_" + c));
+            else if (c == ' ')
+            {
+                Cmd(SYS.CDU_BTN_SPACE); 
+            }
+            else
+            {
+                try
+                {
+                    Cmd(SYS.GetCommand("CDU_BTN_" + c));
+                }
+                catch
+                {
+                    continue;
+                }
+            }
         }
     }
 

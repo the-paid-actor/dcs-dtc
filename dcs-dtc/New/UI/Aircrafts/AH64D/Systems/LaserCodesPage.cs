@@ -16,6 +16,7 @@ public class LaserCodesPage : AircraftSystemPage
         var leftA = 15;
         var leftB = 190;
         var y = 15;
+        var codeFields = new List<DTCTextBox>();
 
         for (var i = 0; i < LaserCodesSystem.Letters.Length; i++)
         {
@@ -28,13 +29,37 @@ public class LaserCodesPage : AircraftSystemPage
             }
 
             this.Controls.Add(DTCLabel.Make(letter.ToString(), left, y, 20, rowHeight));
-            this.Controls.Add(DTCTextBox.Make(left + 30, y, 65, rowHeight, "0000", _laserCodes.GetCode(letter), (txt) =>
+            var codeField = DTCTextBox.Make(left + 30, y, 65, rowHeight, "0000", _laserCodes.GetCode(letter), (txt) =>
             {
                 txt.Text = _laserCodes.SetCode(letter, txt.Text.Trim());
                 this.SavePreset();
-            }));
+            });
+            codeField.GotFocus += (sender, e) =>
+            {
+                codeField.Text = codeField.Text.Trim();
+                codeField.SelectAll();
+            };
+            codeFields.Add(codeField);
+            this.Controls.Add(codeField);
 
             y += rowHeight + 4;
+        }
+
+        for (var i = 0; i < codeFields.Count; i++)
+        {
+            var nextField = codeFields[(i + 1) % codeFields.Count];
+            codeFields[i].KeyDown += (sender, e) =>
+            {
+                if (e.KeyCode != Keys.Enter)
+                {
+                    return;
+                }
+
+                e.Handled = true;
+                e.SuppressKeyPress = true;
+                nextField.Focus();
+                nextField.SelectAll();
+            };
         }
     }
 

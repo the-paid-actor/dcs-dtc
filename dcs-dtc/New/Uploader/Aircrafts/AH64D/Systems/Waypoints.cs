@@ -246,13 +246,36 @@ public partial class AH64DUploader
             {
                 name = "SPC";
             }
+            else if (c == '-')
+            {
+                name = "MINUS";
+            }
+            else if (c == '+')
+            {
+                name = "PLUS";
+            }
+            else if (c == '/')
+            {
+                name = "SLASH";
+            }
+            else if (c == '*')
+            {
+                name = "MULT";
+            }
             else if (char.IsDigit(c))
             {
                 name = "D" + c.ToString();
             }
 
             var prop = props.First(p => p.Name == name);
-            list.Add((ICommand)prop.GetValue(d, null));
+            try
+            {
+                list.Add(d.GetCommand(name));
+            }
+            catch
+            {
+
+            }
         }
         return list.ToArray();
     }

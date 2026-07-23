@@ -256,7 +256,24 @@
       "PostDelayFactor": 0,
       "Activation": 1
     },
-
+    "CDU_BTN_DIV": {
+      "Id": 1253,
+      "DelayFactor": 1,
+      "PostDelayFactor": 0,
+      "Activation": 1
+    },
+    "CDU_BTN_DOT": {
+      "Id": 1252,
+      "DelayFactor": 1,
+      "PostDelayFactor": 0,
+      "Activation": 1
+    },
+    "CDU_BTN_SPACE": {
+      "Id": 1284,
+      "DelayFactor": 1,
+      "PostDelayFactor": 0,
+      "Activation": 1
+    },
     "CDU_BTN_0": {
       "Id": 1251,
       "DelayFactor": 1,

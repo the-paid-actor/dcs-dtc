@@ -46,6 +46,24 @@ function DTC_C130_ExecCmd_SetCNIPage1()
     return true
 end
 
+function DTC_C130_ExecCmd_PreWaypointSafety()
+    DTC_C130_ExecCmd_SetCNIPage1()
+
+    -- Hold CLR for 5 seconds to clear any pending scratchpad input.
+    DTC_ExecCommand(25, 3029, -1, 1, 0)
+    DTC_Wait(5000)
+    DTC_ExecCommand(25, 3029, -1, -1, 0)
+
+    -- Requested cleanup sequence before waypoint entry.
+    DTC_ExecCommand(25, 3019, 150, 1, 100) -- LEGS
+    DTC_ExecCommand(25, 3012, 150, 1, 100) -- LSK R6
+    DTC_ExecCommand(25, 3028, 150, 1, 100) -- DEL
+    DTC_ExecCommand(25, 3001, 150, 1, 100) -- LSK L1
+    DTC_ExecCommand(25, 3029, 150, 1, 100) -- CLR
+
+    return true
+end
+
 function DTC_C130_AfterNextFrame(params)
     local mainPanel = GetDevice(0)
     local unusedBtn = mainPanel:get_argument_value(1166)

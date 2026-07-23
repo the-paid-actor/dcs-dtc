@@ -82,7 +82,7 @@ function DTCWptCapture:show(eventCallback)
     self.dialog.resetAllSmart:setVisible(isMudhen)
 
     self.dialog.addButtonApache:setVisible(isApache)
-    self.dialog.sendToJetButton:setVisible(inPlane and isApache == false)
+    self.dialog.sendToJetButton:setVisible(inPlane and isApache == false and isCH47F == false and isC130 == false)
 
     if isViper then
         self.dialog.clearButton:setPosition(228, 20)

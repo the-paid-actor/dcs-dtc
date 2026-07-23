@@ -7,8 +7,32 @@
       "PostDelayFactor": 0,
       "Activation": 1
     },
+    "CLRRelease": {
+      "Id": 3029,
+      "DelayFactor": -1,
+      "PostDelayFactor": 0,
+      "Activation": -1
+    },
+    "DEL": {
+      "Id": 3028,
+      "DelayFactor": 1,
+      "PostDelayFactor": 0,
+      "Activation": 1
+    },
     "Index": {
       "Id": 3016,
+      "DelayFactor": 1,
+      "PostDelayFactor": 0,
+      "Activation": 1
+    },
+    "Legs": {
+      "Id": 3019,
+      "DelayFactor": 1,
+      "PostDelayFactor": 0,
+      "Activation": 1
+    },
+    "Mark": {
+      "Id": 3020,
       "DelayFactor": 1,
       "PostDelayFactor": 0,
       "Activation": 1

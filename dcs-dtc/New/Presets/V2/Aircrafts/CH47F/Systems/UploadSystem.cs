@@ -3,5 +3,6 @@
 public class UploadSystem
 {
     public bool Waypoints { get; set; }
+    public bool Route { get; set; }
     public bool Radios { get; set; }
 }

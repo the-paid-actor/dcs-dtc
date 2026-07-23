@@ -32,6 +32,7 @@ namespace DTC.UI.Base.Controls
         public bool AllowFraction { get; set; } = false;
         public decimal MinimumValue { get; set; } = 0;
         public decimal MaximumValue { get; set; } = 0;
+        public bool AllowNegative { get; set; } = false;
 
         public decimal? Value
         {
@@ -155,6 +156,7 @@ namespace DTC.UI.Base.Controls
         {
             if (e.KeyChar == (char)Keys.Back) return;
             if (allowedChars.Contains(e.KeyChar)) return;
+            if (AllowNegative && e.KeyChar == '-' && textBox.SelectionStart == 0 && !textBox.Text.Contains('-')) return;
             if (MinimumValue < 0 && e.KeyChar == '-')
             {
                 if (textBox.Text == "" || 

@@ -54,7 +54,7 @@ public partial class WaypointsPage<T> : WaypointsPageControl where T : class, IW
     {
         this.RemoveEditDialog();
 
-        this.editDialog = new WaypointEdit<T>(this.AfterEdit, this.waypoints, wpt, this.customPanel, this.parent.Aircraft.GetMaxWaypointElevation())
+        this.editDialog = new WaypointEdit<T>(this.AfterEdit, this.waypoints, wpt, this.customPanel, this.parent.Aircraft.GetMaxWaypointElevation(), this.parent.Aircraft.GetMinWaypointElevation())
         {
             Location = new Point(0, 0),
             Size = this.Size

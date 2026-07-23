@@ -25,4 +25,9 @@ public class F16Aircraft : Aircraft
     {
         return 80000;
     }
+
+    public override int GetMinWaypointElevation()
+    {
+        return -1500;
+    }
 }

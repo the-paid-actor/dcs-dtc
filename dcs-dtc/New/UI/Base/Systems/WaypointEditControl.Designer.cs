@@ -169,10 +169,11 @@ namespace DTC.New.UI.Base.Systems
             // txtElevation
             // 
             txtElevation.AllowFraction = false;
+            txtElevation.AllowNegative = true;
             txtElevation.BackColor = SystemColors.Window;
             txtElevation.Location = new Point(163, 102);
             txtElevation.MaximumValue = new decimal(new int[] { 25000, 0, 0, 0 });
-            txtElevation.MinimumValue = new decimal(new int[] { 0, 0, 0, 0 });
+            txtElevation.MinimumValue = new decimal(new int[] { 5000, 0, 0, int.MinValue });
             txtElevation.Name = "txtElevation";
             txtElevation.Size = new Size(130, 25);
             txtElevation.TabIndex = 5;
@@ -202,6 +203,7 @@ namespace DTC.New.UI.Base.Systems
             // txtSequence
             // 
             txtSequence.AllowFraction = false;
+            txtSequence.AllowNegative = false;
             txtSequence.BackColor = SystemColors.Window;
             txtSequence.Location = new Point(538, 40);
             txtSequence.MaximumValue = new decimal(new int[] { 999, 0, 0, 0 });

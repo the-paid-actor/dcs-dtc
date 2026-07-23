@@ -14,6 +14,11 @@ public abstract class Aircraft : IAircraft
 
     public abstract int GetMaxWaypointElevation();
 
+    public virtual int GetMinWaypointElevation()
+    {
+        return 0;
+    }
+
     public List<IPreset> Presets { get; } = new List<IPreset>();
 
     public Aircraft()

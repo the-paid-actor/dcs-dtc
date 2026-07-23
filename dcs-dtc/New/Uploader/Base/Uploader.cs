@@ -125,6 +125,8 @@ public abstract partial class Uploader
 
         foreach (var c in digits.ToCharArray())
         {
+            if (c == '-') continue;
+
             var first = props.First(p => p.Name == "D" + c);
             if (first != null)
             {

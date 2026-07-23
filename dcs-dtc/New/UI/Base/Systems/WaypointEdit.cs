@@ -13,12 +13,13 @@ public class WaypointEdit<T> : WaypointEditControl where T : class, IWaypoint, n
     private T waypoint;
     private bool adding = false;
 
-    public WaypointEdit(Action callback, WaypointSystem<T> waypoints, T? wpt, IWaypointEditCustomPanel? customPanel, int maxWptElevation)
+    public WaypointEdit(Action callback, WaypointSystem<T> waypoints, T? wpt, IWaypointEditCustomPanel? customPanel, int maxWptElevation, int minWptElevation)
     {
         this.refreshListCallback = callback;
         this.customPanel = customPanel;
         this.waypoints = waypoints;
         this.txtElevation.MaximumValue = maxWptElevation;
+        this.txtElevation.MinimumValue = minWptElevation;
         this.txtSequence.MinimumValue = waypoints.GetFirstAllowedSequence();
         this.txtSequence.MaximumValue = waypoints.GetLastAllowedSequence();
 

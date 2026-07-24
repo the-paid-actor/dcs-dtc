@@ -3,6 +3,7 @@
 {"HTSTable": 4,  "Country": "Russia",  "HARMCode": 102, "F16RWR": "S",  "Type": "EWR",  "Name": "55G6",                           "NATO": "Tall Rack"},
 {"HTSTable": 3,  "Country": "Russia",  "HARMCode": 121, "F16RWR": "A",  "Type": "AAA",  "Name": "ZSU-23-4 Shilka",                "NATO": "Gun Dish"},
 {"HTSTable": 3,  "Country": "Russia",  "HARMCode": 109, "F16RWR": "DE", "Type": "SR",   "Name": "9S80M1 Sborka",                  "NATO": "Dog Ear"},
+{"HTSTable": 3,  "Country": "Russia",  "HARMCode": 131, "F16RWR": "FC", "Type": "TR",   "Name": "SON-9",                          "NATO": "Fire Can"},
 {"HTSTable": 2,  "Country": "Russia",  "HARMCode": 126, "F16RWR": "2",  "Type": "STR",  "Name": "SA-2 SNR-75",                    "NATO": "Fan Song"},
 {"HTSTable": 2,  "Country": "Russia",  "HARMCode": 122, "F16RWR": "S",  "Type": "SR",   "Name": "SA-3 P-19",                      "NATO": "Flat Face B"},
 {"HTSTable": 2,  "Country": "Russia",  "HARMCode": 123, "F16RWR": "3",  "Type": "TR",   "Name": "SA-3 SNR-125",                   "NATO": "Low Blow"},
@@ -17,7 +18,9 @@
 {"HTSTable": 1,  "Country": "Russia",  "HARMCode": 115, "F16RWR": "11", "Type": "TR",   "Name": "SA-11 9A310M1 Buk",              "NATO": "Fire Dome"},
 {"HTSTable": 2,  "Country": "Russia",  "HARMCode": 118, "F16RWR": "13", "Type": "TR",   "Name": "SA-13 9A35M3 Strela-10M3",       "NATO": "Snap Shot"},
 {"HTSTable": 1,  "Country": "Russia",  "HARMCode": 119, "F16RWR": "15", "Type": "STR",  "Name": "SA-15 9A331 Tor",                "NATO": "Gauntlet"},
+{"HTSTable": 1,  "Country": "Russia",  "HARMCode": 132, "F16RWR": "15", "Type": "STR",  "Name": "SA-15 9A331 Tor-M2",             "NATO": "Gauntlet"},
 {"HTSTable": 3,  "Country": "Russia",  "HARMCode": 120, "F16RWR": "19", "Type": "STR",  "Name": "SA-19 2S6 Tunguska",             "NATO": "Grison"},
+{"HTSTable": 1,  "Country": "Russia",  "HARMCode": 134, "F16RWR": "22", "Type": "STR",  "Name": "SA-22 Pantsir-S1",               "NATO": "Greyhound"},
 {"HTSTable": 5,  "Country": "Russia",  "HARMCode": 303, "F16RWR": "T2", "Type": "CG",   "Name": "1164 Moskva",                    "NATO": "Slava class"},
 {"HTSTable": 5,  "Country": "Russia",  "HARMCode": 301, "F16RWR": "SW", "Type": "CV",   "Name": "1143.5 Admiral Kuznetsov",       "NATO": "Kuznetsov class"},
 {"HTSTable": 5,  "Country": "Russia",  "HARMCode": 320, "F16RWR": "SW", "Type": "CV",   "Name": "1143.5 Admiral Kuznetsov(2017)", "NATO": "Kuznetsov class"},
@@ -52,5 +55,6 @@
 {"HTSTable": 7,  "Country": "France",  "HARMCode": 205, "F16RWR": "RO", "Type": "SR",   "Name": "Roland Radar"},
 {"HTSTable": 7,  "Country": "UK",      "HARMCode": 124, "F16RWR": "RP", "Type": "TR",   "Name": "Rapier FSA Blindfire Radar"},
 {"HTSTable": 7,  "Country": "UK",      "HARMCode": 125, "F16RWR": "RT", "Type": "SR",   "Name": "Rapier FSA Launcher"},
-{"HTSTable": 6,  "Country": "Norway",  "HARMCode": 209, "F16RWR": "NS", "Type": "SR",   "Name": "NASAMS MPQ-64F1"}
+{"HTSTable": 6,  "Country": "Norway",  "HARMCode": 209, "F16RWR": "NS", "Type": "SR",   "Name": "NASAMS MPQ-64F1"},
+{"HTSTable": 6,  "Country": "Europe",  "HARMCode": 135, "F16RWR": "IT", "Type": "STR",  "Name": "IRIS-T SLM"},
 ]

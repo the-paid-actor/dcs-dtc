@@ -12,39 +12,45 @@ using System.Text.Json;
 namespace DTCCodeGenerator;
 
 [Generator]
-public class SourceGenerator : ISourceGenerator
+public class SourceGenerator : IIncrementalGenerator
 {
-    public void Execute(GeneratorExecutionContext context)
+    public void Initialize(IncrementalGeneratorInitializationContext context)
     {
-        try
-        {
-            var sourceFiles = new List<SourceFile>();
-
-            foreach (var configFile in context.AdditionalFiles.Where(file => file.Path.EndsWith(".json")))
+        // Collect additional files that end with .json and transform them into SourceFile instances
+        var jsonFiles = context.AdditionalTextsProvider
+            .Where(at => at.Path.EndsWith(".json", StringComparison.OrdinalIgnoreCase))
+            .Select((additionalText, cancellationToken) =>
             {
+                var content = additionalText.GetText(cancellationToken)?.ToString();
+                if (string.IsNullOrEmpty(content))
+                    return null;
+
                 var assembly = "dcs-dtc";
                 var ns = "DTC";
-                var content = configFile.GetText()?.ToString();
-                if (!string.IsNullOrEmpty(content))
-                {
-                    var fileContext = new SourceFile(configFile.Path, assembly, ns, content);
-                    sourceFiles.Add(fileContext);
-                }
-            }
+                return new SourceFile(additionalText.Path, assembly, ns, content);
+            })
+            .Where(sf => sf is not null)!;
 
-            foreach (var configFile in sourceFiles)
-            {
-                context.AddSource(configFile.FileName, Generator.Generate(configFile));
-            }
-        }
-        catch (Exception ex)
+        // Register a source output for each parsed SourceFile
+        context.RegisterSourceOutput(jsonFiles, (spc, sourceFile) =>
         {
-            throw new Exception("Compilation error - " + ex.Message + " - " + ex.StackTrace.Replace("\n", ", "));
-        }
-    }
+            try
+            {
+                spc.AddSource(sourceFile.FileName, Generator.Generate(sourceFile));
+            }
+            catch (Exception ex)
+            {
+                var descriptor = new DiagnosticDescriptor(
+                    "DTCGEN001",
+                    "Generator error",
+                    ex.ToString(),
+                    "DTCCodeGenerator",
+                    DiagnosticSeverity.Warning,
+                    true);
 
-    public void Initialize(GeneratorInitializationContext context)
-    {
+                spc.ReportDiagnostic(Diagnostic.Create(descriptor, Location.None));
+            }
+        });
     }
 }
 

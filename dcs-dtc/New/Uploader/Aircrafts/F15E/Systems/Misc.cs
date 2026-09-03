@@ -172,7 +172,23 @@ public partial class F15EUploader : Base.Uploader
             If(IsTACANBand(ufc, "X"), ufc.GetCommand("PB01"));
         }
 
-        If(IsTACANOff(ufc), ufc.GetCommand("PB10"));
+        if (config.Misc.TACANMode == TACANModes.TR)
+        {
+            Cmd(ufc.GetCommand("PB03"));
+        }
+        else
+        {
+            Cmd(ufc.GetCommand("PB02"));
+        }
+        if (config.Misc.TACANState == TACANStates.ON)
+        {
+            If(IsTACANOff(ufc), ufc.GetCommand("PB10"));
+        }
+        else
+        {
+            IfNot(IsTACANOff(ufc), ufc.GetCommand("PB10"));
+        }
+
         Cmd(ufc.GetCommand("MENU"));
     }
 

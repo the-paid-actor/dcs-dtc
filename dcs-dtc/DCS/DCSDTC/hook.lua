@@ -43,7 +43,10 @@ local DTCHook =
     uploadInProgressDialog = nil,
     kneeboardDialog = nil,
 
-    currentAircraft = null
+    currentAircraft = nil,
+
+    lastWptAdded = nil,
+    lastNonOffsetWpt = nil
 }
 
 -- #########
@@ -54,13 +57,40 @@ function DTCHook:log(str)
     self.logFile:write(str .. "\n");
     self.logFile:flush();
 end
-
+function DTCHook:setLastWptAdded(lastWpt)
+    self.lastWpt = lastWpt
+    if self.captureDialog ~= nil then
+        self.captureDialog:setLastWptAdded(lastWpt)
+    end
+end
+function DTCHook:setLastNonOffsetWptAdded(lastNonOffsetWpt)
+    self.lastNonOffsetWpt = lastNonOffsetWpt
+end
 function DTCHook:addCoord(tgt, extra)
     if self.currentCoord ~= nil then
         self.currentCoord.target = tgt
         self.currentCoord.extra = extra
         self.currentCoord.sequence = self.coordListCount + 1
         self.coordListCount = self.coordListCount + 1
+        if self.currentCoord.extra and self.currentCoord.extra.route and self.currentCoord.extra.isOffset ~= true then
+            self:setLastNonOffsetWptAdded(self.currentCoord)
+        end
+        if self.currentCoord.extra and self.currentCoord.extra.isOffset == true then
+            self.currentCoord.extra.offsetNumber = 1
+            for i = #self.coordList, 1, -1 do
+                local coord = self.coordList[i]
+                if coord.extra and coord.extra.isOffset == true and coord.extra.parentWpt == self.lastNonOffsetWpt then
+                    self.currentCoord.extra.offsetNumber = coord.extra.offsetNumber + 1
+                    break
+                end
+            end
+            if self.currentCoord.extra.offsetNumber > 7 then
+                return
+            end
+            self.currentCoord.target = self.lastWpt.target
+            self.currentCoord.extra.parentWpt = self.lastNonOffsetWpt
+        end
+        self:setLastWptAdded(self.currentCoord)
         table.insert(self.coordList, self.currentCoord)
         self:updateCoordListBox()
         self:updateCurrentCoord()
@@ -134,6 +164,8 @@ end
 function DTCHook:clearCoords()
     self.coordList = {}
     self.coordListCount = 0
+    self:setLastWptAdded(nil)
+    self:setLastNonOffsetWptAdded(nil)
     self:updateCoordListBox()
 end
 
@@ -147,12 +179,14 @@ function DTCHook:updateCoordListBox()
     for k,v in pairs(self.coordList) do
         local route = ""
         if v.extra and v.extra.route then route = v.extra.route end
-        local type = "STP " .. route
+        local type = "STP  " .. route
         local sequence = ""
         if v.sequence then sequence = string.format("%02d", v.sequence) .. "  " end
-        if v.target then type = "TGT " .. route end
+        if v.target then type = "TGT  " .. route end
         if v.pp then type = "STA" .. v.ppStation .. " PP" .. v.ppNumber end
-        if v.smart then type = v.smartStation .. "   " end
+        if v.smart then type = v.smartStation .. "    " end
+        if v.extra and v.extra.isOffset == true and v.extra.parentWpt.target == true then type = "OFST " .. route  end
+        if v.extra and v.extra.isOffset == true and v.extra.parentWpt.target ~= true then type = "AIM  " .. route  end
         text = text .. type .. " " .. sequence .. v.string .. "\n"
     end
     self.captureDialog:setCoordListBox(text)
@@ -283,6 +317,11 @@ function DTCHook:sendToDTC(upload)
         if v.extra and v.extra.route then
             json = json..
                 ',"route":"'..v.extra.route..'"'
+        end
+
+        if v.extra and v.extra.isOffset then
+            json = json..
+                ',"isOffset":"'..tostring(v.extra.isOffset)..'"'
         end
 
         if v.extra and v.extra.pointType then
@@ -423,6 +462,46 @@ function DTCHook:clearButton()
     self:clearCoords()
 end
 
+function DTCHook:removeButton()
+    local removedCoord = table.remove(self.coordList)
+    if removedCoord == nil then
+        self:setLastNonOffsetWptAdded(nil)
+        self:setLastWptAdded(nil)
+        self:updateCoordListBox()
+        return
+    end
+
+    self.coordListCount = math.max(0, self.coordListCount - 1)
+
+    if removedCoord == self.lastNonOffsetWpt then
+        local lastNonOffsetWpt = nil
+        for i = #self.coordList, 1, -1 do
+            local coord = self.coordList[i]
+            if coord.extra and coord.extra.route and coord.extra.isOffset ~= true then
+                lastNonOffsetWpt = coord
+                break
+            end
+        end
+        self:setLastNonOffsetWptAdded(lastNonOffsetWpt)
+    end
+
+    -- setLastWptAdded stores the tracked waypoint in self.lastWpt.
+    if removedCoord == self.lastWpt then
+        local lastWpt = nil
+        for i = #self.coordList, 1, -1 do
+            local coord = self.coordList[i]
+            -- Only addCoord assigns a sequence and updates lastWpt.
+            if coord.sequence ~= nil then
+                lastWpt = coord
+                break
+            end
+        end
+        self:setLastWptAdded(lastWpt)
+    end
+
+    self:updateCoordListBox()
+end
+
 function DTCHook:sendToDTCButton()
     self:sendToDTC(false)
 end
@@ -461,6 +540,10 @@ end
 
 function DTCHook:addTGTButtonF15E(route)
     self:addCoord(true, {route = route})
+end
+
+function DTCHook:addOFSTButtonF15E(route)
+    self:addCoord(true, {route = route, isOffset = true})
 end
 
 function DTCHook:addButtonApache()

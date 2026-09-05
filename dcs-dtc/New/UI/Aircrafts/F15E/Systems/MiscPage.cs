@@ -139,7 +139,7 @@ namespace DTC.New.UI.Aircrafts.F15E.Systems
 
                 top += padding + rowHeight;
                 left = padding + padding + chkWidth;
-                this.Controls.Add(DTCLabel.Make("  State", left, top, colWidth, rowHeight));
+                this.Controls.Add(DTCLabel.Make("    State", left, top, colWidth, rowHeight));
 
                 //State
                 {
@@ -157,7 +157,7 @@ namespace DTC.New.UI.Aircrafts.F15E.Systems
 
                 top += padding + rowHeight;
                 left = padding + padding + chkWidth;
-                this.Controls.Add(DTCLabel.Make("  Channel", left, top, colWidth, rowHeight));
+                this.Controls.Add(DTCLabel.Make("    Channel", left, top, colWidth, rowHeight));
 
                 //Channel
                 {
@@ -185,7 +185,7 @@ namespace DTC.New.UI.Aircrafts.F15E.Systems
 
                 top += padding + rowHeight;
                 left = padding + padding + chkWidth;
-                this.Controls.Add(DTCLabel.Make("  Mode", left, top, colWidth, rowHeight));
+                this.Controls.Add(DTCLabel.Make("    Mode", left, top, colWidth, rowHeight));
 
                 //Mode
                 {

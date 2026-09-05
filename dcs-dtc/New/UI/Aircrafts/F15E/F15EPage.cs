@@ -35,14 +35,38 @@ public class F15EPage : AircraftPage
             new WaypointCapturePage(this, Configuration.WaypointsCapture),
             new AircraftSystemPage.Divider(),
 
-            new WaypointsPage<Waypoint>(this, Configuration.RouteA, new WaypointEditPanel(), nameof(Configuration.RouteA), "Route A"),
-            new WaypointsPage<Waypoint>(this, Configuration.RouteB, new WaypointEditPanel(), nameof(Configuration.RouteB), "Route B"),
-            new WaypointsPage<Waypoint>(this, Configuration.RouteC, new WaypointEditPanel(), nameof(Configuration.RouteC), "Route C"),
+            new WaypointsPage<Waypoint>(this, Configuration.RouteA, new WaypointEditPanel(Configuration.RouteA), nameof(Configuration.RouteA), "Route A", FormatWaypointRow, nameof(Waypoint.DisplayName), waypoint => ConfirmWaypointDelete(waypoint, Configuration.RouteA), nameof(Waypoint.DisplayLatitude), nameof(Waypoint.DisplayLongitude)),
+            new WaypointsPage<Waypoint>(this, Configuration.RouteB, new WaypointEditPanel(Configuration.RouteB), nameof(Configuration.RouteB), "Route B", FormatWaypointRow, nameof(Waypoint.DisplayName), waypoint => ConfirmWaypointDelete(waypoint, Configuration.RouteB), nameof(Waypoint.DisplayLatitude), nameof(Waypoint.DisplayLongitude)),
+            new WaypointsPage<Waypoint>(this, Configuration.RouteC, new WaypointEditPanel(Configuration.RouteC), nameof(Configuration.RouteC), "Route C", FormatWaypointRow, nameof(Waypoint.DisplayName), waypoint => ConfirmWaypointDelete(waypoint, Configuration.RouteC), nameof(Waypoint.DisplayLatitude), nameof(Waypoint.DisplayLongitude)),
             new RadiosPage(this),
             new DisplaysPage(this),
             new SmartWeaponsPage(this),
             new MiscPage(this)
         };
+    }
+
+    private static void FormatWaypointRow(DataGridViewRow row)
+    {
+        if (row.DataBoundItem is Waypoint waypoint)
+        {
+            row.DefaultCellStyle.BackColor = !waypoint.Offset
+                ? Color.Beige
+                : Color.LightGray;
+        }
+    }
+
+    private static bool ConfirmWaypointDelete(Waypoint waypoint, WaypointSystem waypointSystem)
+    {
+        if (waypoint.Offset || !waypointSystem.Waypoints.Any(otherWaypoint =>
+            otherWaypoint != waypoint &&
+            otherWaypoint.Offset &&
+            otherWaypoint.Identifier.WaypointNumber == waypoint.Identifier.WaypointNumber))
+        {
+            return true;
+        }
+
+        return DTCMessageBox.ShowQuestion(
+            $"Deleting waypoint {waypoint.Identifier.WaypointId} will also delete all offset or aimpoints associated with it. Are you sure you want to proceed?");
     }
 
     public override void UploadToJet(bool pilot, bool cpg)

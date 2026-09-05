@@ -28,6 +28,8 @@ public class WaypointEdit<T> : WaypointEditControl where T : class, IWaypoint, n
             var ctl = customPanel.GetControl();
             ctl.Dock = DockStyle.Fill;
             this.pnlCustomControls.Controls.Add(ctl);
+            customPanel.SetCoordinateInputEnabledCallback(enabled => this.txtCoordinate.Enabled = enabled);
+            customPanel.SetTimeOverSteerpointEnabledCallback(enabled => this.txtTimeOverSteerpoint.Enabled = enabled);
         }
 
         this.waypoint = this.ShowDialog(wpt);
@@ -112,6 +114,7 @@ public class WaypointEdit<T> : WaypointEditControl where T : class, IWaypoint, n
         this.txtTimeOverSteerpoint.Text = this.waypoint.TimeOverSteerpoint ?? "";
         this.chkTarget.Checked = this.waypoint.Target;
         this.customPanel?.LoadWaypoint(this.waypoint);
+        this.txtCoordinate.Enabled = this.customPanel?.GenericCoordinateInputEnabled ?? true;
     }
 
     private bool SaveWaypoint()
@@ -123,7 +126,7 @@ public class WaypointEdit<T> : WaypointEditControl where T : class, IWaypoint, n
             return false;
         }
 
-        if (this.txtCoordinate.Coordinate == null || !this.txtCoordinate.Valid)
+        if (this.txtCoordinate.Enabled && (this.txtCoordinate.Coordinate == null || !this.txtCoordinate.Valid))
         {
             this.lblValidation.Text = "Invalid coordinate";
             this.txtCoordinate.Focus();
@@ -164,11 +167,13 @@ public class WaypointEdit<T> : WaypointEditControl where T : class, IWaypoint, n
             return false;
         }
 
-        var c = this.txtCoordinate.Coordinate.ToDegreesMinutesThousandths();
-
         this.waypoint.Name = this.txtName.Text;
-        this.waypoint.Latitude = c.Lat;
-        this.waypoint.Longitude = c.Lon;
+        if (this.txtCoordinate.Enabled)
+        {
+            var c = this.txtCoordinate.Coordinate.ToDegreesMinutesThousandths();
+            this.waypoint.Latitude = c.Lat;
+            this.waypoint.Longitude = c.Lon;
+        }
         this.waypoint.Elevation = (int)this.txtElevation.Value;
         this.waypoint.Sequence = (int)this.txtSequence.Value;
         this.waypoint.TimeOverSteerpoint = txtTimeOverSteerpoint.Text;

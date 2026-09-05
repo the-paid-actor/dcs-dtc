@@ -272,4 +272,5 @@ partial class MainForm
     private LinkLabel btnUpload;
     private ToolTip tooltip;
     private PictureBox btnKneeboard;
+    private Label label2;
 }

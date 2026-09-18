@@ -228,6 +228,10 @@ public partial class F15EUploader : Base.Uploader
                 Cmd(device.GetCommand("PB11"));
             }
         }
+        else if (display == Display.SIT)
+        {
+            Cmd(device.GetCommand("PB08"));
+        }
     }
 
     private Condition NoDisplaysProgrammed(Device display)

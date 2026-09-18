@@ -47,6 +47,8 @@
 		<None Remove="New\Uploader\Aircrafts\C130\C130Uploader.json" />
 		<None Remove="New\Uploader\Aircrafts\A10\A10Uploader.json" />
 		<None Remove="New\Uploader\Aircrafts\AV8B\AV8BUploader.json" />
+		<None Remove="New\Uploader\Aircrafts\F14BU\F14BUUploader.json" />
+		<None Remove="New\Uploader\Aircrafts\OH58D\OH58DUploader.json" />
 		<None Remove="Resources\Iconleak-Atrous-Disk.ico" />
 	</ItemGroup>
 
@@ -59,6 +61,8 @@
 		<AdditionalFiles Include="New\Uploader\Aircrafts\A10\A10Uploader.json" />
 		<AdditionalFiles Include="New\Uploader\Aircrafts\CH47F\CH47FUploader.json" />
 		<AdditionalFiles Include="New\Uploader\Aircrafts\AV8B\AV8BUploader.json" />
+		<AdditionalFiles Include="New\Uploader\Aircrafts\F14BU\F14BUUploader.json" />
+		<AdditionalFiles Include="New\Uploader\Aircrafts\OH58D\OH58DUploader.json" />
 	</ItemGroup>
 
 	<ItemGroup>
@@ -130,6 +134,12 @@
 			<CopyToOutputDirectory>Always</CopyToOutputDirectory>
 		</None>
 		<None Update="DCS\DCSDTC\AV8BFunctions.lua">
+			<CopyToOutputDirectory>Always</CopyToOutputDirectory>
+		</None>
+		<None Update="DCS\DCSDTC\F14BUFunctions.lua">
+			<CopyToOutputDirectory>Always</CopyToOutputDirectory>
+		</None>
+		<None Update="DCS\DCSDTC\OH58DFunctions.lua">
 			<CopyToOutputDirectory>Always</CopyToOutputDirectory>
 		</None>
 		<None Update="DCS\DCSDTC\hook.lua">

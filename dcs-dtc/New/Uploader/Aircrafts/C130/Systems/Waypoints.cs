@@ -58,17 +58,6 @@ public partial class C130Uploader
     private void UploadPoints(WaypointSystem<Waypoint> wptList, bool fullSync)
     {
         Cmd(CNI.CLR);
-        Cmd(Wait(5000));
-        Cmd(CNI.CLRRelease);
-
-        Cmd(CNI.Legs);
-        Cmd(CNI.LSK_R6);
-        Cmd(CNI.DEL);
-        Cmd(CNI.LSK_L1);
-        Cmd(CNI.CLR);
-
-        Cmd(CNI.CLR);
-        Cmd(CNI.CLR);
         Cmd(CNI.Index);
         Cmd(CNI.NextPage);
         Cmd(CNI.LSK_R2);
@@ -142,7 +131,13 @@ public partial class C130Uploader
 
     private string GetRouteIdentifier(Waypoint wpt)
     {
-        return string.IsNullOrWhiteSpace(wpt.Name) ? wpt.Sequence.ToString() : wpt.Name;
+        var name = string.IsNullOrWhiteSpace(wpt.Name) ? wpt.Sequence.ToString() : wpt.Name;
+        if (name.Length > 6)
+        {
+            name = name.Substring(0, 6);
+        }
+
+        return name;
     }
 
     private List<Waypoint> GetRouteWaypoints(List<Waypoint> sourceWaypoints)

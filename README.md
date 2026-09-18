@@ -2,7 +2,7 @@
 
 https://github.com/the-paid-actor/dcs-dtc
 
-This is a Windows application that mimics the functions of a DTC (Data Cartridge) for the F-16, F/A-18, F-15E, Apache, A10C II, C130J, CH-47F and AV8B.
+This is a Windows application that mimics the functions of a DTC (Data Cartridge) for the F-16, F/A-18, F-15E, Apache, A10C II, C130J, CH-47F, AV8B and OH-58D Kiowa.
 
 - **Create and recall presets** for each mission / server you fly, or however you want to organize your settings. These are saved in the DCS-DTC folder under Documents.
 - **Upload** the settings from a preset to the aircraft.
@@ -95,6 +95,11 @@ This is a Windows application that mimics the functions of a DTC (Data Cartridge
 
 - Waypoints
 
+## OH-58D Kiowa
+
+- Waypoints
+- Radios
+
 
 # Requirements
 
@@ -173,6 +178,10 @@ The mod features usage of unused cockpit buttons in DCS to show/hide the app, an
 ## AV8B
 
 - pressing the "UFC I/P Button" button for more than 1 second will command the upload of the current preset.
+
+## OH-58D Kiowa
+
+- pressing the "IFF" button for more than 1 second will command the upload of the current preset.
 
 
 

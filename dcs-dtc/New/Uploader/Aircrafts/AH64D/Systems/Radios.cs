@@ -191,7 +191,7 @@ public partial class AH64DUploader
         var lastPr = "0";
         for (int i = 1; i <= 5; i++) //-HF2 
         {
-            if (modes[i] == null || modes[i].SelectedMode != RadioMode.Preset)
+            if (modes[i] == null || modes[i].SelectedMode != RadioMode.Preset || modes[i].SelectedPreset==null || modes[i].SelectedPreset=="")
             {
                 continue;
             }

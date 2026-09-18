@@ -102,7 +102,7 @@ function DTC_FA18C_ExecCmd_SelectDispenserProgram(program, dev, btn, delay, act,
             return
         end
         DTC_ExecCommand(dev, btn, delay, act, postDelay)
-        coroutine.yield()
+        DTC_Yield()
     end
 end
 
@@ -172,7 +172,7 @@ function DTC_FA18C_ExecCmd_SetDispenser(type, desired, dev, select, inc, dec, de
             --DTC_ExecCommand(dev, inc, delay, act, postDelay)
         --end
 
-        coroutine.yield()
+        DTC_Yield()
     end
 end
 
@@ -319,11 +319,11 @@ function DTC_FA18C_ExecCmd_BoxHMDSetting(setting, expected, dev, down, right, de
             end
 
             DTC_ExecCommand(dev, down, delay, act, post)
-            coroutine.yield()
+            DTC_Yield()
         end
         if found == false then
             DTC_ExecCommand(dev, right, delay, act, post)
-            coroutine.yield()
+            DTC_Yield()
         end
     end
     if found == true then
@@ -363,13 +363,13 @@ function DTC_FA18C_ExecCmd_SetBingo(bingo, dev, inc, dec, delay, act, postDelay)
         local qty = math.floor(diff / 100)
         for i = 1, qty, 1 do
             DTC_ExecCommand(dev, inc, delay, act, postDelay)
-            coroutine.yield()
+            DTC_Yield()
         end
     else
         local qty = math.floor(math.abs(diff) / 100)
         for i = 1, qty, 1 do
             DTC_ExecCommand(dev, dec, delay, act, postDelay)
-            coroutine.yield()
+            DTC_Yield()
         end
     end
 end
@@ -601,7 +601,7 @@ function DTC_FA18C_ExecCmd_GoToWaypoint(desired, dev, cmdInc, cmdDec, delay, act
             DTC_ExecCommand(dev, cmdDec, delay, act)
         end
 
-        coroutine.yield()
+        DTC_Yield()
     end
 end
 

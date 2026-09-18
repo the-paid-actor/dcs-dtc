@@ -90,6 +90,14 @@ internal class ConfigLoader
         {
             return typeof(Aircrafts.AV8B.AV8BConfiguration);
         }
+        if (aircraft == "F14BU")
+        {
+            return typeof(Aircrafts.F14BU.F14BUConfiguration);
+        }
+        if (aircraft == "OH58D")
+        {
+            return typeof(Aircrafts.OH58D.OH58DConfiguration);
+        }
         throw new NotImplementedException();
     }
 }

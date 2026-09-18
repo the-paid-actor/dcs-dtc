@@ -124,6 +124,8 @@ function DTC_GetPlayerAircraftType()
         if model == "A-10C_2" then return "A10" end
         if model == "CH-47Fbl1" then return "CH47F" end
         if model == "AV8BNA" then return "AV8B" end
+        if model == "F-14B" then return "F14BU" end
+        if model == "OH-58D" or model == "OH58D" then return "OH58D" end
         return model;
     end
     return "Unknown"

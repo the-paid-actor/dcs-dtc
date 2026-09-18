@@ -37,6 +37,8 @@ partial class MainPage
         btnA10 = new Button();
         btnCH47F = new Button();
         btnAV8B = new Button();
+        btnF14BU = new Button();
+        btnOH58D = new Button();
         SuspendLayout();
         // 
         // btnF16
@@ -192,6 +194,40 @@ partial class MainPage
         btnAV8B.UseVisualStyleBackColor = true;
         btnAV8B.Click += btnAV8B_Click;
         // 
+        // btnF14BU
+        // 
+        btnF14BU.BackgroundImage = Properties.Resources.F14;
+        btnF14BU.BackgroundImageLayout = ImageLayout.Stretch;
+        btnF14BU.FlatStyle = FlatStyle.Flat;
+        btnF14BU.Font = new Font("Microsoft Sans Serif", 11F, FontStyle.Bold, GraphicsUnit.Point);
+        btnF14BU.ForeColor = Color.Black;
+        btnF14BU.Location = new Point(23, 250);
+        btnF14BU.Name = "btnF14BU";
+        btnF14BU.Padding = new Padding(5);
+        btnF14BU.Size = new Size(175, 112);
+        btnF14BU.TabIndex = 10;
+        btnF14BU.Text = "F-14BU Tomcat";
+        btnF14BU.TextAlign = ContentAlignment.TopLeft;
+        btnF14BU.UseVisualStyleBackColor = true;
+        btnF14BU.Click += btnF14BU_Click;
+        // 
+        // btnOH58D
+        // 
+        btnOH58D.BackgroundImage = Properties.Resources.Kiowa;
+        btnOH58D.BackgroundImageLayout = ImageLayout.Stretch;
+        btnOH58D.FlatStyle = FlatStyle.Flat;
+        btnOH58D.Font = new Font("Microsoft Sans Serif", 11F, FontStyle.Bold, GraphicsUnit.Point);
+        btnOH58D.ForeColor = Color.Black;
+        btnOH58D.Location = new Point(204, 250);
+        btnOH58D.Name = "btnOH58D";
+        btnOH58D.Padding = new Padding(5);
+        btnOH58D.Size = new Size(175, 112);
+        btnOH58D.TabIndex = 11;
+        btnOH58D.Text = "OH-58D Kiowa";
+        btnOH58D.TextAlign = ContentAlignment.TopLeft;
+        btnOH58D.UseVisualStyleBackColor = true;
+        btnOH58D.Click += btnOH58D_Click;
+        // 
         // MainPage
         // 
         AutoScaleDimensions = new SizeF(96F, 96F);
@@ -206,6 +242,8 @@ partial class MainPage
         Controls.Add(btnA10);
         Controls.Add(btnCH47F);
         Controls.Add(btnAV8B);
+        Controls.Add(btnF14BU);
+        Controls.Add(btnOH58D);
         Controls.Add(btnWptDatabase);
         Name = "MainPage";
         Size = new Size(795, 403);
@@ -223,4 +261,6 @@ partial class MainPage
     private System.Windows.Forms.Button btnA10;
     private System.Windows.Forms.Button btnCH47F;
     private System.Windows.Forms.Button btnAV8B;
+    private System.Windows.Forms.Button btnF14BU;
+    private System.Windows.Forms.Button btnOH58D;
 }

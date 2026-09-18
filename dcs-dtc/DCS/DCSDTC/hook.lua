@@ -483,6 +483,8 @@ function DTCHook:getAircraftType()
         if acName == "A-10C_2" then return "A10" end
         if acName == "CH-47Fbl1" then return "CH47F" end
         if acName == "AV8BNA" then return "AV8B" end
+        if acName == "F-14B" then return "F14BU" end
+        if acName == "OH-58D" or acName == "OH58D" then return "OH58D" end
     end
     return ""
 end

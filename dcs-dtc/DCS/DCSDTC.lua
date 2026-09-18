@@ -20,6 +20,8 @@ dofile(lfs.writedir() .. 'Scripts/DCSDTC/C130Functions.lua')
 dofile(lfs.writedir() .. 'Scripts/DCSDTC/A10Functions.lua')
 dofile(lfs.writedir() .. 'Scripts/DCSDTC/CH47FFunctions.lua')
 dofile(lfs.writedir() .. 'Scripts/DCSDTC/AV8BFunctions.lua')
+dofile(lfs.writedir() .. 'Scripts/DCSDTC/F14BUFunctions.lua')
+dofile(lfs.writedir() .. 'Scripts/DCSDTC/OH58DFunctions.lua')
 
 local udpSpeaker = nil
 local tcpServer = nil
@@ -106,6 +108,12 @@ function DTC_ProcessCoroutine()
     end
 end
 
+function DTC_Yield()
+    if currentCoroutine ~= nil then
+        coroutine.yield()
+    end
+end
+
 function DTC_Wait(miliseconds)
     miliseconds = miliseconds or 200
     local start = socket.gettime()
@@ -114,7 +122,7 @@ function DTC_Wait(miliseconds)
         if (current - start) > (miliseconds / 1000) then
             break
         end
-        coroutine.yield()
+        DTC_Yield()
     end
 end
 
@@ -143,7 +151,7 @@ function DTC_ExecCommand(device, argument, delay, action, postDelay)
     end
 
     --DTC_Log("Executed command "..device.." "..argument.." "..action.." "..delay .. " " ..postDelay)
-    coroutine.yield()
+    DTC_Yield()
 
     if postDelay > 0 then
         DTC_Wait(postDelay)
@@ -230,6 +238,14 @@ function LuaExportAfterNextFrame()
 
     if model == "AV8B" then
         DTC_AV8B_AfterNextFrame(params)
+    end
+
+    if model == "F14BU" then
+        DTC_F14BU_AfterNextFrame(params)
+    end
+
+    if model == "OH58D" then
+        DTC_OH58D_AfterNextFrame(params)
     end
 
     local toSend = "{" ..

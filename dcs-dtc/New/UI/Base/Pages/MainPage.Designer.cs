@@ -201,7 +201,7 @@ partial class MainPage
         btnF14BU.FlatStyle = FlatStyle.Flat;
         btnF14BU.Font = new Font("Microsoft Sans Serif", 11F, FontStyle.Bold, GraphicsUnit.Point);
         btnF14BU.ForeColor = Color.Black;
-        btnF14BU.Location = new Point(23, 250);
+        btnF14BU.Location = new Point(204, 250);
         btnF14BU.Name = "btnF14BU";
         btnF14BU.Padding = new Padding(5);
         btnF14BU.Size = new Size(175, 112);
@@ -209,6 +209,7 @@ partial class MainPage
         btnF14BU.Text = "F-14BU Tomcat";
         btnF14BU.TextAlign = ContentAlignment.TopLeft;
         btnF14BU.UseVisualStyleBackColor = true;
+        btnF14BU.Visible = false;
         btnF14BU.Click += btnF14BU_Click;
         // 
         // btnOH58D
@@ -218,7 +219,7 @@ partial class MainPage
         btnOH58D.FlatStyle = FlatStyle.Flat;
         btnOH58D.Font = new Font("Microsoft Sans Serif", 11F, FontStyle.Bold, GraphicsUnit.Point);
         btnOH58D.ForeColor = Color.Black;
-        btnOH58D.Location = new Point(204, 250);
+        btnOH58D.Location = new Point(23, 250);
         btnOH58D.Name = "btnOH58D";
         btnOH58D.Padding = new Padding(5);
         btnOH58D.Size = new Size(175, 112);
@@ -246,7 +247,7 @@ partial class MainPage
         Controls.Add(btnOH58D);
         Controls.Add(btnWptDatabase);
         Name = "MainPage";
-        Size = new Size(795, 403);
+        Size = new Size(778, 403);
         ResumeLayout(false);
     }
 

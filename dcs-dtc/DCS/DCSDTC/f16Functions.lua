@@ -217,7 +217,7 @@ function DTC_F16C_CheckCondition_HTSAllNotSelected(mfd)
         mfdTable = DTC_F16C_GetRightMFD();
     end
 
-    local str = mfdTable["ROOT_PAGE.2.HAD_THRT_PAGE.2.ALL Table. Root. Unic ID: _id:12.2.ALL Table. Root. Unic ID: _id:12. Text.1"];
+    local str = mfdTable["ROOT_PAGE.2.HAD_THRT_PAGE.2.ALL Table. Root. Unic ID: _id:15.2.ALL Table. Root. Unic ID: _id:15. TextPH_id:18.2.ALL Table. Root. Unic ID: _id:15. TextPH_id:18. Text.1"];
     if str == "ALL" then
         return true
     end
@@ -517,6 +517,8 @@ function DTC_F16C_AfterNextFrame(params)
     local mainPanel = GetDevice(0);
     local wxButton = mainPanel:get_argument_value(187);
     local flirIncDec = mainPanel:get_argument_value(188);
+
+    --DTC_DebugDisplay2(DTC_F16C_GetLeftMFD(), "x")
 
     if wxButton == 1 then params["uploadCommand"] = "1" end
     if flirIncDec == 1 then params["showDTCCommand"] = "1" end

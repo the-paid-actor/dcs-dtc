@@ -57,14 +57,14 @@ public partial class F16Uploader
                 for (int i = 0; i < 8; i++)
                 {
                     var member = config.Datalink.Members[i];
+                    if ((string.IsNullOrEmpty(member)) || member == "-1") continue;
+
                     var tdoa = false;
                     
                     if (config.Datalink.TDOAMembers != null)
                     {
                         tdoa = config.Datalink.TDOAMembers[i];
                     }
-
-                    if (member == "-1") continue;
 
                     Cmd(UFC.DOWN);
                     Cmd(Digits(UFC, member.ToString()));
@@ -128,7 +128,7 @@ public partial class F16Uploader
 
     private Condition TDOA(string position, string status)
     {
-        return new Condition("FlightLead('" + position + "','" + status + "')");
+        return new Condition("TDOA('" + position + "','" + status + "')");
     }
 
     private CustomCommand EnableXMIT(string data)

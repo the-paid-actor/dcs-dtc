@@ -309,9 +309,9 @@ function DTC_F16C_CheckCondition_CRMMode(mfd, mode)
         table = DTC_F16C_GetRightMFD();
     end
 
-    local rws = table["RWS Table. Root. Unic ID: _id:13.2.RWS Table. Root. Unic ID: _id:13. Text.1"] or "";
-    local vsr = table["VSR Table. Root. Unic ID: _id:15.2.VSR Table. Root. Unic ID: _id:15. Text.1"] or "";
-    local tws = table["TWS Table. Root. Unic ID: _id:16.2.TWS Table. Root. Unic ID: _id:16. Text.1"] or "";
+    local rws = table["RWS Table. Root. Unic ID: _id:14.2.RWS Table. Root. Unic ID: _id:14. Text.1"] or "";
+    local vsr = table["VSR Table. Root. Unic ID: _id:16.2.VSR Table. Root. Unic ID: _id:16. Text.1"] or "";
+    local tws = table["TWS Table. Root. Unic ID: _id:17.2.TWS Table. Root. Unic ID: _id:17. Text.1"] or "";
     if (mode == "RWS" and rws == "RWS") or (mode == "VSR" and vsr == "VSR") or (mode == "TWS" and tws == "TWS") then
         return true
     end
@@ -328,7 +328,7 @@ function DTC_F16C_CheckCondition_FCRBars(mfd, expectedBars)
         table = DTC_F16C_GetRightMFD();
     end
 
-    local bars = table["FCR_NotModeMenu_RootAA.2.Table. Root. Unic ID: _id:7.2.Table. Root. Unic ID: _id:7. Text.1"] or "";
+    local bars = table["FCR_NotModeMenu_RootAA.2.Table. Root. Unic ID: _id:8.2.Table. Root. Unic ID: _id:8. Text.1"] or "";
     local agr = table["AGR Table. Root. Unic ID: _id:9.2.AGR Table. Root. Unic ID: _id:9. Text.1"] or "";
 
     if agr == "AGR" or bars == "" or bars == expectedBars then
@@ -347,9 +347,9 @@ function DTC_F16C_CheckCondition_FCRAzimuth(mfd, expAz)
         table = DTC_F16C_GetRightMFD();
     end
 
-    local az = table["FCR_NotModeMenu_RootAA.2.Table. Root. Unic ID: _id:8.2.Table. Root. Unic ID: _id:8. Text.2"] or 
-                table["FCR_NotModeMenu_RootAG.2.Table. Root. Unic ID: _id:23.2.Table. Root. Unic ID: _id:23. Text.2"] or "";
-    local agr = table["AGR Table. Root. Unic ID: _id:9.2.AGR Table. Root. Unic ID: _id:9. Text.1"] or "";
+    local az = table["FCR_NotModeMenu_RootAA.2.Table. Root. Unic ID: _id:9.2.Table. Root. Unic ID: _id:9. Text.2"] or 
+                table["FCR_NotModeMenu_RootAG.2.Table. Root. Unic ID: _id:34.2.Table. Root. Unic ID: _id:34. Text.2"] or "";
+    local agr = table["AGR Table. Root. Unic ID: _id:10.2.AGR Table. Root. Unic ID: _id:10. Text.1"] or "";
 
     if agr == "AGR" or az == "" or az == expAz then
         return true
@@ -369,7 +369,7 @@ function DTC_F16C_CheckCondition_FCRRange(mfd, expRange)
     end
 
     local range = table["FCR_NotModeMenu_Root.2.Range_Scale_Root.2.Range_Scale_Value.1"] or "";
-    local agr = table["AGR Table. Root. Unic ID: _id:9.2.AGR Table. Root. Unic ID: _id:9. Text.1"] or "";
+    local agr = table["AGR Table. Root. Unic ID: _id:10.2.AGR Table. Root. Unic ID: _id:10. Text.1"] or "";
 
     if agr == "AGR" or range == "" or range == expRange then
         return true
@@ -387,10 +387,10 @@ function DTC_F16C_CheckCondition_FCRRangeAuto(mfd)
         table = DTC_F16C_GetRightMFD();
     end
 
-    local val = table["FCR_NotModeMenu_RootAG.2.FCR_MapMenu_RootAG.2.NORM Table. Root. Unic ID: _id:75.2.NORM Table. Root. Unic ID: _id:75. Text.1"] or "";
-    local agr = table["AGR Table. Root. Unic ID: _id:9.2.AGR Table. Root. Unic ID: _id:9. Text.1"] or "";
+    local val = table["FCR_NotModeMenu_RootAG.2.FCR_MapMenu_RootAG.2.AUTO Table. Root. Unic ID: _id:17.2.AUTO Table. Root. Unic ID: _id:17. Text.1"] or "";
+    local agr = table["AGR Table. Root. Unic ID: _id:10.2.AGR Table. Root. Unic ID: _id:10. Text.1"] or "";
 
-    if agr == "AGR" or val == "NORM" or val == "" then
+    if agr == "AGR" or val ~= "AUTO" then
         return false
     end
 

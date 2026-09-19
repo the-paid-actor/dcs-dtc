@@ -11,13 +11,16 @@ public partial class WaypointsPage<T> : WaypointsPageControl where T : class, IW
     private readonly WaypointSystem<T> waypoints;
     private readonly IWaypointEditCustomPanel? customPanel;
     private readonly string title;
+    private readonly Func<T, bool>? deleteWarning;
     private WaypointEdit<T>? editDialog;
 
-    public WaypointsPage(AircraftPage parent, WaypointSystem<T> waypoints, IWaypointEditCustomPanel? customPanel, string systemName, string title = "Waypoints") : base(parent, systemName)
+    public WaypointsPage(AircraftPage parent, WaypointSystem<T> waypoints, IWaypointEditCustomPanel? customPanel, string systemName, string title = "Waypoints", Action<DataGridViewRow>? rowFormatting = null, string nameDataBindName = "Name", Func<T, bool>? deleteWarning = null, string latitudeDataBindName = "Latitude", string longitudeDataBindName = "Longitude") : base(parent, systemName, nameDataBindName, latitudeDataBindName, longitudeDataBindName)
     {
         this.waypoints = waypoints;
         this.customPanel = customPanel;
         this.title = title;
+        this.deleteWarning = deleteWarning;
+        this.dgWaypoints.RowFormatting += rowFormatting;
 
         this.RefreshList();
     }
@@ -112,6 +115,14 @@ public partial class WaypointsPage<T> : WaypointsPageControl where T : class, IW
         {
             var wpt = (T)row.DataBoundItem;
             wptsToDelete.Add(wpt);
+        }
+
+        foreach (var wpt in wptsToDelete)
+        {
+            if (this.deleteWarning != null && !this.deleteWarning(wpt))
+            {
+                return;
+            }
         }
 
         foreach (var wpt in wptsToDelete)

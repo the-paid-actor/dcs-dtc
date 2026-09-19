@@ -46,17 +46,17 @@ public abstract class WaypointSystem<T> : IWaypointSystem<T> where T : class, IW
 
     public abstract int GetLastAllowedSequence();
 
-    public void Add(T wpt)
+    public virtual void Add(T wpt)
     {
         Waypoints.Add(wpt);
     }
 
-    public void ReorderBySequence()
+    public virtual void ReorderBySequence()
     {
         Waypoints = Waypoints.OrderBy(w => w.Sequence).ToList();
     }
 
-    public bool IsEqual(IWaypoint a, IWaypoint b)
+    public virtual bool IsEqual(IWaypoint a, IWaypoint b)
     {
         return
             a.Sequence == b.Sequence &&
@@ -68,7 +68,7 @@ public abstract class WaypointSystem<T> : IWaypointSystem<T> where T : class, IW
             a.Target == b.Target;
     }
 
-    public void Remove(T wpt)
+    public virtual void Remove(T wpt)
     {
         var startIdx = Waypoints.IndexOf(wpt);
         var block = GetSequenceBlock(startIdx);

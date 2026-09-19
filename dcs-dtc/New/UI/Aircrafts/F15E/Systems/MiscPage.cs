@@ -136,6 +136,29 @@ namespace DTC.New.UI.Aircrafts.F15E.Systems
                 left += padding + chkWidth;
                 this.Controls.Add(DTCLabel.Make("TACAN", left, top, colWidth, rowHeight));
 
+
+                top += padding + rowHeight;
+                left = padding + padding + chkWidth;
+                this.Controls.Add(DTCLabel.Make("    State", left, top, colWidth, rowHeight));
+
+                //State
+                {
+                    left += padding + colWidth;
+                    var cboTacanState = DTCDropDown.Make(left, top, 50);
+                    cboTacanState.Items.AddRange(new string[] { "OFF", "ON" });
+                    cboTacanState.SelectedIndex = (this.misc.TACANState == TACANStates.OFF ? 0 : 1);
+                    cboTacanState.SelectedIndexChanged += (sender, args) =>
+                    {
+                        this.misc.TACANState = (cboTacanState.SelectedIndex == 0 ? TACANStates.OFF : TACANStates.ON);
+                        this.SavePreset();
+                    };
+                    this.Controls.Add(cboTacanState);
+                }
+
+                top += padding + rowHeight;
+                left = padding + padding + chkWidth;
+                this.Controls.Add(DTCLabel.Make("    Channel", left, top, colWidth, rowHeight));
+
                 //Channel
                 {
                     left += padding + colWidth;
@@ -159,6 +182,24 @@ namespace DTC.New.UI.Aircrafts.F15E.Systems
                     };
                     this.Controls.Add(cboTacanBand);
                 }
+
+                top += padding + rowHeight;
+                left = padding + padding + chkWidth;
+                this.Controls.Add(DTCLabel.Make("    Mode", left, top, colWidth, rowHeight));
+
+                //Mode
+                {
+                    left += padding + colWidth;
+                    var cboTacanMode = DTCDropDown.Make(left, top, 50);
+                    cboTacanMode.Items.AddRange(new string[] { "T-R", "A/A" });
+                    cboTacanMode.SelectedIndex = (this.misc.TACANMode == TACANModes.TR ? 0 : 1);
+                    cboTacanMode.SelectedIndexChanged += (sender, args) =>
+                    {
+                        this.misc.TACANMode = (cboTacanMode.SelectedIndex == 0 ? TACANModes.TR : TACANModes.AA);
+                        this.SavePreset();
+                    };
+                    this.Controls.Add(cboTacanMode);
+                } 
             }
 
             //ILS

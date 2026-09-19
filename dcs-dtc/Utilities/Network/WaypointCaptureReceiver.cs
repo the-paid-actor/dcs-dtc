@@ -16,6 +16,7 @@ public class WaypointCaptureWptData
     public string longitude;
     public string elevation;
     public bool target;
+    public bool isOffset;
     public string route;
     public bool pp;
     public int ppStation;

@@ -49,24 +49,29 @@ public static class F15EKneeboard
                 totaldist += dist;
             }
 
-            if (!wp.Target)
-            {
-                sb.AppendSpace();
-            }
-            sb.AppendJustifyRight(wp.Sequence, 2);
-            if (wp.Target)
-            {
-                sb.Append(".");
-            }
-            sb.Append(route);
+            sb.AppendJustifyLeft(wp.Identifier.WaypointId, 6);
 
             sb.AppendSpace();
             sb.AppendJustifyLeft(wp.Name, 21);
             sb.AppendSpace();
-            sb.Append(wp.Latitude);
-            sb.AppendSpace();
-            sb.Append(wp.Longitude);
-            sb.AppendSpace();
+            if (!wp.UseRelativeOffsetLatLong && !wp.UseRelativeOffsetBearingAndRange)
+            {
+                sb.Append(wp.Latitude);
+                sb.AppendSpace();
+                sb.Append(wp.Longitude);
+                sb.AppendSpace();
+            }
+            else if (wp.UseRelativeOffsetBearingAndRange)
+            {
+                sb.AppendJustifyLeft(wp.ExtraDescription, 26);
+                sb.AppendSpace();
+            }
+            else if (wp.UseRelativeOffsetLatLong)
+            {
+                sb.AppendJustifyLeft(wp.RelativeOffsetLatLong?.LatitudeDirection + " " + wp.RelativeOffsetLatLong?.RelativeLatitude + " " + wp.RelativeOffsetLatLong?.LongitudeDirection + " " + wp.RelativeOffsetLatLong?.RelativeLongitude,26);
+                sb.AppendSpace();
+            }
+
             sb.AppendJustifyRight(wp.Elevation, 5);
             sb.Append("FT ");
             sb.AppendJustifyRight(dist, 4);

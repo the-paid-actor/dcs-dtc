@@ -15,13 +15,13 @@ public class F15EConfiguration : Configuration
     public WaypointCaptureSystem WaypointsCapture { get; set; } = new();
 
     [System("Route A")]
-    public WaypointSystem RouteA { get; set; } = new();
+    public WaypointSystem RouteA { get; set; } = new("A");
 
     [System("Route B")]
-    public WaypointSystem RouteB { get; set; } = new();
+    public WaypointSystem RouteB { get; set; } = new("B");
 
     [System("Route C")]
-    public WaypointSystem RouteC { get; set; } = new();
+    public WaypointSystem RouteC { get; set; } = new("C");
 
     [System("Radios")]
     public RadioSystem Radios { get; set; } = new();

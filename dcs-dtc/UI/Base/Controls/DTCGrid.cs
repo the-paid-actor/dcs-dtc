@@ -18,6 +18,7 @@ public class DTCGrid : UserControl
     public event Action<DTCGridReorderArgs> Reorder;
     public event Action<DTCGridShowContextMenuArgs> ShowContextMenu;
     public event EventHandler SelectionChanged;
+    public event Action<DataGridViewRow> RowFormatting;
 
     public bool Multiselect
     {
@@ -84,6 +85,7 @@ public class DTCGrid : UserControl
         grid.ShowCellToolTips = false;
         grid.StandardTab = true;
         grid.SelectionChanged += GridSelectionChanged;
+        grid.CellFormatting += GridCellFormatting;
 
         this.grid.Reorder += (a) => Reorder?.Invoke(a);
         this.grid.MouseClick += GridMouseClick;
@@ -113,6 +115,14 @@ public class DTCGrid : UserControl
         if (!suppressSelectionChangeEvents)
         {
             SelectionChanged?.Invoke(sender, e);
+        }
+    }
+
+    private void GridCellFormatting(object? sender, DataGridViewCellFormattingEventArgs e)
+    {
+        if (e.RowIndex >= 0)
+        {
+            RowFormatting?.Invoke(grid.Rows[e.RowIndex]);
         }
     }
 

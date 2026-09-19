@@ -7,7 +7,9 @@ local DTCWptCapture = {
     height = 350,
     reloadPending = false,
     dialog = nil,
-    visible = false
+    visible = false,
+    lastWpt = nil,
+    isMudhen = false
 }
 
 function DTCWptCapture:init(eventCallback)
@@ -30,9 +32,18 @@ function DTCWptCapture:init(eventCallback)
     self.dialog.addAsTgtButtonB:addMouseUpCallback(function() eventCallback:addTGTButtonF15E('B') end)
     self.dialog.addAsTgtButtonC:addMouseUpCallback(function() eventCallback:addTGTButtonF15E('C') end)
 
+    self.dialog.addAsOfstButtonA:addMouseUpCallback(function() eventCallback:addOFSTButtonF15E('A') end)
+    self.dialog.addAsOfstButtonB:addMouseUpCallback(function() eventCallback:addOFSTButtonF15E('B') end)
+    self.dialog.addAsOfstButtonC:addMouseUpCallback(function() eventCallback:addOFSTButtonF15E('C') end)
+
+    self.dialog.addAsOfstButtonA:setVisible(false)
+    self.dialog.addAsOfstButtonB:setVisible(false)
+    self.dialog.addAsOfstButtonC:setVisible(false)
+
     self.dialog.addPPButton:addMouseUpCallback(function() eventCallback:addPPButton() end)
     self.dialog.addSmartButton:addMouseUpCallback(function() eventCallback:addSmartButton() end)
     self.dialog.clearButton:addMouseUpCallback(function() eventCallback:clearButton() end)
+    self.dialog.removeButton:addMouseUpCallback(function() eventCallback:removeButton() end)
     self.dialog.sendToDTCButton:addMouseUpCallback(function() eventCallback:sendToDTCButton() end)
     self.dialog.sendToJetButton:addMouseUpCallback(function() eventCallback:sendToJetButton() end)
     self.dialog.resetAllSmart:addMouseUpCallback(function() eventCallback:resetAllSmart() end)
@@ -82,13 +93,16 @@ function DTCWptCapture:show(eventCallback)
     self.dialog.addAsTgtButtonC:setVisible(isMudhen)
     self.dialog.addSmartButton:setVisible(isMudhen)
     self.dialog.resetAllSmart:setVisible(isMudhen)
+    self.dialog.removeButton:setVisible(isMudhen)
+    self.isMudhen = isMudhen
+    self:updateOffsetButtonStates()
 
     self.dialog.addButtonApache:setVisible(isApache)
     self.dialog.sendToJetButton:setVisible(inPlane and isApache == false and isCH47F == false and isC130 == false)
 
     if isViper then
         self.dialog.clearButton:setPosition(228, 20)
-    else
+    elseif not isMudhen then
         self.dialog.clearButton:setPosition(318, 20)
     end
 
@@ -105,6 +119,57 @@ end
 
 function DTCWptCapture:setCoordListBox(str)
     self.dialog.coordListBox:setText(str)
+end
+
+function DTCWptCapture:setLastWptAdded(lastWpt)
+    self.lastWpt = lastWpt
+    self:updateOffsetButtonStates()
+end
+
+function DTCWptCapture:updateOffsetButtonStates()
+    if self.lastWpt == nil or self.isMudhen == false then    
+        self.dialog.addAsOfstButtonA:setVisible(false)
+        self.dialog.addAsOfstButtonB:setVisible(false)
+        self.dialog.addAsOfstButtonC:setVisible(false)
+        return
+    end
+    if self.lastWpt.extra then
+        local lastWptRoute = self.lastWpt.extra.route
+        local isLastOffset = self.lastWpt.extra.isOffset and self.lastWpt.extra.offsetNumber and self.lastWpt.extra.offsetNumber >= 7
+        if isLastOffset then
+            self.dialog.addAsOfstButtonA:setVisible(false)
+            self.dialog.addAsOfstButtonB:setVisible(false)
+            self.dialog.addAsOfstButtonC:setVisible(false)
+            return
+        elseif lastWptRoute == 'A' then
+            self.dialog.addAsOfstButtonA:setVisible(true)
+            self.dialog.addAsOfstButtonB:setVisible(false)
+            self.dialog.addAsOfstButtonC:setVisible(false)
+            if self.lastWpt.target then
+                self.dialog.addAsOfstButtonA:setText("Add OFST A")
+            else
+                self.dialog.addAsOfstButtonA:setText("Add AIM A")
+            end
+        elseif lastWptRoute == 'B' then
+            self.dialog.addAsOfstButtonA:setVisible(false)
+            self.dialog.addAsOfstButtonB:setVisible(true)
+            self.dialog.addAsOfstButtonC:setVisible(false)
+            if self.lastWpt.target then
+                self.dialog.addAsOfstButtonB:setText("Add OFST B")
+            else
+                self.dialog.addAsOfstButtonB:setText("Add AIM B")
+            end
+        elseif lastWptRoute == 'C' then
+            self.dialog.addAsOfstButtonA:setVisible(false)
+            self.dialog.addAsOfstButtonB:setVisible(false)
+            self.dialog.addAsOfstButtonC:setVisible(true)
+            if self.lastWpt.target then
+                self.dialog.addAsOfstButtonC:setText("Add OFST C")
+            else
+                self.dialog.addAsOfstButtonC:setText("Add AIM C")
+            end
+        end
+    end
 end
 
 function DTCWptCapture:destroy()

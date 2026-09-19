@@ -86,6 +86,7 @@ internal class F15ECapture : WaypointCapture<Waypoint, WaypointSystem>
             wpt.Longitude = coord.Lon;
             wpt.Elevation = int.Parse(d.elevation);
             wpt.Target = d.target;
+            wpt.Offset = d.isOffset;
 
             WaypointSystem wptSystem;
             if (d.route == "A") wptSystem = cfg.RouteA;
@@ -169,6 +170,15 @@ internal class F15ECapture : WaypointCapture<Waypoint, WaypointSystem>
     private static void RemoveIdenticalWpts(WaypointSystem cfgBefore, WaypointSystem cfgAfter, WaypointSystem cfgUpload)
     {
         var wptsToRemove = new List<Waypoint>();
+        int newFirstWaypointNumber;
+        if (cfgBefore.Waypoints.Count > 0)
+        {
+            newFirstWaypointNumber = cfgBefore.Waypoints.Last().Identifier.WaypointNumber+1;
+        }
+        else
+        {
+            newFirstWaypointNumber = cfgBefore.FirstAllowedWaypointNumber;
+        }
 
         foreach (var wptAfter in cfgAfter.Waypoints)
         {
@@ -186,5 +196,6 @@ internal class F15ECapture : WaypointCapture<Waypoint, WaypointSystem>
         {
             cfgUpload.Waypoints.Remove(cfgUpload.GetBySequence(wpt.Sequence));
         }
+        cfgUpload.FirstAllowedWaypointNumber = newFirstWaypointNumber;
     }
 }

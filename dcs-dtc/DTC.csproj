@@ -86,8 +86,8 @@
 	</ItemGroup>
 
 	<ItemGroup>
-		<PackageReference Include="CoordinateSharp" Version="2.19.1.1" />
-		<PackageReference Include="Newtonsoft.Json" Version="13.0.3" />
+		<PackageReference Include="CoordinateSharp" Version="3.4.1.1" />
+		<PackageReference Include="Newtonsoft.Json" Version="13.0.4" />
 	</ItemGroup>
 
 	<ItemGroup>

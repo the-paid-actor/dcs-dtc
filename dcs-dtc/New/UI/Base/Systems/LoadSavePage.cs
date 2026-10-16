@@ -108,6 +108,11 @@ namespace DTC.New.UI.Base.Systems
                 if (openFileDlg.ShowDialog() == DialogResult.OK)
                 {
                     var file = FileStorage.LoadFile(openFileDlg.FileName);
+                    if (file != null && !GeoCoordinateStringValidator.ValidateGeoCoordinateStrings(file, out var validationError))
+                    {
+                        DTCMessageBox.ShowError(validationError ?? "Invalid coordinate format in JSON file.");
+                        return;
+                    }
                     configToLoad = Configuration.FromJson(file, configurationType);
                 }
             }

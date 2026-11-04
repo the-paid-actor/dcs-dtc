@@ -20,11 +20,11 @@ public class WaypointSystem : WaypointSystem<Waypoint>
 {
     public override int GetFirstAllowedSequence()
     {
-        return 1;
+        return 51;
     }
 
     public override int GetLastAllowedSequence()
     {
-        return 60;
+        return 99;
     }
 }

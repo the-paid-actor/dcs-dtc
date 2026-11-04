@@ -2,7 +2,7 @@
 
 https://github.com/the-paid-actor/dcs-dtc
 
-This is a Windows application that mimics the functions of a DTC (Data Cartridge) for the F-16, F/A-18, F-15E, Apache, A10C II, C130J, CH-47F, AV8B and OH-58D Kiowa.
+This is a Windows application that mimics the functions of a DTC (Data Cartridge) for the F-16, F/A-18, F-15E, Apache, A10C II, C130J, CH-47F, AV8B, F-14B(U) and OH-58D Kiowa.
 
 - **Create and recall presets** for each mission / server you fly, or however you want to organize your settings. These are saved in the DCS-DTC folder under Documents.
 - **Upload** the settings from a preset to the aircraft.
@@ -95,6 +95,11 @@ This is a Windows application that mimics the functions of a DTC (Data Cartridge
 
 - Waypoints
 
+## F-14B(U)
+
+- Flight plan waypoints 51 through 99
+- Supports only the F-14B(U); the legacy F-14A and F-14B are not supported
+
 ## OH-58D Kiowa
 
 - Waypoints
@@ -178,6 +183,10 @@ The mod features usage of unused cockpit buttons in DCS to show/hide the app, an
 ## AV8B
 
 - pressing the "UFC I/P Button" button for more than 1 second will command the upload of the current preset.
+
+## F-14B(U)
+
+- pressing the "HSD Test" button will command the upload of the current preset.
 
 ## OH-58D Kiowa
 
@@ -270,6 +279,12 @@ From either seat (pilot/WSO) it is not possible to change displays on the other 
 ## Apache
 
 During the upload process, do not change anything in the cockpit displays, like changing zoom levels, or otherwise the data input may not work correctly.
+
+## F-14B(U)
+
+The uploader always performs additional CDNU button presses to work around a known DCS/Heatblur issue that occurs when no flight plan is loaded at slot-in time. These additional button presses will be removed when Heatblur releases a fix.
+
+Waypoint 52 does not work when the aircraft is entered without a flight plan loaded at slot-in time.
 
 ## VR
 

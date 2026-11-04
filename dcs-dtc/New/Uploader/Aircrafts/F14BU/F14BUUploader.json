@@ -1,3 +1,419 @@
 {
-  
-}
+    "CDNU": {
+      "Id": 81,
+      "Btn0": {
+        "Id": 3001,
+        "DelayFactor": 1,
+        "PostDelayFactor": 0,
+        "Activation": 1
+      },
+      "Btn1": {
+        "Id": 3002,
+        "DelayFactor": 1,
+        "PostDelayFactor": 0,
+        "Activation": 1
+      },
+      "Btn2": {
+        "Id": 3003,
+        "DelayFactor": 1,
+        "PostDelayFactor": 0,
+        "Activation": 1
+      },
+      "Btn3": {
+        "Id": 3004,
+        "DelayFactor": 1,
+        "PostDelayFactor": 0,
+        "Activation": 1
+      },
+      "Btn4": {
+        "Id": 3005,
+        "DelayFactor": 1,
+        "PostDelayFactor": 0,
+        "Activation": 1
+      },
+      "Btn5": {
+        "Id": 3006,
+        "DelayFactor": 1,
+        "PostDelayFactor": 0,
+        "Activation": 1
+      },
+      "Btn6": {
+        "Id": 3007,
+        "DelayFactor": 1,
+        "PostDelayFactor": 0,
+        "Activation": 1
+      },
+      "Btn7": {
+        "Id": 3008,
+        "DelayFactor": 1,
+        "PostDelayFactor": 0,
+        "Activation": 1
+      },
+      "Btn8": {
+        "Id": 3009,
+        "DelayFactor": 1,
+        "PostDelayFactor": 0,
+        "Activation": 1
+      },
+      "Btn9": {
+        "Id": 3010,
+        "DelayFactor": 1,
+        "PostDelayFactor": 0,
+        "Activation": 1
+      },
+      "BtnA": {
+        "Id": 3011,
+        "DelayFactor": 1,
+        "PostDelayFactor": 0,
+        "Activation": 1
+      },
+      "BtnB": {
+        "Id": 3012,
+        "DelayFactor": 1,
+        "PostDelayFactor": 0,
+        "Activation": 1
+      },
+      "BtnC": {
+        "Id": 3013,
+        "DelayFactor": 1,
+        "PostDelayFactor": 0,
+        "Activation": 1
+      },
+      "BtnD": {
+        "Id": 3014,
+        "DelayFactor": 1,
+        "PostDelayFactor": 0,
+        "Activation": 1
+      },
+      "BtnE": {
+        "Id": 3015,
+        "DelayFactor": 1,
+        "PostDelayFactor": 0,
+        "Activation": 1
+      },
+      "BtnF": {
+        "Id": 3016,
+        "DelayFactor": 1,
+        "PostDelayFactor": 0,
+        "Activation": 1
+      },
+      "BtnG": {
+        "Id": 3017,
+        "DelayFactor": 1,
+        "PostDelayFactor": 0,
+        "Activation": 1
+      },
+      "BtnH": {
+        "Id": 3018,
+        "DelayFactor": 1,
+        "PostDelayFactor": 0,
+        "Activation": 1
+      },
+      "BtnI": {
+        "Id": 3019,
+        "DelayFactor": 1,
+        "PostDelayFactor": 0,
+        "Activation": 1
+      },
+      "BtnJ": {
+        "Id": 3020,
+        "DelayFactor": 1,
+        "PostDelayFactor": 0,
+        "Activation": 1
+      },
+      "BtnK": {
+        "Id": 3021,
+        "DelayFactor": 1,
+        "PostDelayFactor": 0,
+        "Activation": 1
+      },
+      "BtnL": {
+        "Id": 3022,
+        "DelayFactor": 1,
+        "PostDelayFactor": 0,
+        "Activation": 1
+      },
+      "BtnM": {
+        "Id": 3023,
+        "DelayFactor": 1,
+        "PostDelayFactor": 0,
+        "Activation": 1
+      },
+      "BtnN": {
+        "Id": 3024,
+        "DelayFactor": 1,
+        "PostDelayFactor": 0,
+        "Activation": 1
+      },
+      "BtnO": {
+        "Id": 3025,
+        "DelayFactor": 1,
+        "PostDelayFactor": 0,
+        "Activation": 1
+      },
+      "BtnP": {
+        "Id": 3026,
+        "DelayFactor": 1,
+        "PostDelayFactor": 0,
+        "Activation": 1
+      },
+      "BtnQ": {
+        "Id": 3027,
+        "DelayFactor": 1,
+        "PostDelayFactor": 0,
+        "Activation": 1
+      },
+      "BtnR": {
+        "Id": 3028,
+        "DelayFactor": 1,
+        "PostDelayFactor": 0,
+        "Activation": 1
+      },
+      "BtnS": {
+        "Id": 3029,
+        "DelayFactor": 1,
+        "PostDelayFactor": 0,
+        "Activation": 1
+      },
+      "BtnT": {
+        "Id": 3030,
+        "DelayFactor": 1,
+        "PostDelayFactor": 0,
+        "Activation": 1
+      },
+      "BtnU": {
+        "Id": 3031,
+        "DelayFactor": 1,
+        "PostDelayFactor": 0,
+        "Activation": 1
+      },
+      "BtnV": {
+        "Id": 3032,
+        "DelayFactor": 1,
+        "PostDelayFactor": 0,
+        "Activation": 1
+      },
+      "BtnW": {
+        "Id": 3033,
+        "DelayFactor": 1,
+        "PostDelayFactor": 0,
+        "Activation": 1
+      },
+      "BtnX": {
+        "Id": 3034,
+        "DelayFactor": 1,
+        "PostDelayFactor": 0,
+        "Activation": 1
+      },
+      "BtnY": {
+        "Id": 3035,
+        "DelayFactor": 1,
+        "PostDelayFactor": 0,
+        "Activation": 1
+      },
+      "BtnZ": {
+        "Id": 3036,
+        "DelayFactor": 1,
+        "PostDelayFactor": 0,
+        "Activation": 1
+      },
+      "LSK1": {
+        "Id": 3060,
+        "DelayFactor": 1,
+        "PostDelayFactor": 0,
+        "Activation": 1
+      },
+      "LSK2": {
+        "Id": 3061,
+        "DelayFactor": 1,
+        "PostDelayFactor": 0,
+        "Activation": 1
+      },
+      "LSK3": {
+        "Id": 3062,
+        "DelayFactor": 1,
+        "PostDelayFactor": 0,
+        "Activation": 1
+      },
+      "LSK4": {
+        "Id": 3063,
+        "DelayFactor": 1,
+        "PostDelayFactor": 0,
+        "Activation": 1
+      },
+      "LSK5": {
+        "Id": 3064,
+        "DelayFactor": 1,
+        "PostDelayFactor": 0,
+        "Activation": 1
+      },
+      "LSK6": {
+        "Id": 3065,
+        "DelayFactor": 1,
+        "PostDelayFactor": 0,
+        "Activation": 1
+      },
+      "LSK7": {
+        "Id": 3066,
+        "DelayFactor": 1,
+        "PostDelayFactor": 0,
+        "Activation": 1
+      },
+      "LSK8": {
+        "Id": 3067,
+        "DelayFactor": 1,
+        "PostDelayFactor": 0,
+        "Activation": 1
+      },
+      "Mark": {
+        "Id": 3059,
+        "DelayFactor": 1,
+        "PostDelayFactor": 0,
+        "Activation": 1
+      },
+      "Menu": {
+        "Id": 3044,
+        "DelayFactor": 1,
+        "PostDelayFactor": 0,
+        "Activation": 1
+      },
+      "Period": {
+        "Id": 3049,
+        "DelayFactor": 1,
+        "PostDelayFactor": 0,
+        "Activation": 1
+      },
+      "Prog": {
+        "Id": 3057,
+        "DelayFactor": 1,
+        "PostDelayFactor": 0,
+        "Activation": 1
+      },
+      "RNAV": {
+        "Id": 3052,
+        "DelayFactor": 1,
+        "PostDelayFactor": 0,
+        "Activation": 1
+      },
+      "Slash": {
+        "Id": 3051,
+        "DelayFactor": 1,
+        "PostDelayFactor": 0,
+        "Activation": 1
+      },
+      "Stat": {
+        "Id": 3053,
+        "DelayFactor": 1,
+        "PostDelayFactor": 0,
+        "Activation": 1
+      },
+      "Down": {
+        "Id": 3046,
+        "DelayFactor": 1,
+        "PostDelayFactor": 0,
+        "Activation": 1
+      },
+      "Left": {
+        "Id": 3047,
+        "DelayFactor": 1,
+        "PostDelayFactor": 0,
+        "Activation": 1
+      },
+      "Right": {
+        "Id": 3048,
+        "DelayFactor": 1,
+        "PostDelayFactor": 0,
+        "Activation": 1
+      },
+      "Up": {
+        "Id": 3045,
+        "DelayFactor": 1,
+        "PostDelayFactor": 0,
+        "Activation": 1
+      },
+      "Clear": {
+        "Id": 3054,
+        "DelayFactor": 6,
+        "PostDelayFactor": 0,
+        "Activation": 1
+      },
+      "Dir": {
+        "Id": 3058,
+        "DelayFactor": 1,
+        "PostDelayFactor": 0,
+        "Activation": 1
+      },
+      "EjectDataCartridge": {
+        "Id": 3071,
+        "DelayFactor": 1,
+        "PostDelayFactor": 0,
+        "Activation": 1
+      },
+      "F1": {
+        "Id": 3037,
+        "DelayFactor": 1,
+        "PostDelayFactor": 0,
+        "Activation": 1
+      },
+      "F2": {
+        "Id": 3038,
+        "DelayFactor": 1,
+        "PostDelayFactor": 0,
+        "Activation": 1
+      },
+      "F3": {
+        "Id": 3039,
+        "DelayFactor": 1,
+        "PostDelayFactor": 0,
+        "Activation": 1
+      },
+      "F4": {
+        "Id": 3040,
+        "DelayFactor": 1,
+        "PostDelayFactor": 0,
+        "Activation": 1
+      },
+      "F5": {
+        "Id": 3041,
+        "DelayFactor": 1,
+        "PostDelayFactor": 0,
+        "Activation": 1
+      },
+      "F6": {
+        "Id": 3042,
+        "DelayFactor": 1,
+        "PostDelayFactor": 0,
+        "Activation": 1
+      },
+      "F7": {
+        "Id": 3043,
+        "DelayFactor": 1,
+        "PostDelayFactor": 0,
+        "Activation": 1
+      },
+      "Fpln": {
+        "Id": 3056,
+        "DelayFactor": 1,
+        "PostDelayFactor": 0,
+        "Activation": 1
+      },
+      "Hyphen": {
+        "Id": 3050,
+        "DelayFactor": 1,
+        "PostDelayFactor": 0,
+        "Activation": 1
+      },
+      "Idx": {
+        "Id": 3055,
+        "DelayFactor": 1,
+        "PostDelayFactor": 0,
+        "Activation": 1
+      },
+      "InsertDataCartridge": {
+        "Id": 3070,
+        "DelayFactor": 1,
+        "PostDelayFactor": 0,
+        "Activation": 1
+      }
+    }
+  }

@@ -15,26 +15,42 @@ public partial class F14BUUploader
         }
     }
 
-    private void strToCmd(string str)
+    private static string ToLuaString(string value)
     {
-        //foreach (var c in str.ToUpper())
-        //{
-        //    if (c == ' ')
-        //    {
-        //        continue;
-        //    }
-        //    try
-        //    {
-        //        Cmd(UFC.GetCommand("BTN" + c));
-        //    }
-        //    catch
-        //    {
-        //        continue;
-        //    }
-        //}
+        return "\"" + value
+            .Replace("\\", "\\\\")
+            .Replace("\"", "\\\"")
+            .Replace("\r", "")
+            .Replace("\n", "") + "\"";
     }
 
     private void UploadPoints(WaypointSystem<Waypoint> wptList, bool fullSync)
     {
+        if (config.Waypoints == null || !config.Waypoints.HasWaypoints())
+        {
+            return;
+        }
+
+        Cmd(CDNU.Clear);
+
+        Cmd(CDNU.Idx);
+        Cmd(Wait(300));
+        Cmd(new CustomCommand($"FindLSKCodes()"));
+
+
+        Cmd(CDNU.Dir);
+        Cmd(Wait(300));
+       // Cmd(new CustomCommand($"EndFlightPlan()"));
+
+
+        foreach (var wpt in config.Waypoints.Waypoints)
+        {
+            var coord = Coordinate.FromString(wpt.Latitude, wpt.Longitude);
+            var mgrs = coord.ToMGRSEightDigits().Replace(" ", "");
+            var waypointName = string.IsNullOrEmpty(wpt.Name)
+                ? ""
+                : "/" + wpt.Name.Substring(0, Math.Min(5, wpt.Name.Length));
+            Cmd(new CustomCommand($"EndFlightPlan({wpt.Sequence},{ToLuaString(waypointName)},{ToLuaString(mgrs)},{wpt.Elevation})"));
+        }
     }
 }

@@ -60,10 +60,12 @@ public partial class CH47FUploader
 
     private void UploadPointsFpln(List<Waypoint> wptList, bool fullSync)
     {
-        Cmd(CDU.CLR); Cmd(CDU.CLR); Cmd(CDU.CLR);
+        Cmd(CDU.CLR);
         Cmd(CDU.FPLN);
         Cmd(CDU.LSK_L6);
         Cmd(CDU.LSK_R1);
+        Cmd(CDU.LSK_R1);
+        Cmd(CDU.CLR);
 
         var submitted = 0;
 

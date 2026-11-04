@@ -98,6 +98,10 @@ internal class ConfigLoader
         {
             return typeof(Aircrafts.OH58D.OH58DConfiguration);
         }
+        if (aircraft == "KA50")
+        {
+            return typeof(Aircrafts.KA50.KA50Configuration);
+        }
         throw new NotImplementedException();
     }
 }

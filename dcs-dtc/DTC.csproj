@@ -49,6 +49,7 @@
 		<None Remove="New\Uploader\Aircrafts\AV8B\AV8BUploader.json" />
 		<None Remove="New\Uploader\Aircrafts\F14BU\F14BUUploader.json" />
 		<None Remove="New\Uploader\Aircrafts\OH58D\OH58DUploader.json" />
+		<None Remove="New\Uploader\Aircrafts\KA50\KA50Uploader.json" />
 		<None Remove="Resources\Iconleak-Atrous-Disk.ico" />
 	</ItemGroup>
 
@@ -63,6 +64,7 @@
 		<AdditionalFiles Include="New\Uploader\Aircrafts\AV8B\AV8BUploader.json" />
 		<AdditionalFiles Include="New\Uploader\Aircrafts\F14BU\F14BUUploader.json" />
 		<AdditionalFiles Include="New\Uploader\Aircrafts\OH58D\OH58DUploader.json" />
+		<AdditionalFiles Include="New\Uploader\Aircrafts\KA50\KA50Uploader.json" />
 	</ItemGroup>
 
 	<ItemGroup>
@@ -140,6 +142,9 @@
 			<CopyToOutputDirectory>Always</CopyToOutputDirectory>
 		</None>
 		<None Update="DCS\DCSDTC\OH58DFunctions.lua">
+			<CopyToOutputDirectory>Always</CopyToOutputDirectory>
+		</None>
+		<None Update="DCS\DCSDTC\KA50Functions.lua">
 			<CopyToOutputDirectory>Always</CopyToOutputDirectory>
 		</None>
 		<None Update="DCS\DCSDTC\hook.lua">

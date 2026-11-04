@@ -54,7 +54,7 @@ public partial class WaypointsPage<T> : WaypointsPageControl where T : class, IW
     {
         this.RemoveEditDialog();
 
-        this.editDialog = new WaypointEdit<T>(this.AfterEdit, this.waypoints, wpt, this.customPanel, this.parent.Aircraft.GetMaxWaypointElevation(), this.parent.Aircraft.GetMinWaypointElevation())
+        this.editDialog = new WaypointEdit<T>(this.AfterEdit, this.waypoints, wpt, this.customPanel, this.parent.Aircraft.GetMaxWaypointElevation(), this.parent.Aircraft.GetMinWaypointElevation(), this.parent.Aircraft.GetWaypointCoordinateFormat())
         {
             Location = new Point(0, 0),
             Size = this.Size
@@ -131,7 +131,9 @@ public partial class WaypointsPage<T> : WaypointsPageControl where T : class, IW
         {
             var wpt = this.waypoints.NewWaypoint();
             wpt.Name = cfWpt.Name;
-            var coords = cfWpt.Coordinate.ToDegreesMinutesThousandths();
+            var coords = this.parent.Aircraft.GetWaypointCoordinateFormat() == CoordinateFormat.DegreesMinutesTenths
+                ? cfWpt.Coordinate.ToDegreesMinutesTenths()
+                : cfWpt.Coordinate.ToDegreesMinutesThousandths();
             wpt.Latitude = coords.Lat;
             wpt.Longitude = coords.Lon;
             wpt.Elevation = cfWpt.Elevation;

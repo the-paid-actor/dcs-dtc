@@ -19,6 +19,11 @@ public abstract class Aircraft : IAircraft
         return 0;
     }
 
+    public virtual CoordinateFormat GetWaypointCoordinateFormat()
+    {
+        return CoordinateFormat.DegreesMinutesThousandths;
+    }
+
     public List<IPreset> Presets { get; } = new List<IPreset>();
 
     public Aircraft()

@@ -10,11 +10,14 @@ public class WaypointEdit<T> : WaypointEditControl where T : class, IWaypoint, n
     private AirbaseSearch abSearch = null;
 
     private readonly WaypointSystem<T> waypoints;
+    private readonly CoordinateFormat coordinateFormat;
     private T waypoint;
     private bool adding = false;
 
-    public WaypointEdit(Action callback, WaypointSystem<T> waypoints, T? wpt, IWaypointEditCustomPanel? customPanel, int maxWptElevation, int minWptElevation)
+    public WaypointEdit(Action callback, WaypointSystem<T> waypoints, T? wpt, IWaypointEditCustomPanel? customPanel, int maxWptElevation, int minWptElevation, CoordinateFormat coordinateFormat = CoordinateFormat.DegreesMinutesThousandths)
     {
+        this.coordinateFormat = coordinateFormat;
+        this.txtCoordinate.Format = coordinateFormat;
         this.refreshListCallback = callback;
         this.customPanel = customPanel;
         this.waypoints = waypoints;
@@ -164,7 +167,9 @@ public class WaypointEdit<T> : WaypointEditControl where T : class, IWaypoint, n
             return false;
         }
 
-        var c = this.txtCoordinate.Coordinate.ToDegreesMinutesThousandths();
+        var c = this.coordinateFormat == CoordinateFormat.DegreesMinutesTenths
+            ? this.txtCoordinate.Coordinate.ToDegreesMinutesTenths()
+            : this.txtCoordinate.Coordinate.ToDegreesMinutesThousandths();
 
         this.waypoint.Name = this.txtName.Text;
         this.waypoint.Latitude = c.Lat;

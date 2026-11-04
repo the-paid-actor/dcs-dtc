@@ -11,6 +11,10 @@ public partial class CH47FUploader
         {
             return;
         }
+        if (config.Upload.Waypoints)
+        {
+            UploadPointsAcp(config.Waypoints.Waypoints, true);
+        }
 
         if (config.Upload.Route)
         {
@@ -19,14 +23,8 @@ public partial class CH47FUploader
             {
                 UploadPointsFpln(wptsToUpload, true);
             }
-
-            return;
         }
 
-        if (config.Upload.Waypoints)
-        {
-            UploadPointsAcp(config.Waypoints.Waypoints, true);
-        }
     }
 
     private void strToCmd(string str, int max)
@@ -94,7 +92,7 @@ public partial class CH47FUploader
 
     private void UploadPointsAcp(List<Waypoint> wptList, bool fullSync)
     {
-        Cmd(CDU.CLR); Cmd(CDU.CLR); Cmd(CDU.CLR);
+        Cmd(CDU.CLR);
         Cmd(CDU.IDX);
         Cmd(CDU.LSK_L6);
         Cmd(CDU.LSK_L6);

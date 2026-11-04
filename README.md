@@ -2,7 +2,7 @@
 
 https://github.com/the-paid-actor/dcs-dtc
 
-This is a Windows application that mimics the functions of a DTC (Data Cartridge) for the F-16, F/A-18, F-15E, Apache, A10C II, C130J, CH-47F, AV8B, F-14B(U) and OH-58D Kiowa.
+This is a Windows application that mimics the functions of a DTC (Data Cartridge) for the F-16, F/A-18, F-15E, Apache, A10C II, C130J, CH-47F, AV8B, F-14B(U), OH-58D Kiowa and Ka-50 III.
 
 - **Create and recall presets** for each mission / server you fly, or however you want to organize your settings. These are saved in the DCS-DTC folder under Documents.
 - **Upload** the settings from a preset to the aircraft.
@@ -105,6 +105,10 @@ This is a Windows application that mimics the functions of a DTC (Data Cartridge
 - Waypoints
 - Radios
 
+## Ka-50 III
+
+- PVI-800 steerpoints (ППМ 1-6)
+
 
 # Requirements
 
@@ -191,6 +195,11 @@ The mod features usage of unused cockpit buttons in DCS to show/hide the app, an
 ## OH-58D Kiowa
 
 - pressing the "IFF" button for more than 1 second will command the upload of the current preset.
+
+## Ka-50 III
+
+- pressing the accelerometer reset button for more than 1 second will command the upload of the current preset.
+- Upload types steerpoints 1-6 into the PVI-800. The navigation system must already be powered. The PVI is switched to ВВОД, then returned to РАБОТА. Names and elevation stay in the preset; the PVI stores coordinates only.
 
 
 

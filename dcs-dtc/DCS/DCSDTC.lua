@@ -22,6 +22,7 @@ dofile(lfs.writedir() .. 'Scripts/DCSDTC/CH47FFunctions.lua')
 dofile(lfs.writedir() .. 'Scripts/DCSDTC/AV8BFunctions.lua')
 dofile(lfs.writedir() .. 'Scripts/DCSDTC/F14BUFunctions.lua')
 dofile(lfs.writedir() .. 'Scripts/DCSDTC/OH58DFunctions.lua')
+dofile(lfs.writedir() .. 'Scripts/DCSDTC/KA50Functions.lua')
 
 local udpSpeaker = nil
 local tcpServer = nil
@@ -246,6 +247,10 @@ function LuaExportAfterNextFrame()
 
     if model == "OH58D" then
         DTC_OH58D_AfterNextFrame(params)
+    end
+
+    if model == "KA50" then
+        DTC_KA50_AfterNextFrame(params)
     end
 
     local toSend = "{" ..

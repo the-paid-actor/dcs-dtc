@@ -39,6 +39,7 @@ partial class MainPage
         btnAV8B = new Button();
         btnF14BU = new Button();
         btnOH58D = new Button();
+        btnKA50 = new Button();
         SuspendLayout();
         // 
         // btnF16
@@ -228,6 +229,23 @@ partial class MainPage
         btnOH58D.UseVisualStyleBackColor = true;
         btnOH58D.Click += btnOH58D_Click;
         // 
+        // btnKA50
+        // 
+        btnKA50.BackgroundImage = Properties.Resources.KA50;
+        btnKA50.BackgroundImageLayout = ImageLayout.Zoom;
+        btnKA50.FlatStyle = FlatStyle.Flat;
+        btnKA50.Font = new Font("Microsoft Sans Serif", 11F, FontStyle.Bold, GraphicsUnit.Point);
+        btnKA50.ForeColor = Color.Black;
+        btnKA50.Location = new Point(385, 250);
+        btnKA50.Name = "btnKA50";
+        btnKA50.Padding = new Padding(5);
+        btnKA50.Size = new Size(175, 112);
+        btnKA50.TabIndex = 12;
+        btnKA50.Text = "Ka-50 III";
+        btnKA50.TextAlign = ContentAlignment.TopLeft;
+        btnKA50.UseVisualStyleBackColor = true;
+        btnKA50.Click += btnKA50_Click;
+        // 
         // MainPage
         // 
         AutoScaleDimensions = new SizeF(96F, 96F);
@@ -244,9 +262,10 @@ partial class MainPage
         Controls.Add(btnAV8B);
         Controls.Add(btnF14BU);
         Controls.Add(btnOH58D);
+        Controls.Add(btnKA50);
         Controls.Add(btnWptDatabase);
         Name = "MainPage";
-        Size = new Size(778, 403);
+        Size = new Size(761, 403);
         ResumeLayout(false);
     }
 
@@ -263,4 +282,5 @@ partial class MainPage
     private System.Windows.Forms.Button btnAV8B;
     private System.Windows.Forms.Button btnF14BU;
     private System.Windows.Forms.Button btnOH58D;
+    private System.Windows.Forms.Button btnKA50;
 }

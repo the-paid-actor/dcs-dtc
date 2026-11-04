@@ -66,7 +66,8 @@ function DTCWptCapture:show(eventCallback)
     local isAV8B = eventCallback:getAircraftType() == "AV8B"
     local isF14BU = eventCallback:getAircraftType() == "F14BU"
     local isOH58D = eventCallback:getAircraftType() == "OH58D"
-    local inPlane = (isViper or isHornet or isMudhen or isApache or isC130 or isA10 or isCH47F or isAV8B or isF14BU or isOH58D)
+    local isKA50 = eventCallback:getAircraftType() == "KA50"
+    local inPlane = (isViper or isHornet or isMudhen or isApache or isC130 or isA10 or isCH47F or isAV8B or isF14BU or isOH58D or isKA50)
 
     self.dialog.addButton:setVisible(isMudhen == false)
     self.dialog.addAsTgtButton:setVisible(isViper or isHornet or isApache)

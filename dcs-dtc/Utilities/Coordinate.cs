@@ -7,6 +7,7 @@ namespace DTC.Utilities
     public enum CoordinateFormat
     {
         NativeDCSFormat,
+        DegreesMinutesTenths,
         DegreesMinutesHundredths,
         DegreesMinutesThousandths,
         DegreesMinutesTenThousandths,
@@ -35,9 +36,11 @@ namespace DTC.Utilities
 
     public class Coordinate
     {
+        public static Regex DegreesMinutesTenthsRegex = new Regex("^([N|S] \\d\\d\\°\\d\\d\\.\\d\\’) ([E|W] \\d\\d\\d\\°\\d\\d\\.\\d\\’)$");
         public static Regex DegreesMinutesHundredthsRegex = new Regex("^([N|S] \\d\\d\\°\\d\\d\\.\\d\\d\\’) ([E|W] \\d\\d\\d\\°\\d\\d\\.\\d\\d\\’)$");
         public static Regex DegreesMinutesThousandthsRegex = new Regex("^([N|S] \\d\\d\\°\\d\\d\\.\\d\\d\\d\\’) ([E|W] \\d\\d\\d\\°\\d\\d\\.\\d\\d\\d\\’)$");
         
+        public static string DegreesMinutesTenthsMask = ">L 00°00\\.0’ L 000°00\\.0’";
         public static string DegreesMinutesHundredthsMask = ">L 00°00\\.00’ L 000°00\\.00’";
         public static string DegreesMinutesThousandthsMask = ">L 00°00\\.000’ L 000°00\\.000’";
         public static string DegreesMinutesSecondsMask = ">L 00°00’00” L 000°00’00”";
@@ -122,6 +125,12 @@ namespace DTC.Utilities
             var latStr = formatLatLong(this.c.Latitude, 2);
             var lonStr = formatLatLong(this.c.Longitude, 3);
             return new LatLon(latStr, lonStr);
+        }
+
+        public LatLon ToDegreesMinutesTenths()
+        {
+            //DD°MM.M’  — one decimal minute, the PVI-800 precision.
+            return new LatLon(FormatDegreesMinutesTenths(this.c.Latitude, 2), FormatDegreesMinutesTenths(this.c.Longitude, 3));
         }
 
         public LatLon ToDegreesMinutesHundredths()
@@ -227,6 +236,8 @@ namespace DTC.Utilities
         {
             switch (format)
             {
+                case CoordinateFormat.DegreesMinutesTenths:
+                    return this.ToDegreesMinutesTenths().ToString();
                 case CoordinateFormat.DegreesMinutesHundredths:
                     return this.ToDegreesMinutesHundredths().ToString();
                 case CoordinateFormat.DegreesMinutesThousandths:
@@ -250,6 +261,52 @@ namespace DTC.Utilities
         {
             var d = new Distance(this.c, other.c);
             return (int)d.NauticalMiles;
+        }
+
+        // PVI-800 keypad format. One decimal minute: latitude DDMM.m, longitude DDDMM.m.
+        // A leading "-" marks south or west; the digits themselves stay unsigned.
+        public string ToPvi800Latitude()
+        {
+            return FormatPvi800(this.c.Latitude, 2);
+        }
+
+        public string ToPvi800Longitude()
+        {
+            return FormatPvi800(this.c.Longitude, 3);
+        }
+
+        private static string FormatDegreesMinutesTenths(CoordinatePart part, int degreeDigits)
+        {
+            var (degrees, minutes, tenth) = RoundToTenthOfMinute(part);
+            return $"{part.Position} {degrees.ToString(CultureInfo.InvariantCulture).PadLeft(degreeDigits, '0')}°{minutes.ToString("00", CultureInfo.InvariantCulture)}.{tenth.ToString(CultureInfo.InvariantCulture)}’";
+        }
+
+        private static string FormatPvi800(CoordinatePart part, int degreeDigits)
+        {
+            var hemisphere = part.Position.ToString();
+            var negative = hemisphere == "S" || hemisphere == "W";
+            var (degrees, minutes, tenth) = RoundToTenthOfMinute(part);
+            var digits = degrees.ToString(CultureInfo.InvariantCulture).PadLeft(degreeDigits, '0')
+                + minutes.ToString("00", CultureInfo.InvariantCulture)
+                + tenth.ToString(CultureInfo.InvariantCulture);
+            return negative ? "-" + digits : digits;
+        }
+
+        private static (int degrees, int minutes, int tenth) RoundToTenthOfMinute(CoordinatePart part)
+        {
+            var degrees = (int)Math.Truncate(Convert.ToDouble(part.Degrees, CultureInfo.InvariantCulture));
+            var tenths = (int)Math.Round(part.DecimalMinute * 10d, MidpointRounding.AwayFromZero);
+            if (tenths >= 600)
+            {
+                degrees += tenths / 600;
+                tenths %= 600;
+            }
+            else if (tenths < 0)
+            {
+                tenths = 0;
+            }
+
+            return (degrees, tenths / 10, tenths % 10);
         }
     }
 }

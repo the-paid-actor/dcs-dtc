@@ -33,6 +33,8 @@ public class DTCCoordinateTextBox2 : UserControl
             this.format = value;
             switch (this.format)
             {
+                case CoordinateFormat.DegreesMinutesTenths:
+                    this.textBox.Mask = Coordinate.DegreesMinutesTenthsMask; break;
                 case CoordinateFormat.DegreesMinutesHundredths:
                     this.textBox.Mask = Coordinate.DegreesMinutesHundredthsMask; break;
                 case CoordinateFormat.DegreesMinutesThousandths:

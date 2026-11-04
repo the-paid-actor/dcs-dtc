@@ -236,7 +236,7 @@ partial class MainPage
         btnKA50.FlatStyle = FlatStyle.Flat;
         btnKA50.Font = new Font("Microsoft Sans Serif", 11F, FontStyle.Bold, GraphicsUnit.Point);
         btnKA50.ForeColor = Color.Black;
-        btnKA50.Location = new Point(204, 250);
+        btnKA50.Location = new Point(385, 250);
         btnKA50.Name = "btnKA50";
         btnKA50.Padding = new Padding(5);
         btnKA50.Size = new Size(175, 112);
@@ -265,7 +265,7 @@ partial class MainPage
         Controls.Add(btnKA50);
         Controls.Add(btnWptDatabase);
         Name = "MainPage";
-        Size = new Size(778, 403);
+        Size = new Size(761, 403);
         ResumeLayout(false);
     }
 

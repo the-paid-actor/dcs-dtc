@@ -13,7 +13,7 @@ public partial class WaypointsPageControl : AircraftSystemPage
         this.InitializeComponent();
     }
 
-    public WaypointsPageControl(AircraftPage parent, string systemName) : base(parent, systemName)
+    public WaypointsPageControl(AircraftPage parent, string systemName, string nameDataBindName = "Name", string latitudeDataBindName = "Latitude", string longitudeDataBindName = "Longitude") : base(parent, systemName)
     {
         this.InitializeComponent();
 
@@ -21,9 +21,9 @@ public partial class WaypointsPageControl : AircraftSystemPage
 
         this.dgWaypoints.SetColumns(
             new DTCGridColumn { Name = "Seq", DataBindName = "Sequence", Width = 40 },
-            new DTCGridColumn { Name = "Name" },
-            new DTCGridColumn { Name = "Latitude", Width = 100 },
-            new DTCGridColumn { Name = "Longitude", Width = 110 },
+            new DTCGridColumn { Name = "Name", DataBindName = nameDataBindName },
+            new DTCGridColumn { Name = "Latitude", DataBindName = latitudeDataBindName, Width = 100 },
+            new DTCGridColumn { Name = "Longitude", DataBindName = longitudeDataBindName, Width = 110 },
             new DTCGridColumn { Name = "Elev", DataBindName = "Elevation", Width = 55, Alignment = DataGridViewContentAlignment.MiddleRight },
             new DTCGridColumn { Name = "", DataBindName = "ExtraDescription", Width = 100 });
 

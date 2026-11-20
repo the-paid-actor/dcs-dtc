@@ -9,6 +9,17 @@ public enum TACANBands
     Y = 1
 }
 
+public enum TACANModes
+{
+    TR = 0,
+    AA = 1
+}
+public enum TACANStates
+{
+    OFF = 0,
+    ON = 1
+}
+
 public class MiscSystem
 {
     private static Regex ilsRegex = new Regex(@"^1[0-1][8|9|0|1]\.[1|3|5|7|9]?[0|5]?$");
@@ -23,6 +34,8 @@ public class MiscSystem
     public int TACANChannel { get; set; }
     public TACANBands TACANBand { get; set; }
     public bool TACANToBeUpdated { get; set; }
+    public TACANModes TACANMode { get; set; }
+    public TACANStates TACANState { get; set; }
     public decimal ILSFrequency { get; set; }
     public bool ILSToBeUpdated { get; set; }
     public bool LaserSettingsToBeUpdated { get; set; }

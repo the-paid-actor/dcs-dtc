@@ -237,6 +237,59 @@ dialog = {
             },
         },
 
+        ["addAsOfstButtonA"] = {
+            ["type"] = "Button",
+            ["params"] = {
+                ["bounds"] = {
+                    ["x"] = 228,
+                    ["y"] = 20,
+                    ["w"] = 100,
+                    ["h"] = 30
+                },
+                ["text"] = "Add OFST A",
+            },
+            ["skin"] = {
+                ["params"] = {
+                    ["name"] = "buttonSkinAwacs"
+                }
+            },
+        },
+
+        ["addAsOfstButtonB"] = {
+            ["type"] = "Button",
+            ["params"] = {
+                ["bounds"] = {
+                    ["x"] = 228,
+                    ["y"] = 50,
+                    ["w"] = 100,
+                    ["h"] = 30
+                },
+                ["text"] = "Add OFST B",
+            },
+            ["skin"] = {
+                ["params"] = {
+                    ["name"] = "buttonSkinAwacs"
+                }
+            },
+        },
+
+        ["addAsOfstButtonC"] = {
+            ["type"] = "Button",
+            ["params"] = {
+                ["bounds"] = {
+                    ["x"] = 228,
+                    ["y"] = 80,
+                    ["w"] = 100,
+                    ["h"] = 30
+                },
+                ["text"] = "Add OFST C",
+            },
+            ["skin"] = {
+                ["params"] = {
+                    ["name"] = "buttonSkinAwacs"
+                }
+            },
+        },
         ["addButtonApache"] = {
             ["type"] = "Button",
             ["params"] = {
@@ -277,7 +330,7 @@ dialog = {
             ["type"] = "Button",
             ["params"] = {
                 ["bounds"] = {
-                    ["x"] = 228,
+                    ["x"] = 328,
                     ["y"] = 20,
                     ["w"] = 90,
                     ["h"] = 30
@@ -291,12 +344,30 @@ dialog = {
             },
         },
 
+        ["removeButton"] = {
+            ["type"] = "Button",
+            ["params"] = {
+                ["bounds"] = {
+                    ["x"] = 328,
+                    ["y"] = 50,
+                    ["w"] = 90,
+                    ["h"] = 30
+                },
+                ["text"] = "Remove",
+            },
+            ["skin"] = {
+                ["params"] = {
+                    ["name"] = "buttonSkinAwacs"
+                }
+            },
+        },
+
         ["clearButton"] = {
             ["type"] = "Button",
             ["params"] = {
                 ["bounds"] = {
-                    ["x"] = 318,
-                    ["y"] = 20,
+                    ["x"] = 328,
+                    ["y"] = 80,
                     ["w"] = 63,
                     ["h"] = 30
                 },
